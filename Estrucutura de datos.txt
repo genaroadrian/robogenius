@@ -19,3 +19,7 @@ id+primera letra de la primer palabra + tres primeras letras de la segunda palab
 Ejemplo: 
 Para la tabla tipo pago:
 id_tpag
+
+
+
+Pruebaaaaaaaa!!!!!

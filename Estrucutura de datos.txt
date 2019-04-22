@@ -1,0 +1,25 @@
+Nombre de controladores de Laravel:
+nombre_de_la_tabla+Controller, ejemplos:
+-usuariosController
+-loginController
+
+Modelos
+Nombre de la tabla con la primera letra en Mayuscula
+Ejemplo:
+-Usuarios
+
+ID de las tablas en la Dase de Datos
+id+tres_primeras_letras
+Ejemplo:
+-Tabla Usuario
+-idusu
+
+Tablas con dos nombres
+id+primera letra de la primer palabra + tres primeras letras de la segunda palabla
+Ejemplo: 
+Para la tabla tipo pago:
+id_tpag
+
+
+
+Pruebaaaaaaaa!!!!!

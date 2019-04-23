@@ -52,6 +52,7 @@ TABLES OF CSS
 /* ==============
   General
 ===================*/
+
 body {
   background-repeat: repeat;
   background: #f3f3f3;
@@ -96,7 +97,10 @@ a:focus {
   outline: 0;
   text-decoration: none;
 }
-
+.centro{
+   align-content: center;
+  
+}
 .container-alt {
   margin-left: auto;
   margin-right: auto;
@@ -631,15 +635,15 @@ body {
 }
 
 #topnav .has-submenu.active a {
-  color: #1b82ec;
+  color: #f7ca10;
 }
 
 #topnav .has-submenu.active .submenu li.active > a {
-  color: #1b82ec;
+  color: #f7ca10;
 }
 
 #topnav .topbar-main {
-  background-color: #1b82ec;
+  background-color: #f7ca10;
 }
 
 #topnav .topbar-main .logo {
@@ -1453,6 +1457,7 @@ button:focus {
    ====== */
 .card {
   border: none;
+  filter: drop-shadow(5px 5px 10px #444);
   -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, 0.08);
           box-shadow: 0 2px 3px rgba(0, 0, 0, 0.08);
   margin-bottom: 30px;
@@ -3634,13 +3639,16 @@ Invoice
 }
 
 .account-pages {
-  background: url("../images/bg.jpg");
+  background: url("../images/robot.jpg");
   position: absolute;
+  filter: blur(2px);
   background-size: cover;
   height: 100%;
   width: 100%;
   top: 0;
+
 }
+
 
 /* ======
 33. Dashboard Page

@@ -3,14 +3,24 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomePersonalComponent } from './home-personal/home-personal.component';
+import { FormPersonalComponent } from './form-personal/form-personal.component';
+import {Route,RouterModule} from '@angular/router';
+const routes: Route[] = [
+{path:'home',component:HomePersonalComponent}
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePersonalComponent,
+    FormPersonalComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+	RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

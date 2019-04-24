@@ -180,16 +180,19 @@
                                     </li>
 
                                     <li class="has-submenu">
-                                        <a href="#">Instructores</a>
+                                        <a href="#">Personal</a>
                                         <ul class="submenu">
                                             <li>
-                                                <a href="#">Tipos de instructores</a>
+                                                <a href="#">Tipo de personal</a>
                                             </li>
                                         </ul>
                                     </li>
 
                                     <li>
                                         <a href="#">Usuarios del sistema</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Escuelas</a>
                                     </li>
                                 </ul>
                             </li>

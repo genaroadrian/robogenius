@@ -23,6 +23,10 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/plugins/morris/morris.css",
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/css/icons.css",
+              "src/assets/css/style.css",
               "src/styles.css"
             ],
             "scripts": [],

@@ -7,7 +7,8 @@ import { HomePersonalComponent } from './home-personal/home-personal.component';
 import { FormPersonalComponent } from './form-personal/form-personal.component';
 import {Route,RouterModule} from '@angular/router';
 const routes: Route[] = [
-{path:'home',component:HomePersonalComponent}
+{path:'home',component:HomePersonalComponent},
+{path:'form',component:FormPersonalComponent}
 ];
 
 @NgModule({

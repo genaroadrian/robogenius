@@ -21,7 +21,6 @@ class personalController extends Controller
     public function store(Request $request)
     {
         $personal = new Personal();
-        $personal->idper = $request->idper;
         $personal->nombre = $request->nombre;
         $personal->apellidos = $request->apellidos;
         $personal->usuario = $request->usuario;
@@ -38,6 +37,7 @@ class personalController extends Controller
         $personal->especialidad = $request->especialidad;
         $personal->salariomensual = $request->salariomensual;
         $personal->tareasasignadas = $request->tareasasignadas;
+        $personal->idtper = $request->idtper;
         $personal->activo = $request->activo;
         $personal->save();
         echo json_encode($personal);
@@ -63,6 +63,7 @@ class personalController extends Controller
         $personal->especialidad = $request->especialidad;
         $personal->salariomensual = $request->salariomensual;
         $personal->tareasasignadas = $request->tareasasignadas;
+        $personal->idtper = $request->idtper;
         $personal->activo = $request->activo;
         $personal->save();
         echo json_encode($personal);

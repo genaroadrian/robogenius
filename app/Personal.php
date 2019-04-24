@@ -30,6 +30,7 @@ class Personal extends Model
         'especialidad',
         'salariomensual',
         'tareasasignadas',
+        'idtper',
         'activo'
     ];
 }

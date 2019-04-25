@@ -1,3 +1,129 @@
-<p>
-  form-personal works!
-</p>
+
+<div class="container">
+<div class="col-md-8">
+  <h1>Registro de personal</h1>
+  <br>
+  <form action="#">
+    
+    <div class="form-group">
+        <label for="">Nombre(s): </label>
+        <div>
+            <input type="text" class="form-control" required id="nombre"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Apellidos:</label>
+        <div>
+            <input type="text" class="form-control" required id="apellidos"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Fecha de Nacimiento:</label>
+        <div>
+            <input id="fechanac" type="date" class="form-control floating-label" placeholder="Date" id="date">
+        </div>
+        <!-- input-group -->
+    </div>
+    <div class="form-group">
+        <label for="">Sexo:</label>
+        <div>
+            <select name="sexo" id="sexo" class="form-control select2">
+              <option value="Hombre">Hombre</option>
+              <option value="Mujer">Mujer</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">CURP:</label>
+        <div>
+            <input id="curp" type="text" class="form-control" required/>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Estado Civil:</label>
+        <div>
+            <select name="" id="estadocivil" class="form-control select2">
+              <option value="Casado(a)">Casado(a)</option>
+              <option value="Soltero(a)">Soltero(a)</option>
+              <option value="Separado(a)">Separado(a)</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="">Domicilio:</label>
+        <div>
+            <input id="domicilio" type="text" class="form-control" required/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="">Fecha de ingreso:</label>
+        <div>
+            <input id="fechaingreso" type="date" class="form-control" required disabled>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="">Hora de Entrada:</label>
+        <div>
+            <input type="time" id="horaentrada" class="form-control floating-label">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="">Hora de Salida:</label>
+        <div>
+            <input type="time" id="horasalida" class="form-control floating-label">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="">Tipo de Personal:</label>
+        <div>
+            <select name="" id="perfilprofesional" class="form-control select2">
+              <option *ngFor="let tipoper of tipopersonal" value="{{tipoper.idtper}}">{{tipoper.tipo}}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="">Perfil Profesional: </label>
+        <div>
+            <input id="perfilprofesional" type="text" class="form-control"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="">Especialidad:</label>
+        <div>
+            <input id="especialidad" type="text" class="form-control" required/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="">Salario Mensual:</label>
+        <div>
+            <input id="salariomensual" data-parsley-type="number" type="text" class="form-control" required/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="">Tareas asignadas:</label>
+        <div>
+            <textarea id="tareasasignadas" required class="form-control" rows="5" placeholder="Describir las treas a realizar dentro de la empresa"></textarea>
+        </div>
+    </div>
+  
+    <div class="form-group m-b-0">
+            <div>
+                <button type="submit" class="btn btn-primary waves-effect waves-light">
+                    Submit
+                </button>
+                <button type="reset" class="btn btn-secondary waves-effect m-l-5">
+                    Cancel
+                </button>
+            </div>
+    </div>
+  </form>
+</div>
+</div>

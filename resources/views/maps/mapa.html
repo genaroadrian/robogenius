@@ -1,181 +1,159 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <title>Places Search Box</title>
-    
-    <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-      #description {
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-      }
-
-      #infowindow-content .title {
-        font-weight: bold;
-      }
-
-      #infowindow-content {
-        display: none;
-      }
-
-      #map #infowindow-content {
-        display: inline;
-      }
-
-      .pac-card {
-        margin: 10px 10px 0 0;
-        border-radius: 2px 0 0 2px;
-        box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        outline: none;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-        background-color: #fff;
-        font-family: Roboto;
-      }
-
-      #pac-container {
-        padding-bottom: 12px;
-        margin-right: 12px;
-      }
-
-      .pac-controls {
-        display: inline-block;
-        padding: 5px 11px;
-      }
-
-      .pac-controls label {
-        font-family: Roboto;
-        font-size: 13px;
-        font-weight: 300;
-      }
-
-      #pac-input {
-        background-color: #fff;
-        font-family: Roboto;
-        font-size: 15px;
-        font-weight: 300;
-        margin-left: 12px;
-        padding: 0 11px 0 13px;
-        text-overflow: ellipsis;
-        width: 400px;
-      }
-
-      #pac-input:focus {
-        border-color: #4d90fe;
-      }
-
-      #title {
-        color: #fff;
-        background-color: #4d90fe;
-        font-size: 25px;
-        font-weight: 500;
-        padding: 6px 12px;
-      }
-      #target {
-        width: 345px;
-      }
-    </style>
-
-  </head>
-
-  <body>
-
-    <input id="pac-input" class="controls" type="text" placeholder="Type a place">
-    <div id="map"></div>
-    
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<meta charset="utf-8">
+		<meta name="description" content="Google Address Autocomplete API, google search autocomplete api, google jquery autocomplete, google places autocomplete jquery, google maps autocomplete tutorial, google autofill api">
+		<meta name="keywords" content="Google Address Autocomplete API, google search autocomplete api, google jquery autocomplete, google places autocomplete jquery, google maps autocomplete tutorial, google autofill api">
+		<meta name="author" content="https://plus.google.com/+MuniAyothi/">
+		<title>Google Address Autocomplete API</title>
+	
+		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200' rel='stylesheet' type='text/css'>
+		<link type="text/css" rel="stylesheet"  href="css/bootstrap.min.css">
+		<link type="text/css" rel="stylesheet"  href="css/font-awesome.min.css">
+		<link type="text/css" rel="stylesheet"  href="css/style.css">
+	</head>
+	<body onload="initialize()">
+		
+		
+		<div class="container" style="margin-top: 5px;">
+			<h1 class="title text-center">Google Address Autocomplete API</h1>
+			<div class="row">
+				<div class="col-md-8">
+					<form class="form-horizontal">
+						  	
+					  	<h2 class="text-center underline">Demo</h2>
+					  		  	
+					  	<div class="form-group">
+					    	<label for="autocomplete" class="col-sm-2 control-label">Dirección</label>
+					    	<div class="col-sm-10">
+					      		<input class="form-control" id="autocomplete" placeholder="Ingrese su dirección" onFocus="geolocate()" type="text"></input>
+					    	</div>
+					  	</div>
+					  	
+					  	<div class="form-group">
+					    	<label for="street_number" class="col-sm-2 control-label">Calle</label>
+					    	<div class="col-sm-10">
+					      		<input class="form-control" id="street_number"></input>
+					      		<br/>
+					      		<input class="form-control" id="route"></input>
+					    	</div>
+					  	</div>
+					  	
+  						<div class="form-group">
+					    	<label for="locality" class="col-sm-2 control-label">Ciudad</label>
+					    	<div class="col-sm-10">
+					      		<input class="form-control" id="locality"></input>
+					    	</div>
+					  	</div>
+					  	
+					  	<div class="form-group">
+					    	<label for="administrative_area_level_1" class="col-sm-2 control-label">Estado</label>
+					    	<div class="col-sm-10">
+					      		<input class="form-control" id="administrative_area_level_1"></input>
+					    	</div>
+					  	</div>
+					  	
+					  	<div class="form-group">
+					    	<label for="country" class="col-sm-2 control-label">País</label>
+					    	<div class="col-sm-10">
+					      		<input class="form-control" id="country"></input>
+					    	</div>
+					  	</div>
+					  	
+					  	<div class="form-group">
+					    	<label for="postal_code" class="col-sm-2 control-label">Código postal</label>
+					    	<div class="col-sm-10">
+					      		<input class="form-control" id="postal_code"></input>
+					    	</div>
+					  	</div>
+					  	
+					</form>
+				</div>
+				<div class="col-md-4">
+				
+				</div>
+			</div>
+		</div>
+		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places"></script>
+		<script src="js/jquery.min.js"></script>
+    <script src="js/script.js"> </script>
     <script>
-      // This example adds a search box to a map, using the Google Place Autocomplete
-      // feature. People can enter geographical searches. The search box will return a
-      // pick list containing a mix of places and predicted search terms.
-
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-      function initAutocomplete() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 19.4978, lng: -99.1269},
-          zoom: 10,
-          mapTypeId: 'roadmap'
-        });
-
-        // Create the search box and link it to the UI element.
-        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
-
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-          searchBox.setBounds(map.getBounds());
-        });
-
-        var markers = [];
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function() {
-          var places = searchBox.getPlaces();
-
-          if (places.length == 0) {
-            return;
-          }
-
-          // Clear out the old markers.
-          markers.forEach(function(marker) {
-            marker.setMap(null);
-          });
-          markers = [];
-
-          // For each place, get the icon, name and location.
-          var bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
-            if (!place.geometry) {
-              console.log("Returned place contains no geometry");
-              return;
-            }
-            var icon = {
-              url: place.icon,
-              size: new google.maps.Size(71, 71),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(25, 25)
-            };
-
-            // Create a marker for each place.
-            markers.push(new google.maps.Marker({
-              map: map,
-              icon: icon,
-              title: place.name,
-              position: place.geometry.location
-            }));
-
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
-          });
-          map.fitBounds(bounds);
-        });
-      }
-
-    </script>
-
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAJcQ6vYZu1w4pQXfXdrDyyHnfrKaiUves&libraries=places&callback=initAutocomplete"
-         async defer></script>
-
-  </body>
+    var placeSearch, autocomplete, autocomplete_textarea;
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
+ 
+function initialize() {
+  // Cree el objeto de autocompletado, restringiendo la búsqueda
+  autocomplete = new google.maps.places.Autocomplete(
+     (document.getElementById('autocomplete')),
+      { types: ['geocode'] });
+  // Cuando el usuario selecciona una dirección en el menú desplegable,
+  // rellena los campos de dirección en el formulario.
+  google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    fillInAddress();
+  });
+  
+  
+  autocomplete_textarea = new google.maps.places.Autocomplete((document.getElementById('autocomplete_textarea')),
+      { types: ['geocode'] }
+  );
+  google.maps.event.addListener(autocomplete_textarea, 'place_changed', function() {
+    fillInAddress_textarea();
+  });
+}
+ 
+function fillInAddress_textarea(){
+	var place = autocomplete_textarea.getPlace();
+	console.log( place.formatted_address );
+	console.log( JSON.stringify(place) );
+	$('#autocomplete_textarea').val( place.formatted_address );
+}
+ 
+ 
+function fillInAddress() {
+  // Obtener los detalles de lugar el objeto de autocompletado.
+  var place = autocomplete.getPlace();
+  console.log( JSON.stringify(place) );
+  for (var component in componentForm) {
+    document.getElementById(component).value = '';
+    document.getElementById(component).disabled = false;
+  }
+ 
+  // Recibe cada componente de la dirección de los lugares más detalles
+  // y llena el campo correspondiente en el formulario.
+  for (var i = 0; i < place.address_components.length; i++) {
+    var addressType = place.address_components[i].types[0];
+    if (componentForm[addressType]) {
+      var val = place.address_components[i][componentForm[addressType]];
+      document.getElementById(addressType).value = val;
+    }
+  }
+}
+ 
+ 
+ 
+//ubicación geográfica del usuario,
+ 
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = new google.maps.LatLng(
+          position.coords.latitude, position.coords.longitude);
+      var circle = new google.maps.Circle({
+        center: geolocation,
+        radius: position.coords.accuracy
+      });
+      autocomplete.setBounds(circle.getBounds());
+      autocomplete_textarea.setBounds(circle.getBounds());
+    });
+  }
+}</script>
+	</body>
 </html>

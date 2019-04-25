@@ -224,7 +224,6 @@
         <div class="wrapper">
             <div class="page-title-box">
                 <div class="container-fluid">
-
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="state-information d-none d-sm-block">
@@ -239,26 +238,31 @@
                             </div>
                             
                             <h4 class="page-title">Escuelas</h4>
-<!-- inicio de la tabla-->
-<table  class="table">
-      <tr><td class="text-info"><h4>Clave</h4></td><td class="text-info"><h4>Nombre</h4></td>
-        <td class="text-info"><h4>Activo</h4></td><td class="text-info"><h4>Operaciones</h4></td></tr>
+                            <!-- inicio de la tabla-->
+                            <table  class="table">
+                                  <tr>
+                                    <td class="text-info">
+                                        <h4>Clave</h4>
+                                    </td>
+                                    <td class="text-info">
+                                        <h4>Nombre</h4>
+                                    </td>
+                                    <td class="text-info">
+                                        <h4>Activo</h4>
+                                    </td>
+                                    <td class="text-info">
+                                        <h4>Operaciones</h4>
+                                    </td>
+                                </tr>
 
-      @foreach($escuela as $esc)
-      <tr>
-      <td>{{$esc->nombre}}</td>
-      <td>{{$esc->activo}}</td>
-      </tr>
-      @endforeach
-    </table>
-  </body>
-<!--fin de la tabla-->
-
-                           
-                        </div>
+                                  
+                            </table>
+                          </body>
+                        <!--fin de la tabla-->
                     </div>
                 </div>
-                <!-- end container-fluid -->
+            </div>
+            <!-- end container-fluid -->
             
             </div>
             <!-- page-title-box -->
@@ -297,8 +301,7 @@
             </div>
         </footer>
         <!-- End Footer -->
-
-
+        
         <!-- jQuery  -->
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/js/bootstrap.bundle.min.js"></script>

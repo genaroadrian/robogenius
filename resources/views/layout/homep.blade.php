@@ -192,7 +192,10 @@
                                         <a href="#">Usuarios del sistema</a>
                                     </li>
                                     <li>
-                                        <a href="http://localhost:8080/robogenius/public/escuela">Escuelas</a>
+
+
+                                        <a href="/escuela">Escuelas</a>
+
                                     </li>
                                 </ul>
                             </li>

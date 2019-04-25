@@ -27,7 +27,10 @@
               "src/assets/css/bootstrap.min.css",
               "src/assets/css/icons.css",
               "src/assets/css/style.css",
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/plugins/bootstrap-md-datetimepicker/css/bootstrap-material-datetimepicker.css",
+              "src/assets/plugins/select2/css/select2.min.css",
+              "src/assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true

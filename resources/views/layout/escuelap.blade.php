@@ -255,10 +255,15 @@
                                     </td>
                                 </tr>
 
-                                  
-                            </table>
-                          </body>
-                        <!--fin de la tabla-->
+      @foreach($escuela as $esc)
+      <tr>
+      <td>{{$esc->nombre}}</td>
+      <td>{{$esc->activo}}</td>
+      </tr>
+      @endforeach
+    </table>
+  </body>
+<!--fin de la tabla-->
                     </div>
                 </div>
             </div>

@@ -1,5 +1,4 @@
 
-
 <table  class="table">
       <tr><td class="text-info"><h4>Clave</h4></td><td class="text-info"><h4>Nombre</h4></td>
         <td class="text-info"><h4>Activo</h4></td><td class="text-info"><h4>Operaciones</h4></td></tr>
@@ -12,3 +11,6 @@
       @endforeach
     </table>
   </body>
+
+@extends('layout.escuelap')
+

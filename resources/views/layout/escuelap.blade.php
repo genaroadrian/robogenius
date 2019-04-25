@@ -95,7 +95,7 @@
                             <li class="dropdown notification-list">
                                 <div class="dropdown notification-list">
                                     <a class="dropdown-toggle nav-link arrow-none waves-effect nav-user waves-light" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                        <img src="uploads/avatars/{{ $user->avatar }}" alt="user" class="rounded-circle">
+                                       
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
                                         <!-- item-->
@@ -239,6 +239,21 @@
                             </div>
                             
                             <h4 class="page-title">Escuelas</h4>
+<!-- inicio de la tabla-->
+<table  class="table">
+      <tr><td class="text-info"><h4>Clave</h4></td><td class="text-info"><h4>Nombre</h4></td>
+        <td class="text-info"><h4>Activo</h4></td><td class="text-info"><h4>Operaciones</h4></td></tr>
+
+      @foreach($escuela as $esc)
+      <tr>
+      <td>{{$esc->nombre}}</td>
+      <td>{{$esc->activo}}</td>
+      </tr>
+      @endforeach
+    </table>
+  </body>
+<!--fin de la tabla-->
+
                            
                         </div>
                     </div>

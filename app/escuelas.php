@@ -6,11 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class escuelas extends Model
 {
-    public function getKeyName(){
-        return "idesc";
-    }
-
-    public $timestamps = false;
-    protected $table = "escuelas";
-    protected $fillable = [ 'idesc', 'nombre','activo'];
+    
+   protected $primaryKey = 'idesc';
+   protected $fillable = [ 'idesc','nombre','activo'];
+   protected $date=['deleted_at'];
+    
 }

@@ -192,7 +192,7 @@
                                         <a href="#">Usuarios del sistema</a>
                                     </li>
                                     <li>
-                                        <a href="escuela.blade.php">Escuelas</a>
+                                        <a href="http://localhost:8080/robogenius/public/escuela">Escuelas</a>
                                     </li>
                                 </ul>
                             </li>

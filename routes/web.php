@@ -23,6 +23,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/escuela', 'EscuelaController@index')->name('escuela');
+
 /*Ruta para mostrar el perfil de usuario modificacion*/
 Route::post('profile', 'UserController@update_avatar');
 Route::get('profile', 'UserController@profile')->name('profile');

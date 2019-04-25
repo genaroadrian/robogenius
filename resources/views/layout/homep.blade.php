@@ -192,10 +192,7 @@
                                         <a href="#">Usuarios del sistema</a>
                                     </li>
                                     <li>
-
-
                                         <a href="/escuela">Escuelas</a>
-
                                     </li>
                                 </ul>
                             </li>

@@ -4,6 +4,7 @@ namespace slidecom_robogenius\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use slidecom_robogenius\escuelas;
 
 class EscuelaController extends Controller
 {
@@ -20,6 +21,11 @@ class EscuelaController extends Controller
     public function index()
     {
         return view('escuela',array('user' => Auth::user()));
+    }
+    public function mostrar()
+    {
+         $escuela = escuelas::orderBy('idesc');
+         return view ('escuela')->with('escuela',$escuela);
     }
 
     /**

@@ -8,6 +8,43 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+		<link href="assets/plugins/RWD-Table-Patterns/dist/css/rwd-table.min.css" rel="stylesheet" type="text/css" media="screen">
+
+        <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
+        <link href="assets/css/style.css" rel="stylesheet" type="text/css">
+		
+		
+  <!-- jQuery  -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/jquery.slimscroll.js"></script>
+  <script src="assets/js/waves.min.js"></script>
+  
+
+  <script src="assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+  <!-- Parsley js -->
+  <script src="assets/plugins/parsleyjs/parsley.min.js"></script>
+
+  <!-- App js -->
+  <script src="assets/js/app.js"></script>
+     <!-- Responsive-table-->
+   <script src="assets/plugins/RWD-Table-Patterns/dist/js/rwd-table.min.js"></script>
+
+
+  <script>
+    $(document).ready(function () {
+      $('form').parsley();
+    });
+  </script>
+        <script>
+            $(function() {
+                $('.table-responsive').responsiveTable({
+                    addDisplayAllBtn: 'btn btn-secondary'
+                });
+            });
+        </script>
 </head>
 
 <body>
@@ -227,26 +264,8 @@
       </div>
     </div>
   </footer>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-  <!-- jQuery  -->
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/js/jquery.slimscroll.js"></script>
-  <script src="assets/js/waves.min.js"></script>
 
-  <script src="assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
 
-  <!-- Parsley js -->
-  <script src="assets/plugins/parsleyjs/parsley.min.js"></script>
-
-  <!-- App js -->
-  <script src="assets/js/app.js"></script>
-
-  <script>
-    $(document).ready(function () {
-      $('form').parsley();
-    });
-  </script>
 </body>
 
 </html>

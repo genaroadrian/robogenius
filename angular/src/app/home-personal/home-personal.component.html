@@ -1,3 +1,64 @@
-<p>
-  home-personal works!
-</p>
+<head>
+</head>
+                                <div class="card-body">
+    
+                                    <h2 style="text-align:center;">Registro de personal</h2>
+									<br/>
+									<br/>
+    
+                                    <div class="table-rep-plugin">
+                                        <div class="table-responsive b-0" data-pattern="priority-columns">
+                                            <table  class="table  table-striped">
+                                                <thead>
+                                                <tr>
+                                                    <th>Nombre</th>
+                                                    <th data-priority="1">Apellidos</th>
+                                                    <th data-priority="3">Usuario</th>
+                                                    <th data-priority="1">Contraseña</th>
+                                                    <th data-priority="3">Fecha nacimiento</th>
+                                                    <th data-priority="3">Sexo</th>
+                                                    <th data-priority="3">Curp</th>
+                                                    <th data-priority="3">Estado civil</th>
+                                                    <th data-priority="3">Domicilio</th>
+                                                    <th data-priority="3">Fecha ingreso</th>
+                                                    <th data-priority="3">Hora entrada</th>
+                                                    <th data-priority="6">Hora salida</th>
+                                                    <th data-priority="6">Perfil profesional</th>
+                                                    <th data-priority="6">Especialidad</th>
+                                                    <th data-priority="6">Salario</th>
+                                                    <th data-priority="6">Tareas</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                   
+                                                
+                                                <!-- Repeat -->
+                                                <tr *ngFor="let persona of personal">
+												<th> <span class="co-name">{{persona.nombre}}</span></th>
+                                                    <td >{{persona.nombre}}</td>
+                                                    <td >{{persona.apellidos}}</td>
+                                                    <td >{{persona.usuario}}</td>
+                                                    <td>{{persona.contra}}</td>
+                                                    <td>{{persona.fechanac}}</td>
+                                                    <td>{{persona.sexo}}</td>
+                                                    <td>{{persona.curp}}</td>
+                                                    <td>{{persona.estadocivil}}</td>
+                                                    <td>{{persona.domicilio}}</td>
+                                                    <td>{{persona.fechaingreso}}</td>
+                                                    <td>{{persona.horaentrada}}</td>
+                                                    <td>{{persona.horasalida}}</td>
+                                                    <td>{{persona.perfilprofesional}}</td>
+                                                    <td>{{persona.especialidad}}</td>
+                                                    <td>{{persona.salariomensual}}</td>
+                                                    <td>{{persona.tareasasignadas}}</td>
+                                                    
+                                                </tr>                                              
+                                                
+                                                </tbody>
+                                            </table>
+                                        </div>
+    
+                                    </div>
+								
+    
+</div>		

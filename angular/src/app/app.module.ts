@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HomePersonalComponent } from './home-personal/home-personal.component';
 import { FormPersonalComponent } from './form-personal/form-personal.component';
 import {Route,RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
 const routes: Route[] = [
 {path:'home',component:HomePersonalComponent},
 {path:'form',component:FormPersonalComponent}
@@ -21,7 +22,8 @@ const routes: Route[] = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-	RouterModule.forRoot(routes)
+	RouterModule.forRoot(routes),
+	HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

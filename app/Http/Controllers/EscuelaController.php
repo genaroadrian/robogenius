@@ -5,6 +5,7 @@ namespace slidecom_robogenius\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use slidecom_robogenius\escuelas;
+use Illuminate\Support\Facades\DB;
 
 class EscuelaController extends Controller
 {
@@ -21,11 +22,8 @@ class EscuelaController extends Controller
     public function index()
     {
         return view('escuela',array('user' => Auth::user()));
-    }
-    public function mostrar()
-    {
-         $escuela = escuelas::orderBy('idesc');
-         return view ('escuela')->with('escuela',$escuela);
+        $escuela = DB::SELECT("SELECT * FROM escuelas");
+        echo json_encode($escuela);
     }
 
     /**

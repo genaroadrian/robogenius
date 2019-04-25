@@ -1,1 +1,2 @@
-@extends('layout.homep')
+@extends('layout.escuelap')
+

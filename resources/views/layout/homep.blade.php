@@ -192,7 +192,7 @@
                                         <a href="#">Usuarios del sistema</a>
                                     </li>
                                     <li>
-                                        <a href="#">Escuelas</a>
+                                        <a href="escuela.blade.php">Escuelas</a>
                                     </li>
                                 </ul>
                             </li>

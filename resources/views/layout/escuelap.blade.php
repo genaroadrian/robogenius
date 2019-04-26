@@ -254,6 +254,9 @@
                                         <h4>Operaciones</h4>
                                     </td>
                                 </tr>
+                
+
+      
     </table>
   </body>
   
@@ -273,16 +276,22 @@
                             <div class="card m-b-20">
                                 <div class="card-body">
     
-                         <?php
-          $escuela=' ';
-          $escuela =DB::SELECT("SELECT * FROM escuelas");
-        echo json_encode($escuela);
-      ?>
+    
                                 </div>
                             </div>
                         </div> <!-- end col -->
     
-                     
+                                    <?php
+          $escuela=' ';
+          $escuela =DB::SELECT("SELECT * FROM escuelas");
+
+      ?>
+                     @foreach($escuela as $esc)
+      <tr>
+      <td>{{$esc->nombre}}</td>
+      <td>{{$esc->activo}}</td>
+      </tr>
+      @endforeach
                         </div> <!-- end col -->
                     </div> <!-- end row -->  
                 </div>

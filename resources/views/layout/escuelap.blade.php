@@ -254,7 +254,6 @@
                                         <h4>Operaciones</h4>
                                     </td>
                                 </tr>
-
       @foreach($escuela as $esc)
       <tr>
       <td>{{$esc->nombre}}</td>

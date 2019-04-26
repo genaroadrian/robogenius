@@ -244,7 +244,13 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Nombre</th>
-                                            <th>activo</th>
+                                            <th>Representante</th>
+                                            <th>Dirección</th>
+                                            <th>Email</th>
+                                            <th>Telefono</th>
+                                            <th>Activo</th>
+                                            <th>Editar</th>
+                                            <th>Eliminar</th>
                                         </tr>
                                         </thead>
                                          <?php
@@ -256,7 +262,12 @@
                                     <tr>
                                     <td>{{$esc->idesc}}</td>    
                                     <td>{{$esc->nombre}}</td>
+                                    <td>{{$esc->representante}}</td>
+                                    <td>{{$esc->direccion}}</td>
+                                    <td>{{$esc->correo}}</td>
+                                    <td>{{$esc->telefono}}</td>
                                     <td>{{$esc->activo}}</td>
+                                    <td><button type="btn btn-primary" for="editar">Editar</button></td>
                                     </tr>
                                     @endforeach
                                         <tbody>

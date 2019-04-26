@@ -33,11 +33,11 @@
                 <div class="container-fluid">
 
                     <!-- Logo container-->
-                    <div class="logo">
+                     <div class="logo">
                         
-                        <a href="index.html" class="logo">
-                            <img src="assets/images/logo-sm-light.png" alt="" class="logo-small">
-                            <img src="assets/images/logo-light.png" alt="" class="logo-large">
+                        <a href="http://localhost:8080/robogenius/public/home" class="logo">
+                            <img src="{{asset('assets/images/logoch.png')}}" alt="" class="logo-small">
+                            <img src="{{asset('assets/images/logoch.png')}}" alt="" class="logo-large">
                         </a>
 
                     </div>
@@ -236,8 +236,20 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
+
                             <div class="card m-b-20">
+
                                 <div class="card-body">
+                                    <form class="navbar-form" action="" method="POST">
+              {{csrf_field()}}
+              <div class="input-group no-border">
+                <input type="text" name="criterio" class="form-control" placeholder="Buscar...">
+                <button type="submit" name="BUSCAR" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+                  <div class="ripple-container"></div>
+                </button>
+              </div>
+            </form>
 
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
@@ -267,11 +279,13 @@
                                     <td>{{$esc->correo}}</td>
                                     <td>{{$esc->telefono}}</td>
                                     <td>{{$esc->activo}}</td>
-                                    <td><button type="btn btn-primary" for="editar">Editar</button></td>
+                                    <td><button type="btn btn-primary" for="editar" class="btn btn-info btn-fab btn-round">
+                                    <i class="material-icons">Editar</button></td>
+                                    <td><button type="btn btn-primary" for="editar" class="btn btn-danger btn-fab btn-round">
+                                    <i class="material-icons">Eliminar</button></td>
                                     </tr>
                                     @endforeach
-                                        <tbody>
-                                        </tbody>
+
                                     </table>
 
                                 </div>
@@ -279,14 +293,7 @@
                         </div> <!-- end col -->
                     </div> <!-- end row -->
 
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="card m-b-20">
-                                <div class="card-body">
-                                </div>
-                            </div>
-                        </div> <!-- end col -->
-                    </div> <!-- end row -->
+
                 </div>
                 <!-- end container-fluid -->
             </div>
@@ -301,7 +308,7 @@
 
                 <div class="row">
                     <div class="col-12">
-                        2018 © Agroxa <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</span>
+                        2018 © Robogenius <span class="d-none d-sm-inline-block"> - Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</span>
                     </div>
                 </div>
             </div>

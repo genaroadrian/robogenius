@@ -254,6 +254,7 @@
                                         <h4>Operaciones</h4>
                                     </td>
                                 </tr>
+<<<<<<< HEAD
                 
 
       
@@ -261,11 +262,14 @@
   </body>
   
 <!--fin de la tabla-->
+=======
+                            </table>
+                            <!--fin de la tabla-->
+                        </div>
+>>>>>>> 67a5db7c37d227a4f164910ee585dc5caf253059
                     </div>
                 </div>
-            </div>
-            <!-- end container-fluid -->
-            
+                <!-- end container-fluid -->
             </div>
             <!-- page-title-box -->
 
@@ -274,7 +278,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="card m-b-20">
-                                <div class="card-body">
+
     
     
                                 </div>
@@ -293,12 +297,21 @@
       </tr>
       @endforeach
                         </div> <!-- end col -->
+
+                                    <?php
+                                        $escuela=' ';
+                                        $escuela =DB::SELECT("SELECT * FROM escuelas");
+                                        echo json_encode($escuela);
+                                    ?>
+                                </div>
+                            </div>
+                        </div> <!-- end col -->
+
                     </div> <!-- end row -->  
                 </div>
                 <!-- end container-fluid -->
             </div>
             <!-- end page content-->
-
         </div>
         <!-- page wrapper end -->
 

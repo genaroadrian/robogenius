@@ -23,7 +23,7 @@ class EscuelaController extends Controller
     {
     	return view('escuela',array('user' => Auth::user()));
     	
-            }
+    }
     /**
      * Show the form for creating a new resource.
      *

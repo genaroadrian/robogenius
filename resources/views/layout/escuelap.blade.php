@@ -192,7 +192,7 @@
                                         <a href="#">Usuarios del sistema</a>
                                     </li>
                                     <li>
-                                        <a href="escuela.blade.php">Escuelas</a>
+                                        <a href="/escuela">Escuelas</a>
                                     </li>
                                 </ul>
                             </li>
@@ -254,15 +254,9 @@
                                         <h4>Operaciones</h4>
                                     </td>
                                 </tr>
-
-      @foreach($escuela as $esc)
-      <tr>
-      <td>{{$esc->nombre}}</td>
-      <td>{{$esc->activo}}</td>
-      </tr>
-      @endforeach
     </table>
   </body>
+  
 <!--fin de la tabla-->
                     </div>
                 </div>
@@ -279,7 +273,11 @@
                             <div class="card m-b-20">
                                 <div class="card-body">
     
-    
+                         <?php
+          $escuela=' ';
+          $escuela =DB::SELECT("SELECT * FROM escuelas");
+        echo json_encode($escuela);
+      ?>
                                 </div>
                             </div>
                         </div> <!-- end col -->

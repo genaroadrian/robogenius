@@ -21,11 +21,9 @@ class EscuelaController extends Controller
      */
     public function index()
     {
-        return view('escuela',array('user' => Auth::user()));
-        $escuela = DB::SELECT("SELECT * FROM escuelas");
-        echo json_encode($escuela);
-    }
-
+    	return view('escuela',array('user' => Auth::user()));
+    	
+            }
     /**
      * Show the form for creating a new resource.
      *

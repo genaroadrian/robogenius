@@ -5,7 +5,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
-        <title>RoboGenius </title>
+        <title>Agroxa - Responsive Bootstrap 4 Admin Dashboard</title>
         <meta content="Admin Dashboard" name="description" />
         <meta content="Themesbrand" name="author" />
         <link rel="shortcut icon" href="assets/images/favicon.ico">
@@ -19,10 +19,6 @@
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="assets/css/icons.css" rel="stylesheet" type="text/css">
         <link href="assets/css/style.css" rel="stylesheet" type="text/css">
-        <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
-        <link href="{{asset('assets/css/icons.css')}}" rel="stylesheet" type="text/css">
-        <link href="{{asset('assets/css/style.css')}}" rel="stylesheet" type="text/css">
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> 
     </head>
 
     <body>
@@ -143,67 +139,145 @@
             <!-- end topbar-main -->
 
             <!-- MENU Start -->
-             <div class="navbar-custom">
+            <div class="navbar-custom">
                 <div class="container-fluid">
                     <div id="navigation">
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
 
-                            <li>
-                                <a href="index.html"><i class="mdi mdi-home"></i>Inicio</a>
+                            <li class="has-submenu">
+                                <a href="index.html"><i class="mdi mdi-home"></i>Dashboard</a>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"><i class="ion-ios7-people"></i>Usuarios</a>
-                                <ul class="submenu">
-
+                                <a href="#"><i class="mdi mdi-buffer"></i>UI Elements</a>
+                                <ul class="submenu megamenu">
                                     <li>
-                                        <a href="#">Tipos de usuarios</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">Alumnos</a>
-                                    </li>
-                                        
-                                    <li class="has-submenu">
-                                        <a href="#">Padres</a>
-                                        <ul class="submenu">
-                                            <li>
-                                                <a href="#">Hijos por padre</a>
-                                            </li>
+                                        <ul>
+                                            <li><a href="ui-alerts.html">Alerts</a></li>
+                                            <li><a href="ui-buttons.html">Buttons</a></li>
+                                            <li><a href="ui-badge.html">Badge</a></li>
+                                            <li><a href="ui-cards.html">Cards</a></li>
+                                            <li><a href="ui-carousel.html">Carousel</a></li>
+                                            <li><a href="ui-dropdowns.html">Dropdowns</a></li>
                                         </ul>
                                     </li>
-
-                                    <li class="has-submenu">
-                                        <a href="#">Personal</a>
-                                        <ul class="submenu">
-                                            <li>
-                                                <a href="#">Tipo de personal</a>
-                                            </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="ui-grid.html">Grid</a></li>
+                                            <li><a href="ui-images.html">Images</a></li>
+                                            <li><a href="ui-modals.html">Modals</a></li>
+                                            <li><a href="ui-pagination.html">Pagination</a></li>
+                                            <li><a href="ui-popover-tooltips.html">Popover & Tooltips</a></li>
+                                            <li><a href="ui-progressbars.html">Progress Bars</a></li>
                                         </ul>
                                     </li>
-
                                     <li>
-                                        <a href="#">Usuarios del sistema</a>
-                                    </li>
-                                    <li>
-                                        <a href="/escuela">Escuelas</a>
+                                        <ul>
+                                            <li><a href="ui-tabs-accordions.html">Tabs & Accordions</a></li>
+                                            <li><a href="ui-typography.html">Typography</a></li>
+                                            <li><a href="ui-video.html">Video</a></li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </li>
 
-                            <li>
-                                <a href="#"><i class="mdi mdi-account-group"></i>Grupos</a>   
-                            </li>
+                            <li class="has-submenu">
+                                <a href="#"><i class="mdi mdi-black-mesa"></i>Components</a>
+                                <ul class="submenu">
+                                    <li><a href="components-lightbox.html">Lightbox</a></li>
+                                    <li><a href="components-rangeslider.html">Range Slider</a></li>
+                                    <li><a href="components-session-timeout.html">Session Timeout</a></li>
+                                    <li><a href="components-sweet-alert.html">Sweet-Alert</a></li>
 
-                            <li>
-                                <a href="#"><i class="mdi mdi-basket"></i>Productos</a>
+                                    <li>
+                                        <a href="calendar.html">Calendar</a>
+                                    </li>
+                                    <li class="has-submenu">
+                                        <a href="#">Tables</a>
+                                        <ul class="submenu">
+                                            <li><a href="tables-basic.html">Basic Tables</a></li>
+                                            <li><a href="tables-datatable.html">Data Table</a></li>
+                                            <li><a href="tables-responsive.html">Responsive Table</a></li>
+                                            <li><a href="tables-editable.html">Editable Table</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="has-submenu">
+                                        <a href="#">Icons</a>
+                                        <ul class="submenu">
+                                            <li><a href="icons-material.html">Material Design</a></li>
+                                            <li><a href="icons-ion.html">Ion Icons</a></li>
+                                            <li><a href="icons-fontawesome.html">Font Awesome</a></li>
+                                            <li><a href="icons-themify.html">Themify Icons</a></li>
+                                            <li><a href="icons-dripicons.html">Dripicons</a></li>
+                                            <li><a href="icons-typicons.html">Typicons Icons</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="has-submenu">
+                                        <a href="#">Maps</a>
+                                        <ul class="submenu">
+                                            <li><a href="maps-google.html"> Google Map</a></li>
+                                            <li><a href="maps-vector.html"> Vector Map</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"><i class="mdi mdi-basket"></i>Pagos</a>
+                                <a href="#"><i class="mdi mdi-clipboard"></i>Forms</a>
                                 <ul class="submenu">
-                                    <li><a href="#">Tipos de pago</a></li>
+                                    <li><a href="form-elements.html">Form Elements</a></li>
+                                    <li><a href="form-validation.html">Form Validation</a></li>
+                                    <li><a href="form-advanced.html">Form Advanced</a></li>
+                                    <li><a href="form-editors.html">Form Editors</a></li>
+                                    <li><a href="form-uploads.html">Form File Upload</a></li>
+                                    <li><a href="form-xeditable.html">Form Xeditable</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="#"><i class="mdi mdi-finance"></i>Charts</a>
+                                <ul class="submenu">
+                                    <li><a href="charts-chartist.html">Chartist Chart</a></li>
+                                    <li><a href="charts-chartjs.html">Chartjs Chart</a></li>
+                                    <li><a href="charts-flot.html">Flot Chart</a></li>
+                                    <li><a href="charts-c3.html">C3 Chart</a></li>
+                                    <li><a href="charts-morris.html">Morris Chart</a></li>
+                                    <li><a href="charts-other.html">Jquery Knob Chart</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="#"><i class="mdi mdi-google-pages"></i>Pages</a>
+                                <ul class="submenu megamenu">
+                                    <li>
+                                        <ul>
+                                            <li><a href="pages-login.html">Login</a></li>
+                                            <li><a href="pages-register.html">Register</a></li>
+                                            <li><a href="pages-recoverpw.html">Recover Password</a></li>
+                                            <li><a href="pages-lock-screen.html">Lock Screen</a></li>
+                                            <li><a href="pages-timeline.html">Timeline</a></li>
+                                            <li><a href="pages-invoice.html">Invoice</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <ul>
+                                            <li><a href="pages-directory.html">Directory</a></li>
+                                            <li><a href="pages-blank.html">Blank Page</a></li>
+                                            <li><a href="pages-title-2.html">Page Title 2</a></li>
+                                            <li><a href="pages-404.html">Error 404</a></li>
+                                            <li><a href="pages-500.html">Error 500</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="#"><i class="mdi mdi-email"></i>Email</a>
+                                <ul class="submenu">
+                                    <li><a href="email-inbox.html">Inbox</a></li>
+                                    <li><a href="email-read.html">Email Read</a></li>
+                                    <li><a href="email-compose.html">Email Compose</a></li>
                                 </ul>
                             </li>
 
@@ -222,8 +296,23 @@
 
                     <div class="row">
                         <div class="col-sm-12">
+                            <div class="state-information d-none d-sm-block">
+                                <div class="state-graph">
+                                    <div id="header-chart-1"></div>
+                                    <div class="info">Balance $ 2,317</div>
+                                </div>
+                                <div class="state-graph">
+                                    <div id="header-chart-2"></div>
+                                    <div class="info">Item Sold 1230</div>
+                                </div>
+                            </div>
                             
-                            <h4 class="page-title">Escuelas</h4>
+                            <h4 class="page-title">Data Table</h4>
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Agroxa</a></li>
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Tables</a></li>
+                                <li class="breadcrumb-item active">Data Table</li>
+                            </ol>
                         </div>
                     </div>
                 </div>
@@ -239,6 +328,12 @@
                             <div class="card m-b-20">
                                 <div class="card-body">
 
+                                    <h4 class="mt-0 header-title">Default Datatable</h4>
+                                    <p class="text-muted m-b-30">DataTables has most features enabled by
+                                        default, so all you need to do to use it with your own tables is to call
+                                        the construction function: <code>$().DataTable();</code>.
+                                    </p>
+
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                         <tr>
@@ -247,18 +342,8 @@
                                             <th>activo</th>
                                         </tr>
                                         </thead>
-                                         <?php
-                                        $escuela=' ';
-                                        $escuela =DB::SELECT("SELECT * FROM escuelas");
 
-                                    ?>
-                                    @foreach($escuela as $esc)
-                                    <tr>
-                                    <td>{{$esc->idesc}}</td>    
-                                    <td>{{$esc->nombre}}</td>
-                                    <td>{{$esc->activo}}</td>
-                                    </tr>
-                                    @endforeach
+
                                         <tbody>
                                         </tbody>
                                     </table>

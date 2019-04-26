@@ -31,4 +31,5 @@ Route::get('/Mescuela', 'EscuelaController@mostrar')->name('escuela');
 Route::post('profile', 'UserController@update_avatar');
 Route::get('profile', 'UserController@profile')->name('profile');
 Route::post('editar/{id}', 'UsuarioController@update')->name('editar');
-
+Route::POST('/buscaresc','EscuelaController@buscaresc')->name('buscaresc');
+Route::get('/borraresc/{idesc}','EscuelaController@borraresc')->name('borraresc');

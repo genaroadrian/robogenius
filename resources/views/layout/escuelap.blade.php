@@ -254,16 +254,12 @@
                                         <h4>Operaciones</h4>
                                     </td>
                                 </tr>
-                                
-    </table>
-  </body>
-  
-<!--fin de la tabla-->
+                            </table>
+                            <!--fin de la tabla-->
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- end container-fluid -->
-            
+                <!-- end container-fluid -->
             </div>
             <!-- page-title-box -->
 
@@ -273,24 +269,19 @@
                         <div class="col-lg-12">
                             <div class="card m-b-20">
                                 <div class="card-body">
-    
-                         <?php
-          $escuela=' ';
-          $escuela =DB::SELECT("SELECT * FROM escuelas");
-        echo json_encode($escuela);
-      ?>
+                                    <?php
+                                        $escuela=' ';
+                                        $escuela =DB::SELECT("SELECT * FROM escuelas");
+                                        echo json_encode($escuela);
+                                    ?>
                                 </div>
                             </div>
-                        </div> <!-- end col -->
-    
-                     
                         </div> <!-- end col -->
                     </div> <!-- end row -->  
                 </div>
                 <!-- end container-fluid -->
             </div>
             <!-- end page content-->
-
         </div>
         <!-- page wrapper end -->
 

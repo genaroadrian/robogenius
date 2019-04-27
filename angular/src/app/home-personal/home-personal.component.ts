@@ -3,17 +3,18 @@ import {PersonalService} from '../services/personal.service';
 import {HttpClient} from '@angular/common/http';
 import {Personal} from '../interfaces/personal';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import 'hammerjs';
 
 @Component({
   selector: 'app-home-personal',
   templateUrl: './home-personal.component.html',
   styleUrls: ['./home-personal.component.css'],
-  template: `
-  <div style="overflow:auto;
-overflow: scroll;
-overflow-y:hidden;
-overflow-x: scroll;"> <ng2-smart-table [settings]="settings" [source]="personal"></ng2-smart-table></div>
-   `,
+//   template: `
+//   <div style="overflow:auto;
+// overflow: scroll;
+// overflow-y:hidden;
+// overflow-x: scroll;"> <ng2-smart-table [settings]="settings" [source]="personal"></ng2-smart-table></div>
+//    `,
 })
 
 

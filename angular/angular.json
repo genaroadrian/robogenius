@@ -30,7 +30,10 @@
               "src/styles.css",
               "src/assets/plugins/bootstrap-md-datetimepicker/css/bootstrap-material-datetimepicker.css",
               "src/assets/plugins/select2/css/select2.min.css",
-              "src/assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css"
+              "src/assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.min.css",
+              "src/assets/plugins/datatables/dataTables.bootstrap4.min.css",
+              "src/assets/plugins/datatables/buttons.bootstrap4.min.css",
+              "src/assets/plugins/datatables/responsive.bootstrap4.min.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true

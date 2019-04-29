@@ -279,7 +279,7 @@
                                     <td>{{$esc->correo}}</td>
                                     <td>{{$esc->telefono}}</td>
                                     <td>{{$esc->activo}}</td>
-                                    <td><button type="btn btn-primary" for="editar" class="btn btn-info btn-fab btn-round">
+                                    <td><button type="btn btn-primary" for="editar" class="btn btn-info btn-fab btn-round" action="">
                                     <i class="material-icons">Editar</button></td>
                                     <td><button type="btn btn-primary" for="editar" class="btn btn-danger btn-fab btn-round">
                                     <i class="material-icons">Eliminar</button></td>

@@ -1,0 +1,137 @@
+<h1 class="text-light">Personal</h1>
+<button mat-icon-button [routerLink]="['/personalform']">
+    <mat-icon aria-label="Nuevo Registro" class="text-info">add_circle_outline</mat-icon><span class="text-info"> Nuevo</span>
+</button>
+<br>
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Búsqueda">
+</mat-form-field>
+<br>
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="icons">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+          <td mat-cell *matCellDef="let row">
+            <!-- routerLink="/personalform/{{row.idper}}"  (click)="onUpdate(row)" -->
+              <button mat-icon-button  routerLink="/personalform/{{row.idper}}">
+                <mat-icon  aria-label="Editar Registro" class="text-success" >create</mat-icon>
+            </button>
+            <button mat-icon-button>
+              <mat-icon aria-label="Eliminar Registro" class="text-danger" (click)="delete(row.idper)" >delete</mat-icon>
+          </button>
+          </td>
+        </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="idper">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row">{{row.idper}}</td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre(s) </th>
+      <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="apellidos">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Apellidos </th>
+      <td mat-cell *matCellDef="let row"> {{row.apellidos}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="usuario">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Usuario </th>
+      <td mat-cell *matCellDef="let row"> {{row.usuario}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="fechanac">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de nacimiento </th>
+      <td mat-cell *matCellDef="let row"> {{row.fechanac}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="sexo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Sexo </th>
+      <td mat-cell *matCellDef="let row"> {{row.sexo}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="curp">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> CURP </th>
+      <td mat-cell *matCellDef="let row"> {{row.curp}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="estadocivil">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado Civil </th>
+      <td mat-cell *matCellDef="let row"> {{row.estadocivil}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="domicilio">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Domicilio </th>
+      <td mat-cell *matCellDef="let row"> {{row.domicilio}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="fechaingreso">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de ingreso </th>
+      <td mat-cell *matCellDef="let row"> {{row.fechaingreso}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="horaentrada">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora entrada </th>
+      <td mat-cell *matCellDef="let row"> {{row.horaentrada}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="horasalida">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora Salida </th>
+      <td mat-cell *matCellDef="let row"> {{row.horasalida}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="perfilprofesional">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Perfil profesional </th>
+      <td mat-cell *matCellDef="let row"> {{row.perfilprofesional}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="especialidad">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Especialidad </th>
+      <td mat-cell *matCellDef="let row"> {{row.especialidad}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="salariomensual">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Salario mensual </th>
+      <td mat-cell *matCellDef="let row"> {{row.salariomensual}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="tareasasignadas">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Tareas asignadas </th>
+      <td mat-cell *matCellDef="let row"> {{row.tareasasignadas}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="idtper">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo de personal </th>
+      <td mat-cell *matCellDef="let row"> {{row.idtper}} </td>
+    </ng-container>
+
+    
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

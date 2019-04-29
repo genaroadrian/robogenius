@@ -4,17 +4,20 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import { HomePersonalComponent } from './home-personal/home-personal.component';
+import { HomePersonalComponent} from './home-personal/home-personal.component';
 import { FormPersonalComponent } from './form-personal/form-personal.component';
 import {Route,RouterModule} from '@angular/router';
 import { HomeTipopersonalComponent } from './home-tipopersonal/home-tipopersonal.component';
 import { FormTipopersonalComponent } from './form-tipopersonal/form-tipopersonal.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule} from '@angular/material';
+import { FormsModule } from '@angular/forms';
+
 const routes: Route[] = [
 {path:'personal',component:HomePersonalComponent},
 {path:'personalform',component:FormPersonalComponent},
+{path:'personalform/:id',component:FormPersonalComponent},
 {path: 'tipopersonal', component:HomeTipopersonalComponent}
 ];
 
@@ -25,6 +28,7 @@ const routes: Route[] = [
     FormPersonalComponent,
     HomeTipopersonalComponent,
     FormTipopersonalComponent
+    
   ],
   imports: [
     Ng2SmartTableModule,
@@ -35,11 +39,36 @@ const routes: Route[] = [
     Ng2SmartTableModule,
     BrowserAnimationsModule,
     MatButtonModule, 
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatInputModule,
+    MatIconModule,
+    MatOptionModule,
+    MatSelectModule,
+    FormsModule,
+    MatDialogModule
+    ],
+  providers: [
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
-  providers: [],
   bootstrap: [AppComponent],
-  exports: [MatButtonModule, MatCheckboxModule]
+  entryComponents: [FormPersonalComponent],
+  exports: [
+    MatButtonModule, 
+    MatCheckboxModule, 
+    MatTableModule, 
+    MatFormFieldModule, 
+    MatPaginatorModule,
+    MatInputModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatDialogModule
+  ]
   
 })
 export class AppModule { }

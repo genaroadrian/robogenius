@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use slidecom_robogenius\escuelas;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class EscuelaController extends Controller
 {
@@ -24,6 +25,34 @@ class EscuelaController extends Controller
     	return view('escuela',array('user' => Auth::user()));
     	
     }
+
+    public function buscaresc(Request $request)    {
+         $crit=$request->criterio;
+         
+            //buscar los datos en la BD mediante el proceso
+              $escuela=DB::SELECT("SELECT * FROM escuelas WHERE nombre='$crit';");
+              if ($escuela!=null) {
+                  Session::flash('message','Su busqueda se realizo con exito');
+                  return view('escuela',compact('escuela'));
+              }
+              else
+              {
+                  Session::flash('message', "No se Encontraron Resultados de ".$crit);
+                  $escuela=\slidecom_robogenius\escuelas::paginate(4);
+                  return view('escuela',compact('escuela'));
+              }
+          
+        
+    }
+    public function borraresc($idesc)
+    {
+       escuelas::find($idesc)->delete();
+        return view ('escuela');
+        
+    }
+
+    
+
     /**
      * Show the form for creating a new resource.
      *

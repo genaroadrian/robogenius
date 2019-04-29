@@ -9,6 +9,9 @@ import { FormPersonalComponent } from './form-personal/form-personal.component';
 import {Route,RouterModule} from '@angular/router';
 import { HomeTipopersonalComponent } from './home-tipopersonal/home-tipopersonal.component';
 import { FormTipopersonalComponent } from './form-tipopersonal/form-tipopersonal.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 const routes: Route[] = [
 {path:'personal',component:HomePersonalComponent},
 {path:'personalform',component:FormPersonalComponent},
@@ -24,12 +27,20 @@ const routes: Route[] = [
     FormTipopersonalComponent
   ],
   imports: [
+    Ng2SmartTableModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
-    HttpClientModule
+    HttpClientModule,
+    Ng2SmartTableModule,
+    BrowserAnimationsModule,
+    MatButtonModule, 
+    MatCheckboxModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [MatButtonModule, MatCheckboxModule]
+  
 })
 export class AppModule { }
+export class PizzaPartyAppModule { }

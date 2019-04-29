@@ -240,7 +240,7 @@
                             <div class="card m-b-20">
 
                                 <div class="card-body">
-                                    <form class="navbar-form" action="" method="POST">
+                                    <form class="navbar-form" action="buscaresc" method="POST">
               {{csrf_field()}}
               <div class="input-group no-border">
                 <input type="text" name="criterio" class="form-control" placeholder="Buscar...">
@@ -281,7 +281,7 @@
                                     <td>{{$esc->activo}}</td>
                                     <td><button type="btn btn-primary" for="editar" class="btn btn-info btn-fab btn-round" action="">
                                     <i class="material-icons">Editar</button></td>
-                                    <td><button type="btn btn-primary" for="editar" class="btn btn-danger btn-fab btn-round">
+                                    <td><a href="{{URL::action('EscuelaController@borraresc',['idesc'=>$esc->idesc])}}" onclick="return confirm('estas seguro de eliminar este campo?');" class="btn btn-danger btn-fab btn-round">
                                     <i class="material-icons">Eliminar</button></td>
                                     </tr>
                                     @endforeach

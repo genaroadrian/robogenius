@@ -115,6 +115,7 @@
         this.$tableScrollWrapper.wrap('<div class="table-wrapper"/>');
         this.$tableWrapper = this.$tableScrollWrapper.parent();
     };
+    
 
     // Create toolbar with buttons
     ResponsiveTable.prototype.createButtonToolbar = function() {

@@ -279,7 +279,7 @@
                                     <td>{{$esc->correo}}</td>
                                     <td>{{$esc->telefono}}</td>
                                     <td>{{$esc->activo}}</td>
-                                    <td><button type="btn btn-primary" for="editar" class="btn btn-info btn-fab btn-round" action="">
+                                    <td><button href="{{URL::action('EscuelaController@borraresc',['idesc'=>$esc->idesc])}}" type="btn btn-primary" for="editar" class="btn btn-info btn-fab btn-round">
                                     <i class="material-icons">Editar</button></td>
                                     <td><a href="{{URL::action('EscuelaController@borraresc',['idesc'=>$esc->idesc])}}" onclick="return confirm('estas seguro de eliminar este campo?');" class="btn btn-danger btn-fab btn-round">
                                     <i class="material-icons">Eliminar</button></td>
@@ -345,6 +345,10 @@
 
         <!-- App js -->
         <script src="assets/js/app.js"></script>
+
+         <script>
+            $('#datatable').editableTableWidget().numericInputExample().find('td:first').focus();
+        </script>
 
     </body>
 

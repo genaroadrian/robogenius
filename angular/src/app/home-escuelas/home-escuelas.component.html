@@ -1,0 +1,72 @@
+<h1 class="text-light">Escuelas</h1>
+<button mat-icon-button [routerLink]="['/personalform']">
+    <mat-icon aria-label="Nuevo Registro" class="text-info">add_circle_outline</mat-icon><span class="text-info"> Nuevo</span>
+</button>
+<br>
+<mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Búsqueda">
+</mat-form-field>
+<br>
+
+<div class="mat-elevation-z8">
+    <div class=" col table-responsive">
+  <table mat-table [dataSource]="dataSource" matSort class="table table-hover">
+
+    <!-- Column -->
+    <ng-container matColumnDef="idesc">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#21618C; color: white; font-size: 14px;" > ID </th>
+      <td mat-cell *matCellDef="let row">{{row.idesc}}</td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#21618C; color: white; font-size: 14px;"> Nombre </th>
+      <td mat-cell *matCellDef="let row"> {{row.nombre}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="representante">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#21618C; color: white; font-size: 14px;"> Representante </th>
+      <td mat-cell *matCellDef="let row"> {{row.representante}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="direccion">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#21618C; color: white; font-size: 14px; "> Dirección </th>
+      <td mat-cell *matCellDef="let row"> {{row.direccion}} </td>
+    </ng-container>
+
+    <!-- Column -->
+    <ng-container matColumnDef="correo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#21618C; color: white; font-size: 14px;"> Correo </th>
+      <td mat-cell *matCellDef="let row"> {{row.correo}} </td>
+    </ng-container>
+
+    <!-- Column -->
+
+    <ng-container matColumnDef="telefono">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#21618C; color: white; font-size: 14px;"> Telefono </th>
+      <td mat-cell *matCellDef="let row"> {{row.telefono}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="icons">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#21618C;"></th>
+      <td mat-cell *matCellDef="let row">
+        <!-- routerLink="/personalform/{{row.idper}}"  (click)="onUpdate(row)" -->
+          <button mat-icon-button  routerLink="/personalform/{{row.idesc}}">
+            <mat-icon  aria-label="Editar Registro" class="text-success" >create</mat-icon>
+        </button>
+        <!-- <button mat-icon-button>
+          <mat-icon aria-label="Eliminar Registro" class="text-danger" (click)="delete(row.idper)" >delete</mat-icon>
+      </button> -->
+      </td>
+    </ng-container>
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+    </tr>
+  </table>
+    </div>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>

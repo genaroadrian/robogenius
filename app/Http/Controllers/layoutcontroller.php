@@ -9,11 +9,11 @@ class layoutcontroller extends Controller
 {
     public function index()
     {
-    	return view ('layout.content',array('user' => Auth::user());
+    	// return view ('layout.content',array('user' => Auth::user());
     }
 
     public function prueba()
     {
-    	return view ('prueba.prueba',array('user' => Auth::user());
+    	// return view ('prueba.prueba',array('user' => Auth::user());
     }
 }

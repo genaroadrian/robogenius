@@ -105,7 +105,10 @@ export class HomePersonalComponent implements OnInit {
     dialogConfig.width = "60%";
     this.dialog.open(FormPersonalComponent, dialogConfig);
     console.log(row);
+    
   }
+
+ 
 
   delete(idper){
     if(confirm('Estas seguro?')){

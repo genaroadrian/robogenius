@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -15,6 +14,9 @@ import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule, 
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LoginPrincipalComponent } from './login-principal/login-principal.component';
+import { HomeEscuelasComponent } from './home-escuelas/home-escuelas.component';
+import { FormEscuelasComponent } from './form-escuelas/form-escuelas.component';
+
 
 const routes: Route[] = [
 {path:'personal',component:HomePersonalComponent},
@@ -24,10 +26,9 @@ const routes: Route[] = [
 {path: 'tipopersonal', component:HomeTipopersonalComponent},
 {path: '', component:LoginPrincipalComponent},
 {path: 'home', component:LoginPrincipalComponent},
-{path: 'login', component:LoginComponent}
-
-
-
+{path: 'login', component:LoginComponent},
+{path: 'escuelas', component:HomeEscuelasComponent},
+{path: 'escuelasform/:id', component:FormEscuelasComponent}
 ];
 
 @NgModule({
@@ -38,7 +39,9 @@ const routes: Route[] = [
     HomeTipopersonalComponent,
     FormTipopersonalComponent,
     LoginComponent,
-    LoginPrincipalComponent
+    LoginPrincipalComponent,
+    HomeEscuelasComponent,
+    FormEscuelasComponent
     
   ],
   imports: [

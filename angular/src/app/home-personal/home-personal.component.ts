@@ -56,24 +56,21 @@ export class HomePersonalComponent implements OnInit {
   }
 
   displayedColumns: string[] = [
-    'icons',
+    
     'idper',
     'nombre',
     'apellidos',
     'usuario',
-    'fechanac',
     'sexo',
-    'curp',
-    'estadocivil',
-    'domicilio',
     'fechaingreso',
     'horaentrada',
     'horasalida',
     'perfilprofesional',
     'especialidad',
-    'salariomensual',
     'tareasasignadas',
-    'idtper'];
+    'salariomensual',
+    'icons'
+   ];
 
   ngOnInit() {
 

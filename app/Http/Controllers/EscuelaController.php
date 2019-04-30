@@ -13,8 +13,8 @@ class EscuelaController extends Controller
 
     public function index()
     {
-    	$escuelas = DB::SELECT("SELECT * FROM escuelas WHERE activo=1");
-        echo json_encode($escuelas);
+    	$escuela = DB::SELECT("SELECT * FROM escuelas WHERE activo=1");
+        echo json_encode($escuela);
     	
     }
 

@@ -13,12 +13,21 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule} from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { LoginPrincipalComponent } from './login-principal/login-principal.component';
 
 const routes: Route[] = [
 {path:'personal',component:HomePersonalComponent},
 {path:'personalform',component:FormPersonalComponent},
 {path:'personalform/:id',component:FormPersonalComponent},
-{path: 'tipopersonal', component:HomeTipopersonalComponent}
+{path: 'tipopersonal', component:HomeTipopersonalComponent},
+{path: 'tipopersonal', component:HomeTipopersonalComponent},
+{path: '', component:LoginPrincipalComponent},
+{path: 'home', component:LoginPrincipalComponent},
+{path: 'login', component:LoginComponent}
+
+
+
 ];
 
 @NgModule({
@@ -27,7 +36,9 @@ const routes: Route[] = [
     HomePersonalComponent,
     FormPersonalComponent,
     HomeTipopersonalComponent,
-    FormTipopersonalComponent
+    FormTipopersonalComponent,
+    LoginComponent,
+    LoginPrincipalComponent
     
   ],
   imports: [

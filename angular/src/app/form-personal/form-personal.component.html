@@ -123,3 +123,38 @@
             </div>
     </div>
 </div>
+
+
+
+<div>
+    <button mat-raised-button
+            class="example-add-tab-button"
+            (click)="addTab(selectAfterAdding.checked)">
+      Agregar nuevo horario
+    </button>
+    <mat-checkbox #selectAfterAdding> Select tab after adding </mat-checkbox>
+  </div>
+  
+  <mat-tab-group [selectedIndex]="selected.value"
+                 (selectedIndexChange)="selected.setValue($event)">
+    <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+      Formulario {{tab}} <br><br>
+      Días: <input type="text"><br><br>
+      Horario: <select option> </select> <br>
+  
+  
+  
+        <button mat-raised-button
+              class="example-delete-tab-button"
+              [disabled]="tabs.length === 1"
+              (click)="removeTab(index)">
+        Agregar
+      </button>
+      <button mat-raised-button
+              class="example-delete-tab-button"
+              [disabled]="tabs.length === 1"
+              (click)="removeTab(index)">
+        Eliminar
+      </button>
+    </mat-tab>
+  </mat-tab-group>

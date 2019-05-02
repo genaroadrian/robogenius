@@ -18,4 +18,9 @@ class EscuelaController extends Controller
     	
     }
 
+    public function store () 
+    {
+        
+    }
+
 }

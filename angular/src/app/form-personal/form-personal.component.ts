@@ -5,6 +5,8 @@ import {Tipopersonal} from '../interfaces/tipopersonal';
 import { PersonalService } from '../services/personal.service';
 import {Personal} from '../interfaces/personal';
 import { ActivatedRoute } from '@angular/router';
+import {FormControl} from '@angular/forms';
+
 
 @Component({
   selector: 'app-form-personal',
@@ -14,6 +16,25 @@ import { ActivatedRoute } from '@angular/router';
 
 
 export class FormPersonalComponent implements OnInit {
+
+  tabs = ['Horario'];
+  selected = new FormControl(0);
+
+  addTab(selectAfterAdding: boolean) {
+    this.tabs.push('Horario');
+
+    if (selectAfterAdding) {
+      this.selected.setValue(this.tabs.length - 1);
+    }
+  }
+
+  removeTab(index: number) {
+    this.tabs.splice(index, 1);
+  }
+    agregarTab(index: number) {
+    this.tabs.splice(index, 1);
+  }
+
   @Input() row: [];
 
   persona: Personal =  {

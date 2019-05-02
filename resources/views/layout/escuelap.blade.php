@@ -266,11 +266,11 @@
                                         </tr>
                                         </thead>
                                          <?php
-                                        $escuela=' ';
-                                        $escuela =DB::SELECT("SELECT * FROM escuelas");
+                                        $escuelas=' ';
+                                        $escuelas =DB::SELECT("SELECT * FROM escuelas");
 
                                     ?>
-                                    @foreach($escuela as $esc)
+                                    @foreach($escuelas as $esc)
                                     <tr>
                                     <td>{{$esc->idesc}}</td>    
                                     <td>{{$esc->nombre}}</td>

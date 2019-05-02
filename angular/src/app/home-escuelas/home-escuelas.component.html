@@ -1,5 +1,5 @@
 <h1 class="text-light">Escuelas</h1>
-<button mat-icon-button [routerLink]="['/personalform']">
+<button mat-icon-button [routerLink]="['/escuelasform']">
     <mat-icon aria-label="Nuevo Registro" class="text-info">add_circle_outline</mat-icon><span class="text-info"> Nuevo</span>
 </button>
 <br>
@@ -53,12 +53,12 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#21618C;"></th>
       <td mat-cell *matCellDef="let row">
         <!-- routerLink="/personalform/{{row.idper}}"  (click)="onUpdate(row)" -->
-          <button mat-icon-button  routerLink="/personalform/{{row.idesc}}">
+          <button mat-icon-button  routerLink="/escuelasform/{{row.idesc}}">
             <mat-icon  aria-label="Editar Registro" class="text-success" >create</mat-icon>
         </button>
-        <!-- <button mat-icon-button>
-          <mat-icon aria-label="Eliminar Registro" class="text-danger" (click)="delete(row.idper)" >delete</mat-icon>
-      </button> -->
+        <button mat-icon-button>
+          <mat-icon aria-label="Eliminar Registro" class="text-danger" (click)="delete(row.idesc)" >delete</mat-icon>
+      	</button>
       </td>
     </ng-container>
 

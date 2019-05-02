@@ -28,6 +28,7 @@ const routes: Route[] = [
 {path: 'home', component:LoginPrincipalComponent},
 {path: 'login', component:LoginComponent},
 {path: 'escuelas', component:HomeEscuelasComponent},
+{path:'escuelasform',component:FormEscuelasComponent},
 {path: 'escuelasform/:id', component:FormEscuelasComponent}
 ];
 

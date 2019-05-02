@@ -6,7 +6,7 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material';
 import { MatDialog, MatDialogConfig} from '@angular/material';
-import { FormPersonalComponent } from '../form-personal/form-personal.component';
+import { FormEscuelasComponent } from '../form-escuelas/form-escuelas.component';
 
 @Component({
   selector: 'app-home-escuelas',
@@ -65,6 +65,18 @@ escuelas: Escuelas[];
 
   ngOnInit() {
 
+  }
+
+  delete(idesc){
+    if(confirm('Estas seguro?')){
+      this.escuelasService.delete(idesc).subscribe((data)=>{
+        console.log(data);
+        alert('Eliminado con exito');
+        this.getEscuelas();
+      },(error)=>{
+        console.log(error);
+      });
+    }
   }
 
 }

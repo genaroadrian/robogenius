@@ -10,8 +10,7 @@ class escuelas extends Model
     {
     	return "idesc";
     }
-   protected $primaryKey = 'idesc';
-   protected $fillable = [ 'idesc','nombre','activo'];
-   protected $date=['deleted_at'];
-    
+    public $timestamps = false;
+    protected $table = "escuelas";
+    protected $fillable = [ 'idesc','nombre','activo'];
 }

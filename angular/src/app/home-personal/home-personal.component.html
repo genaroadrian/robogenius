@@ -89,7 +89,7 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header style="background-color:#21618C;"></th>
       <td mat-cell *matCellDef="let row">
         <!-- routerLink="/personalform/{{row.idper}}"  (click)="onUpdate(row)" -->
-          <button mat-icon-button  routerLink="/personalform/{{row.idper}}">
+          <button mat-icon-button (click)="onUpdate(row)">
             <mat-icon  aria-label="Editar Registro" class="text-success" >create</mat-icon>
         </button>
         <button mat-icon-button>

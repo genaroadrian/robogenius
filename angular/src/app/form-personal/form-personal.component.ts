@@ -7,7 +7,6 @@ import {Personal} from '../interfaces/personal';
 import { ActivatedRoute } from '@angular/router';
 import {FormControl} from '@angular/forms';
 
-
 @Component({
   selector: 'app-form-personal',
   templateUrl: './form-personal.component.html',
@@ -68,12 +67,12 @@ export class FormPersonalComponent implements OnInit {
     private httpClient: HttpClient,
     private personalService : PersonalService,
     private activatedRoute: ActivatedRoute) {
-    this.tipopersonalService.get().subscribe((data: Tipopersonal[])=>{
-      this.tipopersonal = data;
-    },(error)=>{
-      console.log(error);
-      alert('Ocurrio un error');
-    });
+    // this.tipopersonalService.getCombo().subscribe((data: Tipopersonal[])=>{
+    //   this.tipopersonal = data;
+    // },(error)=>{
+    //   console.log(error);
+    //   alert('Ocurrio un error');
+    // });
     this.id = this.activatedRoute.snapshot.params['id'];
     console.log(this.id);
     if(this.id){

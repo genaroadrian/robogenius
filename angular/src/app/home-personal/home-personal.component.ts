@@ -22,6 +22,8 @@ export class HomePersonalComponent implements OnInit {
   dataSource: MatTableDataSource<Personal>;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  
+
   constructor(
     private personalService: PersonalService,
     private httpClient: HttpClient,
@@ -54,6 +56,10 @@ export class HomePersonalComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  // refreshTable() {
+  //   this.paginator._changePageSize(this.paginator.pageSize);
+  // }
 
   displayedColumns: string[] = [
     
@@ -103,9 +109,9 @@ export class HomePersonalComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.autoFocus = true;
     dialogConfig.width = "60%";
+    dialogConfig.height= "50%";
     this.dialog.open(FormPersonalComponent, dialogConfig);
     console.log(row);
-    
   }
 
  

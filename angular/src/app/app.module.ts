@@ -6,30 +6,30 @@ import {HttpClientModule} from '@angular/common/http';
 import { HomePersonalComponent} from './home-personal/home-personal.component';
 import { FormPersonalComponent } from './form-personal/form-personal.component';
 import {Route,RouterModule} from '@angular/router';
-import { HomeTipopersonalComponent } from './home-tipopersonal/home-tipopersonal.component';
-import { FormTipopersonalComponent } from './form-tipopersonal/form-tipopersonal.component';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule, MatTabsModule} from '@angular/material';
-import { FormsModule } from '@angular/forms';
+import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule, MatTabsModule, MatSortModule, MatToolbarModule, MatPaginatorIntl} from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LoginPrincipalComponent } from './login-principal/login-principal.component';
 import { HomeEscuelasComponent } from './home-escuelas/home-escuelas.component';
 import { FormEscuelasComponent } from './form-escuelas/form-escuelas.component';
-
+import { TipopersonalService } from './services/tipopersonal.service';
+import { TphomeComponent } from './tipopersonal/tphome/tphome.component';
+import { TpaddComponent } from './tipopersonal/tpadd/tpadd.component';
+import { TpeditComponent } from './tipopersonal/tpedit/tpedit.component';
+import { TpdeleteComponent } from './tipopersonal/tpdelete/tpdelete.component';
 
 const routes: Route[] = [
 {path:'personal',component:HomePersonalComponent},
 {path:'personalform',component:FormPersonalComponent},
 {path:'personalform/:id',component:FormPersonalComponent},
-{path: 'tipopersonal', component:HomeTipopersonalComponent},
-{path: 'tipopersonal', component:HomeTipopersonalComponent},
 {path: '', component:LoginPrincipalComponent},
 {path: 'home', component:LoginPrincipalComponent},
 {path: 'login', component:LoginComponent},
 {path: 'escuelas', component:HomeEscuelasComponent},
 {path:'escuelasform',component:FormEscuelasComponent},
-{path: 'escuelasform/:id', component:FormEscuelasComponent}
+{path: 'escuelasform/:id', component:FormEscuelasComponent},
+{path: 'tipopersonal', component:TphomeComponent}
 ];
 
 @NgModule({
@@ -37,21 +37,20 @@ const routes: Route[] = [
     AppComponent,
     HomePersonalComponent,
     FormPersonalComponent,
-    HomeTipopersonalComponent,
-    FormTipopersonalComponent,
     LoginComponent,
     LoginPrincipalComponent,
     HomeEscuelasComponent,
-    FormEscuelasComponent
-    
+    FormEscuelasComponent,
+    TphomeComponent,
+    TpaddComponent,
+    TpeditComponent,
+    TpdeleteComponent,
   ],
   imports: [
-    Ng2SmartTableModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    Ng2SmartTableModule,
     BrowserAnimationsModule,
     MatButtonModule, 
     MatCheckboxModule,
@@ -64,13 +63,20 @@ const routes: Route[] = [
     MatSelectModule,
     FormsModule,
     MatDialogModule,
-    MatTabsModule
+    MatTabsModule,
+    MatButtonModule,
+    MatSortModule,
+    MatToolbarModule,
+    ReactiveFormsModule
     ],
   providers: [
+    TipopersonalService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
   bootstrap: [AppComponent],
-  entryComponents: [FormPersonalComponent],
+  entryComponents: [
+    TpeditComponent
+  ],
   exports: [
     MatButtonModule, 
     MatCheckboxModule, 

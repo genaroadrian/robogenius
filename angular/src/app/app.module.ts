@@ -11,13 +11,15 @@ import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule, 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LoginPrincipalComponent } from './login-principal/login-principal.component';
-import { HomeEscuelasComponent } from './home-escuelas/home-escuelas.component';
-import { FormEscuelasComponent } from './form-escuelas/form-escuelas.component';
 import { TipopersonalService } from './services/tipopersonal.service';
 import { TphomeComponent } from './tipopersonal/tphome/tphome.component';
 import { TpaddComponent } from './tipopersonal/tpadd/tpadd.component';
 import { TpeditComponent } from './tipopersonal/tpedit/tpedit.component';
 import { TpdeleteComponent } from './tipopersonal/tpdelete/tpdelete.component';
+import { HomeComponent } from './escuelas/home/home.component';
+import { AddComponent } from './escuelas/add/add.component';
+import { DeleteComponent } from './escuelas/delete/delete.component';
+import { EditComponent } from './escuelas/edit/edit.component';
 
 const routes: Route[] = [
 {path:'personal',component:HomePersonalComponent},
@@ -26,9 +28,7 @@ const routes: Route[] = [
 {path: '', component:LoginPrincipalComponent},
 {path: 'home', component:LoginPrincipalComponent},
 {path: 'login', component:LoginComponent},
-{path: 'escuelas', component:HomeEscuelasComponent},
-{path:'escuelasform',component:FormEscuelasComponent},
-{path: 'escuelasform/:id', component:FormEscuelasComponent},
+{path: 'escuelas', component:HomeComponent},
 {path: 'tipopersonal', component:TphomeComponent}
 ];
 
@@ -39,12 +39,14 @@ const routes: Route[] = [
     FormPersonalComponent,
     LoginComponent,
     LoginPrincipalComponent,
-    HomeEscuelasComponent,
-    FormEscuelasComponent,
     TphomeComponent,
     TpaddComponent,
     TpeditComponent,
     TpdeleteComponent,
+    HomeComponent,
+    AddComponent,
+    DeleteComponent,
+    EditComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +77,8 @@ const routes: Route[] = [
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    TpeditComponent
+    TpeditComponent,
+    EditComponent
   ],
   exports: [
     MatButtonModule, 

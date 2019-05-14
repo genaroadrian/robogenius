@@ -1,30 +1,55 @@
 import { Injectable } from '@angular/core';
 import { Escuelas } from '../interfaces/escuelas';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EscuelasService {
-API_ENDPOINT = 'http://localhost:8000/api'
+
+  API_ENDPOINT = 'http://localhost:8000/api';
+
+  dataChange: BehaviorSubject<Escuelas[]> = new BehaviorSubject<Escuelas[]>([]);
+  // Temporarily stores data from dialogs
+  dialogData: any;
+
   constructor(private httpClient: HttpClient) { }
 
-  get(){
-   return this.httpClient.get(this.API_ENDPOINT + '/escuelas');
+  getEscuelas(): void{
+    this.httpClient.get<Escuelas[]>(this.API_ENDPOINT + '/escuelas').subscribe(data => {
+      this.dataChange.next(data);
+      },
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
+    });
   }
 
-  // Guardar Escuelas
-  save(escuela: Escuelas) {
-    const headers = new HttpHeaders({"Content-Type":"application/json"});
-    return this.httpClient.post(this.API_ENDPOINT+'/escuelas', escuela, {headers: headers});
+  put(data){
+    console.log(data);
+    const headers = new HttpHeaders( {'Content-Type': 'application/json'});
+    return this.httpClient.put(this.API_ENDPOINT +'/escuelas/'+data.idesc,data,{headers: headers});
   }
 
-  put(escuela){
-    const headers = new HttpHeaders({"Content-Type":"application/json"});
-    return this.httpClient.put(this.API_ENDPOINT+'/escuelas/'+escuela.idesc, escuela, {headers: headers});
+  get data(): Escuelas[] {
+    return this.dataChange.value;
   }
 
-  delete(idesc){
-    return this.httpClient.delete(this.API_ENDPOINT + '/escuelas/'+idesc);
+  getDialogData() {
+    return this.dialogData;
+  }
+
+
+  // DEMO ONLY, you can find working methods below
+  addIssue (escuelas: Escuelas): void {
+    this.dialogData = escuelas;
+  }
+
+  updateEscuelas (escuelas: Escuelas): void {
+    this.dialogData = escuelas;
+  }
+
+  deleteIssue (id: number): void {
+    console.log(id);
   }
 }

@@ -78,7 +78,8 @@ export class HomePersonalComponent implements OnInit {
     'icons'
    ];
 
-  ngOnInit() {
+  ngOnInit() 
+  {
 
   }
 

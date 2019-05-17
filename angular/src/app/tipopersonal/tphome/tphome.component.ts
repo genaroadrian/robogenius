@@ -10,6 +10,7 @@ import { TpeditComponent } from '../tpedit/tpedit.component';
 import {DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import { TpaddComponent } from '../tpadd/tpadd.component';
 
 
 @Component({
@@ -19,6 +20,7 @@ import {map} from 'rxjs/operators';
 })
 export class TphomeComponent implements OnInit {
 
+  // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [
     'idtper',
     'tipo',
@@ -43,18 +45,36 @@ export class TphomeComponent implements OnInit {
 
   ngOnInit() 
   {
+    // Llamado al metodo de getTipopersonal
     this.getTipopersonal();
+
+    // Traducir los label de la tabla
     this.paginator._intl.itemsPerPageLabel = 'Registros por página';
+    this.paginator._intl.nextPageLabel= 'Página siguiente';
+    this.paginator._intl.previousPageLabel = 'Página anterior';
+    this.paginator._intl.firstPageLabel= 'Primera página';
+    this.paginator._intl.lastPageLabel= 'Ultima página';
   }
 
+
+  // Metodo para refrescar la pagina
   refresh() {
     this.getTipopersonal();
   }
 
+  // Metodo para refrescar la paginación (not use)
   refreshTable() {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
+  // Metodo para abrir el modal para agrefar nuevo registro
+  addNew(tipoPersonal: Tipopersonal) {
+    const dialogRef = this.dialog.open(TpaddComponent, {
+      data: {tipoPersonal: tipoPersonal }
+    });
+  }
+
+  // Metodo para recibir los datos y asignar la tabla
   getTipopersonal(){
     this.exampleDatabase = new TipopersonalService(this.httpClient);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
@@ -69,11 +89,7 @@ export class TphomeComponent implements OnInit {
       });
   }
   
-
-
-  
-
-
+  // Metodo para abrir el modal para modificar
   onUpdate(i: number, idtper: number, tipo: string) {
     this.id = idtper;
     // index row is used just for debugging proposes and can be removed
@@ -90,7 +106,7 @@ export class TphomeComponent implements OnInit {
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] = this.tipopersonalService.getDialogData();
         // And lastly refresh table
-        this.refreshTable();
+        this.refresh();
       }
     });
   }
@@ -100,7 +116,7 @@ export class TphomeComponent implements OnInit {
 
 }
 
-// Export class
+// Exporta la clase del datasource (datos de la tabla) y les asigna paginacion filtro etc.
 
 export class ExampleDataSource extends DataSource<Tipopersonal> {
   _filterChange = new BehaviorSubject('');
@@ -163,7 +179,7 @@ export class ExampleDataSource extends DataSource<Tipopersonal> {
     if (!this._sort.active || this._sort.direction === '') {
       return data;
     }
-
+    
     return data.sort((a, b) => {
       let propertyA: number | string = '';
       let propertyB: number | string = '';

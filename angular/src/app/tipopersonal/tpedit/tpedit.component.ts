@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormControl, Validators} from '@angular/forms';
 import { TipopersonalService } from 'src/app/services/tipopersonal.service';
 import { Tipopersonal } from 'src/app/interfaces/tipopersonal';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-tpedit',
@@ -11,7 +12,7 @@ import { Tipopersonal } from 'src/app/interfaces/tipopersonal';
 })
 export class TpeditComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<TpeditComponent>,
+  constructor(public dialogRef: MatDialogRef<TpeditComponent>,private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any, public tipopersonalService: TipopersonalService) { }
 
   ngOnInit() {
@@ -23,8 +24,8 @@ export class TpeditComponent implements OnInit {
   ]);
 
   getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Required field' :
-      this.formControl.hasError('email') ? 'Not a valid email' :
+    return this.formControl.hasError('required') ? 'El campo es obligatorio' :
+      this.formControl.hasError('email') ? 'Ingrese un corre valido' :
         '';
   }
 
@@ -37,10 +38,17 @@ export class TpeditComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  openSnackBar() {
+    this.snackBar.open('Registro actualizado','Cerrar',{
+      duration: 2000,
+    });
+  }
+
   stopEdit(data): void {
     this.tipopersonalService.put(this.data).subscribe((data) =>{
       // console.log(this.data);
-      alert('Registro Actualizado');
+      // alert('Registro Actualizado');
+      this.openSnackBar();
       // console.log(this.data);
     },(error)=>{
       console.log(error);
@@ -48,4 +56,7 @@ export class TpeditComponent implements OnInit {
     });
   }
 
+  
+
 }
+

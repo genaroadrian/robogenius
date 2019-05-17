@@ -7,7 +7,7 @@ import { HomePersonalComponent} from './home-personal/home-personal.component';
 import { FormPersonalComponent } from './form-personal/form-personal.component';
 import {Route,RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule, MatTabsModule, MatSortModule, MatToolbarModule, MatPaginatorIntl} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule, MatTabsModule, MatSortModule, MatToolbarModule, MatPaginatorIntl, MatSpinner, MatProgressSpinnerModule, MatSnackBarModule, MatStepperModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LoginPrincipalComponent } from './login-principal/login-principal.component';
@@ -18,11 +18,18 @@ import { TphomeComponent } from './tipopersonal/tphome/tphome.component';
 import { TpaddComponent } from './tipopersonal/tpadd/tpadd.component';
 import { TpeditComponent } from './tipopersonal/tpedit/tpedit.component';
 import { TpdeleteComponent } from './tipopersonal/tpdelete/tpdelete.component';
+import { NgxUpperCaseDirectiveModule } from 'ngx-upper-case-directive';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+// import { HomeComponent } from './personal/home/home.component';
+import { PerhomeComponent } from './personal/perhome/perhome.component';
+import { PeraddComponent } from './personal/peradd/peradd.component';
+import { PereditComponent } from './personal/peredit/peredit.component';
+import { PerdeleteComponent } from './personal/perdelete/perdelete.component';
+import { PersonalService } from './services/personal.service';
 
 const routes: Route[] = [
-{path:'personal',component:HomePersonalComponent},
+{path:'personal',component:PerhomeComponent},
 {path:'personalform',component:FormPersonalComponent},
-{path:'personalform/:id',component:FormPersonalComponent},
 {path: '', component:LoginPrincipalComponent},
 {path: 'home', component:LoginPrincipalComponent},
 {path: 'login', component:LoginComponent},
@@ -45,8 +52,15 @@ const routes: Route[] = [
     TpaddComponent,
     TpeditComponent,
     TpdeleteComponent,
+    // HomeComponent,
+    PerhomeComponent,
+    PeraddComponent,
+    PereditComponent,
+    PerdeleteComponent,
   ],
   imports: [
+    NgxUpperCaseDirectiveModule,
+    NgxMaterialTimepickerModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot(routes),
@@ -67,15 +81,23 @@ const routes: Route[] = [
     MatButtonModule,
     MatSortModule,
     MatToolbarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatStepperModule,
+    MatNativeDateModule,
+    MatDatepickerModule
     ],
   providers: [
     TipopersonalService,
+    PersonalService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    TpeditComponent
+    TpeditComponent,
+    TpaddComponent,
+    PeraddComponent
   ],
   exports: [
     MatButtonModule, 

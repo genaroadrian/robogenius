@@ -1,16 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Personal } from '../interfaces/personal';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonalService {
-
-  // Ruta de laravel
   API_ENDPOINT = 'http://localhost:8000/api';
 
+  dataChange: BehaviorSubject<Personal[]> = new BehaviorSubject<Personal[]>([]);
+  // Temporarily stores data from dialogs
+  dialogData: any;
+
   constructor(private httpClient: HttpClient) {}
+
+  
+
+  getPersonal(): void{
+    this.httpClient.get<Personal[]>(this.API_ENDPOINT+'/personal').subscribe(data => {
+      this.dataChange.next(data);
+      console.log(data);
+    },
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
+    });
+  }
+
+  get data(): Personal[] {
+    return this.dataChange.value;
+  }
+
+  getDialogData() {
+    return this.dialogData;
+  }
+
+
+
+
   // Obtener los datos de Laravel
   get() {
     return this.httpClient.get(this.API_ENDPOINT + '/personal');
@@ -28,5 +55,5 @@ export class PersonalService {
 
   delete(idper){
     return this.httpClient.delete(this.API_ENDPOINT + '/personal/'+idper);
-  }
+  } 
 }

@@ -1,160 +1,189 @@
+<h3>Add new Issue</h3>
+<div class="example-container">
+  <!-- Formulario de personal -->
+  <div>
 
-  <h1 class="text-light" mat-dialog-title>Registro de personal </h1>
-  <br>
-  <div mat-dialog-content>
-        
-    <div class="form-group" >
-        <label for="nombre" >Nombre(s):</label>
-        <div >
-            <input [(ngModel)]="persona.nombre" type="text" class="form-control" required id="nombre" value=""/>
-        </div>
+    <div class="form-group">
+      <mat-form-field>
+        <input class="form-control" [(ngModel)]="persona.nombre" matInput placeholder="Nombre(s)">
+      </mat-form-field>
     </div>
     <div class="form-group">
-        <label for="apellidos">Apellidos:</label>
-        <div>
-            <input [(ngModel)]="persona.apellidos" type="text" class="form-control" required id="apellidos"/>
-        </div>
+      <mat-form-field>
+        <input class="form-control" [(ngModel)]="persona.apellidos" matInput placeholder="Apellidos">
+      </mat-form-field>
     </div>
+
+
     <div class="form-group">
-        <label for="fechanac">Fecha de Nacimiento:</label>
-        <div>
-            <input [(ngModel)]="persona.fechanac" id="fechanac" type="date" class="form-control floating-label" placeholder="Date" id="date">
-        </div>
-        <!-- input-group -->
-    </div>
-    <div class="form-group">
-        <label for="sexo">Sexo:</label>
-        <div>
-            <select [(ngModel)]="persona.sexo" id="sexo" class="form-control select2">
-              <option value="Hombre">Hombre</option>
-              <option value="Mujer">Mujer</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="curp">CURP:</label>
-        <div>
-            <input [(ngModel)]="persona.curp" id="curp" type="text" class="form-control" required/>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="estadocivil">Estado Civil:</label>
-        <div>
-            <select [(ngModel)]="persona.estadocivil"  id="estadocivil" class="form-control select2">
-              <option value="Casado(a)">Casado(a)</option>
-              <option value="Soltero(a)">Soltero(a)</option>
-              <option value="Separado(a)">Separado(a)</option>
-            </select>
-        </div>
-    </div>
-    <div class="form-group">
-        <label for="domicilio">Domicilio:</label>
-        <div>
-            <input [(ngModel)]="persona.domicilio" id="domicilio" type="text" class="form-control" required/>
-        </div>
+      <mat-form-field>
+        <mat-label>Sexo: </mat-label>
+        <mat-select [(ngModel)]="persona.sexo" [(value)]="selectedsex">
+          <mat-option value="Hombre">Hombre</mat-option>
+          <mat-option value="Mujer">Mujer</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
     <div class="form-group">
-        <label for="fechaingreso">Fecha de ingreso:</label>
-        <div>
-            <input [(ngModel)]="persona.fechaingreso" id="fechaingreso" type="date" class="form-control" required disabled>
-        </div>
+      <mat-form-field>
+        <input class="form-control" [(ngModel)]="persona.curp" matInput placeholder="CURP" upperCase>
+      </mat-form-field>
     </div>
 
     <div class="form-group">
-        <label for="horaentrada">Hora de Entrada:</label>
-        <div>
-            <input [(ngModel)]="persona.horaentrada" type="time" id="horaentrada" class="form-control floating-label">
-        </div>
+      <mat-form-field>
+        <input class="form-control" [(ngModel)]="persona.fechanac" matInput [matDatepicker]="picker"
+          placeholder="Fecha de nacimiento">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
     </div>
 
     <div class="form-group">
-        <label for="horasalida">Hora de Salida:</label>
-        <div>
-            <input [(ngModel)]="persona.horasalida" type="time" id="horasalida" class="form-control floating-label">
-        </div>
+      <mat-form-field class="mitad">
+        <textarea [(ngModel)]="persona.domicilio" matInput placeholder="Domicilio"></textarea>
+      </mat-form-field>
     </div>
 
     <div class="form-group">
-        <label for="tipopersonal">Tipo de Personal:</label>
-        <div>
-            <select [(ngModel)]="persona.tipopersonal"  id="tipopersonal" class="form-control select2">
-              <option *ngFor="let tipoper of tipopersonal" value="{{tipoper.idtper}}">{{tipoper.tipo}}</option>
-            </select>
-        </div>
+      <mat-form-field>
+        <input class="form-control" [(ngModel)]="persona.perfilprofesional" matInput placeholder="Perfil profesional">
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <mat-form-field>
+        <input class="form-control" [(ngModel)]="persona.especialidad" matInput placeholder="Especialidad">
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group">
+      <mat-form-field>
+        <input type="data" class="form-control" [(ngModel)]="persona.fechaingreso" matInput placeholder="Fecha de ingreso" [value]="jstoday" name="fechaingreso" required>
+      </mat-form-field>
     </div>
 
     <div class="form-group">
-        <label for="perfilprofesional">Perfil Profesional: </label>
-        <div>
-            <input [(ngModel)]="persona.perfilprofesional" id="perfilprofesional" type="text" class="form-control"/>
-        </div>
+      <mat-form-field>
+        <input class="form-control" [(ngModel)]="persona.horaentrada" matInput placeholder="Hora de entrada"
+          [ngxTimepicker]="defaultValue" [value]="" readonly>
+        <ngx-material-timepicker #defaultValue></ngx-material-timepicker>
+      </mat-form-field>
     </div>
 
     <div class="form-group">
-        <label for="especialidad">Especialidad:</label>
-        <div>
-            <input [(ngModel)]="persona.especialidad" id="especialidad" type="text" class="form-control" required/>
-        </div>
+      <mat-form-field>
+        <input class="form-control" [(ngModel)]="persona.horasalida" matInput placeholder="Hora de salida"
+          [ngxTimepicker]="default" readonly>
+        <ngx-material-timepicker #default></ngx-material-timepicker>
+      </mat-form-field>
+    </div>
+
+    <div></div>
+    <div class="form-group">
+      <mat-form-field>
+        <mat-label>Estado civil: </mat-label>
+        <mat-select [(ngModel)]="persona.estadocivil" [(value)]="selectedestado">
+          <mat-option value="Casado(a)">Casado(a)</mat-option>
+          <mat-option value="Soltero(a)">Soltero(a)</mat-option>
+          <mat-option value="Sin especificar">Sin especificar</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
     <div class="form-group">
-        <label for="salariomensual">Salario Mensual:</label>
-        <div>
-            <input [(ngModel)]="persona.salariomensual" id="salariomensual" data-parsley-type="number" type="text" class="form-control" required/>
-        </div>
+      <mat-form-field class="mitad">
+        <textarea class="form-control" [(ngModel)]="persona.tareasasignadas" matInput
+          placeholder="Tareas a realizar"></textarea>
+      </mat-form-field>
     </div>
 
     <div class="form-group">
-        <label for="tareasasignadas">Tareas asignadas:</label>
-        <div>
-            <textarea [(ngModel)]="persona.tareasasignadas" id="tareasasignadas" required class="form-control" rows="5" placeholder="Describir las treas a realizar dentro de la empresa"></textarea>
-        </div>
+      <mat-form-field>
+        <mat-label>Tipo de Personal: </mat-label>
+        <mat-select [(ngModel)]="persona.tipopersonal" [(value)]="selectedtp" (selectionChange)="tipoChange($event)">
+          <mat-option value="1">--Selecciona una opción--</mat-option>
+          <mat-option value="2">Instructor</mat-option>
+          <mat-option value="0">Limpieza</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
-  
-    <div class="form-group m-b-0">
-            <div>
-                <button (click)="savePersonal()" type="submit" class="btn btn-primary waves-effect waves-light">
-                    Submit
-                </button>
-                <button type="reset" class="btn btn-secondary waves-effect m-l-5" routerLink="/personal">
-                    Cancel
-                </button>
-            </div>
+
+
+    <div class="form-group">
+      <mat-form-field [ngStyle]="{display:visibility}">
+        <input class="form-control" [(ngModel)]="persona.usuario" [(value)]="cleanCamps" matInput placeholder="Usuario"
+          [disabled]="isDisable">
+      </mat-form-field>
     </div>
-</div>
+    <div class="form-group">
+      <mat-form-field [ngStyle]="{display:visibility}">
+        <input class="form-control" [(ngModel)]="persona.contra" [(value)]="cleanCamps" matInput
+          placeholder="Contraseña" [type]="hide ? 'password' : 'text'" [disabled]="isDisable">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </mat-form-field>
+    </div>
 
-
-
-<div>
-    <button mat-raised-button
-            class="example-add-tab-button"
-            (click)="addTab(selectAfterAdding.checked)">
-      Agregar nuevo horario
+    <div class="form-group">
+      <mat-form-field>
+        <input class="form-control" [(ngModel)]="persona.salariomensual" matInput placeholder="Salario mensual"
+          type="number" class="example-right-align">
+        <span matPrefix>$&nbsp;</span>
+      </mat-form-field>
+    </div>
+    <button (click)="savePersonal(persona)" type="submit" class="btn btn-primary waves-effect waves-light">
+      Submit
     </button>
-    <mat-checkbox #selectAfterAdding> Select tab after adding </mat-checkbox>
+    <button (click)="showDate()" type="submit" class="btn btn-primary waves-effect waves-light">
+      Button</button>
   </div>
-  
-  <mat-tab-group [selectedIndex]="selected.value"
-                 (selectedIndexChange)="selected.setValue($event)">
-    <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
-      Formulario {{tab}} <br><br>
-      Días: <input type="text"><br><br>
-      Horario: <select option> </select> <br>
-  
-  
-  
-        <button mat-raised-button
-              class="example-delete-tab-button"
-              [disabled]="tabs.length === 1"
-              (click)="removeTab(index)">
-        Agregar
+<!-- formulario de grupos -->
+  <div>
+    <span [ngStyle]="{display:visibilityspan}">La asignación de grupos es unicamente para el personal de tipo
+      instrutor</span>
+    <div [ngStyle]="{display:visibility}">
+      <button mat-raised-button class="example-add-tab-button" (click)="addTab(selectAfterAdding.checked)">
+        Agregar nuevo horario
       </button>
-      <button mat-raised-button
-              class="example-delete-tab-button"
-              [disabled]="tabs.length === 1"
-              (click)="removeTab(index)">
-        Eliminar
-      </button>
-    </mat-tab>
-  </mat-tab-group>
+      <mat-checkbox #selectAfterAdding> Select tab after adding </mat-checkbox>
+    </div>
+  
+    <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)"
+      [ngStyle]="{display:visibility}">
+      <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+        {{tab}}
+        <mat-form-field>
+          <mat-label>Dias: </mat-label>
+          <mat-select [(ngModel)]="detallegrupo.idd"  [disabled]="isDisable">
+            <mat-option value="1">Lunes</mat-option>
+            <mat-option value="2">Martes</mat-option>
+            <mat-option value="3">Miercoles</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Horario: </mat-label>
+          <mat-select [(ngModel)]="detallegrupo.idh"  [disabled]="isDisable">
+            <mat-option value="1">7:00</mat-option>
+            <mat-option value="2">8:00</mat-option>
+            <mat-option value="3">9:00</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <button mat-raised-button class="example-delete-tab-button" [disabled]="tabs.length === 1"
+          (click)="saveDetallegrupos(index)">
+          Agregar
+        </button>
+        <button mat-raised-button class="example-delete-tab-button" [disabled]="tabs.length === 1"
+          (click)="removeTab(index)">
+          Eliminar
+        </button>
+      </mat-tab>
+    </mat-tab-group>
+    <div>
+      <button mat-button>Siguiente</button>
+    </div>
+  </div>
+
+
+</div>

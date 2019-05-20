@@ -40,30 +40,23 @@ export class TpeditComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  openSnackBar() {
-    this.snackBar.open('Registro actualizado','Cerrar',{
-      duration: 2000,
-    });
-  }
-
+  // Notificación de succes
   showSuccessEdit() {
     this.toastr.successToastr('Registro actualizado','Exito!');
   }
 
+  // Notificacion de error
   showErrorEdit() {
     this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
   }
 
   stopEdit(data): void {
     this.tipopersonalService.put(this.data).subscribe((data) =>{
-      // console.log(this.data);
-      // alert('Registro Actualizado');
-      // this.openSnackBar();
       this.showSuccessEdit();
-      // console.log(this.data);
     },(error)=>{
       this.showErrorEdit();
     });
+    
   }
 
   

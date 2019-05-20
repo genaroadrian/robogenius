@@ -10,6 +10,7 @@ import { Personal } from 'src/app/interfaces/personal';
 import {map} from 'rxjs/operators';
 import { PeraddComponent } from '../peradd/peradd.component';
 import { PerdeleteComponent } from '../perdelete/perdelete.component';
+import { PereditComponent } from '../peredit/peredit.component';
 @Component({
   selector: 'app-perhome',
   templateUrl: './perhome.component.html',
@@ -106,26 +107,24 @@ export class PerhomeComponent implements OnInit {
   }
   
   // Metodo para abrir el modal para modificar
-  /* onUpdate(i: number, idtper: number, tipo: string) {
-    this.id = idtper;
+  onUpdate(i: number, idper: number) {
+    this.id = idper;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
-    console.log(this.index);
-    const dialogRef = this.dialog.open(TpeditComponent, {
-      data: {idtper: idtper, tipo: tipo}
+    const dialogRef = this.dialog.open(PereditComponent, {
+      data: {idper: idper}
     });
-
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idtper === this.id);
         // Then you update that record using data from dialogData (values you enetered)
-        this.exampleDatabase.dataChange.value[foundIndex] = this.tipopersonalService.getDialogData();
+        this.exampleDatabase.dataChange.value[foundIndex] = this.personalService.getDialogData();
         // And lastly refresh table
         this.refresh();
       }
     });
-  } */
+  }
 
   
 

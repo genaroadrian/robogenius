@@ -9,7 +9,7 @@
 </mat-toolbar>
 
       <!-- Boton de agregar -->
-<button mat-icon-button (click)="addNew()">
+<button mat-icon-button [routerLink]="['/personalform']" routerLinkActive="router-link-active" >
   <mat-icon aria-label="Nuevo Registro" class="add">add_circle_outline</mat-icon><span class="add"> Nuevo</span>
 </button>
 
@@ -120,12 +120,13 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index;">
         <!-- En el boton de editar se manda al mentodo todos los datos de row -->
-        <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idtper, row.tipo)">
+        <button mat-icon-button class="text-success" 
+        (click)="onUpdate(i, row.idper)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
         <!-- En el boton de eliminar se manda llamar a la funcion y se le envia el id -->
-        <button mat-icon-button class="text-danger" (click)="delete(row.idper)">
+        <button mat-icon-button class="text-danger" (click)="delete(i, row.idper)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>

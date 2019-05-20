@@ -150,12 +150,11 @@ export class FormPersonalComponent implements OnInit {
     // Guardar la informacion del personal
     savePersonal(persona)
     {
-      
-      this.persona.fechaingreso = this.sanitizeDate(this.persona.fechaingreso);
-      this.personalService.save(this.persona).subscribe((data)=>{
+      // this.persona.fechaingreso = this.sanitizeDate(this.persona.fechaingreso);
+      this.personalService.save(persona).subscribe((data)=>{
         console.log(data);
-        this.idp = data;
-        this.idper = this.idp.idper;
+        // this.idp = data;
+        // this.idper = this.idp.idper;
       },(error)=>{
         alert('Ocurrio un error');
         console.log(error);

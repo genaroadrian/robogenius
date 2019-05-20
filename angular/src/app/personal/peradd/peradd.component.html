@@ -1,7 +1,7 @@
-<h3>Add new Issue</h3>
-<div class="example-container">
+<div class="container">
+  <h3 mat-dialog-title>Añadir nuevo</h3>
   <!-- Formulario de personal -->
-  <div>
+  <div class="mat-dialog-content">
 
     <div class="form-group">
       <mat-form-field>
@@ -102,7 +102,7 @@
     <div class="form-group">
       <mat-form-field>
         <mat-label>Tipo de Personal: </mat-label>
-        <mat-select [(ngModel)]="persona.tipopersonal" [(value)]="selectedtp" (selectionChange)="tipoChange($event)">
+        <mat-select [(ngModel)]="persona.idtper" (selectionChange)="tipoChange($event)" [(value)]="selectedtp" matSelect class="form-control">
           <mat-option value="1">--Selecciona una opción--</mat-option>
           <mat-option value="2">Instructor</mat-option>
           <mat-option value="0">Limpieza</mat-option>
@@ -184,6 +184,4 @@
       <button mat-button>Siguiente</button>
     </div>
   </div>
-
-
 </div>

@@ -110,6 +110,7 @@ export class TphomeComponent implements OnInit {
         this.refresh();
       }
     });
+    
   }
 
   

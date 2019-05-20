@@ -11,6 +11,7 @@ import {DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import { TpaddComponent } from '../tpadd/tpadd.component';
+import { TpdeleteComponent } from '../tpdelete/tpdelete.component';
 
 
 @Component({
@@ -69,6 +70,7 @@ export class TphomeComponent implements OnInit {
 
   // Metodo para abrir el modal para agrefar nuevo registro
   addNew(tipoPersonal: Tipopersonal) {
+    // Abre la ventana modal
     const dialogRef = this.dialog.open(TpaddComponent, {
       data: {tipoPersonal: tipoPersonal }
     });
@@ -98,7 +100,6 @@ export class TphomeComponent implements OnInit {
     const dialogRef = this.dialog.open(TpeditComponent, {
       data: {idtper: idtper, tipo: tipo}
     });
-
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
@@ -112,7 +113,22 @@ export class TphomeComponent implements OnInit {
   }
 
   
+  delete(i: number, idper:number, id: number) {
+    this.index = i;
+    this.id = idper;
+    const dialogRef = this.dialog.open(TpdeleteComponent, {
+      data: {id: idper}
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idtper === this.id);
+        // for delete we use splice in order to remove single object from DataService
+        this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+        this.refreshTable();
+      }
+    });
+  }
 
 }
 

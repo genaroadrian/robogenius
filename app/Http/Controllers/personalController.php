@@ -64,7 +64,7 @@ class personalController extends Controller
         $personal->salariomensual = $request->salariomensual;
         $personal->tareasasignadas = $request->tareasasignadas;
         $personal->idtper = $request->idtper;
-        $personal->activo = $request->activo;
+        $personal->activo = 1;
         $personal->save();
         echo json_encode($personal);
     }

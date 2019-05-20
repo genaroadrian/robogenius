@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { TipopersonalService } from 'src/app/services/tipopersonal.service';
 
 @Component({
   selector: 'app-tpdelete',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TpdeleteComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<TpdeleteComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any, public tipopersonalService: TipopersonalService) { }
 
   ngOnInit() {
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  confirmDelete(): void {
+    this.tipopersonalService.deleteIssue(this.data.id);
   }
 
 }

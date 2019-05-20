@@ -9,6 +9,7 @@ import { PersonalService } from 'src/app/services/personal.service';
 import { Personal } from 'src/app/interfaces/personal';
 import {map} from 'rxjs/operators';
 import { PeraddComponent } from '../peradd/peradd.component';
+import { PerdeleteComponent } from '../perdelete/perdelete.component';
 @Component({
   selector: 'app-perhome',
   templateUrl: './perhome.component.html',
@@ -125,6 +126,8 @@ export class PerhomeComponent implements OnInit {
       }
     });
   } */
+
+  
 
   
 

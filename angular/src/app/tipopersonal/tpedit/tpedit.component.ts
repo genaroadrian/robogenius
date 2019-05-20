@@ -4,6 +4,7 @@ import {FormControl, Validators} from '@angular/forms';
 import { TipopersonalService } from 'src/app/services/tipopersonal.service';
 import { Tipopersonal } from 'src/app/interfaces/tipopersonal';
 import {MatSnackBar} from '@angular/material';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-tpedit',
@@ -13,7 +14,8 @@ import {MatSnackBar} from '@angular/material';
 export class TpeditComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<TpeditComponent>,private snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: any, public tipopersonalService: TipopersonalService) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, public tipopersonalService: TipopersonalService,
+    public toastr: ToastrManager) { }
 
   ngOnInit() {
   }
@@ -44,15 +46,23 @@ export class TpeditComponent implements OnInit {
     });
   }
 
+  showSuccessEdit() {
+    this.toastr.successToastr('Registro actualizado','Exito!');
+  }
+
+  showErrorEdit() {
+    this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
+  }
+
   stopEdit(data): void {
     this.tipopersonalService.put(this.data).subscribe((data) =>{
       // console.log(this.data);
       // alert('Registro Actualizado');
-      this.openSnackBar();
+      // this.openSnackBar();
+      this.showSuccessEdit();
       // console.log(this.data);
     },(error)=>{
-      console.log(error);
-      alert('Ocurrio un error');
+      this.showErrorEdit();
     });
   }
 

@@ -28,6 +28,7 @@ import { HomeComponent } from './escuelas/home/home.component';
 import { AddComponent } from './escuelas/add/add.component';
 import { DeleteComponent } from './escuelas/delete/delete.component';
 import { EditComponent } from './escuelas/edit/edit.component';
+import { ToastrModule } from 'ng6-toastr-notifications';
 
 const routes: Route[] = [
 {path:'personal',component:PerhomeComponent},
@@ -88,7 +89,8 @@ const routes: Route[] = [
     MatSnackBarModule,
     MatStepperModule,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    ToastrModule.forRoot()
     ],
   providers: [
     TipopersonalService,
@@ -97,9 +99,15 @@ const routes: Route[] = [
   ],
   bootstrap: [AppComponent],
   entryComponents: [
+    // Modales de tipo de personal
     TpeditComponent,
     TpaddComponent,
+    TpdeleteComponent,
+    // Modales de personal
     PeraddComponent,
+    PereditComponent,
+    PerdeleteComponent,
+    // Modales de escuela
     EditComponent
   ],
   exports: [

@@ -229,76 +229,78 @@
     <!-- end topbar-main -->
   
     <!-- MENU Start -->
-    <div class="navbar-custom">
-      <div class="container-fluid">
-        <div id="navigation">
-          <!-- Navigation Menu-->
-          <ul class="navigation-menu">
-
-            <li>
-              <a href="home"><i class="mdi mdi-home"></i>Inicio</a>
-            </li>
-
-            <li class="has-submenu">
-              <a href="#"><i class="ion-ios7-people"></i>Usuarios</a>
-              <ul class="submenu">
-
-                <li>
-                  <a href="#">Tipos de usuarios</a>
-                </li>
-
-                <li>
-                  <a href="#">Alumnos</a>
-                </li>
-
-                <li class="has-submenu">
-                  <a href="#">Padres</a>
-                  <ul class="submenu">
-                    <li>
-                      <a href="#">Hijos por padre</a>
-                    </li>
-                  </ul>
-                </li>
-
-                <li class="has-submenu">
-                  <a href="/personal">Personal</a>
-                  <ul class="submenu">
-                    <li>
-                      <a href="#">Tipo de personal</a>
-                    </li>
-                  </ul>
-                </li>
-
-                <li>
-                  <a href="/escuelas">Escuelas</a>
-                </li>
-
-                <li>
-                  <a href="#">Usuarios del sistema</a>
-                </li>
-              </ul>
-            </li>
-
-            <li>
-              <a href="#"><i class="mdi mdi-account-group"></i>Grupos</a>
-            </li>
-
-            <li>
-              <a href="#"><i class="mdi mdi-basket"></i>Productos</a>
-            </li>
-
-            <li class="has-submenu">
-              <a href="#"><i class="mdi mdi-basket"></i>Pagos</a>
-              <ul class="submenu">
-                <li><a href="#">Tipos de pago</a></li>
-              </ul>
-            </li>
-
-          </ul>
-          <!-- End navigation menu -->
-        </div> <!-- end #navigation -->
-      </div> <!-- end container -->
-    </div> <!-- end navbar-custom -->
+    <router-outlet>
+      <div class="navbar-custom">
+        <div class="container-fluid">
+          <div id="navigation">
+            <!-- Navigation Menu-->
+            <ul class="navigation-menu">
+  
+              <li>
+                <a href="home"><i class="mdi mdi-home"></i>Inicio</a>
+              </li>
+  
+              <li class="has-submenu">
+                <a href="#"><i class="ion-ios7-people"></i>Usuarios</a>
+                <ul class="submenu">
+  
+                  <li>
+                    <a href="#">Tipos de usuarios</a>
+                  </li>
+  
+                  <li>
+                    <a href="#">Alumnos</a>
+                  </li>
+  
+                  <li class="has-submenu">
+                    <a href="#">Padres</a>
+                    <ul class="submenu">
+                      <li>
+                        <a href="#">Hijos por padre</a>
+                      </li>
+                    </ul>
+                  </li>
+  
+                  <li class="has-submenu">
+                    <a [routerLink]="['/personal']">Personal</a>
+                    <ul class="submenu">
+                      <li>
+                        <a [routerLink]="['/tipopersonal']">Tipo de personal</a>
+                      </li>
+                    </ul>
+                  </li>
+  
+                  <li>
+                    <a [routerLink]="['/escuelas']">Escuelas</a>
+                  </li>
+  
+                  <li>
+                    <a href="#">Usuarios del sistema</a>
+                  </li>
+                </ul>
+              </li>
+  
+              <li>
+                <a href="#"><i class="mdi mdi-account-group"></i>Grupos</a>
+              </li>
+  
+              <li>
+                <a href="#"><i class="mdi mdi-basket"></i>Productos</a>
+              </li>
+  
+              <li class="has-submenu">
+                <a href="#"><i class="mdi mdi-basket"></i>Pagos</a>
+                <ul class="submenu">
+                  <li><a href="#">Tipos de pago</a></li>
+                </ul>
+              </li>
+  
+            </ul>
+            <!-- End navigation menu -->
+          </div> <!-- end #navigation -->
+        </div> <!-- end container -->
+      </div> <!-- end navbar-custom -->
+    </router-outlet>
   </header>
   <!-- End Navigation Bar-->
 

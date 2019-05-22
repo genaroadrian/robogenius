@@ -121,12 +121,12 @@
       <mat-cell *matCellDef="let row; let i=index;">
         <!-- En el boton de editar se manda al mentodo todos los datos de row -->
         <button mat-icon-button class="text-success" 
-        (click)="onUpdate(i, row.idper)">
+        (click)="onUpdate(i, row)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
         <!-- En el boton de eliminar se manda llamar a la funcion y se le envia el id -->
-        <button mat-icon-button class="text-danger" (click)="delete(i, row.idper)">
+        <button mat-icon-button class="text-danger" (click)="delete(i,row)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>

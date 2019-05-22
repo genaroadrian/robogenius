@@ -20,7 +20,6 @@ export class PersonalService {
   getPersonal(): void{
     this.httpClient.get<Personal[]>(this.API_ENDPOINT+'/personal').subscribe(data => {
       this.dataChange.next(data);
-      console.log(data);
     },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);
@@ -35,6 +34,9 @@ export class PersonalService {
     return this.dialogData;
   }
 
+  updatePersonal (personal: Personal): void {
+    this.dialogData = personal;
+  }
 
 
 

@@ -48,13 +48,17 @@ export class PereditComponent implements OnInit {
     this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
   }
 
-  stopEdit(data): void {
-    this.personalService.put(this.data).subscribe((data) =>{
-      this.showSuccessEdit();
-    },(error)=>{
-      this.showErrorEdit();
-    });
+  // stopEdit(data): void {
+  //   this.personalService.put(this.data).subscribe((data) =>{
+  //     this.showSuccessEdit();
+  //   },(error)=>{
+  //     this.showErrorEdit();
+  //   });
     
+  // }
+
+  stopEdit(): void {
+    this.personalService.updatePersonal(this.data);
   }
 
 }

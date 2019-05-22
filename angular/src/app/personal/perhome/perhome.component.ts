@@ -107,21 +107,31 @@ export class PerhomeComponent implements OnInit {
   }
   
   // Metodo para abrir el modal para modificar
-  onUpdate(i: number, idper: number) {
-    this.id = idper;
+  onUpdate(i: number, row) {
     // index row is used just for debugging proposes and can be removed
+    var idper = row.idper;
     this.index = i;
+    this.id = row.idper;
+    console.log(row);
     const dialogRef = this.dialog.open(PereditComponent, {
-      data: {idper: idper}
+      width: '60%',
+      data: 
+      {
+        idper: row.idper, nombre: row.nombre, apellidos: row.apellidos,
+        usuario: row.usuario, contra: row.contra, fechanac: row.fechanac,
+        sexo: row.sexo, curp: row.curp, estadocivil: row.estadocivil,
+        domicilio: row.domicilio, fechaingreso: row.fechaingreso, horaentrada: row.horaentrada,
+        horasalida: row.horasalida, perfilprofesional: row.perfilprofesional, especialidad: row.especialidad,
+        tareasasignadas: row.tareasasignadas, salariomensual: row.salariomensual, idtper: row.idtper
+      }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idtper === this.id);
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idper === this.id);
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] = this.personalService.getDialogData();
         // And lastly refresh table
-        this.refresh();
       }
     });
   }

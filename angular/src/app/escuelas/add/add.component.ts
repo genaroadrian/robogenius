@@ -12,4 +12,8 @@ export class AddComponent implements OnInit {
   ngOnInit() {
   }
 
+  confirmAdd()
+  {
+  	
+  }
 }

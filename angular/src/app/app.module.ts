@@ -108,7 +108,9 @@ const routes: Route[] = [
     PereditComponent,
     PerdeleteComponent,
     // Modales de escuela
-    EditComponent
+    EditComponent,
+    AddComponent,
+    DeleteComponent
   ],
   exports: [
     MatButtonModule, 

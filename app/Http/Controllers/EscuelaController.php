@@ -43,7 +43,7 @@ class EscuelaController extends Controller
         $escuelas->correo = $request->correo;
         $escuelas->telefono = $request->telefono;
         $escuelas->idesc = $request->idesc;
-        $escuelas->activo = $request->activo;
+        $escuelas->activo = 1;
         $escuelas->save();
         echo json_encode($escuelas);
     }

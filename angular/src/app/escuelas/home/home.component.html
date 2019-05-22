@@ -7,10 +7,14 @@
   </button>
 </mat-toolbar>
 
+<button mat-icon-button (click)="addNew()">
+  <mat-icon aria-label="Nuevo Registro" class="text-info">add_circle_outline</mat-icon><span class="text-info"> Nuevo</span>
+</button>
+
 <div class="container mat-elevation-z8">
 
   <div class="form">
-    <mat-form-field floatPlaceholder="never" color="accent">
+    <mat-form-field floatPlaceholder="never" color="primary">
       <input matInput #filter placeholder="Buscar...">
     </mat-form-field>
   </div>
@@ -54,11 +58,11 @@
     <ng-container matColumnDef="icons">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button color="accent" (click)="onUpdate(i, row.idtper, row.tipo)">
+        <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idesc, row.nombre, row.representante, row.direccion, row.telefono, row.correo)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
-        <button mat-icon-button color="accent" (click)="delete(row.idper)">
+        <button mat-icon-button class="text-danger" (click)="delete(i, row.idesc)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>
@@ -70,13 +74,13 @@
 
 
   <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
-    Cargando...
+    <mat-spinner class="text-success"></mat-spinner>
   </div>
 
   <mat-paginator #paginator
                  [length]="dataSource.filteredData.length"
                  [pageIndex]="0"
-                 [pageSize]="10"
+                 [pageSize]="5"
                  [pageSizeOptions]="[5, 10, 25, 100]">
   </mat-paginator>
 </div>

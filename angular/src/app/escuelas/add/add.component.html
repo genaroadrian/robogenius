@@ -1,3 +1,41 @@
-<p>
-  add works!
-</p>
+<div class="container">
+  <h3 mat-dialog-title>Nuevo registro</h3>
+
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Nombre" [(ngModel)]="escuelas.nombre" name="nombre">
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Representante" [(ngModel)]="escuelas.representante" name="representante">
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Dirección" [(ngModel)]="escuelas.direccion" name="direccion">
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Telefono" [(ngModel)]="escuelas.telefono" name="telefono">
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Correo" [(ngModel)]="escuelas.correo" name="correo">
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
+      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </form>
+</div>

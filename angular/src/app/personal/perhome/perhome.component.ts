@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild, Inject, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { MatPaginator, MatSort, MatTableDataSource, MatTable } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatDialog, MatDialogConfig, MatIconRegistry} from '@angular/material';
+import { MatPaginator, MatSort} from '@angular/material';
+import { MatDialog} from '@angular/material';
 import {DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import { PersonalService } from 'src/app/services/personal.service';
@@ -43,14 +42,27 @@ export class PerhomeComponent implements OnInit {
     'icons'
    ];
 
+  //  Declaracion de la interfaz de personal
   personal: Personal[];
+
+  // Declaracion de el servicio de personal
   exampleDatabase: PersonalService | null;
+
+  // Los datos obtenidos se asignan a un datasource para que sean leidos por la tabla
   dataSource: ExampleDataSource | null;
+
+  // Componentes para la paginacion y la barra de busqueda
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
+
+  // Index de la tabla
   index: number;
+
+  // ID de la tabla
   id: number;
+
+  // Declaracion del servico de personal
   PersonalService: any;
 
   constructor(public httpClient: HttpClient,
@@ -60,7 +72,7 @@ export class PerhomeComponent implements OnInit {
 
   ngOnInit() 
   {
-    // Llamado al metodo de getTipopersonal
+    // Llamado al metodo de que obtiene los datos
     this.getPersonal();
 
     // Traducir los label de la tabla
@@ -91,8 +103,9 @@ export class PerhomeComponent implements OnInit {
     });
   }
 
-  // Metodo para recibir los datos y asignar la tabla
-  getPersonal(){
+  /*  Obtiene los datos de la base y se la asigna a el datasource y database example
+  tambien se le asigna el filtro la barra de busqueda y la paginacion */
+  public getPersonal() {
     this.exampleDatabase = new PersonalService(this.httpClient);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
     fromEvent(this.filter.nativeElement, 'keyup')
@@ -105,42 +118,45 @@ export class PerhomeComponent implements OnInit {
         this.dataSource.filter = this.filter.nativeElement.value;
       });
   }
+
   
   // Metodo para abrir el modal para modificar
-  onUpdate(i: number, row) {
-    // index row is used just for debugging proposes and can be removed
-    var idper = row.idper;
+  onUpdate(i: number, idper: number, nombre: string,
+    apellidos: string, usuario: string, contra: string,
+    fechanac: string, sexo: string, curp: string, estadocivil:string,
+    domicilio: string, fechaingreso: string, horaentrada: string,
+    horasalida: string, perfilprofesional: string, especialidad: string,
+    tareasasignadas: string, salariomensual: number, idtper: number ) {
+    // A la variable index se le asigna el [index] recibido con la variable [i]
     this.index = i;
-    this.id = row.idper;
-    console.log(row);
+    // Se le asigna a la variable [id] el valor recibido de la variable [idper]
+    this.id = idper;
     const dialogRef = this.dialog.open(PereditComponent, {
+      // Anchura de el modal
       width: '60%',
+      /* Al modal se le envia la variable data, que contiene los datos de el registro
+      de la tabla que se va a modificar */
       data: 
       {
-        idper: row.idper, nombre: row.nombre, apellidos: row.apellidos,
-        usuario: row.usuario, contra: row.contra, fechanac: row.fechanac,
-        sexo: row.sexo, curp: row.curp, estadocivil: row.estadocivil,
-        domicilio: row.domicilio, fechaingreso: row.fechaingreso, horaentrada: row.horaentrada,
-        horasalida: row.horasalida, perfilprofesional: row.perfilprofesional, especialidad: row.especialidad,
-        tareasasignadas: row.tareasasignadas, salariomensual: row.salariomensual, idtper: row.idtper
+        idper: idper, nombre: nombre, apellidos: apellidos,
+        usuario: usuario, contra: contra, fechanac: fechanac,
+        sexo: sexo, curp: curp, estadocivil: estadocivil,
+        domicilio: domicilio, fechaingreso: fechaingreso, horaentrada: horaentrada,
+        horasalida: horasalida, perfilprofesional: perfilprofesional, especialidad: especialidad,
+        tareasasignadas: tareasasignadas, salariomensual: salariomensual, idtper: idtper
       }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        // When using an edit things are little different, firstly we find record inside DataService by id
+        // Se busca el registro en la variable [exampleDatabase] de la tbla
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idper === this.id);
-        // Then you update that record using data from dialogData (values you enetered)
+        // Se actualiza el dato, pero solo en la tabla, no en la base de datos
         this.exampleDatabase.dataChange.value[foundIndex] = this.personalService.getDialogData();
-        // And lastly refresh table
+        // Se refresca la tabla
+        this.refreshTable();
       }
     });
   }
-
-  
-
-  
-
-
 }
 
 // Exporta la clase del datasource (datos de la tabla) y les asigna paginacion filtro etc.
@@ -167,7 +183,6 @@ export class ExampleDataSource extends DataSource<Personal> {
     this._filterChange.subscribe(() => this._paginator.pageIndex = 0);
     
   }
-
   
   /** Connect function called by the table to retrieve one stream containing the data to render. */
   connect(): Observable<Personal[]> {
@@ -181,11 +196,10 @@ export class ExampleDataSource extends DataSource<Personal> {
 
     this._exampleDatabase.getPersonal();
 
-
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((personal: Personal) => {
-          const searchStr = (personal.idper + personal.nombre + personal.apellidos + personal.fechaingreso).toLowerCase();
+          const searchStr = (personal.idper + personal.nombre + personal.apellidos).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -201,7 +215,6 @@ export class ExampleDataSource extends DataSource<Personal> {
   }
 
   disconnect() {}
-
 
   /** Returns a sorted copy of the database data. */
   sortData(data: Personal[]):Personal[] {
@@ -233,7 +246,6 @@ export class ExampleDataSource extends DataSource<Personal> {
         case 'salariomensual': [propertyA, propertyB] = [a.salariomensual, b.salariomensual]; break;
         case 'idtper': [propertyA, propertyB] = [a.idtper, b.idtper]; break;
         case 'activo': [propertyA, propertyB] = [a.activo, b.activo]; break;
-
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
@@ -242,7 +254,4 @@ export class ExampleDataSource extends DataSource<Personal> {
       return (valueA < valueB ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1);
     });
   }
-
-  
-
 }

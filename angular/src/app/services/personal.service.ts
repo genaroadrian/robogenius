@@ -15,8 +15,7 @@ export class PersonalService {
 
   constructor(private httpClient: HttpClient) {}
 
-  
-
+  // Obtener datos de la base de datos
   getPersonal(): void{
     this.httpClient.get<Personal[]>(this.API_ENDPOINT+'/personal').subscribe(data => {
       this.dataChange.next(data);
@@ -26,36 +25,37 @@ export class PersonalService {
     });
   }
 
+  // Obtener datos cuando cambien
   get data(): Personal[] {
     return this.dataChange.value;
   }
 
+  // Obtener datos de la modal de editar
   getDialogData() {
     return this.dialogData;
   }
-
-  updatePersonal (personal: Personal): void {
-    this.dialogData = personal;
-  }
-
-
 
   // Obtener los datos de Laravel
   get() {
     return this.httpClient.get(this.API_ENDPOINT + '/personal');
  }
-  // Guardar personal
+  // Guardar datos
   save(persona: Personal) {
     const headers = new HttpHeaders({"Content-Type":"application/json"});
     return this.httpClient.post(this.API_ENDPOINT+'/personal', persona, {headers: headers});
   }
 
-  put(persona){
+  // Actualizar los datos
+  put(persona: Personal,){
     const headers = new HttpHeaders({"Content-Type":"application/json"});
+    this.dialogData = persona;
     return this.httpClient.put(this.API_ENDPOINT+'/personal/'+persona.idper, persona, {headers: headers});
+    
   }
 
+  // Borrar los datos
   delete(idper){
     return this.httpClient.delete(this.API_ENDPOINT + '/personal/'+idper);
   } 
 }
+

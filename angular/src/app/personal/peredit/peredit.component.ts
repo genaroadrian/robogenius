@@ -18,47 +18,46 @@ export class PereditComponent implements OnInit {
   ngOnInit() {
   }
 
+  // Validaciones del formulario
   formControl = new FormControl('', [
     Validators.required
     // Validators.email,
   ]);
 
-  getErrorMessage() {
+  /* getErrorMessage() {
     return this.formControl.hasError('required') ? 'El campo es obligatorio' :
       this.formControl.hasError('email') ? 'Ingrese un corre valido' :
         '';
-  }
+  } */
 
   submit() {
     // emppty stuff
   }
 
-
+  // Cuando se le de clic afuera del modal, el modal se cerrará
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  // Notificación de succes
+  // Notificación de success al editar
   showSuccessEdit() {
     this.toastr.successToastr('Registro actualizado','Exito!');
   }
 
-  // Notificacion de error
+  // Notificacion de error al editar
   showErrorEdit() {
     this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
   }
 
-  // stopEdit(data): void {
-  //   this.personalService.put(this.data).subscribe((data) =>{
-  //     this.showSuccessEdit();
-  //   },(error)=>{
-  //     this.showErrorEdit();
-  //   });
-    
-  // }
-
-  stopEdit(): void {
-    this.personalService.updatePersonal(this.data);
+  // Metodo para cuando termine de guardar
+  stopEdit(data): void {
+    console.log(data);
+    this.personalService.put(this.data).subscribe((data) =>{
+      this.showSuccessEdit();
+    },(error)=>{
+      this.showErrorEdit();
+      console.log(error);
+    });    
   }
 
 }

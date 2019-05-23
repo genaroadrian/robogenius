@@ -41,7 +41,9 @@ export class TphomeComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public tipopersonalService: TipopersonalService ) { }
+    public tipopersonalService: TipopersonalService ) {
+      
+     }
 
 
   ngOnInit() 
@@ -107,7 +109,7 @@ export class TphomeComponent implements OnInit {
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] = this.tipopersonalService.getDialogData();
         // And lastly refresh table
-        this.refresh();
+        this.refreshTable();
       }
     });
     

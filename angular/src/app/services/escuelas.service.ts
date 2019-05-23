@@ -52,4 +52,8 @@ export class EscuelasService {
   deleteIssue (id: number): void {
     console.log(id);
   }
+
+  delete(id){
+    return this.httpClient.delete(this.API_ENDPOINT + '/escuelas/'+id);
+  }
 }

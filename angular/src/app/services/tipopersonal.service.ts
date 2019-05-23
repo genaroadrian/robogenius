@@ -52,5 +52,9 @@ export class TipopersonalService {
   deleteIssue (id: number): void {
     console.log(id);
   }
+
+  delete(id){
+    return this.httpClient.delete(this.API_ENDPOIINT + '/tipopersonal/'+id);
+  }
 }
 

@@ -41,7 +41,8 @@ const routes: Route[] = [
 {path: 'home', component:LoginPrincipalComponent},
 {path: 'login', component:LoginComponent},
 {path: 'escuelas', component:HomeComponent},
-{path: 'tipopersonal', component:TphomeComponent}
+{path: 'tipopersonal', component:TphomeComponent},
+{path: 'tipomensualidad', component:TmhomeComponent}
 ];
 
 @NgModule({
@@ -118,7 +119,11 @@ const routes: Route[] = [
     // Modales de escuela
     EditComponent,
     AddComponent,
-    DeleteComponent
+    DeleteComponent,
+    // Modales de tipo de mensualidad
+    TmeditComponent,
+    TmaddComponent,
+    TmdeleteComponent
   ],
   exports: [
     MatButtonModule, 

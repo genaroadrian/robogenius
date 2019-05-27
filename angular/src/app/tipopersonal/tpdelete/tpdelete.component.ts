@@ -30,9 +30,9 @@ export class TpdeleteComponent implements OnInit {
   }
 
   confirmDelete(): void {
-    this.tipopersonalService.deleteIssue(this.data.id);
     this.tipopersonalService.delete(this.data.id).subscribe((data)=>{
       console.log(data);
+      this.tipopersonalService.deleteIssue(this.data.id);
       this.showSuccessEdit();
     },(error)=>{
       this.showErrorEdit();

@@ -3,7 +3,6 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormControl, Validators} from '@angular/forms';
 import { EscuelasService } from 'src/app/services/escuelas.service';
 import { Escuelas } from 'src/app/interfaces/escuelas';
-import {MatSnackBar} from '@angular/material';
 import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
@@ -13,9 +12,8 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 })
 export class EditComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<EditComponent>,private snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: any, public escuelasService: EscuelasService,
-    public toastr: ToastrManager) { }
+  constructor(public dialogRef: MatDialogRef<EditComponent>,@Inject(MAT_DIALOG_DATA) public data: any, 
+    public escuelasService: EscuelasService, public toastr: ToastrManager) { }
 
   ngOnInit() {
   }
@@ -38,12 +36,6 @@ export class EditComponent implements OnInit {
 
   onNoClick(): void {
     this.dialogRef.close();
-  }
-
-  openSnackBar() {
-    this.snackBar.open('Registro actualizado','Cerrar',{
-      duration: 2000,
-    });
   }
 
   showSuccessEdit() {

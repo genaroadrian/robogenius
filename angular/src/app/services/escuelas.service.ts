@@ -45,6 +45,12 @@ export class EscuelasService {
     this.dialogData = escuelas;
   }
 
+  add(escuelas: Escuelas)
+  {
+    const headers = new HttpHeaders( {'Content-Type': 'application/json'});
+    return this.httpClient.post(this.API_ENDPOINT + '/escuelas/'+escuelas, {headers: headers});
+  }
+
   updateEscuelas (escuelas: Escuelas): void {
     this.dialogData = escuelas;
   }

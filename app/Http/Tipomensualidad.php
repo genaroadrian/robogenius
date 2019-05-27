@@ -4,20 +4,18 @@ namespace slidecom_robogenius;
 
 use Illuminate\Database\Eloquent\Model;
 
-class escuelas extends Model
+class Tipomensualidad extends Model
 {
     public function getKeyName()
     {
-    	return "idesc";
+    	return "idtmen";
     }
     public $timestamps = false;
-    protected $table = "escuelas";
+    protected $table = "tipomensualidad";
     protected $fillable = [ 
-    	'idesc',
+    	'idtmen',
     	'nombre',
-    	'representante',
-    	'direccion',
-    	'telefono',
-    	'correo',
+    	'fechainicial',
+    	'fechafinal',
     	'activo'];
 }

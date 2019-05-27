@@ -12,12 +12,5 @@ class escuelas extends Model
     }
     public $timestamps = false;
     protected $table = "escuelas";
-    protected $fillable = [ 
-    	'idesc',
-    	'nombre',
-    	'representante',
-    	'direccion',
-    	'telefono',
-    	'correo',
-    	'activo'];
+    protected $fillable = [ 'idesc','nombre','activo'];
 }

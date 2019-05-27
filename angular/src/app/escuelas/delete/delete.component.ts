@@ -30,9 +30,10 @@ export class DeleteComponent implements OnInit {
   }
 
   confirmDelete(): void {
-    this.escuelasService.deleteIssue(this.data.id);
+    
     this.escuelasService.delete(this.data.id).subscribe((data)=>{
       console.log(data);
+      this.escuelasService.deleteIssue(this.data.id);
       this.showSuccessEdit();
     },(error)=>{
       this.showErrorEdit();

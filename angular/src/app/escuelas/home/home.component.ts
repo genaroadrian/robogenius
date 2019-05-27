@@ -79,6 +79,12 @@ export class HomeComponent implements OnInit {
     const dialogRef = this.dialog.open(AddComponent, {
       data: {escuelas: escuelas }
     });
+    dialogRef.afterClosed().subscribe(result=>{
+      if(result==1){
+        this.exampleDatabase.dataChange.value.push(this.escuelasService.getDialogData());
+        this.refreshTable();
+      }
+    });
   }
 
   // Metodo para recibir los datos y asignar la tabla

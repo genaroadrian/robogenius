@@ -29,6 +29,10 @@ import { AddComponent } from './escuelas/add/add.component';
 import { DeleteComponent } from './escuelas/delete/delete.component';
 import { EditComponent } from './escuelas/edit/edit.component';
 import { ToastrModule } from 'ng6-toastr-notifications';
+import { TmhomeComponent } from './tipomensualidad/tmhome/tmhome.component';
+import { TmaddComponent } from './tipomensualidad/tmadd/tmadd.component';
+import { TmeditComponent } from './tipomensualidad/tmedit/tmedit.component';
+import { TmdeleteComponent } from './tipomensualidad/tmdelete/tmdelete.component';
 
 const routes: Route[] = [
 {path:'personal',component:PerhomeComponent},
@@ -60,6 +64,10 @@ const routes: Route[] = [
     AddComponent,
     DeleteComponent,
     EditComponent,
+    TmhomeComponent,
+    TmaddComponent,
+    TmeditComponent,
+    TmdeleteComponent,
   ],
   imports: [
     NgxUpperCaseDirectiveModule,

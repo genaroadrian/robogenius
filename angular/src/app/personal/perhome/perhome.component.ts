@@ -119,7 +119,22 @@ export class PerhomeComponent implements OnInit {
       });
   }
 
-  
+  delete(i:number, idper:number, nombre: string, apellidos:string){
+    this.index = i;
+    this.id = idper;
+    const dialogRef = this.dialog.open(PerdeleteComponent, {
+      data: {id: idper, nombre:nombre, apellidos:apellidos}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idper === this.id);
+        // for delete we use splice in order to remove single object from DataService
+        this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+        this.refreshTable();
+      }
+    });
+  }
   // Metodo para abrir el modal para modificar
   onUpdate(i: number, idper: number, nombre: string,
     apellidos: string, usuario: string, contra: string,
@@ -158,6 +173,8 @@ export class PerhomeComponent implements OnInit {
     });
   }
 }
+
+
 
 // Exporta la clase del datasource (datos de la tabla) y les asigna paginacion filtro etc.
 

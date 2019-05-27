@@ -51,9 +51,10 @@ export class PereditComponent implements OnInit {
 
   // Metodo para cuando termine de guardar
   stopEdit(data): void {
-    console.log(data);
+    // console.log(data);
     this.personalService.put(this.data).subscribe((data) =>{
       this.showSuccessEdit();
+      // this.personalService.tput(this.data);
     },(error)=>{
       this.showErrorEdit();
       console.log(error);

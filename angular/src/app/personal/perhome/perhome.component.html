@@ -130,7 +130,7 @@
         </button>
 
         <!-- En el boton de eliminar se manda llamar a la funcion y se le envia el id -->
-        <button mat-icon-button class="text-danger" (click)="delete(i,row)">
+        <button mat-icon-button class="text-danger" (click)="delete(i,row.idper, row.nombre, row.apellidos)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>

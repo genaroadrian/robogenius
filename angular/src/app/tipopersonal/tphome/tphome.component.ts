@@ -76,6 +76,14 @@ export class TphomeComponent implements OnInit {
     const dialogRef = this.dialog.open(TpaddComponent, {
       data: {tipoPersonal: tipoPersonal }
     });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        // After dialog is closed we're doing frontend updates
+        // For add we're just pushing a new row inside DataService
+        this.exampleDatabase.dataChange.value.push(this.tipopersonalService.getDialogData());
+        this.refreshTable();
+      }
+    });
   }
 
   // Metodo para recibir los datos y asignar la tabla

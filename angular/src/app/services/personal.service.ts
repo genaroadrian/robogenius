@@ -46,16 +46,18 @@ export class PersonalService {
   }
 
   // Actualizar los datos
-  put(persona: Personal,){
+  put(persona: Personal){
     const headers = new HttpHeaders({"Content-Type":"application/json"});
     this.dialogData = persona;
     return this.httpClient.put(this.API_ENDPOINT+'/personal/'+persona.idper, persona, {headers: headers});
     
   }
 
+
   // Borrar los datos
-  delete(idper){
-    return this.httpClient.delete(this.API_ENDPOINT + '/personal/'+idper);
-  } 
+  delete(id:number){
+    return this.httpClient.delete(this.API_ENDPOINT + '/personal/'+id);
+  }
+  
 }
 

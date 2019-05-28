@@ -34,7 +34,7 @@ export class TmaddComponent implements OnInit {
   {
     
     this.tipomensualidadService.add(this.data).subscribe((data) =>{
-      this.showSuccessEdit();
+      this.showSuccessEdit();                                                                                                                                      
     },(error)=>{
       this.showErrorEdit();
     });

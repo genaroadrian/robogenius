@@ -22,3 +22,4 @@ Route::resource('tipopersonal', 'tipopersonalController');
 Route::resource('productos', 'productosController');
 Route::resource('escuelas', 'EscuelaController');
 Route::resource('dgrupos', 'detallegruposController');
+Route::resource('tipomensualidad', 'tipomensualidadController');

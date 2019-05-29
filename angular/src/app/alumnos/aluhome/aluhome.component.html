@@ -1,0 +1,156 @@
+<mat-toolbar>
+  <span>Personal</span>
+  <span class="spacer"></span>
+  Recargar datos:
+  <!-- Boton para recargar datos -->
+  <button mat-icon-button (click)="refresh()">
+    <mat-icon>refresh</mat-icon>
+  </button>
+</mat-toolbar>
+
+      <!-- Boton de agregar -->
+<button mat-icon-button [routerLink]="['/personalform']" routerLinkActive="router-link-active" >
+  <mat-icon aria-label="Nuevo Registro" class="add">add_circle_outline</mat-icon><span class="add"> Nuevo</span>
+</button>
+
+<div class="mat-elevation-z8">
+
+  <!-- Barra de busqueda -->
+  <div class="form">
+    <mat-form-field floatPlaceholder="never" color="primary">
+      <input matInput #filter placeholder="Buscar...">
+    </mat-form-field>
+  </div>
+
+    <!-- Inicio de la tabla -->
+  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+
+    <ng-container matColumnDef="idper">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Id</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}">{{row.idper}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.nombre}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="apellidos">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.apellidos}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="usuario">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Usuario</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.usuario}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="contra">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Contraseña</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.contra}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fechanac">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Fecha nacimiento
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.fechanac}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="sexo">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Sexo</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.sexo}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="curp">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Curp</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.curp}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="estadocivil">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Estado civil</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.estadocivil}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="domicilio">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Domicilio</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.domicilio}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fechaingreso">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Ingreso</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.fechaingreso}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="horaentrada">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Entrada</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.horaentrada}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="horasalida">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Salida</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.horasalida}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="perfilprofesional">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Perfil prof.</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.perfilprofesional}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="especialidad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Especialidad</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.especialidad}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="tareasasignadas">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Tareas</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.tareasasignadas}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="salariomensual">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Salario mensual</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.salariomensual}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="idtper">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Tipo personal</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.idtper}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="icons">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
+      <mat-cell *matCellDef="let row; let i=index;">
+        <!-- En el boton de editar se manda al mentodo todos los datos de row -->
+        <button mat-icon-button class="text-success" 
+        (click)="onUpdate(i, row.idper, row.nombre,row.apellidos,
+        row.usuario, row.contra, row.fechanac, row.sexo, row.curp,
+        row.estadocivil, row.domicilio ,row.fechaingreso, row.horaentrada, row.horasalida,
+        row.perfilprofesional, row.especialidad, row.tareasasignadas, row.salariomensual,
+        row.idtper)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+
+        <!-- En el boton de eliminar se manda llamar a la funcion y se le envia el id -->
+        <button mat-icon-button class="text-danger" (click)="delete(i,row.idper, row.nombre, row.apellidos)">
+          <mat-icon aria-label="Delete">delete</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <!-- Solo mientras no aparezcan datos -->
+  <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+      <!-- Spinner de carga -->
+    <mat-spinner class="text-success"></mat-spinner>
+  </div>
+
+  <!-- Seccion de la paginacion -->
+  <mat-paginator #paginator 
+    [length]="dataSource.filteredData.length" 
+    [pageIndex]="0" 
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+</div>

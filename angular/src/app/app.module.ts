@@ -39,10 +39,7 @@ import { TmeditComponent } from './tipomensualidad/tmedit/tmedit.component';
 import { TmdeleteComponent } from './tipomensualidad/tmdelete/tmdelete.component';
 import { AlumnosService } from './services/alumnos.service';
 import { PadresService } from './services/padres.service';
-import { AluhomeComponent } from './alumnos/aluhome/aluhome.component';
-import { AluaddComponent } from './alumnos/aluadd/aluadd.component';
-import { AlueditComponent } from './alumnos/aluedit/aluedit.component';
-import { AludeleteComponent } from './alumnos/aludelete/aludelete.component';
+
 import { PadhomeComponent } from './padres/padhome/padhome.component';
 import { PadeditComponent } from './padres/padedit/padedit.component';
 import { PadaddComponent } from './padres/padadd/padadd.component';
@@ -57,7 +54,6 @@ const routes: Route[] = [
 {path: 'escuelas', component:HomeComponent},
 {path: 'tipopersonal', component:TphomeComponent},
 {path: 'tipomensualidad', component:TmhomeComponent},
-{path: 'alumnos', component:AluhomeComponent},
 {path: 'padres', component:PadhomeComponent},
 {path: 'padresform', component:PadaddComponent}
 ];
@@ -86,10 +82,6 @@ const routes: Route[] = [
     TmaddComponent,
     TmeditComponent,
     TmdeleteComponent,
-    AluhomeComponent,
-    AluaddComponent,
-    AlueditComponent,
-    AludeleteComponent,
     PadhomeComponent,
     PadeditComponent,
     PadaddComponent,

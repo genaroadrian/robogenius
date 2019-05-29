@@ -11,7 +11,7 @@ class tipomensualidad extends Model
     	return "idtmen";
     }
     public $timestamps = false;
-    protected $table = "Tipomensualidad";
+    protected $table = "tipomensualidad";
     protected $fillable = [ 
     	'idtmen',
     	'nombre',

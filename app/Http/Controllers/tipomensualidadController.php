@@ -4,7 +4,7 @@ namespace slidecom_robogenius\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use slidecom_robogenius\Tipomensualidad;
+use slidecom_robogenius\tipomensualidad;
 use Illuminate\Support\Facades\DB;
 use Session;
 
@@ -20,7 +20,7 @@ class tipomensualidadController extends Controller
      // Guarda nuevos registros
     public function store(Request $request)
     {
-        $tmensualidad = new Tipomensualidad();
+        $tmensualidad = new tipomensualidad();
         $tmensualidad->nombre = $request->nombre;
         $tmensualidad->fechainicial = $request->fechainicial;
         $tmensualidad->fechafinal = $request->fechafinal;
@@ -33,7 +33,7 @@ class tipomensualidadController extends Controller
     // Actualiza registros
     public function update(Request $request, $id)
     {
-        $tmensualidad = Tipomensualidad::find($id);
+        $tmensualidad = tipomensualidad::find($id);
         $tmensualidad->nombre = $request->nombre;
         $tmensualidad->fechainicial = $request->fechainicial;
         $tmensualidad->fechafinal = $request->fechafinal;

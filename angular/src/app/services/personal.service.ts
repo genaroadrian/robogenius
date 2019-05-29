@@ -7,6 +7,8 @@ import {BehaviorSubject} from 'rxjs';
   providedIn: 'root'
 })
 export class PersonalService {
+
+  // URL de laravel
   API_ENDPOINT = 'http://localhost:8000/api';
 
   dataChange: BehaviorSubject<Personal[]> = new BehaviorSubject<Personal[]>([]);

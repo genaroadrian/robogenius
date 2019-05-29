@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import { MatPaginator, MatSort} from '@angular/material';
-import { MatDialog} from '@angular/material';
+import { MatPaginator, MatSort, MatDialog} from '@angular/material';
+
 import {DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import { PersonalService } from 'src/app/services/personal.service';

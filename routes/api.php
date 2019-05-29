@@ -24,3 +24,4 @@ Route::resource('escuelas', 'EscuelaController');
 Route::resource('dgrupos', 'detallegruposController');
 Route::resource('tipomensualidad', 'tipomensualidadController');
 Route::resource('alumno', 'alumnoController');
+Route::resource('padres', 'padresController');

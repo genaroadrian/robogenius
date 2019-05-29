@@ -13,9 +13,13 @@ export class TpaddComponent implements OnInit {
  
   constructor(public dialogRef: MatDialogRef<TpaddComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Tipopersonal,
-    public dataService: TipopersonalService) { }
+    public dataService: TipopersonalService) {
+
+      console.log(data);
+     }
 
   ngOnInit() {
+    
   }
 
 }

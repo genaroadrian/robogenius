@@ -1,16 +1,17 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from "@angular/router";
 import { TipopersonalService } from '../services/tipopersonal.service';
 import { HttpClient } from '@angular/common/http';
 import { Tipopersonal } from '../interfaces/tipopersonal';
 import { PersonalService } from '../services/personal.service';
 import { Personal } from '../interfaces/personal';
-import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Detallegrupos } from '../interfaces/detallegrupos';
 import { DetallegruposService } from '../services/detallegrupos.service';
 import {formatDate } from '@angular/common';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-form-personal',
@@ -24,18 +25,18 @@ import {formatDate } from '@angular/common';
 
 export class FormPersonalComponent implements OnInit {
 
-  // Tabs validators
+  /* ---------------------------- CONFIGURACIÓN DE LA PAGINA ---------------------------- */
+
+  // Progrmacación de las tabs en el modulo de detalle de grupos
   tabs = ['Horario'];
   selected = new FormControl(0);
 
   addTab(selectAfterAdding: boolean) {
     this.tabs.push('Horario');
-
     if (selectAfterAdding) {
       this.selected.setValue(this.tabs.length - 1);
     }
   }
-
   removeTab(index: number) {
     this.tabs.splice(index, 1);
   }
@@ -52,21 +53,29 @@ export class FormPersonalComponent implements OnInit {
     if (this.selectedtp == "2") {
       this.isDisable = false;
       this.visibility = "block";
-      this.visibilityspan = "none";
     } else {
       this.isDisable = true;
       this.visibility = "none";
-      this.visibilityspan = "block";
     }
-
   }
 
-  
+   // Notificación de success al eliminar
+   showSuccesSave() {
+    this.toastr.successToastr('Registro guardado','Exito!');
+  }
+
+  // Notificacion de error al eliminar
+  showErrorSave() {
+    this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
+  }
 
   // Resetear usuario y contraseña
   cleanCamps = "";
   visibility = "none";
-  visibilityspan = "block";
+  // Visibilidad del formulario de detalles de grupos
+  horarios = "none";
+  // Visibilidad del formulario de personal
+  perso = "block";
   // Valor de lo disables
   isDisable = true;
   // Valor del tipo de personal
@@ -83,29 +92,17 @@ export class FormPersonalComponent implements OnInit {
 
   // Campos a guardar personal
   persona: Personal =  {
-    idper: null,
-    nombre: null,
-    apellidos: null,
-    usuario: null,
-    contra: null,
-    fechanac: null,
-    sexo: null,
-    curp: null,
-    estadocivil: null,
-    domicilio: null,
-    fechaingreso: null,
-    horasalida: null,
-    horaentrada: null,
-    perfilprofesional: null,
-    especialidad: null,
-    salariomensual: null,
-    tareasasignadas: null,
-    idtper: null,
-    activo: null
+    idper: null, nombre: null, apellidos: null, usuario: null,
+    contra: null, fechanac: null, sexo: null, curp: null,
+    estadocivil: null, domicilio: null, fechaingreso: null, horasalida: null,
+    horaentrada: null, perfilprofesional: null, especialidad: null, salariomensual: null,
+    tareasasignadas: null, idtper: null, activo: null
   };
 
+  // Variables de id e index para los metodos relacionados con la base de datos
   idp: any;
   idper: number;
+
   // Interfaz de detalle de grupos
   detallegrupos: Detallegrupos[];
 
@@ -119,46 +116,35 @@ export class FormPersonalComponent implements OnInit {
     activo: null
   };
 
-  sanitizeDate(date: string): string {
-    if (!date) {
-      return null;
-    }
-  
-    const dataArray = date.split('-');
-    const month = Number(dataArray[0]) - 1;
-    const day = Number(dataArray[1]);
-    const year = Number(dataArray[2]);
-    return (new Date(year, month, day)).toISOString();
-  }
-
-  today= new Date();
-  jstoday = '';
-
   constructor(private personalService: PersonalService , private detallegruposService: DetallegruposService,
-    private _formBuilder: FormBuilder,
-    private httpClient: HttpClient) 
+    private _formBuilder: FormBuilder, private httpClient: HttpClient,
+    private router: Router, public toastr: ToastrManager) 
     {
-      // Get date
-      this.jstoday = formatDate(this.today, 'yyyy-MM-dd', 'en-US', '+0530');
-      console.log(this.jstoday);
+     
     }
 
-    showDate(){
-
-    }
+    /* -------------------------------- METODOS DEL CRUD EN LA BASE DE DATOS -------------------------------- */
 
     // Guardar la informacion del personal
     savePersonal(persona)
     {
-      // this.persona.fechaingreso = this.sanitizeDate(this.persona.fechaingreso);
       this.personalService.save(persona).subscribe((data)=>{
-        console.log(data);
-        // this.idp = data;
-        // this.idper = this.idp.idper;
+        this.showSuccesSave();
+        // console.log(data);
+        this.idp = data;
+        this.idper = this.idp.idper;
       },(error)=>{
         alert('Ocurrio un error');
-        console.log(error);
+        // console.log(error);
+        this.showErrorSave();
       });
+      if(persona.idtper == 2){
+        this.horarios = "block";
+        this.perso = "none";
+      }else{
+        this.router.navigate(['/personal']);
+      }
+      
     }
 
     saveDetallegrupos(index)
@@ -166,9 +152,11 @@ export class FormPersonalComponent implements OnInit {
       this.detallegrupo.idp = this.idper;
       console.log(this.detallegrupo);
       this.detallegruposService.save(this.detallegrupo).subscribe((data)=>{
-        console.log(data);
+      // console.log(data);
+      this.showSuccesSave();
       }, (error)=>{
         console.log(error);
+        this.showErrorSave();
       });
       this.removeTab(index);
     }

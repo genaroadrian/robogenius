@@ -7,7 +7,11 @@ import { HomePersonalComponent} from './home-personal/home-personal.component';
 import { FormPersonalComponent } from './form-personal/form-personal.component';
 import {Route,RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule, MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule, ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule, MatTabsModule, MatSortModule, MatToolbarModule, MatPaginatorIntl, MatSpinner, MatProgressSpinnerModule, MatSnackBarModule, MatStepperModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule, 
+  MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule, 
+  ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule, MatTabsModule, MatSortModule, 
+  MatToolbarModule, MatPaginatorIntl, MatSpinner, MatProgressSpinnerModule, MatSnackBarModule, 
+  MatStepperModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LoginPrincipalComponent } from './login-principal/login-principal.component';
@@ -33,10 +37,19 @@ import { TmhomeComponent } from './tipomensualidad/tmhome/tmhome.component';
 import { TmaddComponent } from './tipomensualidad/tmadd/tmadd.component';
 import { TmeditComponent } from './tipomensualidad/tmedit/tmedit.component';
 import { TmdeleteComponent } from './tipomensualidad/tmdelete/tmdelete.component';
+
 import { AluhomeComponent } from './alumnos/aluhome/aluhome.component';
 import { AluaddComponent } from './alumnos/aluadd/aluadd.component';
 import { AlueditComponent } from './alumnos/aluedit/aluedit.component';
 import { AludeletComponent } from './alumnos/aludelet/aludelet.component';
+
+import { AlumnosService } from './services/alumnos.service';
+import { PadresService } from './services/padres.service';
+
+import { PadhomeComponent } from './padres/padhome/padhome.component';
+import { PadeditComponent } from './padres/padedit/padedit.component';
+import { PadaddComponent } from './padres/padadd/padadd.component';
+import { PaddeleteComponent } from './padres/paddelete/paddelete.component';
 
 const routes: Route[] = [
 {path:'personal',component:PerhomeComponent},
@@ -46,7 +59,9 @@ const routes: Route[] = [
 {path: 'login', component:LoginComponent},
 {path: 'escuelas', component:HomeComponent},
 {path: 'tipopersonal', component:TphomeComponent},
-{path: 'tipomensualidad', component:TmhomeComponent}
+{path: 'tipomensualidad', component:TmhomeComponent},
+{path: 'padres', component:PadhomeComponent},
+{path: 'padresform', component:PadaddComponent}
 ];
 
 @NgModule({
@@ -77,6 +92,12 @@ const routes: Route[] = [
     AluaddComponent,
     AlueditComponent,
     AludeletComponent,
+    PadhomeComponent,
+    PadeditComponent,
+    PadaddComponent,
+    PaddeleteComponent,
+  
+ 
   ],
   imports: [
     NgxUpperCaseDirectiveModule,
@@ -112,6 +133,8 @@ const routes: Route[] = [
   providers: [
     TipopersonalService,
     PersonalService,
+    AlumnosService,
+    PadresService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
   bootstrap: [AppComponent],

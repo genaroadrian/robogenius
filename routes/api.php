@@ -23,3 +23,4 @@ Route::resource('productos', 'productosController');
 Route::resource('escuelas', 'EscuelaController');
 Route::resource('dgrupos', 'detallegruposController');
 Route::resource('tipomensualidad', 'tipomensualidadController');
+Route::resource('alumno', 'alumnoController');

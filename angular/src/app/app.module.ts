@@ -33,6 +33,10 @@ import { TmhomeComponent } from './tipomensualidad/tmhome/tmhome.component';
 import { TmaddComponent } from './tipomensualidad/tmadd/tmadd.component';
 import { TmeditComponent } from './tipomensualidad/tmedit/tmedit.component';
 import { TmdeleteComponent } from './tipomensualidad/tmdelete/tmdelete.component';
+import { AluhomeComponent } from './alumnos/aluhome/aluhome.component';
+import { AluaddComponent } from './alumnos/aluadd/aluadd.component';
+import { AlueditComponent } from './alumnos/aluedit/aluedit.component';
+import { AludeletComponent } from './alumnos/aludelet/aludelet.component';
 
 const routes: Route[] = [
 {path:'personal',component:PerhomeComponent},
@@ -69,6 +73,10 @@ const routes: Route[] = [
     TmaddComponent,
     TmeditComponent,
     TmdeleteComponent,
+    AluhomeComponent,
+    AluaddComponent,
+    AlueditComponent,
+    AludeletComponent,
   ],
   imports: [
     NgxUpperCaseDirectiveModule,

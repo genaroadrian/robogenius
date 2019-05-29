@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Padres } from 'src/app/interfaces/padres';
+import { PadresService } from 'src/app/services/padres.service';
+// import { ExampleDataSource } from 'src/app/escuelas/home/home.component';
+import { MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { map } from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
+import { DataSource } from '@angular/cdk/table';
+import { BehaviorSubject, Observable, fromEvent, merge } from 'rxjs';
 
 @Component({
   selector: 'app-padhome',
@@ -17,12 +24,12 @@ export class PadhomeComponent implements OnInit {
     'telefonopad',
     'correopad',
     'ocupacionpad',
-    'nombrepmad',
-    'apellidospmad',
-    'domiciliopmad',
-    'telefonopmad',
-    'correopmad',
-    'ocupacionpmad',
+    'nombremad',
+    'apellidosmad',
+    'domiciliomad',
+    'telefonomad',
+    'correomad',
+    'ocupacionmad',
     'usuario',
     'contra'
   ];
@@ -31,11 +38,142 @@ export class PadhomeComponent implements OnInit {
   padres: Padres[];
 
   // Declaracion de el servicio de padres
-  
+  exampleDatabase: PadresService | null;
 
-  constructor() { }
+  // Los datos obtenidos se asignan a un datasource
+  dataSource: ExampleDataSource | null;
 
-  ngOnInit() {
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('filter') filter: ElementRef;
+
+  // Index y id de la fila de la tabla seleccionada
+  index : number;
+  id: number;
+
+  // Declaracion del servicio de personal
+  PadresService: any;
+
+  constructor(public httpClient: HttpClient, public dialog: MatDialog,
+    public padresService: PadresService) { }
+
+  ngOnInit() 
+  {
+
+    // Funcion de obtener los datos de la base
+    this.getPadres();
+
+    // Traducir los label de la tabla
+    this.paginator._intl.itemsPerPageLabel = 'Registros por página';
+    this.paginator._intl.nextPageLabel= 'Página siguiente';
+    this.paginator._intl.previousPageLabel = 'Página anterior';
+    this.paginator._intl.firstPageLabel= 'Primera página';
+    this.paginator._intl.lastPageLabel= 'Ultima página';
   }
 
+  // Vuelve a obtener la base de datos
+  refresh()
+  {
+    this.getPadres();
+  }
+
+  // Refrescar la paginacion de la tabla
+  refreshTable()
+  {
+    this.paginator._changePageSize(this.paginator.pageSize);
+  }
+
+  public getPadres()
+  {
+    this.exampleDatabase = new PadresService(this.httpClient);
+    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
+    fromEvent(this.filter.nativeElement, 'keyup')
+      // .debounceTime(150)
+      // .distinctUntilChanged()
+      .subscribe(() => {
+        if (!this.dataSource) {
+          return;
+        }
+        this.dataSource.filter = this.filter.nativeElement.value;
+      });
+  }
+
+}
+
+export class ExampleDataSource extends DataSource<Padres>
+{
+  _filterChange = new BehaviorSubject('');
+
+  get filter(): string {
+    return this._filterChange.value;
+  }
+
+  set filter(filter: string) {
+    this._filterChange.next(filter);
+  }
+
+  filteredData: Padres[] = [];
+  renderedData: Padres[] = [];
+
+  constructor(public _exampleDatabase: PadresService,
+              public _paginator: MatPaginator,
+              public _sort: MatSort) {
+    super();
+    // Reset to the first page when the user changes the filter.
+    this._filterChange.subscribe(() => this._paginator.pageIndex = 0);
+    
+  }
+  
+  /** Connect function called by the table to retrieve one stream containing the data to render. */
+  connect(): Observable<Padres[]> {
+    // Listen for any changes in the base data, sorting, filtering, or pagination
+    const displayDataChanges = [
+      this._exampleDatabase.dataChange,
+      this._sort.sortChange,
+      this._filterChange,
+      this._paginator.page
+    ];
+
+    this._exampleDatabase.getPadres();
+
+    return merge(...displayDataChanges).pipe(map( () => {
+        // Filter data
+        this.filteredData = this._exampleDatabase.data.slice().filter((padres: Padres) => {
+          const searchStr = (padres.idpadres + padres.nombrepad).toLowerCase();
+          return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+        });
+
+        // Sort filtered data
+        const sortedData = this.sortData(this.filteredData.slice());
+
+        // Grab the page's slice of the filtered sorted data.
+        const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+        this.renderedData = sortedData.splice(startIndex, this._paginator.pageSize);
+        return this.renderedData;
+      }
+    ));
+  }
+
+  disconnect() {}
+
+  /** Returns a sorted copy of the database data. */
+  sortData(data: Padres[]):Padres[] {
+    if (!this._sort.active || this._sort.direction === '') {
+      return data;
+    }
+    
+    return data.sort((a, b) => {
+      let propertyA: number | string = '';
+      let propertyB: number | string = '';
+
+      switch (this._sort.active) {
+
+        }
+
+      const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
+      const valueB = isNaN(+propertyB) ? propertyB : +propertyB;
+
+      return (valueA < valueB ? -1 : 1) * (this._sort.direction === 'asc' ? 1 : -1);
+    });
+  }
 }

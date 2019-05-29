@@ -61,7 +61,9 @@ const routes: Route[] = [
 {path: 'tipopersonal', component:TphomeComponent},
 {path: 'tipomensualidad', component:TmhomeComponent},
 {path: 'padres', component:PadhomeComponent},
-{path: 'padresform', component:PadaddComponent}
+{path: 'padresform', component:PadaddComponent},
+{path: 'alumnos', component:AluhomeComponent}
+
 ];
 
 @NgModule({

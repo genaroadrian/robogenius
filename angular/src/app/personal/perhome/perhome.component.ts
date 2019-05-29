@@ -19,7 +19,7 @@ export class PerhomeComponent implements OnInit {
 
   tableview = "none";
   
-  // Columnas que se van a mostrar en la pagina
+  // Columnas que se van a mostrar en la tabla
   displayedColumns: string[] = [
     'idper',
     'nombre',

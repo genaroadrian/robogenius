@@ -64,6 +64,7 @@ const routes: Route[] = [
 {path: 'padresform', component:PadaddComponent},
 {path: 'alumnos', component:AluhomeComponent}
 
+
 ];
 
 @NgModule({
@@ -156,7 +157,11 @@ const routes: Route[] = [
     // Modales de tipo de mensualidad
     TmeditComponent,
     TmaddComponent,
-    TmdeleteComponent
+    TmdeleteComponent,
+    // Modales de alumnos
+    AluaddComponent,
+    AlueditComponent,
+    AludeletComponent
   ],
   exports: [
     MatButtonModule, 

@@ -9,7 +9,7 @@
 </mat-toolbar>
 
       <!-- Boton de agregar -->
-<button mat-icon-button [routerLink]="['/personalform']" routerLinkActive="router-link-active" >
+<button mat-icon-button [routerLink]="['/#']" routerLinkActive="router-link-active" >
   <mat-icon aria-label="Nuevo Registro" class="add">add_circle_outline</mat-icon><span class="add"> Nuevo</span>
 </button>
 
@@ -25,9 +25,9 @@
     <!-- Inicio de la tabla -->
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
-    <ng-container matColumnDef="idalum">
+    <ng-container matColumnDef="idalu">
       <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Id</mat-header-cell>
-      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}">{{row.idalum}}</mat-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}">{{row.idalu}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="nombre">
@@ -61,7 +61,7 @@
       <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.alergias}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="curp">
+    <ng-container matColumnDef="cronica">
       <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Cronica</mat-header-cell>
       <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.cronica}}</mat-cell>
     </ng-container>
@@ -147,7 +147,7 @@
       <mat-cell *matCellDef="let row; let i=index;">
         <!-- En el boton de editar se manda al mentodo todos los datos de row -->
         <button mat-icon-button class="text-success" 
-        (click)="onUpdate(i, row.idalum, row.nombre,row.correo,
+        (click)="onUpdate(i, row.idalu, row.nombre,row.correo,
         row.fechanac, row.edad, row.iddom, row.alergias, row.cronica,
         row.medicacion, row.otro ,row.sexo, row.domicilio, row.idpadre,
         row.tel1cm, row.tel2cm, row.nomb1cm, row.nomb2cm,
@@ -161,7 +161,7 @@
         </button>
 
         <!-- En el boton de eliminar se manda llamar a la funcion y se le envia el id -->
-        <button mat-icon-button class="text-danger" (click)="delete(i,row.idper, row.nombre, row.apellidos)">
+        <button mat-icon-button class="text-danger" (click)="delete(i,row.idalu, row.nombre, row.correo)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>
@@ -174,7 +174,9 @@
   <!-- Solo mientras no aparezcan datos -->
   <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
       <!-- Spinner de carga -->
-    <mat-spinner class="text-success"></mat-spinner>
+      <div class="loading">
+        <span>Cargando...</span>
+      </div>
   </div>
 
   <!-- Seccion de la paginacion -->

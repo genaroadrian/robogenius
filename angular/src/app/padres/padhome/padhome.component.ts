@@ -15,6 +15,11 @@ import { BehaviorSubject, Observable, fromEvent, merge } from 'rxjs';
 })
 export class PadhomeComponent implements OnInit {
 
+  /* ----------------------- Configuracion de la tabla ----------------------- */
+
+  // Ocultar algunos campos de la tabla 
+  tableview = "none";
+
   // Columnas que se van a mostrar en la tabla
   displayedColumns: string[]= [
     'idpadres',
@@ -31,7 +36,8 @@ export class PadhomeComponent implements OnInit {
     'correomad',
     'ocupacionmad',
     'usuario',
-    'contra'
+    'contra',
+    'icons'
   ];
 
   // Declaracion de la interfaz de padres
@@ -46,7 +52,7 @@ export class PadhomeComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
-
+  
   // Index y id de la fila de la tabla seleccionada
   index : number;
   id: number;
@@ -139,7 +145,11 @@ export class ExampleDataSource extends DataSource<Padres>
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((padres: Padres) => {
-          const searchStr = (padres.idpadres + padres.nombrepad).toLowerCase();
+          const searchStr = 
+          (
+            padres.nombrepad + padres.apellidospad + padres.nombremad + padres.apellidosmad +
+            padres.correomad + padres.correopad + padres.telefonomad + padres.telefonopad
+          ).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -168,6 +178,19 @@ export class ExampleDataSource extends DataSource<Padres>
 
       switch (this._sort.active) {
 
+        case 'idpadres': [propertyA, propertyB] = [a.idpadres, b.idpadres]; break;
+        case 'nombrepad': [propertyA, propertyB] = [a.nombrepad, b.nombrepad]; break;
+        case 'apellidospad': [propertyA, propertyB] = [a.apellidospad, b.apellidospad]; break;
+        case 'domiciliopad': [propertyA, propertyB] = [a.domiciliopad, b.domiciliopad]; break;
+        case 'telefonopad': [propertyA, propertyB] = [a.telefonopad, b.telefonopad]; break;
+        case 'correopad': [propertyA, propertyB] = [a.correopad, b.correopad]; break;
+        case 'ocupacionpad': [propertyA, propertyB] = [a.ocupacionpad, b.ocupacionpad]; break;
+        case 'nombremad': [propertyA, propertyB] = [a.nombremad, b.nombremad]; break;
+        case 'apellidosmad': [propertyA, propertyB] = [a.apellidosmad, b.apellidosmad]; break;
+        case 'domiciliomad': [propertyA, propertyB] = [a.domiciliomad, b.domiciliomad]; break;
+        case 'telefonomad': [propertyA, propertyB] = [a.telefonomad, b.telefonomad]; break;
+        case 'correomad': [propertyA, propertyB] = [a.correomad, b.correomad]; break;
+        case 'ocupacionmad': [propertyA, propertyB] = [a.ocupacionmad, b.ocupacionmad]; break;
         }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

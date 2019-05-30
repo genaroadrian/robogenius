@@ -125,11 +125,11 @@ export class AluhomeComponent implements OnInit {
       });
   }
 
-  delete(i:number, idper:number, nombre: string, apellidos:string){
+  delete(i:number, idalu:number, nombre: string, correo:string){
     this.index = i;
-    this.id = idper;
+    this.id = idalu;
     const dialogRef = this.dialog.open(AludeletComponent, {
-      data: {id: idper, nombre:nombre, apellidos:apellidos}
+      data: {id: idalu, nombre:nombre, correo:correo}
     });
 
     dialogRef.afterClosed().subscribe(result => {

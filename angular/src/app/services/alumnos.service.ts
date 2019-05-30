@@ -9,7 +9,7 @@ import {BehaviorSubject} from 'rxjs';
 export class AlumnosService {
 
   // URL de laravel con xampp
-  API_ENDPOINT = 'http://localhost/robogenius/public/api';
+  API_ENDPOINT = 'http://localhost:8000/api';
 
   dataChange: BehaviorSubject<Alumnos[]> = new BehaviorSubject<Alumnos[]>([]);
   // Temporarily stores data from dialogs

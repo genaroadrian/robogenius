@@ -1,6 +1,6 @@
 <mat-toolbar>
 
-  <span>Padres</span>
+  <span>Alumnos</span>
   <span class="spacer"></span>
   Recargar datos:
   <!-- Boton para recargar datos -->
@@ -43,8 +43,7 @@
       <mat-cell *matCellDef="let row"> {{row.apellidospad}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="correopad">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Entrada</mat-header-cell>
+    <ng-container matColumnDef="domiciliopad">
       <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Domicilio Padre</mat-header-cell>
       <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.domiciliopad}}</mat-cell>
     </ng-container>

@@ -6,12 +6,12 @@ export interface Padres {
     telefonopad: number;
     correopad: string;
     ocupacionpad: string;
-    nombrepmad: string;
-    apellidospmad: string;
-    domiciliopmad: string;
-    telefonopmad: number;
-    correopmad: string;
-    ocupacionpmad: string;
+    nombremad: string;
+    apellidosmad: string;
+    domiciliomad: string;
+    telefonomad: number;
+    correomad: string;
+    ocupacionmad: string;
     usuario: string;
     contra: string;
 }

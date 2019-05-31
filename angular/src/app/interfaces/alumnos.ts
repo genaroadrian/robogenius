@@ -1,26 +1,20 @@
 export interface Alumnos {
     idalu?: number;
     nombre: string;
-    correo: string;
+    apellidos: string;
     fechanac: string;
-    edad: string;
-    iddom: string;
-    alergias: string;
-    cronica: string;
-    mediacion: string;
-    otro: string;
     sexo: string;
     domicilio: string;
-    idpadre: string;
-    tel1cm: string;
-    tel2cm: string;
-    nomb1cm: number;
-    nomb2cm: string;
-    ruta: number;
-    evaluacion: number;
+    telefono: string;
+    correo: string;
+    medicacion: string;
+    alergias: string;
+    ruta: string;
+    cronica: string;
+    otro: string;
+    evaluacion: string;
+    usuario: string;
     psw: number;
-    idgrupo: number;
-    idcursos: number;
     activo: number;
     idsuc: number;
 

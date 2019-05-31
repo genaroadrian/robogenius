@@ -34,6 +34,12 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.nombre}}</mat-cell>
     </ng-container>
+    
+    <ng-container matColumnDef="apellidos">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.apellidos}}</mat-cell>
+    </ng-container>
+
 
     <ng-container matColumnDef="correo">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Correo</mat-header-cell>

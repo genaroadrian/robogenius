@@ -57,7 +57,7 @@ export class AlumnosService {
 
   // Borrar los datos
   delete(id:number){
-    return this.httpClient.delete(this.API_ENDPOINT + '/alumnos/'+id);
+    return this.httpClient.delete(this.API_ENDPOINT + '/alumno/'+id);
   }
   
 }

@@ -50,6 +50,8 @@ import { PadhomeComponent } from './padres/padhome/padhome.component';
 import { PadeditComponent } from './padres/padedit/padedit.component';
 import { PadaddComponent } from './padres/padadd/padadd.component';
 import { PaddeleteComponent } from './padres/paddelete/paddelete.component';
+import { PerfilComponent } from './alumnos/perfil/perfil.component';
+
 
 const routes: Route[] = [
 {path:'personal',component:PerhomeComponent},
@@ -62,7 +64,9 @@ const routes: Route[] = [
 {path: 'tipomensualidad', component:TmhomeComponent},
 {path: 'padres', component:PadhomeComponent},
 {path: 'padresform', component:PadaddComponent},
-{path: 'alumnos', component:AluhomeComponent}
+{path: 'alumnos', component:AluhomeComponent},
+{path: 'perfilalumnos', component:PerfilComponent}
+
 
 
 ];
@@ -99,6 +103,7 @@ const routes: Route[] = [
     PadeditComponent,
     PadaddComponent,
     PaddeleteComponent,
+    PerfilComponent,
   
  
   ],

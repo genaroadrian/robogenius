@@ -15,29 +15,24 @@ class Alumno extends Model
     protected $table = "alumnos";
     protected $fillable = [ 
         'idalu',
-    	'nombre',
+		'nombre',
+		'apellidos',
+		'fechanac',
+		'sexo',
+		'domicilio',
+		'telefono',
     	'correo',
-    	'fechanac',
-    	'edad',
-    	'sexo',
-    	'domicilio',
-		'iddom',
+		'medicacion',
     	'alergias',
-    	'cronica',
-    	'medicacion',
-    	'otro',
-    	'idpadre',
-    	'tel1cm',
-    	'tel2cm',
-    	'nomb1cm',
-        'nomb2cm',
     	'ruta',
-    	'evaluacion',
+    	'cronica',
+    	'otro',
+		'evaluacion',
+		'usuario',
     	'psw',
-    	'idgrupo',
-    	'idcursos',
         'activo',
     	'idsuc'
+
 
     ];
 }

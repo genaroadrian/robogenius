@@ -6,8 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Padres extends Model
 {
+
+    public function getKeyName(){
+        return "idpadres";
+    }
+
     public $timestamps = false;
-    protected $table = "personal";
+    protected $table = "padres";
     protected $fillable = 
     [
         'idpadres',
@@ -17,12 +22,12 @@ class Padres extends Model
         'telefonopad',
         'correopad',
         'ocupacionpad',
-        'nombrepmad',
-        'apellidospmad',
-        'domiciliopmad',
-        'telefonopmad',
-        'correopmad',
-        'ocupacionpmad',
+        'nombremad',
+        'apellidosmad',
+        'domiciliomad',
+        'telefonomad',
+        'correomad',
+        'ocupacionmad',
         'usuario',
         'contra',
         'activo',

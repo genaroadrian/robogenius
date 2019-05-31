@@ -1,6 +1,6 @@
 <mat-toolbar>
 
-  <span>Alumnos</span>
+  <span>Padres</span>
   <span class="spacer"></span>
   Recargar datos:
   <!-- Boton para recargar datos -->
@@ -112,11 +112,9 @@
       <mat-cell *matCellDef="let row; let i=index;">
         <!-- En el boton de editar se manda al mentodo todos los datos de row -->
         <button mat-icon-button class="text-success" 
-        (click)="onUpdate(i, row.idper, row.nombre,row.apellidos,
-        row.usuario, row.contra, row.fechanac, row.sexo, row.curp,
-        row.estadocivil, row.domicilio ,row.fechaingreso, row.horaentrada, row.horasalida,
-        row.perfilprofesional, row.especialidad, row.tareasasignadas, row.salariomensual,
-        row.idtper)">
+        (click)="onUpdate(i, row.idpadres, row.nombrepad, row.apellidospad, row.domiciliopad,
+        row.telefonopad, row.correopad, row.ocupacionpad, row.nombremad, row.apellidosmad,
+        row.domiciliomad, row.telefonomad, row.correomad, row.ocupacionmad, row.usuario, row.contra)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 

@@ -38,4 +38,9 @@ export class PadresService {
     return this.httpClient.get(this.API_ENDPOINT+'/personal');
   }
 
+  // Obtener datos de la modal de editar
+  getDialogData() {
+    return this.dialogData;
+  }
+
 }

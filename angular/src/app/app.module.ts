@@ -161,7 +161,11 @@ const routes: Route[] = [
     // Modales de alumnos
     AluaddComponent,
     AlueditComponent,
-    AludeletComponent
+    AludeletComponent,
+    // Modales de padres
+    PadeditComponent,
+    PaddeleteComponent
+    
   ],
   exports: [
     MatButtonModule, 

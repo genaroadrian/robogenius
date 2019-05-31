@@ -15,6 +15,7 @@ class Alumno extends Model
     protected $table = "alumnos";
     protected $fillable = [ 
         'idalu',
+<<<<<<< HEAD
 		'nombre',
 		'apellidos',
 		'fechanac',
@@ -32,6 +33,46 @@ class Alumno extends Model
     	'psw',
         'activo',
     	'idsuc'
+=======
+    	'nomalu',
+    	'apealu',
+    	'fnacalu',
+    	'sexoalu',
+    	'domalu',
+    	'telalu',
+		'correoalu',
+    	'medicacion',
+    	'alergias',
+    	'perfilalu',
+    	'cronica',
+    	'otro',
+    	'evaluacion',
+    	'usuarioalu',
+    	'pswalu',
+        'nompad',
+    	'apepad',
+    	'dompad',
+    	'telpad',
+		'correopad',
+    	'ocupad',
+        'nommad',
+		'apemad',
+		'dommad',
+		'telmad',
+		'correomad',
+		'ocupmad',
+		'nommem',
+		'costomem',
+		'fechaini',
+		'fechafin',
+		'total',
+		'adelanto',
+		'restante',
+		'usuariopad',
+		'pswpad',
+		'activo',
+		'idsuc'
+>>>>>>> aac913ae98fc4fce93a069aaeb0b7d092c212619
 
 
     ];

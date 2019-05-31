@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import { DataSource } from '@angular/cdk/table';
 import { BehaviorSubject, Observable, fromEvent, merge } from 'rxjs';
+import { PadeditComponent } from '../padedit/padedit.component';
 
 @Component({
   selector: 'app-padhome',
@@ -89,6 +90,8 @@ export class PadhomeComponent implements OnInit {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
+  /* --------------------- Metodos CRUD --------------------- */
+
   public getPadres()
   {
     this.exampleDatabase = new PadresService(this.httpClient);
@@ -102,6 +105,36 @@ export class PadhomeComponent implements OnInit {
         }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
+  }
+
+  onUpdate(i:number, idpadres:number, nombrepad: string, apellidospad: string, domiciliopad: string,
+    telefonopad: number, correopad: string, ocupacionpad: string, nombremad: string, apellidosmad, 
+    domiciliomad:string, telefonomad: number, correomad: string, ocupacionmad: string, usuario: string, contra: string)
+  {
+    this.index = i;
+    this.id = idpadres;
+    const dialogRef = this.dialog.open(PadeditComponent, {
+      // Anchura de el modal
+      width: '60%',
+      /* Al modal se le envia la variable data, que contiene los datos de el registro
+      de la tabla que se va a modificar */
+      data: 
+      {
+        idpadres: idpadres, nombrepad: nombrepad, apellidospad: apellidospad,  domiciliopad: domiciliopad,
+        telefonopad: telefonopad, correopad: correopad, ocupacionpad: ocupacionpad, nombremad: nombremad,
+        apellidosmad: apellidosmad, domiciliomad: domiciliomad, telefonomad: telefonomad, 
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        // Se busca el registro en la variable [exampleDatabase] de la tbla
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idpadres === this.id);
+        // Se actualiza el dato, pero solo en la tabla, no en la base de datos
+        this.exampleDatabase.dataChange.value[foundIndex] = this.padresService.getDialogData();
+        // Se refresca la tabla
+        this.refreshTable();
+      }
+    });
   }
 
 }

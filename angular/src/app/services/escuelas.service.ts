@@ -47,8 +47,9 @@ export class EscuelasService {
 
   add(escuelas: Escuelas)
   {
+    console.log(escuelas);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.post(this.API_ENDPOINT + '/escuelas/'+escuelas, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT + '/escuelas/',escuelas, {headers: headers});
   }
 
   updateEscuelas (escuelas: Escuelas): void {

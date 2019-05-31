@@ -48,7 +48,7 @@ export class TipomensualidadService {
   add(tipomensualidad: Tipomensualidad)
   {
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.post(this.API_ENDPOINT + '/tipomensualidad/'+tipomensualidad, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT + '/tipomensualidad/',tipomensualidad, {headers: headers});
   }
 
   updateTipomensualidad (tipomensualidad: Tipomensualidad): void {

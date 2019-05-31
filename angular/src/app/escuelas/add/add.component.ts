@@ -32,14 +32,13 @@ export class AddComponent implements OnInit {
 
   confirmAdd(data): void 
   {
-    
+    console.log(this.data);
     this.escuelasService.add(this.data).subscribe((data) =>{
       this.showSuccessEdit();
+      this.escuelasService.addIssue(this.data);
     },(error)=>{
       this.showErrorEdit();
     });
-
-    this.escuelasService.addIssue(this.data);
   }
 
 }

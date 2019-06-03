@@ -160,12 +160,12 @@ export class AluhomeComponent implements OnInit {
       de la tabla que se va a modificar */
       data: 
       {
-        idper: idper, nombre: nombre, apellidos: apellidos,
-        usuario: usuario, contra: contra, fechanac: fechanac,
-        sexo: sexo, curp: curp, estadocivil: estadocivil,
-        domicilio: domicilio, fechaingreso: fechaingreso, horaentrada: horaentrada,
-        horasalida: horasalida, perfilprofesional: perfilprofesional, especialidad: especialidad,
-        tareasasignadas: tareasasignadas, salariomensual: salariomensual, idtper: idtper
+        idalu:idalu,nomalu:nomalu,apealu:apealu,fnacalu:fnacalu,sexoalu:sexoalu,domalu:domalu,telalu:telalu,
+        correoalu:correoalu,medicacion:medicacion,alergias:alergias,perfilalu:perfilalu,cronica:cronica,otro:otro,
+        evaluacion:evaluacion,usuarioalu:usuarioalu,pswalu:pswalu,nompad:nompad,apepad:apepad,dompad:dompad,telpad:telpad,
+        correopad:correopad,ocupad:ocupad,nommad:nommad,apemad:apemad,dommad:dommad,telmad:telmad,correomad:correomad,
+        ocumad:ocupmad,nommem:nommem,costomem:costomem,fechaini:fechaini,fechafin:fechafin,total:total,adelanto:adelanto,
+        restante:restante,usuariopad:usuariopad,pswpad:pswpad
       }
     });
     dialogRef.afterClosed().subscribe(result => {

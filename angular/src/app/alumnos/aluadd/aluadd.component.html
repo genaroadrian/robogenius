@@ -1,3 +1,9 @@
-<p>
-  aluadd works!
-</p>
+
+  <div class="form-group">
+      <input class="form-control" name="perfilalu" (change)="onFileSelected($event)" [(ngModel)]="alumno.perfilalu"  placeholder="Nombre(s)" type="file">
+
+  </div>
+
+  <button (click)="saveAlumno(alumno)" type="submit" class="btn btn-primary waves-effect waves-light">
+    Submit
+  </button>

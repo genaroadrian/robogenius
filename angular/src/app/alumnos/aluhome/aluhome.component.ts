@@ -26,24 +26,25 @@ export class AluhomeComponent implements OnInit {
   
   // Columnas que se van a mostrar en la tabla
   displayedColumns: string[] = [
-    'idalu',
-		'nombre',
-		'apellidos',
-		'fechanac',
-		'sexo',
-		'domicilio',
-		'telefono',
-    	'correo',
-		'medicacion',
-    	'alergias',
-    	'ruta',
-    	'cronica',
-    	'otro',
-		'evaluacion',
-		'usuario',
-    	'psw',
-    	'idsuc',
-    'icons'
+      'idalu', 'nomalu',
+    	'apealu', 'fnacalu',
+    	'sexoalu', 'domalu',
+    	'telalu', 'correoalu',
+    	'medicacion', 'alergias',
+    	'perfilalu', 'cronica',
+    	'otro', 'evaluacion',
+    	'usuarioalu', 'pswalu',
+      'nompad', 'apepad',
+    	'dompad', 'telpad',
+		  'correopad', 'ocupad',
+      'nommad', 'apemad',
+      'dommad', 'telmad',
+      'correomad', 'ocupmad',
+      'nommem', 'costomem',
+      'fechaini', 'fechafin',
+      'total', 'adelanto',
+      'restante', 'usuariopad',
+      'pswpad', 'icons'
    ];
    //  Declaracion de la interfaz de personal
   alumnos: Alumnos[];
@@ -148,7 +149,9 @@ export class AluhomeComponent implements OnInit {
     this.id = idper;
     const dialogRef = this.dialog.open(AlueditComponent, {
       // Anchura de el modal
-      width: '60%',
+      maxHeight: '380px',
+      width: '90%',
+      
       /* Al modal se le envia la variable data, que contiene los datos de el registro
       de la tabla que se va a modificar */
       data: 
@@ -216,7 +219,7 @@ export class ExampleDataSource extends DataSource<Alumnos> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((alumnos: Alumnos) => {
-          const searchStr = (alumnos.idalu + alumnos.nombre).toLowerCase();
+          const searchStr = (alumnos.idalu + alumnos.nomalu).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -245,8 +248,8 @@ export class ExampleDataSource extends DataSource<Alumnos> {
 
       switch (this._sort.active) {
         case 'idalu': [propertyA, propertyB] = [a.idalu, b.idalu]; break;
-        case 'nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
-        case 'ruta': [propertyA, propertyB] = [a.ruta, b.ruta]; break;
+        case 'nombre': [propertyA, propertyB] = [a.nomalu, b.nomalu]; break;
+        case 'ruta': [propertyA, propertyB] = [a.apealu, b.apealu]; break;
 
         case 'activo': [propertyA, propertyB] = [a.activo, b.activo]; break;
       }

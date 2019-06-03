@@ -19,7 +19,7 @@ export class AlumnosService {
 
   // Obtener datos de la base de datos
   getAlumnos(): void{
-    this.httpClient.get<Alumnos[]>(this.API_ENDPOINT+'/alumno').subscribe(data => {
+    this.httpClient.get<Alumnos[]>(this.API_ENDPOINT+'/alumnos').subscribe(data => {
       this.dataChange.next(data);
     },
     (error: HttpErrorResponse) => {
@@ -39,25 +39,25 @@ export class AlumnosService {
 
   // Obtener los datos de Laravel
   get() {
-    return this.httpClient.get(this.API_ENDPOINT + '/alumno');
+    return this.httpClient.get(this.API_ENDPOINT + '/alumnos');
  }
   // Guardar datos
-  save(alumnos: Alumnos) {
+  save(alumno: Alumnos) {
     const headers = new HttpHeaders({"Content-Type":"application/json"});
-    return this.httpClient.post(this.API_ENDPOINT+'/alumno', alumnos, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT+'/alumnos', alumno, {headers: headers});
   }
 
   // Actualizar los datos
   put(alumno: Alumnos){
     const headers = new HttpHeaders({"Content-Type":"application/json"});
     this.dialogData = alumno;
-    return this.httpClient.put(this.API_ENDPOINT+'/alumno/'+alumno.idalu, alumno, {headers: headers});
+    return this.httpClient.put(this.API_ENDPOINT+'/alumnos/'+alumno.idalu, alumno, {headers: headers});
     
   }
 
   // Borrar los datos
   delete(id:number){
-    return this.httpClient.delete(this.API_ENDPOINT + '/alumno/'+id);
+    return this.httpClient.delete(this.API_ENDPOINT + '/alumnos/'+id);
   }
   
 }

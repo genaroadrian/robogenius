@@ -26,24 +26,25 @@ export class AluhomeComponent implements OnInit {
   
   // Columnas que se van a mostrar en la tabla
   displayedColumns: string[] = [
-    'idalu',
-		'nombre',
-		'apellidos',
-		'fechanac',
-		'sexo',
-		'domicilio',
-		'telefono',
-    	'correo',
-		'medicacion',
-    	'alergias',
-    	'ruta',
-    	'cronica',
-    	'otro',
-		'evaluacion',
-		'usuario',
-    	'psw',
-    	'idsuc',
-    'icons'
+      'idalu', 'nomalu',
+    	'apealu', 'fnacalu',
+    	'sexoalu', 'domalu',
+    	'telalu', 'correoalu',
+    	'medicacion', 'alergias',
+    	'perfilalu', 'cronica',
+    	'otro', 'evaluacion',
+    	'usuarioalu', 'pswalu',
+      'nompad', 'apepad',
+    	'dompad', 'telpad',
+		  'correopad', 'ocupad',
+      'nommad', 'apemad',
+      'dommad', 'telmad',
+      'correomad', 'ocupmad',
+      'nommem', 'costomem',
+      'fechaini', 'fechafin',
+      'total', 'adelanto',
+      'restante', 'usuariopad',
+      'pswpad', 'icons'
    ];
    //  Declaracion de la interfaz de personal
   alumnos: Alumnos[];
@@ -136,29 +137,35 @@ export class AluhomeComponent implements OnInit {
     });
   }
   // Metodo para abrir el modal para modificar
-  onUpdate(i: number, idper: number, nombre: string,
-    apellidos: string, usuario: string, contra: string,
-    fechanac: string, sexo: string, curp: string, estadocivil:string,
-    domicilio: string, fechaingreso: string, horaentrada: string,
-    horasalida: string, perfilprofesional: string, especialidad: string,
-    tareasasignadas: string, salariomensual: number, idtper: number ) {
+  onUpdate(i: number, idalu: number, nomalu: string,
+    apealu: string, fnacalu: string, sexoalu: string,
+    domalu: string, telalu: number, correoalu: string, medicacion:string,
+    alergias: string, perfilalu: string, cronica: string,
+    otro: string, evaluacion: string, usuarioalu: string,
+    pswalu: string, nompad: string, apepad: string, dompad: string, telpad: number, 
+     correopad: string, ocupad: string, nommad: string, apemad: string, dommad: string
+    , telmad: number, correomad: string, ocupmad: string, nommem: string 
+    , costomem: string, fechaini: string, fechafin: string, total: string, adelanto: string
+    , restante: string, usuariopad: string, pswpad: string) {
     // A la variable index se le asigna el [index] recibido con la variable [i]
     this.index = i;
     // Se le asigna a la variable [id] el valor recibido de la variable [idper]
-    this.id = idper;
+    this.id = idalu;
     const dialogRef = this.dialog.open(AlueditComponent, {
       // Anchura de el modal
-      width: '60%',
+      maxHeight: '380px',
+      width: '90%',
+      
       /* Al modal se le envia la variable data, que contiene los datos de el registro
       de la tabla que se va a modificar */
       data: 
       {
-        idper: idper, nombre: nombre, apellidos: apellidos,
-        usuario: usuario, contra: contra, fechanac: fechanac,
-        sexo: sexo, curp: curp, estadocivil: estadocivil,
-        domicilio: domicilio, fechaingreso: fechaingreso, horaentrada: horaentrada,
-        horasalida: horasalida, perfilprofesional: perfilprofesional, especialidad: especialidad,
-        tareasasignadas: tareasasignadas, salariomensual: salariomensual, idtper: idtper
+        idalu:idalu,nomalu:nomalu,apealu:apealu,fnacalu:fnacalu,sexoalu:sexoalu,domalu:domalu,telalu:telalu,
+        correoalu:correoalu,medicacion:medicacion,alergias:alergias,perfilalu:perfilalu,cronica:cronica,otro:otro,
+        evaluacion:evaluacion,usuarioalu:usuarioalu,pswalu:pswalu,nompad:nompad,apepad:apepad,dompad:dompad,telpad:telpad,
+        correopad:correopad,ocupad:ocupad,nommad:nommad,apemad:apemad,dommad:dommad,telmad:telmad,correomad:correomad,
+        ocumad:ocupmad,nommem:nommem,costomem:costomem,fechaini:fechaini,fechafin:fechafin,total:total,adelanto:adelanto,
+        restante:restante,usuariopad:usuariopad,pswpad:pswpad
       }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -216,7 +223,7 @@ export class ExampleDataSource extends DataSource<Alumnos> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((alumnos: Alumnos) => {
-          const searchStr = (alumnos.idalu + alumnos.nombre).toLowerCase();
+          const searchStr = (alumnos.idalu + alumnos.nomalu).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -245,8 +252,8 @@ export class ExampleDataSource extends DataSource<Alumnos> {
 
       switch (this._sort.active) {
         case 'idalu': [propertyA, propertyB] = [a.idalu, b.idalu]; break;
-        case 'nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
-        case 'ruta': [propertyA, propertyB] = [a.ruta, b.ruta]; break;
+        case 'nombre': [propertyA, propertyB] = [a.nomalu, b.nomalu]; break;
+        case 'ruta': [propertyA, propertyB] = [a.apealu, b.apealu]; break;
 
         case 'activo': [propertyA, propertyB] = [a.activo, b.activo]; break;
       }

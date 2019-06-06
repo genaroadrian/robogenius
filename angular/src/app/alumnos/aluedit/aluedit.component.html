@@ -1,154 +1,149 @@
-<div class="container">
-    <h3 mat-dialog-title>Modificando</h3>
+<div class="row">
+  <div class="col-lg-2">
+        <img class="rounded-circle shadow" alt="700x700" src="assets/images/users/user-4.jpg" data-holder-rendered="true">
+        
+     
+  </div> 
+  <div class="col-lg-1">
+       
+
+          
+       
+    </div> 
+    <div class="col-lg-7">
+          <br>
+          <br>
+          <br>
+
+              <label style="font-size: 30px;" > Erick Mora Palma <button mat-icon-button class="text-success"><mat-icon   aria-label="Edit">edit</mat-icon></button></label>   
+
+    </div> 
+    <div class="col-lg-2">
+
   
-    <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Id alumno" [(ngModel)]="data.idalu" name="idalu"
-            required disabled>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Nombre" required [(ngModel)]="data.nombre"
-            name="nombre">
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Correo" [(ngModel)]="data.correo"
-            name="correo" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Fecha de nacimiento" [(ngModel)]="data.fechanac" name="fechanac"
-            required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Edad" [(ngModel)]="data.edad" name="edad"
-            required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Fecha de nacimiento" [(ngModel)]="data.fechanac"
-            name="fechanac" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Sexo" [(ngModel)]="data.sexo" name="sexo" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="CURP" [(ngModel)]="data.curp" name="curp" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Estado Civil" [(ngModel)]="data.estadocivil"
-            name="estadocivil" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Domicilio" [(ngModel)]="data.domicilio" name="domicilio"
-            required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Fecha de ingreso" [(ngModel)]="data.fechaingreso"
-            name="fechaingreso" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Hora entrada" [(ngModel)]="data.horaentrada"
-            name="horaentrada" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Hora salida" [(ngModel)]="data.horasalida" name="horasalida"
-            required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Perfil profesional" [(ngModel)]="data.perfilprofesional"
-            name="perfilprofesional" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Especialidad" [(ngModel)]="data.especialidad"
-            name="especialidad" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Tareas asignadas" [(ngModel)]="data.tareasasignadas"
-            name="tareasasignadas" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Salario mensual" [(ngModel)]="data.salariomensual"
-            name="salariomensual" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent">
-          <input matInput #input class="form-control" placeholder="Tipo de personal" [(ngModel)]="data.idtper" name="idtper" required>
-          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-  
-      <div mat-dialog-actions>
-        <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
-          (click)="stopEdit(data)">Guardar</button>
-        <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
-      </div>
-    </form>
+      </div> 
+</div>
+
+
+<div class="row">
+ <div class="col-lg-3">
+     <br>
+     <br>
+
+     <i class="mdi mdi-account"></i><label style="font-size: 20px;"> Nombre : </label><label style="font-size: 18px;" ></label>   
+      <br>
+      <i class="mdi mdi-account-alert"> </i><label style="font-size: 20px;"> Apellidos : </label><label style="font-size: 18px;"></label>   
+      <br>
+      <i class="mdi mdi-cake-variant"> </i><label style="font-size: 20px;"> Fecha de nacimiento: </label><label style="font-size: 18px;"></label>    
+      <br>
+      <i class="mdi mdi-account-multiple"> </i><label style="font-size: 20px;"> Sexo: </label><label style="font-size: 18px;"></label>    
+      <br>
+      <i class="mdi mdi-city"> </i><label style="font-size: 20px;"> Domicilio: </label><label style="font-size: 18px;"></label>    
+      <br>
+      <i class="mdi mdi-cellphone-iphone"> </i><label style="font-size: 20px;"> Telefono: </label><label style="font-size: 18px;"></label>    
+      <br>
+      <i class="mdi mdi-email"> </i><label style="font-size: 20px;"> Correo: </label><label style="font-size: 18px;"></label>    
+   
   </div>
+
+        <!-- <div class="row">
+        <div class="tab-content">
+             <div class="tab-pane active p-3" id="home-1" role="tabpanel">
+                 <p class="mb-0">
+                     
+                   Descripcion de membrecia
+                 </p>
+             </div>
+             <div class="tab-pane p-3" id="profile-1" role="tabpanel">
+                 <p class="mb-0">
+                     Descripcion de Horarios
+                 </p>
+             </div>
+             <div class="tab-pane p-3" id="messages-1" role="tabpanel">
+                 <p class="mb-0">
+                    Descripcion de Cursos
+                 </p>
+             </div>
+            </div>
+         </div> -->
+
+         <div class="col-lg-9">
+                 <div class="card m-b-30">
+                     
+                      <div class="card-body">
+         <br>
+         <br>
+
+                              <!-- Nav tabs -->
+                              <ul class="nav nav-tabs nav-justified" role="tablist">
+                                      <li class="nav-item">
+                                      <a class="nav-link active" data-toggle="tab" href="#home-1" role="tab"> <i class="mdi mdi-account-card-details"></i> Membrecia</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" data-toggle="tab" href="#profile-1" role="tab"><i class="mdi mdi-calendar-text"></i> Horario</a>
+                                  </li>
+                                  <li class="nav-item">
+                                      <a class="nav-link" data-toggle="tab" href="#messages-1" role="tab"><i class="mdi mdi-finance"></i> Cursos</a>
+                                  </li>
+                                  <li class="nav-item">
+                                          <a class="nav-link" data-toggle="tab" href="#messages-2" role="tab"><i class="mdi mdi-account-multiple"></i> Padres</a>
+                                      </li>
+                                  
+                              </ul>
+                  
+                              <!-- Tab panes -->
+                              <div class="tab-content">
+                                  <div class="tab-pane active p-3  " id="home-1" role="tabpanel">
+                                          
+                                               
+                                                     
+                                                          <blockquote class="card-blockquote mb-0">
+                                                              <p>Nombre</p>
+                                                              <p>Costo</p>
+                                                              <p>Fecha Inicio</p>
+                                                              <p>Fecha Termino</p>
+                                                              <p>Adelanto</p>
+                                                              <p>Restante</p>
+                                                              <p>Total</p>
+                                                              <!-- <footer class="blockquote-footer text-white font-12">
+                                                                  Someone famous in <cite title="Source Title">Source Title</cite>
+                                                              </footer> -->
+                                                          </blockquote>
+                                                      
+                                                  
+                                           
+                                  </div>
+                                  <div class="tab-pane p-3" id="profile-1" role="tabpanel">
+                                      <p class="mb-0">
+                                          Descripcion de Horarios
+                                      </p>
+                                  </div>
+                                  <div class="tab-pane p-3" id="messages-1" role="tabpanel">
+                                      <p class="mb-0">
+                                         Descripcion de Cursos
+                                      </p>
+                                  </div>
+                                  <div class="tab-pane p-3" id="messages-2" role="tabpanel">
+                                        <div style="float:left; width: 50%;">
+                                                <h2>Datos Padre:</h2>
+                                                <p>Nombre </p>
+                                                <p>Domicilio </p>
+                                                <p>Telefono </p>
+                                                <p>Correo </p>
+                                                <p>Ocupacion </p>
+                                            </div>
+                                            <div style="float:left; width: 50%;">
+                                                <h2>Datos Madre:</h2>
+                                                <p>Nombre </p>
+                                                <p>Domicilio </p>
+                                                <p>Telefono </p>
+                                                <p>Correo </p>
+                                                <p>Ocupacion </p>
+                                            </div>
+                                      </div>
+
+
+                 
+                 </div>
+             </div>
+         </div>

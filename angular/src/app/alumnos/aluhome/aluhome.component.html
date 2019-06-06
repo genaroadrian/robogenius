@@ -1,5 +1,5 @@
 <mat-toolbar>
-  <span>Personal</span>
+  <span>Alumnos</span>
   <span class="spacer"></span>
   Recargar datos:
   <!-- Boton para recargar datos -->
@@ -9,7 +9,7 @@
 </mat-toolbar>
 
       <!-- Boton de agregar -->
-<button mat-icon-button [routerLink]="['/#']" routerLinkActive="router-link-active" >
+<button mat-icon-button [routerLink]="['/nuevoalumno']" routerLinkActive="router-link-active" >
   <mat-icon aria-label="Nuevo Registro" class="add">add_circle_outline</mat-icon><span class="add"> Nuevo</span>
 </button>
 
@@ -30,36 +30,45 @@
       <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}">{{row.idalu}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="nombre">
+    <ng-container matColumnDef="nomalu">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.nombre}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.nomalu}}</mat-cell>
     </ng-container>
     
-    <ng-container matColumnDef="apellidos">
+    <ng-container matColumnDef="apealu">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.apellidos}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.apealu}}</mat-cell>
     </ng-container>
 
 
-    <ng-container matColumnDef="correo">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Correo</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.correo}}</mat-cell>
+    <ng-container matColumnDef="fnacalu">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Fecha de nacimiento</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.fnacalu}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="fechanac">
-      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Fecha de Nacimiento</mat-header-cell>
-      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.fechanac}}</mat-cell>
+    <ng-container matColumnDef="sexoalu">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Sexo</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.sexoalu}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="edad">
-      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Edad</mat-header-cell>
-      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.edad}}</mat-cell>
+    <ng-container matColumnDef="domalu">
+      <mat-header-cell *matHeaderCellDef mat-sort-header >Domicilio</mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.domalu}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="iddom">
-      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Id domicilio
-      </mat-header-cell>
-      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.iddom}}</mat-cell>
+    <ng-container matColumnDef="telalu">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Telefono</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.telalu}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="correoalu">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Correo</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.correoalu}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="medicacion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Medicacion</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.medicacion}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="alergias">
@@ -67,84 +76,139 @@
       <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.alergias}}</mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="perfilalu">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Foto de perfil</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.perfilalu}}</mat-cell>
+    </ng-container>
+
     <ng-container matColumnDef="cronica">
       <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Cronica</mat-header-cell>
       <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.cronica}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="medicacion">
-      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Medicación</mat-header-cell>
-      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.medicacion}}</mat-cell>
-    </ng-container>
-
     <ng-container matColumnDef="otro">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Otro</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.otro}}</mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Otro</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.otro}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="sexo">
-      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Sexo</mat-header-cell>
-      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.sexo}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="domicilio">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Domicilio</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.domicilio}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="idpadre">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Id Padre</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.idpadre}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="tel1cm">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Telefono 1cm</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.tel1cm}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="tel2cm">
-      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Telefono 2cm</mat-header-cell>
-      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.tel2cm}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="nomb1cm">
-      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Nombre 1cm</mat-header-cell>
-      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.nomb1cm}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="nomb2cm">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre 2cm</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.nomb2cm}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="ruta">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Ruta</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.ruta}}</mat-cell>
-    </ng-container>
-    
     <ng-container matColumnDef="evaluacion">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Evaluacion</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.evaluacion}}</mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="usuarioalu">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Usuario</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.usuarioalu}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pswalu">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Contraseña</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.pswalu}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nompad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Nombre padre</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.nompad}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="apepad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Apellidos padre</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.apepad}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dompad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Domicilio padre</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.dompad}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="telpad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Telefono padre</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.telpad}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="correopad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Correo padre</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.correopad}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ocupad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Ocupacion padre</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.ocupad}}</mat-cell>
+    </ng-container>
     
-    <ng-container matColumnDef="psw">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>PSW</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.psw}}</mat-cell>
+    <ng-container matColumnDef="nommad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Nombre madre</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.nommad}}</mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="apemad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Apellidos madre</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.apemad}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="idgrupo">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Id Grupo</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.idgrupo}}</mat-cell>
+    <ng-container matColumnDef="dommad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Domicilio madre</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.dommad}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="idcursos">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Id cursos</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.idcursos}}</mat-cell>
+    <ng-container matColumnDef="telmad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Telefono madre</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.telmad}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="idsuc">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Id sucursal</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.idsuc}}</mat-cell>
+    <ng-container matColumnDef="correomad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Correo madre</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.correomad}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ocupmad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Ocupacion madre</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.ocupmad}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="nommem">
+      <mat-header-cell *matHeaderCellDef mat-sort-header >Membresia</mat-header-cell>
+      <mat-cell *matCellDef="let row" > {{row.nommem}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="costomem">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Costo</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.costomem}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fechaini">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Fecha de inicio</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.fechaini}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="fechafin">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de fin</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.fechafin}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="total">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Total</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.total}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="adelanto">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Adelanto</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.adelanto}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="restante">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Restante</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.restante}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="usuariopad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Usuario padre</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.usuariopad}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pswpad">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Contraseña padres</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.pswpad}}</mat-cell>
     </ng-container>
     
 

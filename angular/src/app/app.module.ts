@@ -71,7 +71,8 @@ const routes: Route[] = [
 {path: 'padres', component:PadhomeComponent},
 {path: 'padresform', component:PadaddComponent},
 {path: 'alumnos', component:AluhomeComponent},
-{path: 'perfilalumnos', component:PerfilComponent}
+{path: 'perfilalumnos', component:PerfilComponent},
+{path: 'nuevoalumno', component: AluaddComponent}
 
 
 

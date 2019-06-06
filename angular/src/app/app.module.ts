@@ -51,6 +51,10 @@ import { PadeditComponent } from './padres/padedit/padedit.component';
 import { PadaddComponent } from './padres/padadd/padadd.component';
 import { PaddeleteComponent } from './padres/paddelete/paddelete.component';
 import { PerfilComponent } from './alumnos/perfil/perfil.component';
+import { ShomeComponent } from './sucursales/shome/shome.component';
+import { SaddComponent } from './sucursales/sadd/sadd.component';
+import { SeditComponent } from './sucursales/sedit/sedit.component';
+import { SdeletComponent } from './sucursales/sdelet/sdelet.component';
 
 
 const routes: Route[] = [
@@ -105,6 +109,10 @@ const routes: Route[] = [
     PadaddComponent,
     PaddeleteComponent,
     PerfilComponent,
+    ShomeComponent,
+    SaddComponent,
+    SeditComponent,
+    SdeletComponent,
   
  
   ],

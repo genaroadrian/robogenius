@@ -65,6 +65,7 @@ export class HomeComponent implements OnInit {
 
   // Metodo para refrescar la pagina
   refresh() {
+    
     this.getEscuelas();
   }
 
@@ -82,8 +83,9 @@ export class HomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result=>{
       if(result==1){
         this.exampleDatabase.dataChange.value.push(this.escuelasService.getDialogData());
-        this.refreshTable();
-      }
+        this.exampleDatabase = new EscuelasService(this.httpClient);
+        this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
+      }this.refreshTable();
     });
   }
 
@@ -118,12 +120,8 @@ export class HomeComponent implements OnInit {
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] = this.escuelasService.getDialogData();
         // And lastly refresh table
-        delay(10 * 1000, 'some value').then(v => {
-            // Executed in 7 seconds
-            console.log(v);
-        });
-        this.refresh();
       }
+      this.refresh();
     });
   }
 
@@ -134,12 +132,15 @@ export class HomeComponent implements OnInit {
     const dialogRef = this.dialog.open(DeleteComponent, {
       data: {id: idesc}
     });
-
+    
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idesc === this.id);
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+        if (i% this.paginator.pageSize == 0) {
+          this.getEscuelas();
+        }
         this.refreshTable();
       }
     });

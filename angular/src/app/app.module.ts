@@ -7,10 +7,10 @@ import { HomePersonalComponent} from './home-personal/home-personal.component';
 import { FormPersonalComponent } from './form-personal/form-personal.component';
 import {Route,RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule, 
-  MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule, 
-  ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule, MatTabsModule, MatSortModule, 
-  MatToolbarModule, MatPaginatorIntl, MatSpinner, MatProgressSpinnerModule, MatSnackBarModule, 
+import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule,
+  MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule,
+  ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule, MatTabsModule, MatSortModule,
+  MatToolbarModule, MatPaginatorIntl, MatSpinner, MatProgressSpinnerModule, MatSnackBarModule,
   MatStepperModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
@@ -56,6 +56,11 @@ import { SaddComponent } from './sucursales/sadd/sadd.component';
 import { SeditComponent } from './sucursales/sedit/sedit.component';
 import { SdeletComponent } from './sucursales/sdelet/sdelet.component';
 
+import { HhomeComponent } from './horarios/hhome/hhome.component';
+import { HeditComponent } from './horarios/hedit/hedit.component';
+import { HaddComponent } from './horarios/hadd/hadd.component';
+import { HdeleteComponent } from './horarios/hdelete/hdelete.component';
+
 
 const routes: Route[] = [
 {path:'personal',component:PerhomeComponent},
@@ -64,6 +69,7 @@ const routes: Route[] = [
 {path: 'home', component:LoginPrincipalComponent},
 {path: 'login', component:LoginComponent},
 {path: 'escuelas', component:HomeComponent},
+{path: 'horarios', component:HhomeComponent},
 {path: 'tipopersonal', component:TphomeComponent},
 {path: 'tipomensualidad', component:TmhomeComponent},
 {path: 'padres', component:PadhomeComponent},
@@ -113,8 +119,13 @@ const routes: Route[] = [
     SaddComponent,
     SeditComponent,
     SdeletComponent,
-  
- 
+
+    HhomeComponent,
+    HeditComponent,
+    HaddComponent,
+    HdeleteComponent,
+
+
   ],
   imports: [
     NgxUpperCaseDirectiveModule,
@@ -124,7 +135,7 @@ const routes: Route[] = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule, 
+    MatButtonModule,
     MatCheckboxModule,
     MatTableModule,
     MatFormFieldModule,
@@ -152,6 +163,9 @@ const routes: Route[] = [
     PersonalService,
     AlumnosService,
     PadresService,
+    EscuelasService,
+    TipomensualidadService,
+    HorariosService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
   bootstrap: [AppComponent],
@@ -168,6 +182,10 @@ const routes: Route[] = [
     EditComponent,
     AddComponent,
     DeleteComponent,
+    // Modales de horario
+    HeditComponent,
+    HaddComponent,
+    HdeleteComponent,
     // Modales de tipo de mensualidad
     TmeditComponent,
     TmaddComponent,
@@ -179,13 +197,13 @@ const routes: Route[] = [
     // Modales de padres
     PadeditComponent,
     PaddeleteComponent
-    
+
   ],
   exports: [
-    MatButtonModule, 
-    MatCheckboxModule, 
-    MatTableModule, 
-    MatFormFieldModule, 
+    MatButtonModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatFormFieldModule,
     MatPaginatorModule,
     MatInputModule,
     BrowserModule,
@@ -195,7 +213,7 @@ const routes: Route[] = [
     MatSelectModule,
     MatDialogModule
   ]
-  
+
 })
 export class AppModule { }
 export class PizzaPartyAppModule { }

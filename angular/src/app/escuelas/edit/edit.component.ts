@@ -4,6 +4,7 @@ import {FormControl, Validators} from '@angular/forms';
 import { EscuelasService } from 'src/app/services/escuelas.service';
 import { Escuelas } from 'src/app/interfaces/escuelas';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { delay, delayReject, delayThen, delayCatch } from 'delay.ts';
 
 @Component({
   selector: 'app-edit',
@@ -50,8 +51,8 @@ export class EditComponent implements OnInit {
     this.escuelasService.put(this.data).subscribe((data) =>{
       // console.log(this.data);
       // alert('Registro Actualizado');
-      // this.openSnackBar();
       this.showSuccessEdit();
+      this.escuelasService.updateEscuelas(this.data.id);
       // console.log(this.data);
     },(error)=>{
       this.showErrorEdit();

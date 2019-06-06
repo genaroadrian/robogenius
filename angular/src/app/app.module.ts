@@ -52,6 +52,11 @@ import { PadaddComponent } from './padres/padadd/padadd.component';
 import { PaddeleteComponent } from './padres/paddelete/paddelete.component';
 import { PerfilComponent } from './alumnos/perfil/perfil.component';
 
+import { HhomeComponent } from './horarios/hhome/hhome.component';
+import { HeditComponent } from './horarios/hedit/hedit.component';
+import { HaddComponent } from './horarios/hadd/hadd.component';
+import { HdeleteComponent } from './horarios/hdelete/hdelete.component';
+
 
 const routes: Route[] = [
 {path:'personal',component:PerhomeComponent},
@@ -60,6 +65,7 @@ const routes: Route[] = [
 {path: 'home', component:LoginPrincipalComponent},
 {path: 'login', component:LoginComponent},
 {path: 'escuelas', component:HomeComponent},
+{path: 'horarios', component:HhomeComponent},
 {path: 'tipopersonal', component:TphomeComponent},
 {path: 'tipomensualidad', component:TmhomeComponent},
 {path: 'padres', component:PadhomeComponent},
@@ -104,6 +110,10 @@ const routes: Route[] = [
     PadaddComponent,
     PaddeleteComponent,
     PerfilComponent,
+    HhomeComponent,
+    HeditComponent,
+    HaddComponent,
+    HdeleteComponent,
   
  
   ],
@@ -143,6 +153,9 @@ const routes: Route[] = [
     PersonalService,
     AlumnosService,
     PadresService,
+    EscuelasService,
+    TipomensualidadService,
+    HorariosService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
   bootstrap: [AppComponent],
@@ -159,6 +172,10 @@ const routes: Route[] = [
     EditComponent,
     AddComponent,
     DeleteComponent,
+    // Modales de horario
+    HeditComponent,
+    HaddComponent,
+    HdeleteComponent,
     // Modales de tipo de mensualidad
     TmeditComponent,
     TmaddComponent,

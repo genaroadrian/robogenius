@@ -4,7 +4,7 @@ namespace slidecom_robogenius\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use slidecom_robogenius\escuelas;
+use slidecom_robogenius\sucursal;
 use Illuminate\Support\Facades\DB;
 use Session;
 
@@ -12,45 +12,45 @@ class sucursalController extends Controller
 {
     public function index()
     {
-    	$escuelas = DB::SELECT("SELECT * FROM escuelas WHERE activo=1");
-        echo json_encode($escuelas);
-    	
+    	$sucursal = DB::SELECT("SELECT * FROM sucursal WHERE activo=1");
+        echo json_encode($sucursal);
+
     }
 
      // Guarda nuevos registros
     public function store(Request $request)
     {
-        $escuelas = new escuelas();
-        $escuelas->nombre = $request->nombre;
-        $escuelas->representante = $request->representante;
-        $escuelas->direccion = $request->direccion;
-        $escuelas->correo = $request->correo;
-        $escuelas->telefono = $request->telefono;
-        $escuelas->idesc = $request->idesc;
-        $escuelas->activo = 1;
-        $escuelas->save();
-        echo json_encode($escuelas);
+        $sucursal = new sucursal();
+        $sucursal->nombre = $request->nombre;
+        $sucursal->direccion = $request->direccion;
+        $sucursal->encargado = $request->encargado;
+        $sucursal->usuario = $request->usuario;
+        $sucursal->psw = $request->psw;
+        $sucursal->idsuc = $request->idsuc;
+        $sucursal->activo = 1;
+        $sucursal->save();
+        echo json_encode($sucursal);
     }
 
     // Actualiza registros
     public function update(Request $request, $id)
     {
-        $escuelas = escuelas::find($id);
-        $escuelas->nombre = $request->nombre;
-        $escuelas->representante = $request->representante;
-        $escuelas->direccion = $request->direccion;
-        $escuelas->correo = $request->correo;
-        $escuelas->telefono = $request->telefono;
-        $escuelas->idesc = $request->idesc;
-        $escuelas->activo = 1;
-        $escuelas->save();
-        echo json_encode($escuelas);
+        $sucursal = sucursal::find($id);
+        $sucursal->nombre = $request->nombre;
+        $sucursal->direccion = $request->direccion;
+        $sucursal->encargado = $request->encargado;
+        $sucursal->usuario = $request->usuario;
+        $sucursal->psw = $request->psw;
+        $sucursal->idsuc = $request->idsuc;
+        $sucursal->activo = 1;
+        $sucursal->save();
+        echo json_encode($sucursal);
     }
 
     // Elimina registros
     public function destroy($id)
     {
-        $escuelas = DB::SELECT("UPDATE escuelas SET activo = 0 WHERE idesc = '$id'");
-        echo json_encode($escuelas);
+        $sucursal = DB::SELECT("UPDATE sucursal SET activo = 0 WHERE idsuc = '$id'");
+        echo json_encode($sucursal);
     }
 }

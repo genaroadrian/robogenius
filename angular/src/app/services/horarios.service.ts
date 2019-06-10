@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Horario } from '../interfaces/horario';
+import { Horarios } from '../interfaces/horarios';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
 
@@ -10,14 +10,14 @@ export class HorariosService {
 
 API_ENDPOINT = 'http://localhost:8000/api';
 
-  dataChange: BehaviorSubject<Horario[]> = new BehaviorSubject<Horario[]>([]);
+  dataChange: BehaviorSubject<Horarios[]> = new BehaviorSubject<Horarios[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
 
   constructor(private httpClient: HttpClient) { }
 
   getEscuelas(): void{
-    this.httpClient.get<Horario[]>(this.API_ENDPOINT + '/horario').subscribe(data => {
+    this.httpClient.get<Horarios[]>(this.API_ENDPOINT + '/horarios').subscribe(data => {
       this.dataChange.next(data);
       },
     (error: HttpErrorResponse) => {
@@ -28,10 +28,10 @@ API_ENDPOINT = 'http://localhost:8000/api';
   put(data){
     console.log(data);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.put(this.API_ENDPOINT +'/horario/'+data.idh,data,{headers: headers});
+    return this.httpClient.put(this.API_ENDPOINT +'/horarios/'+data.idh,data,{headers: headers});
   }
 
-  get data(): Horario[] {
+  get data(): Horarios[] {
     return this.dataChange.value;
   }
 
@@ -41,18 +41,18 @@ API_ENDPOINT = 'http://localhost:8000/api';
 
 
   // DEMO ONLY, you can find working methods below
-  addIssue (horario: Horario): void {
-    this.dialogData = horario;
+  addIssue (horarios: Horarios): void {
+    this.dialogData = horarios;
   }
 
-  add(horario: Horario)
+  add(horarios: Horarios)
   {
-    console.log(horario);
+    console.log(horarios);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.post(this.API_ENDPOINT + '/horario/',horario, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT + '/horarios/',horarios, {headers: headers});
   }
 
-  updateEscuelas (horario: Horario): void {
+  updateEscuelas (horarios: Horarios): void {
     this.dialogData = horario;
   }
 
@@ -61,6 +61,6 @@ API_ENDPOINT = 'http://localhost:8000/api';
   }
 
   delete(id){
-    return this.httpClient.delete(this.API_ENDPOINT + '/horario/'+id);
+    return this.httpClient.delete(this.API_ENDPOINT + '/horarios/'+id);
   }
 }

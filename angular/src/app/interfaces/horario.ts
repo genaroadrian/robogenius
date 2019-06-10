@@ -1,4 +1,4 @@
-export interface Horarios {
+export interface Horario {
 	idh?: number;
 	hora: string;
 	idd: number;

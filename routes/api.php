@@ -26,3 +26,5 @@ Route::resource('tipomensualidad', 'tipomensualidadController');
 Route::resource('alumnos', 'alumnoController');
 Route::resource('padres', 'padresController');
 Route::resource('dpadres', 'detallepadresController');
+Route::resource('sucursal', 'sucursalController');
+Route::resource('horarios', 'horariosController');

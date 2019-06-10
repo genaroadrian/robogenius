@@ -4,7 +4,6 @@ import {FormControl, Validators} from '@angular/forms';
 import { SucursalService } from 'src/app/services/sucursal.service';
 import { Sucursal } from 'src/app/interfaces/sucursal';
 import { ToastrManager } from 'ng6-toastr-notifications';
-import { delay, delayReject, delayThen, delayCatch } from 'delay.ts';
 
 @Component({
   selector: 'app-sedit',

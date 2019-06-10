@@ -4,5 +4,6 @@ export interface Sucursal {
 	direccion: string;
 	encargado: string;
 	usuario: string;
-	password: string;
+	psw: string;
+	activo: string;
 }

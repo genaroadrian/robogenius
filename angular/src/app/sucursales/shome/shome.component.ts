@@ -6,9 +6,9 @@ import { Sucursal } from 'src/app/interfaces/sucursal';
 import { MatPaginator, MatSort, MatTableDataSource, MatTable } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog, MatDialogConfig, MatIconRegistry} from '@angular/material';
-import { EditComponent } from '../edit/edit.component';
-import { AddComponent } from '../add/add.component';
-import { DeleteComponent } from '../delete/delete.component';
+import { SeditComponent } from '../sedit/sedit.component';
+import { SaddComponent } from '../sadd/sadd.component';
+import { SdeleteComponent } from '../sdelete/sdelete.component';
 import {DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
@@ -28,7 +28,7 @@ export class ShomeComponent implements OnInit {
     'direccion',
     'encargado',
     'usuario',
-    'password',
+    'psw',
     'icons'
    ];
 
@@ -75,12 +75,14 @@ export class ShomeComponent implements OnInit {
   // Metodo para abrir el modal para agrefar nuevo registro
   addNew(sucursal: Sucursal) {
     // Abre la ventana modal
-    const dialogRef = this.dialog.open(AddComponent, {
+    const dialogRef = this.dialog.open(SaddComponent, {
       data: {sucursal: sucursal }
     });
     dialogRef.afterClosed().subscribe(result=>{
       if(result==1){
         this.exampleDatabase.dataChange.value.push(this.sucursalService.getDialogData());
+        this.exampleDatabase = new SucursalService(this.httpClient);
+        this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
         this.refreshTable();
       }
     });
@@ -102,13 +104,13 @@ export class ShomeComponent implements OnInit {
   }
 
    // Metodo para abrir el modal para modificar
-  onUpdate(i: number, idsuc: number, nombre: string,  direccion: string, encargado: string, usuario: string, password: string) {
+  onUpdate(i: number, idsuc: number, nombre: string,  direccion: string, encargado: string, usuario: string, psw: string) {
     this.id = idsuc;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     console.log(this.index);
-    const dialogRef = this.dialog.open(EditComponent, {
-      data: {idsuc: idsuc, nombre: nombre, direccion: direccion, encargado: encargado, usuario: usuario, password: password}
+    const dialogRef = this.dialog.open(SeditComponent, {
+      data: {idsuc: idsuc, nombre: nombre, direccion: direccion, encargado: encargado, usuario: usuario, psw: psw}
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
@@ -130,7 +132,7 @@ export class ShomeComponent implements OnInit {
   delete(i: number, idsuc:number, id: number) {
     this.index = i;
     this.id = idsuc;
-    const dialogRef = this.dialog.open(DeleteComponent, {
+    const dialogRef = this.dialog.open(SdeleteComponent, {
       data: {id: idsuc}
     });
 
@@ -186,7 +188,7 @@ export class ExampleDataSource extends DataSource<Sucursal> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((sucursal: Sucursal) => {
-          const searchStr = (sucursal.idsuc + sucursal.nombre + sucursal.direccion + sucursal.encargado + sucursal.usuario + sucursal.password + sucursal.activo).toLowerCase();
+          const searchStr = (sucursal.idsuc + sucursal.nombre + sucursal.direccion + sucursal.encargado + sucursal.usuario + sucursal.psw + sucursal.activo).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -220,7 +222,7 @@ export class ExampleDataSource extends DataSource<Sucursal> {
         case 'direccion': [propertyA, propertyB] = [a.direccion, b.direccion]; break;
         case 'encargado': [propertyA, propertyB] = [a.encargado, b.encargado]; break;
         case 'usuario': [propertyA, propertyB] = [a.usuario, b.usuario]; break;
-        case 'password': [propertyA, propertyB] = [a.password, b.password]; break;
+        case 'psw': [propertyA, propertyB] = [a.psw, b.psw]; break;
         case 'activo': [propertyA, propertyB] = [a.activo, b.activo]; break;
       }
 

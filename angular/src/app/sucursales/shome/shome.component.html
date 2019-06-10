@@ -50,15 +50,15 @@
       <mat-cell *matCellDef="let row"> {{row.usuario}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="password">
+    <ng-container matColumnDef="psw">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Password</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.password}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.psw}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="icons">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idsuc, row.nombre,  row.direccion, row.encargado, row.usuario, row.password)">
+        <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idsuc, row.nombre,  row.direccion, row.encargado, row.usuario, row.psw)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 

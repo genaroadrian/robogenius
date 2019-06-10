@@ -51,10 +51,11 @@ import { PadeditComponent } from './padres/padedit/padedit.component';
 import { PadaddComponent } from './padres/padadd/padadd.component';
 import { PaddeleteComponent } from './padres/paddelete/paddelete.component';
 import { PerfilComponent } from './alumnos/perfil/perfil.component';
+
 import { ShomeComponent } from './sucursales/shome/shome.component';
 import { SaddComponent } from './sucursales/sadd/sadd.component';
 import { SeditComponent } from './sucursales/sedit/sedit.component';
-import { SdeletComponent } from './sucursales/sdelet/sdelet.component';
+import { SdeleteComponent } from './sucursales/sdelete/sdelete.component';
 
 import { HhomeComponent } from './horarios/hhome/hhome.component';
 import { HeditComponent } from './horarios/hedit/hedit.component';
@@ -70,6 +71,7 @@ const routes: Route[] = [
 {path: 'login', component:LoginComponent},
 {path: 'escuelas', component:HomeComponent},
 {path: 'horarios', component:HhomeComponent},
+{path: 'sucursales', component:ShomeComponent},
 {path: 'tipopersonal', component:TphomeComponent},
 {path: 'tipomensualidad', component:TmhomeComponent},
 {path: 'padres', component:PadhomeComponent},
@@ -118,12 +120,12 @@ const routes: Route[] = [
     ShomeComponent,
     SaddComponent,
     SeditComponent,
-    SdeletComponent,
-
+    SdeleteComponent,
     HhomeComponent,
     HeditComponent,
     HaddComponent,
     HdeleteComponent,
+    SdeleteComponent,
 
 
   ],
@@ -166,6 +168,7 @@ const routes: Route[] = [
     EscuelasService,
     TipomensualidadService,
     HorariosService,
+    SucursalService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
   bootstrap: [AppComponent],
@@ -196,7 +199,11 @@ const routes: Route[] = [
     AludeletComponent,
     // Modales de padres
     PadeditComponent,
-    PaddeleteComponent
+    PaddeleteComponent,
+    // Modales de sucursales
+    SaddComponent,
+    SeditComponent,
+    SdeleteComponent
 
   ],
   exports: [

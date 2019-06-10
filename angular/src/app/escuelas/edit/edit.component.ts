@@ -4,7 +4,6 @@ import {FormControl, Validators} from '@angular/forms';
 import { EscuelasService } from 'src/app/services/escuelas.service';
 import { Escuelas } from 'src/app/interfaces/escuelas';
 import { ToastrManager } from 'ng6-toastr-notifications';
-import { delay, delayReject, delayThen, delayCatch } from 'delay.ts';
 
 @Component({
   selector: 'app-edit',

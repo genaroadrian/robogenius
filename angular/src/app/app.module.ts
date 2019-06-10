@@ -154,9 +154,6 @@ const routes: Route[] = [
     PersonalService,
     AlumnosService,
     PadresService,
-    EscuelasService,
-    TipomensualidadService,
-    HorariosService,
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
   bootstrap: [AppComponent],

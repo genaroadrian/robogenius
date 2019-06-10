@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {FormControl, Validators} from '@angular/forms';
+import {FormControl, Validators, FormBuilder} from '@angular/forms';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { PersonalService } from 'src/app/services/personal.service';
 
@@ -13,7 +13,9 @@ export class PereditComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<PereditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, public personalService: PersonalService,
-    public toastr: ToastrManager) { }
+    public toastr: ToastrManager) {
+      
+     }
 
   ngOnInit() {
   }

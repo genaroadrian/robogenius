@@ -14,7 +14,7 @@ class personalController extends Controller
         // $personal = Personal::all();
         // echo json_encode($producto);
         $personal = DB::SELECT("SELECT * FROM personal WHERE activo=1");
-        echo json_encode($personal);
+        return $personal;
     }
 
     // Guarda nuevos registros

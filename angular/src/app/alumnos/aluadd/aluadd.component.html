@@ -1,9 +1,464 @@
+<div class="container">
+  <div class="alumnoform">
+    <h3>Agregar nuevo alumno</h3>
+  <span class="inforequired">Los campos marcados con <b>*</b> son obligatorios</span>
+  <br>
 
-  <div class="form-group">
-      <input class="form-control" name="perfilalu" (change)="onFileSelected($event)" [(ngModel)]="alumno.perfilalu"  placeholder="Nombre(s)" type="file">
+  <!-- ---------------------------- Iniio del formulario ---------------------------- -->
 
+  <form (ngSubmit)="submit" #formControl="ngForm">
+
+    <!-- -------------------------- Formulario de alumnos -------------------------- -->
+    <div class="alumno" [ngStyle]="{display:alumnoview}">
+      <h3>Información personal del alumno</h3>
+      <mat-divider></mat-divider>
+      <div class="row">
+
+        <!-- ------------------------------------ Nombre ------------------------------------ -->
+        <div class="form col-md-5">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Nombre del alumno" [(ngModel)]="alumno.nomalu"
+              name="nomalu" required >
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- -------------------------------------- Apellidos -------------------------------------- -->
+        <div class="form col-md-5">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Apellidos" [(ngModel)]="alumno.apealu"
+              name="apealu" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- -------------------------------------- Domicilio -------------------------------------- -->
+
+      <div class="row">
+        <div class="form col-md-6">
+          <mat-form-field color="primary">
+            <textarea [(ngModel)]="alumno.domalu" matInput placeholder="Domicilio" name="domalu" required></textarea>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- ------------------------------------ Correo ------------------------------------ -->
+
+        <div class="form col-md-4">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Correo" [(ngModel)]="alumno.correoalu"
+              name="correoalu">
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- --------------------------------------- Sexo --------------------------------------- -->
+
+      <div class="row">
+        <div class="form col-md-3">
+          <mat-form-field>
+            <mat-label>Sexo: </mat-label>
+            <mat-select [(ngModel)]="alumno.sexoalu" [(value)]="selectedsex" name="sexoalu" required>
+              <mat-option value="Hombre">Hombre</mat-option>
+              <mat-option value="Mujer">Mujer</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- --------------------------- Fecha de nacimiento --------------------------- -->
+
+        <div class="form col-md-3">
+          <mat-form-field>
+            <input [(ngModel)]="alumno.fnacalu" matInput placeholder="Fecha de nacimiento" type="date" name="fnacalu"
+              required>
+          </mat-form-field>
+        </div>
+
+        <!-- ---------------------------------- Telefono ---------------------------------- -->
+
+        <div class="form col-md-3">
+          <mat-form-field class="example-full-width">
+            <input matInput #message maxlength="10" [(ngModel)]="alumno.telalu" placeholder="Telefono" type="tel"
+              name="tealu">
+            <mat-hint align="end">{{message.value.length}} / 10</mat-hint>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- -------------------------- Inforomacion medica del alumno -------------------------- -->
+
+      <h3>Información medica del alumno</h3>
+      <mat-divider></mat-divider>
+
+      <div class="row">
+
+        <!-- ------------------------------- Enfermedad cronica ------------------------------- -->
+
+        <div class="form col-md-5">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Enfermedad cronica" [(ngModel)]="alumno.cronica"
+              name="cronica">
+            <mat-hint align="end" class="hint">Especificar si el alumno padece de alguna enfermedad cronica.</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <!-- ----------------------------------- Medicacion ----------------------------------- -->
+
+        <div class="form col-md-5">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Medicación" [(ngModel)]="alumno.medicacion"
+              name="medicacion">
+            <mat-hint align="end" class="hint">Especificar si el alumno require alguna medicacion en el transcuros del
+              dia.</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+
+        <!-- -------------------------------------- Alergias -------------------------------------- -->
+        <div class="form col-md-5">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Alergias" [(ngModel)]="alumno.alergias"
+              name="alergias">
+            <mat-hint align="end" class="hint">Especificar si el alumno es alergico a algo.</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <!-- ------------------------------- Otro (enfermedad) ------------------------------- -->
+
+        <div class="form col-md-5">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Otro" [(ngModel)]="alumno.otro" name="otro">
+            <mat-hint align="end" class="hint">Especificar alguna otra condición medica medica.</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- -------------------------------------- Evaluacion -------------------------------------- -->
+
+      <div class="form">
+        <mat-form-field color="primary">
+          <input matInput #input class="form-control" placeholder="Evaluación" [(ngModel)]="alumno.evaluacion"
+            name="evaluacion">
+        </mat-form-field>
+      </div>
+
+      <!-- ------------------------- Acceso al sistema del alumno ------------------------- -->
+
+      <h3>Acceso al sistema</h3>
+      <mat-divider></mat-divider>
+
+      <div class="row">
+
+        <!-- ------------------------------------- Usuario ------------------------------------- -->
+
+        <div class="form col-md-5">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Usuario" [(ngModel)]="alumno.usuarioalu"
+              name="usuarioalu" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- --------------------------------------- Contraseña --------------------------------------- -->
+
+        <div class="form-group col-md-5">
+          <mat-form-field [ngStyle]="{display:visibility}">
+            <input class="form-control" [(ngModel)]="alumno.pswalu" matInput placeholder="Contraseña" name="pswalu"
+              [type]="hide ? 'password' : 'text'" [disabled]="isDisable" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+     
+    </div>
+
+    <!-- ------------------------------ Formulario de padres ------------------------------ -->
+
+    <div class="padre">
+      <h3>Información del padre</h3>
+      <mat-divider></mat-divider>
+      <div class="row">
+
+        <!-- -------------------------------------- Nombre -------------------------------------- -->
+
+        <div class="form col-md-5">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Nombre del padre" [(ngModel)]="alumno.nompad"
+              name="nompad" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- ----------------------------------- Apellidos ----------------------------------- -->
+
+        <div class="form col-md-5">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Apellidos" [(ngModel)]="alumno.apepad"
+              name="nompad" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <!-- ---------------------------------------- Domicilio ---------------------------------------- -->
+
+        <div class="form col-md-6">
+          <mat-form-field color="primary">
+            <textarea [(ngModel)]="alumno.dompad" matInput placeholder="Domicilio" name="dompad" required></textarea>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- ------------------------------------------ Correo ------------------------------------------ -->
+
+        <div class="form col-md-4">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Correo" [(ngModel)]="alumno.correopad"
+              name="correopad">
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <!-- ------------------------------------------ Telefono ------------------------------------------ -->
+
+        <div class="form col-md-3">
+          <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="alumno.telpad" #message maxlength="10" name="telpad" placeholder="Telefono"
+              type="tel">
+            <mat-hint align="end">{{message.value.length}} / 10</mat-hint>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- ------------------------------------------ Ocupacion ------------------------------------------ -->
+
+        <div class="form col-md-4">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Ocupación" [(ngModel)]="alumno.ocupad"
+              name="ocupad" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <!-- -------------------------------- Formulario de la madre -------------------------------- -->
+
+    <div class="madre">
+      <h3>Información de la madre</h3>
+      <mat-divider></mat-divider>
+      <div class="row">
+
+        <!-- ------------------------------------------ Nombre ------------------------------------------ -->
+        <div class="form col-md-5">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Nombre del padre" [(ngModel)]="alumno.nommad"
+              name="nommad" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- ------------------------------------------ Apellidos ------------------------------------------ -->
+
+        <div class="form col-md-5">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Apellidos" [(ngModel)]="alumno.apemad"
+              name="nommad" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+
+
+        <!-- ------------------------------------------ Domicilio ------------------------------------------ -->
+        <div class="form col-md-6">
+          <mat-form-field color="primary">
+            <textarea [(ngModel)]="alumno.dommad" matInput placeholder="Domicilio" name="dommad" required></textarea>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- ------------------------------------------ Correo ------------------------------------------ -->
+
+        <div class="form col-md-4">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Correo" [(ngModel)]="alumno.correomad"
+              name="correomad">
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <!-- ------------------------------------------ Telefono ------------------------------------------ -->
+
+        <div class="form col-md-3">
+          <mat-form-field class="example-full-width">
+            <input matInput [(ngModel)]="alumno.telmad" #message maxlength="10" name="telmad" placeholder="Telefono"
+              type="tel">
+            <mat-hint align="end">{{message.value.length}} / 10</mat-hint>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- ------------------------------------------ Ocupacion ------------------------------------------ -->
+
+        <div class="form col-md-4">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Ocupación" [(ngModel)]="alumno.ocupmad"
+              name="ocupmad" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <!-- --------------------------- Formulario de la membresia --------------------------- -->
+
+    <div class="membresia">
+        <h3>Membresia</h3>
+        <mat-divider></mat-divider>
+      <div class="row">
+
+        <!-- ------------------------------------------ Nombre membresia ------------------------------------------ -->
+        <div class="form col-md-4">
+          <mat-form-field>
+            <mat-label>Tipo de membresia: </mat-label>
+            <mat-select [(ngModel)]="alumno.nommem" [(value)]="selectedsex" name="nommem" required>
+              <mat-option value="Hombre">Hombre</mat-option>
+              <mat-option value="Mujer">Mujer</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- ------------------------------------------ Costo ------------------------------------------ -->
+
+        <div class="form col-md-4">
+          <mat-form-field color="primary">
+            <input matInput #input class="form-control" placeholder="Csoto de la membresia"
+              [(ngModel)]="alumno.costomem" name="costomem" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+
+        <!-- ------------------------------------ Inicio de membresia ------------------------------------ -->
+        <div class="form col-md-3">
+          <mat-form-field>
+            <input [(ngModel)]="alumno.fechaini" matInput placeholder="Inicio" type="date" name="fechaini"
+              required>
+          </mat-form-field>
+        </div>
+
+        <!-- ---------------------------------- Final de la membresia ---------------------------------- -->
+
+        <div class="form col-md-3">
+          <mat-form-field>
+            <input [(ngModel)]="alumno.fechafin" matInput placeholder="Final" type="date" name="fechafin" required>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- --------------------------------- Costo total de la membresia --------------------------------- -->
+
+      <div class="row">
+          <div class="form col-md-3">
+              <mat-form-field>
+                <input class="form-control" [(ngModel)]="alumno.total" matInput placeholder="Total"
+                  type="number" class="example-right-align" name="total">
+                <span matPrefix>$&nbsp;</span>
+              </mat-form-field>
+          </div>
+
+          <!-- ---------------------------------------- Adelanto ---------------------------------------- -->
+          
+          <div class="form col-md-3">
+              <mat-form-field>
+                <input class="form-control" [(ngModel)]="alumno.adelanto" matInput placeholder="Adelanto"
+                  type="number" class="example-right-align" name="adelanto">
+                <span matPrefix>$&nbsp;</span>
+              </mat-form-field>
+          </div>
+
+          <!-- ----------------------------------- Restante ----------------------------------- -->
+
+          <div class="form col-md-3">
+              <mat-form-field>
+                <input class="form-control" [(ngModel)]="alumno.restante" matInput placeholder="Restante"
+                  type="number" class="example-right-align" name="restante" [(value)]=" alumno.total - alumno.adelanto " disabled>
+                <span matPrefix>$&nbsp;</span>
+              </mat-form-field>
+          </div>
+
+      </div>
+    </div>
+     <!-- ------------------------------------- Boton de siguiente ------------------------------------- -->
+    <div>
+      <button mat-button [type]="submit" [disabled]="!formControl.valid" (click)="saveAlumno(alumno)">Guardar</button>
+      <button mat-button [routerLink]="['/alumnos']" routerLinkActive="router-link-active"  tabindex="-1">Cancelar</button>
+    </div>
+  </form>
   </div>
 
-  <button (click)="saveAlumno(alumno)" type="submit" class="btn btn-primary waves-effect waves-light">
-    Submit
-  </button>
+  <div class="grupoalu">
+    <h3>Asignación de grupos</h3>
+    <form>
+      <div class="row">
+
+        <div class="form col-md-3">
+          <mat-form-field>
+            <label >Dia:</label>
+            <mat-label>Seleccione un dia</mat-label>
+            <mat-select  name="iddia" required [(value)]="selecdia">
+              <mat-option value="1">Lunes</mat-option>
+              <mat-option value="2">Martes</mat-option>
+              <mat-option value="3" >Miércoles</mat-option>
+              <mat-option value="4" >Jueves</mat-option>
+              <mat-option value="5" >Viernes</mat-option>
+              <mat-option value="6" >Sábado</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form col-md-3">
+          <mat-form-field>
+            <label>Horario:</label>
+            <mat-label>Seleccione un horario</mat-label>
+            <mat-select  name="iddia" required >
+
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form col-md-3">
+          <mat-form-field>
+            <label >Personal:</label>
+            <mat-label>Seleccione un personal</mat-label>
+            <mat-select  name="iddia" required >
+
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

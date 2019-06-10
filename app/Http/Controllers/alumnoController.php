@@ -39,59 +39,60 @@ class alumnoController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * Reac
      */
     public function store(Request $request)
     {
 
             // $file = $request->file('perfilalu');
-            echo $request->perfilalu;
+            // echo $request->perfilalu;
             // $name = time().$file->getClientOriginalName();
             // $path = public_path('/alumnosperfil');
             // $file->move($path, $name);
 
-        // $alumno = new Alumno();
+        $alumno = new Alumno();
 
-        // $alumno->nomalu = $request->nomalu;
-        // $alumno->apealu = $request->apealu;
-        // $alumno->fnacalu = $request->fnacalu;
-        // $alumno->sexoalu = $request->sexoalu;
-        // $alumno->sexoalu = $request->sexoalu;
-        // $alumno->domalu = $request->domalu;
-        // $alumno->telalu = $request->telalu;
-        // $alumno->correoalu = $request->correoalu;
-        // $alumno->medicacion = $request->medicacion;
-        // $alumno->alergias = $request->alergias;
-        // $alumno->perfilalu = $name;
-        // $alumno->cronica = $request->cronica;
-        // $alumno->otro = $request->otro;
-        // $alumno->evaluacion = $request->evaluacion;
-        // $alumno->usuarioalu = $request->usuarioalu;
-        // $alumno->pswalu = $request->pswalu;
-        // $alumno->nompad = $request->nompad;
-        // $alumno->apepad = $request->apepad;
-        // $alumno->dompad = $request->dompad;
-        // $alumno->telpad = $request->telpad;
-        // $alumno->correopad = $request->correopad;
-        // $alumno->ocupad = $request->ocupad;
-        // $alumno->nommad = $request->nommad;
-        // $alumno->apemad = $request->apemad;
-        // $alumno->dommad = $request->dommad;
-        // $alumno->telmad = $request->telmad;
-        // $alumno->correomad = $request->correomad;
-        // $alumno->ocupmad = $request->ocupmad;
-        // $alumno->nommem = $request->nommem;
-        // $alumno->costomem = $request->costomem;
-        // $alumno->fechaini = $request->fechaini;
-        // $alumno->fechafin = $request->fechafin;
-        // $alumno->total = $request->total;
-        // $alumno->adelanto = $request->adelanto;
-        // $alumno->restante = $request->restante;
-        // $alumno->usuariopad = $request->usuariopad;
-        // $alumno->pswpad = $request->pswpad;
-        // $alumno->idsuc = $request->idsuc;
-        // $alumno->activo = 1;
-        // $alumno->save();
-        // echo json_encode($alumno);
+        $alumno->nomalu = $request->nomalu;
+        $alumno->apealu = $request->apealu;
+        $alumno->fnacalu = $request->fnacalu;
+        $alumno->sexoalu = $request->sexoalu;
+        $alumno->sexoalu = $request->sexoalu;
+        $alumno->domalu = $request->domalu;
+        $alumno->telalu = $request->telalu;
+        $alumno->correoalu = $request->correoalu;
+        $alumno->medicacion = $request->medicacion;
+        $alumno->alergias = $request->alergias;
+        $alumno->perfilalu = $request->perfilalu;
+        $alumno->cronica = $request->cronica;
+        $alumno->otro = $request->otro;
+        $alumno->evaluacion = $request->evaluacion;
+        $alumno->usuarioalu = $request->usuarioalu;
+        $alumno->pswalu = $request->pswalu;
+        $alumno->nompad = $request->nompad;
+        $alumno->apepad = $request->apepad;
+        $alumno->dompad = $request->dompad;
+        $alumno->telpad = $request->telpad;
+        $alumno->correopad = $request->correopad;
+        $alumno->ocupad = $request->ocupad;
+        $alumno->nommad = $request->nommad;
+        $alumno->apemad = $request->apemad;
+        $alumno->dommad = $request->dommad;
+        $alumno->telmad = $request->telmad;
+        $alumno->correomad = $request->correomad;
+        $alumno->ocupmad = $request->ocupmad;
+        $alumno->nommem = $request->nommem;
+        $alumno->costomem = $request->costomem;
+        $alumno->fechaini = $request->fechaini;
+        $alumno->fechafin = $request->fechafin;
+        $alumno->total = $request->total;
+        $alumno->adelanto = $request->adelanto;
+        $alumno->restante = $request->restante;
+        $alumno->usuariopad = $request->usuariopad;
+        $alumno->pswpad = $request->pswpad;
+        $alumno->idsuc = $request->idsuc;
+        $alumno->activo = 1;
+        $alumno->save();
+        echo json_encode($alumno);
     }
 
     /**

@@ -16,8 +16,8 @@ API_ENDPOINT = 'http://localhost:8000/api';
 
   constructor(private httpClient: HttpClient) { }
 
-  getEscuelas(): void{
-    this.httpClient.get<Horario[]>(this.API_ENDPOINT + '/horario').subscribe(data => {
+  getHorarios(): void{
+    this.httpClient.get<Horario[]>(this.API_ENDPOINT + '/horarios').subscribe(data => {
       this.dataChange.next(data);
       },
     (error: HttpErrorResponse) => {
@@ -28,7 +28,7 @@ API_ENDPOINT = 'http://localhost:8000/api';
   put(data){
     console.log(data);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.put(this.API_ENDPOINT +'/horario/'+data.idh,data,{headers: headers});
+    return this.httpClient.put(this.API_ENDPOINT +'/horarios/'+data.idh,data,{headers: headers});
   }
 
   get data(): Horario[] {
@@ -49,10 +49,10 @@ API_ENDPOINT = 'http://localhost:8000/api';
   {
     console.log(horario);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.post(this.API_ENDPOINT + '/horario/',horario, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT + '/horarios/',horario, {headers: headers});
   }
 
-  updateEscuelas (horario: Horario): void {
+  updateHorarios (horario: Horario): void {
     this.dialogData = horario;
   }
 
@@ -61,6 +61,6 @@ API_ENDPOINT = 'http://localhost:8000/api';
   }
 
   delete(id){
-    return this.httpClient.delete(this.API_ENDPOINT + '/horario/'+id);
+    return this.httpClient.delete(this.API_ENDPOINT + '/horarios/'+id);
   }
 }

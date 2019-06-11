@@ -125,7 +125,6 @@ const routes: Route[] = [
     HeditComponent,
     HaddComponent,
     HdeleteComponent,
-    SdeleteComponent,
 
 
   ],

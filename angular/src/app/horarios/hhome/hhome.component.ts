@@ -47,7 +47,7 @@ export class HhomeComponent implements OnInit {
   ngOnInit() 
   {
     // Llamado al metodo de getEscuelas
-    this.getHorario();
+    this.getHorarios();
 
     // Traducir los label de la tabla
     this.paginator._intl.itemsPerPageLabel = 'Registros por página';
@@ -61,7 +61,7 @@ export class HhomeComponent implements OnInit {
   // Metodo para refrescar la pagina
   refresh() {
     
-    this.getHorario();
+    this.getHorarios();
   }
 
   // Metodo para refrescar la paginación (not use)
@@ -85,7 +85,7 @@ export class HhomeComponent implements OnInit {
   }
 
   // Metodo para recibir los datos y asignar la tabla
-  getHorario(){
+  getHorarios(){
     this.exampleDatabase = new HorariosService(this.httpClient);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
     fromEvent(this.filter.nativeElement, 'keyup')
@@ -134,7 +134,7 @@ export class HhomeComponent implements OnInit {
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
         if (i% this.paginator.pageSize == 0) {
-          this.getHorario();
+          this.getHorarios();
         }
         this.refreshTable();
       }

@@ -1,58 +1,57 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
-import { EscuelasService } from 'src/app/services/escuelas.service';
+import { SucursalService } from 'src/app/services/sucursal.service';
 import {HttpClient} from '@angular/common/http';
-import { Escuelas } from 'src/app/interfaces/escuelas';
+import { Sucursal } from 'src/app/interfaces/sucursal';
 import { MatPaginator, MatSort, MatTableDataSource, MatTable } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog, MatDialogConfig, MatIconRegistry} from '@angular/material';
-import { EditComponent } from '../edit/edit.component';
-import { AddComponent } from '../add/add.component';
-import { DeleteComponent } from '../delete/delete.component';
+import { SeditComponent } from '../sedit/sedit.component';
+import { SaddComponent } from '../sadd/sadd.component';
+import { SdeleteComponent } from '../sdelete/sdelete.component';
 import {DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import delay, { delayReject, delayThen, delayCatch } from 'delay.ts';
 
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-shome',
+  templateUrl: './shome.component.html',
+  styleUrls: ['./shome.component.css']
 })
-export class HomeComponent implements OnInit {
+export class ShomeComponent implements OnInit {
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [
-    'idesc',
+    'idsuc',
     'nombre',
-    'representante',
     'direccion',
-    'telefono',
-    'correo',
+    'encargado',
+    'usuario',
+    'psw',
     'icons'
    ];
 
-  escuelas: Escuelas[];
+  sucursal: Sucursal[];
   // dataSource: MatTableDataSource<Tipopersonal>;
-  exampleDatabase: EscuelasService | null;
+  exampleDatabase: SucursalService | null;
   dataSource: ExampleDataSource | null;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
   index: number;
   id: number;
-  EscuelasService: any;
+  SucursalService: any;
 
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public escuelasService: EscuelasService ) { }
+    public sucursalService: SucursalService ) { }
 
 
-  ngOnInit() 
+  ngOnInit()
   {
     // Llamado al metodo de getEscuelas
-    this.getEscuelas();
+    this.getSucursal();
 
     // Traducir los label de la tabla
     this.paginator._intl.itemsPerPageLabel = 'Registros por página';
@@ -65,8 +64,7 @@ export class HomeComponent implements OnInit {
 
   // Metodo para refrescar la pagina
   refresh() {
-    
-    this.getEscuelas();
+    this.getSucursal();
   }
 
   // Metodo para refrescar la paginación (not use)
@@ -75,23 +73,24 @@ export class HomeComponent implements OnInit {
   }
 
   // Metodo para abrir el modal para agrefar nuevo registro
-  addNew(escuelas: Escuelas) {
+  addNew(sucursal: Sucursal) {
     // Abre la ventana modal
-    const dialogRef = this.dialog.open(AddComponent, {
-      data: {escuelas: escuelas }
+    const dialogRef = this.dialog.open(SaddComponent, {
+      data: {sucursal: sucursal }
     });
     dialogRef.afterClosed().subscribe(result=>{
       if(result==1){
-        this.exampleDatabase.dataChange.value.push(this.escuelasService.getDialogData());
-        this.exampleDatabase = new EscuelasService(this.httpClient);
+        this.exampleDatabase.dataChange.value.push(this.sucursalService.getDialogData());
+        this.exampleDatabase = new SucursalService(this.httpClient);
         this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
-      }this.refreshTable();
+        this.refreshTable();
+      }
     });
   }
 
   // Metodo para recibir los datos y asignar la tabla
-  getEscuelas(){
-    this.exampleDatabase = new EscuelasService(this.httpClient);
+  getSucursal(){
+    this.exampleDatabase = new SucursalService(this.httpClient);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
     fromEvent(this.filter.nativeElement, 'keyup')
       // .debounceTime(150)
@@ -105,42 +104,43 @@ export class HomeComponent implements OnInit {
   }
 
    // Metodo para abrir el modal para modificar
-  onUpdate(i: number, idesc: number, nombre: string, representante: string, direccion: string, telefono: number, correo: string) {
-    this.id = idesc;
+  onUpdate(i: number, idsuc: number, nombre: string,  direccion: string, encargado: string, usuario: string, psw: string) {
+    this.id = idsuc;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     console.log(this.index);
-    const dialogRef = this.dialog.open(EditComponent, {
-      data: {idesc: idesc, nombre: nombre, representante: representante, direccion: direccion, telefono: telefono, correo: correo}
+    const dialogRef = this.dialog.open(SeditComponent, {
+      data: {idsuc: idsuc, nombre: nombre, direccion: direccion, encargado: encargado, usuario: usuario, psw: psw}
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idesc === this.id);
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idsuc === this.id);
         // Then you update that record using data from dialogData (values you enetered)
-        this.exampleDatabase.dataChange.value[foundIndex] = this.escuelasService.getDialogData();
+        this.exampleDatabase.dataChange.value[foundIndex] = this.sucursalService.getDialogData();
         // And lastly refresh table
+        delay(10 * 1000, 'some value').then(v => {
+            // Executed in 7 seconds
+            console.log(v);
+        });
+        this.refresh();
       }
-      this.refresh();
     });
   }
 
 
-  delete(i: number, idesc:number, id: number) {
+  delete(i: number, idsuc:number, id: number) {
     this.index = i;
-    this.id = idesc;
-    const dialogRef = this.dialog.open(DeleteComponent, {
-      data: {id: idesc}
+    this.id = idsuc;
+    const dialogRef = this.dialog.open(SdeleteComponent, {
+      data: {id: idsuc}
     });
-    
+
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idesc === this.id);
+        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idsuc === this.id);
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
-        if (i% this.paginator.pageSize == 0) {
-          this.getEscuelas();
-        }
         this.refreshTable();
       }
     });
@@ -150,7 +150,7 @@ export class HomeComponent implements OnInit {
 
 // Exporta la clase del datasource (datos de la tabla) y les asigna paginacion filtro etc.
 
-export class ExampleDataSource extends DataSource<Escuelas> {
+export class ExampleDataSource extends DataSource<Sucursal> {
   _filterChange = new BehaviorSubject('');
 
   get filter(): string {
@@ -161,10 +161,10 @@ export class ExampleDataSource extends DataSource<Escuelas> {
     this._filterChange.next(filter);
   }
 
-  filteredData: Escuelas[] = [];
-  renderedData: Escuelas[] = [];
+  filteredData: Sucursal[] = [];
+  renderedData: Sucursal[] = [];
 
-  constructor(public _exampleDatabase: EscuelasService,
+  constructor(public _exampleDatabase: SucursalService,
               public _paginator: MatPaginator,
               public _sort: MatSort) {
     super();
@@ -173,7 +173,7 @@ export class ExampleDataSource extends DataSource<Escuelas> {
   }
 
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Escuelas[]> {
+  connect(): Observable<Sucursal[]> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
       this._exampleDatabase.dataChange,
@@ -182,13 +182,13 @@ export class ExampleDataSource extends DataSource<Escuelas> {
       this._paginator.page
     ];
 
-    this._exampleDatabase.getEscuelas();
+    this._exampleDatabase.getSucursal();
 
 
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
-        this.filteredData = this._exampleDatabase.data.slice().filter((escuelas: Escuelas) => {
-          const searchStr = (escuelas.idesc + escuelas.nombre + escuelas.representante + escuelas.direccion + escuelas.telefono + escuelas.correo + escuelas.activo).toLowerCase();
+        this.filteredData = this._exampleDatabase.data.slice().filter((sucursal: Sucursal) => {
+          const searchStr = (sucursal.idsuc + sucursal.nombre + sucursal.direccion + sucursal.encargado + sucursal.usuario + sucursal.psw + sucursal.activo).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -207,7 +207,7 @@ export class ExampleDataSource extends DataSource<Escuelas> {
 
 
   /** Returns a sorted copy of the database data. */
-  sortData(data:Escuelas[]):Escuelas[] {
+  sortData(data:Sucursal[]):Sucursal[] {
     if (!this._sort.active || this._sort.direction === '') {
       return data;
     }
@@ -217,12 +217,12 @@ export class ExampleDataSource extends DataSource<Escuelas> {
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        case 'idesc': [propertyA, propertyB] = [a.idesc, b.idesc]; break;
+        case 'idsuc': [propertyA, propertyB] = [a.idsuc, b.idsuc]; break;
         case 'nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
-        case 'representante': [propertyA, propertyB] = [a.representante, b.representante]; break;
         case 'direccion': [propertyA, propertyB] = [a.direccion, b.direccion]; break;
-        case 'telefono': [propertyA, propertyB] = [a.telefono, b.telefono]; break;
-        case 'correo': [propertyA, propertyB] = [a.correo, b.correo]; break;
+        case 'encargado': [propertyA, propertyB] = [a.encargado, b.encargado]; break;
+        case 'usuario': [propertyA, propertyB] = [a.usuario, b.usuario]; break;
+        case 'psw': [propertyA, propertyB] = [a.psw, b.psw]; break;
         case 'activo': [propertyA, propertyB] = [a.activo, b.activo]; break;
       }
 

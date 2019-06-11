@@ -1,5 +1,5 @@
-<mat-toolbar>
-  <span>Escuelas</span>
+<mat-toolbar >
+  <span>Sucursales</span>
   <span class="spacer"></span>
   Recargar datos:
   <button mat-icon-button (click)="refresh()">
@@ -25,9 +25,9 @@
           The actual rendered columns are set as a property on the row definition" -->
 
     <!-- ID Column -->
-    <ng-container matColumnDef="idesc">
+    <ng-container matColumnDef="idsuc">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-      <mat-cell *matCellDef="let row" >{{row.idesc}}</mat-cell>
+      <mat-cell *matCellDef="let row" >{{row.idsuc}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="nombre">
@@ -35,34 +35,34 @@
       <mat-cell *matCellDef="let row"> {{row.nombre}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="representante">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Representante</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.representante}}</mat-cell>
-    </ng-container>
-
     <ng-container matColumnDef="direccion">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Dirección</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.direccion}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="telefono">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Telefono</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.telefono}}</mat-cell>
+    <ng-container matColumnDef="encargado">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Encargado</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.encargado}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="correo">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Correo</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.correo}}</mat-cell>
+    <ng-container matColumnDef="usuario">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Usuario</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.usuario}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="psw">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Password</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.psw}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="icons">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index;">
-        <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idesc, row.nombre, row.representante, row.direccion, row.telefono, row.correo)">
+        <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idsuc, row.nombre,  row.direccion, row.encargado, row.usuario, row.psw)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
-        <button mat-icon-button class="text-danger" (click)="delete(i, row.idesc)">
+        <button mat-icon-button class="text-danger" (click)="delete(i, row.idsuc)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>
@@ -79,7 +79,6 @@
         <span>Cargando...</span>
       </div>
   </div>
-
   <mat-paginator #paginator
                  [length]="dataSource.filteredData.length"
                  [pageIndex]="0"

@@ -5,6 +5,12 @@ import { Alumnos } from 'src/app/interfaces/alumnos';
 import { FormControl, Validators } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { Dias } from 'src/app/interfaces/dias';
+import { Detallegrupos } from 'src/app/interfaces/detallegrupos';
+import { GruposAlumnos } from 'src/app/interfaces/gruposalumnos';
+import { Observable } from 'rxjs';
+import { Horas } from 'src/app/interfaces/horas';
+import { GethorariosService } from 'src/app/services/gethorarios.service';
 
 @Component({
   selector: 'app-aluadd',
@@ -16,15 +22,39 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 })
 export class AluaddComponent implements OnInit {
 
+  // Horas obtenidas de laravel
+   _allHoras: Horas[];
+
+  // Esconder la contraseña en el input 
   hide = true;
-
-  selecdia = "1";
-
   
+  // Validaciones de el formulario
   formControl = new FormControl('', [
     Validators.required,
     Validators.email
   ]);
+
+  // Interfaz de la tabla de grupos por alumno
+  gruposAlumnos: GruposAlumnos = 
+  {
+    idgalu: null,
+    idg: null,
+    idalu: null
+  }
+
+  // Interfaz de la tabla dias
+  dia: Dias = 
+  {
+    iddia: null,
+    dia: null
+  }
+
+  // Interfaz de la tabla horas
+  hora: Horas = 
+  {
+    idh: null,
+    hora: null
+  }
 
   getErrorMessage() {
     return this.formControl.hasError('required') ? 'Campo obligatorio' :
@@ -43,7 +73,6 @@ export class AluaddComponent implements OnInit {
         '';
   }
 
-
   // Notificación de success al eliminar
   showSuccesSave() {
     this.toastr.successToastr('Registro guardado','Exito!');
@@ -54,17 +83,20 @@ export class AluaddComponent implements OnInit {
     this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
   }
 
-
-
+  // Notificacion de que no hay registros de horas y personal disponible
+  showDisp() {
+    this.toastr.infoToastr('No hay horarios disponibles', 'Oops!');
+  }
   
   constructor(private alumnosService: AlumnosService, private httpClient: HttpClient,
-    public toastr: ToastrManager) { }
+    public toastr: ToastrManager, private gethorarios: GethorariosService) { }
 
   ngOnInit() 
   {
     
   }
 
+  // Interfaz de la tabla alumnos
   alumno: Alumnos =  {
     idalu: null,
     nomalu: null,
@@ -107,14 +139,7 @@ export class AluaddComponent implements OnInit {
     idsuc: null
   };
 
-
-  onFileSelected(event)
-  {
-    // this.alumno.perfilalu = event.target.files[0].name;
-    // console.log(this.alumno.perfilalu);
-   
-    }
-
+  // Metodo para guardar alumnos
   saveAlumno(alumno)
     {
         alumno.restante = alumno.total - alumno.adelanto;
@@ -125,5 +150,24 @@ export class AluaddComponent implements OnInit {
       },(error)=>{
         this.showErrorSave();
       });  
+    }
+
+    diasChange(dia)
+    {
+      this.gethorarios.getHora(dia).subscribe((data: Horas[])=>{
+        this._allHoras = data;
+        if(this._allHoras.length < 1 )
+        {
+          this.showDisp();
+        }
+      }, (error)=>{
+        console.log(error);
+        
+      });
+    }
+
+    horasChange(hora)
+    {
+      console.log(hora);
     }
 }

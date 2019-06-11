@@ -19,9 +19,7 @@ class padresController extends Controller
     public function store(Request $request)
     {
         $id = $request->iddia;
-        $sql = "SELECT DISTINCT detallegrupos.idh, horario.hora 
-        FROM detallegrupos RIGHT JOIN horario ON detallegrupos.idh = horario.idh 
-        WHERE detallegrupos.idd = $id";
+        $sql = "SELECT horario.idh, horario.hora FROM dias INNER JOIN horario ON dias.iddia = horario.idd WHERE horario.idd = $id";
         $hora = DB::select("$sql");
         return $hora;
         

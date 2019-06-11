@@ -1,4 +1,4 @@
-<mat-toolbar color="primary">
+<mat-toolbar>
   <span>Tipo de Mensualidad</span>
   <span class="spacer"></span>
   Recargar datos:
@@ -64,7 +64,10 @@
 
 
   <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
-    <mat-spinner class="text-success"></mat-spinner>
+    <!-- Spinner de carga -->
+      <div class="loading">
+        <span>Cargando...</span>
+      </div>
   </div>
 
   <mat-paginator #paginator

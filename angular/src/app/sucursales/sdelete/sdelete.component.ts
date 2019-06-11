@@ -1,18 +1,18 @@
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { Component, OnInit, Inject } from '@angular/core';
-import { EscuelasService } from 'src/app/services/escuelas.service';
+import { SucursalService } from 'src/app/services/sucursal.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import {DataSource} from '@angular/cdk/collections';
 
 @Component({
-  selector: 'app-delete',
-  templateUrl: './delete.component.html',
-  styleUrls: ['./delete.component.css']
+  selector: 'app-sdelete',
+  templateUrl: './sdelete.component.html',
+  styleUrls: ['./sdelete.component.css']
 })
-export class DeleteComponent implements OnInit {
+export class SdeleteComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<DeleteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, public escuelasService: EscuelasService,
+  constructor(public dialogRef: MatDialogRef<SdeleteComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any, public sucursalService: SucursalService,
     public toastr: ToastrManager) { }
 
   ngOnInit() {
@@ -31,14 +31,15 @@ export class DeleteComponent implements OnInit {
   }
 
   confirmDelete(): void {
-    
-    this.escuelasService.delete(this.data.id).subscribe((data)=>{
+
+    this.sucursalService.delete(this.data.id).subscribe((data)=>{
       console.log(data);
       this.showSuccessEdit();
-      this.escuelasService.deleteIssue(this.data.id);
+      this.sucursalService.deleteIssue(this.data.id);
     },(error)=>{
       this.showErrorEdit();
       console.log(error);
     });
   }
+
 }

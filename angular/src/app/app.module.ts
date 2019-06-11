@@ -52,6 +52,16 @@ import { PadaddComponent } from './padres/padadd/padadd.component';
 import { PaddeleteComponent } from './padres/paddelete/paddelete.component';
 import { PerfilComponent } from './alumnos/perfil/perfil.component';
 
+import { ShomeComponent } from './sucursales/shome/shome.component';
+import { SaddComponent } from './sucursales/sadd/sadd.component';
+import { SeditComponent } from './sucursales/sedit/sedit.component';
+import { SdeleteComponent } from './sucursales/sdelete/sdelete.component';
+
+import { HhomeComponent } from './horarios/hhome/hhome.component';
+import { HeditComponent } from './horarios/hedit/hedit.component';
+import { HaddComponent } from './horarios/hadd/hadd.component';
+import { HdeleteComponent } from './horarios/hdelete/hdelete.component';
+
 
 const routes: Route[] = [
 {path:'personal',component:PerhomeComponent},
@@ -60,6 +70,8 @@ const routes: Route[] = [
 {path: 'home', component:LoginPrincipalComponent},
 {path: 'login', component:LoginComponent},
 {path: 'escuelas', component:HomeComponent},
+{path: 'horarios', component:HhomeComponent},
+{path: 'sucursales', component:ShomeComponent},
 {path: 'tipopersonal', component:TphomeComponent},
 {path: 'tipomensualidad', component:TmhomeComponent},
 {path: 'padres', component:PadhomeComponent},
@@ -105,8 +117,17 @@ const routes: Route[] = [
     PadaddComponent,
     PaddeleteComponent,
     PerfilComponent,
-  
- 
+    ShomeComponent,
+    SaddComponent,
+    SeditComponent,
+    SdeleteComponent,
+    HhomeComponent,
+    HeditComponent,
+    HaddComponent,
+    HdeleteComponent,
+    SdeleteComponent,
+
+
   ],
   imports: [
     NgxUpperCaseDirectiveModule,
@@ -117,7 +138,7 @@ const routes: Route[] = [
     RouterModule.forRoot(routes),
     HttpClientModule,
     BrowserAnimationsModule,
-    MatButtonModule, 
+    MatButtonModule,
     MatCheckboxModule,
     MatTableModule,
     MatFormFieldModule,
@@ -145,6 +166,7 @@ const routes: Route[] = [
     PersonalService,
     AlumnosService,
     PadresService,
+
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
   bootstrap: [AppComponent],
@@ -161,6 +183,10 @@ const routes: Route[] = [
     EditComponent,
     AddComponent,
     DeleteComponent,
+    // Modales de horario
+    HeditComponent,
+    HaddComponent,
+    HdeleteComponent,
     // Modales de tipo de mensualidad
     TmeditComponent,
     TmaddComponent,
@@ -171,14 +197,18 @@ const routes: Route[] = [
     AludeletComponent,
     // Modales de padres
     PadeditComponent,
-    PaddeleteComponent
-    
+    PaddeleteComponent,
+    // Modales de sucursales
+    SaddComponent,
+    SeditComponent,
+    SdeleteComponent
+
   ],
   exports: [
-    MatButtonModule, 
-    MatCheckboxModule, 
-    MatTableModule, 
-    MatFormFieldModule, 
+    MatButtonModule,
+    MatCheckboxModule,
+    MatTableModule,
+    MatFormFieldModule,
     MatPaginatorModule,
     MatInputModule,
     BrowserModule,
@@ -188,7 +218,7 @@ const routes: Route[] = [
     MatSelectModule,
     MatDialogModule
   ]
-  
+
 })
 export class AppModule { }
 export class PizzaPartyAppModule { }

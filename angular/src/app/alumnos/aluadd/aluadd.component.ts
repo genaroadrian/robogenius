@@ -11,6 +11,7 @@ import { GruposAlumnos } from 'src/app/interfaces/gruposalumnos';
 import { Observable } from 'rxjs';
 import { Horas } from 'src/app/interfaces/horas';
 import { GethorariosService } from 'src/app/services/gethorarios.service';
+import { Personal } from 'src/app/interfaces/personal';
 
 @Component({
   selector: 'app-aluadd',
@@ -21,6 +22,15 @@ import { GethorariosService } from 'src/app/services/gethorarios.service';
   }]
 })
 export class AluaddComponent implements OnInit {
+
+  detallegrupos: Detallegrupos = 
+  {
+    iddgru: null,
+    idd: null,
+    idh: null,
+    idp: null,
+    idalu: null
+  }
 
   // Horas obtenidas de laravel
    _allHoras: Horas[];
@@ -59,6 +69,9 @@ export class AluaddComponent implements OnInit {
     idh: null,
     hora: null
   }
+
+  // Interfaz de personal
+  persona : Personal[];
 
   getErrorMessage() {
     return this.formControl.hasError('required') ? 'Campo obligatorio' :
@@ -164,6 +177,8 @@ export class AluaddComponent implements OnInit {
         this._allHoras = data;
         this.labelh = ""
       this.spinerh = "none";
+      this.detallegrupos.idd = dia.iddia;
+      console.log(this.detallegrupos);
         if(this._allHoras.length < 1 )
         {
           this.showDisp();
@@ -174,8 +189,14 @@ export class AluaddComponent implements OnInit {
       });
     }
 
-    horasChange(hora)
-    {
-      console.log(hora);
-    }
+    // horasChange(hora)
+    // {
+    //   this.detallegrupos.idh = hora.idh;
+    //   this.gethorarios.getPersonal(this.detallegrupos).subscribe((data: Personal[]=>{
+
+    //   }, (error)=>{
+    //     console.ko
+    //   })
+
+    // }
 }

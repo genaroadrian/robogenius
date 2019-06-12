@@ -19,32 +19,19 @@ class padresController extends Controller
     public function store(Request $request)
     {
         $id = $request->iddia;
-        $sql = "SELECT horario.idh, horario.hora FROM dias INNER JOIN horario ON dias.iddia = horario.idd WHERE horario.idd = $id";
+        $sql = "SELECT DISTINCT horario.idh, horario.hora 
+        FROM detallegrupos INNER JOIN horario 
+        ON detallegrupos.idh = horario.idh 
+        WHERE detallegrupos.idd = $id";
         $hora = DB::select("$sql");
         return $hora;
         
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $padres = Padres::find($id);
-        $padres->nombrepad = $request->nombrepad;
-        $padres->apellidospad = $request->apellidospad;
-        $padres->domiciliopad = $request->domiciliopad;
-        $padres->telefonopad = $request->telefonopad;
-        $padres->correopad = $request->correopad;
-        $padres->ocupacionpad = $request->ocupacionpad;
-        $padres->nombremad = $request->nombremad;
-        $padres->apellidosmad = $request->apellidosmad;
-        $padres->domiciliomad = $request->domiciliomad;
-        $padres->telefonomad = $request->telefonomad;
-        $padres->correomad = $request->correomad;
-        $padres->ocupacionmad = $request->ocupacionmad;
-        $padres->usuario = $request->usuario;
-        $padres->contra = $request->contra;
-        $padres->activo = 1;
-        $padres->save();
-        echo json_encode($padres);
+        // $id = $request->idh;
+        // $sql = ""
     }
 
     public function destroy($id)

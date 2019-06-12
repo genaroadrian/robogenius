@@ -24,3 +24,8 @@ mat-hint, .hint {
 {
     color: #E74C3C;
 }
+
+mat-spinner
+{
+    width: 10%;
+}

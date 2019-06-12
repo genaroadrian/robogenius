@@ -41,7 +41,7 @@ export class HhomeComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public escuelasService: HorariosService ) { }
+    public horariosService: HorariosService ) { }
 
 
   ngOnInit() 

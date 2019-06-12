@@ -18,4 +18,9 @@ export class GethorariosService {
   {
     return this.httpClient.post(this.API_ENDPOINT + '/horas',dia);
   }
+
+  getPersonal(hora)
+  {
+    return this.httpClient.put(this.API_ENDPOINT + 'horas',hora);
+  }
 }

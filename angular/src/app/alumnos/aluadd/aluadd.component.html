@@ -439,8 +439,10 @@
         </div>
 
         <div class="form col-md-3">
-          <mat-form-field>
-            <mat-label>Seleccione un horario</mat-label>
+          
+          <mat-form-field >
+
+            <mat-label><mat-spinner [ngStyle]="{'display':spinerh}" diameter="15" class="text-success" ></mat-spinner><span [ngStyle]="{'display':labelh}">Seleccione un horario</span></mat-label>
             <mat-select required [(ngModel)]="hora.idh" (selectionChange)="horasChange(hora)" name="idh">
               <mat-option *ngFor="let ho of _allHoras" [value]="ho.idh">
                 {{ho.hora}}
@@ -451,9 +453,9 @@
 
         <div class="form col-md-3">
           <mat-form-field>
-            <mat-label>Seleccione un personal</mat-label>
-            <mat-select required>
-
+            <mat-label><mat-spinner diameter="15"></mat-spinner> <span>Seleccione un personal</span></mat-label>
+            <mat-select required [(ngModel)]="persona.idp" (selectionChange)="personaChange(persona)">
+              <mat-option></mat-option>
             </mat-select>
           </mat-form-field>
         </div>

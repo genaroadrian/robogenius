@@ -25,6 +25,10 @@ export class AluaddComponent implements OnInit {
   // Horas obtenidas de laravel
    _allHoras: Horas[];
 
+  //  Display y label hora 
+  spinerh = "none";
+  labelh= "";
+
   // Esconder la contraseña en el input 
   hide = true;
   
@@ -154,8 +158,12 @@ export class AluaddComponent implements OnInit {
 
     diasChange(dia)
     {
+      this.labelh = "none"
+      this.spinerh = "";
       this.gethorarios.getHora(dia).subscribe((data: Horas[])=>{
         this._allHoras = data;
+        this.labelh = ""
+      this.spinerh = "none";
         if(this._allHoras.length < 1 )
         {
           this.showDisp();

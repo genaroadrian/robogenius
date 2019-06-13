@@ -9,30 +9,6 @@
       </mat-form-field>
     </div>
 
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput placeholder="Dirección" [(ngModel)]="data.direccion" name="direccion">
-      </mat-form-field>
-    </div>
-
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput placeholder="Encargado" [(ngModel)]="data.encargado" name="encargado">
-      </mat-form-field>
-    </div>
-
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput placeholder="Usuario" [(ngModel)]="data.usuario" name="usuario">
-      </mat-form-field>
-    </div>
-
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput placeholder="Password" [(ngModel)]="data.psw" name="psw">
-      </mat-form-field>
-    </div>
-
     <div mat-dialog-actions>
       <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
       <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>

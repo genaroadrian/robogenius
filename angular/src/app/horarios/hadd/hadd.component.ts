@@ -35,7 +35,7 @@ export class HaddComponent implements OnInit {
     console.log(this.data);
     this.horariosService.add(this.data).subscribe((data) =>{
   	this.showSuccessEdit();
-  	this.horariosService.addIssue(this.data);
+  	//this.horariosService.addIssue(this.data);
     },(error)=>{
       this.showErrorEdit();
     });

@@ -4,7 +4,7 @@ namespace slidecom_robogenius\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use slidecom_robogenius\horario;
+use slidecom_robogenius\Horarios;
 use Illuminate\Support\Facades\DB;
 use Session;
 
@@ -20,7 +20,7 @@ class horariosController extends Controller
      // Guarda nuevos registros
     public function store(Request $request)
     {
-        $horario = new horario();
+        $horario = new Horarios();
         $horario->idh = $request->idh;
         $horario->hora = $request->hora;
         $horario->idd = $request->idd;
@@ -32,7 +32,7 @@ class horariosController extends Controller
     // Actualiza registros
     public function update(Request $request, $id)
     {
-        $horario = horario::find($id);
+        $horario = Horarios::find($id);
         $horario->idh = $request->idh;
         $horario->hora = $request->hora;
         $horario->idd = $request->idd;

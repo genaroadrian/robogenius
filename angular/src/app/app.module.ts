@@ -56,7 +56,7 @@ import { ShomeComponent } from './sucursales/shome/shome.component';
 import { SaddComponent } from './sucursales/sadd/sadd.component';
 import { SeditComponent } from './sucursales/sedit/sedit.component';
 import { SdeleteComponent } from './sucursales/sdelete/sdelete.component';
-
+import { HorariosService } from './services/horarios.service';
 import { HhomeComponent } from './horarios/hhome/hhome.component';
 import { HeditComponent } from './horarios/hedit/hedit.component';
 import { HaddComponent } from './horarios/hadd/hadd.component';
@@ -164,6 +164,7 @@ const routes: Route[] = [
     PersonalService,
     AlumnosService,
     PadresService,
+    HorariosService,
 
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],

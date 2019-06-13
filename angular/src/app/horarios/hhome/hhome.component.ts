@@ -41,7 +41,7 @@ export class HhomeComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public escuelasService: HorariosService ) { }
+    public horariosService: HorariosService ) { }
 
 
   ngOnInit() 
@@ -77,7 +77,7 @@ export class HhomeComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result=>{
       if(result==1){
-        this.exampleDatabase.dataChange.value.push(this.HorariosService.getDialogData());
+        this.exampleDatabase.dataChange.value.push(this.horariosService.getDialogData());
         this.exampleDatabase = new HorariosService(this.httpClient);
         this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
       }this.refreshTable();
@@ -113,7 +113,7 @@ export class HhomeComponent implements OnInit {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idh === this.id);
         // Then you update that record using data from dialogData (values you enetered)
-        this.exampleDatabase.dataChange.value[foundIndex] = this.HorariosService.getDialogData();
+        this.exampleDatabase.dataChange.value[foundIndex] = this.horariosService.getDialogData();
         // And lastly refresh table
       }
       this.refresh();

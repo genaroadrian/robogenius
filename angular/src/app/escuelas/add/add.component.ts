@@ -34,8 +34,8 @@ export class AddComponent implements OnInit {
   {
     console.log(this.data);
     this.escuelasService.add(this.data).subscribe((data) =>{
-      this.showSuccessEdit();
-      this.escuelasService.addIssue(this.data);
+    this.showSuccessEdit();
+    this.escuelasService.addIssue(this.data);
     },(error)=>{
       this.showErrorEdit();
     });

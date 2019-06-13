@@ -112,8 +112,7 @@ export class FormPersonalComponent implements OnInit {
     idalu: null,
     idd: null,
     idh: null,
-    idp: this.idper,
-    activo: null
+    idp: this.idper
   };
 
   constructor(private personalService: PersonalService , private detallegruposService: DetallegruposService,

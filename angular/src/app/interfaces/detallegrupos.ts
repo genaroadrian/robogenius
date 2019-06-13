@@ -3,6 +3,5 @@ export interface Detallegrupos {
     idh: number,
     idd: number,
     idp: number,
-    idalu: number,
-    activo:number
+    idalu: number
 }

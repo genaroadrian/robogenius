@@ -217,21 +217,16 @@
       <mat-cell *matCellDef="let row; let i=index;">
         <!-- En el boton de editar se manda al mentodo todos los datos de row -->
         <button mat-icon-button class="text-success" 
-        (click)="onUpdate(i, row.idalu, row.nombre,row.correo,
-        row.fechanac, row.edad, row.iddom, row.alergias, row.cronica,
-        row.medicacion, row.otro ,row.sexo, row.domicilio, row.idpadre,
-        row.tel1cm, row.tel2cm, row.nomb1cm, row.nomb2cm,
-        row.ruta,
-        row.evaluacion,
-        row.psw,
-        row.idgrupo,
-        row.idcursos,
-        row.idsuc)">
+        (click)="onUpdate(i, row.idalu, row.nomalu, row.apelau, row.sexoalu, row.domalu,
+        row.telalu, row.correoalu, row.correoalu, row.medicacion, row.alergias,
+        row.perfilalu, row.cronica, row.otro, row.evaluacion, row.usuarioalu, row.pswalu, row.nompad, row.apepad,
+        row.telpad, row.correopad, row.ocupad, row.nommad, row.apemad, row.dommad, row.telmad, row.correomad, row.ocupmad,
+        row.nommem, row.costomem, row.fechaini, row.fechafin, row.total, row.adelanto, row.restante, row.usuariopad, row.pswpad)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
 
         <!-- En el boton de eliminar se manda llamar a la funcion y se le envia el id -->
-        <button mat-icon-button class="text-danger" (click)="delete(i,row.idalu, row.nombre, row.correo)">
+        <button mat-icon-button class="text-danger" (click)="delete(i,row.idalu, row.nomalu, row.apealu)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>

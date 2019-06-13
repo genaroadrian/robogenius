@@ -11,7 +11,7 @@ import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule,
   MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule,
   ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule, MatTabsModule, MatSortModule,
   MatToolbarModule, MatPaginatorIntl, MatSpinner, MatProgressSpinnerModule, MatSnackBarModule,
-  MatStepperModule, MatDatepickerModule, MatNativeDateModule} from '@angular/material';
+  MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LoginPrincipalComponent } from './login-principal/login-principal.component';
@@ -57,10 +57,17 @@ import { SaddComponent } from './sucursales/sadd/sadd.component';
 import { SeditComponent } from './sucursales/sedit/sedit.component';
 import { SdeleteComponent } from './sucursales/sdelete/sdelete.component';
 import { HorariosService } from './services/horarios.service';
+
+import { TpahomeComponent } from './tipopago/tpahome/tpahome.component';
+import { TpaaddComponent } from './tipopago/tpaadd/tpaadd.component';
+import { TpaeditComponent } from './tipopago/tpaedit/tpaedit.component';
+import { TpadeleteComponent } from './tipopago/tpadelete/tpadelete.component';
+
 import { HhomeComponent } from './horarios/hhome/hhome.component';
 import { HeditComponent } from './horarios/hedit/hedit.component';
 import { HaddComponent } from './horarios/hadd/hadd.component';
 import { HdeleteComponent } from './horarios/hdelete/hdelete.component';
+
 
 
 const routes: Route[] = [
@@ -72,6 +79,7 @@ const routes: Route[] = [
 {path: 'escuelas', component:HomeComponent},
 {path: 'horarios', component:HhomeComponent},
 {path: 'sucursales', component:ShomeComponent},
+{path: 'tipopago', component:TpahomeComponent},
 {path: 'tipopersonal', component:TphomeComponent},
 {path: 'tipomensualidad', component:TmhomeComponent},
 {path: 'padres', component:PadhomeComponent},
@@ -125,11 +133,17 @@ const routes: Route[] = [
     HeditComponent,
     HaddComponent,
     HdeleteComponent,
+    ShomeComponent,
+    TpahomeComponent,
+    TpaaddComponent,
+    TpaeditComponent,
+    TpadeleteComponent,
 
 
   ],
   imports: [
     NgxUpperCaseDirectiveModule,
+    ReactiveFormsModule,
     NgxMaterialTimepickerModule,
     BrowserModule,
     AppRoutingModule,
@@ -151,13 +165,13 @@ const routes: Route[] = [
     MatButtonModule,
     MatSortModule,
     MatToolbarModule,
-    ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatStepperModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MatDividerModule
     ],
   providers: [
     TipopersonalService,
@@ -200,7 +214,11 @@ const routes: Route[] = [
     // Modales de sucursales
     SaddComponent,
     SeditComponent,
-    SdeleteComponent
+    SdeleteComponent,
+    // Modales de pagos
+    TpaaddComponent,
+    TpaeditComponent,
+    TpadeleteComponent
 
   ],
   exports: [

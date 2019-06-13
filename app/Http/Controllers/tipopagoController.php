@@ -4,7 +4,7 @@ namespace slidecom_robogenius\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use slidecom_robogenius\tipopagos;
+use slidecom_robogenius\tipopago;
 use Illuminate\Support\Facades\DB;
 use Session;
 

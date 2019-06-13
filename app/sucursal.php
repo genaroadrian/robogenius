@@ -8,7 +8,7 @@ class sucursal extends Model
 {
     public function getKeyName()
     {
-    	return "idesc";
+    	return "idsuc";
     }
     public $timestamps = false;
     protected $table = "sucursal";

@@ -424,7 +424,7 @@
     <form>
       <div class="row">
 
-        <div class="form col-md-3">
+        <div class="form col-md-4">
           <mat-form-field>
             <mat-label>Seleccione un dia</mat-label>
             <mat-select [(ngModel)]="dia.iddia" name="iddia" required (selectionChange)="diasChange(dia)">
@@ -438,24 +438,31 @@
           </mat-form-field>
         </div>
 
-        <div class="form col-md-3">
-          
-          <mat-form-field >
+        <div class="form col-md-4">
 
-            <mat-label><mat-spinner [ngStyle]="{'display':spinerh}" diameter="15" class="text-success" ></mat-spinner><span [ngStyle]="{'display':labelh}">Seleccione un horario</span></mat-label>
+          <mat-form-field>
+
+            <mat-label>
+              <mat-spinner [ngStyle]="{'display':spinerh}" diameter="15" class="text-success"></mat-spinner><span
+                [ngStyle]="{'display':labelh}">Seleccione un horario</span>
+            </mat-label>
             <mat-select required [(ngModel)]="hora.idh" (selectionChange)="horasChange(hora)" name="idh">
-              <mat-option *ngFor="let ho of _allHoras" [value]="ho.idh">
+              <mat-option *ngFor="let ho of _allHoras" [value]="ho.idh" [ngStyle]="{'display':labelh}">
                 {{ho.hora}}
               </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
 
-        <div class="form col-md-3">
+        <div class="form col-md-4">
           <mat-form-field>
-            <mat-label><mat-spinner diameter="15"></mat-spinner> <span>Seleccione un personal</span></mat-label>
-            <mat-select required >
-              <mat-option></mat-option>
+            <mat-label>
+              <mat-spinner [ngStyle]="{'display':spinnerp}" diameter="15"></mat-spinner> <span
+                [ngStyle]="{'display':labelp}">Seleccione un personal</span>
+            </mat-label>
+            <mat-select required>
+              <mat-option *ngFor="let per of _allPersonal" value="per.iddgru" [ngStyle]="{'display':labelp}">
+                {{per.nombre}} {{per.apellidos}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>

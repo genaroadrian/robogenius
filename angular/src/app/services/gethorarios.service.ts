@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Horas } from '../interfaces/horas';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -19,8 +19,9 @@ export class GethorariosService {
     return this.httpClient.post(this.API_ENDPOINT + '/horas',dia);
   }
 
-  getPersonal(hora)
+  getPersonal(detallegrupos)
   {
-    return this.httpClient.put(this.API_ENDPOINT + 'horas',hora);
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
+    return this.httpClient.put(this.API_ENDPOINT + '/horas/'+detallegrupos.idh,detallegrupos, {headers: headers});
   }
 }

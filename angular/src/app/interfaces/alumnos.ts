@@ -27,15 +27,9 @@ export interface Alumnos {
     telmad: number,
     correomad: string,
     ocupmad: string,
-    nommem: string,
-    costomem: string,
-    fechaini: string,
-    fechafin: string,
-    total: number,
-    adelanto: number,
-    restante: number,
     usuariopad: string,
     pswpad: string,
+    finscripcion: string,
     activo: number,
     idsuc: number
 }

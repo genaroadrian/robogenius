@@ -35,9 +35,14 @@ export class AluaddComponent implements OnInit {
   // Horas obtenidas de laravel
    _allHoras: Horas[];
 
-  //  Display y label hora 
+   // Personal obtenido de larabel
+   _allPersonal: Personal[];
+
+  //  Display y label hora y personal
   spinerh = "none";
   labelh= "";
+  spinnerp= "none";
+  labelp= "";
 
   // Esconder la contraseña en el input 
   hide = true;
@@ -71,7 +76,13 @@ export class AluaddComponent implements OnInit {
   }
 
   // Interfaz de personal
-  persona : Personal[];
+  persona: Personal =  {
+    idper: null, nombre: null, apellidos: null, usuario: null,
+    contra: null, fechanac: null, sexo: null, curp: null,
+    estadocivil: null, domicilio: null, fechaingreso: null, horasalida: null,
+    horaentrada: null, perfilprofesional: null, especialidad: null, salariomensual: null,
+    tareasasignadas: null, idtper: null, activo: null
+  };
 
   getErrorMessage() {
     return this.formControl.hasError('required') ? 'Campo obligatorio' :
@@ -189,14 +200,19 @@ export class AluaddComponent implements OnInit {
       });
     }
 
-    // horasChange(hora)
-    // {
-    //   this.detallegrupos.idh = hora.idh;
-    //   this.gethorarios.getPersonal(this.detallegrupos).subscribe((data: Personal[]=>{
+    horasChange(hora)
+    {
+      this.labelp="none";
+      this.spinnerp="";
+      this.detallegrupos.idh = hora.idh;
+      console.log(this.detallegrupos);
+      this.gethorarios.getPersonal(this.detallegrupos).subscribe((data: Personal[])=>{
+      this._allPersonal = data;
+      this.labelp ="";
+      this.spinnerp = "none";
+      console.log(this._allPersonal);
+      }, (error)=>{
 
-    //   }, (error)=>{
-    //     console.ko
-    //   })
-
-    // }
+      });
+    }
 }

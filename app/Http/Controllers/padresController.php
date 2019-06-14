@@ -28,10 +28,16 @@ class padresController extends Controller
         
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        // $id = $request->idh;
-        // $sql = ""
+        $idh = $request->idh;
+        $idd = $request->idd;
+         $sql = "SELECT DISTINCT detallegrupos.idp ,personal.nombre, personal.apellidos, detallegrupos.iddgru 
+        FROM detallegrupos INNER JOIN personal 
+        ON detallegrupos.idp = personal.idper
+        WHERE detallegrupos.idd = $idd AND detallegrupos.idh = $idh";
+        $personal = DB::SELECT("$sql");
+        return $personal;
     }
 
     public function destroy($id)

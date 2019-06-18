@@ -1,15 +1,16 @@
 <div class="container">
-  <div class="alumnoform">
+  <div class="alumnoform" [ngStyle]="{display:alumnosview}">
     <h3>Agregar nuevo alumno</h3>
     <span class="inforequired">Los campos marcados con <b>*</b> son obligatorios</span>
     <br>
 
     <!-- ---------------------------- Iniio del formulario ---------------------------- -->
 
-    <form (ngSubmit)="submit" #formControl="ngForm">
+    <!-- Validaciones en el formulario #formControl="ngForm" -->
+    <form (ngSubmit)="submit" >
 
       <!-- -------------------------- Formulario de alumnos -------------------------- -->
-      <div class="alumno" [ngStyle]="{display:alumnoview}">
+      <div class="alumno" >
         <h3>Información personal del alumno</h3>
         <mat-divider></mat-divider>
         <div class="row">
@@ -330,99 +331,62 @@
           </div>
         </div>
       </div>
-
-      <!-- --------------------------- Formulario de la membresia --------------------------- -->
-
-      <div class="membresia">
-        <h3>Membresia</h3>
-        <mat-divider></mat-divider>
-        <div class="row">
-
-          <!-- ------------------------------------------ Nombre membresia ------------------------------------------ -->
-          <div class="form col-md-4">
-            <mat-form-field>
-              <mat-label>Tipo de membresia: </mat-label>
-              <mat-select [(ngModel)]="alumno.nommem" [(value)]="selectedsex" name="nommem" required>
-                <mat-option value="Hombre">Hombre</mat-option>
-                <mat-option value="Mujer">Mujer</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-
-          <!-- ------------------------------------------ Costo ------------------------------------------ -->
-
-          <div class="form col-md-4">
-            <mat-form-field color="primary">
-              <input matInput #input class="form-control" placeholder="Csoto de la membresia"
-                [(ngModel)]="alumno.costomem" name="costomem" required>
-              <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <div class="row">
-
-          <!-- ------------------------------------ Inicio de membresia ------------------------------------ -->
-          <div class="form col-md-3">
-            <mat-form-field>
-              <input [(ngModel)]="alumno.fechaini" matInput placeholder="Inicio" type="date" name="fechaini" required>
-            </mat-form-field>
-          </div>
-
-          <!-- ---------------------------------- Final de la membresia ---------------------------------- -->
-
-          <div class="form col-md-3">
-            <mat-form-field>
-              <input [(ngModel)]="alumno.fechafin" matInput placeholder="Final" type="date" name="fechafin" required>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <!-- --------------------------------- Costo total de la membresia --------------------------------- -->
-
-        <div class="row">
-          <div class="form col-md-3">
-            <mat-form-field>
-              <input class="form-control" [(ngModel)]="alumno.total" matInput placeholder="Total" type="number"
-                class="example-right-align" name="total">
-              <span matPrefix>$&nbsp;</span>
-            </mat-form-field>
-          </div>
-
-          <!-- ---------------------------------------- Adelanto ---------------------------------------- -->
-
-          <div class="form col-md-3">
-            <mat-form-field>
-              <input class="form-control" [(ngModel)]="alumno.adelanto" matInput placeholder="Adelanto" type="number"
-                class="example-right-align" name="adelanto">
-              <span matPrefix>$&nbsp;</span>
-            </mat-form-field>
-          </div>
-
-          <!-- ----------------------------------- Restante ----------------------------------- -->
-
-          <div class="form col-md-3">
-            <mat-form-field>
-              <input class="form-control" [(ngModel)]="alumno.restante" matInput placeholder="Restante" type="number"
-                class="example-right-align" name="restante" [(value)]=" alumno.total - alumno.adelanto " disabled>
-              <span matPrefix>$&nbsp;</span>
-            </mat-form-field>
-          </div>
-        </div>
-      </div>
-      <!-- ------------------------------------- Boton de siguiente ------------------------------------- -->
       <div>
-        <button mat-button [type]="submit" [disabled]="!formControl.valid" (click)="saveAlumno(alumno)">Guardar</button>
+        <!-- Desabilitar el boton / validacion         [disabled]="!formControl.valid"  -->
+        <button mat-button [type]="submit" (click)="saveAlumno(alumno)">Siguiente</button>
         <button mat-button [routerLink]="['/alumnos']" routerLinkActive="router-link-active"
           tabindex="-1">Cancelar</button>
       </div>
     </form>
   </div>
 
-  <div class="grupoalu">
+  <!-- ------------------------------ Fin del formulario de alumno ------------------------------ -->
+
+  <!-- --------------------------- Formulario de la membresia --------------------------- -->
+
+  <div class="membresia" [ngStyle]="{display:membresiaview}">
+    <h2>Elige tu tipo de membresia</h2>
+    <form>
+      <div class="center-block col-md-10">
+        <div class="plan"  *ngFor="let mem of _allMembresias">
+          <h1 [ngStyle]="{display:alumnosview}">{{mem.idtmem}}</h1>
+          <h2 class="plan-title">{{mem.nombre}}</h2>
+          <p class="plan-price">${{mem.costo}}.00 <span>/mes</span></p>
+          <ul class="plan-features">
+            <li><strong>{{mem.clases}} </strong> Clases a la semana</li>
+            <li>Crendencial del alumno</li>
+            <li>Credencial de papá autorizado</li>
+            <li>Uso de todo el material didáctico</li>
+            <li>Acceso al área de manufactura con supervisor del asesor</li>
+          </ul>
+          <button (click)="saveMem(mem.idtmem)" mat-stroked-button>Empezar ahora</button>
+        </div>
+      </div>
+      <!-- ------------------------------------- Boton de siguiente ------------------------------------- -->
+
+    </form>
+  </div>
+
+  <!-- ------------------------------------- Fin del formulario de membresia ------------------------------------- -->
+
+  <!-- ------------------------------------- Formulario de tipo de pago ------------------------------------- -->
+
+  <div class="tipopago" [ngStyle]="{display:tipopagoview}">
+    <h1>Elige tu tipo de pago</h1>
+    <form action="">
+
+    </form>
+    <button (click)="saveTpago()">Siguiente</button>
+  </div>
+
+  <!-- ---------------------------------- Fin del formulario de tipo de pagos ---------------------------------- -->
+
+  <!-- ---------------------------------- Formulario de asignacion de grupos ---------------------------------- -->
+
+  <div class="grupoalu" [ngStyle]="{display:gruposview}">
     <h3>Asignación de grupos</h3>
     <form>
-      <div class="row">
+      <div class="row" *ngFor="let i = index">
 
         <div class="form col-md-4">
           <mat-form-field>

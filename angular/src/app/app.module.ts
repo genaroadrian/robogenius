@@ -67,6 +67,7 @@ import { HhomeComponent } from './horarios/hhome/hhome.component';
 import { HeditComponent } from './horarios/hedit/hedit.component';
 import { HaddComponent } from './horarios/hadd/hadd.component';
 import { HdeleteComponent } from './horarios/hdelete/hdelete.component';
+import { MemalumnovistaComponent } from './memalumnovista/memalumnovista.component';
 
 
 
@@ -138,6 +139,7 @@ const routes: Route[] = [
     TpaaddComponent,
     TpaeditComponent,
     TpadeleteComponent,
+    MemalumnovistaComponent,
 
 
   ],

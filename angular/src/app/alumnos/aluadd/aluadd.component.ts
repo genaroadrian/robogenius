@@ -12,6 +12,8 @@ import { Observable } from 'rxjs';
 import { Horas } from 'src/app/interfaces/horas';
 import { GethorariosService } from 'src/app/services/gethorarios.service';
 import { Personal } from 'src/app/interfaces/personal';
+import { TipomembresiaService } from 'src/app/services/tipomembresia.service';
+import { Tipomembresia } from 'src/app/interfaces/Tipomembresia';
 
 @Component({
   selector: 'app-aluadd',
@@ -23,6 +25,18 @@ import { Personal } from 'src/app/interfaces/personal';
 })
 export class AluaddComponent implements OnInit {
 
+  // Imterfaz de la tabla Tipo de membresia
+  tmem: Tipomembresia= 
+  {
+    idtmem: null,
+    nombre: null,
+    costo: null,
+    clases: null
+  }
+
+  _allMembresias: Tipomembresia[];
+
+  // Interfaz de la tabla detalle grupos
   detallegrupos: Detallegrupos = 
   {
     iddgru: null,
@@ -31,6 +45,12 @@ export class AluaddComponent implements OnInit {
     idp: null,
     idalu: null
   }
+
+  // Visibilidad de los formularios
+  alumnosview = "";
+  membresiaview = "none";
+  tipopagoview = "none";
+  gruposview = "none";
 
   // Horas obtenidas de laravel
    _allHoras: Horas[];
@@ -117,11 +137,14 @@ export class AluaddComponent implements OnInit {
   }
   
   constructor(private alumnosService: AlumnosService, private httpClient: HttpClient,
-    public toastr: ToastrManager, private gethorarios: GethorariosService) { }
+    public toastr: ToastrManager, private gethorarios: GethorariosService,
+    private tmembresia: TipomembresiaService) 
+    {
+    }
 
   ngOnInit() 
   {
-    
+    this.getTipomem();
   }
 
   // Interfaz de la tabla alumnos
@@ -154,30 +177,49 @@ export class AluaddComponent implements OnInit {
     telmad: null,
     correomad: null,
     ocupmad: null,
-    nommem: null,
-    costomem: null,
-    fechaini: null,
-    fechafin: null,
-    total: null,
-    adelanto: null,
-    restante: null,
+    finscripcion: null,
     usuariopad: null,
     pswpad: null,
     activo: null,
     idsuc: null
   };
 
+  getTipomem()
+  {
+    this.tmembresia.getMemalu().subscribe((data: Tipomembresia[])=>{
+    this._allMembresias = data;  
+    console.log(this._allMembresias);
+    }, (error)=>{
+
+    });
+  }
+
+  saveMem(idtmem)
+  {
+    console.log(idtmem);
+    this.membresiaview="none";
+    this.tipopagoview="";
+  }
+
+  saveTpago()
+  {
+    this.tipopagoview="none";
+    this.gruposview="";
+  }
+
   // Metodo para guardar alumnos
   saveAlumno(alumno)
     {
         alumno.restante = alumno.total - alumno.adelanto;
       console.log(alumno.restante);
-      this.alumnosService.save(alumno).subscribe((data)=>{
+      this.alumnosview ="none";
+      this.membresiaview = "";
+      // this.alumnosService.save(alumno).subscribe((data)=>{
 
-        this.showErrorSave();
-      },(error)=>{
-        this.showErrorSave();
-      });  
+      //   this.showErrorSave();
+      // },(error)=>{
+      //   this.showErrorSave();
+      // });  
     }
 
     diasChange(dia)

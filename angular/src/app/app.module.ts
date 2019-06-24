@@ -68,26 +68,33 @@ import { HeditComponent } from './horarios/hedit/hedit.component';
 import { HaddComponent } from './horarios/hadd/hadd.component';
 import { HdeleteComponent } from './horarios/hdelete/hdelete.component';
 import { MemalumnovistaComponent } from './memalumnovista/memalumnovista.component';
+import { LoginGuard } from './login.guard';
+import { NoLoginGuard } from './no-login.guard';
+import { RegisterComponent } from './register/register.component';
 
 
 
 const routes: Route[] = [
-{path:'personal',component:PerhomeComponent},
-{path:'personalform',component:FormPersonalComponent},
-{path: '', component:LoginPrincipalComponent},
-{path: 'home', component:LoginPrincipalComponent},
-{path: 'login', component:LoginComponent},
-{path: 'escuelas', component:HomeComponent},
-{path: 'horarios', component:HhomeComponent},
-{path: 'sucursales', component:ShomeComponent},
-{path: 'tipopago', component:TpahomeComponent},
-{path: 'tipopersonal', component:TphomeComponent},
-{path: 'tipomensualidad', component:TmhomeComponent},
-{path: 'padres', component:PadhomeComponent},
-{path: 'padresform', component:PadaddComponent},
-{path: 'alumnos', component:AluhomeComponent},
-{path: 'perfilalumnos', component:PerfilComponent},
-{path: 'nuevoalumno', component: AluaddComponent}
+{path:'personal',component:PerhomeComponent, canActivate: [LoginGuard]},
+{path:'personalform',component:FormPersonalComponent, canActivate: [LoginGuard]},
+{path: '', component:LoginPrincipalComponent, canActivate: [LoginGuard]},
+{path: 'home', component:LoginPrincipalComponent, canActivate: [LoginGuard]},
+{path: 'login', component:LoginComponent, canActivate: [NoLoginGuard]},
+{path: 'escuelas', component:HomeComponent, canActivate: [LoginGuard]},
+{path: 'horarios', component:HhomeComponent, canActivate: [LoginGuard]},
+{path: 'sucursales', component:ShomeComponent, canActivate: [LoginGuard]},
+{path: 'tipopago', component:TpahomeComponent, canActivate: [LoginGuard]},
+{path: 'tipopersonal', component:TphomeComponent, canActivate: [LoginGuard]},
+{path: 'tipomensualidad', component:TmhomeComponent, canActivate: [LoginGuard]},
+{path: 'padres', component:PadhomeComponent, canActivate: [LoginGuard]},
+{path: 'padresform', component:PadaddComponent, canActivate: [LoginGuard]},
+{path: 'alumnos', component:AluhomeComponent, canActivate: [LoginGuard]},
+{path: 'perfilalumnos', component:PerfilComponent, canActivate: [LoginGuard]},
+{path: 'nuevoalumno', component: AluaddComponent, canActivate: [LoginGuard]},
+{path: 'memalumnovista', component: MemalumnovistaComponent, canActivate: [LoginGuard]},
+{path: 'registrar', component: RegisterComponent}
+
+
 
 
 
@@ -140,6 +147,7 @@ const routes: Route[] = [
     TpaeditComponent,
     TpadeleteComponent,
     MemalumnovistaComponent,
+    RegisterComponent,
 
 
   ],
@@ -181,6 +189,8 @@ const routes: Route[] = [
     AlumnosService,
     PadresService,
     HorariosService,
+    LoginGuard,
+    NoLoginGuard,
 
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],

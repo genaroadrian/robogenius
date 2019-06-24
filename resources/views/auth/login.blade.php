@@ -12,7 +12,7 @@
 
                     <h3 class="text-center m-0">
                              <div >
-                                 <img src="http://pngimg.com/uploads/robot/robot_PNG79.png" width="200"  class="float-right" alt="...">
+                                 {{-- <img src="http://pngimg.com/uploads/robot/robot_PNG79.png" width="200"  class="float-right" alt="..."> --}}
                         </div>
                         
                     </h3>

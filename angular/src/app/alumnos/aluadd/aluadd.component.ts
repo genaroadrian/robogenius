@@ -14,6 +14,7 @@ import { GethorariosService } from 'src/app/services/gethorarios.service';
 import { Personal } from 'src/app/interfaces/personal';
 import { TipomembresiaService } from 'src/app/services/tipomembresia.service';
 import { Tipomembresia } from 'src/app/interfaces/Tipomembresia';
+import { MatSlideToggleChange } from '@angular/material';
 
 @Component({
   selector: 'app-aluadd',
@@ -26,7 +27,7 @@ import { Tipomembresia } from 'src/app/interfaces/Tipomembresia';
 export class AluaddComponent implements OnInit {
 
   // Imterfaz de la tabla Tipo de membresia
-  tmem: Tipomembresia= 
+  tmem: Tipomembresia = 
   {
     idtmem: null,
     nombre: null,
@@ -51,6 +52,19 @@ export class AluaddComponent implements OnInit {
   membresiaview = "none";
   tipopagoview = "none";
   gruposview = "none";
+  tipoimg= "";
+  efec = "none";
+  payp = "none";
+  tarje = "none";
+  transfe= "none";
+
+  // Valor del total a pagar 
+  totalpago;
+  adelanto;
+  restante;
+
+  // Toggle desabolitado
+  cheked= false;
 
   // Horas obtenidas de laravel
    _allHoras: Horas[];
@@ -194,11 +208,12 @@ export class AluaddComponent implements OnInit {
     });
   }
 
-  saveMem(idtmem)
+  saveMem(idtmem, costo)
   {
     console.log(idtmem);
     this.membresiaview="none";
     this.tipopagoview="";
+    this.totalpago = costo;
   }
 
   saveTpago()
@@ -257,4 +272,29 @@ export class AluaddComponent implements OnInit {
 
       });
     }
-}
+
+    efectivo()
+    {
+      this.tipoimg = "none";
+      this.efec = "";
+    }
+
+    inscripcion(event: MatSlideToggleChange)
+    {
+      if(this.cheked == false)
+      {
+        this.cheked = true
+      }
+
+      if(this.cheked == true)
+      {
+        this.totalpago = this.totalpago + 1000;
+        this.cheked = false
+      }
+
+      console.log(this.cheked) 
+      
+
+    }
+  }
+

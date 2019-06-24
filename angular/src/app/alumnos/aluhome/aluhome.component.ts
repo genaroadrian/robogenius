@@ -147,7 +147,7 @@ export class AluhomeComponent implements OnInit {
     , telmad: number, correomad: string, ocupmad: string, nommem: string 
     , costomem: string, fechaini: string, fechafin: string, total: string, adelanto: string
     , restante: string, usuariopad: string, pswpad: string) {
-      console.log(nomalu);
+      console.log(apealu + nomalu);
     // A la variable index se le asigna el [index] recibido con la variable [i]
     this.index = i;
     // Se le asigna a la variable [id] el valor recibido de la variable [idper]

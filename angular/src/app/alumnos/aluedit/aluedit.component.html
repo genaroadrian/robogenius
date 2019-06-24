@@ -11,9 +11,7 @@
         <br>
         <br>
 
-        <label style="font-size: 30px;"> Erick Mora Palma <button mat-icon-button class="text-success">
-                <mat-icon aria-label="Edit">edit</mat-icon>
-            </button></label>
+        <label style="font-size: 30px;"> Erick Mora Palma</label>
 
     </div>
     <div class="col-lg-2">
@@ -36,7 +34,7 @@
         <i class="mdi mdi-account-alert"> </i><label style="font-size: 18px;">
                 <mat-form-field color="accent">
                         <input matInput #input class="form-control" placeholder="Apellidos" [(ngModel)]="data.apealu"
-                          name="estadocivil" required>
+                          name="apealu" required>
                         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                       </mat-form-field>
         </label>

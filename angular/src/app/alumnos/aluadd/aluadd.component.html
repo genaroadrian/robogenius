@@ -7,10 +7,10 @@
     <!-- ---------------------------- Iniio del formulario ---------------------------- -->
 
     <!-- Validaciones en el formulario #formControl="ngForm" -->
-    <form (ngSubmit)="submit" >
+    <form (ngSubmit)="submit">
 
       <!-- -------------------------- Formulario de alumnos -------------------------- -->
-      <div class="alumno" >
+      <div class="alumno">
         <h3>Información personal del alumno</h3>
         <mat-divider></mat-divider>
         <div class="row">
@@ -333,8 +333,8 @@
       </div>
       <div>
         <!-- Desabilitar el boton / validacion         [disabled]="!formControl.valid"  -->
-        <button mat-button [type]="submit" (click)="saveAlumno(alumno)">Siguiente</button>
-        <button mat-button [routerLink]="['/alumnos']" routerLinkActive="router-link-active"
+        <button mat-raised-button [type]="submit" (click)="saveAlumno(alumno)">Siguiente</button>
+        <button mat-raised-button [routerLink]="['/alumnos']" routerLinkActive="router-link-active"
           tabindex="-1">Cancelar</button>
       </div>
     </form>
@@ -348,7 +348,7 @@
     <h2>Elige tu tipo de membresia</h2>
     <form>
       <div class="center-block col-md-10">
-        <div class="plan"  *ngFor="let mem of _allMembresias">
+        <div class="plan" *ngFor="let mem of _allMembresias">
           <h1 [ngStyle]="{display:alumnosview}">{{mem.idtmem}}</h1>
           <h2 class="plan-title">{{mem.nombre}}</h2>
           <p class="plan-price">${{mem.costo}}.00 <span>/mes</span></p>
@@ -359,24 +359,86 @@
             <li>Uso de todo el material didáctico</li>
             <li>Acceso al área de manufactura con supervisor del asesor</li>
           </ul>
-          <button (click)="saveMem(mem.idtmem)" mat-stroked-button>Empezar ahora</button>
+          <button (click)="saveMem(mem.idtmem, mem.costo)" mat-stroked-button>Empezar ahora</button>
         </div>
       </div>
       <!-- ------------------------------------- Boton de siguiente ------------------------------------- -->
-
     </form>
   </div>
-
   <!-- ------------------------------------- Fin del formulario de membresia ------------------------------------- -->
 
   <!-- ------------------------------------- Formulario de tipo de pago ------------------------------------- -->
-
   <div class="tipopago" [ngStyle]="{display:tipopagoview}">
-    <h1>Elige tu tipo de pago</h1>
+    <br>
+    <div class="row">
+      <div class="col-md-10 cont" [ngStyle]="{display:tipoimg}">
+        <h1>Elige tu tipo de pago</h1>
+        <img src="assets/img/efectivo.png" alt="" class="efec" (click)="efectivo()">
+        <img src="assets/img/paypal.png" alt="" class="payp" (click)="paypal()">
+        <img src="assets/img/tarjeta.png" alt="" class="tarj" (click)="tarjeta()">
+        <img src="assets/img/transferencia.png" alt="" class="tran" (click)="transferencia()">
+        <div class="row">
+          <button mat-raised-button (click)="returntmem()" routerLinkActive="router-link-active">Regresar</button>
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div [ngStyle]="{display:efec}" class="col-md-10 efec">
+        <h1>Pago por efectivo</h1>
+        <mat-form-field>
+          <input matInput [(ngModel)]="adelanto" placeholder="Adelanto" type="number" class="example-right-align">
+          <span matPrefix>$&nbsp;</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [(ngModel)]="totalpago - adelanto" placeholder="Restante " disabled type="number"
+            class="example-right-align">
+          <span matPrefix>$&nbsp;</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput [(ngModel)]="totalpago" placeholder="Total " disabled type="number"
+            class="example-right-align">
+          <span matPrefix>$&nbsp;</span>
+          <span matSuffix>.00</span>
+        </mat-form-field>
+
+        <mat-slide-toggle color="warn" (change)="inscripcion($event)" [checked]="checked">Agregar inscripción
+          (${{anualidad}}.00)
+        </mat-slide-toggle>
+
+        <div class="row">
+          <button mat-raised-button (click)="saveTpago()" routerLinkActive="router-link-active">Siguiente</button>
+          <button mat-raised-button (click)="returntpago()" routerLinkActive="router-link-active" tabindex="-1">
+            Regresar</button>
+        </div>
+      </div>
+    </div>
+    <div [ngStyle]="{display:payp}" class="payp">
+      <h1>Pago por paypal</h1>
+
+      <button mat-raised-button (click)="returntpago()" routerLinkActive="router-link-active" tabindex="-1">
+        Regresar</button>
+    </div>
+    <div [ngStyle]="{display:tarje}" class="tarje">
+      <h1>Pago por tarjeta</h1>
+
+      <button mat-raised-button (click)="returntpago()" routerLinkActive="router-link-active" tabindex="-1">
+        Regresar</button>
+    </div>
+    <div [ngStyle]="{display:transfe}" class="transfe">
+      <h1>Pago por transferencia|</h1>
+
+      <button mat-raised-button (click)="returntpago()" routerLinkActive="router-link-active" tabindex="-1">
+        Regresar</button>
+    </div>
+
     <form action="">
 
     </form>
-    <button (click)="saveTpago()">Siguiente</button>
   </div>
 
   <!-- ---------------------------------- Fin del formulario de tipo de pagos ---------------------------------- -->
@@ -386,7 +448,7 @@
   <div class="grupoalu" [ngStyle]="{display:gruposview}">
     <h3>Asignación de grupos</h3>
     <form>
-      <div class="row" *ngFor="let i = index">
+      <div class="row">
 
         <div class="form col-md-4">
           <mat-form-field>

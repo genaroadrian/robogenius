@@ -374,7 +374,9 @@
       <div class="col-md-10 cont" [ngStyle]="{display:tipoimg}">
         <h1>Elige tu tipo de pago</h1>
         <img src="assets/img/efectivo.png" alt="" class="efec" (click)="efectivo()">
-        <img src="assets/img/paypal.png" alt="" class="payp" (click)="paypal()">
+        <form #form action = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NAD7LAJGWMGPU " method = "post" target = "_ top"> 
+          <input (click) = "form.submit ()" type = "image"  class="payp" src = " assets/img/paypal.png " border = "0" name = "submit" alt = "Pay with PayPal!"> 
+          </form>
         <img src="assets/img/tarjeta.png" alt="" class="tarj" (click)="tarjeta()">
         <img src="assets/img/transferencia.png" alt="" class="tran" (click)="transferencia()">
         <div class="row">

@@ -71,6 +71,7 @@ import { MemalumnovistaComponent } from './memalumnovista/memalumnovista.compone
 import { LoginGuard } from './login.guard';
 import { NoLoginGuard } from './no-login.guard';
 import { RegisterComponent } from './register/register.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 
@@ -182,7 +183,8 @@ const routes: Route[] = [
     MatDatepickerModule,
     ToastrModule.forRoot(),
     MatDividerModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    NgxPayPalModule
     ],
   providers: [
     TipopersonalService,

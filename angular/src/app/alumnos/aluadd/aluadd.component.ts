@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewChecked  } from '@angular/core';
 import { AlumnosService } from 'src/app/services/alumnos.service';
 import { HttpClient } from '@angular/common/http';
 import { Alumnos } from 'src/app/interfaces/alumnos';
@@ -18,6 +18,10 @@ import { MatSlideToggleChange } from '@angular/material';
 import { Memalumnos } from 'src/app/interfaces/memalumno';
 import { MemalumnoService } from 'src/app/services/memalumno.service';
 import { GruposAlumnosService } from 'src/app/services/grupos-alumnos.service';
+import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+
+
+// declare let paypal: any;
 
 @Component({
   selector: 'app-aluadd',
@@ -30,6 +34,9 @@ import { GruposAlumnosService } from 'src/app/services/grupos-alumnos.service';
 export class AluaddComponent implements OnInit {
 
   /* ---------------------- Declaraión de variables ---------------------- */
+
+// Payppal
+  public payPalConfig?: IPayPalConfig;
 
   // ID del grupo o clases
   idgrupo: any;
@@ -190,6 +197,7 @@ export class AluaddComponent implements OnInit {
     horaentrada: null, perfilprofesional: null, especialidad: null, salariomensual: null,
     tareasasignadas: null, idtper: null, activo: null
   };
+  showSuccess: boolean;
 
   /* Mensjaes de error */
 
@@ -220,10 +228,13 @@ export class AluaddComponent implements OnInit {
     private galuService: GruposAlumnosService) {
   }
 
-  ngOnInit() {
-    // Obtener tosas las membresias
+
+
+  ngOnInit(): void {
+    this.initConfig();
     this.getTipomem();
   }
+
 
   // Interfaz de la tabla alumnos
   alumno: Alumnos = {
@@ -399,6 +410,10 @@ export class AluaddComponent implements OnInit {
     });
     
   }
+  paypal() {
+    this.tipoimg = "none";
+    this.payp = "";
+  }
 
   // Aumenta el precio de la inscripcion cuando se activa el toggle button de incripción
   inscripcion(event: MatSlideToggleChange) {
@@ -418,6 +433,124 @@ export class AluaddComponent implements OnInit {
     console.log("Finalizacion")
   }
 
+
+
+
+
+  // addScript: boolean = false;
+  // paypalLoad: boolean = true;
+  
+
+
+  // paypalConfig = {
+  //   env: 'sandbox',
+  //   client: {
+  //     // sandbox: 'ARjodSEBZ_5YeXgiEVkH1-I7VrU0b6YLoFtYN9zqSuYn_d_K4dM4sLlZHKs_hyF3JZPQAU6Dm6SqxyT_',
+  //     sandbox: '<your-sandbox-key-here>',
+  //     production: 'Afpk-YhqAeYTIeL008oY11RHq3dyBTt4NRSwut0iPf2CIRbLtX3T7VmhcAurkpiFjvyoG8HMweEN99fw'
+  //   },
+  //   commit: true,
+  //   payment: (data, actions) => {
+  //     return actions.payment.create({
+  //       payment: {
+  //         transactions: [
+  //           { amount: { total: this.adelanto, currency: 'MXN' } }
+  //         ]
+  //       }
+  //     });
+  //   },
+  //   onAuthorize: (data, actions) => {
+  //     return actions.payment.execute().then((payment) => {
+  //       //Do something when payment is successful.
+  //     })
+  //   }
+  // };
+
+  // ngAfterViewChecked(): void {
+  //   if (!this.addScript) {
+  //     this.addPaypalScript().then(() => {
+  //       paypal.Button.render(this.paypalConfig, '#paypal-checkout-btn');
+  //       this.paypalLoad = false;
+  //     })
+  //   }
+  // }
+  
+  // addPaypalScript() {
+  //   this.addScript = true;
+  //   return new Promise((resolve, reject) => {
+  //     let scripttagElement = document.createElement('script');    
+  //     scripttagElement.src = 'https://www.paypalobjects.com/api/checkout.js';
+  //     scripttagElement.onload = resolve;
+  //     document.body.appendChild(scripttagElement);
+  //   })
+  // }
+
+
+
+ 
+  private initConfig(): void {
+    this.payPalConfig = {
+    currency: 'MXN',
+    // clientId: 'Afpk-YhqAeYTIeL008oY11RHq3dyBTt4NRSwut0iPf2CIRbLtX3T7VmhcAurkpiFjvyoG8HMweEN99fw',
+    clientId: 'Afpk-YhqAeYTIeL008oY11RHq3dyBTt4NRSwut0iPf2CIRbLtX3T7VmhcAurkpiFjvyoG8HMweEN99fw',
+    
+
+    createOrderOnClient: (data) => <ICreateOrderRequest>{
+      intent: 'CAPTURE',
+      purchase_units: [
+        {
+          amount: {
+            currency_code: 'MXN',
+            value: this.adelanto,
+            breakdown: {
+              item_total: {
+                currency_code: 'MXN',
+                value: this.adelanto
+              }
+            }
+          },
+          items: [
+            {
+              name: 'Robogenius Membrecia ',
+              quantity: '1',
+              category: 'DIGITAL_GOODS',
+              unit_amount: {
+                currency_code: 'MXN',
+                value: this.adelanto,
+              },
+            }
+          ]
+        }
+      ]
+    },
+    advanced: {
+      commit: 'true'
+    },
+    style: {
+      label: 'paypal',
+      layout: 'vertical'
+    },
+    onApprove: (data, actions) => {
+      console.log('onApprove - transaction was approved, but not authorized', data, actions);
+      actions.order.get().then(details => {
+        console.log('onApprove - you can get full order details inside onApprove: ', details);
+      });
+    },
+    onClientAuthorization: (data) => {
+      console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+      this.showSuccess = true;
+    },
+    onCancel: (data, actions) => {
+      console.log('OnCancel', data, actions);
+    },
+    onError: err => {
+      console.log('OnError', err);
+    },
+    onClick: (data, actions) => {
+      console.log('onClick', data, actions);
+    },
+  };
+  }
 
 }
 

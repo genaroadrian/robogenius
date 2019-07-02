@@ -377,6 +377,20 @@
         <img src="assets/img/paypal.png" alt="" class="payp" (click)="paypal(id=2)">
         <img src="assets/img/tarjeta.png" alt="" class="tarj" (click)="tarjeta(id=3)">
         <img src="assets/img/transferencia.png" alt="" class="tran" (click)="transferencia(id=4)">
+       
+
+    <!-- <input type="number" [(ngModel)]="totalpago" style="padding-bottom: 10px; visibility: hidden">
+    <h2 *ngIf="paypalLoad">Paypal button is loading</h2>
+  <div id="paypal-checkout-btn" src = " assets/img/paypal.png " >
+      <input  type = "image"  class="payp" src = " assets/img/paypal.png " border = "0" name = "submit" alt = "Pay with PayPal!" id="paypal-checkout-btn"> 
+     
+    </div> -->
+
+
+<!--     
+        <form #form action = "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NAD7LAJGWMGPU " method = "post" target = "_ top"> 
+          <input (click) = "form.submit ()" type = "image"  class="payp" src = " assets/img/paypal.png " border = "0" name = "submit" alt = "Pay with PayPal!"> 
+          </form> -->
         <div class="row">
           <button mat-raised-button (click)="returntmem()" routerLinkActive="router-link-active">Regresar</button>
         </div>
@@ -417,12 +431,48 @@
         </div>
       </div>
     </div>
-    <div [ngStyle]="{display:payp}" class="payp">
+    <div [ngStyle]="{display:payp}" class="col-md-12 payp">
       <h1>Pago por paypal</h1>
+      <mat-form-field>
+        <input matInput [(ngModel)]="adelanto" placeholder="Adelanto" type="number" class="example-right-align">
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [(ngModel)]="totalpago - adelanto" placeholder="Restante " disabled type="number"
+          class="example-right-align">
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [(ngModel)]="totalpago" placeholder="Total " disabled type="number"
+          class="example-right-align">
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+
+      <mat-slide-toggle color="warn" (change)="inscripcion($event)" [checked]="checked">Agregar inscripción
+        (${{anualidad}}.00)
+      </mat-slide-toggle>
+
 
       <button mat-raised-button (click)="returntpago()" routerLinkActive="router-link-active" tabindex="-1">
         Regresar</button>
-    </div>
+        
+    <!-- Primer paypal
+      <input type="number" [(ngModel)]="adelanto" style="padding-bottom: 10px; visibility: hidden">
+    <h2 *ngIf="paypalLoad">Paypal button is loading</h2>
+    <div id="paypal-checkout-btn" src = " assets/img/paypal.png " >     
+    </div> -->
+    <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+
+
+    
+      
+
+
     <div [ngStyle]="{display:tarje}" class="tarje">
       <h1>Pago por tarjeta</h1>
 

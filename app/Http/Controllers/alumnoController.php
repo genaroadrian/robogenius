@@ -18,9 +18,9 @@ class alumnoController extends Controller
      */
     public function index()
     {
-          // $personal = Personal::all();
+        // $personal = Personal::all();
         // echo json_encode($producto);
-        $alumno = DB::SELECT("SELECT * FROM alumnos WHERE activo=1");
+        $alumno = DB::SELECT("SELECT * FROM alumnos WHERE activo = 1");
         echo json_encode($alumno);
     }
 
@@ -31,7 +31,7 @@ class alumnoController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -51,11 +51,10 @@ class alumnoController extends Controller
             // $file->move($path, $name);
 
         $alumno = new Alumno();
-
+        $date = now()->toDateTimeString('Y-m-d');
         $alumno->nomalu = $request->nomalu;
         $alumno->apealu = $request->apealu;
         $alumno->fnacalu = $request->fnacalu;
-        $alumno->sexoalu = $request->sexoalu;
         $alumno->sexoalu = $request->sexoalu;
         $alumno->domalu = $request->domalu;
         $alumno->telalu = $request->telalu;
@@ -80,17 +79,8 @@ class alumnoController extends Controller
         $alumno->telmad = $request->telmad;
         $alumno->correomad = $request->correomad;
         $alumno->ocupmad = $request->ocupmad;
-        $alumno->nommem = $request->nommem;
-        $alumno->costomem = $request->costomem;
-        $alumno->fechaini = $request->fechaini;
-        $alumno->fechafin = $request->fechafin;
-        $alumno->total = $request->total;
-        $alumno->adelanto = $request->adelanto;
-        $alumno->restante = $request->restante;
-        $alumno->usuariopad = $request->usuariopad;
-        $alumno->pswpad = $request->pswpad;
-        $alumno->idsuc = $request->idsuc;
         $alumno->activo = 1;
+        $alumno->finscripcion = $date;
         $alumno->save();
         echo json_encode($alumno);
     }

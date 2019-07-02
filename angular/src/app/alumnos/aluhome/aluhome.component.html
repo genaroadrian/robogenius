@@ -166,39 +166,9 @@
       <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.ocupmad}}</mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="nommem">
-      <mat-header-cell *matHeaderCellDef mat-sort-header >Membresia</mat-header-cell>
-      <mat-cell *matCellDef="let row" > {{row.nommem}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="costomem">
-      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Costo</mat-header-cell>
-      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.costomem}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="fechaini">
-      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Fecha de inicio</mat-header-cell>
-      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.fechaini}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="fechafin">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de fin</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.fechafin}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="total">
-      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Total</mat-header-cell>
-      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.total}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="adelanto">
-      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Adelanto</mat-header-cell>
-      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.adelanto}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="restante">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Restante</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.restante}}</mat-cell>
+    <ng-container matColumnDef="finscripcion">
+      <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Fecha inscripcion</mat-header-cell>
+      <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}"> {{row.finscripcion}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="usuariopad">
@@ -216,14 +186,20 @@
       <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
       <mat-cell *matCellDef="let row; let i=index;">
         <!-- En el boton de editar se manda al mentodo todos los datos de row -->
-        <button mat-icon-button class="text-success" 
+        <!-- <button mat-icon-button class="text-success" 
         (click)="onUpdate(i, row.idalu, row.nomalu, row.apealu, row.sexoalu, row.domalu,
         row.telalu, row.correoalu, row.correoalu, row.medicacion, row.alergias,
         row.perfilalu, row.cronica, row.otro, row.evaluacion, row.usuarioalu, row.pswalu, row.nompad, row.apepad,
         row.telpad, row.correopad, row.ocupad, row.nommad, row.apemad, row.dommad, row.telmad, row.correomad, row.ocupmad,
         row.nommem, row.costomem, row.fechaini, row.fechafin, row.total, row.adelanto, row.restante, row.usuariopad, row.pswpad)">
           <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>-->
+
+        <button mat-icon-button class="text-success">
+          <mat-icon aria-label="Edit" (click)="prueba(row)" [routerLink]="['/perfilalumnos']" routerLinkActive="router-link-active" >edit</mat-icon>
         </button>
+
+
 
         <!-- En el boton de eliminar se manda llamar a la funcion y se le envia el id -->
         <button mat-icon-button class="text-danger" (click)="delete(i,row.idalu, row.nomalu, row.apealu)">

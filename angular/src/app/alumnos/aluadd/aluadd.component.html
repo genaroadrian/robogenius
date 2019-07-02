@@ -81,9 +81,9 @@
 
           <div class="form col-md-3">
             <mat-form-field class="example-full-width">
-              <input matInput #message maxlength="10" [(ngModel)]="alumno.telalu" placeholder="Telefono" type="tel"
+              <input matInput #telalu maxlength="10" [(ngModel)]="alumno.telalu" placeholder="Telefono" type="tel"
                 name="tealu">
-              <mat-hint align="end">{{message.value.length}} / 10</mat-hint>
+              <mat-hint align="end">{{telalu.value.length}} / 10</mat-hint>
               <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
             </mat-form-field>
           </div>
@@ -359,7 +359,7 @@
             <li>Uso de todo el material didáctico</li>
             <li>Acceso al área de manufactura con supervisor del asesor</li>
           </ul>
-          <button (click)="saveMem(mem.idtmem, mem.costo)" mat-stroked-button>Empezar ahora</button>
+          <button (click)="saveMem(mem.idtmem, mem.costo, mem.clases)" mat-stroked-button>Empezar ahora</button>
         </div>
       </div>
       <!-- ------------------------------------- Boton de siguiente ------------------------------------- -->
@@ -373,10 +373,10 @@
     <div class="row">
       <div class="col-md-10 cont" [ngStyle]="{display:tipoimg}">
         <h1>Elige tu tipo de pago</h1>
-        <img src="assets/img/efectivo.png" alt="" class="efec" (click)="efectivo()">
-        <img src="assets/img/paypal.png" alt="" class="payp" (click)="paypal()">
-        <img src="assets/img/tarjeta.png" alt="" class="tarj" (click)="tarjeta()">
-        <img src="assets/img/transferencia.png" alt="" class="tran" (click)="transferencia()">
+        <img src="assets/img/efectivo.png" alt="" class="efec" (click)="efectivo(id=1)">
+        <img src="assets/img/paypal.png" alt="" class="payp" (click)="paypal(id=2)">
+        <img src="assets/img/tarjeta.png" alt="" class="tarj" (click)="tarjeta(id=3)">
+        <img src="assets/img/transferencia.png" alt="" class="tran" (click)="transferencia(id=4)">
         <div class="row">
           <button mat-raised-button (click)="returntmem()" routerLinkActive="router-link-active">Regresar</button>
         </div>
@@ -447,13 +447,14 @@
 
   <div class="grupoalu" [ngStyle]="{display:gruposview}">
     <h3>Asignación de grupos</h3>
+    <h4>Clase  {{clasenow}} de {{tclases}} </h4>
     <form>
       <div class="row">
 
         <div class="form col-md-4">
           <mat-form-field>
             <mat-label>Seleccione un dia</mat-label>
-            <mat-select [(ngModel)]="dia.iddia" name="iddia" required (selectionChange)="diasChange(dia)">
+            <mat-select [(value)]="diavalue" [(ngModel)]="dia.iddia" name="iddia" required (selectionChange)="diasChange(dia)">
               <mat-option value="1">Lunes</mat-option>
               <mat-option value="2">Martes</mat-option>
               <mat-option value="3">Miércoles</mat-option>
@@ -472,7 +473,7 @@
               <mat-spinner [ngStyle]="{'display':spinerh}" diameter="15" class="text-success"></mat-spinner><span
                 [ngStyle]="{'display':labelh}">Seleccione un horario</span>
             </mat-label>
-            <mat-select required [(ngModel)]="hora.idh" (selectionChange)="horasChange(hora)" name="idh">
+            <mat-select [(value)]="horavalue" required [(ngModel)]="hora.idh" (selectionChange)="horasChange(hora)" name="idh">
               <mat-option *ngFor="let ho of _allHoras" [value]="ho.idh" [ngStyle]="{'display':labelh}">
                 {{ho.hora}}
               </mat-option>
@@ -486,13 +487,17 @@
               <mat-spinner [ngStyle]="{'display':spinnerp}" diameter="15"></mat-spinner> <span
                 [ngStyle]="{'display':labelp}">Seleccione un personal</span>
             </mat-label>
-            <mat-select required>
-              <mat-option *ngFor="let per of _allPersonal" value="per.iddgru" [ngStyle]="{'display':labelp}">
+            <mat-select [(value)]="pervalue" [(ngModel)]="idgrupo"  name="idgrupo" required (selectionChange)="personalChange(idgrupo)">
+              <mat-option *ngFor="let per of _allPersonal" value="{{per.iddgru}}" [ngStyle]="{'display':labelp}">
                 {{per.nombre}} {{per.apellidos}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
       </div>
+        <button [disabled]="clasesbutton" mat-raised-button (click)="saveGalu()" routerLinkActive="router-link-active" tabindex="-1">
+          Guardar</button>
+
+        <button mat-raised-button (click)="finalizar()" > Finalizar</button>
     </form>
   </div>
 </div>

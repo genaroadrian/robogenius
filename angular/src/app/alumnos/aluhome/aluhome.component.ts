@@ -11,6 +11,8 @@ import {map} from 'rxjs/operators';
 import { AludeletComponent } from '../aludelet/aludelet.component';
 import { AluaddComponent } from '../aluadd/aluadd.component';
 import { AlueditComponent } from '../aluedit/aluedit.component';
+import { PerfilService } from 'src/app/services/perfil.service';
+import { Alumnosview } from 'src/app/interfaces/alumnosview';
 
 
 
@@ -26,28 +28,28 @@ export class AluhomeComponent implements OnInit {
   
   // Columnas que se van a mostrar en la tabla
   displayedColumns: string[] = [
-      'idalu', 'nomalu',
-    	'apealu', 'fnacalu',
-    	'sexoalu', 'domalu',
-    	'telalu', 'correoalu',
-    	'medicacion', 'alergias',
-    	'perfilalu', 'cronica',
-    	'otro', 'evaluacion',
-    	'usuarioalu', 'pswalu',
-      'nompad', 'apepad',
-    	'dompad', 'telpad',
-		  'correopad', 'ocupad',
-      'nommad', 'apemad',
-      'dommad', 'telmad',
-      'correomad', 'ocupmad',
-      'nommem', 'costomem',
-      'fechaini', 'fechafin',
-      'total', 'adelanto',
-      'restante', 'usuariopad',
-      'pswpad', 'icons'
+    'idalu','nomalu',
+    'apealu','fnacalu',
+    'sexoalu','domalu',
+    'telalu','correoalu',
+    'medicacion','alergias',
+    'perfilalu','cronica',
+    'otro','evaluacion',
+    'usuarioalu','pswalu',
+    'nompad','apepad',
+    'dompad','telpad',
+    'correopad','ocupad',
+    'nommad','apemad',
+    'dommad','telmad',
+    'correomad', 'ocupmad',
+    'usuariopad',
+    'pswpad','finscripcion', 'icons'
    ];
-   //  Declaracion de la interfaz de personal
+   //  Declaracion de la interfaz de alumnos
   alumnos: Alumnos[];
+
+  // Declaracino de la interfaz de la vista de alumnos (solo para la tabla)
+  alumnosView: Alumnosview[];
 
   // Declaracion de el servicio de personal
   exampleDatabase: AlumnosService | null;
@@ -71,7 +73,7 @@ export class AluhomeComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public alumnosService: AlumnosService ) { }
+    public alumnosService: AlumnosService, private perfilService: PerfilService ) { }
 
   ngOnInit() 
   {
@@ -136,6 +138,12 @@ export class AluhomeComponent implements OnInit {
       }
     });
   }
+
+  prueba(row)
+  {
+    this.perfilService.prueba(row);
+  }
+
   // Metodo para abrir el modal para modificar
   onUpdate(i: number, idalu: number, nomalu: string,
     apealu: string, fnacalu: string, sexoalu: string,
@@ -253,10 +261,8 @@ export class ExampleDataSource extends DataSource<Alumnos> {
 
       switch (this._sort.active) {
         case 'idalu': [propertyA, propertyB] = [a.idalu, b.idalu]; break;
-        case 'nombre': [propertyA, propertyB] = [a.nomalu, b.nomalu]; break;
-        case 'ruta': [propertyA, propertyB] = [a.apealu, b.apealu]; break;
-
-        case 'activo': [propertyA, propertyB] = [a.activo, b.activo]; break;
+        case 'nomalu': [propertyA, propertyB] = [a.nomalu, b.nomalu]; break;
+        case 'apealu': [propertyA, propertyB] = [a.apealu, b.apealu]; break;
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

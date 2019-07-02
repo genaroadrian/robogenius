@@ -8,7 +8,7 @@
 
     <div class="col-lg-7">
         <br><br><br>
-        <label style="font-size: 30px;"> Erick Mora Palma <button mat-icon-button class="text-success">
+        <label style="font-size: 30px;"> {{datos.nomalu}} {{datos.apealu}} <button mat-icon-button class="text-success">
             </button></label>
     </div>
     <div class="col-lg-2">
@@ -19,26 +19,23 @@
     <div class="col-lg-3">
         <br>
         <br>
-        <i class="mdi mdi-account nombre"></i><label style="font-size: 20px;"> Nombre : </label><label
-            style="font-size: 18px;"></label>
+        <i class="mdi mdi-cake-variant fecha"> </i><label> Fecha de nacimiento: {{datos.fnacalu}} </label>
+        <label style="font-size: 18px;"></label>
         <br>
-        <i class="mdi mdi-account-alert apellidos"> </i><label style="font-size: 20px;"> Apellidos : </label><label
-            style="font-size: 18px;"></label>
+        <i class="mdi mdi-account-multiple sexo"> </i><label> Sexo: {{datos.sexoalu}} </label>
+        <label style="font-size: 18px;"></label>
         <br>
-        <i class="mdi mdi-cake-variant fecha"> </i><label style="font-size: 20px;"> Fecha de nacimiento: </label><label
-            style="font-size: 18px;"></label>
+        <i class="mdi mdi-city domicilio"> </i><label> Domicilio: {{datos.domalu}} </label>
+        <label style="font-size: 18px;"></label>
         <br>
-        <i class="mdi mdi-account-multiple sexo"> </i><label style="font-size: 20px;"> Sexo: </label><label
-            style="font-size: 18px;"></label>
+        <i class="mdi mdi-cellphone-iphone telefono"> </i><label> Telefono: {{datos.telalu}} </label>
+        <label style="font-size: 18px;"></label>
         <br>
-        <i class="mdi mdi-city domicilio"> </i><label style="font-size: 20px;"> Domicilio: </label><label
-            style="font-size: 18px;"></label>
+        <i class="mdi mdi-email correo"> </i><label> Correo: {{datos.correoalu}} </label>
+        <label style="font-size: 18px;"></label>
         <br>
-        <i class="mdi mdi-cellphone-iphone telefono"> </i><label style="font-size: 20px;"> Telefono: </label><label
-            style="font-size: 18px;"></label>
-        <br>
-        <i class="mdi mdi-email correo"> </i><label style="font-size: 20px;"> Correo: </label><label
-            style="font-size: 18px;"></label>
+        <i class="mdi mdi-calendar-text horario"> </i><label> Fecha de incripción: {{datos.finscripcion}} </label>
+        <label style="font-size: 18px;"></label>
     </div>
 
     <!-- <div class="row">
@@ -89,23 +86,23 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active p-3  " id="home-1" role="tabpanel">
-                        <blockquote class="card-blockquote mb-0">
-                            <p>Nombre</p>
-                            <p>Costo</p>
-                            <p>Fecha Inicio</p>
-                            <p>Fecha Termino</p>
-                            <p>Adelanto</p>
-                            <p>Restante</p>
-                            <p>Total</p>
+                        <blockquote class="card-blockquote mb-0" *ngFor="let mem of membresia">
+                            <p>Nombre: {{mem.nommem}}</p>
+                            <p>Fecha Inicio: {{mem.fechainicio}}</p>
+                            <p>Adelanto: {{mem.adelanto}}</p>
+                            <p>Restante: {{mem.restante}}</p>
+                            <p>Total: {{mem.total}}</p>
+                            <p>Tipo de pago: {{mem.nombre}}</p>
                             <!-- <footer class="blockquote-footer text-white font-12">
                                             Someone famous in <cite title="Source Title">Source Title</cite>
                                             </footer> -->
+                                            <mat-divider></mat-divider>
                         </blockquote>
                     </div>
                     <div class="tab-pane p-3" id="profile-1" role="tabpanel">
-                        <p class="mb-0">
-                            Descripcion de Horarios
-                        </p>
+                            <div class="row mb-0" *ngFor="let hora of horario">
+                                <p> {{hora.dia}} </p> <p> {{hora.hora}} </p> <p> {{hora.nombre}} {{hora.apellidos}} </p>
+                            </div>
                     </div>
                     <div class="tab-pane p-3" id="messages-1" role="tabpanel">
                         <p class="mb-0">
@@ -115,20 +112,20 @@
                     <div class="tab-pane p-3 " id="messages-2" role="tabpanel">
 
                         <div style="float:left; width: 50%;">
-                            <h2>Datos Padre:</h2>
-                            <p>Nombre </p>
-                            <p>Domicilio </p>
-                            <p>Telefono </p>
-                            <p>Correo </p>
-                            <p>Ocupacion </p>
+                            <h2>Datos del padre</h2>
+                            <p>Nombre: {{datos.nompad}}</p>
+                            <p>Domicilio: {{datos.apepad}} </p>
+                            <p>Telefono: {{datos.telpad}} </p>
+                            <p>Correo: {{datos.correopad}} </p>
+                            <p>Ocupación: {{datos.ocupad}} </p>
                         </div>
                         <div style="float:left; width: 50%;">
-                            <h2>Datos Madre:</h2>
-                            <p>Nombre </p>
-                            <p>Domicilio </p>
-                            <p>Telefono </p>
-                            <p>Correo </p>
-                            <p>Ocupacion </p>
+                            <h2>Datos de la madre</h2>
+                            <p>Nombre: {{datos.nommad}}</p>
+                            <p>Domicilio: {{datos.apemad}}</p>
+                            <p>Telefono: {{datos.telmad}}</p>
+                            <p>Correo: {{datos.correomad}}</p>
+                            <p>Ocupación: {{datos.ocupmad}}</p>
                         </div>
                     </div>
                 </div>

@@ -42,15 +42,9 @@ class Alumno extends Model
 		'telmad',
 		'correomad',
 		'ocupmad',
-		'nommem',
-		'costomem',
-		'fechaini',
-		'fechafin',
-		'total',
-		'adelanto',
-		'restante',
 		'usuariopad',
 		'pswpad',
+		'finscripcion',
 		'activo',
 		'idsuc'
     ];

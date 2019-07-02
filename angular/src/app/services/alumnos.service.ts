@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Alumnos } from '../interfaces/alumnos';
 import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
+import { Alumnosview } from '../interfaces/alumnosview';
 
 @Injectable({
   providedIn: 'root'

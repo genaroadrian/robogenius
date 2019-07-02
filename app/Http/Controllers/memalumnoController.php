@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use slidecom_robogenius\Http\Controllers\Controller;
 use slidecom_robogenius\Memalumno;
 use Illuminate\Support\Facades\DB;
+use DateTime;
 
 class memalumnoController extends Controller
 {
@@ -17,6 +18,7 @@ class memalumnoController extends Controller
 
     public function store(Request $request)
     {
+         $date = now()->toDateTimeString('Y-m-d');
         $malu = new Memalumno();
         $malu->idalu = $request->idalu;
         $malu->idmem = $request->idmem;
@@ -24,7 +26,7 @@ class memalumnoController extends Controller
         $malu->adelanto = $request->adelanto;
         $malu->restante = $request->restante;
         $malu->total = $request->total;
-        $malu->fechainico = $request->fechainicio;
+        $malu->fechainicio = $date;
         $malu->activo = 1;
         $malu->save();
         return $malu;

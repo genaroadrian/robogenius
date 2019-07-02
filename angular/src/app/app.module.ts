@@ -67,6 +67,7 @@ import { HhomeComponent } from './horarios/hhome/hhome.component';
 import { HeditComponent } from './horarios/hedit/hedit.component';
 import { HaddComponent } from './horarios/hadd/hadd.component';
 import { HdeleteComponent } from './horarios/hdelete/hdelete.component';
+import { GruposAlumnosService } from './services/grupos-alumnos.service';
 
 
 
@@ -180,6 +181,7 @@ const routes: Route[] = [
     AlumnosService,
     PadresService,
     HorariosService,
+    GruposAlumnosService,
 
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],

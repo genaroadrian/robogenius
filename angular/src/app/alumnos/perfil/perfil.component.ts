@@ -11,7 +11,10 @@ export class PerfilComponent implements OnInit {
 
   datos: any;
   membresia: any;
-  horario: any;
+  displayedColumns: string[] = ['dia', 'hora', 'instructor', 'actions'];
+  dataSource: any;
+  panelOpenState = false;
+  memlenght: number;
 
   constructor(private perfilService: PerfilService) {
   }
@@ -27,7 +30,7 @@ export class PerfilComponent implements OnInit {
   {
     this.perfilService.getmem(this.datos).subscribe((data) => {
       this.membresia = data;
-      console.log(this.membresia);
+      this.memlenght = this.membresia.length;
     }, (error) => {
 
     });
@@ -36,8 +39,7 @@ export class PerfilComponent implements OnInit {
   horarios()
   {
     this.perfilService.gethorario(this.datos).subscribe((data)=>{
-      this.horario = data;
-      console.log(this.horario);
+      this.dataSource = data;
     }, (error)=>{
 
     })

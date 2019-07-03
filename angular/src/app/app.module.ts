@@ -11,7 +11,7 @@ import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule,
   MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule,
   ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule, MatTabsModule, MatSortModule,
   MatToolbarModule, MatPaginatorIntl, MatSpinner, MatProgressSpinnerModule, MatSnackBarModule,
-  MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatSlideToggleModule} from '@angular/material';
+  MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatSlideToggleModule, MatExpansionModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LoginPrincipalComponent } from './login-principal/login-principal.component';
@@ -68,7 +68,7 @@ import { HeditComponent } from './horarios/hedit/hedit.component';
 import { HaddComponent } from './horarios/hadd/hadd.component';
 import { HdeleteComponent } from './horarios/hdelete/hdelete.component';
 import { GruposAlumnosService } from './services/grupos-alumnos.service';
-import { MemalumnovistaComponent } from './memalumnovista/memalumnovista.component';
+// import { MemalumnovistaComponent } from './memalumnovista/memalumnovista.component';
 import { LoginGuard } from './login.guard';
 import { NoLoginGuard } from './no-login.guard';
 import { RegisterComponent } from './register/register.component';
@@ -90,10 +90,11 @@ const routes: Route[] = [
 {path: 'tipomensualidad', component:TmhomeComponent, canActivate: [LoginGuard]},
 {path: 'padres', component:PadhomeComponent, canActivate: [LoginGuard]},
 {path: 'padresform', component:PadaddComponent, canActivate: [LoginGuard]},
-{path: 'alumnos', component:AluhomeComponent, canActivate: [LoginGuard]},
-{path: 'perfilalumnos', component:PerfilComponent, canActivate: [LoginGuard]},
+// {path: 'alumnos', component:AluhomeComponent, canActivate: [LoginGuard]},
+{path: 'alumnos', component:AluhomeComponent},
+{path: 'perfilalumnos', component:PerfilComponent},
 {path: 'nuevoalumno', component: AluaddComponent, canActivate: [LoginGuard]},
-{path: 'memalumnovista', component: MemalumnovistaComponent, canActivate: [LoginGuard]},
+// {path: 'memalumnovista', component: MemalumnovistaComponent, canActivate: [LoginGuard]},
 {path: 'registrar', component: RegisterComponent}
 
 
@@ -148,7 +149,7 @@ const routes: Route[] = [
     TpaaddComponent,
     TpaeditComponent,
     TpadeleteComponent,
-    MemalumnovistaComponent,
+    // MemalumnovistaComponent,
     RegisterComponent,
 
 
@@ -185,7 +186,8 @@ const routes: Route[] = [
     ToastrModule.forRoot(),
     MatDividerModule,
     MatSlideToggleModule,
-    NgxPayPalModule
+    NgxPayPalModule,
+    MatExpansionModule
     ],
   providers: [
     TipopersonalService,

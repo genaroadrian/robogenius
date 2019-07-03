@@ -31,10 +31,7 @@ Route::resource('horarios', 'horariosController');
 Route::resource('tipopago', 'tipopagoController');
 Route::resource('memalumnovista', 'memalumnovistaController');
 Route::resource('tmembresia', 'tipomembresiaController');
-<<<<<<< HEAD
 Route::resource('memalumno', 'memalumnoController');
 Route::resource('galumnos', 'detallegruposController');
 Route::resource('malu', 'perfilController');
-=======
 Route::resource('login', 'LoginAngularController');
->>>>>>> 9f61d079dd688f3e5027cd6837db45a7fecc81e4

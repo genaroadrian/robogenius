@@ -7,6 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class PerfilService {
   // URL de laravel con xampp
   API_ENDPOINT = 'http://localhost:8000/api';
+  dialogData: any;
 
   datos: any;
   membresia: any;
@@ -36,6 +37,17 @@ export class PerfilService {
     const headers = new HttpHeaders({"Content-Type": "application/json"});
     this.horarios = this.httpClient.put(this.API_ENDPOINT+ '/malu/'+ datos.idalu, datos, {headers: headers})
     return this.horarios;
+  }
+
+  putAlumno(data)
+  {
+    this.dialogData = data;
+  }
+
+  getDialogData()
+  {
+    console.log(this.dialogData)
+    return this.dialogData;
   }
 
 

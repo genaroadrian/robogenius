@@ -8,7 +8,11 @@
 
     <div class="col-lg-7">
         <br><br><br>
-        <label style="font-size: 30px;"> {{datos.nomalu}} {{datos.apealu}} <button mat-icon-button class="text-success">
+        <label style="font-size: 30px;"> {{datos.nomalu}} {{datos.apealu}} <button mat-icon-button class="text-success"
+                (click)="editAlu(datos.idalu ,datos.nomalu, datos.apealu, datos.fnacalu, datos.sexoalu, datos.domalu, datos.telalu,
+            datos.correoalu, datos.medicacion, datos.alergias, datos.perfilalu, datos.cronica, datos.otro, datos.evaluacion,
+            datos.usuarioalu, datos.pswalu, datos.nompad, datos.apepad, datos.dompad, datos.telpad, datos.correopad, datos.ocupad,
+            datos.nommad, datos.apemad, datos.dommad, datos.telmad, datos.correomad, datos.ocupmad, datos.finscripcion)">
                 <mat-icon aria-label="Edit">edit</mat-icon>
             </button></label>
     </div>
@@ -19,18 +23,26 @@
 <div class="row">
     <div class="col-lg-3">
         <br>
+        <i class="mdi mdi-key-variant"> </i> <label> ID: </label>
+        <span> {{datos.idalu}} </span>
         <br>
-        <i class="mdi mdi-cake-variant fecha"> </i><label>{{datos.fnacalu}}</label>
+        <i class="mdi mdi-cake-variant fecha"> </i> <label> Fecha de nacimiento: </label>
+        <span> {{datos.fnacalu}} </span>
         <br>
-        <i class="mdi mdi-account-multiple sexo"> </i><label>{{datos.sexoalu}} </label>
+        <i class="mdi mdi-account-multiple sexo"> </i> <label> Sexo:  </label>
+        <span> {{datos.sexoalu}} </span>
         <br>
-        <i class="mdi mdi-city domicilio"> </i><label>{{datos.domalu}} </label>
+        <i class="mdi mdi-city domicilio"> </i> <label> Domicilio:  </label>
+        <span> {{datos.domalu}} </span>
         <br>
-        <i class="mdi mdi-cellphone-iphone telefono"> </i><label>{{datos.telalu}} </label>
+        <i class="mdi mdi-cellphone-iphone telefono"> </i> <label> Teléfono: </label>
+        <span> {{datos.telalu}}  </span>
         <br>
-        <i class="mdi mdi-email correo"> </i><label>{{datos.correoalu}} </label>
+        <i class="mdi mdi-email correo"> </i> <label> Correo:  </label>
+        <span> {{datos.correoalu}} </span>
         <br>
-        <i class="mdi mdi-calendar-text horario"> </i><label>{{datos.finscripcion}} </label>
+        <i class="mdi mdi-calendar-text horario"> </i> <label> Fecha de inscripción:  </label>
+        <span> {{datos.finscripcion}} </span>
     </div>
 
     <!-- <div class="row">
@@ -81,17 +93,8 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane active p-3  " id="home-1" role="tabpanel">
-                        <!-- <blockquote class="card-blockquote mb-0" *ngFor="let mem of membresia">
-                            <p>Nombre: {{mem.nommem}}</p>
-                            <p>Fecha Inicio: {{mem.fechainicio}}</p>
-                            <p>Adelanto: ${{mem.adelanto}}.00</p>
-                            <p>Restante: ${{mem.restante}}.00</p>
-                            <p>Total: ${{mem.total}}.00</p>
-                            <p>Tipo de pago: {{mem.nombre}}</p>
-                                            <mat-divider></mat-divider>
-                        </blockquote> -->
                         <mat-accordion>
-                            <h4>Membresia mas actual</h4>
+                            <h4>Historial de membresias</h4>
                             <mat-expansion-panel *ngFor="let mem of membresia; let i = index">
                                 <mat-expansion-panel-header>
                                     <mat-panel-title>
@@ -101,7 +104,9 @@
                                         Membresia numero {{memlenght-i}}
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
-                               <p><button style="padding-left:90%;" mat-icon-button class="text-success"><mat-icon aria-label="Edit">edit</mat-icon></button></p>
+                                <p><button style="padding-left:90%;" mat-icon-button class="text-success">
+                                        <mat-icon aria-label="Edit">edit</mat-icon>
+                                    </button></p>
                                 <p style="padding-left:5px;">Fecha Inicio: <b>{{mem.fechainicio}}</b></p>
                                 <p style="padding-left:5px;">Adelanto: <b>${{mem.adelanto}}.00</b></p>
                                 <p style="padding-left:5px;">Restante: <b>${{mem.restante}}.00</b></p>
@@ -118,6 +123,16 @@
                                 <!--- Note that these columns can be defined in any order.
                                                       The actual rendered columns are set as a property on the row definition" -->
 
+                                <ng-container matColumnDef="id">
+                                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> ID </th>
+                                    <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}"> {{element.idgalu}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="iddia">
+                                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> Dia </th>
+                                        <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}"> {{element.iddia}} </td>
+                                    </ng-container>
+
                                 <!-- Position Column -->
                                 <ng-container matColumnDef="dia">
                                     <th mat-header-cell *matHeaderCellDef> Dia </th>
@@ -125,12 +140,25 @@
                                 </ng-container>
 
                                 <!-- Name Column -->
+                                <ng-container matColumnDef="idh">
+                                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> Hora </th>
+                                        <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}"> {{element.idh}} </td>
+                                    </ng-container>
+
                                 <ng-container matColumnDef="hora">
                                     <th mat-header-cell *matHeaderCellDef> Hora </th>
                                     <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
                                 </ng-container>
 
                                 <!-- Weight Column -->
+
+                                <ng-container matColumnDef="idper">
+                                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> Instructor </th>
+                                        <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}"> {{element.idper}}
+                                        </td>
+                                    </ng-container>
+
+
                                 <ng-container matColumnDef="instructor">
                                     <th mat-header-cell *matHeaderCellDef> Instructor </th>
                                     <td mat-cell *matCellDef="let element"> {{element.nombre}} {{element.apellidos}}
@@ -140,9 +168,9 @@
                                 <!-- Symbol Column -->
                                 <ng-container matColumnDef="actions">
                                     <th mat-header-cell *matHeaderCellDef> Acciones </th>
-                                    <td mat-cell *matCellDef="let element">
+                                    <td mat-cell *matCellDef="let element; let i = index">
                                         <button mat-icon-button class="text-success">
-                                            <mat-icon aria-label="Edit">edit</mat-icon>
+                                            <mat-icon aria-label="Edit" (click)="editHora(i, idgalu, iddia, idh, idper)" >edit</mat-icon>
                                         </button>
 
 

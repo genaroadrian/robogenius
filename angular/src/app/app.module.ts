@@ -73,6 +73,8 @@ import { LoginGuard } from './login.guard';
 import { NoLoginGuard } from './no-login.guard';
 import { RegisterComponent } from './register/register.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { PerfilhorarioeditComponent } from './perfil/perfilhorarioedit/perfilhorarioedit.component';
+import { PerfilhoraeditComponent } from './alumnos/perfil/perfilhoraedit/perfilhoraedit.component';
 
 
 
@@ -151,6 +153,8 @@ const routes: Route[] = [
     TpadeleteComponent,
     // MemalumnovistaComponent,
     RegisterComponent,
+    PerfilhorarioeditComponent,
+    PerfilhoraeditComponent,
 
 
   ],
@@ -237,7 +241,9 @@ const routes: Route[] = [
     // Modales de pagos
     TpaaddComponent,
     TpaeditComponent,
-    TpadeleteComponent
+    TpadeleteComponent,
+    // Modales de perfil
+    PerfilhoraeditComponent
 
   ],
   exports: [

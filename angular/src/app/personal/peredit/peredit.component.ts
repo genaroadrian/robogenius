@@ -59,7 +59,6 @@ export class PereditComponent implements OnInit {
       // this.personalService.tput(this.data);
     },(error)=>{
       this.showErrorEdit();
-      console.log(error);
     });    
   }
 

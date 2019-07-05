@@ -6,9 +6,7 @@ export interface Memalumnos {
     adelanto: number,
     restante: number,
     total: number
-
 }
-
 export interface Memalumno {
     Id?: number;
     Membrecia: string;

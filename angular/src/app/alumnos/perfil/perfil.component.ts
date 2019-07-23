@@ -130,7 +130,7 @@ export class PerfilComponent implements OnInit {
   {
     const dialogRef = this.dialog.open(PerfilhoraeditComponent, {
       // Anchura de el modal
-      width: '60%',
+      width: '80%',
       /* Al modal se le envia la variable data, que contiene los datos de el registro
       de la tabla que se va a modificar */
       data: 

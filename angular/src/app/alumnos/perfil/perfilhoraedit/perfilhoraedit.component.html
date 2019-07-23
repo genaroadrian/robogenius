@@ -1,3 +1,52 @@
-<p>
-  perfilhoraedit works!
-</p>
+<h3>Asignación de grupos</h3>
+    <form>
+      <div class="row">
+
+        <div class="form col-md-4">
+          <mat-form-field>
+            <mat-label>Seleccione un dia</mat-label>
+            <mat-select [(value)]="diavalue" [(ngModel)]="dia.iddia" name="iddia" required (selectionChange)="diasChange(dia)">
+              <mat-option value="1">Lunes</mat-option>
+              <mat-option value="2">Martes</mat-option>
+              <mat-option value="3">Miércoles</mat-option>
+              <mat-option value="4">Jueves</mat-option>
+              <mat-option value="5">Viernes</mat-option>
+              <mat-option value="6">Sábado</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form col-md-4">
+
+          <mat-form-field>
+
+            <mat-label>
+              <mat-spinner [ngStyle]="{'display':spinerh}" diameter="15" class="text-success"></mat-spinner><span
+                [ngStyle]="{'display':labelh}">Seleccione un horario</span>
+            </mat-label>
+            <mat-select [(value)]="horavalue" required [(ngModel)]="hora.idh" (selectionChange)="horasChange(hora)" name="idh">
+              <mat-option *ngFor="let ho of _allHoras" [value]="ho.idh" [ngStyle]="{'display':labelh}">
+                {{ho.hora}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="form col-md-4">
+          <mat-form-field>
+            <mat-label>
+              <mat-spinner [ngStyle]="{'display':spinnerp}" diameter="15"></mat-spinner> <span
+                [ngStyle]="{'display':labelp}">Seleccione un personal</span>
+            </mat-label>
+            <mat-select [(value)]="pervalue" [(ngModel)]="idgrupo"  name="idgrupo" required (selectionChange)="personalChange(idgrupo)">
+              <mat-option *ngFor="let per of _allPersonal" value="{{per.iddgru}}" [ngStyle]="{'display':labelp}">
+                {{per.nombre}} {{per.apellidos}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+        <button [disabled]="clasesbutton" mat-raised-button (click)="saveGalu()" routerLinkActive="router-link-active" tabindex="-1">
+          Guardar</button>
+
+        <button mat-raised-button (click)="finalizar()" > Finalizar</button>
+    </form>

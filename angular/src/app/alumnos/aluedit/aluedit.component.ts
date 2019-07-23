@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AlumnosService } from 'src/app/services/alumnos.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { PerfilService } from 'src/app/services/perfil.service';
 
 @Component({
   selector: 'app-aluedit',
@@ -11,12 +12,14 @@ import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms'
 })
 export class AlueditComponent implements OnInit {
 
+
   options: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<AlueditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, 
+    @Inject(MAT_DIALOG_DATA) private data: any,
     public alumnosService: AlumnosService, 
-    public toastr: ToastrManager, fb: FormBuilder) {
+    public toastr: ToastrManager, fb: FormBuilder, public perfilService: PerfilService) {
+      
       this.options = fb.group({
         hideRequired: false,
         floatLabel: 'never',
@@ -24,6 +27,7 @@ export class AlueditComponent implements OnInit {
      }
 
   ngOnInit() {
+    console.log(this.data)
   }
 
   // Validaciones del formulario
@@ -36,6 +40,13 @@ export class AlueditComponent implements OnInit {
     return this.formControl.hasError('required') ? 'El campo es obligatorio' :
       this.formControl.hasError('email') ? 'Ingrese un corre valido' :
         '';
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+stopEdit(data): void {
+    this.perfilService.putAlumno(data);
   }
 
 }

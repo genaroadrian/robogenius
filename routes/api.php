@@ -35,6 +35,4 @@ Route::resource('memalumno', 'memalumnoController');
 Route::resource('galumnos', 'detallegruposController');
 Route::resource('malu', 'perfilController');
 Route::resource('login', 'LoginAngularController');
-
 Route::resource('useradmin', 'userAdminController');
-

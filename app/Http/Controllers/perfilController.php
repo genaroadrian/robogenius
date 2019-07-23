@@ -29,7 +29,7 @@ class perfilController extends Controller
 
     public function update(Request $request, $id)
     {
-        $sql = "SELECT dias.dia, horario.hora, personal.nombre, personal.apellidos
+        $sql = "SELECT grupos_alumnos.idgalu, dias.iddia, dias.dia, horario.idh, horario.hora, personal.idper, personal.nombre, personal.apellidos
         FROM detallegrupos, grupos_alumnos, dias, horario, personal
         WHERE detallegrupos.idd = dias.iddia AND detallegrupos.idh = horario.idh 
         AND detallegrupos.idp = personal.idper 

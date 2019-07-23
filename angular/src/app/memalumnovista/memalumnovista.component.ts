@@ -6,6 +6,7 @@ import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {MemalumnovistaService} from 'src/app/services/memalumnovista.service';
 import { Memalumno } from 'src/app/interfaces/memalumno';
 import {map} from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -59,8 +60,14 @@ export class MemalumnovistaComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public memalumnovistaService: MemalumnovistaService ) { }
+    public memalumnovistaService: MemalumnovistaService,
+    private router :Router  ) { }
 
+
+    logout(){
+      localStorage.removeItem('email');
+      this.router.navigateByUrl('/login');
+    }
 
   ngOnInit() 
   {

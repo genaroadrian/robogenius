@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PerfilService } from 'src/app/services/perfil.service';
 
 @Component({
@@ -13,8 +13,14 @@ export class PerfilComponent implements OnInit {
   membresia: any;
   horario: any;
 
-  constructor(private perfilService: PerfilService) {
+  constructor(private perfilService: PerfilService, private router :Router  ) { }
+
+
+  logout(){
+    localStorage.removeItem('email');
+    this.router.navigateByUrl('/login');
   }
+
 
   ngOnInit() {
     this.datos = this.perfilService.ret();  

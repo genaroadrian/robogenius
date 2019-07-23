@@ -13,6 +13,7 @@ import { AluaddComponent } from '../aluadd/aluadd.component';
 import { AlueditComponent } from '../aluedit/aluedit.component';
 import { PerfilService } from 'src/app/services/perfil.service';
 import { Alumnosview } from 'src/app/interfaces/alumnosview';
+import { Router } from '@angular/router';
 
 
 
@@ -73,7 +74,13 @@ export class AluhomeComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public alumnosService: AlumnosService, private perfilService: PerfilService ) { }
+    public alumnosService: AlumnosService, private perfilService: PerfilService, private router :Router  ) { }
+
+
+    logout(){
+      localStorage.removeItem('email');
+      this.router.navigateByUrl('/login');
+    }
 
   ngOnInit() 
   {

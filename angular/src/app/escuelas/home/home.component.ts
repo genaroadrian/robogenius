@@ -13,6 +13,7 @@ import {DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import delay, { delayReject, delayThen, delayCatch } from 'delay.ts';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -46,7 +47,13 @@ export class HomeComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public escuelasService: EscuelasService ) { }
+    public escuelasService: EscuelasService, private router :Router  ) { }
+
+
+    logout(){
+      localStorage.removeItem('email');
+      this.router.navigateByUrl('/login');
+    }
 
 
   ngOnInit() 

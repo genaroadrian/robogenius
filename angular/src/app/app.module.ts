@@ -73,13 +73,18 @@ import { LoginGuard } from './login.guard';
 import { NoLoginGuard } from './no-login.guard';
 import { RegisterComponent } from './register/register.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { NavbarComponent } from './navbar/navbar.component';
+import { PerfiladminComponent } from './perfiladmin/perfiladmin.component';
 
 
 
-const routes: Route[] = [
+
+
+const routes: Route[]=[
 {path:'personal',component:PerhomeComponent, canActivate: [LoginGuard]},
 {path:'personalform',component:FormPersonalComponent, canActivate: [LoginGuard]},
 {path: '', component:LoginPrincipalComponent, canActivate: [LoginGuard]},
+{path: '#', component:LoginPrincipalComponent, canActivate: [LoginGuard]},
 {path: 'home', component:LoginPrincipalComponent, canActivate: [LoginGuard]},
 {path: 'login', component:LoginComponent, canActivate: [NoLoginGuard]},
 {path: 'escuelas', component:HomeComponent, canActivate: [LoginGuard]},
@@ -94,7 +99,9 @@ const routes: Route[] = [
 {path: 'perfilalumnos', component:PerfilComponent, canActivate: [LoginGuard]},
 {path: 'nuevoalumno', component: AluaddComponent, canActivate: [LoginGuard]},
 {path: 'memalumnovista', component: MemalumnovistaComponent, canActivate: [LoginGuard]},
-{path: 'registrar', component: RegisterComponent}
+{path: 'registrar', component: RegisterComponent},
+{path: 'nav', component: NavbarComponent},
+{path: 'perfiladmin', component: PerfiladminComponent}
 
 
 
@@ -150,6 +157,8 @@ const routes: Route[] = [
     TpadeleteComponent,
     MemalumnovistaComponent,
     RegisterComponent,
+    NavbarComponent,
+    PerfiladminComponent,
 
 
   ],

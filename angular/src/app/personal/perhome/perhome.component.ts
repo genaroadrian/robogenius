@@ -10,13 +10,36 @@ import {map} from 'rxjs/operators';
 import { PeraddComponent } from '../peradd/peradd.component';
 import { PerdeleteComponent } from '../perdelete/perdelete.component';
 import { PereditComponent } from '../peredit/peredit.component';
+import { Router } from '@angular/router';
+// For MDB Angular Free
+
+
+
+// import * as archivo from  'assets/js/jquery.min.js';
+// import * as archivo1 from  'assets/js/bootstrap.bundle.min.js';
+// import * as archivo11 from  'js/jquery.slimscroll.js';
+// import * as archivo111 from  'assets/plugins/jquery-sparkline/jquery.sparkline.min.js';
+// import * as archivo1111 from  'assets/js/app.js';
+// import * as archivo11111 from  'assets/jquery/jquery.js';
+// import * as archivo111111 from  'assets/jquery/codigo.js';
+
+// declare const myTest: any;
+
+
+declare var jQuery:any;
+declare var $:any;
+
 @Component({
   selector: 'app-perhome',
   templateUrl: './perhome.component.html',
-  styleUrls: ['./perhome.component.css']
 })
-export class PerhomeComponent implements OnInit {
+export class PerhomeComponent  {
 
+  // onClick() {
+  //   myTest();
+  // }
+
+  
   tableview = "none";
   
   // Columnas que se van a mostrar en la tabla
@@ -67,8 +90,15 @@ export class PerhomeComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public personalService: PersonalService ) { }
+    public personalService: PersonalService,
+    private router :Router ) { }
 
+
+
+    logout(){
+      localStorage.removeItem('email');
+      this.router.navigateByUrl('/login');
+    }
 
   ngOnInit() 
   {

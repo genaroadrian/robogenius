@@ -22,7 +22,9 @@ class perfilController extends Controller
         FROM memalumno, tipopagos, tipomembresia
         WHERE memalumno.idmem = tipomembresia.idtmem 
         AND memalumno.idtpago = tipopagos.idtipopago 
-        AND memalumno.idalu =  '$id' order by memalumno.fechainicio desc";
+        AND memalumno.idalu =  '$id' 
+        AND memalumno.activo = 1
+         order by memalumno.fechainicio desc";
         $sql = DB::select("$sql");
         return $sql;
     }

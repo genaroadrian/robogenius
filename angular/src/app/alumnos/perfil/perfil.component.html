@@ -29,19 +29,19 @@
         <i class="mdi mdi-cake-variant fecha"> </i> <label> Fecha de nacimiento: </label>
         <span> {{datos.fnacalu}} </span>
         <br>
-        <i class="mdi mdi-account-multiple sexo"> </i> <label> Sexo:  </label>
+        <i class="mdi mdi-account-multiple sexo"> </i> <label> Sexo: </label>
         <span> {{datos.sexoalu}} </span>
         <br>
-        <i class="mdi mdi-city domicilio"> </i> <label> Domicilio:  </label>
+        <i class="mdi mdi-city domicilio"> </i> <label> Domicilio: </label>
         <span> {{datos.domalu}} </span>
         <br>
         <i class="mdi mdi-cellphone-iphone telefono"> </i> <label> Teléfono: </label>
-        <span> {{datos.telalu}}  </span>
+        <span> {{datos.telalu}} </span>
         <br>
-        <i class="mdi mdi-email correo"> </i> <label> Correo:  </label>
+        <i class="mdi mdi-email correo"> </i> <label> Correo: </label>
         <span> {{datos.correoalu}} </span>
         <br>
-        <i class="mdi mdi-calendar-text horario"> </i> <label> Fecha de inscripción:  </label>
+        <i class="mdi mdi-calendar-text horario"> </i> <label> Fecha de inscripción: </label>
         <span> {{datos.finscripcion}} </span>
     </div>
 
@@ -95,6 +95,17 @@
                     <div class="tab-pane active p-3  " id="home-1" role="tabpanel">
                         <mat-accordion>
                             <h4>Historial de membresias</h4>
+                            <div>
+                                <p class="{{color}}">
+                                    <mat-icon>{{icono}} </mat-icon> {{status}} 
+                                </p>
+                                <p class="{{colorpago}}">
+                                        <mat-icon>{{iconopago}} </mat-icon> {{pagomem}}
+                                    </p>
+    
+                                
+                            </div>
+                            <!-- <p>Estatus de la membresia: </p> -->
                             <mat-expansion-panel *ngFor="let mem of membresia; let i = index">
                                 <mat-expansion-panel-header>
                                     <mat-panel-title>
@@ -104,7 +115,8 @@
                                         Membresia numero {{memlenght-i}}
                                     </mat-panel-description>
                                 </mat-expansion-panel-header>
-                                <p><button style="padding-left:90%;" mat-icon-button class="text-success">
+                                <p><button (click)="editMem(i, mem.nommem, mem.fechainicio, mem.adelanto, mem.restante, mem.total,
+                                    mem.nombre)" style="padding-left:90%;" mat-icon-button class="text-success">
                                         <mat-icon aria-label="Edit">edit</mat-icon>
                                     </button></p>
                                 <p style="padding-left:5px;">Fecha Inicio: <b>{{mem.fechainicio}}</b></p>
@@ -125,13 +137,15 @@
 
                                 <ng-container matColumnDef="id">
                                     <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> ID </th>
-                                    <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}"> {{element.idgalu}} </td>
+                                    <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}">
+                                        {{element.idgalu}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="iddia">
-                                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> Dia </th>
-                                        <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}"> {{element.iddia}} </td>
-                                    </ng-container>
+                                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> Dia </th>
+                                    <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}">
+                                        {{element.iddia}} </td>
+                                </ng-container>
 
                                 <!-- Position Column -->
                                 <ng-container matColumnDef="dia">
@@ -141,9 +155,10 @@
 
                                 <!-- Name Column -->
                                 <ng-container matColumnDef="idh">
-                                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> Hora </th>
-                                        <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}"> {{element.idh}} </td>
-                                    </ng-container>
+                                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> Hora </th>
+                                    <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}">
+                                        {{element.idh}} </td>
+                                </ng-container>
 
                                 <ng-container matColumnDef="hora">
                                     <th mat-header-cell *matHeaderCellDef> Hora </th>
@@ -153,10 +168,12 @@
                                 <!-- Weight Column -->
 
                                 <ng-container matColumnDef="idper">
-                                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> Instructor </th>
-                                        <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}"> {{element.idper}}
-                                        </td>
-                                    </ng-container>
+                                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> Instructor
+                                    </th>
+                                    <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}">
+                                        {{element.idper}}
+                                    </td>
+                                </ng-container>
 
 
                                 <ng-container matColumnDef="instructor">
@@ -169,14 +186,16 @@
                                 <ng-container matColumnDef="actions">
                                     <th mat-header-cell *matHeaderCellDef> Acciones </th>
                                     <td mat-cell *matCellDef="let element; let i = index">
-                                        <button mat-icon-button class="text-success">
-                                            <mat-icon aria-label="Edit" (click)="editHora(i, idgalu, iddia, idh, idper)" >edit</mat-icon>
+                                        <button mat-icon-button class="text-success"
+                                            (click)="editHora(i, element.idgalu, element.iddia, element.idh, element.idper)">
+                                            <mat-icon aria-label="Edit">edit</mat-icon>
                                         </button>
 
 
 
                                         <!-- En el boton de eliminar se manda llamar a la funcion y se le envia el id -->
-                                        <button mat-icon-button class="text-danger">
+                                        <button mat-icon-button class="text-danger"
+                                            (click)="deleteHora(i, element.idgalu)">
                                             <mat-icon aria-label="Delete">delete</mat-icon>
                                         </button>
                                     </td>

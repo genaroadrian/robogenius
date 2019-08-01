@@ -73,15 +73,21 @@ import { LoginGuard } from './login.guard';
 import { NoLoginGuard } from './no-login.guard';
 import { RegisterComponent } from './register/register.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+import { NavbarComponent } from './navbar/navbar.component';
+import { PerfiladminComponent } from './perfiladmin/perfiladmin.component';
 import { PerfilhorarioeditComponent } from './perfil/perfilhorarioedit/perfilhorarioedit.component';
 import { PerfilhoraeditComponent } from './alumnos/perfil/perfilhoraedit/perfilhoraedit.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 
-const routes: Route[] = [
+
+
+const routes: Route[]=[
 {path:'personal',component:PerhomeComponent, canActivate: [LoginGuard]},
 {path:'personalform',component:FormPersonalComponent, canActivate: [LoginGuard]},
 {path: '', component:LoginPrincipalComponent, canActivate: [LoginGuard]},
+{path: '#', component:LoginPrincipalComponent, canActivate: [LoginGuard]},
 {path: 'home', component:LoginPrincipalComponent, canActivate: [LoginGuard]},
 {path: 'login', component:LoginComponent, canActivate: [NoLoginGuard]},
 {path: 'escuelas', component:HomeComponent, canActivate: [LoginGuard]},
@@ -96,6 +102,9 @@ const routes: Route[] = [
 {path: 'alumnos', component:AluhomeComponent},
 {path: 'perfilalumnos', component:PerfilComponent},
 {path: 'nuevoalumno', component: AluaddComponent, canActivate: [LoginGuard]},
+// {path: 'memalumnovista', component: MemalumnovistaComponent, canActivate: [LoginGuard]},
+{path: 'nav', component: NavbarComponent},
+{path: 'perfiladmin', component: PerfiladminComponent},
 // {path: 'memalumnovista', component: MemalumnovistaComponent, canActivate: [LoginGuard]},
 {path: 'registrar', component: RegisterComponent}
 
@@ -153,6 +162,8 @@ const routes: Route[] = [
     TpadeleteComponent,
     // MemalumnovistaComponent,
     RegisterComponent,
+    NavbarComponent,
+    PerfiladminComponent,
     PerfilhorarioeditComponent,
     PerfilhoraeditComponent,
 
@@ -191,7 +202,8 @@ const routes: Route[] = [
     MatDividerModule,
     MatSlideToggleModule,
     NgxPayPalModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ChartsModule
     ],
   providers: [
     TipopersonalService,

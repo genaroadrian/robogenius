@@ -19,6 +19,7 @@ import { Memalumnos } from 'src/app/interfaces/memalumno';
 import { MemalumnoService } from 'src/app/services/memalumno.service';
 import { GruposAlumnosService } from 'src/app/services/grupos-alumnos.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import { Router } from '@angular/router';
 
 
 // declare let paypal: any;
@@ -225,8 +226,13 @@ export class AluaddComponent implements OnInit {
   constructor(private alumnosService: AlumnosService, private httpClient: HttpClient,
     public toastr: ToastrManager, private gethorarios: GethorariosService,
     private tmembresia: TipomembresiaService, private memaluService: MemalumnoService,
-    private galuService: GruposAlumnosService) {
-  }
+    private galuService: GruposAlumnosService, private router :Router  ) { }
+
+
+    logout(){
+      localStorage.removeItem('email');
+      this.router.navigateByUrl('/login');
+    }
 
 
 

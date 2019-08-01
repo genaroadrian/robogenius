@@ -9,6 +9,53 @@ body{
     font-family: "montserrat",sans-serif;
   }
 
+
+
+  /* color para el encabezado de las tablas */
+  /* .mat-header-cell{
+    background: #36304a;
+    color: white;
+  } */
+  .Tit{
+    background: none;
+    color:white;
+    font-size: 40px;
+  }
+  .text-info {
+    /* background: #36304a; */
+    color: #ffffff !important;
+  }
+  .mat-toolbar-row, .mat-toolbar-single-row {
+    background-color: #36304a;
+    height: 64px;
+    width: 1240px;
+    margin-left: 64px;
+    -moz-border-radius: 8px 30px 112px 0px;
+    color: white;
+    border-radius: 19px 19px 0px 0px;
+}
+
+
+.uno{
+  color: white;
+  background-color: #36304a;
+  border-radius: 0px 0px 0px 10px;
+  margin-left: 64px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.dos{
+  color: white;
+  background-color: #36304a;
+}
+
+.tres{
+  color: white;
+  background-color: #36304a;
+  border-radius: 0px 0px 10px 0px;
+  margin-right: 62px;
+}
+
   .loading{
     width: 200px;
     height: 200px;

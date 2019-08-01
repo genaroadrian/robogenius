@@ -48,23 +48,24 @@
 <!-- Forgot your password -->
                   <div class="form-group m-t-10 mb-0 row">
                       <div class="col-12 m-t-20">
-                          <a class="btn btn-warning" href="">Olvidaste tu contraseña</a>
+                            <div *ngFor="let c of log" type="hidden" >
+
+            
+                    
+            
+                                    <div *ngIf="c.email== em && c.password == ps">
+                                            <button class="btn btn-primary w-md waves-effect waves-light waves-effect waves-light "  id="sa-params" style="filter: drop-shadow(5px 5px 10px #444);"type="submit">Iniciar Sesión</button>
+                
+                                    </div>
+                                    
+                                    </div>
+                          <!-- <a class="btn btn-warning" href="">Olvidaste tu contraseña</a> -->
                       </div>
                   </div>
             <div class="m-t-40 text-center ">
               <p class="text-black-50 " >¿No tienes una cuenta? <a  href="#" [routerLink]="['/registrar']" class="text-blue " style="font-size:20px"> Regístrate ahora </a> </p>
             </div>
-            <div *ngFor="let c of log" type="hidden" >
 
-            
-                    
-            
-                    <div *ngIf="c.email== em && c.password == ps">
-                            <button class="btn btn-primary w-md waves-effect waves-light waves-effect waves-light "  id="sa-params" style="filter: drop-shadow(5px 5px 10px #444);"type="submit">Iniciar Sesión</button>
-
-                    </div>
-                    
-                    </div>
           </form> 
           </div>
         

@@ -19,6 +19,7 @@ export class PadresService {
   getHora(dia): Observable<Horas[]>
   {
     return this.httpClient.post<Horas[]>(this.API_ENDPOINT + '/horas',dia);
+    
   }
 
 }

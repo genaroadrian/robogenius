@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PerfilService } from 'src/app/services/perfil.service';
 import { MatDialog } from '@angular/material';
 import { AlueditComponent } from '../aluedit/aluedit.component';
@@ -55,6 +55,7 @@ export class PerfilComponent implements OnInit {
 
   /* Variable que contiene las membresias del alumno seleccionado */
   membresia: any;
+
 
   /* Tamaño de la variable de las membresias (se usa como contador las mostrar las membresias del alumno) */
   memlenght: number;

@@ -1,0 +1,134 @@
+
+<div class="barra" >
+
+    <img  class="logo"  src="http://robogenius.mx/img/RoboLogo1.png">
+
+
+      <br>
+<br>
+<br>
+<br>
+
+    <div class="dropdown">
+        <i class="mdi mdi-account correo">   {{emai}} </i>
+
+      
+          <img src="https://banner2.kisspng.com/20180422/lyq/kisspng-anonymous-security-hacker-sticker-hacktivism-anono-5adc2244de0c07.4536731215243761329095.jpg" alt="user" class="rounded-circle dropdown-toggle imgRedonda" data-toggle="dropdown" >
+        
+
+          <ul class="dropdown-menu">
+  <!-- <li><a href="#" >HTML</a></li> -->
+  <li><a  class="mdi mdi-account-circle " [routerLink]="['/perfiladmin']"> Perfil</a></li>
+  <li><a class="mdi mdi-web " [routerLink]="['/sucursales']" >  Sucursales</a></li>
+  <li class="danger "><a class="mdi mdi-power icono"  (click)="logout();"> Salir</a></li>
+</ul>
+</div>
+
+</div>
+
+    <header>
+        
+    <input type="checkbox" id="btn-menu">
+    <label for="btn-menu" class="mdi mdi-view-headline" (click)="click();"></label>
+    <nav class="menu">
+        <ul>
+
+                <div id="navbar8" class="navbar-collapse collapse">
+    <ul class="nav navbar-nav navbar-right">
+            console.log("Datos iguales");
+            <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li class="divider"></li>
+          <li class="dropdown-header">Nav header</li>
+          <li><a href="#">Separated link</a></li>
+          <li><a href="#">One more separated link</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+            <li><a [routerLink]="['/home']"> Inicio </a></li>
+              <li  class="submenu"><a > Usuarios<span   class="mdi mdi-arrow-down " id="btn-menus"></span></a>
+                <ul>
+                    <li><a [routerLink]="['/personal']">Personal</a></li>
+                    <li><a [routerLink]="['/tipopersonal']">Tipo Personal</a></li>
+                    
+                </ul>
+              </li>
+            <li class="submenu "><a href="#"> Grupos <span id="btn-menus" class="mdi mdi-arrow-down"></span></a>
+                <ul >
+                  <li><a [routerLink]="['/escuelas']">Escuelas</a></li>
+                  <li><a [routerLink]="['/horarios']">Horarios</a></li>
+                  <li><a [routerLink]="['/alumnos']">Alumnos</a></li>
+                  <li><a [routerLink]="['/nuevoalumno']">Nuevo Alumno</a></li>   
+                 </ul>
+                </li>
+            <li><a href="#"> Productos</a></li>
+            <li class="submenu "><a href="#"> Pagos <span id="btn-menus" class="mdi mdi-arrow-down"></span></a>
+              <ul >
+                <li><a [routerLink]="['/tipomensualidad']">Tipos de Mensualidad</a></li>
+                <li><a [routerLink]="['/tipopago']">Tipos de Pago</a></li>
+
+               </ul>
+              </li>
+
+        </ul>
+
+    </nav>
+
+  </header>
+  <br>
+<div class="azul">
+
+</div>
+<br>
+<div>
+    
+    <img src="../assets/images/banner.png" alt="" class="banner">
+</div>
+<br>
+<br>
+
+<!-- 
+<form  #loginForm="ngForm" (ngSubmit)="nombre(loginForm)"> 
+    <label  for="email">Correo electrónico</label>
+    <input type="text" value="" name="subname" id="email" [(ngModel)]="em" ngModel placeholder="Ingrese correo electrónico" class="form-control"  required >
+     -->
+      <!-- <li [(ngModel)]="SelCountryId">
+        <a *ngFor="let ho of _allHoras | async" >
+          {{ho.subname}} 
+         </a>
+       </li> -->
+
+    <!-- Error: email incorrecto -->
+    <!-- <button class="btn btn-primary w-md waves-effect waves-light waves-effect waves-light "  id="sa-params" style="filter: drop-shadow(5px 5px 10px #444);"type="submit">Iniciar Sesión</button>
+
+</form> -->
+
+<!-- <ul>
+  <li *ngFor="let item of nombre_array; let i = index">
+    {{i}}. {{ item }}
+  </li>
+</ul> -->
+
+
+
+<!-- 
+Funcion chingona si sirve
+        <div   *ngFor="let ho of _allHoras | async ; " >
+          <input #subname type="text " [(ngModel)]="ho.subname" >
+          <button (click)="print(subname.value)">Print</button>  
+        </div>
+       -->
+
+
+
+      
+
+      
+
+
+

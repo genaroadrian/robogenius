@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { Login } from '../interfaces/login';
 
+  
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -20,16 +21,29 @@ export class LoginComponent implements OnInit {
     this.service.getPersonas()
     .subscribe(data=>{
       this.log=data;
+
+      // this.datos=data;
+      // this.imagen=this.datos.avatar;
+      // x:this.datos;
     })
   }
 
   login(form: NgForm){
-    console.log(form.value);
     
+    // console.log(form.value);
+    
+
   
 
     if (form.value.email === form.value.email && form.value.password === form.value.password){
         localStorage.setItem('email' , form.value.email);
+
+        // if (form.value.email === this.x.email){
+        //     console.log("Datos iguales");
+        //     console.log(this.x);
+        // }else{
+        //   console.log("Datos erroneos");
+        // }
         this.router.navigateByUrl('/personal');
     
     }

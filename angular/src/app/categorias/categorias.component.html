@@ -1,0 +1,510 @@
+<app-navbar></app-navbar>  
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="row">
+
+        <div class="col-xl-6 col-md-12">
+                <div class="card bg-danger mini-stat position-relative">
+                    <div class="card-body">
+                        <div class="mini-stat-desc">
+                            <h6 class="text-uppercase verti-label text-white-50"> EGRESOS</h6>
+                            <div class="text-white">
+                                <h6 class="text-uppercase mt-0 text-white-50">EGRESOS DEL DIA  </h6>
+                                <h1 *ngFor="let c of sumaegre">$ {{c.total}} </h1>
+                                <br>
+                                <br>
+                                <button type="button"   class="btn btn-dark btn-block vergraficas">
+                                    <label  class="cbx-button" [routerLink]="['/graficas']">Ver Graficas</label>
+                            </button>
+                                <br>
+                                <h6 class="text-uppercase mt-0 text-white-50"> ULTIMOS EGRESOS </h6>
+        
+                                <div class=""style="width:auto; height: 300px; overflow-y: scroll;">
+                            
+                                        <table class="table" >
+                                                <tr>
+                                                    <td>Concepto</td>
+                                                    <td>Fecha</td>
+                                                    <td>Categoria</td>
+                                                    <td>Monto</td>
+                                                    <td>Nombre</td>
+                                                </tr>
+                                            <tr *ngFor="let c of egresos" >
+                                            
+                                                <td>{{c.concepto}}</td>
+                                                <td>{{c.fecha}}</td>
+                                                <td>{{c.Categoria}}</td>
+                                                <td>{{c.monto}}</td>
+                                                <td>{{c.nombre}}</td>
+                                            </tr>
+                                            
+                                                
+                                            </table>
+                                </div>
+                            </div>
+                            <div class="mini-stat-icon">
+                                <i class="mdi mdi-buffer display-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><div class="col-xl-6 col-md-12">
+                <div class="card bg-success mini-stat position-relative">
+                    <div class="card-body">
+                        <div class="mini-stat-desc">
+                            <h6 class="text-uppercase verti-label text-white-50"> INGRESOS</h6>
+                            <div class="text-white">
+                                <h6 class="text-uppercase mt-0 text-white-50"> INGRESOS DEL DIA </h6>
+                                <h1  *ngFor="let c of sumaingre">$ {{c.total}} </h1>
+                                <br>
+                                <br>
+                                <button type="button"   class="btn btn-dark btn-block vergraficas">
+                                    <label  class="cbx-button" [routerLink]="['/graficas']">Ver Graficas</label>
+                            </button>
+                        <br>
+                                <h6 class="text-uppercase mt-0 text-white-50"> ULTIMOS INGRESOS </h6>
+                                <div class="" style="width: auto; height: 300px; overflow-y: scroll;">
+                                        <table class="table" >
+                                                <tr>
+                                                    <td>Concepto</td>
+                                                    <td>Fecha</td>
+                                                    <td>Categoria</td>
+                                                    <td>Monto</td>
+                                                    <td>Adelanto</td>
+                                                    <td>Nombre</td>
+                                                </tr>
+                                            <tr *ngFor="let c of ingresos" >
+                                            
+                                                <td>{{c.concepto}}</td>
+                                                <td>{{c.fecha}}</td>
+                                                <td>{{c.Categoria}}</td>
+                                                <td>{{c.monto}}</td>
+                                                <td>{{c.suma}}</td>
+                                                <td>{{c.nombre}}</td>
+                                            </tr>
+                                            
+                                                
+                                            </table>
+                                </div>
+                            </div>
+                            <div class="mini-stat-icon">
+                                <i class="mdi mdi-buffer display-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xl-6 col-md-12" >
+                <div class="card bg-success mini-stat position-relative" >
+                    <div class="card-body" id="aca">
+                        <div class="mini-stat-desc">
+                            <h6 class="text-uppercase verti-label text-white-50"> Finanzas</h6>
+                            <div class="text-white">
+                                <h6 class="text-uppercase mt-0 text-white-50"> Registro de ingresos o egresos</h6>
+                                <h1 >Registrar</h1>
+                                <br>
+                                <br>
+                                <!-- <h6 class="text-uppercase mt-0 text-white-50"> ULTIMOS INGRESOS </h6> -->
+                                <div >
+                                    
+        
+                                     
+                                  
+                                    <mat-tab-group mat-align-tabs="center"  >
+                                            
+                                        <mat-tab label="Ingresos"  >
+                                                <ng-template mat-tab-label >
+                                                        <mat-icon class="oculto" (click)="y();">sdadsda</mat-icon>
+                                                        <input type="button" value="INGRESO" class="bout" (click)="y();">
+                                                        <mat-icon class="oculto" (click)="y();">sdadsda</mat-icon>
+            
+                                                          </ng-template> 
+                                            
+                                      <div class="bg-success">
+                                                
+                                          <div class="form-group">
+                                              <label for="exampleInputEmail1">Concepto</label>
+                                              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="cont.Concepto" >
+                                                <!-- valor de tipo ingreso -->
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="">Fecha</label>
+                                                
+                                                <br>
+                                                <input type="date" [(ngModel)]="cont.fecha" placeholder="fecha" class="form-control">
+                                            </div>
+                                              <div class="form-group"> 
+                                                <label for="inputState">Categoria</label>
+                                                  <select id="inputState" class="form-control" [(ngModel)]="cont.idcate"  >
+                                                    <option selected   >Elegir...</option>
+                                                    <option *ngFor="let c of log" [value]="c.idCategoria" >{{c.Categoria}}</option>
+                                                       
+                                                  </select>
+                                                  
+                                                    
+              
+                                                     </div>
+        
+              
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Monto</label>
+                                                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="$0.00" [(ngModel)]="cont.monto">
+                                                  </div>
+                                                  <div class="form-group">
+                                                        <label for="exampleInputEmail1">Responsable</label>
+                                                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=""  disabled [value]="cont.nombre">
+                                                                
+                                                        
+        
+                                                        <br>
+        
+                                                        <fieldset>
+                                                                <!-- <legend>Elige un número</legend> -->
+                                                                <label>
+                                                                    <input type="radio" name="numero" value="1" [(ngModel)]="check"> Adelanto
+                                                                </label>
+                                                                <label>
+                                                                    <input type="radio" [(ngModel)]="check" id="contado"> Contado
+                                                                </label>
+        
+                                                            </fieldset>
+                                                    <!-- Material inline 1 -->
+                                                            <div class="form-check form-check-inline">
+                                                                <input  class="" type="checkbox"  id="materialInline1" [(ngModel)]="check" class="chk"/>
+                                                                <label class="form-check-label" for="materialInline1" class="chk">Adelanto</label>
+                                                                <span *ngIf="check">
+                                                                    <br>
+                            
+                                                            <div class="form-group">
+                                                                    
+                                                
+                                                                <label for="exampleInputEmail1">Ingrese el adelanto</label>
+                                                                <input type="text" class="form-control"   [(ngModel)]="adelanto" id=""  placeholder="">
+                                                                <label for="exampleInputEmail1">El restante es </label>
+                                                                <input type="text" class="form-control"   [(ngModel)]="cont.monto-adelanto" placeholder="">
+        
+                                                            </div>
+                             
+                                                            
+                                                                  </span>
+                                                               
+                                                            </div>
+                                                
+        
+                                                            <!-- Material inline 2 -->
+                                                            <!-- <input  class="" type="checkbox"  id="materialInline1" />
+                                                            <label class="form-check-label" for="materialInline1">Contado</label> -->
+          
+        
+        
+        
+        
+        
+                                                        <button type="button" class="btn btn-primary btn-block">
+                                                                <label  class="cbx-button" (click)="contabilidad();" for="contado">Aceptar</label>
+                                                          </button>
+                                                          <div class="">
+                                                            <input  class="chk" type="checkbox"  id="check2" [(ngModel)]="checked"/>
+                                                            <button type="button" for="check2"  class="btn btn-light btn-block">
+                                                                    <label for="check2" class="cbx-button">Agregar categoria</label>
+                                                            </button>
+                                                               
+                                                            
+                                                            
+                            
+                                                        
+                            
+                                                            <span *ngIf="checked ">
+                                                                    <br>
+                            
+                                                            <div class="form-group">
+                                                                    
+                                                                
+                                                                <label for="exampleInputEmail1">Ingrese nueva categoria</label>
+                            
+                                                                <input type="text" class="form-control"   [(ngModel)]="cat.Categoria" id=""  placeholder="">
+                                                                
+                                                                <br>
+                                           
+                                                              <button type="button" class="btn btn-warning btn-block" >
+                                                                    <label for="check2" class="cbx-button" (click)="categoria();">Aceptar</label>
+                                                              </button>
+                                                              <button type="button" class="btn btn-dark btn-block" for="check2"  >
+                                                                    <label for="check2" class="cbx-button">Cancelar</label>
+                                                              </button>
+                                                            </div>
+                             
+                                                            
+                                                                  </span>
+                                                    </div>
+                                                        
+                                                        </div>
+
+                                                        </div>
+                                        </mat-tab>
+                                        
+                                    
+        
+                                      
+                                        <mat-tab  >
+        
+                                                <ng-template mat-tab-label >
+                                                        <mat-icon class="oculto" (click)="x();">sdadsda</mat-icon>
+                                                        <input type="button" value="EGRESO" class="bout" (click)="x();">
+                                                        <mat-icon class="oculto" (click)="x();">sdadsda</mat-icon>
+        
+                                                      </ng-template>                                              
+                                            <div class="bg-danger">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Concepto</label>
+                                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="egres.Concepto" >
+                                                      <!-- valor de tipo ingreso -->
+                                                  </div>
+                                                  <div class="form-group">
+                                                      <label for="">Fecha</label>
+                                                      
+                                                      <br>
+                                                      <input type="date" [(ngModel)]="egres.fecha" placeholder="fecha" class="form-control">
+                                                  </div>
+                                                    <div class="form-group"> 
+                                                      <label for="inputState">Categoria</label>
+                                                        <select id="inputState" class="form-control" [(ngModel)]="egres.idcate"  >
+                                                          <option selected   >Elegir...</option>
+                                                          <option *ngFor="let c of log" [value]="c.idCategoria" >{{c.Categoria}}</option>
+                                                             
+                                                        </select>
+                                                      
+                                                        
+                                                      </div>
+                                     
+                    
+                                                      <div class="form-group">
+                                                          <label for="exampleInputEmail1">Monto</label>
+                                                          <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="$0.00" [(ngModel)]="egres.monto">
+                                                        </div>
+                                                        <div class="form-group">
+                                                              <label for="exampleInputEmail1">Responsable</label>
+                                                                   <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=""  disabled [value]="egres.nombre">
+                                                                      
+                                                              
+              
+                                                              <br>
+                                                              <button type="button" class="btn btn-primary btn-block">
+                                                                      <label  class="cbx-button" (click)="egreso();">Aceptar</label>
+                                                                </button>
+                                                                <div class="">
+                                                                    <input  class="chk" type="checkbox"  id="check2" [(ngModel)]="checked"/>
+                                                                    <button type="button" for="check2"  class="btn btn-light btn-block">
+                                                                            <label for="check2" class="cbx-button">Agregar categoria</label>
+                                                                    </button>
+                                                                       
+                                                                    
+                                                                    
+                                    
+                                                                
+                                    
+                                                                    <span *ngIf="checked ">
+                                                                            <br>
+                                    
+                                                                    <div class="form-group">
+                                                                            
+                                                                        
+                                                                        <label for="exampleInputEmail1">Ingrese nueva categoria</label>
+                                    
+                                                                        <input type="text" class="form-control"   [(ngModel)]="cat.Categoria" id=""  placeholder="">
+                                                                        
+                                                                        <br>
+                                                   
+                                                                      <button type="button" class="btn btn-warning btn-block" >
+                                                                            <label for="check2" class="cbx-button" (click)="categoria();">Aceptar</label>
+                                                                      </button>
+                                                                      <button type="button" class="btn btn-dark btn-block" for="check2"  >
+                                                                            <label for="check2" class="cbx-button">Cancelar</label>
+                                                                      </button>
+                                                                    </div>
+                                     
+                                                                    
+                                                                          </span>
+                                                            </div>
+                                                            </div>
+                                                                           
+                                          
+        
+                                      </div>
+                                            
+                                        </mat-tab>
+                                      
+                                      </mat-tab-group>
+                                      
+                                        
+              
+                                </div>
+                            </div>
+                            <div class="mini-stat-icon">
+                                <i class="mdi mdi-buffer display-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+         
+    <!-- <div class="col-xl-6 col-md-12">
+        <div class="card bg-primary mini-stat position-relative">
+            <div class="card-body">
+                <div class="mini-stat-desc">
+                    <div class="text-white" >
+                        <h6 class="text-uppercase mt-0 text-white-50">CATEGORIAS</h6>
+                        <div  style="width: auto; height: 480px; overflow-y: scroll;">
+
+                                <h3>{{cat.Categoria}}</h3>
+                        <div *ngFor="let c of log" >
+                            <h3>{{c.Categoria}}</h3>
+
+                        </div>
+                        
+                    </div>
+                        
+                        <div class="">
+                                <input  class="chk" type="checkbox"  id="check2" [(ngModel)]="checked"/>
+                                <button type="button" for="check2"  class="btn btn-warning btn-block">
+                                        <label for="check2" class="cbx-button">Agregar categoria</label>
+                                </button>
+                                   
+                                
+                                
+
+                            
+
+                                <span *ngIf="checked ">
+                                        <br>
+
+                                <div class="form-group">
+                                        
+                                    
+                                    <label for="exampleInputEmail1">Ingrese nueva categoria</label>
+
+                                    <input type="text" class="form-control"   [(ngModel)]="cat.Categoria" id=""  placeholder="">
+                                    
+                                    <br>
+               
+                                  <button type="button" class="btn btn-success btn-block" >
+                                        <label for="check2" class="cbx-button" (click)="categoria();">Aceptar</label>
+                                  </button>
+                                  <button type="button" class="btn btn-danger btn-block" for="check2"  >
+                                        <label for="check2" class="cbx-button">Cancelar</label>
+                                  </button>
+                                </div>
+ 
+                                
+                                      </span>
+                        </div>
+                    </div>
+                    <div class="mini-stat-icon">
+                        <i class="mdi mdi-cube-outline display-2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+      
+      <div class="col-xl-6 col-md-12">
+        <div class="card bg-warning mini-stat position-relative">
+            <div class="card-body">
+                <div class="mini-stat-desc">
+                    <h4 class="text-uppercase verti-label text-white-50"> Pendientes</h4>
+                    <div class="text-white">
+                            <h6 class="text-uppercase mt-0 text-white-50"> Pendientes</h6>
+                            <h1 >Pendientes</h1>
+                       
+
+                        <div class=""style="width:auto; height: 540px; overflow-y: scroll;">
+                    
+                                <table class="table" >
+                                        <tr>
+                                            <td>Concepto</td>
+                                            <td>Fecha</td>
+                                            <td>Total</td>
+                                            <td>Adelanto</td>
+                                            <td>Restante</td>
+                                            <td>Editar</td>
+                                        </tr>
+                                    <tr *ngFor="let c of pendiente" >
+                                    
+                                        <td>{{c.concepto}}</td>
+                                        <td>{{c.fecha}}</td>
+                                        <td>{{c.monto}}</td>
+                                        <td>{{c.adelanto}}</td>
+                                        <td>{{c.restante}}</td>
+                                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" (click)="update(c.idCont,c.concepto,c.fecha,c.adelanto,
+                                            c.monto,c.restante,c.idcate,c.iduser,c.nombre,c.suma)">
+                                            Editar
+                                          </button></td>
+                                    </tr>
+                                    
+                                        
+                                    </table>
+                        </div>
+                    </div>
+                    <div class="mini-stat-icon">
+                        <i class="mdi mdi-buffer display-2"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      </div>
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Actualizar Pago</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                    <div class="form-group">
+                            <label for="exampleInputEmail1">Concepto</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="editar.Concepto" disabled >
+                          </div>
+                          <div class="form-group">
+                                <label for="exampleInputEmail1">Fecha</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="editar.fecha" disabled>
+                              </div>
+                              <div class="form-group">
+                                    <label for="exampleInputEmail1">Total</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="editar.monto" disabled>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="exampleInputEmail1">Adelanto</label>
+                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="editar.adelanto" disabled>
+                                  </div>
+                                  <div class="form-group" *ngIf="nuevoadelanto" >
+                                        <label for="exampleInputEmail1">Restan</label>
+                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="editar.restante-nuevoadelanto" disabled>
+                                      </div>
+                              
+                                      <div class="form-group">
+                                        <label for="exampleInputEmail1">Nuevo adelanto</label>
+                                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="nuevoadelanto">
+                                      </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" (click)="actualizar()" data-dismiss="modal" >Actualizar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    
+

@@ -1,0 +1,155 @@
+<app-navbar></app-navbar>  
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="col-xl-12 col-md-12">
+
+                        <div class="col-xl-4 col-md-6">
+                        <div class="card bg-warning mini-stat position-relative">
+                         <div class="card-body">
+                            <div class="mini-stat-desc">
+                                <h6 class="text-uppercase verti-label text-dark-50"> Finanzas</h6>
+                                <div class="text-dark">
+                                <h6 class="text-uppercase mt-0 text-dark-50"> utilidad del mes </h6>
+                                <h1 >Utilidad </h1>
+                                <h1  *ngFor="let c of utilidad">$ {{c.utilidad}} </h1>
+                                </div>
+                                </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-xl-4 col-md-6">
+                          <div class="card bg-success mini-stat position-relative">
+                           <div class="card-body">
+                                <div class="mini-stat-desc">
+                                <h6 class="text-uppercase verti-label text-dark-50"> Finanzas</h6>
+                                <div class="text-dark">
+                                <h6 class="text-uppercase mt-0 text-dark-50"> Ganancias del mes </h6>
+                                <h1 >Ingresos </h1>
+                                <h1  *ngFor="let c of mesingre">$ {{c.suma}} </h1>
+                                
+                                </div>
+                                </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-xl-4 col-md-6">
+                            <div class="card bg-danger mini-stat position-relative">
+                             <div class="card-body">
+                                <div class="mini-stat-desc">
+                                    <h6 class="text-uppercase verti-label text-dark-50"> Finanzas</h6>
+                                    <div class="text-dark">
+                                    <h6 class="text-uppercase mt-0 text-dark-50"> Perdidas del mes </h6>
+                                    <h1 >Egresos </h1>
+                                    <h1  *ngFor="let c of mesegre">$ {{c.egreso}} </h1>
+                                  </div>
+                                    </div>
+                              </div>
+                            </div>
+                          </div>
+           
+          </div>
+
+  <div class="col-xl-6 col-md-12">
+    <div class="card bg-primary mini-stat position-relative">
+        <div class="card-body">
+            <div class="mini-stat-desc">
+                <h6 class="text-uppercase verti-label text-white-50"> Finanzas</h6>
+                <div class="text-white">
+                    <h6 class="text-uppercase mt-0 text-white-50"> contabilidad </h6>
+                    <h1 >Graficas de el mes </h1>
+                    <br>
+                    <br>
+                    <canvas #pastel class="oscuro">{{ chartpastel }}</canvas>
+
+                </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-12">
+              <div class="card bg-primary mini-stat position-relative">
+                  <div class="card-body">
+                      <div class="mini-stat-desc">
+                          <h6 class="text-uppercase verti-label text-white-50"> Finanzas</h6>
+                          <div class="text-white">
+                              <h6 class="text-uppercase mt-0 text-white-50"> contabilidad </h6>
+                              <h1 >Graficas </h1>
+                              <mat-tab-group dynamicHeight class="graficas">
+                                  <mat-tab label="Grafica del dia">
+                                    <div class="example-large-box mat-elevation-z4 mx-auto" >
+                                          <canvas #myCanvas class="oscuro">{{ chart }}</canvas>
+                                    </div>
+                                  </mat-tab>
+                                  <mat-tab label="Grafica de la semana ">
+                                    <div class="example-large-box mat-elevation-z4 mx-auto">
+                                      <canvas #myCanvass class="oscuro">{{ charts }}</canvas>
+                                    </div>
+                                  </mat-tab>
+                                  <mat-tab label="Grafica del mes ">
+                                      <div class="example-large-box mat-elevation-z4 mx-auto">
+                                        <canvas #myCanvasmes class="oscuro">{{ chartmes }}</canvas>
+                                      </div>
+                                    </mat-tab>
+                                </mat-tab-group>
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+ <br>
+ <br>
+ <div class="col-xl-12 col-md-12">
+
+    <div class="col-xl-4 col-md-6">
+    <div class="card bg-warning mini-stat position-relative">
+     <div class="card-body">
+        <div class="mini-stat-desc">
+            <h6 class="text-uppercase verti-label text-dark-50"> Finanzas</h6>
+            <div class="text-dark">
+            <h6 class="text-uppercase mt-0 text-dark-50"> pendiente </h6>
+            <h1 >Dinero Pendiente </h1>
+            <h1  *ngFor="let c of utilidadrestan">$ {{c.Restante}} </h1>
+            </div>
+            </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xl-4 col-md-6">
+      <div class="card bg-success mini-stat position-relative">
+       <div class="card-body">
+            <div class="mini-stat-desc">
+            <h6 class="text-uppercase verti-label text-dark-50"> Finanzas</h6>
+            <div class="text-dark">
+            <h6 class="text-uppercase mt-0 text-dark-50"> Ganancias del dia </h6>
+            <h1 >Ingresos </h1>
+            <h1  *ngFor="let c of sumaingre">$ {{c.total}} </h1>
+            
+            </div>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-md-6">
+        <div class="card bg-danger mini-stat position-relative">
+         <div class="card-body">
+            <div class="mini-stat-desc">
+                <h6 class="text-uppercase verti-label text-dark-50"> Finanzas</h6>
+                <div class="text-dark">
+                <h6 class="text-uppercase mt-0 text-dark-50"> Perdidas del dia </h6>
+                <h1 >Egresos </h1>
+                <h1 *ngFor="let c of sumaegre">$ {{c.total}} </h1>
+                </div>
+                </div>
+          </div>
+        </div>
+      </div>
+
+</div>
+<br>
+<br>
+
+ 

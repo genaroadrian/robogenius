@@ -1,0 +1,17 @@
+.oscuro{
+    background-color: white;
+    height: 80%;
+    width: 70%;
+}
+
+.example-large-box {
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;     
+    color: white;
+   
+  }
+  
+  .mat-tab{
+      color: white;
+  }

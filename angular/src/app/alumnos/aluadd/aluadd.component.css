@@ -30,18 +30,14 @@ mat-spinner
     width: 10%;
 }
 
-.efec,.payps, .tarj, .tran
+.efec,.payp, .tarj, .tran
 {
   width: 100px;
   margin-left: 50px;
   margin-right: 50px;
 }
 
-.payp{
-  width: 100%;
-  margin-left: 50px;
-  margin-right: 50px;
-}
+
 
 /* Planes de membresia */
 

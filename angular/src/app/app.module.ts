@@ -78,6 +78,9 @@ import { PerfiladminComponent } from './perfiladmin/perfiladmin.component';
 import { PerfilhorarioeditComponent } from './perfil/perfilhorarioedit/perfilhorarioedit.component';
 import { PerfilhoraeditComponent } from './alumnos/perfil/perfilhoraedit/perfilhoraedit.component';
 import { ChartsModule } from 'ng2-charts';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { PersonalperfilComponent } from './personal/personalperfil/personalperfil.component';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -106,7 +109,8 @@ const routes: Route[]=[
 {path: 'nav', component: NavbarComponent},
 {path: 'perfiladmin', component: PerfiladminComponent},
 // {path: 'memalumnovista', component: MemalumnovistaComponent, canActivate: [LoginGuard]},
-{path: 'registrar', component: RegisterComponent}
+{path: 'registrar', component: RegisterComponent},
+{path: 'personalperfil', component: PersonalperfilComponent}
 
 
 
@@ -166,6 +170,8 @@ const routes: Route[]=[
     PerfiladminComponent,
     PerfilhorarioeditComponent,
     PerfilhoraeditComponent,
+    PersonalperfilComponent,
+
 
 
   ],
@@ -203,7 +209,9 @@ const routes: Route[]=[
     MatSlideToggleModule,
     NgxPayPalModule,
     MatExpansionModule,
-    ChartsModule
+    ChartsModule,
+    MatProgressBarModule,
+    MatListModule
     ],
   providers: [
     TipopersonalService,

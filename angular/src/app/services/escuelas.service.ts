@@ -52,8 +52,9 @@ export class EscuelasService {
     return this.httpClient.post(this.API_ENDPOINT + '/escuelas/',escuelas, {headers: headers});
   }
 
-  updateEscuelas (escuelas: Escuelas): void {
-    this.dialogData = escuelas;
+  putEscuela(data)
+  {
+    this.dialogData = data;
   }
 
   deleteIssue (id: number): void {

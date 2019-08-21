@@ -28,7 +28,6 @@ export class HomeComponent implements OnInit {
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [
-    'idesc',
     'nombre',
     'representante',
     'direccion',

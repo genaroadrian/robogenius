@@ -117,7 +117,6 @@ const routes: Route[]=[
 {path: 'estadisticas', component: CategoriasComponent},
 {path: 'graficas', component: EstadisticasComponent},
 {path: 'demoinstructor', component: PerfildemoComponentComponent},
-
 {path: 'personalperfil', component: PersonalperfilComponent}
 
 

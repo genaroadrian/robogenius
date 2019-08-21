@@ -20,6 +20,10 @@ export class PerfilComponent implements OnInit {
 
   id: number
 
+  /* barra de Progreso de la membresia  */
+  barramem = "none"
+  barrahora = "none"
+
   /* Longitud del array de los horarios */
   l;
 
@@ -88,6 +92,7 @@ export class PerfilComponent implements OnInit {
 
   /* Obtiene todas las membresias del alumno seleccionado */
   membresias() {
+    this.barramem = ""
     this.perfilService.getmem(this.datos).subscribe((data) => {
       this.membresia = data;
       this.memlenght = this.membresia.length;
@@ -124,7 +129,7 @@ export class PerfilComponent implements OnInit {
           this.colorpago = "text-success"
           this.pagomem = "Pagada"
         }
-      
+      this.barramem = "none"
 
     }, (error) => {
 
@@ -143,9 +148,11 @@ export class PerfilComponent implements OnInit {
 
   /* Obtiene el horario del alumno seleccionado */
   horarios() {
+    this.barrahora = ""
     this.perfilService.gethorario(this.datos).subscribe((data) => {
       this.dataSource = data;
       // console(this.dataSource)
+      this.barrahora = "none"
     }, (error) => {
 
     })

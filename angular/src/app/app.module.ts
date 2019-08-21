@@ -177,15 +177,12 @@ const routes: Route[]=[
     PerfiladminComponent,
     PerfilhorarioeditComponent,
     PerfilhoraeditComponent,
-<<<<<<< HEAD
     EstadisticasComponent,
     CategoriasComponent,
     IngresosComponent,
     PerfildemoComponentComponent,
-=======
     PersonalperfilComponent,
 
->>>>>>> 5c2b88f6acb47bbe456dbb96c09bf2c90f866104
 
 
   ],
@@ -223,15 +220,10 @@ const routes: Route[]=[
     MatSlideToggleModule,
     NgxPayPalModule,
     MatExpansionModule,
-<<<<<<< HEAD
-    ChartsModule
-      ],
-=======
     ChartsModule,
     MatProgressBarModule,
     MatListModule
     ],
->>>>>>> 5c2b88f6acb47bbe456dbb96c09bf2c90f866104
   providers: [
     TipopersonalService,
     PersonalService,

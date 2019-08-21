@@ -114,14 +114,11 @@ const routes: Route[]=[
 {path: 'perfiladmin', component: PerfiladminComponent},
 // {path: 'memalumnovista', component: MemalumnovistaComponent, canActivate: [LoginGuard]},
 {path: 'registrar', component: RegisterComponent},
-<<<<<<< HEAD
 {path: 'estadisticas', component: CategoriasComponent},
 {path: 'graficas', component: EstadisticasComponent},
-{path: 'demoinstructor', component: PerfildemoComponentComponent}
+{path: 'demoinstructor', component: PerfildemoComponentComponent},
 
-=======
 {path: 'personalperfil', component: PersonalperfilComponent}
->>>>>>> 5c2b88f6acb47bbe456dbb96c09bf2c90f866104
 
 
 
@@ -181,15 +178,12 @@ const routes: Route[]=[
     PerfiladminComponent,
     PerfilhorarioeditComponent,
     PerfilhoraeditComponent,
-<<<<<<< HEAD
     EstadisticasComponent,
     CategoriasComponent,
     IngresosComponent,
     PerfildemoComponentComponent,
-=======
     PersonalperfilComponent,
 
->>>>>>> 5c2b88f6acb47bbe456dbb96c09bf2c90f866104
 
 
   ],
@@ -227,15 +221,11 @@ const routes: Route[]=[
     MatSlideToggleModule,
     NgxPayPalModule,
     MatExpansionModule,
-<<<<<<< HEAD
-    ChartsModule
-      ],
-=======
+    ChartsModule,
     ChartsModule,
     MatProgressBarModule,
     MatListModule
     ],
->>>>>>> 5c2b88f6acb47bbe456dbb96c09bf2c90f866104
   providers: [
     TipopersonalService,
     PersonalService,

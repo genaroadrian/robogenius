@@ -1,44 +1,93 @@
+<div class="body">
 
-
-<br>
-<br>
-<br>
-<div class="example-container ">
-  <mat-form-field appearance="outline">
-    <input matInput placeholder="Ingresa tu email" [formControl]="email" id="email" [(ngModel)]="login.email" required>
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <input matInput placeholder="Ingresa tu contraseña" id="password" [(ngModel)]="login.password" [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Ingresa tu nombre</mat-label>
-    <input matInput placeholder="Nombre" id="nombre" [(ngModel)]="login.nombre">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-  </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Ingresa tus apellidos</mat-label>
-    <input matInput placeholder="Apellidos" id="apellidos" [(ngModel)]="login.apellidos">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-  </mat-form-field>
-  <button (click)="saveLogin()" class="btn btn-primary " mat-button (click)="openSnackBar(message.value, action.value,actions.value,name.value)" routerLink="/login">Registrar</button>
-  <p class="text-black-50 " >¿Ya tienes una cuenta? <a  href="#" [routerLink]="['/login']" class="text-blue " style="font-size:20px"> Inicia sesion  </a> </p>
-</div>
-
-<!-- 
+  <br>
+  <br>
+  <div class="col-xl-12 col-md-12 body">
+      <div class="col-xl-4 col-md-6 oculto">
+          <div class="card bg-warning mini-stat position-relative">
+           <div class="card-body">
+              <div class="mini-stat-desc">
+                Hola
+                </div>
+              </div>
+            </div>
+          </div> 
+           <div class="col-xl-4 col-md-6">
+              <div class="card bg-light mini-stat position-relative">
+               <div class="card-body">
+                  <div class="mini-stat-desc">
+                      <img src="../assets/images/logola.png" alt="" class="banner">
+                      <div class="form-group">
+                          <label for="exampleInputEmail1">Email</label>
+                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="login.email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Contraseña</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="login.password" [type]="hide ? 'password' : 'text'"  >
+                          </div>
+                          <div class="form-group">
+                              <label for="exampleInputEmail1">Nombre</label>
+                              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="login.nombre"  >
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Apellidos</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="login.apellidos"  >
+                              </div>
+                              <button type="button" class="btn btn-primary btn-block" (click)="saveLogin()" >Guardar</button>
+                              <br>
+                              
+                              <!-- 
 Elementos para el modal muestra el nombre y el bienvenido -->
-  <input  class="ocultar" matInput value="Usuario registrado" placeholder="Message" #message >
+<input  class="ocultar" matInput value="Usuario registrado" placeholder="Message" #message >
 
-  <input  class="ocultar" matInput value="Bienvenido" placeholder="Action" #action>
- 
+<input  class="ocultar" matInput value="Bienvenido" placeholder="Action" #action>
 
-  <input  class="ocultar" matInput value=" " placeholder="Action" #actions>
- 
 
-  <input class="ocultar"  matInput  [(ngModel)]="login.nombre" placeholder="Action" #name>
- 
+<input  class="ocultar" matInput value=" " placeholder="Action" #actions>
 
+
+<input class="ocultar"  matInput  [(ngModel)]="login.nombre" placeholder="Action" #name>
+
+                              <p class="text-black-50 " >¿Ya tienes una cuenta? <a  href="#" [routerLink]="['/login']" class="text-blue " style="font-size:20px"> Inicia sesion  </a> </p>
+
+
+                      <!-- <mat-form-field appearance="outline">
+                          <input matInput placeholder="Ingresa tu email" [formControl]="email" id="email" [(ngModel)]="login.email" required>
+                          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                        </mat-form-field> -->
+                        <!-- <mat-form-field appearance="outline">
+                          <input matInput placeholder="Ingresa tu contraseña" id="password" [(ngModel)]="login.password" [type]="hide ? 'password' : 'text'">
+                          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                          </button>
+                        </mat-form-field> -->
+                        <!-- <mat-form-field appearance="outline">
+                          <mat-label>Ingresa tu nombre</mat-label>
+                          <input matInput placeholder="Nombre" id="nombre" [(ngModel)]="login.nombre">
+                          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                        </mat-form-field> -->
+                        <!-- <mat-form-field appearance="outline">
+                          <mat-label>Ingresa tus apellidos</mat-label>
+                          <input matInput placeholder="Apellidos" id="apellidos" [(ngModel)]="login.apellidos">
+                          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                        </mat-form-field> -->
+                        
+                        <!-- <button (click)="saveLogin()" class="btn btn-primary " mat-button (click)="openSnackBar(message.value, action.value,actions.value,name.value)" routerLink="/login">Registrar</button> -->
+                        <!-- <p class="text-black-50 " >¿Ya tienes una cuenta? <a  href="#" [routerLink]="['/login']" class="text-blue " style="font-size:20px"> Inicia sesion  </a> </p> -->
+                      
+                    </div>
+                  </div>
+                </div>
+              </div> 
+               <div class="col-xl-4 col-md-6 oculto">
+                  <div class="card bg-warning mini-stat position-relative">
+                   <div class="card-body">
+                      <div class="mini-stat-desc">
+                        Hola
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                </div>

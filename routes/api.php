@@ -36,3 +36,22 @@ Route::resource('galumnos', 'detallegruposController');
 Route::resource('malu', 'perfilController');
 Route::resource('login', 'LoginAngularController');
 Route::resource('useradmin', 'userAdminController');
+Route::resource('categorias', 'categoriasController');
+Route::resource('contabilidad', 'cotabilidadController');
+
+Route::resource('ingresos', 'ingresosController');
+Route::resource('egresos', 'egresosController');
+
+Route::resource('sumaegresos', 'sumaegresosController');
+Route::resource('sumaingresos', 'sumaingresosController');
+
+Route::resource('semana', 'SemanaController');
+Route::resource('semanaegresos', 'semanaEgresosController');
+
+Route::resource('mesingreso', 'mesController');
+Route::resource('mesegreso', 'mesegresoController');
+Route::resource('utilidad', 'mesUtilidadController');
+Route::resource('restapendiente', 'restantePendienteCOntroller');
+
+Route::resource('pendiente', 'pendientesController');
+

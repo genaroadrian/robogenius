@@ -68,6 +68,7 @@ import { HeditComponent } from './horarios/hedit/hedit.component';
 import { HaddComponent } from './horarios/hadd/hadd.component';
 import { HdeleteComponent } from './horarios/hdelete/hdelete.component';
 import { GruposAlumnosService } from './services/grupos-alumnos.service';
+import { GraficasService } from './services/graficas.service';
 // import { MemalumnovistaComponent } from './memalumnovista/memalumnovista.component';
 import { LoginGuard } from './login.guard';
 import { NoLoginGuard } from './no-login.guard';
@@ -78,10 +79,13 @@ import { PerfiladminComponent } from './perfiladmin/perfiladmin.component';
 import { PerfilhorarioeditComponent } from './perfil/perfilhorarioedit/perfilhorarioedit.component';
 import { PerfilhoraeditComponent } from './alumnos/perfil/perfilhoraedit/perfilhoraedit.component';
 import { ChartsModule } from 'ng2-charts';
+import { EstadisticasComponent } from './estadisticas/estadisticas.component';
+import { CategoriasComponent } from './categorias/categorias.component';
+import { IngresosComponent } from './ingresos/ingresos.component';
+import { PerfildemoComponentComponent } from './perfildemo-component/perfildemo-component.component';
 
 
-
-
+ 
 
 const routes: Route[]=[
 {path:'personal',component:PerhomeComponent, canActivate: [LoginGuard]},
@@ -106,7 +110,11 @@ const routes: Route[]=[
 {path: 'nav', component: NavbarComponent},
 {path: 'perfiladmin', component: PerfiladminComponent},
 // {path: 'memalumnovista', component: MemalumnovistaComponent, canActivate: [LoginGuard]},
-{path: 'registrar', component: RegisterComponent}
+{path: 'registrar', component: RegisterComponent},
+{path: 'estadisticas', component: CategoriasComponent},
+{path: 'graficas', component: EstadisticasComponent},
+{path: 'demoinstructor', component: PerfildemoComponentComponent}
+
 
 
 
@@ -166,6 +174,10 @@ const routes: Route[]=[
     PerfiladminComponent,
     PerfilhorarioeditComponent,
     PerfilhoraeditComponent,
+    EstadisticasComponent,
+    CategoriasComponent,
+    IngresosComponent,
+    PerfildemoComponentComponent,
 
 
   ],
@@ -204,7 +216,7 @@ const routes: Route[]=[
     NgxPayPalModule,
     MatExpansionModule,
     ChartsModule
-    ],
+      ],
   providers: [
     TipopersonalService,
     PersonalService,
@@ -214,6 +226,7 @@ const routes: Route[]=[
     GruposAlumnosService,
     LoginGuard,
     NoLoginGuard,
+    GraficasService,
 
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],

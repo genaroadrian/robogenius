@@ -47,15 +47,7 @@ export class EditComponent implements OnInit {
   }
 
   stopEdit(data): void {
-    this.escuelasService.put(this.data).subscribe((data) =>{
-      // console.log(this.data);
-      // alert('Registro Actualizado');
-      this.showSuccessEdit();
-      this.escuelasService.updateEscuelas(this.data.id);
-      // console.log(this.data);
-    },(error)=>{
-      this.showErrorEdit();
-    });
+    this.escuelasService.putEscuela(data);
   }
 
 }

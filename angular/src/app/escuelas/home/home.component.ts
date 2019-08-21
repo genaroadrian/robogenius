@@ -23,6 +23,9 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
+  /* Variable que almacenara los datos a actualizar */
+  dialogEdit: any;
+
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [
     'idesc',
@@ -116,19 +119,20 @@ export class HomeComponent implements OnInit {
     this.id = idesc;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
-    console.log(this.index);
     const dialogRef = this.dialog.open(EditComponent, {
       data: {idesc: idesc, nombre: nombre, representante: representante, direccion: direccion, telefono: telefono, correo: correo}
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
+        this.dialogEdit = this.escuelasService.getDialogData();
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idesc === this.id);
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] = this.escuelasService.getDialogData();
         // And lastly refresh table
+        this.refresh();
       }
-      this.refresh();
+      
     });
   }
 

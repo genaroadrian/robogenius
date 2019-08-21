@@ -1,240 +1,14 @@
+<app-navbar></app-navbar>   
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br> 
+<br>
 
-     <header id="topnav"> 
-        <div class="topbar-main" style="background-color:#3498DB;">
-          <div class="container-fluid">
-    
-            <!-- Logo container-->
-            <div class="logo">
-    
-              <a href="index.html" class="logo">
-                <img src="assets/images/logoch.png" alt="" class="logo-small">
-                <img src="assets/images/logoch.png" alt="" class="logo-large">
-              </a>
-    
-            </div>
-    
-            <!-- End Logo container-->
-    
-    
-            <div class="menu-extras topbar-custom">
-    
-              <ul class="navbar-right d-flex list-inline float-right mb-0" >
-                <li class="dropdown notification-list d-none d-sm-block">
-                  <form role="search" class="app-search">
-                    <div class="form-group mb-0">
-                      <input type="text" class="form-control" style="background-color:#3498DB;" placeholder="Search..">
-                      <button type="submit" style="background-color:#3498DB;"><i class="fa fa-search"></i></button>
-                    </div>
-                  </form>
-                </li>
-    
-                <li class="dropdown notification-list">
-                  <a class="nav-link dropdown-toggle arrow-none waves-effect waves-light" data-toggle="dropdown" href="#"
-                    role="button" aria-haspopup="false" aria-expanded="false">
-                    <!-- <i class="mdi mdi-bell noti-icon"></i> -->
-                    <span class="badge badge-pill badge-info noti-icon-badge">3</span>
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg">
-                    <!-- item-->
-                    <h6 class="dropdown-item-text">
-    
-                    </h6>
-                    <div class="slimscroll notification-item-list">
-                      <!-- item-->
-                      <a href="javascript:void(0);" class="dropdown-item notify-item active">
-                        <div class="notify-icon bg-success"><i class="mdi mdi-cart-outline"></i></div>
-                        <p class="notify-details">Your order is placed<span class="text-muted">Dummy text of the printing
-                            and typesetting industry.</span></p>
-                      </a>
-                      <!-- item-->
-                      <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-warning"><i class="mdi mdi-message"></i></div>
-                        <p class="notify-details">New Message received<span class="text-muted">You have 87 unread
-                            messages</span></p>
-                      </a>
-                      <!-- item-->
-                      <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-info"><i class="mdi mdi-flag"></i></div>
-                        <p class="notify-details">Your item is shipped<span class="text-muted">It is a long established fact
-                            that a reader will</span></p>
-                      </a>
-                      <!-- item-->
-                      <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-primary"><i class="mdi mdi-cart-outline"></i></div>
-                        <p class="notify-details">Your order is placed<span class="text-muted">Dummy text of the printing
-                            and typesetting industry.</span></p>
-                      </a>
-                      <!-- item-->
-                      <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-danger"><i class="mdi mdi-message"></i></div>
-                        <p class="notify-details">New Message received<span class="text-muted">You have 87 unread
-                            messages</span></p>
-                      </a>
-                    </div>
-                    <!-- All-->
-                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
-                      View all <i class="fi-arrow-right"></i>
-                    </a>
-                  </div>
-                </li>
-                <li class="dropdown notification-list">
-                  <div class="dropdown notification-list">
-                    <a class="dropdown-toggle nav-link arrow-none waves-effect nav-user waves-light" data-toggle="dropdown"
-                      href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                      <img src="assets/images/users/user-1.jpg" alt="user" class="rounded-circle">
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                      <!-- item-->
-                    
-                      <a class="dropdown-item" ><i class="mdi mdi-account-circle m-r-5"></i>Nombre de usuario</a>
-                      <a class="dropdown-item"  ><i class="mdi mdi-lock-open-outline m-r-5"></i>Bloquear</a>
-                      <div class="dropdown-divider"></div>
-                      <a class="dropdown-item text-danger"  (click)="logout();" >
-                        <i class="mdi mdi-power text-danger"></i>Salir</a>
-    
-                      
-    
-    
-    
-                    </div>
-                  </div>
-                </li>
-    
-                <li class="menu-item list-inline-item">
-                  <!-- Mobile menu toggle-->
-                  <a class="navbar-toggle nav-link">
-                    <div class="lines">
-                      <span></span>
-                      <span></span>
-                      <span></span>
-                    </div>
-                  </a>
-                  <!-- End mobile menu toggle-->
-                </li>
-    
-              </ul>
-    
-    
-    
-            </div>
-            <!-- end menu-extras -->
-    
-            <div class="clearfix"></div>
-    
-          </div> <!-- end container -->
-        </div>
-    
-        <!-- end topbar-main -->
-      
-        <!-- MENU Start -->
-        <router-outlet>
-          <div class="navbar-custom">
-            <div class="container-fluid">
-              <div id="navigation">
-                <!-- Navigation Menu-->
-                <ul class="navigation-menu">
-      
-                  <li>
-                    <a [routerLink]="['/home']"><i class="mdi mdi-home"></i>Inicio</a>
-                  </li>
-      
-                  <li class="has-submenu">
-                    <a ><i class="ion-ios7-people"></i>Usuarios</a>
-                    <ul class="submenu">
-      
-                      <li>
-                        <a href="#">Tipos de usuarios</a>
-                      </li>
-      
-                      <li>
-                        <a [routerLink]="['/alumnos']">Alumnos</a>
-                      </li>
-      
-                      <li class="has-submenu">
-                        <a [routerLink]="['/padres']">Padres</a>
-                        <ul class="submenu">
-                          <li>
-                            <a [routerLink]="['/padres']">Hijos por padre</a>
-                          </li>
-                        </ul>
-                      </li>
-      
-                      <li class="has-submenu">
-                        <a [routerLink]="['/personal']">Personal</a>
-                        <ul class="submenu">
-                          <li>
-                            <a [routerLink]="['/tipopersonal']">Tipo de personal</a>
-                          </li>
-                        </ul>
-                      </li>
-      
-                      <li  class="has-submenu">
-                        <a [routerLink]="['/escuelas']">Escuelas</a>
-                        <ul class="submenu">
-                          <li>
-                            <a [routerLink]="['/sucursales']">Sucursales</a>
-                          </li>
-                        </ul>
-                      </li>
-      
-                      <li  class="has-submenu"> 
-                        <a href="#">Usuarios del sistema</a>
-                        <ul class="submenu">
-                          <li>
-                            <a [routerLink]="['/tipomensualidad']">Mensualidades</a>
-                          </li>
-                          <li>
-                            <a  [routerLink]="['/memalumnovista']">Informacion Membrecias</a>
-                          </li>
-                        </ul>
-                      </li>
-                    </ul>
-                  </li>
-      
-                  <li  class="has-submenu">
-                    <a href="#"><i class="mdi mdi-account-group"></i>Grupos</a>
-                    <ul class="submenu">
-                      <li>
-                        <a [routerLink]="['/horarios']">Horarios</a>
-                      </li>
-                    </ul>
-                  </li>
-      
-                  <li>
-                    <a href="#"><i class="mdi mdi-basket"></i>Productos</a>
-                  </li>
-      
-                  <li class="has-submenu">
-                    <a href="#"><i class="mdi mdi-basket"></i>Pagos</a>
-                    <ul class="submenu">
-                      <li><a [routerLink]="['/tipopago']">Tipos de pago</a></li>
-                    </ul>
-                  </li>
-      
-                </ul>
-                <!-- End navigation menu -->
-              </div> <!-- end #navigation -->
-            </div> <!-- end container -->
-          </div> <!-- end navbar-custom -->
-        </router-outlet>
-      </header>
-  
-  
-          
-      <div class="wrapper">
-        <div class="page-title-box">
-         <div class="container-fluid">
-           <div class="row">
-             <div class="col-sm-12">
-               
-             </div>
-           </div>
-         </div>
-         <!-- end container-fluid -->
-       </div>
-       </div>
-
-       
+   
+<div class="container">
 <div class="row">
     <div class="col-lg-2">
         <img class="rounded-circle shadow" alt="700x700" src="assets/images/users/user-4.jpg"
@@ -266,19 +40,19 @@
         <i class="mdi mdi-cake-variant fecha"> </i> <label> Fecha de nacimiento: </label>
         <span> {{datos.fnacalu}} </span>
         <br>
-        <i class="mdi mdi-account-multiple sexo"> </i> <label> Sexo:  </label>
+        <i class="mdi mdi-account-multiple sexo"> </i> <label> Sexo: </label>
         <span> {{datos.sexoalu}} </span>
         <br>
-        <i class="mdi mdi-city domicilio"> </i> <label> Domicilio:  </label>
+        <i class="mdi mdi-city domicilio"> </i> <label> Domicilio: </label>
         <span> {{datos.domalu}} </span>
         <br>
         <i class="mdi mdi-cellphone-iphone telefono"> </i> <label> Teléfono: </label>
-        <span> {{datos.telalu}}  </span>
+        <span> {{datos.telalu}} </span>
         <br>
-        <i class="mdi mdi-email correo"> </i> <label> Correo:  </label>
+        <i class="mdi mdi-email correo"> </i> <label> Correo: </label>
         <span> {{datos.correoalu}} </span>
         <br>
-        <i class="mdi mdi-calendar-text horario"> </i> <label> Fecha de inscripción:  </label>
+        <i class="mdi mdi-calendar-text horario"> </i> <label> Fecha de inscripción: </label>
         <span> {{datos.finscripcion}} </span>
     </div>
 
@@ -305,150 +79,171 @@
 
     <div class="col-lg-9">
         <div class="card m-b-30">
-            <div class="card-body">
-                <br><br>
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs nav-justified" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#home-1" role="tab"> <i
-                                class="mdi mdi-account-card-details membresia"> </i> Membrecias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#profile-1" role="tab"><i
-                                class="mdi mdi-calendar-text horario"> </i> Horario</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#messages-1" role="tab"><i
-                                class="mdi mdi-finance cursos"> </i> Cursos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#messages-2" role="tab"><i
-                                class="mdi mdi-account-multiple padres"> </i> Padres</a>
-                    </li>
-                </ul>
-
-                <!-- Tab panes -->
-                <div class="tab-content">
-                    <div class="tab-pane active p-3  " id="home-1" role="tabpanel">
-                        <mat-accordion>
-                            <h4>Historial de membresias</h4>
-                            <mat-expansion-panel *ngFor="let mem of membresia; let i = index">
-                                <mat-expansion-panel-header>
-                                    <mat-panel-title>
-                                        Membresia {{ mem.nommem}}
-                                    </mat-panel-title>
-                                    <mat-panel-description>
-                                        Membresia numero {{memlenght-i}}
-                                    </mat-panel-description>
-                                </mat-expansion-panel-header>
-                                <p><button style="padding-left:90%;" mat-icon-button class="text-success">
-                                        <mat-icon aria-label="Edit">edit</mat-icon>
-                                    </button></p>
-                                <p style="padding-left:5px;">Fecha Inicio: <b>{{mem.fechainicio}}</b></p>
-                                <p style="padding-left:5px;">Adelanto: <b>${{mem.adelanto}}.00</b></p>
-                                <p style="padding-left:5px;">Restante: <b>${{mem.restante}}.00</b></p>
-                                <p style="padding-left:5px;">Total: <b>${{mem.total}}.00</b></p>
-                                <p style="padding-left:5px;">Tipo de pago: <b>{{mem.nombre}}</b></p>
-                            </mat-expansion-panel>
-                        </mat-accordion>
-                    </div>
-                    <div class="tab-pane p-3 col-md-12" id="profile-1" role="tabpanel">
-
-                        <div class="row mb-0 col-md-12">
-                            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 col-md-12">
-
-                                <!--- Note that these columns can be defined in any order.
-                                                      The actual rendered columns are set as a property on the row definition" -->
-
-                                <ng-container matColumnDef="id">
-                                    <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> ID </th>
-                                    <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}"> {{element.idgalu}} </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="iddia">
-                                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> Dia </th>
-                                        <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}"> {{element.iddia}} </td>
-                                    </ng-container>
-
-                                <!-- Position Column -->
-                                <ng-container matColumnDef="dia">
-                                    <th mat-header-cell *matHeaderCellDef> Dia </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.dia}} </td>
-                                </ng-container>
-
-                                <!-- Name Column -->
-                                <ng-container matColumnDef="idh">
-                                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> Hora </th>
-                                        <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}"> {{element.idh}} </td>
-                                    </ng-container>
-
-                                <ng-container matColumnDef="hora">
-                                    <th mat-header-cell *matHeaderCellDef> Hora </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
-                                </ng-container>
-
-                                <!-- Weight Column -->
-
-                                <ng-container matColumnDef="idper">
-                                        <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> Instructor </th>
-                                        <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}"> {{element.idper}}
-                                        </td>
-                                    </ng-container>
-
-
-                                <ng-container matColumnDef="instructor">
-                                    <th mat-header-cell *matHeaderCellDef> Instructor </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.nombre}} {{element.apellidos}}
-                                    </td>
-                                </ng-container>
-
-                                <!-- Symbol Column -->
-                                <ng-container matColumnDef="actions">
-                                    <th mat-header-cell *matHeaderCellDef> Acciones </th>
-                                    <td mat-cell *matCellDef="let element; let i = index">
-                                        <button mat-icon-button class="text-success">
-                                            <mat-icon aria-label="Edit" (click)="editHora(i, idgalu, iddia, idh, idper)" >edit</mat-icon>
-                                        </button>
-
-
-
-                                        <!-- En el boton de eliminar se manda llamar a la funcion y se le envia el id -->
-                                        <button mat-icon-button class="text-danger">
-                                            <mat-icon aria-label="Delete">delete</mat-icon>
-                                        </button>
-                                    </td>
-                                </ng-container>
-
-                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                            </table>
-
-                        </div>
-                    </div>
-                    <div class="tab-pane p-3" id="messages-1" role="tabpanel">
-                        <p class="mb-0">
-                            Descripcion de Cursos
-                        </p>
-                    </div>
-                    <div class="tab-pane p-3 " id="messages-2" role="tabpanel">
-
-                        <div style="float:left; width: 50%;">
-                            <h2>Datos del padre</h2>
-                            <p>Nombre: <b>{{datos.nompad}} {{datos.apepad}}</b> </p>
-                            <p>Domicilio: <b>{{datos.dompad}}</b> </p>
-                            <p>Telefono: <b>{{datos.telpad}}</b> </p>
-                            <p>Correo: <b>{{datos.correopad}}</b> </p>
-                            <p>Ocupación: <b>{{datos.ocupad}}</b> </p>
-                        </div>
-                        <div style="float:left; width: 50%;">
-                            <h2>Datos de la madre</h2>
-                            <p>Nombre: <b>{{datos.nommad}} {{datos.apemad}}</b> </p>
-                            <p>Domicilio: <b>{{datos.dommad}}</b></p>
-                            <p>Telefono: <b>{{datos.telmad}}</b></p>
-                            <p>Correo: <b>{{datos.correomad}}</b></p>
-                            <p>Ocupación: <b>{{datos.ocupmad}}</b></p>
-                        </div>
-                    </div>
-                </div>
+        <!-- ----------------------- Tabs ----------------------- -->
+<mat-tab-group>
+    <!-- Tab de membresia -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="mdi mdi-account-card-details membresia"></i>
+        Membresia
+      </ng-template>
+      <div class="container">
+          <mat-accordion>
+              <h4>Historial de membresias</h4>
+              <div>
+                  <p class="{{color}}">
+                      <mat-icon>{{icono}} </mat-icon> {{status}} 
+                  </p>
+                  <p class="{{colorpago}}">
+                          <mat-icon>{{iconopago}} </mat-icon> {{pagomem}}
+                      </p>
+      
+                  
+              </div>
+              <!-- <p>Estatus de la membresia: </p> -->
+              <mat-expansion-panel *ngFor="let mem of membresia; let i = index">
+                  <mat-expansion-panel-header>
+                      <mat-panel-title>
+                          Membresia {{ mem.nommem}}
+                      </mat-panel-title>
+                      <mat-panel-description>
+                          Membresia numero {{memlenght-i}}
+                      </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <p><button (click)="editMem(i, mem.nommem, mem.fechainicio, mem.adelanto, mem.restante, mem.total,
+                      mem.nombre)" style="padding-left:90%;" mat-icon-button class="text-success">
+                          <mat-icon aria-label="Edit">edit</mat-icon>
+                      </button></p>
+                  <p style="padding-left:5px;">Fecha Inicio: <b>{{mem.fechainicio}}</b></p>
+                  <p style="padding-left:5px;">Adelanto: <b>${{mem.adelanto}}.00</b></p>
+                  <p style="padding-left:5px;">Restante: <b>${{mem.restante}}.00</b></p>
+                  <p style="padding-left:5px;">Total: <b>${{mem.total}}.00</b></p>
+                  <p style="padding-left:5px;">Tipo de pago: <b>{{mem.nombre}}</b></p>
+              </mat-expansion-panel>
+          </mat-accordion>
+      </div>
+    </mat-tab>
+  
+    <!-- Tab de Horario -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="mdi mdi-calendar-text horario"></i>
+        Horario
+      </ng-template>
+      <div class="row mb-0 col-md-12">
+          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 col-md-12 container">
+  
+              <!--- Note that these columns can be defined in any order.
+                                    The actual rendered columns are set as a property on the row definition" -->
+  
+              <ng-container matColumnDef="id" >
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}" class="horario"> ID </th>
+                  <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}" class="horario">
+                      {{element.idgalu}} </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="iddia">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> Dia </th>
+                  <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}">
+                      {{element.iddia}} </td>
+              </ng-container>
+  
+              <!-- Position Column -->
+              <ng-container matColumnDef="dia">
+                  <th mat-header-cell *matHeaderCellDef> Dia </th>
+                  <td mat-cell *matCellDef="let element"> {{element.dia}} </td>
+              </ng-container>
+  
+              <!-- Name Column -->
+              <ng-container matColumnDef="idh">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> Hora </th>
+                  <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}">
+                      {{element.idh}} </td>
+              </ng-container>
+  
+              <ng-container matColumnDef="hora">
+                  <th mat-header-cell *matHeaderCellDef> Hora </th>
+                  <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
+              </ng-container>
+  
+              <!-- Weight Column -->
+  
+              <ng-container matColumnDef="idper">
+                  <th mat-header-cell *matHeaderCellDef [ngStyle]="{'display':tableview}"> Instructor
+                  </th>
+                  <td mat-cell *matCellDef="let element" [ngStyle]="{'display':tableview}">
+                      {{element.idper}}
+                  </td>
+              </ng-container>
+  
+  
+              <ng-container matColumnDef="instructor">
+                  <th mat-header-cell *matHeaderCellDef> Instructor </th>
+                  <td mat-cell *matCellDef="let element"> {{element.nombre}} {{element.apellidos}}
+                  </td>
+              </ng-container>
+  
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="actions">
+                  <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                  <td mat-cell *matCellDef="let element; let i = index">
+                      <button mat-icon-button class="text-success"
+                          (click)="editHora(i, element.idgalu, element.iddia, element.idh, element.idper)">
+                          <mat-icon aria-label="Edit">edit</mat-icon>
+                      </button>
+  
+  
+  
+                      <!-- En el boton de eliminar se manda llamar a la funcion y se le envia el id -->
+                      <button mat-icon-button class="text-danger"
+                          (click)="deleteHora(i, element.idgalu)">
+                          <mat-icon aria-label="Delete">delete</mat-icon>
+                      </button>
+                  </td>
+              </ng-container>
+  
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+  
+      </div>
+    </mat-tab>
+  
+    <!-- Tab de Cursos -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="mdi mdi-finance cursos"></i>
+        Cursos
+      </ng-template>
+      Descripcion de Cursos
+    </mat-tab>
+  
+    <!-- Tab de Padres -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="mdi mdi-account-multiple padres"></i>
+        Padres
+      </ng-template>
+      <div class="container">
+          <div style="float:left; width: 50%;">
+              <h2>Datos del padre</h2>
+              <p>Nombre: <b>{{datos.nompad}} {{datos.apepad}}</b> </p>
+              <p>Domicilio: <b>{{datos.dompad}}</b> </p>
+              <p>Telefono: <b>{{datos.telpad}}</b> </p>
+              <p>Correo: <b>{{datos.correopad}}</b> </p>
+              <p>Ocupación: <b>{{datos.ocupad}}</b> </p>
+          </div>
+          <div style="float:left; width: 50%;">
+              <h2>Datos de la madre</h2>
+              <p>Nombre: <b>{{datos.nommad}} {{datos.apemad}}</b> </p>
+              <p>Domicilio: <b>{{datos.dommad}}</b></p>
+              <p>Telefono: <b>{{datos.telmad}}</b></p>
+              <p>Correo: <b>{{datos.correomad}}</b></p>
+              <p>Ocupación: <b>{{datos.ocupmad}}</b></p>
+          </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
             </div>
         </div>
+</div>

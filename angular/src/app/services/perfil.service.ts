@@ -8,6 +8,8 @@ export class PerfilService {
   // URL de laravel con xampp
   API_ENDPOINT = 'http://localhost:8000/api';
   dialogData: any;
+  
+  ngrupo: any;
 
   datos: any;
   membresia: any;
@@ -44,10 +46,20 @@ export class PerfilService {
     this.dialogData = data;
   }
 
+  putPerfilHora(ngrupo)
+  {
+    this.ngrupo = ngrupo
+  }
+
   getDialogData()
   {
     console.log(this.dialogData)
     return this.dialogData;
+  }
+
+  getDialogHoraData()
+  {
+    return this.ngrupo
   }
 
 

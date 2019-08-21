@@ -19,3 +19,13 @@
  {
    color: #1976D2;
  }
+
+ .container 
+ {
+   background-color: white;
+   padding: 15px;
+ }
+
+ .horario {
+   border: 4px;
+ }

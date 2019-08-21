@@ -12,8 +12,11 @@ export class PersonalService {
   API_ENDPOINT = 'http://localhost:8000/api';
 
   dataChange: BehaviorSubject<Personal[]> = new BehaviorSubject<Personal[]>([]);
+
   // Temporarily stores data from dialogs
   dialogData: any;
+
+  id: number 
 
   constructor(private httpClient: HttpClient) {}
 
@@ -53,6 +56,17 @@ export class PersonalService {
     this.dialogData = persona;
     return this.httpClient.put(this.API_ENDPOINT+'/personal/'+persona.idper, persona, {headers: headers});
     
+  }
+
+  putPersonal(persona: Personal)
+  {
+    this.dialogData = persona;
+  }
+
+  /* Obtiene el id del registro que se va a eliminar y lo guarda en la variable id */
+  getId(id: number )
+  {
+    this.id = id
   }
 
 

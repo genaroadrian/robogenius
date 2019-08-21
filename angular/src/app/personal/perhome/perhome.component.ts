@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { MatPaginator, MatSort, MatDialog} from '@angular/material';
-
+import { ToastrManager } from 'ng6-toastr-notifications';
 import {DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import { PersonalService } from 'src/app/services/personal.service';
@@ -11,6 +11,7 @@ import { PeraddComponent } from '../peradd/peradd.component';
 import { PerdeleteComponent } from '../perdelete/perdelete.component';
 import { PereditComponent } from '../peredit/peredit.component';
 import { Router } from '@angular/router';
+import { PersonalperfilService } from 'src/app/services/personalperfil.service';
 // For MDB Angular Free
 
 
@@ -38,6 +39,11 @@ export class PerhomeComponent  {
   // onClick() {
   //   myTest();
   // }
+
+  barra = "none";
+
+  /* Datos de la funcion DialogRef edit */
+  dialogEdit; any
 
   
   tableview = "none";
@@ -91,7 +97,8 @@ export class PerhomeComponent  {
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
     public personalService: PersonalService,
-    private router :Router ) { }
+    private router :Router, public toastr: ToastrManager,
+    public personalPerfilService: PersonalperfilService) { }
 
 
 
@@ -124,6 +131,22 @@ export class PerhomeComponent  {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
+   // Notificación de success al eliminar
+   showSuccesDelete() {
+    this.toastr.successToastr('Registro eliminado','Exito!');
+   }
+
+
+   // Notificación de success al editar
+   showSuccessEdit() {
+    this.toastr.successToastr('Registro actualizado','Exito!');
+  }
+
+  // Notificacion de error al editar
+  showErrorEdit() {
+    this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
+  }
+
   // Metodo para abrir el modal para agrefar nuevo registro
   /* El componente que sera modal debera ser agregado en app.module.ts
   en la sección de entryComponents */
@@ -149,6 +172,7 @@ export class PerhomeComponent  {
       });
   }
 
+  /* Metodo para eliminar un */
   delete(i:number, idper:number, nombre: string, apellidos:string){
     this.index = i;
     this.id = idper;
@@ -158,50 +182,79 @@ export class PerhomeComponent  {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
+        this.barra = ""
+        this.personalService.delete(idper).subscribe((data)=>{
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idper === this.id);
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
+        this.barra = "none"
+        this.showSuccesDelete();
+        }, (error)=>{
+        this.showSuccesDelete()
+        this.barra = "none"
+        })
+        
       }
     });
   }
+
+
+  perfil(row)
+  {
+    this.personalPerfilService.perfil(row)
+  }
+
+
   // Metodo para abrir el modal para modificar
-  onUpdate(i: number, idper: number, nombre: string,
-    apellidos: string, usuario: string, contra: string,
-    fechanac: string, sexo: string, curp: string, estadocivil:string,
-    domicilio: string, fechaingreso: string, horaentrada: string,
-    horasalida: string, perfilprofesional: string, especialidad: string,
-    tareasasignadas: string, salariomensual: number, idtper: number ) {
-    // A la variable index se le asigna el [index] recibido con la variable [i]
-    this.index = i;
-    // Se le asigna a la variable [id] el valor recibido de la variable [idper]
-    this.id = idper;
-    const dialogRef = this.dialog.open(PereditComponent, {
-      // Anchura de el modal
-      width: '60%',
-      /* Al modal se le envia la variable data, que contiene los datos de el registro
-      de la tabla que se va a modificar */
-      data: 
-      {
-        idper: idper, nombre: nombre, apellidos: apellidos,
-        usuario: usuario, contra: contra, fechanac: fechanac,
-        sexo: sexo, curp: curp, estadocivil: estadocivil,
-        domicilio: domicilio, fechaingreso: fechaingreso, horaentrada: horaentrada,
-        horasalida: horasalida, perfilprofesional: perfilprofesional, especialidad: especialidad,
-        tareasasignadas: tareasasignadas, salariomensual: salariomensual, idtper: idtper
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 1) {
-        // Se busca el registro en la variable [exampleDatabase] de la tbla
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idper === this.id);
-        // Se actualiza el dato, pero solo en la tabla, no en la base de datos
-        this.exampleDatabase.dataChange.value[foundIndex] = this.personalService.getDialogData();
-        // Se refresca la tabla
-        this.refreshTable();
-      }
-    });
-  }
+  // onUpdate(i: number, idper: number, nombre: string,
+  //   apellidos: string, usuario: string, contra: string,
+  //   fechanac: string, sexo: string, curp: string, estadocivil:string,
+  //   domicilio: string, fechaingreso: string, horaentrada: string,
+  //   horasalida: string, perfilprofesional: string, especialidad: string,
+  //   tareasasignadas: string, salariomensual: number, idtper: number ) {
+  //   // A la variable index se le asigna el [index] recibido con la variable [i]
+  //   this.index = i;
+  //   // Se le asigna a la variable [id] el valor recibido de la variable [idper]
+  //   this.id = idper;
+  //   const dialogRef = this.dialog.open(PereditComponent, {
+  //     // Anchura de el modal
+  //     width: '60%',
+  //     /* Al modal se le envia la variable data, que contiene los datos de el registro
+  //     de la tabla que se va a modificar */
+  //     data: 
+  //     {
+  //       idper: idper, nombre: nombre, apellidos: apellidos,
+  //       usuario: usuario, contra: contra, fechanac: fechanac,
+  //       sexo: sexo, curp: curp, estadocivil: estadocivil,
+  //       domicilio: domicilio, fechaingreso: fechaingreso, horaentrada: horaentrada,
+  //       horasalida: horasalida, perfilprofesional: perfilprofesional, especialidad: especialidad,
+  //       tareasasignadas: tareasasignadas, salariomensual: salariomensual, idtper: idtper
+  //     }
+  //   });
+  //   dialogRef.afterClosed().subscribe(result => {
+      
+  //     if (result === 1) {
+  //       this.barra = ""
+  //       this.dialogEdit = this.personalService.getDialogData()
+  //       this.personalService.put(this.dialogEdit).subscribe((data) =>{
+  //         // Se busca el registro en la variable [exampleDatabase] de la tbla
+  //       const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idper === this.id);
+  //       // Se actualiza el dato, pero solo en la tabla, no en la base de datos
+  //       this.exampleDatabase.dataChange.value[foundIndex] = this.personalService.getDialogData();
+  //       // Se refresca la tabla
+  //       this.refreshTable();
+  //       this.barra = "none"
+  //       this.showSuccessEdit();
+  //         // this.personalService.tput(this.data);
+  //       },(error)=>{
+  //         this.showErrorEdit();
+  //         this.barra = "none"
+  //       });    
+        
+  //     }
+  //   });
+  // }
 }
 
 

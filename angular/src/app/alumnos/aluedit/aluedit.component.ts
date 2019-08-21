@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AlumnosService } from 'src/app/services/alumnos.service';
-import { ToastrManager } from 'ng6-toastr-notifications';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { PerfilService } from 'src/app/services/perfil.service';
 
@@ -18,7 +17,7 @@ export class AlueditComponent implements OnInit {
   constructor(public dialogRef: MatDialogRef<AlueditComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any,
     public alumnosService: AlumnosService, 
-    public toastr: ToastrManager, fb: FormBuilder, public perfilService: PerfilService) {
+    fb: FormBuilder, public perfilService: PerfilService) {
       
       this.options = fb.group({
         hideRequired: false,

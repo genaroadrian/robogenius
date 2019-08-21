@@ -552,7 +552,7 @@
           </mat-form-field>
         </div>
       </div>
-        <button [disabled]="clasesbutton" mat-raised-button (click)="saveGalu()" routerLinkActive="router-link-active" tabindex="-1">
+        <button [disabled]="clasesbutton" mat-raised-button [routerLink]="['/alumnos']" routerLinkActive="router-link-active"  (click)="saveGalu()" routerLinkActive="router-link-active" tabindex="-1">
           Guardar</button>
 
         <button mat-raised-button (click)="finalizar()" > Finalizar</button>

@@ -1,23 +1,53 @@
-<div class="container">
-  <h3 mat-dialog-title>Nuevo registro</h3>
+<div class="container" style="height: 210px;">
+  <h3 mat-dialog-title style="text-align: center;">Nuevo registro</h3>
 
-  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
-
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput placeholder="Hora" [(ngModel)]="data.hora" name="hora">
-      </mat-form-field>
-    </div>
-
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput placeholder="Id dia" [(ngModel)]="data.idd" name="idd">
-      </mat-form-field>
-    </div>
-
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm" style="height: 170px;" >
+      <div class="form">
+          <mat-form-field style="width: 220px;">
+              <mat-label>Hora de inicio</mat-label>
+              <mat-select [(value)]="selected">
+                <mat-option>None</mat-option>
+                <mat-option value="7:00 am">7:00 am</mat-option>
+                <mat-option value="8:00 am">8:00 am</mat-option>
+                <mat-option value="9:00 am">9:00 am</mat-option>
+                <mat-option value="10:00 am">10:00 am</mat-option>
+                <mat-option value="11:00 am">11:00 am</mat-option>
+                <mat-option value="12:00 pm">12:00 pm</mat-option>
+                <mat-option value="1:00 pm">1:00 pm</mat-option>
+                <mat-option value="2:00 pm">2:00 pm</mat-option>
+                <mat-option value="3:00 pm">3:00 pm</mat-option>
+                <mat-option value="4:00 pm">4:00 pm</mat-option>
+                <mat-option value="5:00 pm">5:00 pm</mat-option>
+                <mat-option value="6:00 pm">6:00 pm</mat-option>
+                <mat-option value="7:00 pm">7:00 pm</mat-option>
+                <mat-option value="8:00 pm">8:00 pm</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field style="width: 220px;">
+                <mat-label>Hora de termino</mat-label>
+                <mat-select [(value)]="selecteds">
+                  <mat-option>None</mat-option>
+                  <mat-option value="7:00 am">7:00 am</mat-option>
+                  <mat-option value="8:00 am">8:00 am</mat-option>
+                  <mat-option value="9:00 am">9:00 am</mat-option>
+                  <mat-option value="10:00 am">10:00 am</mat-option>
+                  <mat-option value="11:00 am">11:00 am</mat-option>
+                  <mat-option value="12:00 pm">12:00 pm</mat-option>
+                  <mat-option value="1:00 pm">1:00 pm</mat-option>
+                  <mat-option value="2:00 pm">2:00 pm</mat-option>
+                  <mat-option value="3:00 pm">3:00 pm</mat-option>
+                  <mat-option value="4:00 pm">4:00 pm</mat-option>
+                  <mat-option value="5:00 pm">5:00 pm</mat-option>
+                  <mat-option value="6:00 pm">6:00 pm</mat-option>
+                  <mat-option value="7:00 pm">7:00 pm</mat-option>
+                  <mat-option value="8:00 pm">8:00 pm</mat-option>
+                </mat-select>
+              </mat-form-field>
+      </div>
     <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
-      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()" style="margin-left: 20px; margin-right: 40px;">Guardar</button>
+      <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
     </div>
   </form>
 </div>

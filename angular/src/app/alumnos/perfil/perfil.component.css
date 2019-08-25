@@ -1,31 +1,34 @@
-.eye{
-    position:absolute;
-    height:200px;
-    width:200px;
-    top: 40px;
-    left : 40px;
-    z-index: 1;
-  }
-  
-  .heaven
-  {
-    position:absolute;
-    height:300px;
-    width:300px;
-    z-index: -1;
-  }
-
- .mdi
- {
-   color: #1976D2;
- }
-
  .container 
  {
    background-color: white;
-   padding: 15px;
  }
+ .labeltitulo{
+   color: white;
+ }
+ .pequeña{
+   width: 200px;
+   height: 200px;;
+ }
+ .encabezado{
+   width: 100% ;height: 40px;
+ }
+ .imagenandname{
+  text-align: center;
+  font-size: 30px;
+ }
+@media(max-width:1040px){
+  .labeltitulo{
+    color: black;
+  }
+  .pequeña{
+    width: 100px;
+    height: 100px;
+    margin-top: 1px;
+  }
+  .encabezado{
+    height: 10px;
+  }
 
- .horario {
-   border: 4px;
- }
+
+}
+ 

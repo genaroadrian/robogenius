@@ -23,7 +23,7 @@ export class TmhomeComponent implements OnInit {
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [
-    'idtmen',
+    // 'idtmen',
     'nombre',
     'fechainicial',
     'fechafinal',

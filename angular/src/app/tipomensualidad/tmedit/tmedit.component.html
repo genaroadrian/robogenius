@@ -1,40 +1,32 @@
-<div class="container">
-  <h3 mat-dialog-title>Modificando</h3>
+<div class="container" style="height: 330px">
+  <h3 mat-dialog-title style="text-align: center;">Modificando</h3>
 
-  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
-
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm" style="height: 290px;">  
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.idtmen" name="idtmen" required disabled>
-        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-    </div>
-  
-    <div class="form">
-      <mat-form-field color="accent">
+      <mat-form-field color="accent" style="width:100%">
         <input matInput #input class="form-control" placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
   
     <div class="form">
-      <mat-form-field color="accent">
+      <mat-form-field color="accent" style="width:100%">
         <input matInput #input class="form-control" placeholder="Fecha inicial" [(ngModel)]="data.fechainicial" name="fechainicial" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
   
     <div class="form">
-      <mat-form-field color="accent">
+      <mat-form-field color="accent" style="width:100%">
         <input matInput #input class="form-control" placeholder="Fecha final" [(ngModel)]="data.fechafinal" name="fechafinal" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
-        (click)="stopEdit(data)">Guardar</button>
-      <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
+      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+        (click)="stopEdit(data)" style="margin: 0 40px 0 10px">Guardar</button>
+      <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
     </div>
   </form>
 </div>

@@ -23,7 +23,7 @@ export class TphomeComponent implements OnInit {
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [
-    'idtper',
+    // 'idtper',
     'tipo',
     'icons'
    ];

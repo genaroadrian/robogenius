@@ -20,6 +20,10 @@ export class TpaddComponent implements OnInit {
 
   ngOnInit() {
     
+    
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

@@ -23,7 +23,7 @@ export class TpahomeComponent implements OnInit {
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [
-    'idtipopago',
+    // 'idtipopago',
     'nombre',
     'icons'
    ];

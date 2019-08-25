@@ -184,7 +184,7 @@ export class ExampleDataSource extends DataSource<Tipopago> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((tipopago: Tipopago) => {
-          const searchStr = (tipopago.idtipopago + tipopago.nombre + tipopago.activo).toLowerCase();
+          const searchStr = (tipopago.nombre + tipopago.activo).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 

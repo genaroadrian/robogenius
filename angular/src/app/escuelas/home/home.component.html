@@ -1,4 +1,6 @@
+
 <app-navbar></app-navbar>   
+
 <br> 
 <br> 
 <br> 
@@ -7,6 +9,7 @@
 <br> 
 <br> 
 <div class="container">
+    <mat-progress-bar [ngStyle]="{display:barra}"  mode="indeterminate"></mat-progress-bar>
   <mat-toolbar>
     <span>Escuelas</span>
     <span class="spacer"></span>
@@ -17,7 +20,7 @@
   </mat-toolbar>
   
   <button mat-icon-button (click)="addNew()">
-    <mat-icon aria-label="Nuevo Registro" class="text-info">add_circle_outline</mat-icon><span class="text-info"> Nuevo</span>
+    <mat-icon aria-label="Nuevo Registro">add_circle_outline</mat-icon><span > Nuevo</span>
   </button>
   
   <div class="container mat-elevation-z24">
@@ -71,7 +74,7 @@
             <mat-icon aria-label="Edit">edit</mat-icon>
           </button>
   
-          <button mat-icon-button class="text-danger" (click)="delete(i, row.idesc)">
+          <button mat-icon-button class="text-danger" (click)="delete(i, row.idesc, row.nombre)">
             <mat-icon aria-label="Delete">delete</mat-icon>
           </button>
         </mat-cell>

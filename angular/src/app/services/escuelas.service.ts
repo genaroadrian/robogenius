@@ -8,14 +8,18 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class EscuelasService {
 
+  /* Ruta de laravel */
   API_ENDPOINT = 'http://localhost:8000/api';
 
+  /* Detector de cambios en los datos */
   dataChange: BehaviorSubject<Escuelas[]> = new BehaviorSubject<Escuelas[]>([]);
-  // Temporarily stores data from dialogs
+
+  // Datos termporales que se recibiran desde los modales 
   dialogData: any;
 
   constructor(private httpClient: HttpClient) { }
 
+  /* Obtiene la información de la tabla  */
   getEscuelas(): void{
     this.httpClient.get<Escuelas[]>(this.API_ENDPOINT + '/escuelas').subscribe(data => {
       this.dataChange.next(data);
@@ -25,26 +29,29 @@ export class EscuelasService {
     });
   }
 
+  /* Actualiza a la base de datos  */
   put(data){
-    console.log(data);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.put(this.API_ENDPOINT +'/escuelas/'+data.idesc,data,{headers: headers});
   }
 
+  /* Obtinene la variable y detecta cambios */
   get data(): Escuelas[] {
     return this.dataChange.value;
   }
 
+  /* Retorna la variable con los datos ya obtenidos de los modales */
   getDialogData() {
     return this.dialogData;
   }
 
 
-  // DEMO ONLY, you can find working methods below
-  addIssue (escuelas: Escuelas): void {
-    this.dialogData = escuelas;
+  /* Metodo que recibe los datos del formulario y los guarda en la variable dialogData */
+  addEscuela (escuelas: Escuelas): void {
+    this.dialogData = escuelas
   }
 
+  /* Guarda los datos en la base */
   add(escuelas: Escuelas)
   {
     console.log(escuelas);
@@ -52,6 +59,7 @@ export class EscuelasService {
     return this.httpClient.post(this.API_ENDPOINT + '/escuelas/',escuelas, {headers: headers});
   }
 
+  /* Obtiene los datos de el modal de editar y los gurada en la variable  */
   putEscuela(data)
   {
     this.dialogData = data;

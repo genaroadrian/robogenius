@@ -86,6 +86,7 @@ import { PerfildemoComponentComponent } from './perfildemo-component/perfildemo-
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { PersonalperfilComponent } from './personal/personalperfil/personalperfil.component';
 import {MatListModule} from '@angular/material/list';
+import { EscuelasService } from './services/escuelas.service';
 
 
  
@@ -221,7 +222,6 @@ const routes: Route[]=[
     NgxPayPalModule,
     MatExpansionModule,
     ChartsModule,
-    ChartsModule,
     MatProgressBarModule,
     MatListModule
     ],
@@ -235,6 +235,7 @@ const routes: Route[]=[
     LoginGuard,
     NoLoginGuard,
     GraficasService,
+    EscuelasService,
 
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],

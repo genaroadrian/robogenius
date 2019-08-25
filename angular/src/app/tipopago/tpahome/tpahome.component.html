@@ -45,8 +45,8 @@
 
 
     <ng-container matColumnDef="icons">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
-      <mat-cell *matCellDef="let row; let i=index;">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="alin">Acciones</mat-header-cell>
+      <mat-cell *matCellDef="let row; let i=index;" class="alin" >
         <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idtipopago, row.nombre)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>

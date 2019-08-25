@@ -1,38 +1,24 @@
 <app-navbar></app-navbar>   
-<br> 
-<br> 
-<br> 
-<br> 
-<br> 
-<br> 
-<br>
 
-   
-<div class="container">
-<div class="row">
-    <div class="col-lg-2">
-        <img class="rounded-circle shadow" alt="700x700" src="assets/images/users/user-4.jpg"
-            data-holder-rendered="true">
-    </div>
-    <div class="col-lg-1">
-    </div>
+<div  class="encabezado"></div>
 
-    <div class="col-lg-7">
-        <br><br><br>
-        <label style="font-size: 30px;"> {{datos.nomalu}} {{datos.apealu}} <button mat-icon-button class="text-success"
-                (click)="editAlu(datos.idalu ,datos.nomalu, datos.apealu, datos.fnacalu, datos.sexoalu, datos.domalu, datos.telalu,
-            datos.correoalu, datos.medicacion, datos.alergias, datos.perfilalu, datos.cronica, datos.otro, datos.evaluacion,
-            datos.usuarioalu, datos.pswalu, datos.nompad, datos.apepad, datos.dompad, datos.telpad, datos.correopad, datos.ocupad,
-            datos.nommad, datos.apemad, datos.dommad, datos.telmad, datos.correomad, datos.ocupmad, datos.finscripcion)">
-                <mat-icon aria-label="Edit">edit</mat-icon>
-            </button></label>
-    </div>
-    <div class="col-lg-2">
-    </div>
+<div class="col-xl-12 col-md-12  imagenandname" >
+        <img class="rounded-circle shadow pequeña"  src="https://faros.hsjdbcn.org/sites/default/files/styles/ficha-contenido/public/nino-sonriendo-.jpg?itok=iurfn0Ky"
+        data-holder-rendered="true">
+        <br>
+        <label  class="labeltitulo"> {{datos.nomalu}} {{datos.apealu}} <button mat-icon-button 
+            (click)="editAlu(datos.idalu ,datos.nomalu, datos.apealu, datos.fnacalu, datos.sexoalu, datos.domalu, datos.telalu,
+        datos.correoalu, datos.medicacion, datos.alergias, datos.perfilalu, datos.cronica, datos.otro, datos.evaluacion,
+        datos.usuarioalu, datos.pswalu, datos.nompad, datos.apepad, datos.dompad, datos.telpad, datos.correopad, datos.ocupad,
+        datos.nommad, datos.apemad, datos.dommad, datos.telmad, datos.correomad, datos.ocupmad, datos.finscripcion)">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+        </button></label>
+        <br>
+        
 </div>
 
-<div class="row">
-    <div class="col-lg-3">
+<div class="row col-xl-12" >
+    <div class="col-xl-4">
         <br>
         <i class="mdi mdi-key-variant"> </i> <label> ID: </label>
         <span> {{datos.idalu}} </span>
@@ -55,43 +41,20 @@
         <i class="mdi mdi-calendar-text horario"> </i> <label> Fecha de inscripción: </label>
         <span> {{datos.finscripcion}} </span>
     </div>
-
-    <!-- <div class="row">
-          <div class="tab-content">
-               <div class="tab-pane active p-3" id="home-1" role="tabpanel">
-                   <p class="mb-0">
-                       
-                     Descripcion de membrecia
-                   </p>
-               </div>
-               <div class="tab-pane p-3" id="profile-1" role="tabpanel">
-                   <p class="mb-0">
-                       Descripcion de Horarios
-                   </p>
-               </div>
-               <div class="tab-pane p-3" id="messages-1" role="tabpanel">
-                   <p class="mb-0">
-                      Descripcion de Cursos
-                   </p>
-               </div>
-              </div>
-           </div> -->
-
-    <div class="col-lg-9">
-        <div class="card m-b-30">
+        <div class="col-xl-8" style="max-width: none;">
         <!-- ----------------------- Tabs ----------------------- -->
-<mat-tab-group>
+<mat-tab-group >
     <!-- Tab de membresia -->
-    <mat-tab>
+    <mat-tab style="width: 90%">
       <ng-template mat-tab-label>
         <i class="mdi mdi-account-card-details membresia"></i>
         Membresia
       </ng-template>
       <mat-progress-bar mode='indeterminate' [ngStyle]="{display:barramem}"></mat-progress-bar>
-      <div class="container">
+     <div class="container">
           <mat-accordion>
-              <h4>Historial de membresias</h4>
-              <div>
+              <h4 style="text-align: center;">Historial de membresias</h4>
+              <div >
                   <p class="{{color}}">
                       <mat-icon>{{icono}} </mat-icon> {{status}} 
                   </p>
@@ -131,8 +94,9 @@
         <i class="mdi mdi-calendar-text horario"></i>
         Horario
       </ng-template>
-      <div class="row mb-0 col-md-12">
-          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 col-md-12 container">
+      <div class="container">
+        
+          <table mat-table [dataSource]="dataSource" style="width:100%">
   
               <!--- Note that these columns can be defined in any order.
                                     The actual rendered columns are set as a property on the row definition" -->
@@ -216,7 +180,10 @@
         <i class="mdi mdi-finance cursos"></i>
         Cursos
       </ng-template>
+      <div class="container">
+
       Descripcion de Cursos
+      </div>
     </mat-tab>
   
     <!-- Tab de Padres -->
@@ -246,5 +213,4 @@
     </mat-tab>
   </mat-tab-group>
             </div>
-        </div>
 </div>

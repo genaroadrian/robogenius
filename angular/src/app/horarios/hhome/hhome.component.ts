@@ -22,9 +22,9 @@ export class HhomeComponent implements OnInit {
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [
-    'idh',
+    // 'idh',
     'hora',
-    'idd',
+    // 'idd',
     'icons'
    ];
 
@@ -183,7 +183,7 @@ export class ExampleDataSource extends DataSource<Horario> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((horario: Horario) => {
-          const searchStr = (horario.idh + horario.hora + horario.idd + horario.activo).toLowerCase();
+          const searchStr = (horario.hora).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 
@@ -214,7 +214,7 @@ export class ExampleDataSource extends DataSource<Horario> {
       switch (this._sort.active) {
         case 'idh': [propertyA, propertyB] = [a.idh, b.idh]; break;
         case 'hora': [propertyA, propertyB] = [a.hora, b.hora]; break;
-        case 'idd': [propertyA, propertyB] = [a.idd, b.idd]; break;
+        // case 'idd': [propertyA, propertyB] = [a.idd, b.idd]; break;
         case 'activo': [propertyA, propertyB] = [a.activo, b.activo]; break;
       }
 

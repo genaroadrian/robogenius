@@ -21,9 +21,7 @@ class horariosController extends Controller
     public function store(Request $request)
     {
         $horario = new Horarios();
-        $horario->idh = $request->idh;
         $horario->hora = $request->hora;
-        $horario->idd = $request->idd;
         $horario->activo = 1;
         $horario->save();
         echo json_encode($horario);
@@ -33,9 +31,7 @@ class horariosController extends Controller
     public function update(Request $request, $id)
     {
         $horario = Horarios::find($id);
-        $horario->idh = $request->idh;
         $horario->hora = $request->hora;
-        $horario->idd = $request->idd;
         $horario->activo = 1;
         $horario->save();
         echo json_encode($horario);

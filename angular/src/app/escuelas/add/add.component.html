@@ -1,41 +1,41 @@
-<div class="container">
-  <h3 mat-dialog-title>Nuevo registro</h3>
+<div class="container" style="height:420px;">
+  <h3 mat-dialog-title style="text-align: center;">Nuevo registro</h3>
 
-  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm" style="height:380px;">
 
     <div class="form">
-      <mat-form-field color="accent">
+      <mat-form-field color="accent"  style="width: 340px;">
         <input matInput placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre">
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
+      <mat-form-field color="accent" style="width: 340px;">
         <input matInput placeholder="Representante" [(ngModel)]="data.representante" name="representante">
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
+      <mat-form-field color="accent" style="width: 340px;">
         <input matInput placeholder="Dirección" [(ngModel)]="data.direccion" name="direccion">
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
+      <mat-form-field color="accent" style="width: 340px;">
         <input matInput placeholder="Telefono" [(ngModel)]="data.telefono" name="telefono">
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
+      <mat-form-field color="accent" style="width: 340px;">
         <input matInput placeholder="Correo" [(ngModel)]="data.correo" name="correo">
       </mat-form-field>
     </div>
 
     <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()">Save</button>
-      <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()" style="margin-top:40px;margin-left: 80px; margin-right: 40px;">Guardar</button>
+      <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1" style="margin-top: 40px;">Cancelar</button>
     </div>
   </form>
 </div>

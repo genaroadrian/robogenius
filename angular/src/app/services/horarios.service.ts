@@ -21,12 +21,12 @@ API_ENDPOINT = 'http://localhost:8000/api';
       this.dataChange.next(data);
       },
     (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
+    // console.log (error.name + ' ' + error.message);
     });
   }
 
   put(data){
-    console.log(data);
+    // console.log(data);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.put(this.API_ENDPOINT +'/horarios/'+data.idh,data,{headers: headers});
   }
@@ -47,7 +47,7 @@ API_ENDPOINT = 'http://localhost:8000/api';
 
   add(horario: Horario)
   {
-    console.log(horario);
+    // console.log(horario);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.post(this.API_ENDPOINT + '/horarios/',horario, {headers: headers});
   }
@@ -57,7 +57,7 @@ API_ENDPOINT = 'http://localhost:8000/api';
   }
 
   deleteIssue (id: number): void {
-    console.log(id);
+    // console.log(id);
   }
 
   delete(id){

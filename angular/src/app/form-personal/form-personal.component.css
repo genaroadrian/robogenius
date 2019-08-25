@@ -1,12 +1,21 @@
 mat-form-field {
-    width: 20%;
-    margin: 10px;
-}
 
-.mitad {
+width: 100%;
+text-decoration: none;
+margin-top: 10px;
+}
+/* mat-form-fiel:hover{
+    text-decoration: none;
+
+} */
+hr{
+background-color: #db36a4; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+text-align: center;
+}
+/* .mitad {
     width: 40%;
-}
-
+} */
+/* 
 .example-container {
     background-color: white;
-}
+} */

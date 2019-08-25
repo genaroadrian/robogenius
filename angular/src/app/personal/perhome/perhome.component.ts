@@ -33,6 +33,7 @@ declare var $:any;
 @Component({
   selector: 'app-perhome',
   templateUrl: './perhome.component.html',
+  styleUrls: ['./perhome.component.css']
 })
 export class PerhomeComponent  {
 
@@ -67,7 +68,7 @@ export class PerhomeComponent  {
     'especialidad',
     'tareasasignadas',
     'salariomensual',
-    'idtper',
+    // 'idtper',
     'icons'
    ];
 

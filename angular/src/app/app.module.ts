@@ -82,10 +82,10 @@ import { ChartsModule } from 'ng2-charts';
 import { EstadisticasComponent } from './estadisticas/estadisticas.component';
 import { CategoriasComponent } from './categorias/categorias.component';
 import { IngresosComponent } from './ingresos/ingresos.component';
-import { PerfildemoComponentComponent } from './perfildemo-component/perfildemo-component.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { PersonalperfilComponent } from './personal/personalperfil/personalperfil.component';
 import {MatListModule} from '@angular/material/list';
+import { FotterComponent } from './fotter/fotter.component';
 
 
  
@@ -116,7 +116,6 @@ const routes: Route[]=[
 {path: 'registrar', component: RegisterComponent},
 {path: 'estadisticas', component: CategoriasComponent},
 {path: 'graficas', component: EstadisticasComponent},
-{path: 'demoinstructor', component: PerfildemoComponentComponent},
 {path: 'personalperfil', component: PersonalperfilComponent}
 
 
@@ -180,8 +179,8 @@ const routes: Route[]=[
     EstadisticasComponent,
     CategoriasComponent,
     IngresosComponent,
-    PerfildemoComponentComponent,
     PersonalperfilComponent,
+    FotterComponent,
 
 
 

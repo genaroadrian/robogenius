@@ -23,7 +23,7 @@ export class ShomeComponent implements OnInit {
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [
-    'idsuc',
+    // 'idsuc',
     'nombre',
     'direccion',
     'encargado',

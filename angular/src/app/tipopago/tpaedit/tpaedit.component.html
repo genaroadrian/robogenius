@@ -3,10 +3,21 @@
 
   <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm" style="height: 140px">
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre" required>
-        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
+
+      <div class="row">
+          <mat-form-field color="accent">
+              <input disabled readonly matInput #input class="form-control" placeholder="ID" [(ngModel)]="data.idtipopago" name="idtipopago"
+                required>
+            </mat-form-field>
+      </div>
+
+      <div class="row">
+          <mat-form-field color="accent">
+              <input matInput #input class="form-control" placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre"
+                required>
+              <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+      </div>
     </div>
 
     <div mat-dialog-actions>

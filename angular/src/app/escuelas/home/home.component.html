@@ -7,6 +7,7 @@
     <div class="col-xl-12 col-md-12 ">
         <div class="card bg-light mini-stat position-relative">
               <div class="card-body">
+                  <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
                  <div class="mini-stat-desc">
                     <div class="col-xl-12 col-md-12">
                        <div class="col-xl-5 col-md-12 ">
@@ -17,7 +18,6 @@
                          <div class="col-xl-5 col-md-12 ">
                          </div>
                      </div>
-                     
                          <div class="col-xl-12 col-md-12 ">
                           <mat-toolbar style="background: none; color: black;">
                             <span><button mat-icon-button (click)="addNew()" >
@@ -111,6 +111,3 @@
                   </div>
                 </div>
 <app-fotter></app-fotter>
-  
-  
-

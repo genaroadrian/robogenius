@@ -7,6 +7,7 @@
     <div class="col-xl-12 col-md-12 ">
         <div class="card bg-light mini-stat position-relative">
               <div class="card-body">
+                <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
                  <div class="mini-stat-desc">
                     <div class="col-xl-12 col-md-12">
                        <div class="col-xl-4 col-md-12 ">
@@ -55,14 +56,14 @@
                             </ng-container>
 
 
-                            <ng-container matColumnDef="icons">
-                                <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
-                              <mat-cell *matCellDef="let row; let i=index;">
-                                <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idtipopago, row.nombre)">
-                                  <mat-icon aria-label="Edit">edit</mat-icon>
-                                </button>
-
-                                <button mat-icon-button class="text-danger" (click)="delete(i, row.idtipopago)">
+                           
+    <ng-container matColumnDef="icons">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="alin">Acciones</mat-header-cell>
+      <mat-cell *matCellDef="let row; let i=index;" class="alin" >
+        <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idtipopago, row.nombre)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
+                                <button mat-icon-button class="text-danger" (click)="delete(i, row.idtipopago, row.nombre)">
                                   <mat-icon aria-label="Delete">delete</mat-icon>
                                 </button>
                               </mat-cell>

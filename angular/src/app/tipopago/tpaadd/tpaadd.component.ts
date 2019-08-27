@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {FormControl, Validators} from '@angular/forms';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { TipopagoService } from 'src/app/services/tipopago.service';
 import { Tipopago } from 'src/app/interfaces/tipopago';
-import { ToastrManager } from 'ng6-toastr-notifications';
+
 
 @Component({
   selector: 'app-tpaadd',
@@ -12,33 +12,41 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 })
 export class TpaaddComponent implements OnInit {
 
+  /* Opciones del formulario */
+  options: FormGroup;
+
   constructor(public dialogRef: MatDialogRef<TpaaddComponent>,@Inject(MAT_DIALOG_DATA) public data: Tipopago,
-    public tipopagoService: TipopagoService, public toastr: ToastrManager) { }
+    public tipopagoService: TipopagoService,fb: FormBuilder) { 
+
+    this.options = fb.group({
+        hideRequired: false
+      });
+     }
+
+     /* Validaciones de los formularios */
+  fControl = new FormControl('', [
+    Validators.required
+  ]);
+
+  /* Mensajes de error de las validaciones */
+  getErrorMessage() {
+    return this.fControl.hasError('required') ? 'El campo es obligatorio' :
+        '';
+  }
 
   ngOnInit() {
   }
 
+  /* Cuando se hace clic afuera del modal, se cierra */
   onNoClick(): void {
     this.dialogRef.close();
   }
 
-  showSuccessEdit() {
-    this.toastr.successToastr('Registro actualizado','Exito!');
-  }
-
-  showErrorEdit() {
-    this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
-  }
-
+  /* Confirmar el registro */
   confirmAdd(data): void
   {
-    console.log(this.data);
-    this.tipopagoService.add(this.data).subscribe((data) =>{
-      this.showSuccessEdit();
-      this.tipopagoService.addIssue(this.data);
-    },(error)=>{
-      this.showErrorEdit();
-    });
+    
+    this.tipopagoService.addTpago(data);
   }
 
 

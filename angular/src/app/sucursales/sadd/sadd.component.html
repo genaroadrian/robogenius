@@ -5,36 +5,43 @@
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre">
+        <input matInput placeholder="Nombre" [(ngModel)]="data.nombre" required name="nombre">
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput placeholder="Dirección" [(ngModel)]="data.direccion" name="direccion">
+        <textarea matInput placeholder="Dirección" [(ngModel)]="data.direccion" required name="direccion"></textarea>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput placeholder="Encargado" [(ngModel)]="data.encargado" name="encargado">
+        <input matInput placeholder="Encargado" [(ngModel)]="data.encargado" required name="encargado">
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput placeholder="Usuario" [(ngModel)]="data.usuario" name="usuario">
+        <input matInput placeholder="Usuario" [(ngModel)]="data.usuario" required name="usuario">
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput placeholder="Password" [(ngModel)]="data.psw" name="psw">
+        <input matInput placeholder="Password" [(ngModel)]="data.psw" required name="psw" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div mat-dialog-actions>
-      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()" style="margin: 0px 40px 0 10px;">Guardar</button>
+      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd(data)" style="margin: 0px 40px 0 10px;">Guardar</button>
       <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
     </div>
   </form>

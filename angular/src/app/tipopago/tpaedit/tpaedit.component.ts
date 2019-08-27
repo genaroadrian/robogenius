@@ -2,7 +2,6 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormControl, Validators} from '@angular/forms';
 import { TipopagoService } from 'src/app/services/tipopago.service';
-import { Tipopago } from 'src/app/interfaces/tipopago';
 import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
@@ -18,14 +17,15 @@ export class TpaeditComponent implements OnInit {
   ngOnInit() {
   }
 
-  formControl = new FormControl('', [
+  /* Validaciones del formulario */
+  fControl = new FormControl('', [
     Validators.required
-    // Validators.email,
   ]);
 
+  /* Mensajes de error del formulario */
   getErrorMessage() {
-    return this.formControl.hasError('required') ? 'El campo es obligatorio' :
-      this.formControl.hasError('email') ? 'Ingrese un corre valido' :
+    return this.fControl.hasError('required') ? 'El campo es obligatorio' :
+      this.fControl.hasError('email') ? 'Ingrese un corre valido' :
         '';
   }
 
@@ -47,15 +47,7 @@ export class TpaeditComponent implements OnInit {
   }
 
   stopEdit(data): void {
-    this.tipopagoService.put(this.data).subscribe((data) =>{
-      // console.log(this.data);
-      // alert('Registro Actualizado');
-      this.showSuccessEdit();
-      this.tipopagoService.updateTipopago(this.data.id);
-      // console.log(this.data);
-    },(error)=>{
-      this.showErrorEdit();
-    });
+    this.tipopagoService.updateTpago(data)
   }
 
 }

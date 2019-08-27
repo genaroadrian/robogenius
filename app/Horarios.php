@@ -15,6 +15,5 @@ class Horarios extends Model
     protected $fillable = [ 
     	'idh',
     	'hora',
-    	'idd',
     	'activo'];
 }

@@ -26,14 +26,15 @@
   
     <div class="form">
       <mat-form-field color="accent" style="width: 440px;">
-        <input matInput #input   placeholder="Dirección" [(ngModel)]="data.direccion" name="direccion" required>
+        <textarea   matInput #input   placeholder="Dirección" [(ngModel)]="data.direccion" name="direccion" required></textarea>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
   
     <div class="form">
       <mat-form-field color="accent" style="width: 440px;">
-        <input matInput #input   placeholder="Telefono" [(ngModel)]="data.telefono" name="telefono" required>
+        <input matInput #input  #tel maxlength="10" placeholder="Telefono" [(ngModel)]="data.telefono" name="telefono" required>
+        <mat-hint align="end">{{tel.value?.length || 0}}/10</mat-hint>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>

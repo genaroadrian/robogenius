@@ -40,23 +40,18 @@ export class SucursalService {
 
 
   // DEMO ONLY, you can find working methods below
-  addIssue (sucursal: Sucursal): void {
+  addSucurusal (sucursal: Sucursal): void {
     this.dialogData = sucursal;
   }
 
   add(sucursal: Sucursal)
   {
-    console.log(sucursal);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.post(this.API_ENDPOINT + '/sucursal/',sucursal, {headers: headers});
   }
 
   updateSucursal (sucursal: Sucursal): void {
     this.dialogData = sucursal;
-  }
-
-  deleteIssue (id: number): void {
-    console.log(id);
   }
 
   delete(id){

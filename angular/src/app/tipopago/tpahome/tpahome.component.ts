@@ -1,18 +1,16 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-
 import { TipopagoService } from 'src/app/services/tipopago.service';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Tipopago } from 'src/app/interfaces/tipopago';
-import { MatPaginator, MatSort, MatTableDataSource, MatTable } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatDialog, MatDialogConfig, MatIconRegistry} from '@angular/material';
+import { MatPaginator, MatSort } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { TpaeditComponent } from '../tpaedit/tpaedit.component';
 import { TpaaddComponent } from '../tpaadd/tpaadd.component';
 import { TpadeleteComponent } from '../tpadelete/tpadelete.component';
-import {DataSource} from '@angular/cdk/collections';
-import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import delay, { delayReject, delayThen, delayCatch } from 'delay.ts';
+import { DataSource } from '@angular/cdk/collections';
+import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-tpahome',
@@ -23,10 +21,9 @@ export class TpahomeComponent implements OnInit {
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [
-    // 'idtipopago',
     'nombre',
     'icons'
-   ];
+  ];
 
   tipopago: Tipopago[];
   // dataSource: MatTableDataSource<Tipopersonal>;
@@ -39,22 +36,54 @@ export class TpahomeComponent implements OnInit {
   id: number;
   TipopagoService: any;
 
+  /* Variables de add  */
+  Tpagoadd: any
+
+  /* Barra de carga */
+  barra = "none"
+
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public tipopagoService: TipopagoService ) { }
+    public tipopagoService: TipopagoService, public toastr: ToastrManager) { }
 
 
-  ngOnInit()
-  {
+  ngOnInit() {
     // Llamado al metodo de getEscuelas
     this.getTipopago();
 
     // Traducir los label de la tabla
     this.paginator._intl.itemsPerPageLabel = 'Registros por página';
-    this.paginator._intl.nextPageLabel= 'Página siguiente';
+    this.paginator._intl.nextPageLabel = 'Página siguiente';
     this.paginator._intl.previousPageLabel = 'Página anterior';
-    this.paginator._intl.firstPageLabel= 'Primera página';
-    this.paginator._intl.lastPageLabel= 'Ultima página';
+    this.paginator._intl.firstPageLabel = 'Primera página';
+    this.paginator._intl.lastPageLabel = 'Ultima página';
+  }
+
+  showSuccessAdd() {
+    this.toastr.successToastr('Registro agregado', 'Exito!');
+  }
+
+  showSuccessEdit() {
+    this.toastr.successToastr('Registro actualizado', 'Exito!');
+  }
+
+  showSuccessDelete() {
+    this.toastr.successToastr('Registro eliminado', 'Exito!');
+  }
+
+  showError() {
+    this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
+  }
+
+
+  /* Mostrar la barra de carga */
+  showBarra() {
+    this.barra = ""
+  }
+
+  /* Ocultar la barra de carga */
+  hideBarra() {
+    this.barra = "none"
   }
 
 
@@ -72,25 +101,31 @@ export class TpahomeComponent implements OnInit {
   addNew(tipopago: Tipopago) {
     // Abre la ventana modal
     const dialogRef = this.dialog.open(TpaaddComponent, {
-      data: {tipopago: tipopago }
+      data: { tipopago: tipopago }
     });
-    dialogRef.afterClosed().subscribe(result=>{
-      if(result==1){
-        this.exampleDatabase.dataChange.value.push(this.tipopagoService.getDialogData());
-        this.exampleDatabase = new TipopagoService(this.httpClient);
-        this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
-        this.refreshTable();
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.showBarra()
+        this.tipopagoService.add(this.tipopagoService.getDialogData()).subscribe((data) => {
+          this.Tpagoadd = data
+          this.exampleDatabase.dataChange.value.push(this.Tpagoadd);
+          this.refreshTable();
+          this.showSuccessAdd();
+          this.hideBarra()
+        }, (error) => {
+          this.showError();
+          this.hideBarra()
+        });
+
       }
     });
   }
 
   // Metodo para recibir los datos y asignar la tabla
-  getTipopago(){
+  getTipopago() {
     this.exampleDatabase = new TipopagoService(this.httpClient);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
     fromEvent(this.filter.nativeElement, 'keyup')
-      // .debounceTime(150)
-      // .distinctUntilChanged()
       .subscribe(() => {
         if (!this.dataSource) {
           return;
@@ -99,45 +134,50 @@ export class TpahomeComponent implements OnInit {
       });
   }
 
-   // Metodo para abrir el modal para modificar
   onUpdate(i: number, idtipopago: number, nombre: string) {
     this.id = idtipopago;
-    // index row is used just for debugging proposes and can be removed
     this.index = i;
-    console.log(this.index);
     const dialogRef = this.dialog.open(TpaeditComponent, {
-      data: {idtipopago: idtipopago, nombre: nombre}
+      data: { idtipopago: idtipopago, nombre: nombre }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idtipopago === this.id);
-        // Then you update that record using data from dialogData (values you enetered)
-        this.exampleDatabase.dataChange.value[foundIndex] = this.tipopagoService.getDialogData();
-        // And lastly refresh table
-        delay(10 * 1000, 'some value').then(v => {
-            // Executed in 7 seconds
-            console.log(v);
+        this.showBarra()
+        this.tipopagoService.put(this.tipopagoService.getDialogData()).subscribe((data) => {
+          const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idtipopago === this.id);
+          this.exampleDatabase.dataChange.value[foundIndex] = this.tipopagoService.getDialogData();
+          this.refreshTable();
+          this.showSuccessEdit();
+          this.hideBarra()
+        }, (error) => {
+          this.showError();
+          this.hideBarra()
         });
-        this.refresh();
       }
     });
   }
 
 
-  delete(i: number, idtipopago:number, id: number) {
+  delete(i: number, idtipopago: number, nombre: string) {
     this.index = i;
     this.id = idtipopago;
     const dialogRef = this.dialog.open(TpadeleteComponent, {
-      data: {id: idtipopago}
+      data: { id: idtipopago, nombre: nombre }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idtipopago === this.id);
-        // for delete we use splice in order to remove single object from DataService
-        this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
-        this.refreshTable();
+        this.showBarra()
+        this.tipopagoService.delete(this.id).subscribe((data) => {
+          const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idtipopago === this.id);
+          this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+          this.refreshTable();
+          this.showSuccessDelete()
+          this.hideBarra()
+        }, (error) => {
+          this.hideBarra()
+          this.showError()
+        });
       }
     });
   }
@@ -161,8 +201,8 @@ export class ExampleDataSource extends DataSource<Tipopago> {
   renderedData: Tipopago[] = [];
 
   constructor(public _exampleDatabase: TipopagoService,
-              public _paginator: MatPaginator,
-              public _sort: MatSort) {
+    public _paginator: MatPaginator,
+    public _sort: MatSort) {
     super();
     // Reset to the first page when the user changes the filter.
     this._filterChange.subscribe(() => this._paginator.pageIndex = 0);
@@ -181,29 +221,29 @@ export class ExampleDataSource extends DataSource<Tipopago> {
     this._exampleDatabase.getTipopago();
 
 
-    return merge(...displayDataChanges).pipe(map( () => {
-        // Filter data
-        this.filteredData = this._exampleDatabase.data.slice().filter((tipopago: Tipopago) => {
-          const searchStr = (tipopago.idtipopago + tipopago.nombre + tipopago.activo).toLowerCase();
-          return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
-        });
+    return merge(...displayDataChanges).pipe(map(() => {
+      // Filter data
+      this.filteredData = this._exampleDatabase.data.slice().filter((tipopago: Tipopago) => {
+        const searchStr = (tipopago.nombre + tipopago.activo).toLowerCase();
+        return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+      });
 
-        // Sort filtered data
-        const sortedData = this.sortData(this.filteredData.slice());
+      // Sort filtered data
+      const sortedData = this.sortData(this.filteredData.slice());
 
-        // Grab the page's slice of the filtered sorted data.
-        const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-        this.renderedData = sortedData.splice(startIndex, this._paginator.pageSize);
-        return this.renderedData;
-      }
+      // Grab the page's slice of the filtered sorted data.
+      const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+      this.renderedData = sortedData.splice(startIndex, this._paginator.pageSize);
+      return this.renderedData;
+    }
     ));
   }
 
-  disconnect() {}
+  disconnect() { }
 
 
   /** Returns a sorted copy of the database data. */
-  sortData(data:Tipopago[]):Tipopago[] {
+  sortData(data: Tipopago[]): Tipopago[] {
     if (!this._sort.active || this._sort.direction === '') {
       return data;
     }

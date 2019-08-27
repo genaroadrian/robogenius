@@ -1,5 +1,5 @@
 export interface Horario {
-	idh?: number,
-	hora: string,
-	activo: number
+	idh?: number;
+	hora: string;
+	activo: number;
 }

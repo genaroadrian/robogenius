@@ -1,22 +1,17 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AlumnosService } from 'src/app/services/alumnos.service';
 import {HttpClient} from '@angular/common/http';
-
 import { MatDialog, MatPaginator, MatSort} from '@angular/material';
 import {DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import { Alumnos } from 'src/app/interfaces/alumnos';
 import {map} from 'rxjs/operators';
-
 import { AludeletComponent } from '../aludelet/aludelet.component';
 import { AluaddComponent } from '../aluadd/aluadd.component';
 import { AlueditComponent } from '../aluedit/aluedit.component';
 import { PerfilService } from 'src/app/services/perfil.service';
 import { Alumnosview } from 'src/app/interfaces/alumnosview';
 import { Router } from '@angular/router';
-
-
-
 
 @Component({
   selector: 'app-aluhome',
@@ -29,22 +24,9 @@ export class AluhomeComponent implements OnInit {
   
   // Columnas que se van a mostrar en la tabla
   displayedColumns: string[] = [
-    'idalu','nomalu',
-    'apealu','fnacalu',
-    'sexoalu','domalu',
-    'telalu','correoalu',
-    'medicacion','alergias',
-    'perfilalu','cronica',
-    'otro','evaluacion',
-    'usuarioalu','pswalu',
-    'nompad','apepad',
-    'dompad','telpad',
-    'correopad','ocupad',
-    'nommad','apemad',
-    'dommad','telmad',
-    'correomad', 'ocupmad',
-    'usuariopad',
-    'pswpad','finscripcion', 'icons'
+    'nomalu',
+    'apealu','domalu',
+    'telalu','evaluacion', 'icons'
    ];
    //  Declaracion de la interfaz de alumnos
   alumnos: Alumnos[];
@@ -266,9 +248,10 @@ export class ExampleDataSource extends DataSource<Alumnos> {
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        case 'idalu': [propertyA, propertyB] = [a.idalu, b.idalu]; break;
         case 'nomalu': [propertyA, propertyB] = [a.nomalu, b.nomalu]; break;
         case 'apealu': [propertyA, propertyB] = [a.apealu, b.apealu]; break;
+        case 'domalu': [propertyA, propertyB] = [a.apealu, b.apealu]; break;
+        case 'telalu': [propertyA, propertyB] = [a.apealu, b.apealu]; break;
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

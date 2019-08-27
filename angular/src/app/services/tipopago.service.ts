@@ -7,9 +7,12 @@ import {BehaviorSubject} from 'rxjs';
   providedIn: 'root'
 })
 export class TipopagoService {
+  /* Ruta de laravel */
   API_ENDPOINT = 'http://localhost:8000/api';
 
+  /* Detector de cambios */
   dataChange: BehaviorSubject<Tipopago[]> = new BehaviorSubject<Tipopago[]>([]);
+
   // Temporarily stores data from dialogs
   dialogData: any;
 
@@ -20,15 +23,10 @@ export class TipopagoService {
       this.dataChange.next(data);
       },
     (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
     });
   }
 
-  put(data){
-    console.log(data);
-    const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.put(this.API_ENDPOINT +'/tipopago/'+data.idtipopago,data,{headers: headers});
-  }
+  
 
   get data(): Tipopago[] {
     return this.dataChange.value;
@@ -40,23 +38,26 @@ export class TipopagoService {
 
 
   // DEMO ONLY, you can find working methods below
-  addIssue (tipopago: Tipopago): void {
-    this.dialogData = tipopago;
+  addTpago (tipopago: Tipopago): void {
+    this.dialogData = tipopago
   }
 
   add(tipopago: Tipopago)
   {
-    console.log(tipopago);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.post(this.API_ENDPOINT + '/tipopago/',tipopago, {headers: headers});
   }
 
-  updateTipopago (tipopago: Tipopago): void {
+  updateTpago (tipopago: Tipopago): void {
     this.dialogData = tipopago;
   }
 
+  put(data){
+    const headers = new HttpHeaders( {'Content-Type': 'application/json'});
+    return this.httpClient.put(this.API_ENDPOINT +'/tipopago/'+data.idtipopago,data,{headers: headers});
+  }
+
   deleteIssue (id: number): void {
-    console.log(id);
   }
 
   delete(id){

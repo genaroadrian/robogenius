@@ -1,14 +1,10 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { PerfilService } from 'src/app/services/perfil.service';
 import { MatDialog } from '@angular/material';
 import { AlueditComponent } from '../aluedit/aluedit.component';
 import { AlumnosService } from 'src/app/services/alumnos.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { PerfilhoraeditComponent } from './perfilhoraedit/perfilhoraedit.component';
-import { MatTableDataSource } from '@angular/material/table';
-import { DataSource } from '@angular/cdk/table';
-import { format } from 'util';
 
 @Component({
   selector: 'app-perfil',
@@ -65,7 +61,7 @@ export class PerfilComponent implements OnInit {
   memlenght: number;
 
   /* Encabezados de la tabla de horarios */
-  displayedColumns: string[] = ['id', 'iddia', 'dia', 'idh', 'hora', 'idper', 'instructor', 'actions'];
+  displayedColumns: string[] = ['dia','hora','instructor', 'actions'];
 
   /* Visibilidad de la columna de id */
   tableview = "none";

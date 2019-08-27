@@ -1,4 +1,4 @@
-import { Component, OnInit,AfterViewChecked  } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AlumnosService } from 'src/app/services/alumnos.service';
 import { HttpClient } from '@angular/common/http';
 import { Alumnos } from 'src/app/interfaces/alumnos';
@@ -8,7 +8,6 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { Dias } from 'src/app/interfaces/dias';
 import { Detallegrupos } from 'src/app/interfaces/detallegrupos';
 import { GruposAlumnos } from 'src/app/interfaces/gruposalumnos';
-import { Observable } from 'rxjs';
 import { Horas } from 'src/app/interfaces/horas';
 import { GethorariosService } from 'src/app/services/gethorarios.service';
 import { Personal } from 'src/app/interfaces/personal';

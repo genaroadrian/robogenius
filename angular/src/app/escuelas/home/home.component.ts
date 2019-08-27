@@ -97,7 +97,6 @@ export class HomeComponent implements OnInit {
     this.barra = "none"
   }
 
-
   // Metodo para refrescar la pagina
   refresh() {
 

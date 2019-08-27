@@ -86,7 +86,7 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { PersonalperfilComponent } from './personal/personalperfil/personalperfil.component';
 import {MatListModule} from '@angular/material/list';
 import { EscuelasService } from './services/escuelas.service';
-// import { FotterComponent } from './fotter/fotter.component';
+import { FotterComponent } from './fotter/fotter.component';
 
 
  

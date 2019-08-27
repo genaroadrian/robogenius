@@ -1,40 +1,46 @@
 <div class="container" style="height:420px;">
   <h3 mat-dialog-title style="text-align: center;">Nuevo registro</h3>
 
-  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm" style="height:380px;">
+  <form mat-dialog-content (ngSubmit)="submit" style="height:380px;" #formControl="ngForm">
 
     <div class="form">
       <mat-form-field color="accent"  style="width: 340px;">
-        <input matInput placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre">
+        <input matInput placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre" required >
+        <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent" style="width: 340px;">
-        <input matInput placeholder="Representante" [(ngModel)]="data.representante" name="representante">
+        <input matInput placeholder="Representante" [(ngModel)]="data.representante" name="representante" required>
+        <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent" style="width: 340px;">
-        <input matInput placeholder="Dirección" [(ngModel)]="data.direccion" name="direccion">
+        <textarea matInput placeholder="Dirección" [(ngModel)]="data.direccion" name="direccion" required></textarea>
+        <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent" style="width: 340px;">
-        <input matInput placeholder="Telefono" [(ngModel)]="data.telefono" name="telefono">
+        <input matInput #tel placeholder="Telefono" maxlength="10" [(ngModel)]="data.telefono" name="telefono" required>
+        <mat-hint align="end">{{tel.value?.length || 0}}/10</mat-hint>
+        <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent" style="width: 340px;">
-        <input matInput placeholder="Correo" [(ngModel)]="data.correo" name="correo">
+        <input matInput placeholder="Correo" [(ngModel)]="data.correo" name="correo" required email [formControl]="fControl">
+        <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div mat-dialog-actions>
-      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()" style="margin-top:40px;margin-left: 80px; margin-right: 40px;">Guardar</button>
+      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid || !fControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()" style="margin-top:40px;margin-left: 80px; margin-right: 40px;">Guardar</button>
       <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1" style="margin-top: 40px;">Cancelar</button>
     </div>
   </form>

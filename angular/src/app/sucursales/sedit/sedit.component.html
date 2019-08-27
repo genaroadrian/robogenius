@@ -1,39 +1,52 @@
-<div class="container" style="height: 420px" >
+<div class="container" style="height: 420px">
   <h3 mat-dialog-title style="text-align: center;">Modificando</h3>
 
   <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm" style="height: 390px">
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre" required>
+        <input disabled readonly matInput #input class="form-control" placeholder="ID" [(ngModel)]="data.idsuc" name="idsuc">
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent">
+        <input matInput #input class="form-control" placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre"
+          required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Dirección" [(ngModel)]="data.direccion" name="direccion" required>
+        <input matInput #input class="form-control" placeholder="Dirección" [(ngModel)]="data.direccion"
+          name="direccion" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Encargado" [(ngModel)]="data.encargado" name="encargado" required>
+        <input matInput #input class="form-control" placeholder="Encargado" [(ngModel)]="data.encargado"
+          name="encargado" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Usuario" [(ngModel)]="data.usuario" name="usuario" required>
+        <input matInput #input class="form-control" placeholder="Usuario" [(ngModel)]="data.usuario" name="usuario"
+          required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
       <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Password" [(ngModel)]="data.psw" name="psw" required>
+        <input matInput #input class="form-control" placeholder="Password" [(ngModel)]="data.psw" name="psw" required [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>

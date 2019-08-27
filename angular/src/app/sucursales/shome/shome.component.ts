@@ -1,18 +1,16 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-
 import { SucursalService } from 'src/app/services/sucursal.service';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Sucursal } from 'src/app/interfaces/sucursal';
-import { MatPaginator, MatSort, MatTableDataSource, MatTable } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatDialog, MatDialogConfig, MatIconRegistry} from '@angular/material';
+import { MatPaginator, MatSort } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { SeditComponent } from '../sedit/sedit.component';
 import { SaddComponent } from '../sadd/sadd.component';
 import { SdeleteComponent } from '../sdelete/sdelete.component';
-import {DataSource} from '@angular/cdk/collections';
-import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
-import {map} from 'rxjs/operators';
-import delay, { delayReject, delayThen, delayCatch } from 'delay.ts';
+import { DataSource } from '@angular/cdk/collections';
+import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 @Component({
   selector: 'app-shome',
@@ -23,14 +21,15 @@ export class ShomeComponent implements OnInit {
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [
-    // 'idsuc',
     'nombre',
     'direccion',
     'encargado',
     'usuario',
-    'psw',
     'icons'
-   ];
+  ];
+
+  /* Visibilidad de la barra de carga */
+  barra = "none"
 
   sucursal: Sucursal[];
   // dataSource: MatTableDataSource<Tipopersonal>;
@@ -43,22 +42,53 @@ export class ShomeComponent implements OnInit {
   id: number;
   SucursalService: any;
 
+  /* Valores de add */
+  dialogAdd: any
+
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public sucursalService: SucursalService ) { }
+    public sucursalService: SucursalService, public toastr: ToastrManager) { }
 
 
-  ngOnInit()
-  {
+  ngOnInit() {
     // Llamado al metodo de getEscuelas
     this.getSucursal();
 
     // Traducir los label de la tabla
     this.paginator._intl.itemsPerPageLabel = 'Registros por página';
-    this.paginator._intl.nextPageLabel= 'Página siguiente';
+    this.paginator._intl.nextPageLabel = 'Página siguiente';
     this.paginator._intl.previousPageLabel = 'Página anterior';
-    this.paginator._intl.firstPageLabel= 'Primera página';
-    this.paginator._intl.lastPageLabel= 'Ultima página';
+    this.paginator._intl.firstPageLabel = 'Primera página';
+    this.paginator._intl.lastPageLabel = 'Ultima página';
+  }
+  /* Mostrar la barra de carga */
+  showBarra() {
+    this.barra = ""
+  }
+
+  /* Ocultar la barra de carga */
+  hideBarra() {
+    this.barra = "none"
+  }
+
+  /* Mensaje de ADD */
+  showSuccessAdd() {
+    this.toastr.successToastr('Registro agregado', 'Exito!');
+  }
+
+  /* Mensaje de UPDATE */
+  showSuccessEdit() {
+    this.toastr.successToastr('Registro actualizado', 'Exito!');
+  }
+
+  /* Mensaje de DELETE */
+  showSuccessDelete() {
+    this.toastr.successToastr('Registro eliminado', 'Exito!');
+  }
+
+  /* Mensaje de ERROR */
+  showError() {
+    this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
   }
 
 
@@ -76,20 +106,28 @@ export class ShomeComponent implements OnInit {
   addNew(sucursal: Sucursal) {
     // Abre la ventana modal
     const dialogRef = this.dialog.open(SaddComponent, {
-      data: {sucursal: sucursal }
+      data: { sucursal: sucursal }
     });
-    dialogRef.afterClosed().subscribe(result=>{
-      if(result==1){
-        this.exampleDatabase.dataChange.value.push(this.sucursalService.getDialogData());
-        this.exampleDatabase = new SucursalService(this.httpClient);
-        this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
-        this.refreshTable();
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.showBarra()
+        this.sucursalService.add(this.sucursalService.getDialogData()).subscribe((data) => {
+          this.dialogAdd = data
+          this.exampleDatabase.dataChange.value.push(this.dialogAdd);
+          this.refreshTable();
+          this.showSuccessAdd()
+          this.hideBarra()
+        }, (error) => {
+          this.showError()
+          this.hideBarra()
+        })
+
       }
     });
   }
 
   // Metodo para recibir los datos y asignar la tabla
-  getSucursal(){
+  getSucursal() {
     this.exampleDatabase = new SucursalService(this.httpClient);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
     fromEvent(this.filter.nativeElement, 'keyup')
@@ -103,45 +141,54 @@ export class ShomeComponent implements OnInit {
       });
   }
 
-   // Metodo para abrir el modal para modificar
-  onUpdate(i: number, idsuc: number, nombre: string,  direccion: string, encargado: string, usuario: string, psw: string) {
+  // Metodo para abrir el modal para modificar
+  onUpdate(i: number, idsuc: number, nombre: string, direccion: string, encargado: string, usuario: string, psw: string) {
     this.id = idsuc;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     console.log(this.index);
     const dialogRef = this.dialog.open(SeditComponent, {
-      data: {idsuc: idsuc, nombre: nombre, direccion: direccion, encargado: encargado, usuario: usuario, psw: psw}
+      data: { idsuc: idsuc, nombre: nombre, direccion: direccion, encargado: encargado, usuario: usuario, psw: psw }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        // When using an edit things are little different, firstly we find record inside DataService by id
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idsuc === this.id);
-        // Then you update that record using data from dialogData (values you enetered)
-        this.exampleDatabase.dataChange.value[foundIndex] = this.sucursalService.getDialogData();
-        // And lastly refresh table
-        delay(10 * 1000, 'some value').then(v => {
-            // Executed in 7 seconds
-            console.log(v);
+        this.showBarra()
+        this.sucursalService.put(this.sucursalService.getDialogData()).subscribe((data) => {
+          const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idsuc === this.id);
+          this.exampleDatabase.dataChange.value[foundIndex] = this.sucursalService.getDialogData();
+          this.refreshTable();
+          this.showSuccessEdit()
+          this.hideBarra()
+        }, (error) => {
+          this.showError()
+          this.hideBarra()
         });
-        this.refresh();
       }
     });
   }
 
 
-  delete(i: number, idsuc:number, id: number) {
+  delete(i: number, idsuc: number, nombre: string) {
     this.index = i;
     this.id = idsuc;
     const dialogRef = this.dialog.open(SdeleteComponent, {
-      data: {id: idsuc}
+      data: { id: idsuc, nombre:nombre }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idsuc === this.id);
+        this.showBarra()
+        this.sucursalService.delete(this.id).subscribe((data)=>{
+          const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idsuc === this.id);
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
+          this.showSuccessEdit();
+          this.hideBarra()
+        },(error)=>{
+          this.showError();
+          this.hideBarra()
+        });
       }
     });
   }
@@ -165,8 +212,8 @@ export class ExampleDataSource extends DataSource<Sucursal> {
   renderedData: Sucursal[] = [];
 
   constructor(public _exampleDatabase: SucursalService,
-              public _paginator: MatPaginator,
-              public _sort: MatSort) {
+    public _paginator: MatPaginator,
+    public _sort: MatSort) {
     super();
     // Reset to the first page when the user changes the filter.
     this._filterChange.subscribe(() => this._paginator.pageIndex = 0);
@@ -185,29 +232,29 @@ export class ExampleDataSource extends DataSource<Sucursal> {
     this._exampleDatabase.getSucursal();
 
 
-    return merge(...displayDataChanges).pipe(map( () => {
-        // Filter data
-        this.filteredData = this._exampleDatabase.data.slice().filter((sucursal: Sucursal) => {
-          const searchStr = (sucursal.idsuc + sucursal.nombre + sucursal.direccion + sucursal.encargado + sucursal.usuario + sucursal.psw + sucursal.activo).toLowerCase();
-          return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
-        });
+    return merge(...displayDataChanges).pipe(map(() => {
+      // Filter data
+      this.filteredData = this._exampleDatabase.data.slice().filter((sucursal: Sucursal) => {
+        const searchStr = (sucursal.idsuc + sucursal.nombre + sucursal.direccion + sucursal.encargado + sucursal.usuario + sucursal.psw + sucursal.activo).toLowerCase();
+        return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+      });
 
-        // Sort filtered data
-        const sortedData = this.sortData(this.filteredData.slice());
+      // Sort filtered data
+      const sortedData = this.sortData(this.filteredData.slice());
 
-        // Grab the page's slice of the filtered sorted data.
-        const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-        this.renderedData = sortedData.splice(startIndex, this._paginator.pageSize);
-        return this.renderedData;
-      }
+      // Grab the page's slice of the filtered sorted data.
+      const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+      this.renderedData = sortedData.splice(startIndex, this._paginator.pageSize);
+      return this.renderedData;
+    }
     ));
   }
 
-  disconnect() {}
+  disconnect() { }
 
 
   /** Returns a sorted copy of the database data. */
-  sortData(data:Sucursal[]):Sucursal[] {
+  sortData(data: Sucursal[]): Sucursal[] {
     if (!this._sort.active || this._sort.direction === '') {
       return data;
     }

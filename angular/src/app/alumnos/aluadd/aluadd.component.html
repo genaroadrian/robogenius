@@ -23,7 +23,7 @@
                                   <!-- ---------------------------- Iniio del formulario ---------------------------- -->
                               
                                   <!-- Validaciones en el formulario #formControl="ngForm" -->
-                                  <form (ngSubmit)="submit">
+                                  <form (ngSubmit)="submit" #formControl="ngForm">
                               
                                     <!-- -------------------------- Formulario de alumnos -------------------------- -->
                                     <div class="alumno col-xl-12">
@@ -55,7 +55,7 @@
                                                   <div class="form col-xl-4">
                                                       <mat-form-field >
                                                         <input matInput #telalu maxlength="10" [(ngModel)]="alumno.telalu" placeholder="Telefono" type="tel"
-                                                          name="tealu">
+                                                          name="tealu" required>
                                                         <mat-hint align="end">{{telalu.value.length}} / 10</mat-hint>
                                                         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                                                       </mat-form-field>
@@ -69,7 +69,7 @@
                                         <div class="form col-xl-4">
                                           <mat-form-field color="primary">
                                             <input matInput #input  placeholder="Correo" [(ngModel)]="alumno.correoalu"
-                                              name="correoalu">
+                                              name="correoalu" required>
                                             <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                                           </mat-form-field>
                                         </div>
@@ -352,7 +352,7 @@
                                     </div>
                                     <div>
                                       <!-- Desabilitar el boton / validacion         [disabled]="!formControl.valid"  -->
-                                      <button class="btn btn-success" [type]="submit" (click)="saveAlumno(alumno)" style="margin-left:40%; margin-right:4%; ">Siguiente</button>
+                                      <button class="btn btn-success" [disabled]="!formControl.valid" [type]="submit" (click)="saveAlumno(alumno)" style="margin-left:40%; margin-right:4%; ">Siguiente</button>
                                       <button class="btn btn-danger" [routerLink]="['/alumnos']" routerLinkActive="router-link-active"
                                         tabindex="-1">Cancelar</button>
                                     </div>

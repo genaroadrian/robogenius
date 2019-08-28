@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
 
 
     log:Login[];
+  hide = true;
+
   constructor(private router: Router, private service:LoginService) { }
 
   ngOnInit() {
@@ -30,11 +32,6 @@ export class LoginComponent implements OnInit {
 
   login(form: NgForm){
     
-    // console.log(form.value);
-    
-
-  
-
     if (form.value.email === form.value.email && form.value.password === form.value.password){
         localStorage.setItem('email' , form.value.email);
 
@@ -44,7 +41,7 @@ export class LoginComponent implements OnInit {
         // }else{
         //   console.log("Datos erroneos");
         // }
-        this.router.navigateByUrl('/personal');
+        this.router.navigateByUrl('/home');
     
     }
   }

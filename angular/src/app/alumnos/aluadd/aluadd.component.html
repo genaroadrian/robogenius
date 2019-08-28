@@ -538,8 +538,12 @@
                                 </div>
                                 <!-- <button  class="btn btn-success" (click)="" > Guardar</button> -->
 
-                                  <button style="margin-left: 47%;" [disabled]="clasesbutton" class="btn btn-warning" [routerLink]="['/alumnos']" routerLinkActive="router-link-active"  (click)=" finalizar(); saveGalu();" routerLinkActive="router-link-active" tabindex="-1">
-                                    Finalizar e ir a inicio</button>
+                                    
+        <button style="margin:0 40px 0 44% ;" [disabled]="clasesbutton" class="btn btn-warning" (click)="saveGalu()" routerLinkActive="router-link-active" tabindex="-1">
+            Guardar</button>
+  
+          <button class="btn btn-success" (click)="finalizar()" > Finalizar</button>
+  
                               </form>
                             </div>
                         </div>

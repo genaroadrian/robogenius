@@ -1,84 +1,77 @@
-<app-navbar></app-navbar>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div class="row">
-    <div class="col-lg-2">
-        <img class="rounded-circle shadow" alt="700x700" src="assets/images/users/user-4.jpg"
-            data-holder-rendered="true">
-    </div>
-    <div class="col-lg-1">
-    </div>
+<app-navbar></app-navbar>   
 
-    <div class="col-lg-7">
-        <br><br><br>
-        <label style="font-size: 30px;"> Erick <button mat-icon-button class="text-success">
-            </button></label>
-    </div>
-    <div class="col-lg-2">
-    </div>
+<div  class="encabezado"></div>
+
+<div class="col-xl-12 col-md-12  imagenandname" *ngFor="let c of logs" >
+        <img class="rounded-circle shadow pequeña"  src="https://faros.hsjdbcn.org/sites/default/files/styles/ficha-contenido/public/nino-sonriendo-.jpg?itok=iurfn0Ky"
+        data-holder-rendered="true">
+        <br>
+        <label  class="labeltitulo"> Administrador: {{c.nombre}} </label>
+        <br>
+        
 </div>
-<div class="row">
-    <div class="col-lg-3 ">
-        <br>
-        <br>
-        <i class="mdi mdi-cake-variant fecha"> </i><label> Fecha de nacimiento:  </label>
-            <mat-form-field class="example-full-width">
-                <input matInput  value="">
-            </mat-form-field>
-        <br>
-        <i class="mdi mdi-account-multiple sexo"> </i><label> Sexo:  </label>
-        <mat-form-field class="example-full-width">
-            <input matInput  value="">
-        </mat-form-field> 
-        <br>
-        <i class="mdi mdi-city domicilio"> </i><label> Domicilio:  </label>
-        <mat-form-field class="example-full-width">
-            <input matInput  value="">
-        </mat-form-field>
-        <br>
-        <i class="mdi mdi-cellphone-iphone telefono"> </i><label> Telefono:  </label>
-        <mat-form-field class="example-full-width">
-            <input matInput  value="">
-        </mat-form-field>
-        <br>
-        <i class="mdi mdi-email correo"> </i><label> Correo:  </label>
-        <mat-form-field class="example-full-width">
-            <input matInput  value="">
-        </mat-form-field>
-        <br>
-        <i class="mdi mdi-calendar-text horario"> </i><label> Fecha de incripción:  </label>
-        <mat-form-field class="example-full-width">
-            <input matInput  value="">
-        </mat-form-field>
-        </div>
 
+<div class="row col-xl-12 fondodb" *ngFor="let c of logs" >
+    <div class="col-xl-4">
+        <br>
+        <i class="mdi mdi-key-variant"> </i> <label> ID: </label>
+        <span> {{c.id}} </span>
+        <br>
+        <i class="mdi mdi-cake-variant fecha"> </i> <label> Email: </label>
+        <span> {{c.email}} </span>
+        <br>
+        <i class="mdi mdi-cake-variant fecha"> </i> <label> Subname: </label>
+        <span> {{c.subname}} </span>
+        <br>
+        <i class="mdi mdi-account-multiple sexo"> </i> <label> Password: </label>
+        <span> {{c.password}} </span>
+        <br>
+        <i class="mdi mdi-city domicilio"> </i> <label> Nombre: </label>
+        <span> {{c.nombre}} </span>
+        <br>
+        <i class="mdi mdi-cellphone-iphone telefono"> </i> <label> Apellidos: </label>
+        <span> {{c.apellidos}} </span>
+        <br>
+        <i class="mdi mdi-email correo"> </i> <label> Telefono: </label>
+        <span> {{c.telefono}} </span>
+        <br>
 
-    <div class="col-lg-8">
-        <div class="card m-b-30">
-            <div class="card-body">
-                
-                <!-- Nav tabs -->
-              
-                <mat-tab-group mat-stretch-tabs >
-                    <mat-tab label="Sucursales"> 
-                        <label>Nombre:</label>
-                            Ubicacion
-                            Encargado
-                            
-                    </mat-tab>
-                    <mat-tab label="Pagos"> Pagos </mat-tab>
-                    <!-- <mat-tab label="Third"> Content 3 </mat-tab> -->
-                  </mat-tab-group>
-
-
-
-            
-                </div>
-            </div>
-        </div>
     </div>
+        <div class="col-xl-8" style="max-width: none;">
+        <!-- ----------------------- Tabs ----------------------- -->
+<mat-tab-group >
+    <!-- Tab de membresia -->
+    <mat-tab style="width: 90%">
+      <ng-template mat-tab-label>
+        <i class="mdi mdi-account-card-details membresia"></i>
+        Sucursales
+      </ng-template>
+     <div class="container">
+          <mat-accordion>
+              <h4 style="text-align: center;">Sucursales</h4>
+  
+          </mat-accordion>
+      </div>
+    </mat-tab>
+  
+    <!-- Tab de Horario -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="mdi mdi-calendar-text horario"></i>
+        Div libre
+      </ng-template>
+      <div class="container">
+        
+          sdsfghjkljkñl
+  
+      </div>
+    </mat-tab>
+  
 
+  </mat-tab-group>
 
+            </div>
+            
+
+</div>
+<app-fotter></app-fotter>

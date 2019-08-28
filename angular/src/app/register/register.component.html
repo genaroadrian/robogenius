@@ -16,37 +16,40 @@
               <div class="card bg-light mini-stat position-relative">
                <div class="card-body">
                   <div class="mini-stat-desc">
+              <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
+
                       <img src="../assets/images/logola.png" alt="" class="banner">
-                      <div class="form-group">
-                          <label for="exampleInputEmail1">Email</label>
-                          <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="login.email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Contraseña</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="login.password" [type]="hide ? 'password' : 'text'"  >
-                          </div>
-                          <div class="form-group">
-                              <label for="exampleInputEmail1">Nombre</label>
-                              <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="login.nombre"  >
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleInputEmail1">Apellidos</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="login.apellidos"  >
-                              </div>
+
+                     
+                          <mat-form-field appearance="outline" style="width: 100%; padding: 0%;">
+                              <mat-label>Ingrese su email</mat-label>
+                            <input matInput placeholder="Ingrese su email" [formControl]="email" [(ngModel)]="login.email" required>
+                            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+                          </mat-form-field>
+                          <br>
+                          <mat-form-field appearance="outline" style="width: 100%; padding: 0%;">
+                              <mat-label>Ingrese su contraseña</mat-label>
+                              <input matInput placeholder="Ingrese su contraseña" [type]="hide ? 'password' : 'text'" [(ngModel)]="login.password">
+                              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                              </button>
+                            </mat-form-field>
+                          <br>
+                            <mat-form-field appearance="outline" style="width: 100%; padding: 0%;">
+                                <mat-label>Nombre</mat-label>
+                              <input matInput placeholder="Ingrese su nombre" maxlength="20" [(ngModel)]="login.nombre" required>
+                              <mat-error>{{getErrorMessage()}}</mat-error>
+                            </mat-form-field>
+                            <br>
+                            <mat-form-field appearance="outline"style="width: 100%; padding: 0%;">
+                                <mat-label>Apellidos</mat-label>
+                              <input matInput placeholder="Ingrese su nombre" maxlength="20" [(ngModel)]="login.apellidos" required>
+                              <mat-error>{{getErrorMessage()}}</mat-error>
+                            </mat-form-field>
                               <button type="button" class="btn btn-primary btn-block" (click)="saveLogin()" >Guardar</button>
                               <br>
                               
-                              <!-- 
-Elementos para el modal muestra el nombre y el bienvenido -->
-<input  class="ocultar" matInput value="Usuario registrado" placeholder="Message" #message >
 
-<input  class="ocultar" matInput value="Bienvenido" placeholder="Action" #action>
-
-
-<input  class="ocultar" matInput value=" " placeholder="Action" #actions>
-
-
-<input class="ocultar"  matInput  [(ngModel)]="login.nombre" placeholder="Action" #name>
 
                               <p class="text-black-50 " >¿Ya tienes una cuenta? <a  href="#" [routerLink]="['/login']" class="text-blue " style="font-size:20px"> Inicia sesion  </a> </p>
 

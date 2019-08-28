@@ -1,6 +1,55 @@
-.example-full-width {
-    width: 50%;  
-    text-align: right; 
-  }
+.container 
+{
+  background-color: white;
+}
+.labeltitulo{
+  color: white;
+}
+.fondodb{
+ background-color:whitesmoke;
+ width: 100%;
+ margin: 0%;
+ height: 300px;
+}
+.pequeña{
+  width: 200px;
+  height: 200px;;
+}
+.encabezado{
+  width: 100% ;
+  height: 600px;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0%;
+  z-index: -2;
+
+
+ 
+}
+.imagenandname{
+ text-align: center;
+ font-size: 30px;
+}
+@media(max-width:1040px){
+ .labeltitulo{
+   color: black;
+
+ }
+ .fondodb{
+   height: auto;
+background: none;  }
+ 
+ .pequeña{
+   width: 100px;
+   height: 100px;
+   margin-top: 1px;
+ }
+ .encabezado{
+   height: 10px;
+ }
+
+
+}
+
 
 

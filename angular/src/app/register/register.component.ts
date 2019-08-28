@@ -3,6 +3,8 @@ import {FormControl, Validators} from '@angular/forms';
 import { Login } from '../interfaces/login';
 import { RegisterService } from '../services/register.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { ToastrManager } from 'ng6-toastr-notifications';
+
 
 
 @Component({
@@ -10,6 +12,9 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
+
+
 export class RegisterComponent implements OnInit {
   
   login:Login = {
@@ -25,12 +30,34 @@ export class RegisterComponent implements OnInit {
   };
 
   hide = true;
-  constructor(private registerService : RegisterService, private _snackBar: MatSnackBar) {
+
+      // Notificación de success al eliminar
+      showSuccesSave() {
+        this.toastr.successToastr('Usuario guardado', 'Exito!');
+      }
+    
+      // Notificacion de error al eliminar
+      showErrorSave() {
+        this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
+      }
+
+        /* Barra de carga */
+  barra = "none"
+  constructor(private registerService : RegisterService, private _snackBar: MatSnackBar,public toastr: ToastrManager) {
   
   }
   ngOnInit() {
   }
 
+    /* Mostrar la barra de carga */
+    showBarra() {
+      this.barra = ""
+    }
+  
+    /* Ocultar la barra de carga */
+    hideBarra() {
+      this.barra = "none"
+    }
 
   // caja de texto de email que valida 
   email = new FormControl('', [Validators.required, Validators.email]);
@@ -42,20 +69,17 @@ export class RegisterComponent implements OnInit {
   }
 
   saveLogin(){
+    this.showBarra()
       this.registerService.save(this.login)
-      .subscribe(
-        data => console.log('Succes!',data),
-        error => console.log('Error!',error)
-        
-      )
+      .subscribe((data) => {
+        this.showSuccesSave();
+        this.hideBarra()
+      }, (error) => {
+        this.showErrorSave();
+        this.hideBarra()
+      })
     
   }
 
 
-  // Modal para mostrar el nombre del user y el bienvenido
-  openSnackBar(message: string, action: string,actions : string, name: string ) {
-    this._snackBar.open(message, action + actions + name, {
-      duration: 5000,
-    });
-  }
 }

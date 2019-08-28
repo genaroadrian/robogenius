@@ -38,5 +38,10 @@
 }
 
 
-
+mat-header-cell, mat-cell  {
+display:flex;
+justify-content: center;
+}
     
+
+

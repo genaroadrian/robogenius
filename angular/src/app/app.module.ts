@@ -87,6 +87,9 @@ import { PersonalperfilComponent } from './personal/personalperfil/personalperfi
 import {MatListModule} from '@angular/material/list';
 import { EscuelasService } from './services/escuelas.service';
 import { FotterComponent } from './fotter/fotter.component';
+import { FileuploadService } from './services/fileupload.service';
+import { FotosComponent } from './fotos/fotos.component';
+
 
 
  
@@ -182,6 +185,8 @@ const routes: Route[]=[
     IngresosComponent,
     PersonalperfilComponent,
     FotterComponent,
+    FotosComponent,
+
 
 
 
@@ -235,6 +240,7 @@ const routes: Route[]=[
     NoLoginGuard,
     GraficasService,
     EscuelasService,
+    FileuploadService,
 
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],

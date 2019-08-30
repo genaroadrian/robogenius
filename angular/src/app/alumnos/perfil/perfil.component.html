@@ -14,7 +14,7 @@
             <mat-icon aria-label="Edit">edit</mat-icon>
         </button></label>
         <br>
-        
+      <mat-progress-bar color="warn"  mode='indeterminate' [ngStyle]="{display:barra}"></mat-progress-bar>
 </div>
 
 <div class="row col-xl-12 fondodb" >
@@ -50,7 +50,6 @@
         <i class="mdi mdi-account-card-details membresia"></i>
         Membresia
       </ng-template>
-      <mat-progress-bar mode='indeterminate' [ngStyle]="{display:barramem}"></mat-progress-bar>
      <div class="container">
           <mat-accordion>
               <h4 style="text-align: center;">Historial de membresias</h4>
@@ -74,10 +73,10 @@
                           Membresia numero {{memlenght-i}}
                       </mat-panel-description>
                   </mat-expansion-panel-header>
-                  <p><button (click)="editMem(i, mem.nommem, mem.fechainicio, mem.adelanto, mem.restante, mem.total,
+                  <button (click)="editMem(i, mem.nommem, mem.fechainicio, mem.adelanto, mem.restante, mem.total,
                       mem.nombre)" style="padding-left:90%;" mat-icon-button class="text-success">
                           <mat-icon aria-label="Edit">edit</mat-icon>
-                      </button></p>
+                      </button>
                   <p style="padding-left:5px;">Fecha Inicio: <b>{{mem.fechainicio}}</b></p>
                   <p style="padding-left:5px;">Adelanto: <b>${{mem.adelanto}}.00</b></p>
                   <p style="padding-left:5px;">Restante: <b>${{mem.restante}}.00</b></p>

@@ -89,6 +89,7 @@ import { EscuelasService } from './services/escuelas.service';
 import { FotterComponent } from './fotter/fotter.component';
 import { FileuploadService } from './services/fileupload.service';
 import { FotosComponent } from './fotos/fotos.component';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 
 
@@ -186,6 +187,7 @@ const routes: Route[]=[
     PersonalperfilComponent,
     FotterComponent,
     FotosComponent,
+    ResetPasswordComponent,
 
 
 

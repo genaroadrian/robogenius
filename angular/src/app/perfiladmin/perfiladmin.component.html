@@ -7,6 +7,9 @@
         data-holder-rendered="true">
         <br>
         <label  class="labeltitulo"> Administrador: {{c.nombre}} </label>
+        <button mat-icon-button class="text-success" (click)="updateperfil(i, c.id, c.email, c.subname, c.password, c.nombre, c.apellidos, c.telefono)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button>
         <br>
         
 </div>
@@ -65,6 +68,10 @@
           sdsfghjkljkñl
   
       </div>
+     
+    
+
+
     </mat-tab>
   
 

@@ -126,7 +126,7 @@ export class AluaddComponent implements OnInit {
 
 
   // Validaciones de el formulario
-  formControl = new FormControl('', [
+  fControl = new FormControl('', [
     Validators.required,
     Validators.email
   ]);
@@ -199,11 +199,11 @@ export class AluaddComponent implements OnInit {
   };
   showSuccess: boolean;
 
-  /* Mensjaes de error */
+  /* Mensjaes de error */ 
 
   getErrorMessage() {
-    return this.formControl.hasError('required') ? 'Campo obligatorio' :
-      this.formControl.hasError('email') ? 'Ingrese un correo valido' :
+    return this.fControl.hasError('required') ? 'Campo obligatorio' :
+      this.fControl.hasError('email') ? 'Ingrese un correo valido' :
         '';
   }
 

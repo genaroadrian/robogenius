@@ -6,15 +6,15 @@
         <img class="rounded-circle shadow pequeña"  src="https://faros.hsjdbcn.org/sites/default/files/styles/ficha-contenido/public/nino-sonriendo-.jpg?itok=iurfn0Ky"
         data-holder-rendered="true">
         <br>
-        <label  class="labeltitulo"> {{datos.nomalu}} {{datos.apealu}} <button mat-icon-button 
-            (click)="editAlu(datos.idalu ,datos.nomalu, datos.apealu, datos.fnacalu, datos.sexoalu, datos.domalu, datos.telalu,
+        <label  class="labeltitulo"> {{datos.nomalu}} {{datos.apealu}} 
+            <button mat-icon-button (click)="editAlu(datos.idalu ,datos.nomalu, datos.apealu, datos.fnacalu, datos.sexoalu, datos.domalu, datos.telalu,
         datos.correoalu, datos.medicacion, datos.alergias, datos.perfilalu, datos.cronica, datos.otro, datos.evaluacion,
         datos.usuarioalu, datos.pswalu, datos.nompad, datos.apepad, datos.dompad, datos.telpad, datos.correopad, datos.ocupad,
         datos.nommad, datos.apemad, datos.dommad, datos.telmad, datos.correomad, datos.ocupmad, datos.finscripcion)">
             <mat-icon aria-label="Edit">edit</mat-icon>
         </button></label>
         <br>
-        
+      <mat-progress-bar color="warn"  mode='indeterminate' [ngStyle]="{display:barra}"></mat-progress-bar>
 </div>
 
 <div class="row col-xl-12 fondodb" >
@@ -50,7 +50,6 @@
         <i class="mdi mdi-account-card-details membresia"></i>
         Membresia
       </ng-template>
-      <mat-progress-bar mode='indeterminate' [ngStyle]="{display:barramem}"></mat-progress-bar>
      <div class="container">
           <mat-accordion>
               <h4 style="text-align: center;">Historial de membresias</h4>
@@ -74,10 +73,10 @@
                           Membresia numero {{memlenght-i}}
                       </mat-panel-description>
                   </mat-expansion-panel-header>
-                  <p><button (click)="editMem(i, mem.nommem, mem.fechainicio, mem.adelanto, mem.restante, mem.total,
+                  <button (click)="editMem(i, mem.nommem, mem.fechainicio, mem.adelanto, mem.restante, mem.total,
                       mem.nombre)" style="padding-left:90%;" mat-icon-button class="text-success">
                           <mat-icon aria-label="Edit">edit</mat-icon>
-                      </button></p>
+                      </button>
                   <p style="padding-left:5px;">Fecha Inicio: <b>{{mem.fechainicio}}</b></p>
                   <p style="padding-left:5px;">Adelanto: <b>${{mem.adelanto}}.00</b></p>
                   <p style="padding-left:5px;">Restante: <b>${{mem.restante}}.00</b></p>

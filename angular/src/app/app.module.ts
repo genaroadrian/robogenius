@@ -89,7 +89,9 @@ import { EscuelasService } from './services/escuelas.service';
 import { FotterComponent } from './fotter/fotter.component';
 import { FileuploadService } from './services/fileupload.service';
 import { FotosComponent } from './fotos/fotos.component';
+
 import { ModificaradComponent } from './perfiladmin/modificarad/modificarad.component';
+
 
 
 
@@ -187,7 +189,10 @@ const routes: Route[]=[
     PersonalperfilComponent,
     FotterComponent,
     FotosComponent,
-    ModificaradComponent,
+
+    ModificaradComponent
+
+
 
 
 

@@ -284,7 +284,9 @@ const routes: Route[]=[
     TpaeditComponent,
     TpadeleteComponent,
     // Modales de perfil
-    PerfilhoraeditComponent
+    PerfilhoraeditComponent,
+    /* Modal para reseteo de contraseña */
+    ResetPasswordComponent
 
   ],
   exports: [

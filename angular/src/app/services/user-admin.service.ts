@@ -37,6 +37,12 @@ export class UserAdminService {
 
 // }
 
+validEmail(datos)
+{
+  const headers = new HttpHeaders( {'Content-Type': 'application/json'});
+return this.httpClient.post(this.API_ENDPOINT+"/email",datos,{headers: headers})
+}
+
 
 
 

@@ -89,7 +89,10 @@ import { EscuelasService } from './services/escuelas.service';
 import { FotterComponent } from './fotter/fotter.component';
 import { FileuploadService } from './services/fileupload.service';
 import { FotosComponent } from './fotos/fotos.component';
+
+import { ModificaradComponent } from './perfiladmin/modificarad/modificarad.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+
 
 
 
@@ -187,7 +190,10 @@ const routes: Route[]=[
     PersonalperfilComponent,
     FotterComponent,
     FotosComponent,
-    ResetPasswordComponent,
+    ModificaradComponent,
+    ResetPasswordComponent
+
+
 
 
 
@@ -286,7 +292,8 @@ const routes: Route[]=[
     // Modales de perfil
     PerfilhoraeditComponent,
     /* Modal para reseteo de contraseña */
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    ModificaradComponent
 
   ],
   exports: [

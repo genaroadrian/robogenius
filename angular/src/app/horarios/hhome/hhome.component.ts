@@ -2,16 +2,14 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HorariosService } from 'src/app/services/horarios.service';
 import {HttpClient} from '@angular/common/http';
 import { Horario } from 'src/app/interfaces/horario';
-import { MatPaginator, MatSort, MatTableDataSource, MatTable } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
-import { MatDialog, MatDialogConfig, MatIconRegistry} from '@angular/material';
+import { MatPaginator, MatSort} from '@angular/material';
+import { MatDialog} from '@angular/material';
 import { HeditComponent } from '../hedit/hedit.component';
 import { HaddComponent } from '../hadd/hadd.component';
 import { HdeleteComponent } from '../hdelete/hdelete.component';
 import {DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-import delay, { delayReject, delayThen, delayCatch } from 'delay.ts';
 
 @Component({
   selector: 'app-hhome',

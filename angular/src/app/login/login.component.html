@@ -63,7 +63,8 @@
                                         </div>
                                   <div class="m-t-40 text-center ">
                                     <p class="text-black-50 " >¿No tienes una cuenta? <a  href="#" [routerLink]="['/registrar']" class="text-blue " style="font-size:20px"> Regístrate ahora </a> </p>
-                                    <p class="text-black-50 " ><a  href="#" [routerLink]="['/registrar']" class="text-blue " style="font-size:20px">¿Olvidaste tu contraseña?</a> </p>
+                                    <p class="text-black-50 " ><a href="#"  onclick="return false;" (click)="forgotPassword()" class="text-blue " style="font-size:20px; background: none;
+                                      border: 0;">¿Olvidaste tu contraseña?</a> </p>
                                   </div>
                       
                                 </form> 

@@ -91,6 +91,7 @@ import { FileuploadService } from './services/fileupload.service';
 import { FotosComponent } from './fotos/fotos.component';
 
 import { ModificaradComponent } from './perfiladmin/modificarad/modificarad.component';
+import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
 
 
@@ -189,8 +190,8 @@ const routes: Route[]=[
     PersonalperfilComponent,
     FotterComponent,
     FotosComponent,
-
-    ModificaradComponent
+    ModificaradComponent,
+    ResetPasswordComponent
 
 
 
@@ -290,6 +291,8 @@ const routes: Route[]=[
     TpadeleteComponent,
     // Modales de perfil
     PerfilhoraeditComponent,
+    /* Modal para reseteo de contraseña */
+    ResetPasswordComponent,
     ModificaradComponent
 
   ],

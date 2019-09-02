@@ -1,0 +1,87 @@
+<div class="form-group" style="width:700px">
+  
+
+  <form  (ngSubmit)="submit" #formControl="ngForm">
+
+      <div class="container">
+          <div class="row">
+            <div class="col-xl-12">
+              <h3 style="text-align: center;">Modificar</h3>
+            </div>
+          </div>
+          <hr/>
+
+
+         
+
+
+    <div class="form col-xl-4">
+      <mat-form-field color="accent" style="width: 625px;">
+        <input matInput #input   placeholder="Id" [(ngModel)]="data.id" name="id" required disabled>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <div class="row col-xl-12">
+  
+    <div class="form col-xl-4">
+      <mat-form-field color="accent" style="width: 200px;">
+        <input matInput #input   placeholder="email" [(ngModel)]="data.email" name="email" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+  
+    <div class="form col-xl-4">
+      <mat-form-field color="accent" style="width: 200px;">
+        <input matInput #input   placeholder="Subname" [(ngModel)]="data.subname" name="subname" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+   
+  
+    <div class="form col-xl-4">
+      <mat-form-field color="accent" style="width: 200px;">
+        <input   matInput #input   placeholder="password" [(ngModel)]="data.password" name="password" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  
+  <div class="row col-xl-12">
+  
+    <div class="form col-xl-4">
+      <mat-form-field color="accent" style="width: 200px;">
+        <input matInput #input  placeholder="nombre" [(ngModel)]="data.nombre" name="nombre" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+  
+    <div class="form col-xl-4">
+      <mat-form-field color="accent" style="width: 200px;">
+        <input matInput #input  placeholder="Apellidos" [(ngModel)]="data.apellidos" name="apellidos" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form col-xl-4">
+      <mat-form-field color="accent" style="width: 200px;">
+        <input matInput #input  placeholder="telefono" [(ngModel)]="data.telefono" name="telefono" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+  <br>
+
+    <div mat-dialog-actions >
+      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+        (click)="stopEdit(data)" style="margin-left: 220px; margin-right: 80px;">Guardar</button>
+      <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+
+  </div>
+</div>
+  </form>
+</div>

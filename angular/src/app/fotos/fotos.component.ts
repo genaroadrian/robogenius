@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FileuploadService } from 'src/app/services/fileupload.service';
+import {Router} from '@angular/router';
+
 
 
 @Component({
@@ -15,7 +17,7 @@ export class FotosComponent implements OnInit {
     base64textString: null
   }
 
-  constructor(private uploadService: FileuploadService) { }
+  constructor(private uploadService: FileuploadService,private router:Router) { }
 
                   seleccionarArchivo(event) {
                     var files = event.target.files;
@@ -40,6 +42,8 @@ export class FotosComponent implements OnInit {
                       datos => {
                         if(datos['resultado'] == 'OK') {
                           alert(datos['mensaje']);
+                          this.router.navigate(['alumnos']);
+
                         }
                       }
                     );

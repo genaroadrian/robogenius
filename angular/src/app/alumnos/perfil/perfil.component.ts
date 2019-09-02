@@ -5,13 +5,22 @@ import { AlueditComponent } from '../aluedit/aluedit.component';
 import { AlumnosService } from 'src/app/services/alumnos.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { PerfilhoraeditComponent } from './perfilhoraedit/perfilhoraedit.component';
+import { FileuploadService } from 'src/app/services/fileupload.service';
+import {Router} from '@angular/router';
+import { Alumnos } from 'src/app/interfaces/alumnos';
+// import {formatDate } from '@angular/common';
+
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
+
+
 export class PerfilComponent implements OnInit {
+  jstoday:any;
+  // today= new Date();
 
 
   id: number
@@ -73,12 +82,114 @@ export class PerfilComponent implements OnInit {
   /* Variuable del expansion panel */
   panelOpenState = false;
 
-  constructor(public alumnosService: AlumnosService
-    , private perfilService: PerfilService, public dialog: MatDialog,
-    public toastr: ToastrManager, private changeDetectorRefs: ChangeDetectorRef) {
+  archivo = {
+    nombre: null,
+    nombreArchivo: null,
+    base64textString: null
   }
 
+  // Interfaz de la tabla alumnos
+  alumnofoto: Alumnos = {
+    idalu: null, nomalu: null,
+    apealu: null, fnacalu: null,
+    sexoalu: null, domalu: null,
+    telalu: null, correoalu: null,
+    medicacion: null, alergias: null,
+    perfilalu: null, cronica: null,
+    otro: null, evaluacion: null,
+    usuarioalu: null, pswalu: null,
+    nompad: null, apepad: null,
+    dompad: null, telpad: null,
+    correopad: null, ocupad: null,
+    nommad: null, apemad: null,
+    dommad: null, telmad: null,
+    correomad: null, ocupmad: null,
+    finscripcion: null, usuariopad: null,
+    pswpad: null, activo: null,
+    idsuc: null
+  };
+
+
+
+  constructor(public alumnosService: AlumnosService
+    , private perfilService: PerfilService, public dialog: MatDialog,
+    public toastr: ToastrManager, private changeDetectorRefs: ChangeDetectorRef,private uploadService: FileuploadService,private router:Router) {
+  }
+
+  seleccionarArchivo(event) {
+    this.jstoday= new Date().getTime();
+    var files = event.target.files;
+    var file = files[0];
+    this.archivo.nombreArchivo = file.name;
+    this.archivo.nombreArchivo=this.jstoday+this.archivo.nombreArchivo
+ 
+
+    if(files && file) {
+      var reader = new FileReader();
+      reader.onload = this._handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
+    }
+  }
+
+  _handleReaderLoaded(readerEvent) {
+    var binaryString = readerEvent.target.result;
+    this.archivo.base64textString = btoa(binaryString);
+  }
+
+  upload() {
+    // console.log(this.archivo);
+    this.uploadService.uploadFile(this.archivo).subscribe(
+      datos => {
+        if(datos['resultado'] == 'OK') {
+          alert(datos['mensaje']);
+          this.router.navigate(['alumnos']);
+
+        }
+      }
+    );
+
+    // this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss', 'en-US');
+    
+    this.alumnofoto.perfilalu=this.archivo.nombreArchivo;
+    this.alumnofoto.idalu=this.datos.idalu;
+    // this.datos.perfilalu=this.archivo.nombreArchivo;
+    this.uploadService.subirimagen(this.alumnofoto).subscribe(data=>{
+      console.log(data);
+    }, (error) => {
+          console.log(error);
+    })
+    
+  }
+
+  // subirimagenes(){
+  //   this.uploadService.subirimagen(this.archivo,this.datos)
+  // }
+
+  
+  // // Interfaz de la tabla alumnos
+  // alumno: Alumnos = {
+  //   idalu: this.datos.idalu, nomalu: null,
+  //   apealu: null, fnacalu: null,
+  //   sexoalu: null, domalu: null,
+  //   telalu: null, correoalu: null,
+  //   medicacion: null, alergias: null,
+  //   perfilalu: this.archivo.nombreArchivo, cronica: null,
+  //   otro: null, evaluacion: null,
+  //   usuarioalu: null, pswalu: null,
+  //   nompad: null, apepad: null,
+  //   dompad: null, telpad: null,
+  //   correopad: null, ocupad: null,
+  //   nommad: null, apemad: null,
+  //   dommad: null, telmad: null,
+  //   correomad: null, ocupmad: null,
+  //   finscripcion: null, usuariopad: null,
+  //   pswpad: null, activo: null,
+  //   idsuc: null
+  // };
+
   ngOnInit() {
+
+    
     /* Obtiene los datos del alumno (se obtienen de perfilService en el metodo "ret"), su historial de membresias y su horario */
     this.datos = this.perfilService.ret()
     this.membresias();
@@ -172,7 +283,7 @@ export class PerfilComponent implements OnInit {
       {
         idalu: idalu, nomalu: nomalu, apealu: apealu, fnacalu: fnacalu, sexoalu: sexoalu,
         domalu: domalu, telalu: telalu, correoalu: correoalu, medicacion: medicacion,
-        alergias: alergias, perfilalu: perfilalu, cronica: cronica, otro: otro,
+        alergias: alergias, perfilalu:perfilalu, cronica: cronica, otro: otro,
         evaluacion: evaluacion, usuarioalu: usuarioalu, pswalu: pswalu, nompad: nompad,
         apepad: apepad, dompad: dompad, telpad: telpad, correopad: correopad,
         ocupad: ocupad, nommad: nommad, apemad: apemad, dommad: dommad,

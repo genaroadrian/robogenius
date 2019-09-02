@@ -75,48 +75,5 @@ export class NavbarComponent  {
 })
   }
 
-//  print(obj){   
- 
-//   localStorage.setItem('subname',obj);
-//  }
 
-
-//  codigo(obj){
-  
-//   $("#action-button").click();
-  
-//   alert("Fuck");
-//   console.log(obj);
-//   localStorage.setItem('subname',obj);
-//  }
- 
-
- 
-  // Recupera el dato de el localStorage
-  // datoLocalStorage(){
-//     let email =localStorage.getItem("email");
-// }
-// URL de laravel
-// API_ENDPOINT = 'http://localhost:8000/api';
-
-// validacion() {
-//   let emails = localStorage.getItem("email");
-//   const headers = new HttpHeaders({"Content-Type":"application/json"});
-//   return this.httpClient.post(this.API_ENDPOINT+'/useradmin',emails, {headers: headers});
-//   console.log(emails);
-// }
-
-
-// validacion(): Observable<userAdmin[]>
-// {
-//   let emails = localStorage.getItem("email");
-//   return this.httpClient.post<userAdmin[]>(this.API_ENDPOINT + '/useradmin',emails);
-// }
-
-// get() {
-//   return this.httpClient.get(this.API_ENDPOINT + '/useradmin');
-
-// }
-
-  
 }

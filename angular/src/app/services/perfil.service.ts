@@ -62,5 +62,4 @@ export class PerfilService {
     return this.ngrupo
   }
 
-
 }

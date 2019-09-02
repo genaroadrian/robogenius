@@ -5,6 +5,7 @@ namespace slidecom_robogenius\Http\Controllers;
 use Illuminate\Http\Request;
 use slidecom_robogenius\Http\Controllers\Controller;
 use DB;
+use slidecom_robogenius\userAdmin;
 
 class userAdminController extends Controller
 {
@@ -75,7 +76,16 @@ class userAdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $perfil = userAdmin::find($id);
+        $perfil->subname = $request->subname;
+        $perfil->email = $request->email;
+        $perfil->password = $request->password;
+        $perfil->nombre = $request->nombre;
+        $perfil->apellidos = $request->apellidos;
+        $perfil->telefono = $request->telefono;
+        $perfil->activo = 1;
+        $perfil->save();
+        echo json_encode($perfil);
     }
 
     /**

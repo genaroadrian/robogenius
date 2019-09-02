@@ -57,3 +57,9 @@ Route::resource('pendiente', 'pendientesController');
 Route::resource('fotosalumnos', 'fotoAlumnosController');
 
 
+
+
+
+
+
+Route::resource('email', 'emailController');

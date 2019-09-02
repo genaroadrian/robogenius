@@ -6,10 +6,14 @@
         <img class="rounded-circle shadow pequeña"  src="https://faros.hsjdbcn.org/sites/default/files/styles/ficha-contenido/public/nino-sonriendo-.jpg?itok=iurfn0Ky"
         data-holder-rendered="true">
         <br>
-        <label  class="labeltitulo"> Administrador: {{c.nombre}} </label>
+        <label  class="labeltitulo"> Administrador: {{c.nombre}}
+        <button mat-icon-button ="text-success" (click)="updateperfil(i, c.id, c.email, c.subname, c.password, c.nombre, c.apellidos, c.telefono)">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button></label>
         <br>
-        
+        <mat-progress-bar color="warn"  mode='indeterminate' [ngStyle]="{display:barra}"></mat-progress-bar>     
 </div>
+
 
 <div class="row col-xl-12 fondodb" *ngFor="let c of logs" >
     <div class="col-xl-4">
@@ -65,6 +69,10 @@
           sdsfghjkljkñl
   
       </div>
+     
+    
+
+
     </mat-tab>
   
 

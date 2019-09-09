@@ -104,6 +104,7 @@ import { SubtemahomeComponent } from './subtema/subtemahome/subtemahome.componen
 import { SubtemaaddComponent } from './subtema/subtemaadd/subtemaadd.component';
 import { SubtemadeletComponent } from './subtema/subtemadelet/subtemadelet.component';
 import { SubtemaeditComponent } from './subtema/subtemaedit/subtemaedit.component';
+import { NewPasswordComponent } from './login/new-password/new-password.component';
 
 
 
@@ -137,14 +138,7 @@ const routes: Route[]=[
 {path: 'estadisticas', component: CategoriasComponent},
 {path: 'graficas', component: EstadisticasComponent},
 {path: 'personalperfil', component: PersonalperfilComponent},
-
-
-
-
-
-
-
-
+{path: 'reset-password/:id', component: NewPasswordComponent},
 {path: 'areadelconocimiento', component: AreahomeComponent},
 {path: 'subtema', component: SubtemahomeComponent},
 {path: 'tema', component: TemahomeComponent}
@@ -225,7 +219,8 @@ const routes: Route[]=[
     SubtemahomeComponent,
     SubtemaaddComponent,
     SubtemadeletComponent,
-    SubtemaeditComponent
+    SubtemaeditComponent,
+    NewPasswordComponent
 
 
 

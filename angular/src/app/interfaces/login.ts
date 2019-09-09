@@ -8,4 +8,5 @@ export interface Login {
     telefono: number;
     avatar: string;
     activo: number;
+    fotoadmin:string;
 }

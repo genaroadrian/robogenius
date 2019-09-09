@@ -55,6 +55,12 @@ Route::resource('restapendiente', 'restantePendienteCOntroller');
 
 Route::resource('pendiente', 'pendientesController');
 Route::resource('fotosalumnos', 'fotoAlumnosController');
+Route::resource('fotosadmin', 'fotoAdminController');
+Route::resource('fotospersonal', 'fotopersonalController');
+
+Route::resource('areadelconocimiento', 'areaDelConocimientoController');
+Route::resource('tema', 'temasController');
+Route::resource('subtema', 'subtemasController');
 
 
 

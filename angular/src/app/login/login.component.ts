@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   login(form: NgForm){  
     if (form.value.email === form.value.email && form.value.password === form.value.password){
         localStorage.setItem('email' , form.value.email);
+        localStorage.setItem('foto' , form.value.pa);
         this.router.navigateByUrl('/home'); 
     }
   }

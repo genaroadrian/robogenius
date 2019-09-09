@@ -53,6 +53,8 @@
                                           
                                   
                                                           <div *ngIf="c.email== em && c.password == ps">
+                                                                  <input type="hidden" name="pa" id="pa"  [(ngModel)]="c.fotoadmin" ngModel placeholder="Ingrese contraseña"  class="form-control"required>
+
                                                                   <button class="btn btn-primary w-md waves-effect waves-light waves-effect waves-light "  id="sa-params" style="filter: drop-shadow(5px 5px 10px #444);"type="submit">Iniciar Sesión</button>
                                       
                                                           </div>

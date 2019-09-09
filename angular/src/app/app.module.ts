@@ -92,6 +92,18 @@ import { FotosComponent } from './fotos/fotos.component';
 
 import { ModificaradComponent } from './perfiladmin/modificarad/modificarad.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { AreaaddComponent } from './areadelconocimiento/areaadd/areaadd.component';
+import { AreadeletComponent } from './areadelconocimiento/areadelet/areadelet.component';
+import { AreaeditComponent } from './areadelconocimiento/areaedit/areaedit.component';
+import { AreahomeComponent } from './areadelconocimiento/areahome/areahome.component';
+import { TemaaddComponent } from './tema/temaadd/temaadd.component';
+import { TemadeletComponent } from './tema/temadelet/temadelet.component';
+import { TemaeditComponent } from './tema/temaedit/temaedit.component';
+import { TemahomeComponent } from './tema/temahome/temahome.component';
+import { SubtemahomeComponent } from './subtema/subtemahome/subtemahome.component';
+import { SubtemaaddComponent } from './subtema/subtemaadd/subtemaadd.component';
+import { SubtemadeletComponent } from './subtema/subtemadelet/subtemadelet.component';
+import { SubtemaeditComponent } from './subtema/subtemaedit/subtemaedit.component';
 
 
 
@@ -124,8 +136,18 @@ const routes: Route[]=[
 {path: 'registrar', component: RegisterComponent},
 {path: 'estadisticas', component: CategoriasComponent},
 {path: 'graficas', component: EstadisticasComponent},
-{path: 'personalperfil', component: PersonalperfilComponent}
+{path: 'personalperfil', component: PersonalperfilComponent},
 
+
+
+
+
+
+
+
+{path: 'areadelconocimiento', component: AreahomeComponent},
+{path: 'subtema', component: SubtemahomeComponent},
+{path: 'tema', component: TemahomeComponent}
 
 
 
@@ -191,7 +213,19 @@ const routes: Route[]=[
     FotterComponent,
     FotosComponent,
     ModificaradComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    AreaaddComponent,
+    AreadeletComponent,
+    AreaeditComponent,
+    AreahomeComponent,
+    TemaaddComponent,
+    TemadeletComponent,
+    TemaeditComponent,
+    TemahomeComponent,
+    SubtemahomeComponent,
+    SubtemaaddComponent,
+    SubtemadeletComponent,
+    SubtemaeditComponent
 
 
 
@@ -293,7 +327,45 @@ const routes: Route[]=[
     PerfilhoraeditComponent,
     /* Modal para reseteo de contraseña */
     ResetPasswordComponent,
-    ModificaradComponent
+    ModificaradComponent,
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+     /* Modal para area del conocimiento */
+     AreaaddComponent,
+     AreaeditComponent,
+     AreadeletComponent,
+    //  modales pra el subtema
+    SubtemaaddComponent,
+    SubtemadeletComponent,
+    SubtemaeditComponent,
+    // modales para el tema
+    TemaaddComponent,
+    TemadeletComponent,
+    TemaeditComponent
 
   ],
   exports: [

@@ -18,4 +18,5 @@ export interface Personal {
     tareasasignadas: string;
     idtper: number;
     activo: number;
+    // fotopersonal:number;
 }

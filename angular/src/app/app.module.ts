@@ -92,6 +92,7 @@ import { FotosComponent } from './fotos/fotos.component';
 
 import { ModificaradComponent } from './perfiladmin/modificarad/modificarad.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { NewPasswordComponent } from './login/new-password/new-password.component';
 
 
 
@@ -124,7 +125,8 @@ const routes: Route[]=[
 {path: 'registrar', component: RegisterComponent},
 {path: 'estadisticas', component: CategoriasComponent},
 {path: 'graficas', component: EstadisticasComponent},
-{path: 'personalperfil', component: PersonalperfilComponent}
+{path: 'personalperfil', component: PersonalperfilComponent},
+{path: 'reset-password/:id', component: NewPasswordComponent}
 
 
 
@@ -191,7 +193,8 @@ const routes: Route[]=[
     FotterComponent,
     FotosComponent,
     ModificaradComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    NewPasswordComponent
 
 
 

@@ -55,6 +55,7 @@ Route::resource('restapendiente', 'restantePendienteCOntroller');
 
 Route::resource('pendiente', 'pendientesController');
 Route::resource('fotosalumnos', 'fotoAlumnosController');
+Route::resource('confirmtoken', 'passwordResetController');
 
 
 

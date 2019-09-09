@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { UserAdminService } from 'src/app/services/user-admin.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -30,7 +31,7 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   constructor(public dialogRef: MatDialogRef<ResetPasswordComponent>,@Inject(MAT_DIALOG_DATA) public data: any,
-  public loginService: UserAdminService) { }
+  public loginService: LoginService) { }
 
   ngOnInit() {
   }
@@ -39,10 +40,9 @@ export class ResetPasswordComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  confirmEmail(email)
+  confirmEmail(datos)
   {
-    console.log(this.datos)
-    this.loginService.validEmail(this.datos)
+    this.loginService.saveCorreo(datos);
   }
 
 }

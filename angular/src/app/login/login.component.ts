@@ -5,6 +5,7 @@ import { LoginService } from '../services/login.service';
 import { Login } from '../interfaces/login';
 import { MatDialog} from '@angular/material';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
   
 @Component({
@@ -14,11 +15,12 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 })
 export class LoginComponent implements OnInit {
 
-
+    statusEmail: any
     log:Login[];
   hide = true;
 
-  constructor(private router: Router, private service:LoginService,public dialog: MatDialog) { }
+  constructor(private router: Router, private service:LoginService,public dialog: MatDialog,
+    public toastr: ToastrManager) { }
 
   ngOnInit() {
 
@@ -35,6 +37,20 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  showSuccessEmail() {
+    this.toastr.successToastr('Correo enviado revista tu bandeja de entrada', 'Exito!');
+  }
+
+  showErrorEmail()
+  {
+    this.toastr.errorToastr('Ocurrio un erro intentalo de nuevo', 'Oops!')
+  }
+
+  showInfoEmail()
+  {
+    this.toastr.warningToastr('El correo que ingresaste no existe en la base de datos')
+  }
+
   forgotPassword()
   {
     const dialogRef = this.dialog.open(ResetPasswordComponent, {
@@ -42,7 +58,25 @@ export class LoginComponent implements OnInit {
     })
     dialogRef.afterClosed().subscribe(result=>{
       if(result == 1 ){
-        
+    this.service.enviarCorreo(this.service.getDialogData()).subscribe((data)=>{
+      this.statusEmail = data
+      if(this.statusEmail == 1)
+      {
+        /* Correo enviado */
+        this.showSuccessEmail()
+      }else if(this.statusEmail == 0)
+      {
+/* Correo no enviado */
+this.showErrorEmail()
+      }else if(this.statusEmail == 3)
+      {
+        /* correo no existe en la base de datos */
+        this.showInfoEmail()
+      }
+
+    },(error)=>{
+      console.log(error)
+    })
       }
     })
   }

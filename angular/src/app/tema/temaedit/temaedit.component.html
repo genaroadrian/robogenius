@@ -1,0 +1,47 @@
+<div class="form-group"style="width:440px" >
+  <h3 mat-dialog-title style="text-align: center;">Modificando</h3>
+
+  <form  (ngSubmit)="submit" #formControl="ngForm" style="width: 400px;">
+
+    <div class="form-group">
+      <mat-form-field color="accent" style="width: 440px;">
+        <input matInput #input   placeholder="Id" [(ngModel)]="data.idt" name="idac" required disabled>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+        <div class="form-group">
+      <mat-form-field color="accent" style="width: 440px;">
+        <input matInput #input   placeholder="Tema" [(ngModel)]="data.nombre" name="nombre" required >
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <div class="form-group">
+        <mat-form-field color="accent" style="width: 440px;">
+          <input matInput #input   placeholder="Area del conocimiento" [(ngModel)]="areadelconocimiento" name="areaaa"  disabled>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+
+
+    <div class="form-group">
+    <mat-form-field color="accent" style="width: 440px;">
+      <mat-label>Seleccione la nueva area del conocimiento</mat-label>
+      <mat-select (selectionChange)="select($event.value)">
+        <mat-option *ngFor="let areadelc of ac" [value]="areadelc.idac" >
+          {{areadelc.nombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+
+    <div mat-dialog-actions >
+      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+        (click)="stopEdit(data)" style="margin-left: 140px; margin-right: 40px;">Guardar</button>
+      <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    </div>
+  </form>
+</div>

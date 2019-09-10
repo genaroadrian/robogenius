@@ -1,0 +1,34 @@
+<div class="container" style="height:420px;">
+  <h3 mat-dialog-title style="text-align: center;">Nuevo registro</h3>
+
+  <form mat-dialog-content (ngSubmit)="submit" style="height:380px;" #formControl="ngForm">
+
+    <div class="form">
+      <mat-form-field color="accent"  style="width: 340px;">
+        <input matInput placeholder="Tema" [(ngModel)]="teme.nombre" name="nombre" required >
+        <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <!-- <div class="form">
+      <mat-form-field color="accent" style="width: 340px;">
+        <input matInput placeholder="Area del conocimiento" [(ngModel)]="data.idac" name="representante" required>
+        <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div> -->
+
+      <mat-form-field>
+        <mat-label>Seleccione el area del conocimiento</mat-label>
+        <mat-select (selectionChange)="select($event.value)">
+          <mat-option *ngFor="let areadelc of ac" [value]="areadelc.idac" >
+            {{areadelc.nombre}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd(data)" style="margin-top:40px;margin-left: 80px; margin-right: 40px;">Guardar</button>
+      <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1" style="margin-top: 40px;">Cancelar</button>
+    </div>
+  </form>
+</div>

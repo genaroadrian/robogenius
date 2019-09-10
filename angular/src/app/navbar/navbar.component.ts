@@ -33,6 +33,8 @@ export class NavbarComponent  {
   dia: userAdmin = {
     email: localStorage.getItem("email"),
   }
+
+  foto=localStorage.getItem("foto");
  
   //  Declaracion de la interfaz de personal
  
@@ -64,6 +66,7 @@ export class NavbarComponent  {
     logout(){
     localStorage.removeItem('email');
     localStorage.removeItem('subname');
+    localStorage.removeItem('foto');
 
     this.router.navigateByUrl('/login');
   }

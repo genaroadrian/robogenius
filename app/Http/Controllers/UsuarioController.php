@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Image;
 use Session;
+use Illuminate\Support\Facades\Crypt;
 
 class UsuarioController extends Controller
 {
@@ -16,7 +17,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        //
+        return 1;
     }
 
     /**
@@ -37,7 +38,10 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $decrypted = Crypt::decrypt(($request->token));
+            return $decrypted;
+            // return $request->token;
+            // return "Holla";
     }
 
     /**

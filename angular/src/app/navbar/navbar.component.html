@@ -13,7 +13,7 @@
         <i class="mdi mdi-account correo">   {{emai}} </i>
 
       
-          <img src="https://banner2.kisspng.com/20180422/lyq/kisspng-anonymous-security-hacker-sticker-hacktivism-anono-5adc2244de0c07.4536731215243761329095.jpg" alt="user" class="rounded-circle dropdown-toggle imgRedonda" data-toggle="dropdown" >
+          <img src="assets/perfiles/Administradores/{{foto}}" alt="user" class="rounded-circle dropdown-toggle imgRedonda" data-toggle="dropdown" >
         
 
           <ul class="dropdown-menu">
@@ -64,10 +64,19 @@
                   <li><a [routerLink]="['/escuelas']">Escuelas</a></li>
                   <li><a [routerLink]="['/horarios']">Horarios</a></li>
                   <li><a [routerLink]="['/alumnos']">Alumnos</a></li>
-                  <li><a [routerLink]="['/nuevoalumno']">Nuevo Alumno</a></li>   
+                  <!-- <li><a [routerLink]="['/nuevoalumno']">Nuevo Alumno</a></li>    -->
                  </ul>
                 </li>
-            <li><a > Productos</a></li>
+            <!-- <li><a > Pagos</a> </li> -->
+
+            <li class="submenu "><a > Administracion <span id="btn-menus" class="mdi mdi-arrow-down"></span></a>
+              <ul >
+                <li><a [routerLink]="['/areadelconocimiento']">Are del Conocimiento</a></li>
+                <li><a [routerLink]="['/tema']">Temas</a></li>
+                <li><a [routerLink]="['/subtema']">Subtemas</a></li>
+
+               </ul>
+              </li>
             <li class="submenu "><a > Pagos <span id="btn-menus" class="mdi mdi-arrow-down"></span></a>
               <ul >
                 <li><a [routerLink]="['/tipomensualidad']">Tipos de Mensualidad</a></li>

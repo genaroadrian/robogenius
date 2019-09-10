@@ -25,7 +25,8 @@ export class RegisterComponent implements OnInit {
     subname :null,
     telefono : null,
     avatar : null,
-    activo : 1
+    activo : 1,
+    fotoadmin:null
 
   };
 

@@ -11,6 +11,8 @@
 |
 */
 
+use slidecom_robogenius\Http\Controllers\UsuarioController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -33,3 +35,4 @@ Route::get('profile', 'UserController@profile')->name('profile');
 Route::post('editar/{id}', 'UsuarioController@update')->name('editar');
 Route::POST('/buscaresc','EscuelaController@buscaresc')->name('buscaresc');
 Route::get('/borraresc/{idesc}','EscuelaController@borraresc')->name('borraresc');
+route::get('email', 'emailController@index');

@@ -10,6 +10,11 @@ import { ModificaradComponent } from './modificarad/modificarad.component';
 import { UserAdminService } from '../services/user-admin.service';
 
 
+import { FileuploadService } from 'src/app/services/fileupload.service';
+import {Router} from '@angular/router';
+import { userAdmin } from 'src/app/interfaces/userAdmin';
+
+
 
 
 
@@ -31,12 +36,35 @@ export class PerfiladminComponent implements OnInit {
   exampleDatabase: UserAdminService | null;
 
   
+  jstoday:any;
 
+  
+  archivo = {
+    nombre: null,
+    nombreArchivo: null,
+    base64textString: null
+  }
+
+
+   Login:Login= {
+    id: null,
+    subname: null,
+    email: null,
+    password: null,
+    nombre: null,
+    apellidos: null,
+    telefono: null,
+    avatar: null,
+    activo: null,
+    fotoadmin:null
+}
 
   constructor( private service:LoginService, public httpClient: HttpClient, public dialog: MatDialog,
-    public useradminService: UserAdminService, public toastr: ToastrManager) { }
+    public useradminService: UserAdminService, public toastr: ToastrManager,private uploadService: FileuploadService,private router:Router) { }
   public  emai = localStorage.getItem("email")
   ;
+
+ 
 
   ngOnInit() {
 
@@ -45,12 +73,67 @@ export class PerfiladminComponent implements OnInit {
     
       this.log=data;
       this.logs = this.log.filter(x=>x.email == this.emai)
-      console.log(this.logs)
+      // console.log(this.logs)
+      this.Login.id=this.logs[0].id
     },(error)=>{
-      console.log(error)
+      // console.log(error)
     })
 
    
+    
+  }
+
+  seleccionarArchivo(event) {
+    this.jstoday= new Date().getTime();
+    var files = event.target.files;
+    var file = files[0];
+    this.archivo.nombreArchivo = file.name;
+    this.archivo.nombreArchivo=this.jstoday+this.archivo.nombreArchivo
+ 
+
+    if(files && file) {
+      var reader = new FileReader();
+      reader.onload = this._handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
+    }
+  }
+
+  _handleReaderLoaded(readerEvent) {
+    var binaryString = readerEvent.target.result;
+    this.archivo.base64textString = btoa(binaryString);
+  }
+
+  upload() {
+    // console.log(this.archivo);
+    localStorage.removeItem('foto');
+    localStorage.setItem('foto' , this.archivo.nombreArchivo);
+    this.uploadService.uploadFileAdmin(this.archivo)
+
+    .subscribe(
+      datos => {
+        if(datos['resultado'] == 'OK') {
+          // alert(datos['mensaje']);
+          // this.router.navigate(['home']);
+
+        }
+      }
+    );
+
+    // this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss', 'en-US');
+    
+    this.Login.fotoadmin=this.archivo.nombreArchivo;
+        this.showBarra()
+
+    // this.datos.perfilalu=this.archivo.nombreArchivo;
+    this.uploadService.subirimagenAdmin(this.Login).subscribe(data=>{
+      this.hideBarra()
+      this.showSuccessFoto()
+      
+    }, (error) => {
+      this.showError()
+      this.hideBarra()
+      
+    })
     
   }
 
@@ -62,6 +145,9 @@ export class PerfiladminComponent implements OnInit {
     this.barra = "none"
   }
 
+  showSuccessFoto() {
+    this.toastr.successToastr('Foto actualizada', 'Exito!');
+  }
   showSuccessEdit() {
     this.toastr.successToastr('Registro actualizado', 'Exito!');
   }

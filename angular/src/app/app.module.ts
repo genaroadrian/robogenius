@@ -92,6 +92,7 @@ import { FotosComponent } from './fotos/fotos.component';
 
 import { ModificaradComponent } from './perfiladmin/modificarad/modificarad.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+
 import { CodigohomeComponent } from './codigos/codigohome/codigohome.component';
 import { CodigosaddComponent } from './codigos/codigosadd/codigosadd.component';
 import { CodmodificarComponent } from './codigos/codmodificar/codmodificar.component';
@@ -103,6 +104,20 @@ import { HomegComponent } from './grados/homeg/homeg.component';
 import { UpdategComponent } from './grados/updateg/updateg.component';
 import { DeletegComponent } from './grados/deleteg/deleteg.component';
 import { DeletenComponent } from './niveles/deleten/deleten.component';
+
+import { AreaaddComponent } from './areadelconocimiento/areaadd/areaadd.component';
+import { AreadeletComponent } from './areadelconocimiento/areadelet/areadelet.component';
+import { AreaeditComponent } from './areadelconocimiento/areaedit/areaedit.component';
+import { AreahomeComponent } from './areadelconocimiento/areahome/areahome.component';
+import { TemaaddComponent } from './tema/temaadd/temaadd.component';
+import { TemadeletComponent } from './tema/temadelet/temadelet.component';
+import { TemaeditComponent } from './tema/temaedit/temaedit.component';
+import { TemahomeComponent } from './tema/temahome/temahome.component';
+import { SubtemahomeComponent } from './subtema/subtemahome/subtemahome.component';
+import { SubtemaaddComponent } from './subtema/subtemaadd/subtemaadd.component';
+import { SubtemadeletComponent } from './subtema/subtemadelet/subtemadelet.component';
+import { SubtemaeditComponent } from './subtema/subtemaedit/subtemaedit.component';
+import { NewPasswordComponent } from './login/new-password/new-password.component';
 
 
 
@@ -136,12 +151,15 @@ const routes: Route[]=[
 {path: 'estadisticas', component: CategoriasComponent},
 {path: 'graficas', component: EstadisticasComponent},
 {path: 'personalperfil', component: PersonalperfilComponent},
+
 {path: 'codigos', component: CodigohomeComponent},
 {path: 'nivel', component: NivelhomeComponent},
 {path: 'grados', component: HomegComponent},
 
-
-
+{path: 'reset-password/:id', component: NewPasswordComponent},
+{path: 'areadelconocimiento', component: AreahomeComponent},
+{path: 'subtema', component: SubtemahomeComponent},
+{path: 'tema', component: TemahomeComponent}
 
 
 
@@ -219,7 +237,20 @@ const routes: Route[]=[
     HomegComponent,
     UpdategComponent,
     DeletegComponent,
-    DeletenComponent
+    DeletenComponent,
+    AreaaddComponent,
+    AreadeletComponent,
+    AreaeditComponent,
+    AreahomeComponent,
+    TemaaddComponent,
+    TemadeletComponent,
+    TemaeditComponent,
+    TemahomeComponent,
+    SubtemahomeComponent,
+    SubtemaaddComponent,
+    SubtemadeletComponent,
+    SubtemaeditComponent,
+    NewPasswordComponent
 
 
 
@@ -332,7 +363,20 @@ const routes: Route[]=[
     //Modal para los coódigos de descuentos
     UpdategComponent,
     DeletegComponent,
-    DeletenComponent
+    DeletenComponent,
+     /* Modal para area del conocimiento */
+     AreaaddComponent,
+     AreaeditComponent,
+     AreadeletComponent,
+    //  modales pra el subtema
+    SubtemaaddComponent,
+    SubtemadeletComponent,
+    SubtemaeditComponent,
+    // modales para el tema
+    TemaaddComponent,
+    TemadeletComponent,
+    TemaeditComponent
+
   ],
   exports: [
     MatButtonModule,

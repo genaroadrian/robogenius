@@ -7,6 +7,7 @@
     <div class="col-xl-12 col-md-12 ">
         <div class="card bg-light mini-stat position-relative">
               <div class="card-body">
+                  <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
                  <div class="mini-stat-desc">
                     <div class="col-xl-12 col-md-12">
                        <div class="col-xl-4 col-md-12 ">
@@ -62,7 +63,7 @@
                                   <mat-icon aria-label="Edit">edit</mat-icon>
                                 </button>
                         
-                                <button mat-icon-button class="text-danger" (click)="delete(i, row.idper)">
+                                <button mat-icon-button class="text-danger" (click)="delete(i, row.idtper)">
                                   <mat-icon aria-label="Delete">delete</mat-icon>
                                 </button>
                               </mat-cell>

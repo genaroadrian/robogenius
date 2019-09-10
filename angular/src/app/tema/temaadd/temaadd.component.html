@@ -1,7 +1,7 @@
-<div class="container" style="height:420px;">
+<div class="container" style="height:320px;">
   <h3 mat-dialog-title style="text-align: center;">Nuevo registro</h3>
 
-  <form mat-dialog-content (ngSubmit)="submit" style="height:380px;" #formControl="ngForm">
+  <form mat-dialog-content (ngSubmit)="submit" style="height:280px;" #formControl="ngForm">
 
     <div class="form">
       <mat-form-field color="accent"  style="width: 340px;">
@@ -17,7 +17,7 @@
       </mat-form-field>
     </div> -->
 
-      <mat-form-field>
+      <mat-form-field  color="accent"  style="width: 340px;">
         <mat-label>Seleccione el area del conocimiento</mat-label>
         <mat-select (selectionChange)="select($event.value)">
           <mat-option *ngFor="let areadelc of ac" [value]="areadelc.idac" >

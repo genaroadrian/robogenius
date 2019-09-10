@@ -4,14 +4,15 @@ import { TipopersonalService } from 'src/app/services/tipopersonal.service';
 import {HttpClient} from '@angular/common/http';
 import { Tipopersonal } from 'src/app/interfaces/tipopersonal';
 import { MatPaginator, MatSort, MatTableDataSource, MatTable } from '@angular/material';
-import { DomSanitizer } from '@angular/platform-browser';
+import { NotificationsService } from 'src/app/services/notifications.service';
 import { MatDialog, MatDialogConfig, MatIconRegistry} from '@angular/material';
-import { TpeditComponent } from '../tpedit/tpedit.component';
 import {DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import { TpaddComponent } from '../tpadd/tpadd.component';
 import { TpdeleteComponent } from '../tpdelete/tpdelete.component';
+import { TpeditComponent } from '../tpedit/tpedit.component';
+
 
 
 @Component({
@@ -28,6 +29,9 @@ export class TphomeComponent implements OnInit {
     'icons'
    ];
 
+     /* Variable para guardar los datos de add y update */
+  tipopadd: any
+
   tipoPersonal: Tipopersonal[];
   // dataSource: MatTableDataSource<Tipopersonal>;
   exampleDatabase: TipopersonalService | null;
@@ -39,9 +43,14 @@ export class TphomeComponent implements OnInit {
   id: number;
   TipopersonalService: any;
 
+
+   /* Visibilidad de la barra de carga */
+   barra = "none"
+
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public tipopersonalService: TipopersonalService ) {
+    public tipopersonalService: TipopersonalService,
+    public notifications:NotificationsService ) {
       
      }
 
@@ -64,82 +73,121 @@ export class TphomeComponent implements OnInit {
   refresh() {
     this.getTipopersonal();
   }
+    /* Mostrar la barra de carga */
+    showBarra() {
+      this.barra = ""
+    }
+  
+    /* Ocultar la barra de carga */
+    hideBarra() {
+      this.barra = "none"
+    }
 
   // Metodo para refrescar la paginación (not use)
   refreshTable() {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
-  // Metodo para abrir el modal para agrefar nuevo registro
-  addNew(tipoPersonal: Tipopersonal) {
-    // Abre la ventana modal
-    const dialogRef = this.dialog.open(TpaddComponent, {
-      data: {tipoPersonal: tipoPersonal }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === 1) {
-        // After dialog is closed we're doing frontend updates
-        // For add we're just pushing a new row inside DataService
-        this.exampleDatabase.dataChange.value.push(this.tipopersonalService.getDialogData());
-        this.refreshTable();
-      }
-    });
-  }
+        // Metodo para abrir el modal para agrefar nuevo registro
+        addNew(tpersonal: Tipopersonal) {
+          // Abre la ventana modal
+          const dialogRef = this.dialog.open(TpaddComponent, {
+            
+            data: { tpersonal: tpersonal }
+          });
+          dialogRef.afterClosed().subscribe(result => {
+            if (result == 1) {
+              // this.notifications.showBarra()
+              this.showBarra()
+              this.tipopersonalService.add(this.tipopersonalService.getDialogData()).subscribe((data) => {
+                this.tipopadd = data
+                this.exampleDatabase.dataChange.value.push(this.tipopadd);
+                this.refreshTable()
+                this.notifications.showSuccessAdd();
+                // this.notifications.hideBarra();
+                this.hideBarra();
+              }, (error) => {
+                this.notifications.showError();
+                // this.notifications.hideBarra();
+                this.hideBarra();
+
+              });
+
+            }
+          });
+        }
 
   // Metodo para recibir los datos y asignar la tabla
-  getTipopersonal(){
-    this.exampleDatabase = new TipopersonalService(this.httpClient);
-    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
-    fromEvent(this.filter.nativeElement, 'keyup')
-      // .debounceTime(150)
-      // .distinctUntilChanged()
-      .subscribe(() => {
-        if (!this.dataSource) {
-          return;
-        }
-        this.dataSource.filter = this.filter.nativeElement.value;
-      });
+    getTipopersonal(){
+            this.exampleDatabase = new TipopersonalService(this.httpClient);
+            this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
+            fromEvent(this.filter.nativeElement, 'keyup')
+              // .debounceTime(150)
+              // .distinctUntilChanged()
+            .subscribe(() => {
+                if (!this.dataSource) {
+                  return;
+                }
+                this.dataSource.filter = this.filter.nativeElement.value;
+            });
   }
-  
+
+
   // Metodo para abrir el modal para modificar
   onUpdate(i: number, idtper: number, tipo: string) {
     this.id = idtper;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
-    console.log(this.index);
     const dialogRef = this.dialog.open(TpeditComponent, {
       data: {idtper: idtper, tipo: tipo}
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
+        this.showBarra()
+        this.tipopersonalService.put(this.tipopersonalService.getDialogData()).subscribe((data) => {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idtper === this.id);
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] = this.tipopersonalService.getDialogData();
         // And lastly refresh table
         this.refreshTable();
-      }
-    });
-    
-  }
+        this.notifications.showSuccessEdit()
+        this.hideBarra()
+      }, (error) => {
+        this.notifications.showError()
+        this.hideBarra()
+      })
 
+    }
+
+  });
+}  
   
-  delete(i: number, idper:number, id: number) {
-    this.index = i;
-    this.id = idper;
-    const dialogRef = this.dialog.open(TpdeleteComponent, {
-      data: {id: idper}
-    });
+  delete(i: number, idtper:number) {
+      this.index = i;
+      this.id = idtper;
+      const dialogRef = this.dialog.open(TpdeleteComponent, {
+        data: {id: idtper}
+      });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
+        this.showBarra()
+        this.tipopersonalService.delete(this.id).subscribe((data) => {
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idtper === this.id);
         // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
         this.refreshTable();
+        // this.notifications.showSuccessDelete();
+        this.hideBarra()
+      }, (error) => {
+        this.notifications.showError()
+        this.hideBarra()
+      })
       }
     });
   }
+
 
 }
 

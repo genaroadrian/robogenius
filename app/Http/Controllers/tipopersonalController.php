@@ -19,7 +19,7 @@ class tipopersonalController extends Controller
    {
     $tpersonal = new Tipopersonal();
     $tpersonal->tipo = $request->tipo;
-    $tpersonal->activo = $request->activo;
+    $tpersonal->activo = 1;
     $tpersonal->save();
     echo json_encode($tpersonal);
     }
@@ -33,13 +33,11 @@ class tipopersonalController extends Controller
         echo json_encode($personal);
     }
 
-    public function show(Request $request)
-    {
-        $id = $request ->idtper;
-        $tpersonal = Tipopersonal::find($id);
-        $tpersonal->tipo = $request->tipo;
-        $tpersonal->activo = 1;
-        $tpersonal->save();
-        echo json_encode($tpersonal);
-    }
+
+  // Elimina registros
+  public function destroy($id)
+  {
+      $tipopago = DB::SELECT("UPDATE tipopersonal SET activo = 0 WHERE idtper = '$id'");
+      echo json_encode($tipopago);
+  }
 }

@@ -55,6 +55,10 @@ Route::resource('restapendiente', 'restantePendienteCOntroller');
 
 Route::resource('pendiente', 'pendientesController');
 Route::resource('fotosalumnos', 'fotoAlumnosController');
+Route::resource('codigos', 'codigodescController');
+Route::resource('nivel', 'nivelController');
+Route::resource('grados', 'gradoController');
+
 
 
 

@@ -92,6 +92,17 @@ import { FotosComponent } from './fotos/fotos.component';
 
 import { ModificaradComponent } from './perfiladmin/modificarad/modificarad.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { CodigohomeComponent } from './codigos/codigohome/codigohome.component';
+import { CodigosaddComponent } from './codigos/codigosadd/codigosadd.component';
+import { CodmodificarComponent } from './codigos/codmodificar/codmodificar.component';
+import { CoddeleteComponent } from './codigos/coddelete/coddelete.component';
+import { NivelhomeComponent } from './niveles/nivelhome/nivelhome.component';
+import { AddnivelComponent } from './niveles/addnivel/addnivel.component';
+import { UpdatenivelComponent } from './niveles/updatenivel/updatenivel.component';
+import { HomegComponent } from './grados/homeg/homeg.component';
+import { UpdategComponent } from './grados/updateg/updateg.component';
+import { DeletegComponent } from './grados/deleteg/deleteg.component';
+import { DeletenComponent } from './niveles/deleten/deleten.component';
 
 
 
@@ -124,7 +135,13 @@ const routes: Route[]=[
 {path: 'registrar', component: RegisterComponent},
 {path: 'estadisticas', component: CategoriasComponent},
 {path: 'graficas', component: EstadisticasComponent},
-{path: 'personalperfil', component: PersonalperfilComponent}
+{path: 'personalperfil', component: PersonalperfilComponent},
+{path: 'codigos', component: CodigohomeComponent},
+{path: 'nivel', component: NivelhomeComponent},
+{path: 'grados', component: HomegComponent},
+
+
+
 
 
 
@@ -191,7 +208,18 @@ const routes: Route[]=[
     FotterComponent,
     FotosComponent,
     ModificaradComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    CodigohomeComponent,
+    CodigosaddComponent,
+    CodmodificarComponent,
+    CoddeleteComponent,
+    NivelhomeComponent,
+    AddnivelComponent,
+    UpdatenivelComponent,
+    HomegComponent,
+    UpdategComponent,
+    DeletegComponent,
+    DeletenComponent
 
 
 
@@ -293,8 +321,18 @@ const routes: Route[]=[
     PerfilhoraeditComponent,
     /* Modal para reseteo de contraseña */
     ResetPasswordComponent,
-    ModificaradComponent
-
+    ModificaradComponent,
+    //Modal para los coódigos de descuentos
+    CodigosaddComponent,
+    CodmodificarComponent,
+    CoddeleteComponent,
+    //Modal para nivel
+    AddnivelComponent,
+    UpdatenivelComponent,
+    //Modal para los coódigos de descuentos
+    UpdategComponent,
+    DeletegComponent,
+    DeletenComponent
   ],
   exports: [
     MatButtonModule,

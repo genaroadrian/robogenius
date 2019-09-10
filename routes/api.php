@@ -54,12 +54,19 @@ Route::resource('utilidad', 'mesUtilidadController');
 Route::resource('restapendiente', 'restantePendienteCOntroller');
 Route::resource('pendiente', 'pendientesController');
 Route::resource('fotosalumnos', 'fotoAlumnosController');
+<<<<<<< HEAD
+Route::resource('codigos', 'codigodescController');
+Route::resource('nivel', 'nivelController');
+Route::resource('grados', 'gradoController');
+
+=======
 Route::resource('fotosadmin', 'fotoAdminController');
 Route::resource('fotospersonal', 'fotopersonalController');
 Route::resource('areadelconocimiento', 'areaDelConocimientoController');
 Route::resource('tema', 'temasController');
 Route::resource('subtema', 'subtemasController');
 Route::resource('confirmtoken', 'passwordResetController');
+>>>>>>> a371d533be1b91d1b03b0a69af27d2feef9f3fcb
 
 
 

@@ -164,7 +164,7 @@ export class PerfiladminComponent implements OnInit {
 
 
    // Metodo para abrir el modal para modificar
-   updateperfil(i: number, id: number,  email: string, subname: string, password: string, nombre: string, apellidos: string, telefono: number) {
+   updateperfil(i: number, id: number,  email: string, subname: string, password: string, nombre: string, apellidos: string, telefono: number, fotoadmin: string) {
     this.id = id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;

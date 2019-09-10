@@ -1,0 +1,50 @@
+<div class="form-group" style="width:500px">
+
+  <form  (ngSubmit)="submit" #formControl="ngForm">
+
+  <div class="container" >
+    <div class="row">
+      <div class="col-xl-12">
+        <h3 style="text-align: center;">Nuevo código de descuento</h3>
+      </div>
+    </div>
+    <hr/>
+    <br>
+
+    <div class="row col-xl-12">
+    <div class="form col-xl-6">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Código" [(ngModel)]="data.codigo" name="codigo">
+      </mat-form-field>
+    </div>
+
+    <div class="form col-xl-6">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Porcentaje" [(ngModel)]="data.porcentaje" name="porcentaje">
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="row col-xl-12">
+    <div class="form col-xl-6">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Lugar" [(ngModel)]="data.lugar" name="lugar">
+      </mat-form-field>
+    </div>
+
+    <div class="form col-xl-6">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Fecha" [(ngModel)]="data.fecha" name="fecha" type="date">
+      </mat-form-field>
+    </div>
+
+  </div>
+  <br>
+
+    <div mat-dialog-actions>
+      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="Descuentos()" style="margin-left: 220px; margin-right: 80px;">Save</button>
+      <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancel</button>
+    </div>
+  </div>
+  </form>
+</div>

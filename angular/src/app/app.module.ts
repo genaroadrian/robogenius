@@ -92,6 +92,19 @@ import { FotosComponent } from './fotos/fotos.component';
 
 import { ModificaradComponent } from './perfiladmin/modificarad/modificarad.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+
+import { CodigohomeComponent } from './codigos/codigohome/codigohome.component';
+import { CodigosaddComponent } from './codigos/codigosadd/codigosadd.component';
+import { CodmodificarComponent } from './codigos/codmodificar/codmodificar.component';
+import { CoddeleteComponent } from './codigos/coddelete/coddelete.component';
+import { NivelhomeComponent } from './niveles/nivelhome/nivelhome.component';
+import { AddnivelComponent } from './niveles/addnivel/addnivel.component';
+import { UpdatenivelComponent } from './niveles/updatenivel/updatenivel.component';
+import { HomegComponent } from './grados/homeg/homeg.component';
+import { UpdategComponent } from './grados/updateg/updateg.component';
+import { DeletegComponent } from './grados/deleteg/deleteg.component';
+import { DeletenComponent } from './niveles/deleten/deleten.component';
+
 import { AreaaddComponent } from './areadelconocimiento/areaadd/areaadd.component';
 import { AreadeletComponent } from './areadelconocimiento/areadelet/areadelet.component';
 import { AreaeditComponent } from './areadelconocimiento/areaedit/areaedit.component';
@@ -139,10 +152,16 @@ const routes: Route[]=[
 {path: 'estadisticas', component: CategoriasComponent},
 {path: 'graficas', component: EstadisticasComponent},
 {path: 'personalperfil', component: PersonalperfilComponent},
+
+{path: 'codigos', component: CodigohomeComponent},
+{path: 'nivel', component: NivelhomeComponent},
+{path: 'grados', component: HomegComponent},
+
 {path: 'reset-password/:id', component: NewPasswordComponent},
 {path: 'areadelconocimiento', component: AreahomeComponent},
 {path: 'subtema', component: SubtemahomeComponent},
 {path: 'tema', component: TemahomeComponent}
+
 
 
 
@@ -209,6 +228,17 @@ const routes: Route[]=[
     FotosComponent,
     ModificaradComponent,
     ResetPasswordComponent,
+    CodigohomeComponent,
+    CodigosaddComponent,
+    CodmodificarComponent,
+    CoddeleteComponent,
+    NivelhomeComponent,
+    AddnivelComponent,
+    UpdatenivelComponent,
+    HomegComponent,
+    UpdategComponent,
+    DeletegComponent,
+    DeletenComponent,
     AreaaddComponent,
     AreadeletComponent,
     AreaeditComponent,
@@ -327,6 +357,17 @@ const routes: Route[]=[
     ModificaradComponent,
     /* modal para editar la membresia en el perfil del alumno */
     PerfilmemeditComponent,
+    //Modal para los coódigos de descuentos
+    CodigosaddComponent,
+    CodmodificarComponent,
+    CoddeleteComponent,
+    //Modal para nivel
+    AddnivelComponent,
+    UpdatenivelComponent,
+    //Modal para los coódigos de descuentos
+    UpdategComponent,
+    DeletegComponent,
+    DeletenComponent,
      /* Modal para area del conocimiento */
      AreaaddComponent,
      AreaeditComponent,

@@ -110,7 +110,7 @@ export class PersonalperfilComponent implements OnInit {
     fechanac: string, sexo: string, curp: string, estadocivil:string,
     domicilio: string, fechaingreso: string, horaentrada: string,
     horasalida: string, perfilprofesional: string, especialidad: string,
-    tareasasignadas: string, salariomensual: number, idtper: number ) {
+    tareasasignadas: string, salariomensual: number, idtper: number, fotopersonal: fotopersonal ) {
     const dialogRef = this.dialog.open(PereditComponent, {
       // Anchura de el modal
       width: '60%',
@@ -123,7 +123,7 @@ export class PersonalperfilComponent implements OnInit {
         sexo: sexo, curp: curp, estadocivil: estadocivil,
         domicilio: domicilio, fechaingreso: fechaingreso, horaentrada: horaentrada,
         horasalida: horasalida, perfilprofesional: perfilprofesional, especialidad: especialidad,
-        tareasasignadas: tareasasignadas, salariomensual: salariomensual, idtper: idtper
+        tareasasignadas: tareasasignadas, salariomensual: salariomensual, idtper: idtper, fotopersonal: fotopersonal
       }
     });
     dialogRef.afterClosed().subscribe(result => {

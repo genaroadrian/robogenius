@@ -12,6 +12,7 @@ import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 
 
@@ -51,16 +52,10 @@ export class HomeComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public escuelasService: EscuelasService, private router: Router, public toastr: ToastrManager) { }
+    public escuelasService: EscuelasService, private router: Router, public toastr: ToastrManager,public notifications:NotificationsService) { }
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
-
-  /* Cerrar sesion del login */
-  logout() {
-    localStorage.removeItem('email');
-    this.router.navigateByUrl('/login');
-  }
 
   // Metodo para recibir los datos y asignar la tabla
   getEscuelas() {
@@ -108,31 +103,10 @@ export class HomeComponent implements OnInit {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
-  /* Mensaje de ADD */
-  showSuccessAdd() {
-    this.toastr.successToastr('Registro agregado', 'Exito!');
-  }
-
-  /* Mensaje de UPDATE */
-  showSuccessEdit() {
-    this.toastr.successToastr('Registro actualizado', 'Exito!');
-  }
-
-  /* Mensaje de DELETE */
-  showSuccessDelete() {
-    this.toastr.successToastr('Registro eliminado','Exito!');
-  }
-
-  /* Mensaje de ERROR */
-  showError() {
-    this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
-  }
-
   // Metodo para abrir el modal para agrefar nuevo registro
   addNew(escuelas: Escuelas) {
     // Abre la ventana modal
     const dialogRef = this.dialog.open(AddComponent, {
-      width: '600px',
       data: { escuelas: escuelas }
     });
     dialogRef.afterClosed().subscribe(result => {
@@ -142,10 +116,10 @@ export class HomeComponent implements OnInit {
           this.escuelasAdd = data
           this.exampleDatabase.dataChange.value.push(this.escuelasAdd);
           this.refreshTable()
-          this.showSuccessAdd();
+          this.notifications.showSuccessAdd()
           this.hideBarra()
         }, (error) => {
-          this.showError();
+          this.notifications.showError();
           this.hideBarra()
         });
 
@@ -173,9 +147,9 @@ export class HomeComponent implements OnInit {
           // And lastly refresh table
           this.refreshTable()
           this.hideBarra()
-          this.showSuccessEdit()
+          this.notifications.showSuccessEdit()
         }, (error) => {
-          this.showError()
+          this.notifications.showError()
           this.hideBarra()
         })
 
@@ -199,10 +173,10 @@ export class HomeComponent implements OnInit {
           const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idesc === this.id);
           this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
           this.refreshTable()
-          this.showSuccessDelete()
+          this.notifications.showSuccessDelete()
           this.hideBarra()
         }, (error) => {
-          this.showError()
+          this.notifications.showError()
           this.hideBarra()
         })
       }

@@ -126,7 +126,7 @@ export class TemahomeComponent implements OnInit {
   addNew(tema: tema) {
     // Abre la ventana modal
     const dialogRef = this.dialog.open(TemaaddComponent, {
-      width: '600px',
+      
       data: { tema: tema }
     });
     dialogRef.afterClosed().subscribe(result => {

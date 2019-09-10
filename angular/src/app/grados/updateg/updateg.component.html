@@ -1,0 +1,42 @@
+<div class="form-group" style="width:550px">
+  
+
+  <form  (ngSubmit)="submit" #formControl="ngForm">
+
+      <div class="container">
+          <div class="row">
+            <div class="col-xl-12">
+              <h3 style="text-align: center;">Modifica Grados</h3>
+            </div>
+          </div>
+          <hr/>
+    <div class="form col-xl-4">
+      <mat-form-field color="accent" style="width: 500px;">
+        <input style="text-align: center" matInput #input   placeholder="Id" [(ngModel)]="data.idg" name="idg" required disabled>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <div class="row col-xl-12">
+
+    <div class="form col-xl-4">
+      <mat-form-field color="accent" style="width: 500px;">
+        <input style="text-align: center" matInput #input   placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+  </div>
+
+
+  <br>
+
+    <div mat-dialog-actions >
+      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+(click)="updateg(data)" style="margin-left: 150px; margin-right: 90px;">Guardar</button>
+      <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+
+  </div>
+</div>
+  </form>
+</div>

@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-
 import { EscuelasService } from 'src/app/services/escuelas.service';
 import { HttpClient } from '@angular/common/http';
 import { Escuelas } from 'src/app/interfaces/escuelas';
@@ -13,6 +12,7 @@ import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
+
 
 
 @Component({
@@ -280,13 +280,11 @@ export class ExampleDataSource extends DataSource<Escuelas> {
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        case 'idesc': [propertyA, propertyB] = [a.idesc, b.idesc]; break;
         case 'nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
         case 'representante': [propertyA, propertyB] = [a.representante, b.representante]; break;
         case 'direccion': [propertyA, propertyB] = [a.direccion, b.direccion]; break;
         case 'telefono': [propertyA, propertyB] = [a.telefono, b.telefono]; break;
         case 'correo': [propertyA, propertyB] = [a.correo, b.correo]; break;
-        case 'activo': [propertyA, propertyB] = [a.activo, b.activo]; break;
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;

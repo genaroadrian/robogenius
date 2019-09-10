@@ -35,13 +35,13 @@ class memalumnoController extends Controller
    public function update(Request $request, $id)
    {
         $malu = Memalumno::find($id);
-        $malu->idalu = $request->idalu;
+       /*  $malu->idalu = $request->idalu;
         $malu->idmem = $request->idmem;
-        $malu->idtpago = $request->idtpago;
+        $malu->idtpago = $request->idtpago; */
         $malu->adelanto = $request->adelanto;
         $malu->restante = $request->restante;
         $malu->total = $request->total;
-        $malu->fechainico = $request->fechainicio;
+     //    $malu->fechainico = $request->fechainicio;
         $malu->activo = 1;
         $malu->save();
         return $malu;

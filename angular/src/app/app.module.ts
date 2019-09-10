@@ -105,6 +105,7 @@ import { SubtemaaddComponent } from './subtema/subtemaadd/subtemaadd.component';
 import { SubtemadeletComponent } from './subtema/subtemadelet/subtemadelet.component';
 import { SubtemaeditComponent } from './subtema/subtemaedit/subtemaedit.component';
 import { NewPasswordComponent } from './login/new-password/new-password.component';
+import { PerfilmemeditComponent } from './alumnos/perfilmemedit/perfilmemedit.component';
 
 
 
@@ -220,7 +221,8 @@ const routes: Route[]=[
     SubtemaaddComponent,
     SubtemadeletComponent,
     SubtemaeditComponent,
-    NewPasswordComponent
+    NewPasswordComponent,
+    PerfilmemeditComponent
 
 
 
@@ -323,32 +325,8 @@ const routes: Route[]=[
     /* Modal para reseteo de contraseña */
     ResetPasswordComponent,
     ModificaradComponent,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+    /* modal para editar la membresia en el perfil del alumno */
+    PerfilmemeditComponent,
      /* Modal para area del conocimiento */
      AreaaddComponent,
      AreaeditComponent,
@@ -360,7 +338,9 @@ const routes: Route[]=[
     // modales para el tema
     TemaaddComponent,
     TemadeletComponent,
-    TemaeditComponent
+    TemaeditComponent,
+    /* Modal para editar el perfil del personal */
+    PereditComponent
 
   ],
   exports: [

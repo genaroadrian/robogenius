@@ -1,145 +1,145 @@
 <div class="container">
   <h3 mat-dialog-title>Modificando</h3>
 
-  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+  <form mat-dialog-content (ngSubmit)="submit" #formControl="ngForm">
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Id personal" [(ngModel)]="data.idper" name="idper"
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Id personal" [(ngModel)]="data.idper" name="idper"
           required disabled>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Nombre" required [(ngModel)]="data.nombre"
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Nombre" required [(ngModel)]="data.nombre"
           name="nombre">
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Apellidos" [(ngModel)]="data.apellidos"
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Apellidos" [(ngModel)]="data.apellidos"
           name="apellidos" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Usuario" [(ngModel)]="data.usuario" name="usuario"
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Usuario" [(ngModel)]="data.usuario" name="usuario"
           required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Contraseña" [(ngModel)]="data.contra" name="contra"
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Contraseña" [(ngModel)]="data.contra" name="contra"
           required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Fecha de nacimiento" [(ngModel)]="data.fechanac"
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Fecha de nacimiento" [(ngModel)]="data.fechanac"
           name="fechanac" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Sexo" [(ngModel)]="data.sexo" name="sexo" required>
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Sexo" [(ngModel)]="data.sexo" name="sexo" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="CURP" [(ngModel)]="data.curp" name="curp" required>
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="CURP" [(ngModel)]="data.curp" name="curp" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Estado Civil" [(ngModel)]="data.estadocivil"
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Estado Civil" [(ngModel)]="data.estadocivil"
           name="estadocivil" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Domicilio" [(ngModel)]="data.domicilio" name="domicilio"
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Domicilio" [(ngModel)]="data.domicilio" name="domicilio"
           required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Fecha de ingreso" [(ngModel)]="data.fechaingreso"
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Fecha de ingreso" [(ngModel)]="data.fechaingreso"
           name="fechaingreso" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Hora entrada" [(ngModel)]="data.horaentrada"
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Hora entrada" [(ngModel)]="data.horaentrada"
           name="horaentrada" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Hora salida" [(ngModel)]="data.horasalida" name="horasalida"
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Hora salida" [(ngModel)]="data.horasalida" name="horasalida"
           required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Perfil profesional" [(ngModel)]="data.perfilprofesional"
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Perfil profesional" [(ngModel)]="data.perfilprofesional"
           name="perfilprofesional" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Especialidad" [(ngModel)]="data.especialidad"
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Especialidad" [(ngModel)]="data.especialidad"
           name="especialidad" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Tareas asignadas" [(ngModel)]="data.tareasasignadas"
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Tareas asignadas" [(ngModel)]="data.tareasasignadas"
           name="tareasasignadas" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Salario mensual" [(ngModel)]="data.salariomensual"
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Salario mensual" [(ngModel)]="data.salariomensual"
           name="salariomensual" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
 
     <div class="form">
-      <mat-form-field color="accent">
-        <input matInput #input class="form-control" placeholder="Tipo de personal" [(ngModel)]="data.idtper" name="idtper" required>
+      <mat-form-field appearance="legacy">
+        <input matInput #input  placeholder="Tipo de personal" [(ngModel)]="data.idtper" name="idtper" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>

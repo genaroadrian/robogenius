@@ -16,7 +16,7 @@ class perfilController extends Controller
     public function store(Request $request)
     {
         $id = $request->idalu;
-        $sql = "SELECT tipomembresia.nombre as nommem, tipopagos.nombre, 
+        $sql = "SELECT memalumno.idmalu, tipomembresia.nombre as nommem, tipopagos.nombre, 
         memalumno.adelanto, memalumno.restante, memalumno.total, 
         memalumno.fechainicio
         FROM memalumno, tipopagos, tipomembresia

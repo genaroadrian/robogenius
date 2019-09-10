@@ -46,6 +46,11 @@ export class PerfilService {
     this.dialogData = data;
   }
 
+  putMem(data)
+  {
+    this.dialogData = data;
+  }
+
   putPerfilHora(ngrupo)
   {
     this.ngrupo = ngrupo
@@ -53,13 +58,18 @@ export class PerfilService {
 
   getDialogData()
   {
-    console.log(this.dialogData)
     return this.dialogData;
   }
 
   getDialogHoraData()
   {
     return this.ngrupo
+  }
+
+  putMembresias(data)
+  {
+    const headers = new HttpHeaders({"Content-Type": "application/json"});
+    return this.httpClient.put(this.API_ENDPOINT+'/memalumno/'+data.idmalu,data, {headers:headers})
   }
 
 }

@@ -8,6 +8,7 @@ import { PerfilhoraeditComponent } from './perfilhoraedit/perfilhoraedit.compone
 import { FileuploadService } from 'src/app/services/fileupload.service';
 import {Router} from '@angular/router';
 import { Alumnos } from 'src/app/interfaces/alumnos';
+import { PerfilmemeditComponent } from '../perfilmemedit/perfilmemedit.component';
 // import {formatDate } from '@angular/common';
 
 
@@ -22,8 +23,13 @@ export class PerfilComponent implements OnInit {
   jstoday:any;
   // today= new Date();
 
+  datosEditMem: any
+
 
   id: number
+
+  // Ocultar el id de las membresias
+  idmemhide = "none"
 
   /* Opciones de la brra de progreso */
 
@@ -202,6 +208,7 @@ export class PerfilComponent implements OnInit {
   membresias() {
     
     this.perfilService.getmem(this.datos).subscribe((data) => {
+      console.log(data)
       this.membresia = data;
       this.memlenght = this.membresia.length;
       this.fecha = this.membresia[0].fechainicio
@@ -337,8 +344,30 @@ export class PerfilComponent implements OnInit {
     this.dataSource = this.dataSource.filter(x => x.idgalu !== idgalu)
   }
 
-  editMem(i: number, nommem, fechainicio, adelanto, restante, total, nombre) {
-    console.log(nommem, i, fechainicio, adelanto, restante, total, nombre)
+  editMem(i: number, idmalu, nommem, fechainicio, adelanto, restante, total, nombre) {
+    console.log(this.membresia)
+    const dialogRef = this.dialog.open(PerfilmemeditComponent, {
+      width: '80%',
+      data:
+      {
+        i: i, idmalu:idmalu, nommem: nommem, fechainicio: fechainicio, adelanto: adelanto, restante:restante, total:total, nombre:nombre
+      }
+    })
+    dialogRef.afterClosed().subscribe(result=>{
+      if(result == 1)
+      {
+        this.perfilService.putMembresias(this.perfilService.getDialogData()).subscribe((data)=>{
+          this.datosEditMem = this.perfilService.getDialogData()
+          this.membresia[i].adelanto = this.datosEditMem.adelanto
+          this.membresia[i].restante = this.datosEditMem.restante
+          this.membresia[i].total = this.datosEditMem.total
+          this.showSuccessEdit()
+
+        },(error)=>{
+          this.showErrorEdit()
+        })
+      }
+    })
   }
 
   refresh() {

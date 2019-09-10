@@ -9,7 +9,6 @@ import { Personal } from 'src/app/interfaces/personal';
 import {map} from 'rxjs/operators';
 import { PeraddComponent } from '../peradd/peradd.component';
 import { PerdeleteComponent } from '../perdelete/perdelete.component';
-import { PereditComponent } from '../peredit/peredit.component';
 import { Router } from '@angular/router';
 import { PersonalperfilService } from 'src/app/services/personalperfil.service';
 // For MDB Angular Free
@@ -207,55 +206,7 @@ export class PerhomeComponent  {
   }
 
 
-  // Metodo para abrir el modal para modificar
-  // onUpdate(i: number, idper: number, nombre: string,
-  //   apellidos: string, usuario: string, contra: string,
-  //   fechanac: string, sexo: string, curp: string, estadocivil:string,
-  //   domicilio: string, fechaingreso: string, horaentrada: string,
-  //   horasalida: string, perfilprofesional: string, especialidad: string,
-  //   tareasasignadas: string, salariomensual: number, idtper: number ) {
-  //   // A la variable index se le asigna el [index] recibido con la variable [i]
-  //   this.index = i;
-  //   // Se le asigna a la variable [id] el valor recibido de la variable [idper]
-  //   this.id = idper;
-  //   const dialogRef = this.dialog.open(PereditComponent, {
-  //     // Anchura de el modal
-  //     width: '60%',
-  //     /* Al modal se le envia la variable data, que contiene los datos de el registro
-  //     de la tabla que se va a modificar */
-  //     data: 
-  //     {
-  //       idper: idper, nombre: nombre, apellidos: apellidos,
-  //       usuario: usuario, contra: contra, fechanac: fechanac,
-  //       sexo: sexo, curp: curp, estadocivil: estadocivil,
-  //       domicilio: domicilio, fechaingreso: fechaingreso, horaentrada: horaentrada,
-  //       horasalida: horasalida, perfilprofesional: perfilprofesional, especialidad: especialidad,
-  //       tareasasignadas: tareasasignadas, salariomensual: salariomensual, idtper: idtper
-  //     }
-  //   });
-  //   dialogRef.afterClosed().subscribe(result => {
-      
-  //     if (result === 1) {
-  //       this.barra = ""
-  //       this.dialogEdit = this.personalService.getDialogData()
-  //       this.personalService.put(this.dialogEdit).subscribe((data) =>{
-  //         // Se busca el registro en la variable [exampleDatabase] de la tbla
-  //       const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idper === this.id);
-  //       // Se actualiza el dato, pero solo en la tabla, no en la base de datos
-  //       this.exampleDatabase.dataChange.value[foundIndex] = this.personalService.getDialogData();
-  //       // Se refresca la tabla
-  //       this.refreshTable();
-  //       this.barra = "none"
-  //       this.showSuccessEdit();
-  //         // this.personalService.tput(this.data);
-  //       },(error)=>{
-  //         this.showErrorEdit();
-  //         this.barra = "none"
-  //       });    
-        
-  //     }
-  //   });
-  // }
+  
 }
 
 

@@ -220,7 +220,7 @@ export class ExampleDataSource extends DataSource<Alumnos> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((alumnos: Alumnos) => {
-          const searchStr = (alumnos.idalu + alumnos.nomalu+alumnos.apealu+alumnos.domalu+alumnos.telalu+alumnos.evaluacion).toLowerCase();
+          const searchStr = (alumnos.nomalu+alumnos.apealu+alumnos.domalu+alumnos.telalu+alumnos.evaluacion).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 

@@ -12,7 +12,11 @@ import { TipopersonalService } from 'src/app/services/tipopersonal.service';
 })
 export class PereditComponent implements OnInit {
 
+  /* Almacena todos los tipos de personal */
   selectTPersonal: any
+
+
+  selected: string
 
   constructor(public dialogRef: MatDialogRef<PereditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, public personalService: PersonalService,
@@ -21,7 +25,12 @@ export class PereditComponent implements OnInit {
      }
 
   ngOnInit() {
-    
+    this.selected = ''+this.data.idtper+''
+    this.tPersonal.get().subscribe((data)=>{
+      this.selectTPersonal = data
+    },(error)=>{
+    })
+    console.log(this.selected)
   }
 
   // Validaciones del formulario
@@ -67,6 +76,9 @@ export class PereditComponent implements OnInit {
   } */
 
   stopEdit(data): void {
+    console.log(this.selected)
+    data.idtper = this.selected
+  console.log(data)
     this.personalService.putPersonal(data);
     }    
 

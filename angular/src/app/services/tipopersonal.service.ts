@@ -15,6 +15,12 @@ export class TipopersonalService {
 
   constructor(private httpClient: HttpClient) { }
 
+  /* Obtener los tipos de personal para el select de agregar y editar personal */
+  get()
+  {
+    return this.httpClient.get(this.API_ENDPOIINT+'/tipopersonal')
+  }
+
   getTipopersonal(): void{
     this.httpClient.get<Tipopersonal[]>(this.API_ENDPOIINT+'/tipopersonal').subscribe(data => {
       this.dataChange.next(data);

@@ -23,24 +23,14 @@ export class HdeleteComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  showSuccessEdit() {
-    this.toastr.successToastr('Registro eliminado','Exito!');
-  }
-
-  showErrorEdit() {
-    this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
-  }
 
   confirmDelete(): void {
     
-    this.horariosService.delete(this.data.id).subscribe((data)=>{
-      console.log(data);
-      this.showSuccessEdit();
-      this.horariosService.deleteIssue(this.data.id);
-    },(error)=>{
-      this.showErrorEdit();
-      console.log(error);
-    });
+  //   this.horariosService.delete(this.data.id).subscribe((data)=>{
+  //     this.horariosService.deleteIssue(this.data.id);
+  //   },(error)=>{
+    
+  //   });
+  // }
   }
-
 }

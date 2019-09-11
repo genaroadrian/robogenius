@@ -8,6 +8,9 @@ import {BehaviorSubject} from 'rxjs';
 })
 export class HorariosService {
 
+
+
+
 API_ENDPOINT = 'http://localhost:8000/api';
 
   dataChange: BehaviorSubject<Horario[]> = new BehaviorSubject<Horario[]>([]);
@@ -47,13 +50,19 @@ API_ENDPOINT = 'http://localhost:8000/api';
 
   add(horario: Horario)
   {
-    // console.log(horario);
+    console.log(horario);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.post(this.API_ENDPOINT + '/horarios/',horario, {headers: headers});
   }
 
   updateHorarios (horario: Horario): void {
     this.dialogData = horario;
+  }
+
+  /* Obtiene los datos de el modal de editar y los gurada en la variable  */
+  putEscuela(data)
+  {
+    this.dialogData = data;
   }
 
   deleteIssue (id: number): void {

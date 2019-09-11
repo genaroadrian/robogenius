@@ -37,23 +37,22 @@ export class HeditComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  showSuccessEdit() {
-    this.toastr.successToastr('Registro actualizado','Exito!');
-  }
 
-  showErrorEdit() {
-    this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
-  }
+    /* Confirma la actualizacion del registro */
+    stopEdit(data): void {
+      this.horariosService.putEscuela(data);
+    }
+ 
 
-  stopEdit(data): void {
-    this.horariosService.put(this.data).subscribe((data) =>{
-      // console.log(this.data);
-      // alert('Registro Actualizado');
-      this.showSuccessEdit();
-      this.horariosService.updateHorarios(this.data.id);
-      // console.log(this.data);
-    },(error)=>{
-      this.showErrorEdit();
-    });
-  }
+  // stopEdit(data): void {
+  //   this.horariosService.put(this.data).subscribe((data) =>{
+  //     // console.log(this.data);
+  //     // alert('Registro Actualizado');
+  //     this.showSuccessEdit();
+  //     this.horariosService.updateHorarios(this.data.id);
+  //     // console.log(this.data);
+  //   },(error)=>{
+  //     this.showErrorEdit();
+  //   });
+  // }
 }

@@ -27,24 +27,16 @@ export class HaddComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  showSuccessEdit() {
-    this.toastr.successToastr('Registro actualizado','Exito!');
-  }
 
-  showErrorEdit() {
-    this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
-  }
 
-  confirmAdd(data): void 
-  {
-    this.data.hora=this.selected+" - "+this.selecteds;
 
-    this.horariosService.add(this.data).subscribe((data) =>{
-  	this.showSuccessEdit();
-  	//this.horariosService.addIssue(this.data);
-    },(error)=>{
-      this.showErrorEdit();
-    });
-  }
+    /* Confirma la alta del registro */
+    confirmAdd(data): void 
+    {
+     this.data.hora=this.selected+" - "+this.selecteds;
+
+      this.horariosService.addIssue(this.data)
+    }
+  
 
 }

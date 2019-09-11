@@ -10,6 +10,7 @@ import { HdeleteComponent } from '../hdelete/hdelete.component';
 import {DataSource} from '@angular/cdk/collections';
 import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 @Component({
   selector: 'app-hhome',
@@ -26,7 +27,12 @@ export class HhomeComponent implements OnInit {
     'icons'
    ];
 
+    /* Visibilidad de la barra de carga */
+  barra = "none"
+
+
   horario: Horario[];
+  hora:any;
   // dataSource: MatTableDataSource<Tipopersonal>;
   exampleDatabase: HorariosService | null;
   dataSource: ExampleDataSource | null;
@@ -39,7 +45,7 @@ export class HhomeComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public horariosService: HorariosService ) { }
+    public horariosService: HorariosService,public notifications:NotificationsService ) { }
 
 
   ngOnInit() 
@@ -61,26 +67,47 @@ export class HhomeComponent implements OnInit {
     
     this.getHorarios();
   }
+   /* Mostrar la barra de carga */
+   showBarra() {
+    this.barra = ""
+  }
+
+  /* Ocultar la barra de carga */
+  hideBarra() {
+    this.barra = "none"
+  }
 
   // Metodo para refrescar la paginación (not use)
   refreshTable() {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
-  // Metodo para abrir el modal para agrefar nuevo registro
-  addNew(horario: Horario) {
-    // Abre la ventana modal
-    const dialogRef = this.dialog.open(HaddComponent, {
-      data: {horario: horario }
-    });
-    dialogRef.afterClosed().subscribe(result=>{
-      if(result==1){
-        this.exampleDatabase.dataChange.value.push(this.horariosService.getDialogData());
-        this.exampleDatabase = new HorariosService(this.httpClient);
-        this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
-      }this.refreshTable();
-    });
-  }
+    // Metodo para abrir el modal para agrefar nuevo registro
+    addNew(horario: Horario) {
+      // Abre la ventana modal
+      const dialogRef = this.dialog.open(HaddComponent, {
+        data: { horario: horario }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result == 1) {
+          this.showBarra()
+          this.horariosService.add(this.horariosService.getDialogData()).subscribe((data) => {
+            this.hora = data
+            this.exampleDatabase.dataChange.value.push(this.hora);
+            this.refreshTable()
+            this.notifications.showSuccessAdd()
+            this.hideBarra()
+          }, (error) => {
+            this.notifications.showError();
+            this.hideBarra()
+          });
+  
+        }
+      });
+    }
+
+
+
 
   // Metodo para recibir los datos y asignar la tabla
   getHorarios(){
@@ -108,16 +135,25 @@ export class HhomeComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
+        this.showBarra()
+        this.horariosService.put(this.horariosService.getDialogData()).subscribe((data) => {
         // When using an edit things are little different, firstly we find record inside DataService by id
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idh === this.id);
         // Then you update that record using data from dialogData (values you enetered)
         this.exampleDatabase.dataChange.value[foundIndex] = this.horariosService.getDialogData();
-        // And lastly refresh table
-      }
-      this.refresh();
-    });
-  }
-
+            // And lastly refresh table
+            this.refreshTable()
+            this.hideBarra()
+            this.notifications.showSuccessEdit()
+          }, (error) => {
+            this.notifications.showError()
+            this.hideBarra()
+          })
+  
+        }
+  
+      });
+    }
 
   delete(i: number, idh:number, id: number) {
     this.index = i;
@@ -128,18 +164,23 @@ export class HhomeComponent implements OnInit {
     
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
+        this.showBarra()
+        this.horariosService.delete(this.id).subscribe((data) => {
         const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idh === this.id);
-        // for delete we use splice in order to remove single object from DataService
         this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
-        if (i% this.paginator.pageSize == 0) {
-          this.getHorarios();
-        }
-        this.refreshTable();
+          this.refreshTable()
+          this.notifications.showSuccessDelete()
+          this.hideBarra()
+        }, (error) => {
+          this.notifications.showError()
+          this.hideBarra()
+        })
       }
     });
   }
 
 }
+
 
 // Exporta la clase del datasource (datos de la tabla) y les asigna paginacion filtro etc.
 

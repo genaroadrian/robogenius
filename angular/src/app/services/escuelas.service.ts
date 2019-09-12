@@ -13,9 +13,11 @@ export class EscuelasService {
 
   /* Detector de cambios en los datos */
   dataChange: BehaviorSubject<Escuelas[]> = new BehaviorSubject<Escuelas[]>([]);
+  // dataChange: BehaviorSubject<Escuelas[]> = new BehaviorSubject<Escuelas[]>([]);
 
   // Datos termporales que se recibiran desde los modales 
   dialogData: any;
+
 
   constructor(private httpClient: HttpClient) { }
 

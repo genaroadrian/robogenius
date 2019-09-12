@@ -1,0 +1,76 @@
+<div class="form-group" style="width:440px">
+  <h3 mat-dialog-title style="text-align: center;">Modificando</h3>
+
+  <form (ngSubmit)="submit" #formControl="ngForm" style="width: 400px;">
+
+    <div class="form-group">
+      <mat-form-field color="accent" style="width: 440px;">
+        <input matInput #input placeholder="Id" [(ngModel)]="data.idmalu" name="idesc" required disabled>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent" style="width: 440px;">
+        <input matInput #input placeholder="Nombre" [(ngModel)]="data.nommem" name="nombre" required>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent" style="width: 440px;">
+        <input matInput #input placeholder="Fecha inicio" [(ngModel)]="data.fechainicio" name="fechainicio" required readonly>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent" style="width: 440px;">
+        <input matInput #input placeholder="Adelanto" [(ngModel)]="data.adelanto" name="adelanto" required type="number" class="example-right-align" readonly>
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>.00</span>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent" style="width: 440px">
+        <input type="text" matInput #input placeholder="Nuevo adelanto" [(ngModel)]="nadelanto" name="nadelanto" type="number" class="example-right-align">
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent" style="width: 440px;">
+        <input matInput #input placeholder="Restante" [(ngModel)]="data.restante - nadelanto" name="rest" required type="number" class="example-right-align" readonly>
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>.00</span>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent" style="width: 440px;">
+        <input matInput #input placeholder="Total" [(ngModel)]="data.total" name="total" required type="number" class="example-right-align" readonly>
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>.00</span>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field color="accent" style="width: 440px;">
+        <input matInput #input placeholder="Tipo de pago" [(ngModel)]="data.nombre" name="tpago" required readonly>
+        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+    </div>
+
+
+    <div mat-dialog-actions>
+      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+        (click)="stopEdit(data)" style="margin-left: 140px; margin-right: 40px;">Guardar</button>
+      <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    </div>
+  </form>
+</div>

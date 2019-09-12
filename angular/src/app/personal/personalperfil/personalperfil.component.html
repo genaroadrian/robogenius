@@ -27,23 +27,25 @@
               </div>
               <br>
        
-        <!-- <label  class="labeltitulo"> {{datos.nomalu}} {{datos.apealu}} 
-            <button mat-icon-button (click)="editAlu(datos.idalu ,datos.nomalu, datos.apealu, datos.fnacalu, datos.sexoalu, datos.domalu, datos.telalu,
-        datos.correoalu, datos.medicacion, datos.alergias, datos.perfilalu, datos.cronica, datos.otro, datos.evaluacion,
-        datos.usuarioalu, datos.pswalu, datos.nompad, datos.apepad, datos.dompad, datos.telpad, datos.correopad, datos.ocupad,
-        datos.nommad, datos.apemad, datos.dommad, datos.telmad, datos.correomad, datos.ocupmad, datos.finscripcion)">
-            <mat-icon aria-label="Edit">edit</mat-icon>
-        </button></label> -->
+        
         <br>
 
 
    
     </form>
+    <label  class="labeltitulo"> {{datos.nombre}} {{datos.apellidos}} 
+        <button mat-icon-button (click)="editPersonal(datos.idper, datos.nombre,datos.apellidos,
+        datos.usuario, datos.contra, datos.fechanac, datos.sexo, datos.curp,
+        datos.estadocivil, datos.domicilio ,datos.fechaingreso, datos.horaentrada, datos.horasalida,
+        datos.perfilprofesional, datos.especialidad, datos.tareasasignadas, datos.salariomensual,
+        datos.idtper, datos.fotopersonal)">
+        <mat-icon aria-label="Edit">edit</mat-icon>
+    </button></label>
 
        
               
         
-      <!-- <mat-progress-bar color="warn"  mode='indeterminate' [ngStyle]="{display:barra}"></mat-progress-bar> -->
+      <mat-progress-bar color="warn"  mode='indeterminate' [ngStyle]="{'display':barra}"></mat-progress-bar>
 </div>
 
 <div class="row col-xl-12 fondodb" >

@@ -60,6 +60,8 @@ export class PerfilhoraeditComponent implements OnInit {
       hora: null
     }
 
+    nuevoGrupo: any
+
   // Horas obtenidas de laravel
   _allHoras: Horas[];
 
@@ -108,12 +110,12 @@ export class PerfilhoraeditComponent implements OnInit {
     public perfilService: PerfilService) { }
 
   ngOnInit() {
-    console.log(this.data);
+    // console.log(this.data);
     this.ngrupo.idgalu = this.data.idgalu
   }
 
   diasChange(dia) {
-    // console.log(dia);
+    // // console.log(dia);
     this.hora.idh = null;
     this.idgrupo = null;
     this.horavalue = "";
@@ -121,18 +123,18 @@ export class PerfilhoraeditComponent implements OnInit {
     this.labelh = "none"
     this.spinerh = "";
     this.getHorarios.getHora(dia).subscribe((data: Horas[]) => {
-      // console.log(data);
+      // // console.log(data);
       this._allHoras = data;
       this.labelh = ""
       this.spinerh = "none";
       this.horavalue = "";
       this.detallegrupos.idd = dia.iddia;
-      // // console.log(this.detallegrupos);
+      // // // console.log(this.detallegrupos);
       if (this._allHoras.length < 1) {
         // this.showDisp();
       }
     }, (error) => {
-      // // console.log(error);
+      // // // console.log(error);
 
     });
     // this.horavalue = "";
@@ -145,12 +147,12 @@ export class PerfilhoraeditComponent implements OnInit {
     this.labelp = "none";
     this.spinnerp = "";
     this.detallegrupos.idh = hora.idh;
-    // // console.log(this.detallegrupos);
+    // // // console.log(this.detallegrupos);
     this.getHorarios.getPersonal(this.detallegrupos).subscribe((data: Personal[]) => {
       this._allPersonal = data;
       this.labelp = "";
       this.spinnerp = "none";
-      // // console.log(this._allPersonal);
+      // // // console.log(this._allPersonal);
     }, (error) => {
 
     });
@@ -158,15 +160,15 @@ export class PerfilhoraeditComponent implements OnInit {
 
   // Obteine el id del grupo al cambiar el personal
   personalChange(id, nombre, apellidos) {
-    // console.log(nombre)
+    // // console.log(nombre)
     this.gruposAlumnos.idg = id;
-    // console.log(this.hora.idh+this.idgrupo)
+    // // console.log(this.hora.idh+this.idgrupo)
   }
 
     /* Obtener el texto de los select */
   perName(per)
   { 
-    console.log(per)
+    this.nuevoGrupo = per
     this.ngrupo.idper = per.idp
     this.ngrupo.nombre = per.nombre
     this.ngrupo.apellidos = per.apellidos
@@ -174,7 +176,7 @@ export class PerfilhoraeditComponent implements OnInit {
   /* Obtener el texto de los select */
   horaName(ho)
   {
-    console.log(ho)
+    // console.log(ho)
     this.ngrupo.idh = ho.idh
     this.ngrupo.hora = ho.hora
   }
@@ -187,7 +189,8 @@ export class PerfilhoraeditComponent implements OnInit {
 
   // Metodo para cuando termine de guardar
   stopEdit(): void {
-      this.perfilService.putPerfilHora(this.ngrupo)
+      this.perfilService.putPerfilHora(this.nuevoGrupo)
+      this.perfilService.nuevoPerfilHora(this.ngrupo)
   }
 
   onNoClick(): void {

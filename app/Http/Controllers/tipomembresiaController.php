@@ -21,7 +21,7 @@ class tipomembresiaController extends Controller
         $tmem->nombre = $request->nombre;
         $tmem->costo = $request->costo;
         $tmem->clases = $request->clases;
-        $tmem->acivo = 1;
+        $tmem->activo = 1;
         $tmem->save();
         return $tmem;
 
@@ -33,7 +33,7 @@ class tipomembresiaController extends Controller
         $tmem->nombre = $request->nombre;
         $tmem->costo = $request->costo;
         $tmem->clases = $request->clases;
-        $tmem->acivo = 1;
+        $tmem->activo = 1;
         $tmem->save();
         return $tmem;
     }

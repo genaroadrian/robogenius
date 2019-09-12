@@ -15,8 +15,9 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { AmazingTimePickerService } from 'amazing-time-picker';
 import {DomSanitizer} from '@angular/platform-browser';
 import {MatIconRegistry} from '@angular/material/icon';
-
-
+import { TpaddComponent } from '../tipopersonal/tpadd/tpadd.component';
+import { MatDialog } from '@angular/material';
+import { NotificationsService } from '../services/notifications.service';
 
 @Component({
   selector: 'app-form-personal',
@@ -35,6 +36,12 @@ export class FormPersonalComponent implements OnInit {
 
   date = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString());
+  /* Visibilidad de la barra de carga */
+  barra = "none"
+
+   /* Almacena todos los tipos de personal */
+   selectTPersonal: any
+
   /* ---------------------------- CONFIGURACIÓN DE LA PAGINA ---------------------------- */
 
   // Progrmacación de las tabs en el modulo de detalle de grupos
@@ -55,12 +62,15 @@ export class FormPersonalComponent implements OnInit {
   }
 
   ngOnInit() {
-   
+    this.tPersonal.get().subscribe((data)=>{
+      this.selectTPersonal = data
+    },(error)=>{
+    })
   }
 
   // Change the user and password input and groups module visibility 
   tipoChange(event) {
-    if (this.selectedtp == "2") {
+    if (this.selectedtp == "2" || this.selectedtp == "1" || this.selectedtp == "3") {
       this.isDisable = false;
       this.visibility = "block";
     } else {
@@ -126,8 +136,9 @@ export class FormPersonalComponent implements OnInit {
   };
 
   constructor(private personalService: PersonalService , private detallegruposService: DetallegruposService,
-    private _formBuilder: FormBuilder, private httpClient: HttpClient,
-    private router: Router, public toastr: ToastrManager, private atp: AmazingTimePickerService,iconRegistry: MatIconRegistry, sanitizer: DomSanitizer ) 
+    private _formBuilder: FormBuilder, private httpClient: HttpClient,private router: Router, public toastr: ToastrManager, 
+    private atp: AmazingTimePickerService,iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,public tPersonal: TipopersonalService,
+    public dialog: MatDialog, public tipopersonalService: TipopersonalService, public notifications: NotificationsService) 
     {
       iconRegistry.addSvgIcon(
         'thumbs-up',
@@ -148,7 +159,7 @@ export class FormPersonalComponent implements OnInit {
         this.idper = this.idp.idper;
       },(error)=>{
         alert('Ocurrio un error');
-        // console.log(error);
+        console.log(error);
         this.showErrorSave();
       });
       if(persona.idtper == 2){
@@ -159,6 +170,16 @@ export class FormPersonalComponent implements OnInit {
       }
       
     }
+
+    /* Mostrar la barra de carga */
+  showBarra() {
+    this.barra = ""
+  }
+
+  /* Ocultar la barra de carga */
+  hideBarra() {
+    this.barra = "none"
+  }
 
     saveDetallegrupos(index)
     {
@@ -189,5 +210,32 @@ export class FormPersonalComponent implements OnInit {
     });
 }
 
+
+    nuevoTPersonal(tpersonal: Tipopersonal)
+    {
+      /* abrir un pequeño modal para agregar otro tipo de personal */
+      const dialogRef = this.dialog.open(TpaddComponent, {
+        data: { tpersonal: tpersonal }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result == 1) {
+          this.showBarra()
+          this.tipopersonalService.add(this.tipopersonalService.getDialogData()).subscribe((data) => {
+            this.selectTPersonal.push(data)
+            // this.tipopadd = data
+            // this.exampleDatabase.dataChange.value.push(this.tipopadd);
+            // this.refreshTable()
+            this.notifications.showSuccessAdd();
+            this.hideBarra();
+          }, (error) => {
+            this.notifications.showError();
+            // // this.notifications.hideBarra();
+            this.hideBarra();
+  
+          });
+  
+        }
+      });
+    }
 
 }

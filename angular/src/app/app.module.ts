@@ -119,6 +119,12 @@ import { SubtemaaddComponent } from './subtema/subtemaadd/subtemaadd.component';
 import { SubtemadeletComponent } from './subtema/subtemadelet/subtemadelet.component';
 import { SubtemaeditComponent } from './subtema/subtemaedit/subtemaedit.component';
 import { NewPasswordComponent } from './login/new-password/new-password.component';
+import { PerfilmemeditComponent } from './alumnos/perfilmemedit/perfilmemedit.component';
+import { PerfilhoradeleteComponent } from './alumnos/perfil/perfilhoradelete/perfilhoradelete.component';
+import { HometipomemComponent } from './tipomembresias/hometipomem/hometipomem.component';
+import { AddtipomemComponent } from './tipomembresias/addtipomem/addtipomem.component';
+import { EdittipomemComponent } from './tipomembresias/edittipomem/edittipomem.component';
+import { DeletetipomemComponent } from './tipomembresias/deletetipomem/deletetipomem.component';
 
 
 
@@ -160,12 +166,8 @@ const routes: Route[]=[
 {path: 'reset-password/:id', component: NewPasswordComponent},
 {path: 'areadelconocimiento', component: AreahomeComponent},
 {path: 'subtema', component: SubtemahomeComponent},
-{path: 'tema', component: TemahomeComponent}
-
-
-
-
-
+{path: 'tema', component: TemahomeComponent},
+{path: 'tipomembresia', component: HometipomemComponent}
 ];
 
 @NgModule({
@@ -251,7 +253,13 @@ const routes: Route[]=[
     SubtemaaddComponent,
     SubtemadeletComponent,
     SubtemaeditComponent,
-    NewPasswordComponent
+    NewPasswordComponent,
+    PerfilmemeditComponent,
+    PerfilhoradeleteComponent,
+    HometipomemComponent,
+    AddtipomemComponent,
+    EdittipomemComponent,
+    DeletetipomemComponent
 
 
 
@@ -354,6 +362,8 @@ const routes: Route[]=[
     /* Modal para reseteo de contraseña */
     ResetPasswordComponent,
     ModificaradComponent,
+    /* modal para editar la membresia en el perfil del alumno */
+    PerfilmemeditComponent,
     //Modal para los coódigos de descuentos
     CodigosaddComponent,
     CodmodificarComponent,
@@ -376,7 +386,16 @@ const routes: Route[]=[
     // modales para el tema
     TemaaddComponent,
     TemadeletComponent,
-    TemaeditComponent
+    TemaeditComponent,
+    /* Modal para editar el perfil del personal */
+    PereditComponent,
+    /* Modal para borrar los horarios en el perfil de alumnos */
+    PerfilhoradeleteComponent,
+    /* Modales de tipo de membresias  */
+    AddtipomemComponent,
+    EdittipomemComponent,
+    DeletetipomemComponent
+
 
   ],
   exports: [

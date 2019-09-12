@@ -72,3 +72,5 @@ Route::resource('confirmtoken', 'passwordResetController');
 
 
 Route::resource('email', 'emailController');
+Route::resource('perfilalumnoshorario', 'perfilAlumnosHorarioController');
+

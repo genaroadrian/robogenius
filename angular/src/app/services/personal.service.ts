@@ -53,7 +53,6 @@ export class PersonalService {
   // Actualizar los datos
   put(persona: Personal){
     const headers = new HttpHeaders({"Content-Type":"application/json"});
-    this.dialogData = persona;
     return this.httpClient.put(this.API_ENDPOINT+'/personal/'+persona.idper, persona, {headers: headers});
     
   }

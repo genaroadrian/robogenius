@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {FormControl, Validators, FormBuilder} from '@angular/forms';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { PersonalService } from 'src/app/services/personal.service';
+import { TipopersonalService } from 'src/app/services/tipopersonal.service';
 
 @Component({
   selector: 'app-peredit',
@@ -11,13 +12,25 @@ import { PersonalService } from 'src/app/services/personal.service';
 })
 export class PereditComponent implements OnInit {
 
+  /* Almacena todos los tipos de personal */
+  selectTPersonal: any
+
+
+  selected: string
+
   constructor(public dialogRef: MatDialogRef<PereditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, public personalService: PersonalService,
-    public toastr: ToastrManager) {
+    public toastr: ToastrManager, public tPersonal: TipopersonalService) {
       
      }
 
   ngOnInit() {
+    this.selected = ''+this.data.idtper+''
+    this.tPersonal.get().subscribe((data)=>{
+      this.selectTPersonal = data
+    },(error)=>{
+    })
+    console.log(this.selected)
   }
 
   // Validaciones del formulario
@@ -63,6 +76,9 @@ export class PereditComponent implements OnInit {
   } */
 
   stopEdit(data): void {
+    console.log(this.selected)
+    data.idtper = this.selected
+  console.log(data)
     this.personalService.putPersonal(data);
     }    
 

@@ -35,6 +35,7 @@ class personalController extends Controller
         $personal->horaentrada = $request->horaentrada;
         $personal->perfilprofesional = $request->perfilprofesional;
         $personal->especialidad = $request->especialidad;
+        $personal->fecharegistro = new \DateTime();
         $personal->salariomensual = $request->salariomensual;
         $personal->tareasasignadas = $request->tareasasignadas;
         $personal->idtper = $request->idtper;

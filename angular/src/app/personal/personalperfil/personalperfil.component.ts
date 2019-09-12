@@ -20,6 +20,8 @@ export class PersonalperfilComponent implements OnInit {
   datos: any;
   jstoday:any;
 
+  barra = 'none'
+
   
   archivo = {
     nombre: null,
@@ -104,6 +106,16 @@ export class PersonalperfilComponent implements OnInit {
     
   }
 
+  mostrarBarra()
+  {
+    this.barra = ""
+  }
+
+  ocultarBarra()
+  {
+    this.barra = "none"
+  }
+
   // Metodo para abrir el modal para modificar
   editPersonal(idper: number, nombre: string,
     apellidos: string, usuario: string, contra: string,
@@ -129,12 +141,14 @@ export class PersonalperfilComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       
       if (result === 1) {
-        
+        this.mostrarBarra()
         this.personalService.put(this.personalService.getDialogData()).subscribe((data) =>{
          this.notificationsService.showSuccessEdit()
          this.datos = this.personalService.getDialogData()
+         this.ocultarBarra()
         },(error)=>{
           this.notificationsService.showError()
+          this.ocultarBarra()
         });    
         
       }

@@ -89,11 +89,11 @@ export class AluhomeComponent implements OnInit {
   // Metodo para abrir el modal para agrefar nuevo registro
   /* El componente que sera modal debera ser agregado en app.module.ts
   en la sección de entryComponents */
-  addNew(alumnos: Alumnos) {
+  /* addNew(alumnos: Alumnos) {
     const dialogRef = this.dialog.open(AluaddComponent, {
       data: {persalonal: alumnos }
     });
-  }
+  } */
 
     /*  Obtiene los datos de la base y se la asigna a el datasource y database example
   tambien se le asigna el filtro la barra de busqueda y la paginacion */

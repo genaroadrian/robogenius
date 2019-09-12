@@ -1,65 +1,57 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { EscuelasService } from 'src/app/services/escuelas.service';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { TipomembresiaService } from 'src/app/services/tipomembresia.service';
 import { HttpClient } from '@angular/common/http';
-import { Escuelas } from 'src/app/interfaces/escuelas';
-import { MatPaginator, MatSort} from '@angular/material';
-import { MatDialog} from '@angular/material';
-import { EditComponent } from '../edit/edit.component';
-import { AddComponent } from '../add/add.component';
-import { DeleteComponent } from '../delete/delete.component';
-import { DataSource } from '@angular/cdk/collections';
-import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { Router } from '@angular/router';
-import { ToastrManager } from 'ng6-toastr-notifications';
 import { NotificationsService } from 'src/app/services/notifications.service';
-
-
+import { MatPaginator, MatSort, MatDialog } from '@angular/material';
+import { fromEvent, BehaviorSubject, Observable, merge } from 'rxjs';
+import { DataSource } from '@angular/cdk/table';
+import { Tipomembresia } from 'src/app/interfaces/Tipomembresia';
+import { map } from 'rxjs/operators';
+import { AddtipomemComponent } from '../addtipomem/addtipomem.component';
+import { EdittipomemComponent } from '../edittipomem/edittipomem.component';
+import { DeletetipomemComponent } from '../deletetipomem/deletetipomem.component';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-hometipomem',
+  templateUrl: './hometipomem.component.html',
+  styleUrls: ['./hometipomem.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HometipomemComponent implements OnInit {
 
-  // Columnas que se van a mostrar en la pagina
+  memAdd: any
+
+  /* Columnas que se van a mostrar en la tabla */
   displayedColumns: string[] = [
     'nombre',
-    'representante',
-    'direccion',
-    'telefono',
-    'correo',
+    'costo',
+    'clases',
     'icons'
   ];
 
-  /* Visibilidad de la barra de carga */
-  barra = "none"
+   /* Visibilidad de la barra de carga */
+   barra = "none"
 
-  /* Variables para la visualizacin y configuracion de las tablas */
-  exampleDatabase: EscuelasService | null;
+   /* Variables para la visualizacin y configuracion de las tablas */
+  exampleDatabase: TipomembresiaService | null;
   dataSource: ExampleDataSource | null;
 
   /* Index de las tablas */
   index: number;
   /* ID de las tablas */
   id: number;
-  /* Servicio de escuelas */
-  EscuelasService: any;
+  /* Servicio de tmem */
+  TipomembresiaService: any;
 
-  /* Variable para guardar los datos de add y update */
-  escuelasAdd: any
+  constructor(public httpClient: HttpClient, public tmemService: TipomembresiaService,
+    public notifications: NotificationsService, public dialog: MatDialog) { }
 
-  constructor(public httpClient: HttpClient,
-    public dialog: MatDialog,
-    public escuelasService: EscuelasService, private router: Router, public toastr: ToastrManager,public notifications:NotificationsService) { }
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('filter') filter: ElementRef;
+    @ViewChild(MatPaginator,) paginator: MatPaginator
+    @ViewChild(MatSort,) sort: MatSort
+    @ViewChild('filter',) filter: ElementRef
 
-  // Metodo para recibir los datos y asignar la tabla
-  getEscuelas() {
-    this.exampleDatabase = new EscuelasService(this.httpClient);
+    getMembresias()
+    {
+      this.exampleDatabase = new TipomembresiaService(this.httpClient);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
     fromEvent(this.filter.nativeElement, 'keyup')
       .subscribe(() => {
@@ -68,12 +60,10 @@ export class HomeComponent implements OnInit {
         }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
-  }
+    }
 
   ngOnInit() {
-    /* Llama al metodo para obtener escuelas */
-    this.getEscuelas();
-
+    this.getMembresias()
     // Traducir los label de la tabla
     this.paginator._intl.itemsPerPageLabel = 'Registros por página';
     this.paginator._intl.nextPageLabel = 'Página siguiente';
@@ -95,7 +85,7 @@ export class HomeComponent implements OnInit {
   // Metodo para refrescar la pagina
   refresh() {
 
-    this.getEscuelas();
+    this.getMembresias();
   }
 
   // Metodo para refrescar la paginación (not use)
@@ -103,23 +93,23 @@ export class HomeComponent implements OnInit {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
-  // Metodo para abrir el modal para agrefar nuevo registro
-  addNew(escuelas: Escuelas) {
+  addNew(tmembresia: Tipomembresia) {
     // Abre la ventana modal
-    const dialogRef = this.dialog.open(AddComponent, {
-      data: { escuelas: escuelas }
+    const dialogRef = this.dialog.open(AddtipomemComponent, {
+      data: { tmembresia: tmembresia }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result == 1) {
         this.showBarra()
-        this.escuelasService.add(this.escuelasService.getDialogData()).subscribe((data) => {
-          this.escuelasAdd = data
-          this.exampleDatabase.dataChange.value.push(this.escuelasAdd);
+        this.tmemService.add(this.tmemService.getDialogData()).subscribe((data) => {
+          this.memAdd = data
+          this.exampleDatabase.dataChange.value.push(this.memAdd);
           this.refreshTable()
           this.notifications.showSuccessAdd()
           this.hideBarra()
         }, (error) => {
           this.notifications.showError();
+          console.log(error)
           this.hideBarra()
         });
 
@@ -127,23 +117,20 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  
-
-  // Metodo para abrir el modal para modificar
-  onUpdate(i: number, idesc: number, nombre: string, representante: string, direccion: string, telefono: number, correo: string) {
-    this.id = idesc;
+  onUpdate(i: number, idtmem: number, nombre: string, costo: number, clases: number) {
+    this.id = idtmem;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
-    const dialogRef = this.dialog.open(EditComponent, {
-      data: { idesc: idesc, nombre: nombre, representante: representante, direccion: direccion, telefono: telefono, correo: correo }
+    const dialogRef = this.dialog.open(EdittipomemComponent, {
+      data: { idtmem: idtmem, nombre: nombre, costo: costo, clases: clases}
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         this.showBarra()
-        this.escuelasService.put(this.escuelasService.getDialogData()).subscribe((data) => {
-          const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idesc === this.id);
+        this.tmemService.put(this.tmemService.getDialogData()).subscribe((data) => {
+          const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idtmem === this.id);
           // Then you update that record using data from dialogData (values you enetered)
-          this.exampleDatabase.dataChange.value[foundIndex] = this.escuelasService.getDialogData();
+          this.exampleDatabase.dataChange.value[foundIndex] = this.tmemService.getDialogData();
           // And lastly refresh table
           this.refreshTable()
           this.hideBarra()
@@ -151,6 +138,7 @@ export class HomeComponent implements OnInit {
         }, (error) => {
           this.notifications.showError()
           this.hideBarra()
+          console.log(error)
         })
 
       }
@@ -158,19 +146,18 @@ export class HomeComponent implements OnInit {
     });
   }
 
-
-  delete(i: number, idesc: number, nombre: string) {
+  delete(i: number, idtmem: number, nombre: string) {
     this.index = i;
-    this.id = idesc;
-    const dialogRef = this.dialog.open(DeleteComponent, {
-      data: { id: idesc, nombre: nombre }
+    this.id = idtmem;
+    const dialogRef = this.dialog.open(DeletetipomemComponent, {
+      data: { id: idtmem, nombre: nombre }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
         this.showBarra()
-        this.escuelasService.delete(this.id).subscribe((data) => {
-          const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idesc === this.id);
+        this.tmemService.delete(this.id).subscribe((data) => {
+          const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idtmem === this.id);
           this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
           this.refreshTable()
           this.notifications.showSuccessDelete()
@@ -183,11 +170,12 @@ export class HomeComponent implements OnInit {
     });
   }
 
+
 }
 
 // Exporta la clase del datasource (datos de la tabla) y les asigna paginacion filtro etc.
 
-export class ExampleDataSource extends DataSource<Escuelas> {
+export class ExampleDataSource extends DataSource<Tipomembresia> {
   _filterChange = new BehaviorSubject('');
 
   get filter(): string {
@@ -198,10 +186,10 @@ export class ExampleDataSource extends DataSource<Escuelas> {
     this._filterChange.next(filter);
   }
 
-  filteredData: Escuelas[] = [];
-  renderedData: Escuelas[] = [];
+  filteredData: Tipomembresia[] = [];
+  renderedData: Tipomembresia[] = [];
 
-  constructor(public _exampleDatabase: EscuelasService,
+  constructor(public _exampleDatabase: TipomembresiaService,
     public _paginator: MatPaginator,
     public _sort: MatSort) {
     super();
@@ -210,7 +198,7 @@ export class ExampleDataSource extends DataSource<Escuelas> {
   }
 
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Escuelas[]> {
+  connect(): Observable<Tipomembresia[]> {
     // Listen for any changes in the base data, sorting, filtering, or pagination
     const displayDataChanges = [
       this._exampleDatabase.dataChange,
@@ -219,13 +207,13 @@ export class ExampleDataSource extends DataSource<Escuelas> {
       this._paginator.page
     ];
 
-    this._exampleDatabase.getEscuelas();
+    this._exampleDatabase.getMembresias();
 
 
     return merge(...displayDataChanges).pipe(map(() => {
       // Filter data
-      this.filteredData = this._exampleDatabase.data.slice().filter((escuelas: Escuelas) => {
-        const searchStr = (escuelas.idesc + escuelas.nombre + escuelas.representante + escuelas.direccion + escuelas.telefono + escuelas.correo).toLowerCase();
+      this.filteredData = this._exampleDatabase.data.slice().filter((tmem: Tipomembresia) => {
+        const searchStr = (tmem.idtmem + tmem.nombre + tmem.costo + tmem.clases).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 
@@ -244,7 +232,7 @@ export class ExampleDataSource extends DataSource<Escuelas> {
 
 
   /** Returns a sorted copy of the database data. */
-  sortData(data: Escuelas[]): Escuelas[] {
+  sortData(data: Tipomembresia[]): Tipomembresia[] {
     if (!this._sort.active || this._sort.direction === '') {
       return data;
     }
@@ -254,13 +242,10 @@ export class ExampleDataSource extends DataSource<Escuelas> {
       let propertyB: number | string = '';
 
       switch (this._sort.active) {
-        case 'idesc': [propertyA, propertyB] = [a.idesc, b.idesc]; break;
+        case 'idtmem': [propertyA, propertyB] = [a.idtmem, b.idtmem]; break;
         case 'nombre': [propertyA, propertyB] = [a.nombre, b.nombre]; break;
-        case 'representante': [propertyA, propertyB] = [a.representante, b.representante]; break;
-        case 'direccion': [propertyA, propertyB] = [a.direccion, b.direccion]; break;
-        case 'telefono': [propertyA, propertyB] = [a.telefono, b.telefono]; break;
-        case 'correo': [propertyA, propertyB] = [a.correo, b.correo]; break;
-        case 'activo': [propertyA, propertyB] = [a.activo, b.activo]; break;
+        case 'costo': [propertyA, propertyB] = [a.costo, b.costo]; break;
+        case 'clases': [propertyA, propertyB] = [a.clases, b.clases]; break;
       }
 
       const valueA = isNaN(+propertyA) ? propertyA : +propertyA;
@@ -271,3 +256,4 @@ export class ExampleDataSource extends DataSource<Escuelas> {
   }
 
 }
+

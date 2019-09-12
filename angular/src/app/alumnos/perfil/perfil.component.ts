@@ -9,6 +9,8 @@ import { FileuploadService } from 'src/app/services/fileupload.service';
 import {Router} from '@angular/router';
 import { Alumnos } from 'src/app/interfaces/alumnos';
 import { PerfilmemeditComponent } from '../perfilmemedit/perfilmemedit.component';
+import { PerfilhoradeleteComponent } from './perfilhoradelete/perfilhoradelete.component';
+import { NotificationsService } from 'src/app/services/notifications.service';
 // import {formatDate } from '@angular/common';
 
 
@@ -120,7 +122,8 @@ export class PerfilComponent implements OnInit {
 
   constructor(public alumnosService: AlumnosService
     , private perfilService: PerfilService, public dialog: MatDialog,
-    public toastr: ToastrManager, private changeDetectorRefs: ChangeDetectorRef,private uploadService: FileuploadService,private router:Router) {
+    public toastr: ToastrManager, private changeDetectorRefs: ChangeDetectorRef,private uploadService: FileuploadService,
+    private router:Router, public notificationsService: NotificationsService) {
   }
 
   seleccionarArchivo(event) {
@@ -144,7 +147,7 @@ export class PerfilComponent implements OnInit {
   }
 
   upload() {
-    // console.log(this.archivo);
+    // // console.log(this.archivo);
     this.uploadService.uploadFile(this.archivo).subscribe(
       datos => {
         if(datos['resultado'] == 'OK') {
@@ -161,9 +164,9 @@ export class PerfilComponent implements OnInit {
     this.alumnofoto.idalu=this.datos.idalu;
     // this.datos.perfilalu=this.archivo.nombreArchivo;
     this.uploadService.subirimagen(this.alumnofoto).subscribe(data=>{
-      console.log(data);
+      // console.log(data);
     }, (error) => {
-          console.log(error);
+          // console.log(error);
     })
     
   }
@@ -208,14 +211,14 @@ export class PerfilComponent implements OnInit {
   membresias() {
     
     this.perfilService.getmem(this.datos).subscribe((data) => {
-      console.log(data)
+      // console.log(data)
       this.membresia = data;
       this.memlenght = this.membresia.length;
       this.fecha = this.membresia[0].fechainicio
       this.hoy = new Date().getTime()
       this.fecha = new Date(this.fecha).getTime()
       this.fecha = (this.hoy - this.fecha) / (1000 * 60 * 60 * 24)
-      console.log(this.fecha)
+      // console.log(this.fecha)
 
       /* Asignación de status de la membresia */
       if (this.fecha > 29 && this.fecha < 32) {
@@ -237,7 +240,7 @@ export class PerfilComponent implements OnInit {
           this.iconopago = "warning"
           this.colorpago = "text-warning"
           this.pagomem = "Debe $"+this.membresia[0].restante+".00"
-          console.log(this.pagomem)
+          // console.log(this.pagomem)
         }
         else{
           this.iconopago = "verified_user"
@@ -264,6 +267,7 @@ export class PerfilComponent implements OnInit {
   horarios() {
     this.barra = ""
     this.perfilService.gethorario(this.datos).subscribe((data) => {
+      // console.log(data)
       this.dataSource = data;
       this.barra = "none"
     }, (error) => {
@@ -324,28 +328,54 @@ export class PerfilComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result == 1) {
+        this.barra = ""
         this.ngrupo = this.perfilService.getDialogHoraData();
-        // this.ngrupo.idgalu = idgalu
-        // console(this.ngrupo)
-        // console(this.dataSource[i]) new MatTableDataSource<any>();
-        this.dataSource[i].dia = this.ngrupo.dia
-        this.dataSource[i].hora = this.ngrupo.hora
-        this.dataSource[i].nombre = this.ngrupo.nombre
-        this.dataSource[i].apellidos = this.ngrupo.apellidos
-        // console(this.dataSource[i])
-        // this.refresh();
-        // this.dataSource[i].
-
+        
+        this.perfilService.putHorario(this.dataSource[i].idgalu, this.ngrupo).subscribe((data)=>{
+          this.ngrupo = this.perfilService.regresarNuevoHorario()
+          this.dataSource[i].iddia = this.ngrupo.iddia
+          this.dataSource[i].idh = this.ngrupo.idh
+          this.dataSource[i].idper = this.ngrupo.idper
+          this.dataSource[i].dia = this.ngrupo.dia
+          this.dataSource[i].hora = this.ngrupo.hora
+          this.dataSource[i].nombre = this.ngrupo.nombre
+          this.dataSource[i].apellidos = this.ngrupo.apellidos
+          this.barra = "none"
+          this.notificationsService.showSuccessEdit()
+          // console.log(data)
+        },(error)=>{
+          // console.log(error)
+          this.barra = "none"
+          this.notificationsService.showError()
+        })
       }
     });
   }
 
   deleteHora(i, idgalu) {
-    this.dataSource = this.dataSource.filter(x => x.idgalu !== idgalu)
+    // this.dataSource = this.dataSource.filter(x => x.idgalu !== idgalu)
+    const dialogRef = this.dialog.open(PerfilhoradeleteComponent, {
+      data: { }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        this.barra = ""
+        this.perfilService.deleteHorarioPerfil(idgalu).subscribe((data) => {
+          this.dataSource = this.dataSource.filter(x => x.idgalu !== idgalu)
+          this.barra = "none"
+          this.notificationsService.showSuccessDelete()
+        }, (error) => {
+          
+          this.barra = "none"
+          this.notificationsService.showError()
+        })
+      }
+    });
   }
 
   editMem(i: number, idmalu, nommem, fechainicio, adelanto, restante, total, nombre) {
-    console.log(this.membresia)
+    // console.log(this.membresia)
     const dialogRef = this.dialog.open(PerfilmemeditComponent, {
       width: '80%',
       data:
@@ -356,6 +386,7 @@ export class PerfilComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result=>{
       if(result == 1)
       {
+        
         this.perfilService.putMembresias(this.perfilService.getDialogData()).subscribe((data)=>{
           this.datosEditMem = this.perfilService.getDialogData()
           this.membresia[i].adelanto = this.datosEditMem.adelanto

@@ -12,6 +12,11 @@ import { Detallegrupos } from '../interfaces/detallegrupos';
 import { DetallegruposService } from '../services/detallegrupos.service';
 import {formatDate } from '@angular/common';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { AmazingTimePickerService } from 'amazing-time-picker';
+import {DomSanitizer} from '@angular/platform-browser';
+import {MatIconRegistry} from '@angular/material/icon';
+
+
 
 @Component({
   selector: 'app-form-personal',
@@ -24,7 +29,12 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 
 
 export class FormPersonalComponent implements OnInit {
+  public selectedTime: string;
+  public selectedTimes: string;
 
+
+  date = new FormControl(new Date());
+  serializedDate = new FormControl((new Date()).toISOString());
   /* ---------------------------- CONFIGURACIÓN DE LA PAGINA ---------------------------- */
 
   // Progrmacación de las tabs en el modulo de detalle de grupos
@@ -95,7 +105,7 @@ export class FormPersonalComponent implements OnInit {
     idper: null, nombre: null, apellidos: null, usuario: null,
     contra: null, fechanac: null, sexo: null, curp: null,
     estadocivil: null, domicilio: null, fechaingreso: null, horasalida: null,
-    horaentrada: null, perfilprofesional: null, especialidad: null, salariomensual: null,
+    horaentrada:null, perfilprofesional: null, especialidad: null, salariomensual: null,
     tareasasignadas: null, idtper: null, activo: null
   };
 
@@ -117,10 +127,14 @@ export class FormPersonalComponent implements OnInit {
 
   constructor(private personalService: PersonalService , private detallegruposService: DetallegruposService,
     private _formBuilder: FormBuilder, private httpClient: HttpClient,
-    private router: Router, public toastr: ToastrManager) 
+    private router: Router, public toastr: ToastrManager, private atp: AmazingTimePickerService,iconRegistry: MatIconRegistry, sanitizer: DomSanitizer ) 
     {
-     
+      iconRegistry.addSvgIcon(
+        'thumbs-up',
+        sanitizer.bypassSecurityTrustResourceUrl('assets/icons/material-design/hora.svg'));
+  
     }
+    
 
     /* -------------------------------- METODOS DEL CRUD EN LA BASE DE DATOS -------------------------------- */
 
@@ -160,7 +174,20 @@ export class FormPersonalComponent implements OnInit {
       this.removeTab(index);
     }
 
-
+    open() {
+      const amazingTimePicker = this.atp.open();
+      amazingTimePicker.afterClose().subscribe(time => {
+          this.selectedTime = time;
+          this.persona.horaentrada = time;
+      });
+  }
+  opens() {
+    const amazingTimePicker = this.atp.open();
+    amazingTimePicker.afterClose().subscribe(time => {
+        this.selectedTimes = time;
+        this.persona.horasalida = time;
+    });
+}
 
 
 }

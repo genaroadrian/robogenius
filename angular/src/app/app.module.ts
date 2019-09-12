@@ -13,6 +13,7 @@ import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule,
   MatToolbarModule, MatPaginatorIntl, MatSpinner, MatProgressSpinnerModule, MatSnackBarModule,
   MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatSlideToggleModule, MatExpansionModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AmazingTimePickerService, AmazingTimePickerModule } from 'amazing-time-picker';
 import { LoginComponent } from './login/login.component';
 import { LoginPrincipalComponent } from './login-principal/login-principal.component';
 import { TipopersonalService } from './services/tipopersonal.service';
@@ -256,7 +257,6 @@ const routes: Route[]=[
 
 
 
-
   ],
   imports: [
     NgxUpperCaseDirectiveModule,
@@ -285,6 +285,7 @@ const routes: Route[]=[
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatStepperModule,
+    AmazingTimePickerModule,
     MatNativeDateModule,
     MatDatepickerModule,
     ToastrModule.forRoot(),
@@ -390,7 +391,8 @@ const routes: Route[]=[
     MatIconModule,
     MatOptionModule,
     MatSelectModule,
-    MatDialogModule
+    MatDialogModule,
+    AmazingTimePickerModule
   ]
 
 })

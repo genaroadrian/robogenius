@@ -59,10 +59,10 @@
       </div>
   
       <div class="col-xl-4 col-md-12">
-        <mat-form-field>
-          <input class="example-right-align" [(ngModel)]="persona.fechanac" matInput placeholder="Fecha de nacimiento"
-            format="YYYY/mm/dd" type="date">
-        </mat-form-field>
+          <mat-form-field>
+              <input class="example-right-align" [(ngModel)]="persona.fechanac" matInput placeholder="Fecha de nacimiento"
+                format="YYYY/mm/dd" type="date">
+            </mat-form-field>
       </div>
   
       <div class="col-xl-4 col-md-12">
@@ -90,30 +90,30 @@
   
       <div class="col-xl-4 col-md-12">
         <mat-form-field>
-          <input type="data" class="example-right-align" [(ngModel)]="persona.fechaingreso" matInput
-            placeholder="Fecha de ingreso" [value]="jstoday" name="fechaingreso" required>
-        </mat-form-field>
+              <input class="example-right-align" [(ngModel)]="persona.fechaingreso" matInput placeholder="Fecha de ingreso"
+                format="YYYY/mm/dd" type="date">
+            </mat-form-field>
       </div>
       <br>
       <br>
       <br>
       <br>
-  
+      
+      <div class="col-xl-4 col-md-12">
+          <mat-form-field>
+            <input class="example-right-align"  matInput placeholder="Hora de Entrada" value="{{selectedTime}}">
+          <!-- <mat-datepicker-toggle matSuffix (click)="open()" ></mat-datepicker-toggle> -->
+          <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon" matSuffix (click)="open()"></mat-icon>
+          </mat-form-field>
+        </div>
       <div class="col-xl-4 col-md-12">
         <mat-form-field>
-          <input class="example-right-align" [(ngModel)]="persona.horaentrada" matInput placeholder="Hora de entrada"
-            [ngxTimepicker]="defaultValue" readonly [format]="24">
-          <ngx-material-timepicker #defaultValue></ngx-material-timepicker>
-        </mat-form-field>
-      </div>
-  
-      <div class="col-xl-4 col-md-12">
-        <mat-form-field>
-          <input class="example-right-align" [(ngModel)]="persona.horasalida" matInput placeholder="Hora de salida"
-            [ngxTimepicker]="default" readonly [format]="24">
-          <ngx-material-timepicker #default></ngx-material-timepicker>
-        </mat-form-field>
-      </div>
+            <input class="example-right-align"  matInput placeholder="Hora de Entrada" value="{{selectedTimes}}">
+            <!-- <mat-datepicker-toggle matSuffix (click)="open()" ></mat-datepicker-toggle> -->
+            <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon" matSuffix (click)="opens()"></mat-icon>
+          </mat-form-field>
+
+          </div>
   
       <div></div>
       <div class="col-xl-4 col-md-12">

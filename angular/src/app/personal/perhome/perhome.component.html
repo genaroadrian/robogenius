@@ -46,15 +46,15 @@
                                                               <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Id</mat-header-cell>
                                                               <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}">{{row.idper}}</mat-cell>
                                                             </ng-container>
-                                                        
+
                                                             <ng-container matColumnDef="nombre">
                                                               <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
-                                                              <mat-cell *matCellDef="let row"> {{row.nombre}}</mat-cell>
+                                                              <mat-cell *matCellDef="let row" data-label="nombre"> {{row.nombre}}</mat-cell>
                                                             </ng-container>
                                                         
                                                             <ng-container matColumnDef="apellidos">
                                                               <mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</mat-header-cell>
-                                                              <mat-cell *matCellDef="let row"> {{row.apellidos}}</mat-cell>
+                                                              <mat-cell *matCellDef="let row" data-label="apellidos"> {{row.apellidos}}</mat-cell>
                                                             </ng-container>
                                                         
                                                             <ng-container matColumnDef="usuario">
@@ -90,7 +90,7 @@
                                                         
                                                             <ng-container matColumnDef="domicilio">
                                                               <mat-header-cell *matHeaderCellDef mat-sort-header>Domicilio</mat-header-cell>
-                                                              <mat-cell *matCellDef="let row"> {{row.domicilio}}</mat-cell>
+                                                              <mat-cell *matCellDef="let row"data-label="domicilio"> {{row.domicilio}}</mat-cell>
                                                             </ng-container>
                                                         
                                                             <ng-container matColumnDef="fechaingreso">
@@ -100,17 +100,17 @@
                                                         
                                                             <ng-container matColumnDef="horaentrada">
                                                               <mat-header-cell *matHeaderCellDef mat-sort-header>Entrada</mat-header-cell>
-                                                              <mat-cell *matCellDef="let row"> {{row.horaentrada}}</mat-cell>
+                                                              <mat-cell *matCellDef="let row" data-label="hora entrada"> {{row.horaentrada}}</mat-cell>
                                                             </ng-container>
                                                         
                                                             <ng-container matColumnDef="horasalida">
                                                               <mat-header-cell *matHeaderCellDef mat-sort-header>Salida</mat-header-cell>
-                                                              <mat-cell *matCellDef="let row"> {{row.horasalida}}</mat-cell>
+                                                              <mat-cell *matCellDef="let row" data-label="hora salida"> {{row.horasalida}}</mat-cell>
                                                             </ng-container>
                                                         
                                                             <ng-container matColumnDef="perfilprofesional">
                                                               <mat-header-cell *matHeaderCellDef mat-sort-header>Perfil prof.</mat-header-cell>
-                                                              <mat-cell *matCellDef="let row"> {{row.perfilprofesional}}</mat-cell>
+                                                              <mat-cell *matCellDef="let row" data-label="perfil profesional"> {{row.perfilprofesional}}</mat-cell>
                                                             </ng-container>
                                                         
                                                             <ng-container matColumnDef="especialidad">
@@ -125,7 +125,7 @@
                                                         
                                                             <ng-container matColumnDef="salariomensual">
                                                               <mat-header-cell *matHeaderCellDef mat-sort-header>Salario mensual</mat-header-cell>
-                                                              <mat-cell *matCellDef="let row"> {{row.salariomensual}}</mat-cell>
+                                                              <mat-cell *matCellDef="let row" data-label="salario mensual"> {{row.salariomensual}}</mat-cell>
                                                             </ng-container>
                                                         
                                                             <ng-container matColumnDef="idtper">
@@ -135,7 +135,7 @@
                                                         
                                                             <ng-container matColumnDef="icons">
                                                               <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
-                                                              <mat-cell *matCellDef="let row; let i=index;">
+                                                              <mat-cell *matCellDef="let row; let i=index; " data-label="Accion">
                                                                 <!-- En el boton de editar se manda al mentodo todos los datos de row -->
                                                                 <!-- <button mat-icon-button class="text-success" 
                                                                 (click)="onUpdate(i, row.idper, row.nombre,row.apellidos,

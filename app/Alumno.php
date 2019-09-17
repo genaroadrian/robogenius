@@ -27,7 +27,7 @@ class Alumno extends Model
     	'perfilalu',
     	'cronica',
     	'otro',
-    	'evaluacion',
+    	'escuela',
     	'usuarioalu',
     	'pswalu',
         'nompad',

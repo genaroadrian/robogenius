@@ -1,10 +1,9 @@
-<div class="container">
-  <h3 mat-dialog-title>Estas seguro?</h3>
-  <div mat-dialog-content>
-  </div>
 
-  <div mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="1" (click)="confirmDelete()">Delete</button>
-    <button mat-button (click)="onNoClick()" tabindex="-1">Cancel</button>
+
+<div class="container">
+    <h3 mat-dialog-title>¿Estas seguro?</h3>
+    <div mat-dialog-actions>
+      <button class="btn btn-success"  [mat-dialog-close]="1" (click)="confirmDelete()" style="margin-left: 30px;margin-right:30px;">Eliminar</button>
+      <button class="btn btn-danger"  (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    </div>
   </div>
-</div>

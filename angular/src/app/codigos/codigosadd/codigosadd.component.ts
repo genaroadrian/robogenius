@@ -3,6 +3,8 @@ import { CodigosService } from 'src/app/services/codigos.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { Codigos } from 'src/app/interfaces/codigos';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+
 
 
 
@@ -18,6 +20,11 @@ export class CodigosaddComponent implements OnInit {
 
   ngOnInit() {
   }
+    /* Validaciones de los formularios */
+    fControl = new FormControl('', [
+      Validators.required,
+      Validators.email
+    ]);
   onNoClick(): void {
     this.dialogRef.close();
   }

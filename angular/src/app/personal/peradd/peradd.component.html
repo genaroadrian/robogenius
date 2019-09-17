@@ -13,12 +13,12 @@
 
     <div class="form-group">
       <mat-form-field>
-        <input class="form-control" [(ngModel)]="persona.nombre" matInput placeholder="Nombre(s)">
+        <input class="form-control" [(ngModel)]="persona.nombre" upperCase matInput placeholder="Nombre(s)">
       </mat-form-field>
     </div>
     <div class="form-group">
       <mat-form-field>
-        <input class="form-control" [(ngModel)]="persona.apellidos" matInput placeholder="Apellidos">
+        <input class="form-control" [(ngModel)]="persona.apellidos" upperCase matInput placeholder="Apellidos">
       </mat-form-field>
     </div>
 
@@ -34,8 +34,13 @@
     </div>
 
     <div class="form-group">
-      <mat-form-field>
-        <input class="form-control" [(ngModel)]="persona.curp" matInput placeholder="CURP" upperCase>
+      <mat-form-field >
+        <input matInput [(ngModel)]="persona.curp"   name="CURP" placeholder="Curp"
+          type="text" pattern="[A-Z]{4}">
+        <mat-error    
+        *ngIf="formControl.invalid" 
+         > Curpincorrecto
+        </mat-error>
       </mat-form-field>
     </div>
 

@@ -18,6 +18,6 @@ class escuelas extends Model
     	'representante',
     	'direccion',
     	'telefono',
-    	'correo',
+    	'correouno',
     	'activo'];
 }

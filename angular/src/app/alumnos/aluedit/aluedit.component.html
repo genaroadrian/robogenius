@@ -138,6 +138,15 @@
             </div>
       </div>
 
+      <div class="form col-xl-4">
+          <mat-form-field color="accent">
+            <mat-label>Escuela</mat-label>
+            <mat-select [(value)]="escuelaSelected">
+              <mat-option *ngFor="let esc of escuelas" value="{{esc.idesc}}">{{esc.nombre}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
   
 
       <!-- ------------------------------------Acceso al sistema del alumno------------------------------------ -->

@@ -26,7 +26,7 @@ export class AluhomeComponent implements OnInit {
   displayedColumns: string[] = [
     'nomalu',
     'apealu','domalu',
-    'telalu','evaluacion', 'icons'
+    'telalu','nombre', 'icons'
    ];
    //  Declaracion de la interfaz de alumnos
   alumnos: Alumnos[];

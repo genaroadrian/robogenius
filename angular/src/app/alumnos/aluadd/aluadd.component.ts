@@ -19,6 +19,7 @@ import { MemalumnoService } from 'src/app/services/memalumno.service';
 import { GruposAlumnosService } from 'src/app/services/grupos-alumnos.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { Router } from '@angular/router';
+import { EscuelasService } from 'src/app/services/escuelas.service';
 
 
 // declare let paypal: any;
@@ -37,6 +38,9 @@ export class AluaddComponent implements OnInit {
 
 // Payppal
   public payPalConfig?: IPayPalConfig;
+
+  /* Todas las escuelas */
+  escuelas: any
 
   // ID del grupo o clases
   idgrupo: any;
@@ -225,7 +229,8 @@ export class AluaddComponent implements OnInit {
   constructor(private alumnosService: AlumnosService, private httpClient: HttpClient,
     public toastr: ToastrManager, private gethorarios: GethorariosService,
     private tmembresia: TipomembresiaService, private memaluService: MemalumnoService,
-    private galuService: GruposAlumnosService, private router :Router  ) { }
+    private galuService: GruposAlumnosService, private router :Router,
+    private escuelasService: EscuelasService  ) { }
 
 
     logout(){
@@ -236,8 +241,17 @@ export class AluaddComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.getEscuelas()
     this.initConfig();
     this.getTipomem();
+  }
+
+  getEscuelas()
+  {
+    this.escuelasService.get().subscribe((data)=>{
+      this.escuelas = data
+    },(error)=>{
+    })
   }
 
 
@@ -259,7 +273,7 @@ export class AluaddComponent implements OnInit {
     correomad: null, ocupmad: null,
     finscripcion: null, usuariopad: null,
     pswpad: null, activo: null,
-    idsuc: null
+    idsuc: null, idesc: null, nombre: null
   };
 
   // Obtiene el tipo de membresias

@@ -58,8 +58,8 @@ export class TphomeComponent implements OnInit {
   ngOnInit() {
     // Llamado al metodo de getTipopersonal
     this.getTipopersonal();
+    console.log(this.dataSource._exampleDatabase.dataChange)
 
-    // Traducir los label de la tabla
     this.paginator._intl.itemsPerPageLabel = 'Registros por página';
     this.paginator._intl.nextPageLabel = 'Página siguiente';
     this.paginator._intl.previousPageLabel = 'Página anterior';
@@ -124,11 +124,13 @@ export class TphomeComponent implements OnInit {
       // .debounceTime(150)
       // .distinctUntilChanged()
       .subscribe(() => {
+        console.log(this.dataSource._exampleDatabase.dataChange)
         if (!this.dataSource) {
           return;
         }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
+
   }
 
 

@@ -15,6 +15,7 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { TpaddComponent } from '../tipopersonal/tpadd/tpadd.component';
 import { MatDialog } from '@angular/material';
 import { NotificationsService } from '../services/notifications.service';
+import { GruposAlumnosService } from '../services/grupos-alumnos.service';
 
 @Component({
   selector: 'app-form-personal',
@@ -33,7 +34,10 @@ export class FormPersonalComponent implements OnInit {
 
    /* Almacena todos los tipos de personal */
    selectTPersonal: any
-
+    horarioPersonal =[{
+      idd: null,
+      idh: null
+    }]
   /* ---------------------------- CONFIGURACIÓN DE LA PAGINA ---------------------------- */
 
   // Progrmacación de las tabs en el modulo de detalle de grupos
@@ -41,6 +45,10 @@ export class FormPersonalComponent implements OnInit {
   selected = new FormControl(0);
 
   addTab(selectAfterAdding: boolean) {
+    this.horarioPersonal.push({
+      idd: null,
+      idh: null
+    })
     this.tabs.push('Horario');
     if (selectAfterAdding) {
       this.selected.setValue(this.tabs.length - 1);
@@ -50,6 +58,7 @@ export class FormPersonalComponent implements OnInit {
     this.tabs.splice(index, 1);
   }
   agregarTab(index: number) {
+    
     this.tabs.splice(index, 1);
   }
 
@@ -63,10 +72,9 @@ export class FormPersonalComponent implements OnInit {
   // Change the user and password input and groups module visibility 
   tipoChange(event) {
     if (this.selectedtp == "2" || this.selectedtp == "1" || this.selectedtp == "3") {
-      this.isDisable = false;
+     
       this.visibility = "block";
     } else {
-      this.isDisable = true;
       this.visibility = "none";
     }
   }
@@ -89,7 +97,6 @@ export class FormPersonalComponent implements OnInit {
   // Visibilidad del formulario de personal
   perso = "block";
   // Valor de lo disables
-  isDisable = true;
   // Valor del tipo de personal
   selectedtp = '1';
   // Ocultar el campo de contraseña por defecto
@@ -130,7 +137,8 @@ export class FormPersonalComponent implements OnInit {
   constructor(private personalService: PersonalService , private detallegruposService: DetallegruposService,
     private _formBuilder: FormBuilder, private httpClient: HttpClient,
     private router: Router, public toastr: ToastrManager, public tPersonal: TipopersonalService,
-    public dialog: MatDialog, public tipopersonalService: TipopersonalService, public notifications: NotificationsService) 
+    public dialog: MatDialog, public tipopersonalService: TipopersonalService, public notifications: NotificationsService,
+    public horarioPersona: GruposAlumnosService) 
     {
      
     }
@@ -145,17 +153,14 @@ export class FormPersonalComponent implements OnInit {
         // console.log(data);
         this.idp = data;
         this.idper = this.idp.idper;
+        this.horarios = "";
+        this.perso = "none";
       },(error)=>{
         alert('Ocurrio un error');
         console.log(error);
         this.showErrorSave();
       });
-      if(persona.idtper == 2){
-        this.horarios = "block";
-        this.perso = "none";
-      }else{
-        this.router.navigate(['/personal']);
-      }
+        
       
     }
 
@@ -169,12 +174,14 @@ export class FormPersonalComponent implements OnInit {
     this.barra = "none"
   }
 
-    saveDetallegrupos(index)
+    saveDetallegrupos(horariopersonal, index)
     {
+      this.detallegrupo.idd = horariopersonal.idd
+      this.detallegrupo.idh = horariopersonal.idh
       this.detallegrupo.idp = this.idper;
       console.log(this.detallegrupo);
-      this.detallegruposService.save(this.detallegrupo).subscribe((data)=>{
-      // console.log(data);
+      this.horarioPersona.save(this.detallegrupo).subscribe((data)=>{
+      console.log(data);
       this.showSuccesSave();
       }, (error)=>{
         console.log(error);

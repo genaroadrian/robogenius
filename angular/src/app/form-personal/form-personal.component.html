@@ -203,13 +203,14 @@
   
       <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)"
         [ngStyle]="{display:horarios}">
-        <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+        <!-- <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)"> -->
+        <mat-tab *ngFor="let tab of tabs; let index = index;" [label]="tab">
           {{tab}}
           <mat-form-field>
   
             <mat-label>Dias: </mat-label>
   
-            <mat-select [(ngModel)]="detallegrupo.idd" [disabled]="isDisable">
+            <mat-select [(ngModel)]="horarioPersonal[index].idd">
               <mat-option value="1">Lunes</mat-option>
               <mat-option value="2">Martes</mat-option>
               <mat-option value="3">Miercoles</mat-option>
@@ -221,7 +222,7 @@
   
             <mat-label>Horario: </mat-label>
   
-            <mat-select [(ngModel)]="detallegrupo.idh" [disabled]="isDisable">
+            <mat-select [(ngModel)]="horarioPersonal[index].idh">
               <mat-option value="1">7:00</mat-option>
               <mat-option value="2">8:00</mat-option>
             </mat-select>
@@ -229,7 +230,7 @@
           </mat-form-field>
           <div style="text-align: center;">
           <button class="btn btn-primary" [disabled]="tabs.length === 0"
-            (click)="saveDetallegrupos(index)">
+            (click)="saveDetallegrupos(horarioPersonal[index], index)">
             Guardar
           </button>
   

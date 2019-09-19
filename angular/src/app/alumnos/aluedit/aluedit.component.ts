@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AlumnosService } from 'src/app/services/alumnos.service';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { PerfilService } from 'src/app/services/perfil.service';
+import { EscuelasService } from 'src/app/services/escuelas.service';
 
 @Component({
   selector: 'app-aluedit',
@@ -14,10 +15,15 @@ export class AlueditComponent implements OnInit {
 
   options: FormGroup;
 
+  escuelas: any
+
+  escuelaSelected: string
+
   constructor(public dialogRef: MatDialogRef<AlueditComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any,
     public alumnosService: AlumnosService, 
-    fb: FormBuilder, public perfilService: PerfilService) {
+    fb: FormBuilder, public perfilService: PerfilService,
+    private escuelasService: EscuelasService) {
       
       this.options = fb.group({
         hideRequired: false,
@@ -26,7 +32,20 @@ export class AlueditComponent implements OnInit {
      }
 
   ngOnInit() {
-    console.log(this.data)
+    this.escuelaSelected = ''+this.data.idesc+''
+    this.getEscuelas()
+    
+    console.log(this.escuelaSelected)
+  }
+
+  getEscuelas()
+  {
+    this.escuelasService.get().subscribe((data)=>{
+      this.escuelas = data
+      
+    },(error)=>{
+
+    })
   }
 
   // Validaciones del formulario
@@ -45,6 +64,7 @@ export class AlueditComponent implements OnInit {
     this.dialogRef.close();
   }
 stopEdit(data): void {
+  data.idesc = this.escuelaSelected
     this.perfilService.putAlumno(data);
   }
 

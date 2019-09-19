@@ -21,7 +21,7 @@ Route::resource('personal', 'personalController');
 Route::resource('tipopersonal', 'tipopersonalController');
 Route::resource('productos', 'productosController');
 Route::resource('escuelas', 'EscuelaController');
-// Route::resource('dgrupos', 'detallegruposController');
+Route::resource('dgrupos', 'detallegruposController');
 Route::resource('tipomensualidad', 'tipomensualidadController');
 Route::resource('alumnos', 'alumnoController');
 Route::resource('dpadres', 'detallepadresController');
@@ -73,4 +73,7 @@ Route::resource('confirmtoken', 'passwordResetController');
 
 Route::resource('email', 'emailController');
 Route::resource('perfilalumnoshorario', 'perfilAlumnosHorarioController');
+Route::resource('horariopersonal', 'horariosPersonalController');
+
+Route::resource('horarioperfilalumnos', 'horarioperfilalumnosController');
 

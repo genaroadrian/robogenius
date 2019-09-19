@@ -25,7 +25,7 @@
 
                 </div>
             </div>
-            <button class="btn btn-primary btn-sm"> ACTUALIZAR FOTO </button>
+            <button class="btn btn-primary btn-sm" [ngStyle]="{'display': dfoto}"> ACTUALIZAR FOTO </button>
         </div>
         <br>
 
@@ -84,22 +84,11 @@
                 </ng-template>
                 <div class="container">
                     <mat-accordion>
-                        <h4 style="text-align: center;">Historial de membresias</h4>
+                        <h1 style="text-align: center;">Historial de pagos</h1>
                         <div class="row">
-                            <p class="{{color}}">
-                                <mat-icon>{{icono}} </mat-icon> {{status}}
-                            </p>
+                           
                         </div>
-                        <div class="row">
-                            <div class="col-md-11">
-                                <p class="{{colorpago}}">
-                                    <mat-icon>{{iconopago}} </mat-icon> {{pagomem}}
-                                </p>
-                                <p class="" style="text-align: right;">
-                                    Agregar nueva membresia <button mat-icon-button ><mat-icon>add</mat-icon></button>
-                                </p>
-                            </div>
-                        </div>
+                        <!-- <span>Renovar membresia antes del </span> -->
                           <!-- <p>Estatus de la membresia: </p> -->
                         <mat-expansion-panel *ngFor="let mem of membresia; let i = index">
                             <mat-expansion-panel-header>
@@ -107,7 +96,12 @@
                                     Membresia {{ mem.nommem}}
                                 </mat-panel-title>
                                 <mat-panel-description>
-                                    Membresia numero {{memlenght-i}}
+                                    <span [style.display.none]="mem.restante == 0 ? '' : 'none'" class="text-warning"  >
+                                        <mat-icon>warning</mat-icon> Debe ${{mem.restante}}.00
+                                    </span>
+                                    <span [style.display.none]="mem.restante > 0 ? '' : 'none'"  class="text-success">
+                                        <mat-icon>verified_user</mat-icon>Pagado
+                                    </span>
                                 </mat-panel-description>
                             </mat-expansion-panel-header>
                             <button [style.display.none]="mem.restante == 0 ? '' : 'none'" (click)="editMem(i,mem.idmalu, mem.nommem, mem.fechainicio, mem.adelanto, mem.restante, mem.total,
@@ -115,6 +109,7 @@
                                 <mat-icon aria-label="Edit">edit</mat-icon>
                             </button>
                             <p style="padding-left:5px;" [ngStyle]="{'display': idmemhide}">ID <b>{{mem.idmalu}}</b></p>
+                            <p style="padding-left:5px;">Clases disponibles<b>{{mem.clases}}</b></p>
                             <p style="padding-left:5px;">Fecha Inicio: <b>{{mem.fechainicio}}</b></p>
                             <p style="padding-left:5px;">Adelanto: <b>${{mem.adelanto}}.00</b></p>
                             <p style="padding-left:5px;">Restante: <b>${{mem.restante}}.00</b></p>
@@ -131,8 +126,11 @@
                     <i class="mdi mdi-calendar-text horario"></i>
                     Horario
                 </ng-template>
-                <div class="container">
 
+                <div class="container">
+                    <p class="" style="text-align: left;" [style.display]="clasesDB < clasesMem  ? '' : 'none'">
+                        Agregar nuevo horario <button mat-icon-button (click)="agregarHora(datos.idalu)" ><mat-icon>add</mat-icon></button>
+                    </p>
                     <table mat-table [dataSource]="dataSource" style="width:100%">
 
                         <!--- Note that these columns can be defined in any order.

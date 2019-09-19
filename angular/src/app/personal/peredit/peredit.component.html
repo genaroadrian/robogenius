@@ -33,7 +33,10 @@
 
     <div class="form">
       <mat-form-field appearance="legacy">
-        <input matInput #input placeholder="ContraseÃ±a" [(ngModel)]="data.contra" name="contra" required>
+        <input matInput placeholder="Contraseña" [(ngModel)]="data.contra" name="contra" required [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>

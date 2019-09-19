@@ -12,6 +12,8 @@ import { TipopersonalService } from 'src/app/services/tipopersonal.service';
 })
 export class PereditComponent implements OnInit {
 
+  hide = true
+
   /* Almacena todos los tipos de personal */
   selectTPersonal: any
 

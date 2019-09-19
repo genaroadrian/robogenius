@@ -31,6 +31,11 @@ export class EscuelasService {
     });
   }
 
+  get()
+  {
+    return this.httpClient.get(this.API_ENDPOINT+'/escuelas')
+  }
+
   /* Actualiza a la base de datos  */
   put(data){
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});

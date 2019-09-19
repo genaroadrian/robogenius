@@ -14,13 +14,16 @@
     <div class="row col-xl-12">
     <div class="form col-xl-6">
       <mat-form-field color="accent">
-        <input matInput placeholder="Código" [(ngModel)]="data.codigo" name="codigo">
+        <input matInput placeholder="Código" [(ngModel)]="data.codigo" name="codigo" required>
       </mat-form-field>
     </div>
 
     <div class="form col-xl-6">
       <mat-form-field color="accent">
-        <input matInput placeholder="Porcentaje" [(ngModel)]="data.porcentaje" name="porcentaje">
+          <span matPrefix>%&nbsp;</span>
+
+        <input matInput placeholder="Porcentaje" [(ngModel)]="data.porcentaje" type="number" name="porcentaje" required>
+
       </mat-form-field>
     </div>
   </div>
@@ -28,13 +31,13 @@
   <div class="row col-xl-12">
     <div class="form col-xl-6">
       <mat-form-field color="accent">
-        <input matInput placeholder="Lugar" [(ngModel)]="data.lugar" name="lugar">
+        <input matInput placeholder="Lugar" [(ngModel)]="data.lugar" name="lugar" required>
       </mat-form-field>
     </div>
 
     <div class="form col-xl-6">
       <mat-form-field color="accent">
-        <input matInput placeholder="Fecha" [(ngModel)]="data.fecha" name="fecha" type="date">
+        <input matInput placeholder="Fecha" [(ngModel)]="data.fecha" name="fecha" type="date" required>
       </mat-form-field>
     </div>
 
@@ -42,8 +45,8 @@
   <br>
 
     <div mat-dialog-actions>
-      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="Descuentos()" style="margin-left: 220px; margin-right: 80px;">Save</button>
-      <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancel</button>
+      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="Descuentos()" style="margin-left: 100px; margin-right: 80px;">Guardar</button>
+      <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
     </div>
   </div>
   </form>

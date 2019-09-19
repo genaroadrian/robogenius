@@ -70,15 +70,16 @@
                                   <mat-cell *matCellDef="let row" data-label="Telefono"> {{row.telefono}}</mat-cell>
                                 </ng-container>
                             
-                                <ng-container matColumnDef="correo" >
-                                  <mat-header-cell *matHeaderCellDef mat-sort-header>Correo</mat-header-cell>
-                                  <mat-cell *matCellDef="let row" data-label="Correo"> {{row.correo}}</mat-cell>
+
+                                <ng-container matColumnDef="correouno" >
+                                  <mat-header-cell *matHeaderCellDef mat-sort-header>correouno</mat-header-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Correo"> {{row.correouno}}</mat-cell>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="icons" stickyEnd>
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
                                   <mat-cell *matCellDef="let row; let i=index;" data-label="Acciones">
-                                    <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idesc, row.nombre, row.representante, row.direccion, row.telefono, row.correo)">
+                                    <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idesc, row.nombre, row.representante, row.direccion, row.telefono, row.correouno)">
                                       <mat-icon aria-label="Edit">edit</mat-icon>
                                     </button>
                             

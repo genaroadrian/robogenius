@@ -25,7 +25,7 @@ class EscuelaController extends Controller
         $escuelas->nombre = $request->nombre;
         $escuelas->representante = $request->representante;
         $escuelas->direccion = $request->direccion;
-        $escuelas->correo = $request->correo;
+        $escuelas->correouno = $request->correouno;
         $escuelas->telefono = $request->telefono;
         $escuelas->idesc = $request->idesc;
         $escuelas->activo = 1;
@@ -40,7 +40,7 @@ class EscuelaController extends Controller
         $escuelas->nombre = $request->nombre;
         $escuelas->representante = $request->representante;
         $escuelas->direccion = $request->direccion;
-        $escuelas->correo = $request->correo;
+        $escuelas->correouno = $request->correouno;
         $escuelas->telefono = $request->telefono;
         $escuelas->idesc = $request->idesc;
         $escuelas->activo = 1;

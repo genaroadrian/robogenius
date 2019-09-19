@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
     'representante',
     'direccion',
     'telefono',
-    'correo',
+    'correouno',
     'icons'
   ];
 
@@ -130,12 +130,12 @@ export class HomeComponent implements OnInit {
   
 
   // Metodo para abrir el modal para modificar
-  onUpdate(i: number, idesc: number, nombre: string, representante: string, direccion: string, telefono: number, correo: string) {
+  onUpdate(i: number, idesc: number, nombre: string, representante: string, direccion: string, telefono: number, correouno: string) {
     this.id = idesc;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     const dialogRef = this.dialog.open(EditComponent, {
-      data: { idesc: idesc, nombre: nombre, representante: representante, direccion: direccion, telefono: telefono, correo: correo }
+      data: { idesc: idesc, nombre: nombre, representante: representante, direccion: direccion, telefono: telefono, correouno: correouno }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
@@ -225,7 +225,7 @@ export class ExampleDataSource extends DataSource<Escuelas> {
     return merge(...displayDataChanges).pipe(map(() => {
       // Filter data
       this.filteredData = this._exampleDatabase.data.slice().filter((escuelas: Escuelas) => {
-        const searchStr = (escuelas.idesc + escuelas.nombre + escuelas.representante + escuelas.direccion + escuelas.telefono + escuelas.correo).toLowerCase();
+        const searchStr = (escuelas.idesc + escuelas.nombre + escuelas.representante + escuelas.direccion + escuelas.telefono + escuelas.correouno).toLowerCase();
         return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
       });
 
@@ -259,7 +259,7 @@ export class ExampleDataSource extends DataSource<Escuelas> {
         case 'representante': [propertyA, propertyB] = [a.representante, b.representante]; break;
         case 'direccion': [propertyA, propertyB] = [a.direccion, b.direccion]; break;
         case 'telefono': [propertyA, propertyB] = [a.telefono, b.telefono]; break;
-        case 'correo': [propertyA, propertyB] = [a.correo, b.correo]; break;
+        case 'correouno': [propertyA, propertyB] = [a.correouno, b.correouno]; break;
         case 'activo': [propertyA, propertyB] = [a.activo, b.activo]; break;
       }
 

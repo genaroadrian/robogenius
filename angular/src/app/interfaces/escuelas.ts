@@ -4,6 +4,6 @@ export interface Escuelas {
 	representante: string;
 	direccion: string;
 	telefono: number;
-	correo: string;
+	correouno: string;
 	activo: number;
 }

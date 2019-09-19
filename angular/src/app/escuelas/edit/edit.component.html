@@ -32,19 +32,28 @@
     </div>
   
     <div class="form">
-      <mat-form-field color="accent" style="width: 440px;">
-        <input matInput #input  #tel maxlength="10" placeholder="Telefono" [(ngModel)]="data.telefono" name="telefono" required>
-        <mat-hint align="end">{{tel.value?.length || 0}}/10</mat-hint>
-        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-    </div>
+        <mat-form-field color="accent" style="width: 440px;">
+          <input matInput [(ngModel)]="data.telefono"  #message  maxlength="10" name="data.telefono" placeholder="Telefono"
+            type="text" pattern="[0-9]{10}">
+          <mat-hint align="end">{{message.value.length}} / 10</mat-hint>
+          <mat-error    
+          *ngIf="formControl.invalid" 
+           > Teléfono inccorrecto
+          </mat-error>
+        </mat-form-field>
+      </div>
   
-    <div class="form">
-      <mat-form-field color="accent" style="width: 440px;">
-        <input matInput #input  placeholder="Correo" [(ngModel)]="data.correo" name="correo" required>
-        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-    </div>
+
+    <div class="form ">
+        <mat-form-field color="accent" style="width: 440px;">
+          <input matInput [(ngModel)]="data.correouno" #input  name="correo" placeholder="Correo"
+            pattern="[^ @]*@[^ @]*" required>
+          <mat-error    
+          *ngIf="formControl.invalid" 
+           > Correo Incorrecto
+          </mat-error>
+        </mat-form-field>
+      </div>
 
     <div mat-dialog-actions >
       <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"

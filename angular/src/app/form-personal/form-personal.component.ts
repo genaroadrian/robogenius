@@ -1,12 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Inject, Directive } from '@angular/core';
 import { Router } from "@angular/router";
 import { TipopersonalService } from '../services/tipopersonal.service';
 import { HttpClient } from '@angular/common/http';
 import { Tipopersonal } from '../interfaces/tipopersonal';
 import { PersonalService } from '../services/personal.service';
 import { Personal } from '../interfaces/personal';
-import { FormControl } from '@angular/forms';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormControl, Validators,  FormBuilder } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Detallegrupos } from '../interfaces/detallegrupos';
 import { DetallegruposService } from '../services/detallegrupos.service';
@@ -18,6 +17,23 @@ import {MatIconRegistry} from '@angular/material/icon';
 import { TpaddComponent } from '../tipopersonal/tpadd/tpadd.component';
 import { MatDialog } from '@angular/material';
 import { NotificationsService } from '../services/notifications.service';
+import { NG_VALIDATORS } from '@angular/forms';
+
+function emailDomainValidator(control: FormControl) { 
+  let email = control.value; 
+  if (email && email.indexOf("@") != -1) { 
+    let [_, domain] = email.split("@"); 
+    if (domain !== "codecraft.tv") { 
+      return {
+        emailDomain: {
+          parsedDomain: domain
+        }
+      }
+    }
+  }
+  return null; 
+}
+
 
 @Component({
   selector: 'app-form-personal',
@@ -48,46 +64,7 @@ export class FormPersonalComponent implements OnInit {
   tabs = ['Horario'];
   selected = new FormControl(0);
 
-  addTab(selectAfterAdding: boolean) {
-    this.tabs.push('Horario');
-    if (selectAfterAdding) {
-      this.selected.setValue(this.tabs.length - 1);
-    }
-  }
-  removeTab(index: number) {
-    this.tabs.splice(index, 1);
-  }
-  agregarTab(index: number) {
-    this.tabs.splice(index, 1);
-  }
-
-  ngOnInit() {
-    this.tPersonal.get().subscribe((data)=>{
-      this.selectTPersonal = data
-    },(error)=>{
-    })
-  }
-
-  // Change the user and password input and groups module visibility 
-  tipoChange(event) {
-    if (this.selectedtp == "2" || this.selectedtp == "1" || this.selectedtp == "3") {
-      this.isDisable = false;
-      this.visibility = "block";
-    } else {
-      this.isDisable = true;
-      this.visibility = "none";
-    }
-  }
-
-   // Notificación de success al eliminar
-   showSuccesSave() {
-    this.toastr.successToastr('Registro guardado','Exito!');
-  }
-
-  // Notificacion de error al eliminar
-  showErrorSave() {
-    this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
-  }
+  
 
   // Resetear usuario y contraseña
   cleanCamps = "";
@@ -125,6 +102,8 @@ export class FormPersonalComponent implements OnInit {
 
   // Interfaz de detalle de grupos
   detallegrupos: Detallegrupos[];
+  email: any;
+
 
   // Campos a guardar detalle grupos
   detallegrupo: Detallegrupos = {
@@ -132,7 +111,8 @@ export class FormPersonalComponent implements OnInit {
     idalu: null,
     idd: null,
     idh: null,
-    idp: this.idper
+    idp: this.idper,
+    
   };
 
   constructor(private personalService: PersonalService , private detallegruposService: DetallegruposService,
@@ -145,6 +125,71 @@ export class FormPersonalComponent implements OnInit {
         sanitizer.bypassSecurityTrustResourceUrl('assets/icons/material-design/hora.svg'));
   
     }
+    ngOnInit() {
+      this.tPersonal.get().subscribe((data)=>{
+        this.selectTPersonal = data
+      },(error)=>{
+      })
+    }
+    createFormControls(){
+      this.email = new FormControl('', [
+        Validators.required,
+        Validators.pattern("[^ @]*@[^ @]*"),
+        emailDomainValidator
+      ]);
+    }
+    
+ 
+    fControl = new FormControl('', [
+      Validators.required,
+      Validators.email
+    ]);
+  /* Mensajes de error de las validaciones */
+  getErrorMessage() {
+    return this.fControl.hasError('required') ? 'El campo es obligatorio' :
+      this.fControl.hasError('email') ? 'Ingrese un corre valido' :
+        '';
+  }
+    
+  addTab(selectAfterAdding: boolean) {
+    this.tabs.push('Horario');
+    if (selectAfterAdding) {
+      this.selected.setValue(this.tabs.length - 1);
+    }
+  }
+  
+  removeTab(index: number) {
+    this.tabs.splice(index, 1);
+  }
+  agregarTab(index: number) {
+    this.tabs.splice(index, 1);
+  }
+  
+
+
+
+
+
+  // Change the user and password input and groups module visibility 
+  tipoChange(event) {
+    if (this.selectedtp == "2" || this.selectedtp == "1" || this.selectedtp == "3") {
+      this.isDisable = false;
+      this.visibility = "block";
+    } else {
+      this.isDisable = true;
+      this.visibility = "none";
+    }
+  }
+
+   // Notificación de success al eliminar
+   showSuccesSave() {
+    this.toastr.successToastr('Registro guardado','Exito!');
+  }
+
+  // Notificacion de error al eliminar
+  showErrorSave() {
+    this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
+  }
     
 
     /* -------------------------------- METODOS DEL CRUD EN LA BASE DE DATOS -------------------------------- */

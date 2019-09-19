@@ -1,7 +1,64 @@
+mat-form-field {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
 
+mat-divider {
+    width: 100%;
+    background-color: darkgoldenrod;
+    color: darkgoldenrod;
+}
+
+mat-hint, .hint {
+    font-size: 120%;
+    color: #2ECC71;
+}
 hr{
     background-color: #db36a4; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     text-align: center;
     width: 70%;
     height: 1px;
+    }
+    .efec{
+        width: 100px;
+        margin-left: 300px;
+      margin-right: 50px;
+    
+    
+      }
+    
+    @media (max-width:1040px){
+      .efec{
+        width: 100px;
+        margin-left: 50px;
+      margin-right: 50px;
+    
+    
+      }
+      }
+      .payp, .tarj, .tran
+    {
+      width: 100px;
+      margin-left: 50px;
+      margin-right: 50px;
+    }
+    
+    mat-spinner
+    {
+        width: 10%;
+    }
+    
+    /* Planes de membresia */
+    
+    body {
+      font: 12px/20px 'Lucida Grande', Verdana, sans-serif;
+      color: #404040;
+      background: #75649b;
+    }
+    
+    .plans {
+      margin: 5px auto;
+      width: 100%;
+      zoom: 1;
     }

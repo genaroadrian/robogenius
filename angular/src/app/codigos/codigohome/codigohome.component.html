@@ -13,7 +13,8 @@
                        </div>
                           <div class="col-xl-2 col-md-12">
                              <h1 style="font-size: 30px; text-align: center;">Códigos de descuento</h1>
-                           </div>
+                           <hr/>
+                            </div>
                          <div class="col-xl-5 col-md-12 ">
                          </div>
                      </div>
@@ -45,33 +46,33 @@
                                 <!-- ID Column -->
                                 <ng-container matColumnDef="id">
                                   <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-                                  <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Id" >{{row.id}}</mat-cell>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="codigo" sticky>
                                   <mat-header-cell *matHeaderCellDef mat-sort-header>Código</mat-header-cell>
-                                  <mat-cell *matCellDef="let row"> {{row.codigo}}</mat-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Codigo  " > {{row.codigo}}</mat-cell>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="porcentaje">
                                   <mat-header-cell *matHeaderCellDef mat-sort-header>Porcentaje</mat-header-cell>
-                                  <mat-cell *matCellDef="let row"> {{row.porcentaje}}</mat-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Porcentaje" > {{row.porcentaje}}</mat-cell>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="lugar">
                                   <mat-header-cell *matHeaderCellDef mat-sort-header>Lugar</mat-header-cell>
-                                  <mat-cell *matCellDef="let row"> {{row.lugar}}</mat-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Lugar" > {{row.lugar}}</mat-cell>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="fecha">
                                   <mat-header-cell *matHeaderCellDef mat-sort-header>Fecha</mat-header-cell>
-                                  <mat-cell *matCellDef="let row"> {{row.fecha}}</mat-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Caduca" > {{row.fecha}}</mat-cell>
                                 </ng-container>
                             
                                 
                                 <ng-container matColumnDef="icons" stickyEnd>
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
-                                  <mat-cell *matCellDef="let row; let i=index;">
+                                  <mat-cell *matCellDef="let row; let i=index;" data-label="Acciones" >
                                     <button mat-icon-button class="text-success" (click)="modifica(i, row.id, row.codigo, row.porcentaje, row.lugar, row.fecha)">
                                       <mat-icon aria-label="Edit">edit</mat-icon>
                                     </button>

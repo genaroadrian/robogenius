@@ -45,3 +45,83 @@
       
   
 
+  hr{
+    background-color: #db36a4; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 120px;
+    height: 1px;
+    }
+  
+  
+  @media screen and (max-width: 960px) {
+  
+    .mat-header-row{
+      border-style: none;
+      min-height: 0%;
+    }
+    .mat-header-cell{
+      visibility: collapse;
+      
+    }
+    .mat-table {
+      border: 0;
+      vertical-align: middle
+    }
+  
+    .mat-table caption {
+      font-size: 1em;
+    }
+    
+    /*  Enable this to hide header
+    .mat-table .mat-header-cell {
+      
+      border: 10px solid;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    */
+    .mat-table .mat-row {
+      /* border-top: 1px solid; */
+      border-bottom: 2px  solid;
+      /* border-bottom: 3px solid #db36a4; */
+      /* border-bottom: 3px double #F6CA17; W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      display: block;
+      /* margin-top:40px; */
+    }
+    /*
+    .mat-table .mat-row:nth-child(even) {background: #CCC}
+    .mat-table .mat-row:nth-child(odd) {background: #FFF}
+    */
+    .mat-table .mat-cell {
+      border-bottom: 2px rgba(143, 120, 120, 0.12) solid;
+      display: block;
+      font-size: 1em;
+      text-align: right;
+      font-weight: bold;
+      height:30px;
+      margin-bottom: 4%;
+      padding: 10px !important;
+    }
+    .mat-table .mat-cell:before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      text-transform: uppercase;
+      font-weight: normal;
+      font-size: .85em;
+    }
+    
+      /* .mat-table .mat-cell:first-child {
+      margin-top: 10%;
+    } */
+  }
+  
+  
+  
+    

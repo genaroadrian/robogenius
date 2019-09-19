@@ -14,6 +14,7 @@
                        </div>
                           <div class="col-xl-2 col-md-12">
                              <h1 style="font-size: 30px; text-align: center;">Escuelas</h1>
+                             <hr/>
                            </div>
                          <div class="col-xl-5 col-md-12 ">
                          </div>
@@ -51,32 +52,32 @@
                             
                                 <ng-container matColumnDef="nombre" sticky>
                                   <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
-                                  <mat-cell *matCellDef="let row"> {{row.nombre}}</mat-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Nombre"> {{row.nombre}}</mat-cell>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="representante">
                                   <mat-header-cell *matHeaderCellDef mat-sort-header>Representante</mat-header-cell>
-                                  <mat-cell *matCellDef="let row"> {{row.representante}}</mat-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Representante"> {{row.representante}}</mat-cell>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="direccion">
                                   <mat-header-cell *matHeaderCellDef mat-sort-header>Dirección</mat-header-cell>
-                                  <mat-cell *matCellDef="let row"> {{row.direccion}}</mat-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Direccion"> {{row.direccion}}</mat-cell>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="telefono">
                                   <mat-header-cell *matHeaderCellDef mat-sort-header>Telefono</mat-header-cell>
-                                  <mat-cell *matCellDef="let row"> {{row.telefono}}</mat-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Telefono"> {{row.telefono}}</mat-cell>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="correo" >
                                   <mat-header-cell *matHeaderCellDef mat-sort-header>Correo</mat-header-cell>
-                                  <mat-cell *matCellDef="let row"> {{row.correo}}</mat-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Correo"> {{row.correo}}</mat-cell>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="icons" stickyEnd>
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
-                                  <mat-cell *matCellDef="let row; let i=index;">
+                                  <mat-cell *matCellDef="let row; let i=index;" data-label="Acciones">
                                     <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idesc, row.nombre, row.representante, row.direccion, row.telefono, row.correo)">
                                       <mat-icon aria-label="Edit">edit</mat-icon>
                                     </button>

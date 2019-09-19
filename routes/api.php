@@ -65,6 +65,8 @@ Route::resource('tema', 'temasController');
 Route::resource('subtema', 'subtemasController');
 Route::resource('confirmtoken', 'passwordResetController');
 
+Route::post('validation','LoginAngularController@validation')->name('validation');
+
 
 
 

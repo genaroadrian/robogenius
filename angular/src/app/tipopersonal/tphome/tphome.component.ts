@@ -129,6 +129,7 @@ export class TphomeComponent implements OnInit {
           return;
         }
         this.dataSource.filter = this.filter.nativeElement.value;
+
       });
 
   }

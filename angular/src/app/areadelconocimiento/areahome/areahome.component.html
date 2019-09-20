@@ -14,6 +14,7 @@
                        </div>
                           <div class="col-xl-4 col-md-12">
                              <h1 style="font-size: 30px; text-align: center;">Area del Conocimiento</h1>
+                          <hr/>
                            </div>
                          <div class="col-xl-4 col-md-12 ">
                          </div>
@@ -42,16 +43,16 @@
                                                       
                                   <ng-container matColumnDef="idac">
                                     <mat-header-cell *matHeaderCellDef mat-sort-header [ngStyle]="{display:tableview}">Id</mat-header-cell>
-                                    <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}">{{row.idac}}</mat-cell>
+                                    <mat-cell *matCellDef="let row" [ngStyle]="{display:tableview}" data-label="Id">{{row.idac}}</mat-cell>
                                   </ng-container>
                                   <ng-container matColumnDef="nombre">
                                       <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
-                                      <mat-cell *matCellDef="let row" >{{row.nombre}}</mat-cell>
+                                      <mat-cell *matCellDef="let row" data-label="Nombre">{{row.nombre}}</mat-cell>
                                     </ng-container>
 
                                     <ng-container matColumnDef="icons">
                                         <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
-                                        <mat-cell *matCellDef="let row; let i=index;">
+                                        <mat-cell *matCellDef="let row; let i=index;" data-label="Acciones">
 
                                           <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idac, row.nombre )">
                                             <mat-icon aria-label="Edit">edit</mat-icon>

@@ -19,25 +19,56 @@ export class LoginComponent implements OnInit {
     log:Login[];
   hide = true;
 
+        /* Barra de carga */
+        barra = "none"
+
   constructor(private router: Router, private service:LoginService,public dialog: MatDialog,
     public toastr: ToastrManager) { }
 
   ngOnInit() {
 
-    this.service.getPersonas()
-    .subscribe(data=>{
-      this.log=data;
-    })
+    // this.service.getPersonas()
+    // .subscribe(data=>{
+    //   this.log=data;
+    // })
   }
 
   login(form: NgForm){  
-    if (form.value.email === form.value.email && form.value.password === form.value.password){
+    // if (form.value.email === form.value.email && form.value.password === form.value.password){
+    //     localStorage.setItem('email' , form.value.email);
+    //     localStorage.setItem('foto' , form.value.pa);
+    //     this.router.navigateByUrl('/home'); 
+    // }
+    this.service.validation(form.value).subscribe((data)=>{
+    this.showBarra()
+      if(data==1){
         localStorage.setItem('email' , form.value.email);
         localStorage.setItem('foto' , form.value.pa);
-        this.router.navigateByUrl('/home'); 
-    }
-  }
+        // this.showSuccessEmail();
+        this.hideBarra()
 
+        this.router.navigateByUrl('/home'); 
+      }else{
+      // console.log("la cagaste");
+      this.hideBarra()
+      this.showErrorEmail1();
+      }
+
+    },(error)=>{
+      console.log(error)
+    })
+
+    
+  }
+    /* Mostrar la barra de carga */
+    showBarra() {
+      this.barra = ""
+    }
+  
+    /* Ocultar la barra de carga */
+    hideBarra() {
+      this.barra = "none"
+    }
   showSuccessEmail() {
     this.toastr.successToastr('Correo enviado revista tu bandeja de entrada', 'Exito!');
   }
@@ -45,6 +76,10 @@ export class LoginComponent implements OnInit {
   showErrorEmail()
   {
     this.toastr.errorToastr('Ocurrio un erro intentalo de nuevo', 'Oops!')
+  }
+  showErrorEmail1()
+  {
+    this.toastr.errorToastr('Contraseña o password incorrecto', 'Oops!')
   }
 
   showInfoEmail()

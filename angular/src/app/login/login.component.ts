@@ -39,23 +39,28 @@ export class LoginComponent implements OnInit {
     //     localStorage.setItem('foto' , form.value.pa);
     //     this.router.navigateByUrl('/home'); 
     // }
-    this.service.validation(form.value).subscribe((data)=>{
     this.showBarra()
-      if(data==1){
+    this.service.validation(form.value).subscribe((data)=>{
+      if(data[0]==1){
+        console.log(data);
         localStorage.setItem('email' , form.value.email);
-        localStorage.setItem('foto' , form.value.pa);
+        localStorage.setItem('foto' , data[1]);
         // this.showSuccessEmail();
         this.hideBarra()
 
         this.router.navigateByUrl('/home'); 
       }else{
+        console.log(data);
+
       // console.log("la cagaste");
       this.hideBarra()
       this.showErrorEmail1();
       }
 
     },(error)=>{
-      console.log(error)
+
+      this.showErrorEmail1();
+      this.hideBarra()
     })
 
     

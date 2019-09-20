@@ -38,6 +38,7 @@ class LoginAngularController extends Controller
         // validacion en el where
         $em = DB::SELECT("SELECT email FROM users where email='$email'");
         $ps = DB::SELECT("SELECT password FROM users where email='$email'");
+        $foto = DB::SELECT("SELECT fotoadmin FROM users where email='$email'");
       
         $exist=DB::select("SELECT count(id) as num from users where email = '$email'");
         foreach($exist as $e)
@@ -54,12 +55,17 @@ class LoginAngularController extends Controller
                 {
                   $nombre = "$m->email";
                 }
+                foreach($foto as $f)
+                {
+                  $fotito = "$f->fotoadmin";
+                }
 
     
         if(($x==$clave) && ($nombre==$email)){
             $x=1;
             // return "Login ingresado";
-            return $x;
+
+            return array($x,$fotito);
         }else{
             $x=0;
             return $x;

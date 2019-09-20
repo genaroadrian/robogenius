@@ -76,6 +76,8 @@ export class AluhomeComponent implements OnInit {
      this.paginator._intl.firstPageLabel= 'Primera página';
      this.paginator._intl.lastPageLabel= 'Ultima página';
   }
+
+ 
   // Metodo para refrescar la pagina
   refresh() {
     this.getAlumnos();
@@ -138,7 +140,7 @@ export class AluhomeComponent implements OnInit {
     apealu: string, fnacalu: string, sexoalu: string,
     domalu: string, telalu: number, correoalu: string, medicacion:string,
     alergias: string, perfilalu: string, cronica: string,
-    otro: string, evaluacion: string, usuarioalu: string,
+    otro: string, escuela: string, usuarioalu: string,
     pswalu: string, nompad: string, apepad: string, dompad: string, telpad: number, 
      correopad: string, ocupad: string, nommad: string, apemad: string, dommad: string
     , telmad: number, correomad: string, ocupmad: string, nommem: string 
@@ -159,7 +161,7 @@ export class AluhomeComponent implements OnInit {
       {
         idalu:idalu,nomalu:nomalu,apealu:apealu,fnacalu:fnacalu,sexoalu:sexoalu,domalu:domalu,telalu:telalu,
         correoalu:correoalu,medicacion:medicacion,alergias:alergias,perfilalu:perfilalu,cronica:cronica,otro:otro,
-        evaluacion:evaluacion,usuarioalu:usuarioalu,pswalu:pswalu,nompad:nompad,apepad:apepad,dompad:dompad,telpad:telpad,
+        escuela:escuela,usuarioalu:usuarioalu,pswalu:pswalu,nompad:nompad,apepad:apepad,dompad:dompad,telpad:telpad,
         correopad:correopad,ocupad:ocupad,nommad:nommad,apemad:apemad,dommad:dommad,telmad:telmad,correomad:correomad,
         ocumad:ocupmad,nommem:nommem,costomem:costomem,fechaini:fechaini,fechafin:fechafin,total:total,adelanto:adelanto,
         restante:restante,usuariopad:usuariopad,pswpad:pswpad
@@ -220,7 +222,7 @@ export class ExampleDataSource extends DataSource<Alumnos> {
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data
         this.filteredData = this._exampleDatabase.data.slice().filter((alumnos: Alumnos) => {
-          const searchStr = (alumnos.nomalu+alumnos.apealu+alumnos.domalu+alumnos.telalu+alumnos.evaluacion).toLowerCase();
+          const searchStr = (alumnos.nomalu+alumnos.apealu+alumnos.domalu+alumnos.telalu+alumnos.escuela).toLowerCase();
           return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
         });
 

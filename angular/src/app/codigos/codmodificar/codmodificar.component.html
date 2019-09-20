@@ -1,5 +1,5 @@
 <div class="container">
-  <h3 mat-dialog-title>bereeeeee</h3>
+  <h3 mat-dialog-title>Modificando</h3>
 
   <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
 
@@ -16,6 +16,14 @@
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
+    <div class="form">
+        <mat-form-field color="accent">
+            <span matPrefix>%&nbsp;</span>
+
+          <input matInput #input class="form-control" placeholder="Porcentaje" [(ngModel)]="data.porcentaje" name="porcentaje" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
   
     <div class="form">
       <mat-form-field color="accent">
@@ -33,10 +41,12 @@
   
 
 
-    <div mat-dialog-actions>
-      <button mat-button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
-        (click)="MODIFICAR(data)">Guardar</button>
-      <button mat-button (click)="onNoClick()" tabindex="-1">Cancelar</button>
-    </div>
+   
+
+    <div mat-dialog-actions >
+        <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+          (click)="MODIFICAR(data)" style="margin-left: 25px; margin-right: 25px;">Guardar</button>
+        <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+      </div>
   </form>
 </div>

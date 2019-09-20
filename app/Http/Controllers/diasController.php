@@ -7,5 +7,9 @@ use slidecom_robogenius\Http\Controllers\Controller;
 
 class diasController extends Controller
 {
-    //
+    public function index()
+    {
+        $dias = \DB::select("SELECT  * from dias");
+        return $dias;
+    }
 }

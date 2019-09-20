@@ -34,8 +34,8 @@
       <div class="form col-xl-4">
           <mat-form-field color="accent">
             <input matInput #input  placeholder="Correo" [(ngModel)]="data.correoalu"
-              name="correoalu">
-            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+              name="correoalu"  pattern="[^ @]*@[^ @]*">
+            <mat-error *ngIf="formControl.invalid">Correo incorrecto</mat-error>
           </mat-form-field>
         </div>
          </div>          
@@ -45,9 +45,9 @@
             <div class="form col-xl-4">
                 <mat-form-field class="example-full-width">
                   <input matInput #telalu maxlength="10" [(ngModel)]="data.telalu" placeholder="Telefono" type="tel"
-                    name="tealu">
+                    name="tealu" pattern="[0-9]{10}">
                   <mat-hint align="end">{{telalu.value.length}} / 10</mat-hint>
-                  <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+                  <mat-error *ngIf="formControl.invalid">Número incorrecto</mat-error>
                 </mat-form-field>
               </div>
             <!--  ----------------------------------Fecha de nacimiento ---------------------------------- -->
@@ -75,6 +75,12 @@
 
       <div class="row col-xl-12">
             <!--  ---------------------------------------Domicilio---------------------------------------  -->
+            <div class="form col-xl-4">
+              <mat-form-field color="accent">
+                <textarea [(ngModel)]="data.escuela" matInput placeholder="Escuela" name="escuela" required></textarea>
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+              </mat-form-field>
+            </div>
       <div class="form col-xl-4">
           <mat-form-field color="accent">
             <textarea [(ngModel)]="data.domalu" matInput placeholder="Domicilio" name="domalu" required></textarea>
@@ -123,19 +129,14 @@
       <div class="row col-xl-12">
 
       <!-- ------------------------------- Otro ------------------------------------------ -->
-      <div class="form col-xl-4">
+      <div class="form col-xl-12">
         <mat-form-field color="accent">
           <input matInput #input  placeholder="Otro" [(ngModel)]="data.otro" name="otro">
           <mat-hint align="end" class="hint">Especificar alguna otra condición medica medica.</mat-hint>
         </mat-form-field>
       </div>
           <!-- ------------------------------- Evaluacion ------------------------------------------ -->
-          <div class="form col-xl-4">
-              <mat-form-field color="accent">
-                <input matInput #input  placeholder="Evaluación" [(ngModel)]="data.evaluacion"
-                  name="evaluacion">
-              </mat-form-field>
-            </div>
+         
       </div>
 
       <div class="form col-xl-4">
@@ -198,9 +199,9 @@
         <div class="form col-xl-4">
             <mat-form-field class="example-full-width">
               <input matInput [(ngModel)]="data.telpad" #message maxlength="10" name="telpad" placeholder="Telefono"
-                type="tel">
+                type="tel" pattern="[0-9]{10}">
               <mat-hint align="end">{{message.value.length}} / 10</mat-hint>
-              <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+              <mat-error *ngIf="formControl.invalid">Teléfono incorrecto</mat-error>
             </mat-form-field>
       </div>
     </div>
@@ -216,8 +217,8 @@
         <div class="form col-xl-4">
           <mat-form-field color="accent">
             <input matInput #input  placeholder="Correo" [(ngModel)]="data.correopad"
-              name="correopad">
-            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+              name="correopad"  pattern="[^ @]*@[^ @]*">
+            <mat-error *ngIf="formControl.invalid">Correo incorrecto</mat-error>
           </mat-form-field>
         </div>
 
@@ -252,10 +253,10 @@
         </div>
         <div class="form col-xl-4">
             <mat-form-field class="example-full-width">
-              <input matInput [(ngModel)]="data.telmad" #message maxlength="10" name="telmad" placeholder="Telefono"
-                type="tel">
-              <mat-hint align="end">{{message.value.length}} / 10</mat-hint>
-              <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+              <input matInput [(ngModel)]="data.telmad" #dos maxlength="10" name="telmad" placeholder="Telefono"
+                type="tel" pattern="[0-9]{10}" >
+              <mat-hint align="end">{{dos.value.length}} / 10</mat-hint>
+              <mat-error *ngIf="formControl.invalid">Teléfono incorrecto</mat-error>
             </mat-form-field>
           </div>
 
@@ -272,8 +273,8 @@
         <div class="form col-xl-4">
           <mat-form-field color="accent">
             <input matInput #input  placeholder="Correo" [(ngModel)]="data.correomad"
-              name="correomad">
-            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+              name="correomad"  pattern="[^ @]*@[^ @]*">
+            <mat-error *ngIf="formControl.invalid">Correo incorrecto</mat-error>
           </mat-form-field>
         </div>
         <div class="form col-xl-4">

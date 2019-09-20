@@ -25,6 +25,7 @@ Route::resource('dgrupos', 'detallegruposController');
 Route::resource('tipomensualidad', 'tipomensualidadController');
 Route::resource('alumnos', 'alumnoController');
 Route::resource('dpadres', 'detallepadresController');
+Route::resource('dias', 'diasController');
 Route::resource('horas', 'padresController');
 Route::resource('sucursal', 'sucursalController');
 Route::resource('horarios', 'horariosController');

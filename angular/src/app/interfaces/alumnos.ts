@@ -12,7 +12,7 @@ export interface Alumnos {
     perfilalu: string,
     cronica: string,
     otro: string,
-    evaluacion: string,
+    escuela: string,
     usuarioalu: string,
     pswalu: string,
     nompad: string,

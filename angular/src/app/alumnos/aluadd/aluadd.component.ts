@@ -1,8 +1,8 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Directive } from '@angular/core';
 import { AlumnosService } from 'src/app/services/alumnos.service';
 import { HttpClient } from '@angular/common/http';
 import { Alumnos } from 'src/app/interfaces/alumnos';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { Dias } from 'src/app/interfaces/dias';
@@ -20,6 +20,42 @@ import { GruposAlumnosService } from 'src/app/services/grupos-alumnos.service';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { Router } from '@angular/router';
 import { EscuelasService } from 'src/app/services/escuelas.service';
+import { NG_VALIDATORS } from '@angular/forms';
+
+
+function emailDomainValidator(control: FormControl) { 
+  let email = control.value; 
+  if (email && email.indexOf("@") != -1) { 
+    let [_, domain] = email.split("@"); 
+    if (domain !== "codecraft.tv") { 
+      return {
+        emailDomain: {
+          parsedDomain: domain
+        }
+      }
+    }
+  }
+  return null; 
+}
+
+
+
+
+
+
+@Directive({
+  selector: '[emailDomain][ngModel]', 
+  providers: [
+    {
+      provide: NG_VALIDATORS,
+      useValue: emailDomainValidator,
+      multi: true 
+    }
+  ]
+})
+class EmailDomainValidator {
+}
+
 
 
 // declare let paypal: any;
@@ -33,6 +69,8 @@ import { EscuelasService } from 'src/app/services/escuelas.service';
   }]
 })
 export class AluaddComponent implements OnInit {
+  myForm: FormGroup;
+  email: any;
 
   /* ---------------------- Declaraión de variables ---------------------- */
 
@@ -207,7 +245,7 @@ export class AluaddComponent implements OnInit {
 
   getErrorMessage() {
     return this.fControl.hasError('required') ? 'Campo obligatorio' :
-      this.fControl.hasError('email') ? 'Ingrese un correo valido' :
+     // this.fControl.hasError('email') ? 'Ingrese un correo valido' :
         '';
   }
 
@@ -245,6 +283,13 @@ export class AluaddComponent implements OnInit {
     this.initConfig();
     this.getTipomem();
   }
+  createFormControls(){
+    this.email = new FormControl('', [
+      Validators.required,
+      Validators.pattern("[^ @]*@[^ @]*"),
+      emailDomainValidator
+    ]);
+  }
 
   getEscuelas()
   {
@@ -263,7 +308,7 @@ export class AluaddComponent implements OnInit {
     telalu: null, correoalu: null,
     medicacion: null, alergias: null,
     perfilalu: null, cronica: null,
-    otro: null, evaluacion: null,
+    otro: null, escuela: null,
     usuarioalu: null, pswalu: null,
     nompad: null, apepad: null,
     dompad: null, telpad: null,

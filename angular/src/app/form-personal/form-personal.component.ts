@@ -104,13 +104,18 @@ export class FormPersonalComponent implements OnInit {
   }
 
   // Change the user and password input and groups module visibility 
-  tipoChange(event) {
-    if (this.selectedtp == "2" || this.selectedtp == "1" || this.selectedtp == "3" || this.selectedtp == "4") {
-
-      this.visibility = "block";
-    } else {
-      this.visibility = "none";
-    }
+  tipoChange(idt) {
+    console.log(idt)
+    idt = Number(idt)
+    console.log(this.selectTPersonal)
+   let cond = this.selectTPersonal.filter(per => per.idtper == idt)
+   console.log(cond[0])
+   if(cond[0].permisos == 1)
+   {
+     this.visibility = ''
+   }else{
+     this.visibility = 'none'
+   }
   }
 
   // Notificación de success al eliminar
@@ -279,6 +284,7 @@ export class FormPersonalComponent implements OnInit {
           // this.tipopadd = data
           // this.exampleDatabase.dataChange.value.push(this.tipopadd);
           // this.refreshTable()
+        
           this.notifications.showSuccessAdd();
           this.hideBarra();
         }, (error) => {

@@ -156,8 +156,8 @@
                 <mat-form-field class="col-xl-10">
                   <mat-label>Tipo de Personal: </mat-label>
                   <mat-select [(ngModel)]="persona.idtper" [(value)]="selectedtp"
-                    (selectionChange)="tipoChange($event)">
-                    <mat-option *ngFor="let tp of selectTPersonal" value="{{tp.idtper}}">{{tp.tipo}}</mat-option>
+                    (selectionChange)="tipoChange(persona.idtper)">
+                    <mat-option  *ngFor="let tp of selectTPersonal" value="{{tp.idtper}}">{{tp.tipo}}</mat-option>
                   </mat-select>
                 </mat-form-field>
                 <button matTooltip="Agregar un nuevo tipo de personal"

@@ -13,14 +13,19 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 })
 export class TpeditComponent implements OnInit {
 
-  cheked: boolean = this.data.permisos
+  cheked: boolean
 
   constructor(public dialogRef: MatDialogRef<TpeditComponent>,private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any, public tipopersonalService: TipopersonalService,
     public toastr: ToastrManager) { }
 
   ngOnInit() {
-    console.log(this.data.permisos)
+    if(this.data.permisos == 1)
+    {
+      this.cheked = true
+    }else{
+      this.cheked = false
+    }
   }
 
   formControl = new FormControl('', [

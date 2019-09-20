@@ -29,6 +29,11 @@ export class PerfilService {
     return this.datos;
   }
 
+  getAllHorarios()
+  {
+    return this.httpClient.get(this.API_ENDPOINT+'/horarioperfilalumnos')
+  }
+
   getmem(datos)
   {
     const headers = new HttpHeaders({"Content-Type": "application/json"});
@@ -94,6 +99,17 @@ export class PerfilService {
   {
     const headers = new HttpHeaders({"Content-Type": "application/json"});
     return this.httpClient.delete(this.API_ENDPOINT+"/perfilalumnoshorario/"+id,{headers:headers} )
+  }
+
+  saveNuevoHorario(data)
+  {
+    this.dialogData = data
+  }
+
+  saveNHorario(data)
+  {
+    const headers = new HttpHeaders({"Content-Type": "application/json"});
+    return this.httpClient.post(this.API_ENDPOINT+'/horarioperfilalumnos', data, {headers: headers})
   }
 
 }

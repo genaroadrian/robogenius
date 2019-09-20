@@ -125,6 +125,8 @@ import { HometipomemComponent } from './tipomembresias/hometipomem/hometipomem.c
 import { AddtipomemComponent } from './tipomembresias/addtipomem/addtipomem.component';
 import { EdittipomemComponent } from './tipomembresias/edittipomem/edittipomem.component';
 import { DeletetipomemComponent } from './tipomembresias/deletetipomem/deletetipomem.component';
+import { PerfiladdmemComponent } from './alumnos/perfiladdmem/perfiladdmem.component';
+import { PerfiladdhoraComponent } from './alumnos/perfiladdhora/perfiladdhora.component';
 
 
 
@@ -259,7 +261,9 @@ const routes: Route[]=[
     HometipomemComponent,
     AddtipomemComponent,
     EdittipomemComponent,
-    DeletetipomemComponent
+    DeletetipomemComponent,
+    PerfiladdmemComponent,
+    PerfiladdhoraComponent
 
 
 
@@ -394,7 +398,11 @@ const routes: Route[]=[
     /* Modales de tipo de membresias  */
     AddtipomemComponent,
     EdittipomemComponent,
-    DeletetipomemComponent
+    DeletetipomemComponent,
+    /* Agregar membresia en el perfil de alumnos */
+    PerfiladdmemComponent,
+    /* Agregar un nuevo horario en el perfil de Alumnos */
+    PerfiladdhoraComponent
 
 
   ],

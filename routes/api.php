@@ -21,10 +21,11 @@ Route::resource('personal', 'personalController');
 Route::resource('tipopersonal', 'tipopersonalController');
 Route::resource('productos', 'productosController');
 Route::resource('escuelas', 'EscuelaController');
-// Route::resource('dgrupos', 'detallegruposController');
+Route::resource('dgrupos', 'detallegruposController');
 Route::resource('tipomensualidad', 'tipomensualidadController');
 Route::resource('alumnos', 'alumnoController');
 Route::resource('dpadres', 'detallepadresController');
+Route::resource('dias', 'diasController');
 Route::resource('horas', 'padresController');
 Route::resource('sucursal', 'sucursalController');
 Route::resource('horarios', 'horariosController');
@@ -75,4 +76,7 @@ Route::post('validation','LoginAngularController@validation')->name('validation'
 
 Route::resource('email', 'emailController');
 Route::resource('perfilalumnoshorario', 'perfilAlumnosHorarioController');
+Route::resource('horariopersonal', 'horariosPersonalController');
+
+Route::resource('horarioperfilalumnos', 'horarioperfilalumnosController');
 

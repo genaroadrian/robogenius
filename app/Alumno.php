@@ -45,6 +45,7 @@ class Alumno extends Model
 		'usuariopad',
 		'pswpad',
 		'finscripcion',
+		'idesc',
 		'activo',
 		'idsuc'
     ];

@@ -196,6 +196,14 @@
                               
                                      
                                     </div>
+
+                                    <h3>Escuela en la que estará inscrito</h3>
+                                    <mat-form-field>
+                                      <mat-label>Escuela</mat-label>
+                                      <mat-select [(ngModel)]="alumno.idesc" name="idesc" required>
+                                        <mat-option *ngFor="let esc of escuelas" value="{{esc.idesc}}">{{esc.nombre}}</mat-option>
+                                      </mat-select>
+                                    </mat-form-field>
                               
                                       <!-- ------------------------- Acceso al sistema del alumno ------------------------- -->
                               
@@ -399,12 +407,12 @@
                                   </form>
                                </div>
                             <!-- --------------------------- Formulario de la membresia --------------------------- -->
-
                                         <div class="membresia col-xl-12" [ngStyle]="{display:membresiaview}">
+                                            <!-- <div class="membresia"> -->
                                             <h2 style="text-align: center;">Elige tu tipo de membresia</h2>
-                                            <form>
-                                              <div class="center-block col-xl-12">
-                                                <div class="plan" *ngFor="let mem of _allMembresias">
+                                            <form class="">
+                                              <div class="center-block scrollmenu">
+                                                <section class="row plan " *ngFor="let mem of _allMembresias">
                                                   <h1 [ngStyle]="{display:alumnosview}">{{mem.idtmem}}</h1>
                                                   <h2 class="plan-title" >{{mem.nombre}}</h2>
                                                   <p class="plan-price">${{mem.costo}}.00 <span>/mes</span></p>
@@ -416,7 +424,7 @@
                                                     <li>Acceso al área de manufactura con supervisor del asesor</li>
                                                   </ul>
                                                   <button (click)="saveMem(mem.idtmem, mem.costo, mem.clases)"  class="btn btn-success">Empezar ahora</button>
-                                                </div>
+                                                </section>
                                               </div>
                                               <!-- ------------------------------------- Boton de siguiente ------------------------------------- -->
                                             </form>

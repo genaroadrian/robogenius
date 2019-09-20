@@ -15,6 +15,7 @@ class Tipopersonal extends Model
     protected $fillable = [ 
     	'idtper', 
         'tipo',
+        'permisos',
         'activo'
     ];
 }

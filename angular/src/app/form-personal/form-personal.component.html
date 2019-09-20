@@ -1,292 +1,308 @@
-<app-navbar></app-navbar>   
-<br> 
-<br> 
-<br> 
-<br> 
+<app-navbar></app-navbar>
+<br>
+<br>
+<br>
+<br>
 <div class="col-xl-12 col-md-12 body">
-    <div class="col-xl-12 col-md-12 ">
-        <div class="card bg-light mini-stat position-relative">
-              <div class="card-body">
-                 <div class="mini-stat-desc">
-                    <div class="col-xl-12 col-md-12">
-                        <div class="col-xl-4 col-md-12 ">
-                        </div>
-                           <div class="col-xl-4 col-md-12">
-                              <h1 style="font-size: 30px; text-align: center;">Agregar nuevo personal</h1>
-                              <hr/> 
-                              <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
-                            </div>
-                          <div class="col-xl-4 col-md-12 ">
-                          </div>
-                      </div>
-                      <div class="col-xl-12 col-md-12">
-                        <!-- <h3 class="text-light">Agregar nuevo personal</h3> -->
-  
-    <div [ngStyle]="{display:perso}">
-        <!-- <mat-form-field appearance="outline">
+  <div class="col-xl-12 col-md-12 ">
+    <div class="card bg-light mini-stat position-relative">
+      <div class="card-body">
+        <div class="mini-stat-desc">
+          <div class="col-xl-12 col-md-12">
+            <div class="col-xl-4 col-md-12 ">
+            </div>
+            <div class="col-xl-4 col-md-12">
+              <h1 style="font-size: 30px; text-align: center;">Agregar nuevo personal</h1>
+              <hr />
+              <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
+            </div>
+            <div class="col-xl-4 col-md-12 ">
+            </div>
+          </div>
+          <div class="col-xl-12 col-md-12">
+            <!-- <h3 class="text-light">Agregar nuevo personal</h3> -->
+
+            <div [ngStyle]="{display:perso}">
+              <!-- <mat-form-field appearance="outline">
             <mat-label>Nombre(s)</mat-label>
             <input [(ngModel)]="persona.nombre" matInput placeholder="Nombre(s)">
           </mat-form-field> -->
 
-      <div class="col-xl-4 col-md-12 ">
-        <mat-form-field >
-          <input class=" example-right-align" [(ngModel)]="persona.nombre" matInput upperCase placeholder="Nombre(s)" required>
-        </mat-form-field>
-      </div>
-      <div class="col-xl-4 col-md-12">
-        <mat-form-field>
-          <input class="example-right-align" [(ngModel)]="persona.apellidos" upperCase matInput placeholder="Apellidos" required>
-        </mat-form-field>
-      </div>
-  
-      <div class="col-xl-4 col-md-12">
-        <mat-form-field>
-          <mat-label>Sexo: </mat-label>
-          <mat-select [(ngModel)]="persona.sexo" [(value)]="selectedsex">
-            <mat-option value="Hombre">Hombre</mat-option>
-            <mat-option value="Mujer">Mujer</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <br>
-      <br>
-      <br>
-      <br>
-
-      
-
-      <div class="col-xl-4 col-md-12">
-        <mat-form-field >
-          <input class="example-right-align"  [(ngModel)]="persona.curp"  #message  maxlength="18" matInput  name="CURP" placeholder="Curp"
-            type="text" pattern="[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}"  upperCase required>
-            <mat-error *ngIf="fControl.invalid">Curp incorrecto</mat-error>
-
-         
-        </mat-form-field>
-      </div>
-  
-      <div class="col-xl-4 col-md-12">
-          <mat-form-field>
-              <input class="example-right-align" [(ngModel)]="persona.fechanac" matInput placeholder="Fecha de nacimiento"
-                format="YYYY/mm/dd" type="date" required>
-            </mat-form-field>
-      </div>
-  
-      <div class="col-xl-4 col-md-12">
-        <mat-form-field>
-          <input class="example-right-align" [(ngModel)]="persona.salariomensual" matInput placeholder="Salario mensual"
-            type="number" class="example-right-align" required>
-          <span matPrefix>$&nbsp;</span>
-        </mat-form-field>
-       
-      </div>
-      <br>
-      <br>
-      <br>
-      <br>
-      <div class="col-xl-4 col-md-12">
-        <mat-form-field>
-          <input class="example-right-align" [(ngModel)]="persona.perfilprofesional" matInput placeholder="Perfil profesional" required>
-        </mat-form-field>
-      </div>
-      <div class="col-xl-4 col-md-12">
-        <mat-form-field>
-          <input class="example-right-align" [(ngModel)]="persona.especialidad" matInput placeholder="Especialidad" required>
-        </mat-form-field>
-      </div>
-  
-      <div class="col-xl-4 col-md-12">
-        <mat-form-field>
-              <input class="example-right-align" [(ngModel)]="persona.fechaingreso" matInput placeholder="Fecha de ingreso"
-                format="YYYY/mm/dd" type="date">
-            </mat-form-field>
-      </div>
-      <br>
-      <br>
-      <br>
-      <br>
-      
-      <div class="col-xl-4 col-md-12">
-          <mat-form-field>
-            <input class="example-right-align"  matInput placeholder="Hora de Entrada" value="{{selectedTime}}">
-          <!-- <mat-datepicker-toggle matSuffix (click)="open()" ></mat-datepicker-toggle> -->
-          <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon" matSuffix (click)="open()"></mat-icon>
-          </mat-form-field>
-        </div>
-      <div class="col-xl-4 col-md-12">
-        <mat-form-field>
-            <input class="example-right-align"  matInput placeholder="Hora de Entrada" value="{{selectedTimes}}">
-            <!-- <mat-datepicker-toggle matSuffix (click)="open()" ></mat-datepicker-toggle> -->
-            <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon" matSuffix (click)="opens()"></mat-icon>
-          </mat-form-field>
-
-          </div>
-  
-      <div></div>
-      <div class="col-xl-4 col-md-12">
-        <mat-form-field>
-          <mat-label>Estado civil: </mat-label>
-          <mat-select [(ngModel)]="persona.estadocivil" [(value)]="selectedestado">
-            <mat-option value="Casado(a)">Casado(a)</mat-option>
-            <mat-option value="Soltero(a)">Soltero(a)</mat-option>
-            <mat-option value="Sin especificar">Sin especificar</mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
-      <br>
-      <br>
-      <br>
-      <br>
-  
-      <div class="col-xl-4 col-md-12">
-        <mat-form-field class="mitad">
-          <textarea class="example-right-align" [(ngModel)]="persona.tareasasignadas" matInput
-            placeholder="Tareas a realizar"></textarea>
-        </mat-form-field>
-      </div>
-  
-      <div class="col-xl-4 col-md-12">
-        <mat-form-field class="col-xl-10">
-          <mat-label>Tipo de Personal: </mat-label>
-          <mat-select [(ngModel)]="persona.idtper" [(value)]="selectedtp" (selectionChange)="tipoChange($event)">
-            <mat-option *ngFor="let tp of selectTPersonal" value="{{tp.idtper}}">{{tp.tipo}}</mat-option>
-          </mat-select>
-        </mat-form-field>
-        <button matTooltip="Agregar un nuevo tipo de personal"  aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button (click)="nuevoTPersonal()"><mat-icon>add</mat-icon></button>
-      </div>
-  
-      <div class="col-xl-4 col-md-12">
-        <mat-form-field >
-          <textarea [(ngModel)]="persona.domicilio" matInput placeholder="Domicilio"></textarea>
-        </mat-form-field>
-      </div>
-      <br>
-      <br>
-      <br>
-      <br>
-      <div class="col-xl-4 col-md-12">
-          <mat-form-field [ngStyle]="{display:visibility}">
-            <input class="example-right-align" [(ngModel)]="persona.usuario" [(value)]="cleanCamps" matInput placeholder="Usuario"
-              [disabled]="isDisable">
-          </mat-form-field>
-        </div>
-      <div class="col-xl-4 col-md-12">
-        
-          
-
-
-          <div mat-dialog-actions>
-
-      <button (click)="savePersonal(persona)" class="btn btn-large btn-block btn-primary" [type]="submit"  >
-        Guardar
-      </button>
-      </div>
-        
-        </div>
-       
-    
-      
-      <div class="col-xl-4 col-md-12">
-          <mat-form-field [ngStyle]="{display:visibility}">
-            <!-- <mat-form-field> -->
-            <input class="example-right-align" [(ngModel)]="persona.contra" [(value)]="cleanCamps" matInput
-              placeholder="Contraseña" [type]="hide ? 'password' : 'text'" [disabled]="isDisable">
-            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </mat-form-field>
-        </div>
-      </div>
-
-  
-    <!-- ------------------------------ formulario de grupos ------------------------------ -->
-   <div class="col-xl-12 col-md-12 ">
-    <div  class="col-xl-1">
-    </div>
-    <div class="col-xl-12 col-md-12">
-      <!-- <div [ngStyle]="{display:horarios}" > -->
-        <div>
-              <h1 style="text-align: center;">Asignación de grupos</h1>
-  
-        <br>
-        <div style="text-align: center;">
-        <button  class="btn btn-warning" (click)="addTab(selectAfterAdding.checked)">
-          Agregar mi horario
-        </button>
-          <br>
-        <mat-checkbox #selectAfterAdding> Seleccionar horario despues de agregar </mat-checkbox>
-        </div>
-      </div>
-<!--   
-      <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)"
-        [ngStyle]="{display:horarios}"> -->
-        <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-        <!-- <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)"> -->
-        <mat-tab *ngFor="let tab of tabs; let index = index;" [label]="tab">
-          {{tab}}
-          <div class="col-md-12">
-              <mat-form-field class="col-md-5">
-  
-                  <mat-label>Dias: </mat-label>
-        
-                  <mat-select [(ngModel)]="horarioPersonal[index].idd">
-                    <mat-option *ngFor="let d of dias" value="d.iddia">{{d.dia}}</mat-option>
-                    
-                  </mat-select>
-                  
-        
+              <div class="col-xl-4 col-md-12 ">
+                <mat-form-field>
+                  <input class=" example-right-align" [(ngModel)]="persona.nombre" matInput upperCase
+                    placeholder="Nombre(s)" required>
                 </mat-form-field>
-                <button matTooltip="Agregar nuevo dia"  class="col-xl-2" mat-icon-button>
-                    <mat-icon>add</mat-icon>
+              </div>
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field>
+                  <input class="example-right-align" [(ngModel)]="persona.apellidos" upperCase matInput
+                    placeholder="Apellidos" required>
+                </mat-form-field>
+              </div>
+
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field>
+                  <mat-label>Sexo: </mat-label>
+                  <mat-select [(ngModel)]="persona.sexo" [(value)]="selectedsex">
+                    <mat-option value="Hombre">Hombre</mat-option>
+                    <mat-option value="Mujer">Mujer</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <br>
+              <br>
+              <br>
+              <br>
+
+
+
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field>
+                  <input class="example-right-align" [(ngModel)]="persona.curp" #message maxlength="18" matInput
+                    name="CURP" placeholder="Curp" type="text" pattern="[A-Z]{4}[0-9]{6}[A-Z]{6}[0-9]{2}" upperCase
+                    required>
+                  <mat-error *ngIf="fControl.invalid">Curp incorrecto</mat-error>
+
+
+                </mat-form-field>
+              </div>
+
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field>
+                  <input class="example-right-align" [(ngModel)]="persona.fechanac" matInput
+                    placeholder="Fecha de nacimiento" format="YYYY/mm/dd" type="date" required>
+                </mat-form-field>
+              </div>
+
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field>
+                  <input class="example-right-align" [(ngModel)]="persona.salariomensual" matInput
+                    placeholder="Salario mensual" type="number" class="example-right-align" required>
+                  <span matPrefix>$&nbsp;</span>
+                </mat-form-field>
+
+              </div>
+              <br>
+              <br>
+              <br>
+              <br>
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field>
+                  <input class="example-right-align" [(ngModel)]="persona.perfilprofesional" matInput
+                    placeholder="Perfil profesional" required>
+                </mat-form-field>
+              </div>
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field>
+                  <input class="example-right-align" [(ngModel)]="persona.especialidad" matInput
+                    placeholder="Especialidad" required>
+                </mat-form-field>
+              </div>
+
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field>
+                  <input class="example-right-align" [(ngModel)]="persona.fechaingreso" matInput
+                    placeholder="Fecha de ingreso" format="YYYY/mm/dd" type="date">
+                </mat-form-field>
+              </div>
+              <br>
+              <br>
+              <br>
+              <br>
+
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field>
+                  <input class="example-right-align" matInput placeholder="Hora de Entrada" value="{{selectedTime}}">
+                  <!-- <mat-datepicker-toggle matSuffix (click)="open()" ></mat-datepicker-toggle> -->
+                  <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon" matSuffix
+                    (click)="open()"></mat-icon>
+                </mat-form-field>
+              </div>
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field>
+                  <input class="example-right-align" matInput placeholder="Hora de Entrada" value="{{selectedTimes}}">
+                  <!-- <mat-datepicker-toggle matSuffix (click)="open()" ></mat-datepicker-toggle> -->
+                  <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon" matSuffix
+                    (click)="opens()"></mat-icon>
+                </mat-form-field>
+
+              </div>
+
+              <div></div>
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field>
+                  <mat-label>Estado civil: </mat-label>
+                  <mat-select [(ngModel)]="persona.estadocivil" [(value)]="selectedestado">
+                    <mat-option value="Casado(a)">Casado(a)</mat-option>
+                    <mat-option value="Soltero(a)">Soltero(a)</mat-option>
+                    <mat-option value="Sin especificar">Sin especificar</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+              <br>
+              <br>
+              <br>
+              <br>
+
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field class="mitad">
+                  <textarea class="example-right-align" [(ngModel)]="persona.tareasasignadas" matInput
+                    placeholder="Tareas a realizar"></textarea>
+                </mat-form-field>
+              </div>
+
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field class="col-xl-10">
+                  <mat-label>Tipo de Personal: </mat-label>
+                  <mat-select [(ngModel)]="persona.idtper" [(value)]="selectedtp"
+                    (selectionChange)="tipoChange($event)">
+                    <mat-option *ngFor="let tp of selectTPersonal" value="{{tp.idtper}}">{{tp.tipo}}</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button matTooltip="Agregar un nuevo tipo de personal"
+                  aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2"
+                  mat-icon-button (click)="nuevoTPersonal()">
+                  <mat-icon>add</mat-icon>
+                </button>
+              </div>
+
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field>
+                  <textarea [(ngModel)]="persona.domicilio" matInput placeholder="Domicilio"></textarea>
+                </mat-form-field>
+              </div>
+              <br>
+              <br>
+              <br>
+              <br>
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field [ngStyle]="{display:visibility}">
+                  <input class="example-right-align" [(ngModel)]="persona.usuario" [(value)]="cleanCamps" matInput
+                    placeholder="Usuario" [disabled]="isDisable">
+                </mat-form-field>
+              </div>
+              <div class="col-xl-4 col-md-12">
+
+
+
+
+                <div mat-dialog-actions>
+
+                  <button (click)="savePersonal(persona)" class="btn btn-large btn-block btn-primary" [type]="submit">
+                    Guardar
                   </button>
-
-                  <mat-form-field class="col-md-5" align="left">
-  
-                      <mat-label>Horario: </mat-label>
-            
-                      <mat-select [(ngModel)]="horarioPersonal[index].idh">
-                        <!-- <mat-option  value="1">7:00</mat-option> -->
-                        <mat-option *ngFor="let h of horas" value="{{h.idh}}">{{h.hora}}</mat-option>
-                        
-                      </mat-select>
-                      
-            
-                    </mat-form-field>
-                    <button matTooltip="Agregar nuevo horario"  class="col-xl-2" mat-icon-button>
-                        <mat-icon>add</mat-icon>
-                      </button>
-          </div>
-  
-          
-          <div style="text-align: center;">
-          <button class="btn btn-primary" [disabled]="tabs.length === 0"
-            (click)="saveDetallegrupos(horarioPersonal[index], index)">
-            Guardar
-          </button>
-  
-          <button  class="btn btn-danger" [disabled]="tabs.length === 1"
-            (click)="removeTab(index)">
-            Cancelar
-          </button>
-          </div>
-        </mat-tab>
-      </mat-tab-group>
-    </div>
-    <div [ngStyle]="{display:horarios}" class="col-xl-1">
-      </div>
-    </div>
-      
-
-  
-  
-                      </div>
-                      
-                      
-
-                 </div>
                 </div>
+
+              </div>
+
+
+
+              <div class="col-xl-4 col-md-12">
+                <mat-form-field [ngStyle]="{display:visibility}">
+                  <!-- <mat-form-field> -->
+                  <input class="example-right-align" [(ngModel)]="persona.contra" [(value)]="cleanCamps" matInput
+                    placeholder="Contraseña" [type]="hide ? 'password' : 'text'" [disabled]="isDisable">
+                  <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </mat-form-field>
               </div>
             </div>
-          </div>
-       
-   
-          <app-fotter></app-fotter>
 
+
+            <!-- ------------------------------ formulario de grupos ------------------------------ -->
+            <div class="col-xl-12 col-md-12 ">
+              <div class="col-xl-1">
+              </div>
+              <div class="col-xl-12 col-md-12">
+                <div [ngStyle]="{display:horarios}" >
+                <!-- <div> -->
+                  <h1 style="text-align: center;">Asignación de grupos</h1>
+
+                  <br>
+                  <div style="text-align: center;">
+                    <button class="btn btn-warning" (click)="addTab(selectAfterAdding.checked)">
+                      Agregar mi horario
+                    </button>
+                    <br>
+                    <mat-checkbox #selectAfterAdding> Seleccionar horario despues de agregar </mat-checkbox>
+                  </div>
+                </div>
+                  
+      <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)"
+        [ngStyle]="{display:horarios}">
+                <!-- <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)"> -->
+                  <!-- <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)"> -->
+                  <mat-tab *ngFor="let tab of tabs; let index = index;" [label]="tab">
+                    {{tab}}
+                    <div class="col-md-12">
+                      <mat-form-field class="col-md-5">
+
+                        <mat-label>Dias: </mat-label>
+
+                        <mat-select [(ngModel)]="horarioPersonal[index].idd">
+                          <mat-option *ngFor="let d of dias" value="d.iddia">{{d.dia}}</mat-option>
+
+                        </mat-select>
+
+
+                      </mat-form-field>
+                      <!-- <button matTooltip="Agregar nuevo dia" class="col-md-2" mat-icon-button>
+                        <mat-icon>add</mat-icon>
+                      </button> -->
+
+                      <mat-form-field class="col-md-5" align="left">
+
+                        <mat-label>Horario: </mat-label>
+
+                        <mat-select [(ngModel)]="horarioPersonal[index].idh">
+                          <!-- <mat-option  value="1">7:00</mat-option> -->
+                          <mat-option *ngFor="let h of horas" value="{{h.idh}}">{{h.hora}}</mat-option>
+
+                        </mat-select>
+
+
+                      </mat-form-field>
+                      <button (click)="nuevoHorario()" matTooltip="Agregar nuevo horario" class="col-md-2" mat-icon-button>
+                        <mat-icon>add</mat-icon>
+                      </button>
+                    </div>
+
+
+                    <div style="text-align: center;">
+                      <button class="btn btn-primary" [disabled]="tabs.length === 0"
+                        (click)="saveDetallegrupos(horarioPersonal[index], index)">
+                        Guardar
+                      </button>
+
+                      <button class="btn btn-danger" [disabled]="tabs.length === 1" (click)="removeTab(index)">
+                        Cancelar
+                      </button>
+                    </div>
+                    <br><br>
+                    <div style="text-align: center;">
+                      <button class="btn btn-info" [routerLink]="['/personal']" routerLinkActive="router-link-active" > Finalizar </button>
+
+                    </div>
+                  </mat-tab>
+                </mat-tab-group>
+                
+              </div>
+
+            </div>
+            
+
+
+
+
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-fotter></app-fotter>

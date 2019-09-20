@@ -3,19 +3,25 @@
 
   <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm" style="height:240px; text-align: center;">
 
-    <div class="form">
+    <div >
       <mat-form-field color="accent">
         <input matInput #input class="form-control" placeholder="Id" [(ngModel)]="data.idtper" name="idper" required disabled>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
   
-    <div class="form">
+    <div >
       <mat-form-field color="accent">
         <input matInput #input class="form-control" placeholder="Tipo" [(ngModel)]="data.tipo" name="tipo" required>
         <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
+
+    <div>
+        <span>Ingreso al sistema: </span>
+        <mat-slide-toggle (change)="permisos($event)" [checked]="cheked">
+        </mat-slide-toggle>
+      </div>
 
     <div mat-dialog-actions>
       <button class="btn btn-success"[type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"

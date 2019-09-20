@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialogRef, MatSlideToggleChange} from '@angular/material';
 import {FormControl, Validators} from '@angular/forms';
 import { TipopersonalService } from 'src/app/services/tipopersonal.service';
 import { Tipopersonal } from 'src/app/interfaces/tipopersonal';
@@ -13,11 +13,14 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 })
 export class TpeditComponent implements OnInit {
 
+  cheked: boolean = this.data.permisos
+
   constructor(public dialogRef: MatDialogRef<TpeditComponent>,private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any, public tipopersonalService: TipopersonalService,
     public toastr: ToastrManager) { }
 
   ngOnInit() {
+    console.log(this.data.permisos)
   }
 
   formControl = new FormControl('', [
@@ -35,6 +38,17 @@ export class TpeditComponent implements OnInit {
     // emppty stuff
   }
 
+  permisos(event: MatSlideToggleChange)
+    {
+      if (this.cheked == false) {
+        this.cheked = true
+        // console.log(this.cheked)
+      } else {
+        this.cheked = false
+        // console.log(this.cheked)
+      }
+    }
+
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -42,7 +56,14 @@ export class TpeditComponent implements OnInit {
 
     /* Confirma la actualizacion del registro */
     stopEdit(data): void {
-      this.tipopersonalService.updateTipopersonal(data);
+      if (this.cheked == false) {
+        this.data.permisos = 0
+        // console.log(this.cheked)
+      } else {
+        this.data.permisos = 1
+        // console.log(this.cheked)
+      }
+      this.tipopersonalService.updateTipopersonal(this.data);
     }
 
 }

@@ -20,6 +20,8 @@ import { NotificationsService } from '../services/notifications.service';
 import { GruposAlumnosService } from '../services/grupos-alumnos.service';
 import { NG_VALIDATORS } from '@angular/forms';
 import { HaddComponent } from '../horarios/hadd/hadd.component';
+import { HorariosService } from '../services/horarios.service';
+import { Horario } from '../interfaces/horario';
 
 function emailDomainValidator(control: FormControl) {
   let email = control.value;
@@ -103,7 +105,7 @@ export class FormPersonalComponent implements OnInit {
 
   // Change the user and password input and groups module visibility 
   tipoChange(event) {
-    if (this.selectedtp == "2" || this.selectedtp == "1" || this.selectedtp == "3") {
+    if (this.selectedtp == "2" || this.selectedtp == "1" || this.selectedtp == "3" || this.selectedtp == "4") {
 
       this.visibility = "block";
     } else {
@@ -173,7 +175,7 @@ export class FormPersonalComponent implements OnInit {
   constructor(private personalService: PersonalService, private detallegruposService: DetallegruposService,
     private _formBuilder: FormBuilder, private httpClient: HttpClient, private router: Router, public toastr: ToastrManager,
     private atp: AmazingTimePickerService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, public tPersonal: TipopersonalService,
-    public dialog: MatDialog, public tipopersonalService: TipopersonalService, public notifications: NotificationsService, public horarioPersona: GruposAlumnosService) {
+    public dialog: MatDialog,public horarioService: HorariosService, public tipopersonalService: TipopersonalService, public notifications: NotificationsService, public horarioPersona: GruposAlumnosService) {
     iconRegistry.addSvgIcon(
       'thumbs-up',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/material-design/hora.svg'));
@@ -310,15 +312,22 @@ export class FormPersonalComponent implements OnInit {
     
   }
 
-  nuevoHorario()
+  nuevoHorario(horario: Horario)
   {
     const dialogRef = this.dialog.open(HaddComponent,{
-      
+      data:
+      {
+        horario: horario
+      }
     })
     dialogRef.afterClosed().subscribe(result=>{
       if(result == 1)
       {
-        
+        this.horarioService.add(this.horarioService.getDialogData()).subscribe((data)=>{
+          let addH = data
+          console.log(addH)
+          this.horas.push(addH)
+        })
       }
     })
   }

@@ -11,7 +11,7 @@ import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule,
   MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule,
   ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule, MatTabsModule, MatSortModule,
   MatToolbarModule, MatPaginatorIntl, MatSpinner, MatProgressSpinnerModule, MatSnackBarModule,
-  MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatSlideToggleModule, MatExpansionModule} from '@angular/material';
+  MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatSlideToggleModule, MatExpansionModule, MatTooltipModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AmazingTimePickerService, AmazingTimePickerModule } from 'amazing-time-picker';
 import { LoginComponent } from './login/login.component';
@@ -127,6 +127,10 @@ import { EdittipomemComponent } from './tipomembresias/edittipomem/edittipomem.c
 import { DeletetipomemComponent } from './tipomembresias/deletetipomem/deletetipomem.component';
 import { PerfiladdmemComponent } from './alumnos/perfiladdmem/perfiladdmem.component';
 import { PerfiladdhoraComponent } from './alumnos/perfiladdhora/perfiladdhora.component';
+import { HomeasisComponent } from './asistencias/homeasis/homeasis.component';
+import { EditasisComponent } from './asistencias/editasis/editasis.component';
+import { DeleteasisComponent } from './asistencias/deleteasis/deleteasis.component';
+import { AddasisComponent } from './asistencias/addasis/addasis.component';
 
 
 
@@ -169,7 +173,8 @@ const routes: Route[]=[
 {path: 'areadelconocimiento', component: AreahomeComponent},
 {path: 'subtema', component: SubtemahomeComponent},
 {path: 'tema', component: TemahomeComponent},
-{path: 'tipomembresia', component: HometipomemComponent}
+{path: 'tipomembresia', component: HometipomemComponent},
+{path: 'asistencias', component: HomeasisComponent}
 ];
 
 @NgModule({
@@ -263,7 +268,11 @@ const routes: Route[]=[
     EdittipomemComponent,
     DeletetipomemComponent,
     PerfiladdmemComponent,
-    PerfiladdhoraComponent
+    PerfiladdhoraComponent,
+    HomeasisComponent,
+    EditasisComponent,
+    DeleteasisComponent,
+    AddasisComponent
 
 
 
@@ -307,7 +316,8 @@ const routes: Route[]=[
     MatExpansionModule,
     ChartsModule,
     MatProgressBarModule,
-    MatListModule
+    MatListModule,
+    MatTooltipModule
     ],
   providers: [
     TipopersonalService,
@@ -402,7 +412,11 @@ const routes: Route[]=[
     /* Agregar membresia en el perfil de alumnos */
     PerfiladdmemComponent,
     /* Agregar un nuevo horario en el perfil de Alumnos */
-    PerfiladdhoraComponent
+    PerfiladdhoraComponent,
+    /* Modales de las asistencias */
+    AddasisComponent,
+    DeleteasisComponent,
+    EditasisComponent
 
 
   ],

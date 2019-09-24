@@ -4,26 +4,34 @@
 <br>
 <br>
 <div class="col-xl-12 col-md-12 body">
-  <div class="col-xl-12 col-md-12 ">
-    <div class="card bg-light mini-stat position-relative">
-      <div class="card-body">
-        <div class="mini-stat-desc">
-          <div class="col-xl-12 col-md-12">
-            <div class="col-xl-4 col-md-12 ">
-            </div>
-            <div class="col-xl-4 col-md-12">
-              <h1 style="font-size: 30px; text-align: center;">Agregar nuevo personal</h1>
-              <hr />
-              <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
-            </div>
-            <div class="col-xl-4 col-md-12 ">
-            </div>
-          </div>
-          <div class="col-xl-12 col-md-12">
-            <!-- <h3 class="text-light">Agregar nuevo personal</h3> -->
-
-            <div [ngStyle]="{display:perso}">
-              <!-- <mat-form-field appearance="outline">
+    <div class="col-xl-12 col-md-12 ">
+        <div class="card bg-light mini-stat position-relative">
+              <div class="card-body">
+                 <div class="mini-stat-desc">
+                    <div class="col-xl-12 col-md-12">
+                        <div class="col-xl-4 col-md-12 ">
+                          <br>
+                          <br>
+                            <a [routerLink]="['/personal']" class="arrow-container">
+                                <div class="arrow"></div>
+                                <div class="arrow"></div>
+                                <div class="arrow"></div>  
+                              </a>
+                        </div>
+                           <div class="col-xl-4 col-md-12">
+                              
+                              <h1 style="font-size: 30px; text-align: center;">Agregar nuevo personal</h1>
+                              <hr/> 
+                              <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
+                            </div>
+                          <div class="col-xl-4 col-md-12 ">
+                          </div>
+                      </div>
+                      <div class="col-xl-12 col-md-12">
+                        <h3 class="text-light">Agregar nuevo personal</h3> -->
+  
+    <div [ngStyle]="{display:perso}">
+        <!-- <mat-form-field appearance="outline">
             <mat-label>Nombre(s)</mat-label>
             <input [(ngModel)]="persona.nombre" matInput placeholder="Nombre(s)">
           </mat-form-field> -->
@@ -54,8 +62,66 @@
               <br>
               <br>
               <br>
+      </div>
+  
+      <div class="col-xl-4 col-md-12">
+          <mat-form-field>
+              <input class="example-right-align" [(ngModel)]="persona.fechanac" matInput placeholder="Fecha de nacimiento"
+                format="YYYY/mm/dd" type="date" required>
+            </mat-form-field>
+      </div>
+  
+      <div class="col-xl-4 col-md-12">
+        <mat-form-field>
+          <input class="example-right-align" [(ngModel)]="persona.salariomensual" matInput placeholder="Salario mensual"
+            type="number" class="example-right-align" required>
+          <span matPrefix>$&nbsp;</span>
+        </mat-form-field>
+       
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div class="col-xl-4 col-md-12">
+        <mat-form-field>
+          <input class="example-right-align" [(ngModel)]="persona.perfilprofesional" matInput placeholder="Perfil profesional" required>
+        </mat-form-field>
+      </div>
+      <div class="col-xl-4 col-md-12">
+        <mat-form-field>
+          <input class="example-right-align" [(ngModel)]="persona.especialidad" matInput placeholder="Especialidad" required>
+        </mat-form-field>
+      </div>
+  
+      <div class="col-xl-4 col-md-12">
+          
 
+        <mat-form-field title="Ingresa la fecha de cuando inicia a laborar." >
+              <input class="example-right-align" [(ngModel)]="persona.fechaingreso" matInput placeholder="Fecha de ingreso"
+                format="YYYY/mm/dd" type="date" title="Ingresa la fecha de cuando inicia a laborar.">
+            
 
+            </mat-form-field>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      
+      <div class="col-xl-4 col-md-12">
+          <mat-form-field>
+            <input class="example-right-align"  matInput placeholder="Hora de Entrada" value="{{selectedTime}}">
+          <!-- <mat-datepicker-toggle matSuffix (click)="open()" ></mat-datepicker-toggle> -->
+          <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon" matSuffix (click)="open()"></mat-icon>
+          </mat-form-field>
+        </div>
+      <div class="col-xl-4 col-md-12">
+        <mat-form-field>
+            <input class="example-right-align"  matInput placeholder="Hora de Entrada" value="{{selectedTimes}}">
+            <!-- <mat-datepicker-toggle matSuffix (click)="open()" ></mat-datepicker-toggle> -->
+            <mat-icon svgIcon="thumbs-up" aria-hidden="false" aria-label="Example thumbs up SVG icon" matSuffix (click)="opens()"></mat-icon>
+          </mat-form-field>
 
               <div class="col-xl-4 col-md-12">
                 <mat-form-field>
@@ -64,7 +130,7 @@
                     required>
                   <mat-error *ngIf="fControl.invalid">Curp incorrecto</mat-error>
 
-
+2
                 </mat-form-field>
               </div>
 

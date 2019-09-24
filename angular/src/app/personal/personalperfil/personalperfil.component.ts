@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PersonalperfilService } from 'src/app/services/personalperfil.service';
 import { FileuploadService } from 'src/app/services/fileupload.service';
 import {Router} from '@angular/router';
 import { fotopersonal } from 'src/app/interfaces/fotopersonal';
 import { ToastrManager } from 'ng6-toastr-notifications';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatTableDataSource, MatPaginator } from '@angular/material';
 import { PereditComponent } from '../peredit/peredit.component';
 import { PersonalService } from 'src/app/services/personal.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
@@ -15,7 +15,11 @@ import { NotificationsService } from 'src/app/services/notifications.service';
   templateUrl: './personalperfil.component.html',
   styleUrls: ['./personalperfil.component.css']
 })
+
 export class PersonalperfilComponent implements OnInit {
+  /* Interfaz de la tabla de grupos */
+
+  dataSource: any
 
   datos: any;
   jstoday:any;
@@ -58,6 +62,21 @@ export class PersonalperfilComponent implements OnInit {
   ngOnInit() {
     this.datos = this.personalPerfilService.returnPerfil()
     this.personal.idper=this.datos.idper
+    this.getGrupos()
+  }
+  displayedColumns: string[] = ['iddgru', 'dia', 'hora', 'nombre', 'icons'];
+  
+
+  getGrupos()
+  {
+    this.personalPerfilService.getGrupos(this.datos).subscribe((data)=>{
+      this.dataSource =data;
+    })
+  }
+
+  asistencia(iddgru)
+  {
+    console.log(iddgru)
   }
 
   seleccionarArchivo(event) {
@@ -155,5 +174,6 @@ export class PersonalperfilComponent implements OnInit {
     });
   }
 
-
 }
+
+  

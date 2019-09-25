@@ -20,7 +20,9 @@
                      </div>
                          <div class="col-xl-12 col-md-12 ">
                           <mat-toolbar style="background: none; color: black;">
-                            
+                            <span><button mat-icon-button (click)="addgrados()" >
+                              <mat-icon aria-label="Nuevo Registro" >add_circle_outline</mat-icon><span > Nuevo</span>
+                            </button></span>
                             <span class="spacer"></span>
                             Recargar datos:
                             <button mat-icon-button (click)="refresh()">

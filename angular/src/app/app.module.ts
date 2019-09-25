@@ -125,6 +125,9 @@ import { HometipomemComponent } from './tipomembresias/hometipomem/hometipomem.c
 import { AddtipomemComponent } from './tipomembresias/addtipomem/addtipomem.component';
 import { EdittipomemComponent } from './tipomembresias/edittipomem/edittipomem.component';
 import { DeletetipomemComponent } from './tipomembresias/deletetipomem/deletetipomem.component';
+import { ModuloComponent } from './modulo/modulo.component';
+import { AddgradosComponent } from './grados/addgrados/addgrados.component';
+import { ModuloService } from './services/modulo.service';
 
 
 
@@ -167,7 +170,9 @@ const routes: Route[]=[
 {path: 'areadelconocimiento', component: AreahomeComponent},
 {path: 'subtema', component: SubtemahomeComponent},
 {path: 'tema', component: TemahomeComponent},
-{path: 'tipomembresia', component: HometipomemComponent}
+{path: 'tipomembresia', component: HometipomemComponent},
+{path: 'clases', component: ModuloComponent}
+
 ];
 
 @NgModule({
@@ -259,7 +264,9 @@ const routes: Route[]=[
     HometipomemComponent,
     AddtipomemComponent,
     EdittipomemComponent,
-    DeletetipomemComponent
+    DeletetipomemComponent,
+    ModuloComponent,
+    AddgradosComponent
 
 
 
@@ -317,6 +324,7 @@ const routes: Route[]=[
     GraficasService,
     EscuelasService,
     FileuploadService,
+    ModuloService,
 
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
@@ -371,10 +379,11 @@ const routes: Route[]=[
     //Modal para nivel
     AddnivelComponent,
     UpdatenivelComponent,
-    //Modal para los coódigos de descuentos
+    //Modal para los grados
     UpdategComponent,
     DeletegComponent,
     DeletenComponent,
+    AddgradosComponent,
      /* Modal para area del conocimiento */
      AreaaddComponent,
      AreaeditComponent,
@@ -395,6 +404,7 @@ const routes: Route[]=[
     AddtipomemComponent,
     EdittipomemComponent,
     DeletetipomemComponent
+   
 
 
   ],

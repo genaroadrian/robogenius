@@ -1,12 +1,18 @@
 <div class="container" style="height:230px;">
   <h3 mat-dialog-title style="text-align: center;">Nuevo registro</h3>
 
-  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm" style="height:200px;">
+  <form (ngSubmit)="submit" #formControl="ngForm" style="height:200px;">
 
-    <div class="form">
+    <div>
       <mat-form-field color="accent">
         <input matInput  class="form-control" placeholder="Tipo de personal" [(ngModel)]="data.tipo" name="tipo">
       </mat-form-field>
+    </div>
+
+    <div>
+      <span>Ingreso al sistema: </span>
+      <mat-slide-toggle (change)="permisos($event)" [checked]="cheked">
+      </mat-slide-toggle>
     </div>
 
     <div mat-dialog-actions>

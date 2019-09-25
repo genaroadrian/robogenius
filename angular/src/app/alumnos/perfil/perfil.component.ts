@@ -6,11 +6,13 @@ import { AlumnosService } from 'src/app/services/alumnos.service';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { PerfilhoraeditComponent } from './perfilhoraedit/perfilhoraedit.component';
 import { FileuploadService } from 'src/app/services/fileupload.service';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
 import { Alumnos } from 'src/app/interfaces/alumnos';
 import { PerfilmemeditComponent } from '../perfilmemedit/perfilmemedit.component';
 import { PerfilhoradeleteComponent } from './perfilhoradelete/perfilhoradelete.component';
 import { NotificationsService } from 'src/app/services/notifications.service';
+import { PerfiladdmemComponent } from '../perfiladdmem/perfiladdmem.component';
+import { PerfiladdhoraComponent } from '../perfiladdhora/perfiladdhora.component';
 // import {formatDate } from '@angular/common';
 
 
@@ -22,7 +24,18 @@ import { NotificationsService } from 'src/app/services/notifications.service';
 
 
 export class PerfilComponent implements OnInit {
-  jstoday:any;
+
+  dfoto: string = 'none'
+
+  /* Nuevo horario */
+  nhorario: any
+
+  /* cantidad de clases disponibles en la membresia actual */
+  clasesMem: number
+  /* Cantidad de clases en la base de datos */
+  clasesDB: number
+
+  jstoday: any;
   // today= new Date();
 
   datosEditMem: any
@@ -79,7 +92,7 @@ export class PerfilComponent implements OnInit {
   memlenght: number;
 
   /* Encabezados de la tabla de horarios */
-  displayedColumns: string[] = ['dia','hora','instructor', 'actions'];
+  displayedColumns: string[] = ['dia', 'hora', 'instructor', 'actions'];
 
   /* Visibilidad de la columna de id */
   tableview = "none";
@@ -115,30 +128,32 @@ export class PerfilComponent implements OnInit {
     correomad: null, ocupmad: null,
     finscripcion: null, usuariopad: null,
     pswpad: null, activo: null,
-    idsuc: null
+    idsuc: null, idesc: null, nombre: null
   };
 
 
 
   constructor(public alumnosService: AlumnosService
     , private perfilService: PerfilService, public dialog: MatDialog,
-    public toastr: ToastrManager, private changeDetectorRefs: ChangeDetectorRef,private uploadService: FileuploadService,
-    private router:Router, public notificationsService: NotificationsService) {
+    public toastr: ToastrManager, private changeDetectorRefs: ChangeDetectorRef, private uploadService: FileuploadService,
+    private router: Router, public notificationsService: NotificationsService) {
   }
 
   seleccionarArchivo(event) {
-    this.jstoday= new Date().getTime();
+    this.jstoday = new Date().getTime();
     var files = event.target.files;
     var file = files[0];
     this.archivo.nombreArchivo = file.name;
-    this.archivo.nombreArchivo=this.jstoday+this.archivo.nombreArchivo
- 
+    this.archivo.nombreArchivo = this.jstoday + this.archivo.nombreArchivo
 
-    if(files && file) {
+
+    if (files && file) {
       var reader = new FileReader();
       reader.onload = this._handleReaderLoaded.bind(this);
       reader.readAsBinaryString(file);
     }
+
+    this.dfoto = ''
   }
 
   _handleReaderLoaded(readerEvent) {
@@ -150,7 +165,7 @@ export class PerfilComponent implements OnInit {
     // // console.log(this.archivo);
     this.uploadService.uploadFile(this.archivo).subscribe(
       datos => {
-        if(datos['resultado'] == 'OK') {
+        if (datos['resultado'] == 'OK') {
           alert(datos['mensaje']);
           this.router.navigate(['alumnos']);
 
@@ -159,23 +174,23 @@ export class PerfilComponent implements OnInit {
     );
 
     // this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss', 'en-US');
-    
-    this.alumnofoto.perfilalu=this.archivo.nombreArchivo;
-    this.alumnofoto.idalu=this.datos.idalu;
+
+    this.alumnofoto.perfilalu = this.archivo.nombreArchivo;
+    this.alumnofoto.idalu = this.datos.idalu;
     // this.datos.perfilalu=this.archivo.nombreArchivo;
-    this.uploadService.subirimagen(this.alumnofoto).subscribe(data=>{
+    this.uploadService.subirimagen(this.alumnofoto).subscribe(data => {
       // console.log(data);
     }, (error) => {
-          // console.log(error);
+      // console.log(error);
     })
-    
+
   }
 
   // subirimagenes(){
   //   this.uploadService.subirimagen(this.archivo,this.datos)
   // }
 
-  
+
   // // Interfaz de la tabla alumnos
   // alumno: Alumnos = {
   //   idalu: this.datos.idalu, nomalu: null,
@@ -199,26 +214,33 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit() {
 
-    
+
     /* Obtiene los datos del alumno (se obtienen de perfilService en el metodo "ret"), su historial de membresias y su horario */
     this.datos = this.perfilService.ret()
     this.membresias();
     this.horarios();
+
   }
 
 
   /* Obtiene todas las membresias del alumno seleccionado */
   membresias() {
-    
+
     this.perfilService.getmem(this.datos).subscribe((data) => {
       // console.log(data)
       this.membresia = data;
+      // console.log(this.membresia)
+      /* Asignacion del numero de clases de la membresia */
+      this.clasesMem = Number(this.membresia[0].clases)
+      
       this.memlenght = this.membresia.length;
       this.fecha = this.membresia[0].fechainicio
       this.hoy = new Date().getTime()
       this.fecha = new Date(this.fecha).getTime()
       this.fecha = (this.hoy - this.fecha) / (1000 * 60 * 60 * 24)
       // console.log(this.fecha)
+
+      /* Determinar si puede agregar un nuevo horario o no */
 
       /* Asignación de status de la membresia */
       if (this.fecha > 29 && this.fecha < 32) {
@@ -234,20 +256,6 @@ export class PerfilComponent implements OnInit {
         this.color = "text-danger"
         this.icono = "error"
       }
-        /* Asignacion de status del pago de la membresia */
-        if(this.membresia[0].restante > 0)
-        {
-          this.iconopago = "warning"
-          this.colorpago = "text-warning"
-          this.pagomem = "Debe $"+this.membresia[0].restante+".00"
-          // console.log(this.pagomem)
-        }
-        else{
-          this.iconopago = "verified_user"
-          this.colorpago = "text-success"
-          this.pagomem = "Pagada"
-        }
-
     }, (error) => {
 
     });
@@ -269,6 +277,8 @@ export class PerfilComponent implements OnInit {
     this.perfilService.gethorario(this.datos).subscribe((data) => {
       // console.log(data)
       this.dataSource = data;
+      // console.log('numero de horarios en la base de datos' +this.dataSource.length)
+      this.clasesDB = Number(this.dataSource.length)
       this.barra = "none"
     }, (error) => {
       this.barra = "none"
@@ -330,8 +340,8 @@ export class PerfilComponent implements OnInit {
       if (result == 1) {
         this.barra = ""
         this.ngrupo = this.perfilService.getDialogHoraData();
-        
-        this.perfilService.putHorario(this.dataSource[i].idgalu, this.ngrupo).subscribe((data)=>{
+
+        this.perfilService.putHorario(this.dataSource[i].idgalu, this.ngrupo).subscribe((data) => {
           this.ngrupo = this.perfilService.regresarNuevoHorario()
           this.dataSource[i].iddia = this.ngrupo.iddia
           this.dataSource[i].idh = this.ngrupo.idh
@@ -343,7 +353,7 @@ export class PerfilComponent implements OnInit {
           this.barra = "none"
           this.notificationsService.showSuccessEdit()
           // console.log(data)
-        },(error)=>{
+        }, (error) => {
           // console.log(error)
           this.barra = "none"
           this.notificationsService.showError()
@@ -355,7 +365,7 @@ export class PerfilComponent implements OnInit {
   deleteHora(i, idgalu) {
     // this.dataSource = this.dataSource.filter(x => x.idgalu !== idgalu)
     const dialogRef = this.dialog.open(PerfilhoradeleteComponent, {
-      data: { }
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -363,10 +373,12 @@ export class PerfilComponent implements OnInit {
         this.barra = ""
         this.perfilService.deleteHorarioPerfil(idgalu).subscribe((data) => {
           this.dataSource = this.dataSource.filter(x => x.idgalu !== idgalu)
+          /* Actualiza la cantidad de clases */
+          this.clasesDB = Number(this.dataSource.length)
           this.barra = "none"
           this.notificationsService.showSuccessDelete()
         }, (error) => {
-          
+
           this.barra = "none"
           this.notificationsService.showError()
         })
@@ -380,30 +392,71 @@ export class PerfilComponent implements OnInit {
       width: '80%',
       data:
       {
-        i: i, idmalu:idmalu, nommem: nommem, fechainicio: fechainicio, adelanto: adelanto, restante:restante, total:total, nombre:nombre
+        i: i, idmalu: idmalu, nommem: nommem, fechainicio: fechainicio, adelanto: adelanto, restante: restante, total: total, nombre: nombre
       }
     })
-    dialogRef.afterClosed().subscribe(result=>{
-      if(result == 1)
-      {
-        
-        this.perfilService.putMembresias(this.perfilService.getDialogData()).subscribe((data)=>{
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+
+        this.perfilService.putMembresias(this.perfilService.getDialogData()).subscribe((data) => {
           this.datosEditMem = this.perfilService.getDialogData()
           this.membresia[i].adelanto = this.datosEditMem.adelanto
           this.membresia[i].restante = this.datosEditMem.restante
           this.membresia[i].total = this.datosEditMem.total
           this.showSuccessEdit()
 
-        },(error)=>{
+        }, (error) => {
           this.showErrorEdit()
         })
       }
     })
   }
 
-  refresh() {
-    this.changeDetectorRefs.detectChanges();
+  agregarMem() {
+    const dialogRef = this.dialog.open(PerfiladdmemComponent, {
+      width: '80%',
+      data:
+      {
+
+      }
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+
+      }
+    })
   }
+
+  agregarHora(idalu) {
+    const dialogRef = this.dialog.open(PerfiladdhoraComponent, {
+      width: '80%',
+      data:
+      {
+        idalu: idalu
+      }
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.nhorario = this.perfilService.getDialogData()
+        this.perfilService.saveNHorario(this.perfilService.getDialogData()).subscribe((data)=>{
+          this.horarios()
+          // this.dataSource.push({nombre: ""})
+          // console.log(this.dataSource)
+          // let i = Number(this.dataSource.length)
+          // i -= 1
+          // // console.log(i)
+          // this.dataSource[i].nombre = "Genaro"
+          // // this.dataSource = dataS
+          // // console.log(this.dataSource)
+          // // this.dataSource = this.dataSource.push()
+          // // this.clasesDB = Number(this.dataSource.length)
+        },(error)=>{
+          console.log(error)
+        })
+      }
+    })
+  }
+
 
 
 

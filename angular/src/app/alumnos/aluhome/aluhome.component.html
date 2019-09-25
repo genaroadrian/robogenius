@@ -13,6 +13,7 @@
                        </div>
                           <div class="col-xl-2 col-md-12">
                              <h1 style="font-size: 30px; text-align: center;">Alumnos</h1>
+                             <hr/>
                            </div>
                          <div class="col-xl-5 col-md-12 ">
                          </div>
@@ -111,6 +112,18 @@
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Escuela</mat-header-cell>
                                     <mat-cell *matCellDef="let row"> {{row.escuela}}</mat-cell>
                                   </ng-container>
+
+                                  <ng-container matColumnDef="idesc">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>ID escuela</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.idesc}}</mat-cell>
+                                  </ng-container>
+
+                                  <ng-container matColumnDef="nombre">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Escuela</mat-header-cell>
+                                    <mat-cell *matCellDef="let row"> {{row.nombre}}</mat-cell>
+                                  </ng-container>
+
+
                               
                                   <ng-container matColumnDef="usuarioalu">
                                     <mat-header-cell *matHeaderCellDef mat-sort-header >Usuario</mat-header-cell>
@@ -118,7 +131,7 @@
                                   </ng-container>
                               
                                   <ng-container matColumnDef="pswalu">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header >ContraseÃ±a</mat-header-cell>
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header >Contraseña</mat-header-cell>
                                     <mat-cell *matCellDef="let row" > {{row.pswalu}}</mat-cell>
                                   </ng-container>
                               
@@ -193,7 +206,7 @@
                                   </ng-container>
                               
                                   <ng-container matColumnDef="pswpad">
-                                    <mat-header-cell *matHeaderCellDef mat-sort-header >ContraseÃ±a padres</mat-header-cell>
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header >Contraseña padres</mat-header-cell>
                                     <mat-cell *matCellDef="let row" > {{row.pswpad}}</mat-cell>
                                   </ng-container>
                                   

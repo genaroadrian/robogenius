@@ -20,7 +20,18 @@ class alumnoController extends Controller
     {
         // $personal = Personal::all();
         // echo json_encode($producto);
-        $alumno = DB::SELECT("SELECT * FROM alumnos WHERE activo = 1");
+        // $alumno = DB::SELECT("SELECT * FROM alumnos WHERE activo = 1");
+        $alumno = DB::SELECT("SELECT alumnos.idalu,alumnos.nomalu,alumnos.apealu,alumnos.fnacalu,
+        alumnos.sexoalu,alumnos.domalu,
+        alumnos.telalu,alumnos.correoalu,alumnos.medicacion,
+        alumnos.alergias,alumnos.perfilalu,alumnos.cronica,alumnos.otro,
+        alumnos.evaluacion,alumnos.usuarioalu,alumnos.pswalu,alumnos.nompad,
+        alumnos.apepad,alumnos.dompad,alumnos.telpad,
+        alumnos.correopad,alumnos.ocupad,alumnos.nommad,alumnos.apemad,
+        alumnos.dommad,alumnos.telmad,alumnos.correomad,
+        alumnos.ocupmad,alumnos.usuariopad,alumnos.pswpad,alumnos.activo,alumnos.finscripcion,
+        alumnos.idsuc,alumnos.idesc, escuelas.nombre FROM alumnos, escuelas WHERE alumnos.idesc = escuelas.idesc AND alumnos.activo = 1");
+
         echo json_encode($alumno);
     }
 

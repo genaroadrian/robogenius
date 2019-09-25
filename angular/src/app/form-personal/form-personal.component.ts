@@ -5,25 +5,29 @@ import { HttpClient } from '@angular/common/http';
 import { Tipopersonal } from '../interfaces/tipopersonal';
 import { PersonalService } from '../services/personal.service';
 import { Personal } from '../interfaces/personal';
-import { FormControl, Validators,  FormBuilder } from '@angular/forms';
+import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Detallegrupos } from '../interfaces/detallegrupos';
 import { DetallegruposService } from '../services/detallegrupos.service';
-import {formatDate } from '@angular/common';
+import { formatDate } from '@angular/common';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AmazingTimePickerService } from 'amazing-time-picker';
-import {DomSanitizer} from '@angular/platform-browser';
-import {MatIconRegistry} from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material/icon';
 import { TpaddComponent } from '../tipopersonal/tpadd/tpadd.component';
 import { MatDialog } from '@angular/material';
 import { NotificationsService } from '../services/notifications.service';
+import { GruposAlumnosService } from '../services/grupos-alumnos.service';
 import { NG_VALIDATORS } from '@angular/forms';
+import { HaddComponent } from '../horarios/hadd/hadd.component';
+import { HorariosService } from '../services/horarios.service';
+import { Horario } from '../interfaces/horario';
 
-function emailDomainValidator(control: FormControl) { 
-  let email = control.value; 
-  if (email && email.indexOf("@") != -1) { 
-    let [_, domain] = email.split("@"); 
-    if (domain !== "codecraft.tv") { 
+function emailDomainValidator(control: FormControl) {
+  let email = control.value;
+  if (email && email.indexOf("@") != -1) {
+    let [_, domain] = email.split("@");
+    if (domain !== "codecraft.tv") {
       return {
         emailDomain: {
           parsedDomain: domain
@@ -31,7 +35,7 @@ function emailDomainValidator(control: FormControl) {
       }
     }
   }
-  return null; 
+  return null;
 }
 
 
@@ -46,6 +50,10 @@ function emailDomainValidator(control: FormControl) {
 
 
 export class FormPersonalComponent implements OnInit {
+
+  /* select de horas */
+  horas:any
+  dias: any
   public selectedTime: string;
   public selectedTimes: string;
 
@@ -55,16 +63,71 @@ export class FormPersonalComponent implements OnInit {
   /* Visibilidad de la barra de carga */
   barra = "none"
 
-   /* Almacena todos los tipos de personal */
-   selectTPersonal: any
-
+  /* Almacena todos los tipos de personal */
+  selectTPersonal: any
+  horarioPersonal = [{
+    idd: null,
+    idh: null
+  }]
   /* ---------------------------- CONFIGURACIÓN DE LA PAGINA ---------------------------- */
 
   // Progrmacación de las tabs en el modulo de detalle de grupos
   tabs = ['Horario'];
   selected = new FormControl(0);
 
-  
+  addTab(selectAfterAdding: boolean) {
+    this.horarioPersonal.push({
+      idd: null,
+      idh: null
+    })
+    this.tabs.push('Horario');
+    if (selectAfterAdding) {
+      this.selected.setValue(this.tabs.length - 1);
+    }
+  }
+  removeTab(index: number) {
+    this.tabs.splice(index, 1);
+  }
+  agregarTab(index: number) {
+
+    this.tabs.splice(index, 1);
+  }
+
+  ngOnInit() {
+    
+    this.tPersonal.get().subscribe((data) => {
+      this.selectTPersonal = data
+    }, (error) => {
+    })
+    this.getDias()
+    this.getHorarios()
+  }
+
+  // Change the user and password input and groups module visibility 
+  tipoChange(idt) {
+    console.log(idt)
+    idt = Number(idt)
+    console.log(this.selectTPersonal)
+   let cond = this.selectTPersonal.filter(per => per.idtper == idt)
+   console.log(cond[0])
+   if(cond[0].permisos == 1)
+   {
+     this.visibility = ''
+   }else{
+     this.visibility = 'none'
+   }
+  }
+
+  // Notificación de success al eliminar
+  showSuccesSave() {
+    this.toastr.successToastr('Registro guardado', 'Exito!');
+  }
+
+  // Notificacion de error al eliminar
+  showErrorSave() {
+    this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
+  }
+
 
   // Resetear usuario y contraseña
   cleanCamps = "";
@@ -74,7 +137,6 @@ export class FormPersonalComponent implements OnInit {
   // Visibilidad del formulario de personal
   perso = "block";
   // Valor de lo disables
-  isDisable = true;
   // Valor del tipo de personal
   selectedtp = '1';
   // Ocultar el campo de contraseña por defecto
@@ -88,11 +150,11 @@ export class FormPersonalComponent implements OnInit {
   personal: Personal[];
 
   // Campos a guardar personal
-  persona: Personal =  {
+  persona: Personal = {
     idper: null, nombre: null, apellidos: null, usuario: null,
     contra: null, fechanac: null, sexo: null, curp: null,
     estadocivil: null, domicilio: null, fechaingreso: null, horasalida: null,
-    horaentrada:null, perfilprofesional: null, especialidad: null, salariomensual: null,
+    horaentrada: null, perfilprofesional: null, especialidad: null, salariomensual: null,
     tareasasignadas: null, idtper: null, activo: null
   };
 
@@ -112,111 +174,63 @@ export class FormPersonalComponent implements OnInit {
     idd: null,
     idh: null,
     idp: this.idper,
-    
+
   };
 
-  constructor(private personalService: PersonalService , private detallegruposService: DetallegruposService,
-    private _formBuilder: FormBuilder, private httpClient: HttpClient,private router: Router, public toastr: ToastrManager, 
-    private atp: AmazingTimePickerService,iconRegistry: MatIconRegistry, sanitizer: DomSanitizer,public tPersonal: TipopersonalService,
-    public dialog: MatDialog, public tipopersonalService: TipopersonalService, public notifications: NotificationsService) 
-    {
-      iconRegistry.addSvgIcon(
-        'thumbs-up',
-        sanitizer.bypassSecurityTrustResourceUrl('assets/icons/material-design/hora.svg'));
-  
-    }
-    ngOnInit() {
-      this.tPersonal.get().subscribe((data)=>{
-        this.selectTPersonal = data
-      },(error)=>{
-      })
-    }
-    createFormControls(){
-      this.email = new FormControl('', [
-        Validators.required,
-        Validators.pattern("[^ @]*@[^ @]*"),
-        emailDomainValidator
-      ]);
-    }
-    
- 
-    fControl = new FormControl('', [
+  constructor(private personalService: PersonalService, private detallegruposService: DetallegruposService,
+    private _formBuilder: FormBuilder, private httpClient: HttpClient, private router: Router, public toastr: ToastrManager,
+    private atp: AmazingTimePickerService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, public tPersonal: TipopersonalService,
+    public dialog: MatDialog,public horarioService: HorariosService, public tipopersonalService: TipopersonalService, public notifications: NotificationsService, public horarioPersona: GruposAlumnosService) {
+    iconRegistry.addSvgIcon(
+      'thumbs-up',
+      sanitizer.bypassSecurityTrustResourceUrl('assets/icons/material-design/hora.svg'));
+
+  }
+
+  createFormControls() {
+    this.email = new FormControl('', [
       Validators.required,
-      Validators.email
+      Validators.pattern("[^ @]*@[^ @]*"),
+      emailDomainValidator
     ]);
+  }
+
+
+  fControl = new FormControl('', [
+    Validators.required,
+    Validators.email
+  ]);
   /* Mensajes de error de las validaciones */
   getErrorMessage() {
     return this.fControl.hasError('required') ? 'El campo es obligatorio' :
       this.fControl.hasError('email') ? 'Ingrese un corre valido' :
         '';
   }
-    
-  addTab(selectAfterAdding: boolean) {
-    this.tabs.push('Horario');
-    if (selectAfterAdding) {
-      this.selected.setValue(this.tabs.length - 1);
-    }
-  }
-  
-  removeTab(index: number) {
-    this.tabs.splice(index, 1);
-  }
-  agregarTab(index: number) {
-    this.tabs.splice(index, 1);
-  }
-  
 
 
 
 
+  /* -------------------------------- METODOS DEL CRUD EN LA BASE DE DATOS -------------------------------- */
 
-  // Change the user and password input and groups module visibility 
-  tipoChange(event) {
-    if (this.selectedtp == "2" || this.selectedtp == "1" || this.selectedtp == "3") {
-      this.isDisable = false;
-      this.visibility = "block";
-    } else {
-      this.isDisable = true;
-      this.visibility = "none";
-    }
+  // Guardar la informacion del personal
+  savePersonal(persona) {
+    this.personalService.save(persona).subscribe((data) => {
+      this.showSuccesSave();
+      // console.log(data);
+      this.idp = data;
+      this.idper = this.idp.idper;
+      this.horarios = "";
+      this.perso = "none";
+    }, (error) => {
+      alert('Ocurrio un error');
+      console.log(error);
+      this.showErrorSave();
+    });
+
+
   }
 
-   // Notificación de success al eliminar
-   showSuccesSave() {
-    this.toastr.successToastr('Registro guardado','Exito!');
-  }
-
-  // Notificacion de error al eliminar
-  showErrorSave() {
-    this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
-  }
-    
-
-    /* -------------------------------- METODOS DEL CRUD EN LA BASE DE DATOS -------------------------------- */
-
-    // Guardar la informacion del personal
-    savePersonal(persona)
-    {
-      this.personalService.save(persona).subscribe((data)=>{
-        this.showSuccesSave();
-        // console.log(data);
-        this.idp = data;
-        this.idper = this.idp.idper;
-      },(error)=>{
-        alert('Ocurrio un error');
-        console.log(error);
-        this.showErrorSave();
-      });
-      if(persona.idtper == 2){
-        this.horarios = "block";
-        this.perso = "none";
-      }else{
-        this.router.navigate(['/personal']);
-      }
-      
-    }
-
-    /* Mostrar la barra de carga */
+  /* Mostrar la barra de carga */
   showBarra() {
     this.barra = ""
   }
@@ -226,61 +240,103 @@ export class FormPersonalComponent implements OnInit {
     this.barra = "none"
   }
 
-    saveDetallegrupos(index)
-    {
-      this.detallegrupo.idp = this.idper;
-      console.log(this.detallegrupo);
-      this.detallegruposService.save(this.detallegrupo).subscribe((data)=>{
-      // console.log(data);
+  saveDetallegrupos(horariopersonal, index) {
+    this.detallegrupo.idd = horariopersonal.idd
+    this.detallegrupo.idh = horariopersonal.idh
+    this.detallegrupo.idp = this.idper;
+    console.log(this.detallegrupo);
+    this.horarioPersona.save(this.detallegrupo).subscribe((data) => {
+      console.log(data);
       this.showSuccesSave();
-      }, (error)=>{
-        console.log(error);
-        this.showErrorSave();
-      });
-      this.removeTab(index);
-    }
+    }, (error) => {
+      console.log(error);
+      this.showErrorSave();
+    });
+    this.removeTab(index);
+  }
 
-    open() {
-      const amazingTimePicker = this.atp.open();
-      amazingTimePicker.afterClose().subscribe(time => {
-          this.selectedTime = time;
-          this.persona.horaentrada = time;
-      });
+  open() {
+    const amazingTimePicker = this.atp.open();
+    amazingTimePicker.afterClose().subscribe(time => {
+      this.selectedTime = time;
+      this.persona.horaentrada = time;
+    });
   }
   opens() {
     const amazingTimePicker = this.atp.open();
     amazingTimePicker.afterClose().subscribe(time => {
-        this.selectedTimes = time;
-        this.persona.horasalida = time;
+      this.selectedTimes = time;
+      this.persona.horasalida = time;
     });
-}
+  }
 
 
-    nuevoTPersonal(tpersonal: Tipopersonal)
-    {
-      /* abrir un pequeño modal para agregar otro tipo de personal */
-      const dialogRef = this.dialog.open(TpaddComponent, {
-        data: { tpersonal: tpersonal }
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        if (result == 1) {
-          this.showBarra()
-          this.tipopersonalService.add(this.tipopersonalService.getDialogData()).subscribe((data) => {
-            this.selectTPersonal.push(data)
-            // this.tipopadd = data
-            // this.exampleDatabase.dataChange.value.push(this.tipopadd);
-            // this.refreshTable()
-            this.notifications.showSuccessAdd();
-            this.hideBarra();
-          }, (error) => {
-            this.notifications.showError();
-            // // this.notifications.hideBarra();
-            this.hideBarra();
-  
-          });
-  
-        }
-      });
-    }
+  nuevoTPersonal(tpersonal: Tipopersonal) {
+    /* abrir un pequeño modal para agregar otro tipo de personal */
+    const dialogRef = this.dialog.open(TpaddComponent, {
+      data: { tpersonal: tpersonal }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.showBarra()
+        this.tipopersonalService.add(this.tipopersonalService.getDialogData()).subscribe((data) => {
+          this.selectTPersonal.push(data)
+          // this.tipopadd = data
+          // this.exampleDatabase.dataChange.value.push(this.tipopadd);
+          // this.refreshTable()
+        
+          this.notifications.showSuccessAdd();
+          this.hideBarra();
+        }, (error) => {
+          this.notifications.showError();
+          // // this.notifications.hideBarra();
+          this.hideBarra();
+
+        });
+
+      }
+    });
+  }
+
+  getDias()
+  {
+    this.personalService.getDias().subscribe((data)=>{
+      this.dias = data
+    })
+  }
+
+  getHorarios()
+  {
+    this.personalService.getHorarios().subscribe((data)=>{
+      this.horas = data
+      console.log(this.horas)
+    })
+  }
+
+  nuevoDia()
+  {
+    
+  }
+
+  nuevoHorario(horario: Horario)
+  {
+    const dialogRef = this.dialog.open(HaddComponent,{
+      data:
+      {
+        horario: horario
+      }
+    })
+    dialogRef.afterClosed().subscribe(result=>{
+      if(result == 1)
+      {
+        this.horarioService.add(this.horarioService.getDialogData()).subscribe((data)=>{
+          let addH = data
+          console.log(addH)
+          this.horas.push(addH)
+        })
+      }
+    })
+  }
+
 
 }

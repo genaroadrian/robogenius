@@ -12,10 +12,10 @@ export class GruposAlumnosService {
 
   constructor( private httpClient: HttpClient) { }
 
-  save(gruposAlumnos : GruposAlumnos)
+  save(gruposAlumnos)
   {
     const headers = new HttpHeaders({"Content-Type": "application/json"});
-    return this.httpClient.post(this.API_ENDPOINT + '/galumnos', gruposAlumnos, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT + '/horariopersonal', gruposAlumnos, {headers: headers});
   }
 
 }

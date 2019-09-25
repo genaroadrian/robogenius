@@ -11,7 +11,7 @@ import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule,
   MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule,
   ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule, MatTabsModule, MatSortModule,
   MatToolbarModule, MatPaginatorIntl, MatSpinner, MatProgressSpinnerModule, MatSnackBarModule,
-  MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatSlideToggleModule, MatExpansionModule} from '@angular/material';
+  MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatSlideToggleModule, MatExpansionModule, MatTooltipModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AmazingTimePickerService, AmazingTimePickerModule } from 'amazing-time-picker';
 import { LoginComponent } from './login/login.component';
@@ -125,9 +125,18 @@ import { HometipomemComponent } from './tipomembresias/hometipomem/hometipomem.c
 import { AddtipomemComponent } from './tipomembresias/addtipomem/addtipomem.component';
 import { EdittipomemComponent } from './tipomembresias/edittipomem/edittipomem.component';
 import { DeletetipomemComponent } from './tipomembresias/deletetipomem/deletetipomem.component';
+
 import { ModuloComponent } from './modulo/modulo.component';
 import { AddgradosComponent } from './grados/addgrados/addgrados.component';
 import { ModuloService } from './services/modulo.service';
+
+import { PerfiladdmemComponent } from './alumnos/perfiladdmem/perfiladdmem.component';
+import { PerfiladdhoraComponent } from './alumnos/perfiladdhora/perfiladdhora.component';
+import { HomeasisComponent } from './asistencias/homeasis/homeasis.component';
+import { EditasisComponent } from './asistencias/editasis/editasis.component';
+import { DeleteasisComponent } from './asistencias/deleteasis/deleteasis.component';
+import { AddasisComponent } from './asistencias/addasis/addasis.component';
+
 
 
 
@@ -171,8 +180,10 @@ const routes: Route[]=[
 {path: 'subtema', component: SubtemahomeComponent},
 {path: 'tema', component: TemahomeComponent},
 {path: 'tipomembresia', component: HometipomemComponent},
-{path: 'clases', component: ModuloComponent}
 
+{path: 'clases', component: ModuloComponent},
+
+{path: 'asistencias', component: HomeasisComponent}
 ];
 
 @NgModule({
@@ -266,7 +277,13 @@ const routes: Route[]=[
     EdittipomemComponent,
     DeletetipomemComponent,
     ModuloComponent,
-    AddgradosComponent
+    AddgradosComponent,
+    PerfiladdmemComponent,
+    PerfiladdhoraComponent,
+    HomeasisComponent,
+    EditasisComponent,
+    DeleteasisComponent,
+    AddasisComponent
 
 
 
@@ -310,7 +327,8 @@ const routes: Route[]=[
     MatExpansionModule,
     ChartsModule,
     MatProgressBarModule,
-    MatListModule
+    MatListModule,
+    MatTooltipModule
     ],
   providers: [
     TipopersonalService,
@@ -403,8 +421,17 @@ const routes: Route[]=[
     /* Modales de tipo de membresias  */
     AddtipomemComponent,
     EdittipomemComponent,
-    DeletetipomemComponent
+    DeletetipomemComponent,
    
+    DeletetipomemComponent,
+    /* Agregar membresia en el perfil de alumnos */
+    PerfiladdmemComponent,
+    /* Agregar un nuevo horario en el perfil de Alumnos */
+    PerfiladdhoraComponent,
+    /* Modales de las asistencias */
+    AddasisComponent,
+    DeleteasisComponent,
+    EditasisComponent
 
 
   ],

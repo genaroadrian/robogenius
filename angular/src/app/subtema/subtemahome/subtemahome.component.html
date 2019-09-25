@@ -14,6 +14,7 @@
                        </div>
                           <div class="col-xl-2 col-md-12">
                              <h1 style="font-size: 30px; text-align: center;">Subtema</h1>
+                             <hr/>
                            </div>
                          <div class="col-xl-5 col-md-12 ">
                          </div>
@@ -46,12 +47,12 @@
                                 <!-- ID Column -->
                                 <ng-container matColumnDef="ids">
                                   <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
-                                  <mat-cell *matCellDef="let row" >{{row.ids}}</mat-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Id"  >{{row.ids}}</mat-cell>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="nombre" sticky>
-                                  <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
-                                  <mat-cell *matCellDef="let row"> {{row.nombre}}</mat-cell>
+                                  <mat-header-cell *matHeaderCellDef mat-sort-header >Nombre</mat-header-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Nombre" > {{row.nombre}}</mat-cell>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="idt">
@@ -61,7 +62,7 @@
                             
                                 <ng-container matColumnDef="icons" stickyEnd>
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
-                                  <mat-cell *matCellDef="let row; let i=index;">
+                                  <mat-cell *matCellDef="let row; let i=index;" data-label="Acciones" >
                                     <button mat-icon-button class="text-success" (click)="onUpdate(i, row.ids, row.nombre, row.idt)">
                                       <mat-icon aria-label="Edit">edit</mat-icon>
                                     </button>

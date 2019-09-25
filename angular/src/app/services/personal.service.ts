@@ -73,6 +73,17 @@ export class PersonalService {
   delete(id:number){
     return this.httpClient.delete(this.API_ENDPOINT + '/personal/'+id);
   }
+
+  /* Recupera todos los horarios para la alta de personal */
+  getHorarios()
+  {
+    return this.httpClient.get(this.API_ENDPOINT+'/horarios')
+  }
+
+  getDias()
+  {
+    return this.httpClient.get(this.API_ENDPOINT+'/dias')
+  }
   
 }
 

@@ -22,10 +22,13 @@ import { TpeditComponent } from '../tpedit/tpedit.component';
 })
 export class TphomeComponent implements OnInit {
 
+  disp = "none"
+
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [
     // 'idtper',
     'tipo',
+    'permisos',
     'icons'
   ];
 
@@ -58,8 +61,8 @@ export class TphomeComponent implements OnInit {
   ngOnInit() {
     // Llamado al metodo de getTipopersonal
     this.getTipopersonal();
+    console.log(this.dataSource._exampleDatabase.dataChange)
 
-    // Traducir los label de la tabla
     this.paginator._intl.itemsPerPageLabel = 'Registros por página';
     this.paginator._intl.nextPageLabel = 'Página siguiente';
     this.paginator._intl.previousPageLabel = 'Página anterior';
@@ -124,21 +127,24 @@ export class TphomeComponent implements OnInit {
       // .debounceTime(150)
       // .distinctUntilChanged()
       .subscribe(() => {
+        console.log(this.dataSource._exampleDatabase.dataChange)
         if (!this.dataSource) {
           return;
         }
         this.dataSource.filter = this.filter.nativeElement.value;
+
       });
+
   }
 
 
   // Metodo para abrir el modal para modificar
-  onUpdate(i: number, idtper: number, tipo: string) {
+  onUpdate(i: number, idtper: number, tipo: string, permisos: number) {
     this.id = idtper;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     const dialogRef = this.dialog.open(TpeditComponent, {
-      data: { idtper: idtper, tipo: tipo }
+      data: { idtper: idtper, tipo: tipo, permisos:permisos }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {

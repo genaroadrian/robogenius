@@ -16,6 +16,8 @@
                         <div class="card bg-light mini-stat position-relative">
                          <div class="card-body">
                             <div class="mini-stat-desc">
+                                 <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
+
                                     <img src="../assets/images/logoch.png" alt="" class="banner">
 
                                     <h4 class="text-muted font-18 m-b-5 text-center">Bienvenido!</h4>
@@ -30,38 +32,19 @@
                                             <label for="userpassword">Contraseña</label>
                                             <input type="password" name="password" id="password" [(ngModel)]="ps"ngModel placeholder="Ingrese contraseña"  class="form-control"required>
                                             <!-- Error: contraseña incorrecta -->
-                                           
+                                        
+
                       
                       <!-- Remember-me button -->
                                         <div class="form-group row m-t-20">
-                                            <div class="col-6">
+                                            <div class="col-12">
                                                 <div class="custom-control custom-checkbox">
-                                                    <input type="checkbox" class="custom-control-input" id="customControlInline" name="remember">
-                                                    <label class="custom-control-label"  for="customControlInline">Recuérdame</label>
+                                                  
+                                                    <button class="btn btn-primary btn-lg btn-block w-md waves-effect waves-light waves-effect waves-light "  id="sa-params" style="filter: drop-shadow(5px 5px 10px #444);"type="submit">Iniciar Sesión</button>
+
                                                 </div>
                                             </div>
-                        <!-- Login button -->
-                                            <div class="col-6 text-right">
-                                            </div>
-                                        </div>
-                      <!-- Forgot your password -->
-                                        <div class="form-group m-t-10 mb-0 row">
-                                            <div class="col-12 m-t-20">
-                                                  <div *ngFor="let c of log" type="hidden" >
-                      
-                                  
-                                          
-                                  
-                                                          <div *ngIf="c.email== em && c.password == ps">
-                                                                  <input type="hidden" name="pa" id="pa"  [(ngModel)]="c.fotoadmin" ngModel placeholder="Ingrese contraseña"  class="form-control"required>
 
-                                                                  <button class="btn btn-primary w-md waves-effect waves-light waves-effect waves-light "  id="sa-params" style="filter: drop-shadow(5px 5px 10px #444);"type="submit">Iniciar Sesión</button>
-                                      
-                                                          </div>
-                                                          
-                                                          </div>
-                                                <!-- <a class="btn btn-warning" href="">Olvidaste tu contraseña</a> -->
-                                            </div>
                                         </div>
                                   <div class="m-t-40 text-center ">
                                     <p class="text-black-50 " >¿No tienes una cuenta? <a  href="#" [routerLink]="['/registrar']" class="text-blue " style="font-size:20px"> Regístrate ahora </a> </p>

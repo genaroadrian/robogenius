@@ -19,6 +19,7 @@ class tipopersonalController extends Controller
    {
     $tpersonal = new Tipopersonal();
     $tpersonal->tipo = $request->tipo;
+    $tpersonal->permisos = $request->permisos;
     $tpersonal->activo = 1;
     $tpersonal->save();
     echo json_encode($tpersonal);
@@ -28,6 +29,7 @@ class tipopersonalController extends Controller
     {
         $personal = Tipopersonal::find($id);
         $personal->tipo = $request->tipo;
+        $personal->permisos = $request->permisos;
         $personal->activo = 1;
         $personal->save();
         echo json_encode($personal);

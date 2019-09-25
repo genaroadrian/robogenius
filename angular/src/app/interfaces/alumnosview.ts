@@ -38,5 +38,7 @@ export interface Alumnosview {
     adelanto: number,
     restante: number,
     total: number,
-    fechainicio: string
+    fechainicio: string,
+    idsec: number,
+    nombre: string, //nombre de la esuela en la que esta inscrito
 }

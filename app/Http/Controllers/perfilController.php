@@ -18,7 +18,7 @@ class perfilController extends Controller
         $id = $request->idalu;
         $sql = "SELECT memalumno.idmalu, tipomembresia.nombre as nommem, tipopagos.nombre, 
         memalumno.adelanto, memalumno.restante, memalumno.total, 
-        memalumno.fechainicio
+        memalumno.fechainicio, tipomembresia.clases
         FROM memalumno, tipopagos, tipomembresia
         WHERE memalumno.idmem = tipomembresia.idtmem 
         AND memalumno.idtpago = tipopagos.idtipopago 

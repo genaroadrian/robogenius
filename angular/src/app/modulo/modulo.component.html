@@ -1,0 +1,77 @@
+<app-navbar></app-navbar>   
+<br> 
+<br> 
+<br> 
+<br> 
+<div class="col-xl-12 col-md-12 body">
+    <div class="col-xl-12 col-md-12 ">
+
+        <div class="card bg-light mini-stat position-relative">
+
+              <div class="card-body">
+                  <div class="mini-stat-desc">
+                      <div class="row">
+                          <div class="col-xl-12">
+                            <h3 style="text-align: center;">Alta clases</h3>
+                          </div>
+                        </div>
+                        <hr/>
+                        <br>
+                        <div class="col-xl-4 col-md-12">
+                            <mat-form-field class="col-xl-10">
+                              <mat-label>Nivel: </mat-label>
+                              <mat-select  [(value)]="NIVEL" (selectionChange)="tipoChange($event)">
+                                <mat-option *ngFor="let clases of persona" value="{{clases.idn}}">{{clases.nombre}}</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <button matTooltip="Agregar un nuevo tipo de personal"  aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button (click)="nuev()"><mat-icon>add</mat-icon></button>
+                          </div>
+                      
+                          <div class="col-xl-4 col-md-12">
+                            <mat-form-field class="col-xl-10">
+                              <mat-label>Grado: </mat-label>
+                              <mat-select  [(value)]="GRADO" (selectionChange)="tipoChange($event)">
+                                <mat-option *ngFor="let clases of grado" value="{{clases.idg}}">{{clases.nombre}}</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                            <button matTooltip="Agregar un nuevo tipo de personal"  aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button (click)="gradomodal()"><mat-icon>add</mat-icon></button>
+                          </div>
+                          
+                          <div class="col-xl-4 col-md-12">
+                              <mat-form-field class="col-xl-10">
+                                <mat-label>Áreas de conocimiento: </mat-label>
+                                <mat-select  [(value)]="AREA" (selectionChange)="tipoChange($event)">
+                                  <mat-option *ngFor="let clases of areas" value="{{clases.idac}}">{{clases.nombre}}</mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                              <button matTooltip="Agregar un nuevo tipo de personal"  aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button (click)="areamodal()"><mat-icon>add</mat-icon></button>
+                            </div>
+
+                            <div class="col-xl-4 col-md-12">
+                                <mat-form-field class="col-xl-10">
+                                  <mat-label>Temas: </mat-label>
+                                  <mat-select  [(value)]="ids" (selectionChange)="tipoChange($event)">
+                                    <mat-option *ngFor="let clases of temas" value="{{clases.idt}}">{{clases.nombre}}</mat-option>
+                                  </mat-select>
+                                </mat-form-field>
+                                <button matTooltip="Agregar un nuevo tipo de personal"  aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button (click)="temamodal()"><mat-icon>add</mat-icon></button>
+                              </div>
+                              <div class="col-xl-4 col-md-12">
+                                  <mat-form-field class="col-xl-10">
+                                    <mat-label>Subtemas: </mat-label>
+                                    <mat-select  [(value)]="SUBTEMAS" (selectionChange)="tipoChange($event)">
+                                      <mat-option *ngFor="let clases of subtemas" value="{{clases.ids}}">{{clases.nombre}}</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                                  <button matTooltip="Agregar un nuevo tipo de personal"  aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button (click)="substemamodal()"><mat-icon>add</mat-icon></button>
+                                </div>
+
+                     
+                        
+
+                    </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+<app-fotter></app-fotter>

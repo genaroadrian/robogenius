@@ -17,4 +17,14 @@ class perperfilgrupController extends Controller
         
         return $sql;
     }
+
+    public function update (Request $request, $id)
+    {
+        $lalumnos = \DB::select("SELECT alumnos.idalu, alumnos.nomalu, alumnos.apealu 
+        FROM alumnos, grupos_alumnos
+        WHERE grupos_alumnos.idg = $id AND grupos_alumnos.idalu = alumnos.idalu 
+        AND alumnos.activo = 1 AND grupos_alumnos.activo = 1");
+
+        return $lalumnos;
+    }
 }

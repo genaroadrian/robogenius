@@ -76,5 +76,7 @@ class emailController extends Controller
       $pass->password = $request->password;
       $pass-save();
       return $pass;
+    // return $email;
     }
+    
   }

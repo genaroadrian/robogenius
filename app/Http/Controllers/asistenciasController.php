@@ -17,17 +17,21 @@ class asistenciasController extends Controller
 
     public function store(Request $request)
     {
+
+        foreach($request as $all)
+        {
         $asis = new Asistencias();
-        $asis->idgru = $request->idgru;
-        $asis->fecha= $request->fecha;
-        $asis->dia = $request->dia;
-        $asis->hora = $request->hora;
-        $asis->idper = $request->idper;
-        $asis->idalu = $request->idalu;
-        $asis->idesc = $request->idesc;
-        $asis->asis = $request->asis;
+        $asis->idgru = $all->idgru;
+        $asis->fecha= $all->fecha;
+        $asis->dia = $all->dia;
+        $asis->hora = $all->hora;
+        $asis->idper = $all->idper;
+        $asis->idalu = $all->idalu;
+        $asis->idesc = $all->idesc;
+        $asis->asis = $all->asis;
         $asis->save();
-        return $asis;
+        }
+       return $request;
     }
 
 

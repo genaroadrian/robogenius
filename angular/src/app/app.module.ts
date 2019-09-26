@@ -11,7 +11,7 @@ import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule,
   MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule,
   ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule, MatTabsModule, MatSortModule,
   MatToolbarModule, MatPaginatorIntl, MatSpinner, MatProgressSpinnerModule, MatSnackBarModule,
-  MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatSlideToggleModule, MatExpansionModule, MatTooltipModule} from '@angular/material';
+  MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatSlideToggleModule, MatExpansionModule, MatTooltipModule, MatRadioModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AmazingTimePickerService, AmazingTimePickerModule } from 'amazing-time-picker';
 import { LoginComponent } from './login/login.component';
@@ -324,7 +324,8 @@ const routes: Route[]=[
     ChartsModule,
     MatProgressBarModule,
     MatListModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatRadioModule
     ],
   providers: [
     TipopersonalService,

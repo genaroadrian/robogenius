@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Personal } from '../interfaces/personal';
 import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Subscriber} from 'rxjs';
+import { map } from 'rxjs/operators';
+import { element } from '@angular/core/src/render3';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonalService {
 
+
+    
   // URL de laravel
   API_ENDPOINT = 'http://localhost:8000/api';
+  sucursal:any;
 
   dataChange: BehaviorSubject<Personal[]> = new BehaviorSubject<Personal[]>([]);
 
@@ -18,18 +23,33 @@ export class PersonalService {
 
   id: number 
 
-  constructor(private httpClient: HttpClient) {}
+  datos :any;
 
+  constructor(private httpClient: HttpClient) {
+    this.sucursal=localStorage.getItem('sucursal')
+  }
+
+    
   // Obtener datos de la base de datos
   getPersonal(): void{
     this.httpClient.get<Personal[]>(this.API_ENDPOINT+'/personal').subscribe(data => {
-      this.dataChange.next(data);
+      this.datos=data
+      this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
+      // console.log(this.datos)
+      this.dataChange.next(this.datos); 
     },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);
     });
   }
 
+
+
+
+
+
+
+  
   // Obtener datos cuando cambien
   get data(): Personal[] {
     return this.dataChange.value;

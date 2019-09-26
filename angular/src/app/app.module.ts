@@ -127,6 +127,8 @@ import { EdittipomemComponent } from './tipomembresias/edittipomem/edittipomem.c
 import { DeletetipomemComponent } from './tipomembresias/deletetipomem/deletetipomem.component';
 import { PerfiladdmemComponent } from './alumnos/perfiladdmem/perfiladdmem.component';
 import { PerfiladdhoraComponent } from './alumnos/perfiladdhora/perfiladdhora.component';
+import { AlumnosloginComponent } from './login/alumnoslogin/alumnoslogin.component';
+import { PersonalloginComponent } from './login/personallogin/personallogin.component';
 
 
 
@@ -169,7 +171,9 @@ const routes: Route[]=[
 {path: 'areadelconocimiento', component: AreahomeComponent},
 {path: 'subtema', component: SubtemahomeComponent},
 {path: 'tema', component: TemahomeComponent},
-{path: 'tipomembresia', component: HometipomemComponent}
+{path: 'tipomembresia', component: HometipomemComponent},
+{path: 'loginalumnos', component: AlumnosloginComponent},
+{path: 'loginpersonal', component: PersonalloginComponent}
 ];
 
 @NgModule({
@@ -263,7 +267,9 @@ const routes: Route[]=[
     EdittipomemComponent,
     DeletetipomemComponent,
     PerfiladdmemComponent,
-    PerfiladdhoraComponent
+    PerfiladdhoraComponent,
+    AlumnosloginComponent,
+    PersonalloginComponent
 
 
 

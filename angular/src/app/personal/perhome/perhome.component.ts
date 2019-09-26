@@ -91,6 +91,8 @@ export class PerhomeComponent  {
   // ID de la tabla
   id: number;
 
+  sucursal:any;
+
   // Declaracion del servico de personal
   PersonalService: any;
 
@@ -109,6 +111,7 @@ export class PerhomeComponent  {
 
   ngOnInit() 
   {
+    // console.log(this.sucursal)
     // Llamado al metodo de que obtiene los datos
     this.getPersonal();
 

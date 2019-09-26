@@ -7,6 +7,8 @@ import { UserAdminService } from '../services/user-admin.service';
 import { MatDialog } from '@angular/material';
 import { NgForm } from '@angular/forms';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { SucursalService } from '../services/sucursal.service';
+import { Sucursal } from '../interfaces/sucursal';
 
 
 declare var jQuery:any;
@@ -23,6 +25,9 @@ declare var $:any;
 })
 export class NavbarComponent  {
 
+  ingresos:Sucursal[];
+
+
   public  emai = localStorage.getItem("email");
   public  subname = localStorage.getItem("subname");
   
@@ -35,20 +40,44 @@ export class NavbarComponent  {
   }
 
   foto=localStorage.getItem("foto");
+  prueba:any;
+
+  sucur:any;
  
   //  Declaracion de la interfaz de personal
  
 
   constructor(private router:Router,public httpClient: HttpClient
-  , public dialog: MatDialog,public useradminService :UserAdminService
+  , public dialog: MatDialog,public useradminService :UserAdminService,
+  public sucursalService: SucursalService
     ) {
+      
+      // this.sucur=localStorage.getItem('sucursal');
+      // console.log(this.sucur);
    
+    this.sucursalService.getfsucursal()
+  .subscribe(data=>{
+    this.ingresos=data;
+    this.sucur=localStorage.getItem('sucursal');
+
+    // this.sucur = ;
+  })
+
+
 
       // enviamos la funcion con el valor de la interfaz
       this.dias(this.dia);
       // setTimeout(this.print,9000);
       // setTimeout(this.codigo,9000);
    }
+   tipoChange(value:string) {
+    
+    // console.log(this.archivo);
+    localStorage.removeItem('sucursal');
+    localStorage.setItem('sucursal' , value);
+    console.log(value)
+
+  }
    
    dias(dia)
   {
@@ -77,6 +106,8 @@ export class NavbarComponent  {
     $(this).children("ul").slideToggle();
 })
   }
+
+
 
 
 }

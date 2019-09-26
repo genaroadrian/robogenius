@@ -57,4 +57,9 @@ export class SucursalService {
   delete(id){
     return this.httpClient.delete(this.API_ENDPOINT + '/sucursal/'+id);
   }
+
+  getfsucursal(){
+    return this.httpClient.get<Sucursal[]>(this.API_ENDPOINT + '/sucursal');
+
+  }
 }

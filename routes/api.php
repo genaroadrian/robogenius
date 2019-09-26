@@ -79,4 +79,5 @@ Route::resource('perfilalumnoshorario', 'perfilAlumnosHorarioController');
 Route::resource('horariopersonal', 'horariosPersonalController');
 
 Route::resource('horarioperfilalumnos', 'horarioperfilalumnosController');
+Route::resource('perfilpersonalgrupos', 'perperfilgrupController');
 

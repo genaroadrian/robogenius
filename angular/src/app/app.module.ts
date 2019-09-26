@@ -11,7 +11,7 @@ import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule,
   MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule,
   ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule, MatTabsModule, MatSortModule,
   MatToolbarModule, MatPaginatorIntl, MatSpinner, MatProgressSpinnerModule, MatSnackBarModule,
-  MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatSlideToggleModule, MatExpansionModule} from '@angular/material';
+  MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatSlideToggleModule, MatExpansionModule, MatTooltipModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AmazingTimePickerService, AmazingTimePickerModule } from 'amazing-time-picker';
 import { LoginComponent } from './login/login.component';
@@ -126,9 +126,14 @@ import { AddtipomemComponent } from './tipomembresias/addtipomem/addtipomem.comp
 import { EdittipomemComponent } from './tipomembresias/edittipomem/edittipomem.component';
 import { DeletetipomemComponent } from './tipomembresias/deletetipomem/deletetipomem.component';
 import { PerfiladdmemComponent } from './alumnos/perfiladdmem/perfiladdmem.component';
-import { PerfiladdhoraComponent } from './alumnos/perfiladdhora/perfiladdhora.component';
+import { PerfiladdhoraComponent } from './alumnos/perfiladdhora/perfiladdhora.component'; 
 import { AlumnosloginComponent } from './login/alumnoslogin/alumnoslogin.component';
 import { PersonalloginComponent } from './login/personallogin/personallogin.component';
+
+import { HomeasisComponent } from './asistencias/homeasis/homeasis.component';
+import { EditasisComponent } from './asistencias/editasis/editasis.component';
+import { DeleteasisComponent } from './asistencias/deleteasis/deleteasis.component';
+import { AddasisComponent } from './asistencias/addasis/addasis.component';
 
 
 
@@ -173,7 +178,8 @@ const routes: Route[]=[
 {path: 'tema', component: TemahomeComponent},
 {path: 'tipomembresia', component: HometipomemComponent},
 {path: 'loginalumnos', component: AlumnosloginComponent},
-{path: 'loginpersonal', component: PersonalloginComponent}
+{path: 'loginpersonal', component: PersonalloginComponent},
+{path: 'asistencias', component: HomeasisComponent}
 ];
 
 @NgModule({
@@ -269,7 +275,11 @@ const routes: Route[]=[
     PerfiladdmemComponent,
     PerfiladdhoraComponent,
     AlumnosloginComponent,
-    PersonalloginComponent
+    PersonalloginComponent,
+    HomeasisComponent,
+    EditasisComponent,
+    DeleteasisComponent,
+    AddasisComponent
 
 
 
@@ -313,7 +323,8 @@ const routes: Route[]=[
     MatExpansionModule,
     ChartsModule,
     MatProgressBarModule,
-    MatListModule
+    MatListModule,
+    MatTooltipModule
     ],
   providers: [
     TipopersonalService,
@@ -408,7 +419,11 @@ const routes: Route[]=[
     /* Agregar membresia en el perfil de alumnos */
     PerfiladdmemComponent,
     /* Agregar un nuevo horario en el perfil de Alumnos */
-    PerfiladdhoraComponent
+    PerfiladdhoraComponent,
+    /* Modales de las asistencias */
+    AddasisComponent,
+    DeleteasisComponent,
+    EditasisComponent
 
 
   ],

@@ -125,6 +125,11 @@ import { HometipomemComponent } from './tipomembresias/hometipomem/hometipomem.c
 import { AddtipomemComponent } from './tipomembresias/addtipomem/addtipomem.component';
 import { EdittipomemComponent } from './tipomembresias/edittipomem/edittipomem.component';
 import { DeletetipomemComponent } from './tipomembresias/deletetipomem/deletetipomem.component';
+
+import { ModuloComponent } from './modulo/modulo.component';
+import { AddgradosComponent } from './grados/addgrados/addgrados.component';
+import { ModuloService } from './services/modulo.service';
+
 import { PerfiladdmemComponent } from './alumnos/perfiladdmem/perfiladdmem.component';
 import { PerfiladdhoraComponent } from './alumnos/perfiladdhora/perfiladdhora.component';
 import { HomeasisComponent } from './asistencias/homeasis/homeasis.component';
@@ -135,6 +140,8 @@ import { SachomeComponent } from './subareac/sachome/sachome.component';
 import { SacaddComponent } from './subareac/sacadd/sacadd.component';
 import { SaceditComponent } from './subareac/sacedit/sacedit.component';
 import { SacdeleteComponent } from './subareac/sacdelete/sacdelete.component';
+import { HerramientasComponent } from './herramientas/herramientas.component';
+
 
 
 
@@ -179,9 +186,10 @@ const routes: Route[]=[
 {path: 'tema', component: TemahomeComponent},
 {path: 'tipomembresia', component: HometipomemComponent},
 {path: 'asistencias', component: HomeasisComponent},
+{path: 'subareac',component: SachomeComponent},
+{path: 'clases', component: ModuloComponent},
+{path: 'herramientas', component: HerramientasComponent}
 
-
-{path: 'subareac',component: SachomeComponent}
 ];
 
 @NgModule({
@@ -274,6 +282,8 @@ const routes: Route[]=[
     AddtipomemComponent,
     EdittipomemComponent,
     DeletetipomemComponent,
+    ModuloComponent,
+    AddgradosComponent,
     PerfiladdmemComponent,
     PerfiladdhoraComponent,
     HomeasisComponent,
@@ -283,12 +293,8 @@ const routes: Route[]=[
     SachomeComponent,
     SacaddComponent,
     SaceditComponent,
-    SacdeleteComponent
-
-
-
-
-
+    SacdeleteComponent,
+    HerramientasComponent
   ],
   imports: [
     NgxUpperCaseDirectiveModule,
@@ -343,6 +349,7 @@ const routes: Route[]=[
     GraficasService,
     EscuelasService,
     FileuploadService,
+    ModuloService,
 
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
@@ -397,10 +404,11 @@ const routes: Route[]=[
     //Modal para nivel
     AddnivelComponent,
     UpdatenivelComponent,
-    //Modal para los coódigos de descuentos
+    //Modal para los grados
     UpdategComponent,
     DeletegComponent,
     DeletenComponent,
+    AddgradosComponent,
      /* Modal para area del conocimiento */
      AreaaddComponent,
      AreaeditComponent,
@@ -420,6 +428,8 @@ const routes: Route[]=[
     /* Modales de tipo de membresias  */
     AddtipomemComponent,
     EdittipomemComponent,
+    DeletetipomemComponent,
+   
     DeletetipomemComponent,
     /* Agregar membresia en el perfil de alumnos */
     PerfiladdmemComponent,

@@ -1,0 +1,75 @@
+
+/* Structure */
+.container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Toolbar */
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  /* Filter */
+  .form {
+    min-height: 56px;
+    max-height: 56px;
+    display: flex;
+    align-items: center;
+    padding: 8px 24px 0;
+    font-size: 20px;
+    justify-content: space-between;
+    border-bottom: 1px solid transparent;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    flex-grow: 1;
+    margin-top: 8px;
+  }
+  mat-form-field {
+
+    width: 100%;
+    text-decoration: none;
+    margin-top: 10px;
+    }
+    /* mat-form-fiel:hover{
+        text-decoration: none;
+    
+    } */
+    hr{
+    background-color: #db36a4; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    text-align: center;
+    }
+    /* .mitad {
+        width: 40%;
+    } */
+    /* 
+    .example-container {
+        background-color: white;
+    } */
+  
+  /* Mat table */
+  .no-results {
+    display: flex;
+    justify-content: center;
+    padding: 14px;
+    font-size: 14px;
+    font-style: italic;
+  }
+  
+  
+  mat-header-cell, mat-cell  {
+  display:flex;
+  justify-content: center;
+  }
+  hr{
+    background-color: #db36a4; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    text-align: center;
+    width: 70%;
+    height: 1px;
+    }
+      
+  
+  
+  

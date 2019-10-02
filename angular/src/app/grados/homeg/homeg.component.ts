@@ -10,6 +10,7 @@ import { Grados } from 'src/app/interfaces/grados';
 import { DataSource } from '@angular/cdk/table';
 import { UpdategComponent } from '../updateg/updateg.component';
 import { DeletegComponent } from '../deleteg/deleteg.component';
+import { AddgradosComponent } from '../addgrados/addgrados.component';
 
 
 
@@ -37,6 +38,9 @@ export class HomegComponent implements OnInit {
     index: number;
     id: number;
     idg: number;
+    gradoadd: any;
+    gradosadd: any;
+
 
     /*---------------------------------------------------------------------*/
     constructor(public httpClient: HttpClient,
@@ -116,6 +120,29 @@ export class HomegComponent implements OnInit {
     /* Mensaje de ERROR */
     showError() {
       this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
+    }
+        /*---------------------------------------------------------------------*/
+
+    addgrados(grados: Grados) {
+      // Abre la ventana modal
+      const dialogRef = this.dialog.open(AddgradosComponent, {
+        data: { grados: grados }
+      });
+      dialogRef.afterClosed().subscribe(result => {
+        if (result == 1) {
+          this.gradoService.agregarg(this.gradoService.getDialogData()).subscribe((data) => {
+            this.gradosadd = data
+            this.exampleDatabase.dataChange.value.push(this.gradosadd);
+            this.refreshTable()
+            this.showSuccessAdd();
+           
+          }, (error) => {
+            this.showError();
+           
+          });
+    
+        }
+      });
     }
 
     /*---------------------------------------------------------------------*/

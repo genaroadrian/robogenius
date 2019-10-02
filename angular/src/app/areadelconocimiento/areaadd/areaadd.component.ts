@@ -3,6 +3,8 @@ import { areadelconocimiento } from 'src/app/interfaces/areadelconocimiento';
 import { AreadelconocimientoService } from 'src/app/services/areadelconocimiento.service';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+
 
 
 @Component({
@@ -18,6 +20,10 @@ export class AreaaddComponent implements OnInit {
 
   ngOnInit() {
   }
+  fControl = new FormControl('', [
+    Validators.required,
+    Validators.email
+  ]);
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -30,6 +36,11 @@ export class AreaaddComponent implements OnInit {
 
   showErrorEdit() {
     this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
+  }
+  getErrorMessage() {
+    return this.fControl.hasError('required') ? 'El campo es obligatorio' :
+      this.fControl.hasError('email') ? 'Ingrese un correo valido' :
+        '';
   }
 
 

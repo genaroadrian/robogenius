@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { NivelService } from 'src/app/services/nivel.service';
 import { Niveles } from 'src/app/interfaces/niveles';
+import { ToastrManager } from 'ng6-toastr-notifications';
+
 
 @Component({
   selector: 'app-addnivel',
@@ -12,7 +14,7 @@ import { Niveles } from 'src/app/interfaces/niveles';
 export class AddnivelComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<AddnivelComponent>, @Inject(MAT_DIALOG_DATA) public data: Niveles, 
-  public nivelService: NivelService,fb: FormBuilder) { }
+  public nivelService: NivelService,fb: FormBuilder, public toastr: ToastrManager) { }
 
   ngOnInit() {
   }
@@ -29,6 +31,14 @@ export class AddnivelComponent implements OnInit {
         this.fControl.hasError('email') ? 'Ingrese un correo valido' :
           '';
     }
+    showSuccessEdit() {
+      this.toastr.successToastr('Registro actualizado','Exito!');
+    }
+  
+    showErrorEdit() {
+      this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
+    }
+  
 
     onNoClick(): void {
       this.dialogRef.close();

@@ -8,6 +8,7 @@ import { MatDialog, MatTableDataSource, MatPaginator } from '@angular/material';
 import { PereditComponent } from '../peredit/peredit.component';
 import { PersonalService } from 'src/app/services/personal.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
+import { AddasisComponent } from 'src/app/asistencias/addasis/addasis.component';
 
 
 @Component({
@@ -64,7 +65,7 @@ export class PersonalperfilComponent implements OnInit {
     this.personal.idper=this.datos.idper
     this.getGrupos()
   }
-  displayedColumns: string[] = ['iddgru', 'dia', 'hora', 'nombre', 'icons'];
+  displayedColumns: string[] = ['dia', 'hora', 'nombre', 'icons'];
   
 
   getGrupos()
@@ -76,7 +77,15 @@ export class PersonalperfilComponent implements OnInit {
 
   asistencia(iddgru)
   {
-    console.log(iddgru)
+    const dialogRef = this.dialog.open(AddasisComponent, {
+      width: '60%',
+      data: { iddgru:iddgru }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+      
+      }
+    });
   }
 
   seleccionarArchivo(event) {

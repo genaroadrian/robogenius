@@ -61,8 +61,11 @@ export class HomeComponent implements OnInit {
   getEscuelas() {
     this.exampleDatabase = new EscuelasService(this.httpClient);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
+    console.log(this.dataSource)
     fromEvent(this.filter.nativeElement, 'keyup')
+    
       .subscribe(() => {
+        console.log(this.dataSource)
         if (!this.dataSource) {
           return;
         }
@@ -192,6 +195,7 @@ export class ExampleDataSource extends DataSource<Escuelas> {
 
   get filter(): string {
     return this._filterChange.value;
+    
   }
 
   set filter(filter: string) {

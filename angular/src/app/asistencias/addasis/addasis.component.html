@@ -1,38 +1,83 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" class="col-md-12">
+<mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
+<mat-tab-group>
+  <mat-tab>
+    <!-- Tab de pasar lista  -->
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">list</mat-icon>
+      Pasar Lista
+    </ng-template>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" class="col-md-12">
 
-  <ng-container matColumnDef="no">
-    <th mat-header-cell *matHeaderCellDef> No. </th>
-    <td mat-cell *matCellDef="let i = index"> {{i+1}} </td>
-  </ng-container>
+      <ng-container matColumnDef="no">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let i = index"> {{i+1}} </td>
+      </ng-container>
 
-  <!-- Name Column -->
-  <ng-container matColumnDef="apealu">
-    <th mat-header-cell *matHeaderCellDef> Apellidos </th>
-    <td mat-cell *matCellDef="let element"> {{element.apealu}} </td>
-  </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+        <td mat-cell *matCellDef="let element"> {{element.apealu}} {{element.nomalu}} </td>
+      </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="nomalu">
-    <th mat-header-cell *matHeaderCellDef> Nombre </th>
-    <td mat-cell *matCellDef="let element"> {{element.nomalu}} </td>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="asis">
-    <th mat-header-cell *matHeaderCellDef> Asistencia </th>
-    <td mat-cell *matCellDef="let element; let i = index;
-    ">
-        <mat-radio-group aria-label="Select an option">
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="asis">
+        <th mat-header-cell *matHeaderCellDef> Asistencia </th>
+        <td mat-cell *matCellDef="let element; let i = index;
+            ">
+          <mat-radio-group aria-label="Select an option" value="1">
             <mat-radio-button value="1" (click)="prueba(element, 1, i)">Si</mat-radio-button>
             <mat-radio-button value="2" (click)="prueba(element, 0, i)">No</mat-radio-button>
           </mat-radio-group>
-    </td>
-  </ng-container>
+        </td>
+      </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-</table>
-  <button class="btn btn-success" (click)="pasAsis()">Guardar</button>
-<div>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <div>
 
-</div>
+    </div>
+    <div>
+      <button class="btn btn-success" (click)="pasAsis()" [mat-dialog-close]="1">Guardar</button>
+      <button class="btn btn-danger" (click)="onNoClick()">Cerrar</button>
+    </div>
+    <!-- Fin del tab de pasar lista -->
+  </mat-tab>
+
+  <mat-tab>
+    <!-- Tab de historial de asistencias -->
+    <ng-template mat-tab-label>
+      <mat-icon class="example-tab-icon">history</mat-icon>
+      Historial de asistencias del grupo
+    </ng-template>
+    <!-- <mat-form-field>
+        <input class="col-md-12" matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field> -->
+  
+    <mat-accordion>
+        <mat-expansion-panel *ngFor="let his of historyF" >
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{his.fechac}}
+            </mat-panel-title>
+            <mat-panel-description>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          
+          <ul *ngFor="let histo of history" [style.display]="his.fecha == histo.fecha ? '' : 'none'">
+            <li>
+                <span class="col-md-10">{{histo.apealu}} {{histo.nomalu}}  </span>
+                <span class="col-md-2"><mat-icon align="right" class="text-success" [style.display]="histo.asis == 1 ? '' : 'none'">done</mat-icon>
+                  <mat-icon align="right" class="text-danger" [style.display]="histo.asis == 0 ? '' : 'none'">clear</mat-icon></span>
+             
+            </li>
+          </ul>
+          
+
+        </mat-expansion-panel>
+      </mat-accordion>
+
+
+    <!-- Fin del tab de historial de asistencias -->
+  </mat-tab>
+</mat-tab-group>

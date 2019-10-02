@@ -14,4 +14,9 @@ export class AsistenciasService {
   {
    return this.httpClient.post(this.API_ENDPOINT+'/asistencias', data)
   }
+
+  historial(data)
+  {
+    return this.httpClient.post(this.API_ENDPOINT+'/historyasis',data)
+  }
 }

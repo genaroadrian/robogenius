@@ -26,7 +26,7 @@ import { userAdmin } from 'src/app/interfaces/userAdmin';
 })
 export class PerfiladminComponent implements OnInit {
 
-
+  btnChange = "none"
   log:Login[];
   logs:any;
   selecionar:any;
@@ -84,6 +84,7 @@ export class PerfiladminComponent implements OnInit {
   }
 
   seleccionarArchivo(event) {
+    this.barra = ""
     this.jstoday= new Date().getTime();
     var files = event.target.files;
     var file = files[0];
@@ -134,7 +135,7 @@ export class PerfiladminComponent implements OnInit {
       this.hideBarra()
       
     })
-    
+    this.btnChange = "none"
   }
 
 

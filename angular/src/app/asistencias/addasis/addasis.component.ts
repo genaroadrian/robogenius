@@ -16,25 +16,44 @@ export class AddasisComponent implements OnInit {
 
   dataSource: any
 
+  barra = 'none'
+
+  history: any
+  historyF: any
+
   constructor(public dialogRef: MatDialogRef<AddasisComponent>, 
     @Inject(MAT_DIALOG_DATA) public data,
     public personalPerfilService: PersonalperfilService,
     public asistenciaService : AsistenciasService,
     public notificacionService: NotificationsService) { }
 
-    displayedColumns: string[] = ['no', 'apealu', 'nomalu', 'asis'];
+    displayedColumns: string[] = ['no', 'nombre', 'asis'];
 
   ngOnInit() {
     // this.personalPerfilService.getListaalumnos(this.data)
     this.getAlumnos()
+    // console.log(this.data)
+    this.getHistory()
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
   getAlumnos()
   {
     this.personalPerfilService.getListaalumnos(this.data).subscribe((data)=>{
       this.dataSource = data
+      this.dataSource.forEach(element => {
+        element.iddgru = this.data.iddgru
+        element.dia = this.data.dia
+        element.hora = this.data.hora
+        element.idesc = this.data.idesc
+        element.idper = this.data.idper
+        element.asis = 1;
+      });
     }, (error)=>{
-
+      this.notificacionService.showError()
     })
   }
 
@@ -42,15 +61,67 @@ export class AddasisComponent implements OnInit {
   {
     // this.dataSource[i].push({asis:n})
     this.dataSource[i].asis = n
+
   }
 
   pasAsis()
   {
-    console.log(this.dataSource)
+    // console.log(this.dataSource)
+    this.showBarra()
     this.asistenciaService.asistencia(this.dataSource).subscribe((data)=>{
-      console.log(data)
-    },(eror)=>{
+      this.notificacionService.showSuccessAdd()
+      // console.log(data)
+      this.hideBarra()
+    },(error)=>{
       this.notificacionService.showError()
+      this.hideBarra()
+      // console.log(error)
+    })
+  }
+
+  applyFilter(filterValue: string) {
+    let filtro = filterValue.trim().toLowerCase();
+    this.historyF.filter(element => element.fechac == filtro)
+  }
+
+  showBarra()
+  {
+    this.barra = ""
+  }
+
+  hideBarra()
+  {
+    this.barra = "none"
+  }
+
+  getHistory()
+  {
+    this.showBarra()
+    this.asistenciaService.historial(this.data).subscribe((data)=>{
+      this.hideBarra()
+      // console.log(data)
+      this.history = data
+      // history = history.filter()
+      var hash = {};
+      this.historyF = this.history.filter(function(h) {
+        var exists = !hash[h.fecha] || false;
+        hash[h.fecha] = true;
+        return exists
+      });
+      /* Transforma la fecha en formato YYYY-mm-dd a texto en español */
+      this.historyF.forEach(element => {
+        element.fechac = new Date(element.fecha+'T00:00:00')
+        let options = {weekday: 'long', year: 'numeric', month: 'long', day:'numeric'}
+        element.fechac = element.fechac.toLocaleDateString("es-ES", options)
+        
+      });
+      // console.log(this.historyF)
+
+      
+    },(error)=>{
+      this.notificacionService.showError()
+      this.hideBarra()
+      // console.log(error)
     })
   }
     

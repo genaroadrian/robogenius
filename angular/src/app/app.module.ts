@@ -131,6 +131,10 @@ import { HomeasisComponent } from './asistencias/homeasis/homeasis.component';
 import { EditasisComponent } from './asistencias/editasis/editasis.component';
 import { DeleteasisComponent } from './asistencias/deleteasis/deleteasis.component';
 import { AddasisComponent } from './asistencias/addasis/addasis.component';
+import { SachomeComponent } from './subareac/sachome/sachome.component';
+import { SacaddComponent } from './subareac/sacadd/sacadd.component';
+import { SaceditComponent } from './subareac/sacedit/sacedit.component';
+import { SacdeleteComponent } from './subareac/sacdelete/sacdelete.component';
 
 
 
@@ -174,7 +178,10 @@ const routes: Route[]=[
 {path: 'subtema', component: SubtemahomeComponent},
 {path: 'tema', component: TemahomeComponent},
 {path: 'tipomembresia', component: HometipomemComponent},
-{path: 'asistencias', component: HomeasisComponent}
+{path: 'asistencias', component: HomeasisComponent},
+
+
+{path: 'subareac',component: SachomeComponent}
 ];
 
 @NgModule({
@@ -272,7 +279,11 @@ const routes: Route[]=[
     HomeasisComponent,
     EditasisComponent,
     DeleteasisComponent,
-    AddasisComponent
+    AddasisComponent,
+    SachomeComponent,
+    SacaddComponent,
+    SaceditComponent,
+    SacdeleteComponent
 
 
 
@@ -417,7 +428,23 @@ const routes: Route[]=[
     /* Modales de las asistencias */
     AddasisComponent,
     DeleteasisComponent,
-    EditasisComponent
+    EditasisComponent,
+
+
+
+
+
+
+
+
+
+
+
+    
+    /* Modales de sub areas del conocimiento */
+    SacaddComponent,
+    SaceditComponent,
+    SacdeleteComponent
 
 
   ],

@@ -92,10 +92,10 @@
                           <!-- <p>Estatus de la membresia: </p> -->
                         <mat-expansion-panel *ngFor="let mem of membresia; let i = index">
                             <mat-expansion-panel-header>
-                                <mat-panel-title>
+                                <mat-panel-title class="col-md-8">
                                     Membresia {{ mem.nommem}}
                                 </mat-panel-title>
-                                <mat-panel-description>
+                                <mat-panel-description class="col-md-4">
                                     <span [style.display.none]="mem.restante == 0 ? '' : 'none'" class="text-warning"  >
                                         <mat-icon>warning</mat-icon> Debe ${{mem.restante}}.00
                                     </span>

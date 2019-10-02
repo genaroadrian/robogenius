@@ -74,6 +74,9 @@ export class AreadelconocimientoService {
    {
      this.id = id
    }
+   getall(){
+    return this.httpClient.get(this.API_ENDPOINT + '/clases/');
+   }
  
  
    // Borrar los datos

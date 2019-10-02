@@ -46,6 +46,10 @@ export class ModuloComponent implements OnInit {
   areas: any
   temas: any;
   subtemas: Object;
+  datos: any;
+  areadelconocimiento: any;
+  tema: any;
+  subtema: any;
 
 
 
@@ -56,6 +60,7 @@ export class ModuloComponent implements OnInit {
     private moduloService : ModuloService, private temaService : TemaService ) { }
 
   ngOnInit() {
+    this.get()
     //Obtener datos de modal nivel
     this.nivelService.get().subscribe((data)=>{
       console.log(data)
@@ -215,7 +220,38 @@ export class ModuloComponent implements OnInit {
       }
     });
   }
-  
+  get(){
+    this.areaService.getall().subscribe((data)=>{
+      this.datos=data;
+      var hash = {};
+      this.areadelconocimiento = this.datos.filter(function(area) {
+        var exists = !hash[area.nomarea] || false;
+        hash[area.nomarea] = true;
+        return exists;
+      });
+    }) 
+
+    
+  }
+  gettema(AREA){
+    this.tema=this.areadelconocimiento.filter(tem=> tem.idac==AREA)
+    console.log(AREA);
+    console.log(this.tema);
+      var hash = {};
+      this.tema = this.tema.filter(function(tem) {
+        var exists = !hash[tem.nomtema] || false;
+        hash[tem.nomtema] = true;
+        return exists;
+        
+    }) 
+      
+  }
+  getsubtema(TEMA){
+   console.log(this.tema)
+    this.subtema=this.datos.filter(sub=> sub.idt==TEMA)
+    console.log(TEMA);
+    console.log(this.subtema);
+  }
 
 
 

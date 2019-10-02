@@ -136,6 +136,7 @@ import { HomeasisComponent } from './asistencias/homeasis/homeasis.component';
 import { EditasisComponent } from './asistencias/editasis/editasis.component';
 import { DeleteasisComponent } from './asistencias/deleteasis/deleteasis.component';
 import { AddasisComponent } from './asistencias/addasis/addasis.component';
+import { HerramientasComponent } from './herramientas/herramientas.component';
 
 
 
@@ -183,7 +184,9 @@ const routes: Route[]=[
 
 {path: 'clases', component: ModuloComponent},
 
-{path: 'asistencias', component: HomeasisComponent}
+{path: 'asistencias', component: HomeasisComponent},
+{path: 'herramientas', component: HerramientasComponent}
+
 ];
 
 @NgModule({
@@ -283,7 +286,8 @@ const routes: Route[]=[
     HomeasisComponent,
     EditasisComponent,
     DeleteasisComponent,
-    AddasisComponent
+    AddasisComponent,
+    HerramientasComponent
 
 
 

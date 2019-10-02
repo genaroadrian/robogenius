@@ -1,0 +1,95 @@
+<app-navbar></app-navbar>   
+<br> 
+<br> 
+<br> 
+<br> 
+<div class="col-xl-12 col-md-12 body">
+    <div class="col-xl-12 col-md-12 ">
+        <div class="card bg-light mini-stat position-relative">
+              <div class="card-body">
+                 <div class="mini-stat-desc">
+                    <div class="col-xl-12 col-md-12">
+                       <div class="col-xl-5 col-md-12 ">
+                       </div>
+                          <div class="col-xl-2 col-md-12">
+                             <h1 style="font-size: 30px; text-align: center;">Herramientas</h1>
+                           <hr/>
+                            </div>
+                         <div class="col-xl-5 col-md-12 ">
+                         </div>
+                     </div>
+                         <div class="col-xl-12 col-md-12 ">
+                          <mat-toolbar style="background: none; color: black;">
+                            <span><button mat-icon-button (click)="addHerr()" >
+                                <mat-icon aria-label="Nuevo Registro" >add_circle_outline</mat-icon><span > Nuevo</span>
+                              </button></span>  
+                            <span class="spacer"></span>
+                            Recargar datos:
+                            <button mat-icon-button (click)="refresh()">
+                              <mat-icon>refresh</mat-icon>
+                            </button>
+                          </mat-toolbar>
+                          </div>
+                          <div class="col-xl-12 col-md-12 ">
+                              <mat-form-field floatLabel="never"  style="width:100%; text-align: center;">
+                                  <input matInput #filter placeholder="Buscar..." >
+                                </mat-form-field>
+                          </div>
+                          <div class="col-xl-12 col-md-12 example">  
+  
+  
+                              <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+                            
+                                <!--- Note that these columns can be defined in any order.
+                                      The actual rendered columns are set as a property on the row definition" -->
+                            
+                                <!-- ID Column -->
+                                <ng-container matColumnDef="id">
+                                  <mat-header-cell *matHeaderCellDef mat-sort-header>Id</mat-header-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Id" >{{row.idherramientas}}</mat-cell>
+                                </ng-container>
+                            
+                                <ng-container matColumnDef="codigo" sticky>
+                                  <mat-header-cell *matHeaderCellDef mat-sort-header>Código</mat-header-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Nombre" > {{row.nombre}}</mat-cell>
+                                </ng-container>
+                            
+                                
+                                <ng-container matColumnDef="icons" stickyEnd>
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
+                                  <mat-cell *matCellDef="let row; let i=index;" data-label="Acciones" >
+                                    <button mat-icon-button class="text-success" (click)="modifica(i, row.id, row.codigo, row.porcentaje, row.lugar, row.fecha)">
+                                      <mat-icon aria-label="Edit">edit</mat-icon>
+                                    </button>
+                                    <button mat-icon-button class="text-danger" (click)="delete(i, row.id)">
+                                      <mat-icon aria-label="Delete">delete</mat-icon>
+                                    </button>
+                            
+                                   
+                                  </mat-cell>
+                                </ng-container>
+                            
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                              </mat-table>
+                            
+                            
+                              <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+                                <!-- Spinner de carga -->
+                                <img src="https://loading.io/spinners/eclipse/lg.ring-loading-gif.gif"  style="width: 20%; margin-left: 4%;">
+
+                              </div>
+                            
+                              <mat-paginator #paginator
+                                             [length]="dataSource.filteredData.length"
+                                             [pageIndex]="0"
+                                             [pageSize]="5"
+                                             [pageSizeOptions]="[5, 10, 25, 100]">
+                              </mat-paginator>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+<app-fotter></app-fotter>

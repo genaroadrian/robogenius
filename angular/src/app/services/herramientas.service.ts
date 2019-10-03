@@ -31,5 +31,17 @@ export class HerramientasService {
     console.log (error.name + ' ' + error.message);
     });
   }
+  get data(): Herramientas[] {
+    return this.dataChange.value;
+  }
+  herramientas (herramientas: Herramientas): void {
+    this.dialogData = herramientas;
+  }
+  herramienta(herramientas: Herramientas)
+  {
+    console.log(herramientas);
+    const headers = new HttpHeaders( {'Content-Type': 'application/json'});
+    return this.httpClient.post(this.API_ENDPOINT + '/herramientas/',herramientas, {headers: headers});
+  }
 
 }

@@ -136,7 +136,8 @@ import { HomeasisComponent } from './asistencias/homeasis/homeasis.component';
 import { EditasisComponent } from './asistencias/editasis/editasis.component';
 import { DeleteasisComponent } from './asistencias/deleteasis/deleteasis.component';
 import { AddasisComponent } from './asistencias/addasis/addasis.component';
-import { HerramientasComponent } from './herramientas/herramientas.component';
+import { AddHerramientasComponent } from './herramientas/add-herramientas/add-herramientas.component';
+import { HomeHerramientasComponent } from './herramientas/home-herramientas/home-herramientas.component';
 
 
 
@@ -185,7 +186,7 @@ const routes: Route[]=[
 {path: 'clases', component: ModuloComponent},
 
 {path: 'asistencias', component: HomeasisComponent},
-{path: 'herramientas', component: HerramientasComponent}
+{path: 'herramientas', component: HomeHerramientasComponent}
 
 ];
 
@@ -287,7 +288,8 @@ const routes: Route[]=[
     EditasisComponent,
     DeleteasisComponent,
     AddasisComponent,
-    HerramientasComponent
+    AddHerramientasComponent,
+    HomeHerramientasComponent
 
 
 
@@ -436,7 +438,8 @@ const routes: Route[]=[
     /* Modales de las asistencias */
     AddasisComponent,
     DeleteasisComponent,
-    EditasisComponent
+    EditasisComponent,
+    AddHerramientasComponent
 
 
   ],

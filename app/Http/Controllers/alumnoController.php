@@ -75,7 +75,7 @@ class alumnoController extends Controller
         $alumno->perfilalu = $request->perfilalu;
         $alumno->cronica = $request->cronica;
         $alumno->otro = $request->otro;
-        $alumno->escuela = $request->escuela;
+        // $alumno->escuela = $request->escuela;
         $alumno->usuarioalu = $request->usuarioalu;
         $alumno->pswalu = $request->pswalu;
         $alumno->nompad = $request->nompad;

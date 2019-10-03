@@ -57,11 +57,11 @@ export class SubareacService {
   put(data)
   {
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.put(this.API_ENDPOINT+'/subareac/'+data.id,data, {headers:headers})
+    return this.httpClient.put(this.API_ENDPOINT+'/subareac/'+data.idsac,data, {headers:headers})
   }
 
-  detele(data)
+  detele(id: number)
   {
-    return this.httpClient.delete(this.API_ENDPOINT+'/subareac/'+data.id)
+    return this.httpClient.delete(this.API_ENDPOINT+'/subareac/'+id)
   }
 }

@@ -18,6 +18,9 @@ import { SacdeleteComponent } from '../sacdelete/sacdelete.component';
 })
 export class SachomeComponent implements OnInit {
 
+  id: number
+  index: number
+
   displayedColumns: string[] = [
     'nombre',
     'icons',
@@ -106,32 +109,55 @@ export class SachomeComponent implements OnInit {
     })
   }
 
-  onUpdate()
+  onUpdate(i:number, idsac: number, nombre: string)
   {
-    // this.id = id
-    // this.index = i
+    this.id = idsac
+    this.index = i
     const dialogRef = this.dialog.open(SaceditComponent,{
-
+      data: {idsac: idsac, nombre:nombre}
     })
     dialogRef.afterClosed().subscribe(result => {
       if (result == 1)
       {
-
+        this.showBarra()
+        this.subareaService.put(this.subareaService.getDialogData()).subscribe((data)=>{
+          const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idsac === this.id);
+          // Then you update that record using data from dialogData (values you enetered)
+          this.exampleDatabase.dataChange.value[foundIndex] = this.subareaService.getDialogData()
+          // And lastly refresh table
+          this.refreshTable()
+          this.hideBarra()
+          this.notificationsService.showSuccessEdit()
+        },(error)=>{
+          this.notificationsService.showError()
+          console.log(error)
+          this.hideBarra()
+        })
       }
     })
   }
 
-  delete()
+  delete(i: number, idsac: number, nombre: string)
   {
-    /* this.index = i
-    this.id = id */
+    this.index = i
+    this.id = idsac
     const dialogRef = this.dialog.open(SacdeleteComponent,{
-
+      data: {idsac: idsac, nombre: nombre}
     })
     dialogRef.afterClosed().subscribe(result => {
       if (result == 1)
       {
-
+        this.showBarra()
+        this.subareaService.detele(this.id).subscribe((data)=>{
+          const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idsac === this.id);
+          this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+          this.refreshTable()
+          this.notificationsService.showSuccessDelete()
+          this.hideBarra()
+        },(error)=>{
+          this.hideBarra()
+          this.notificationsService.showError()
+        })
       }
     })
   }

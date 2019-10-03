@@ -58,11 +58,12 @@
                                 <ng-container matColumnDef="icons" stickyEnd>
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
                                   <mat-cell *matCellDef="let row; let i=index;" data-label="Acciones">
-                                    <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idesc, row.nombre, row.representante, row.direccion, row.telefono, row.correouno)">
+                                    <button mat-icon-button class="text-success" (click)="onUpdate(i, 
+                                                  row.idsac, row.nombre)">
                                       <mat-icon aria-label="Edit">edit</mat-icon>
                                     </button>
                             
-                                    <button mat-icon-button class="text-danger" (click)="delete(i, row.idesc)">
+                                    <button mat-icon-button class="text-danger" (click)="delete(i, row.idsac, row.nombre)">
                                       <mat-icon aria-label="Delete">delete</mat-icon>
                                     </button>
                                   </mat-cell>

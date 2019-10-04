@@ -43,7 +43,6 @@ export class SachomeComponent implements OnInit {
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
     console.log(this.dataSource)
     fromEvent(this.filter.nativeElement, 'keyup')
-    
       .subscribe(() => {
         console.log(this.dataSource)
         if (!this.dataSource) {

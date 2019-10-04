@@ -140,7 +140,12 @@ import { SachomeComponent } from './subareac/sachome/sachome.component';
 import { SacaddComponent } from './subareac/sacadd/sacadd.component';
 import { SaceditComponent } from './subareac/sacedit/sacedit.component';
 import { SacdeleteComponent } from './subareac/sacdelete/sacdelete.component';
-import { HerramientasComponent } from './herramientas/herramientas.component';
+import { AddHerramientasComponent } from './herramientas/add-herramientas/add-herramientas.component';
+import { HomeHerramientasComponent } from './herramientas/home-herramientas/home-herramientas.component';
+import { HomesesionesComponent } from './sesiones/homesesiones/homesesiones.component';
+import { AddsesionesComponent } from './sesiones/addsesiones/addsesiones.component';
+import { EditsesionesComponent } from './sesiones/editsesiones/editsesiones.component';
+import { DeletesesionesComponent } from './sesiones/deletesesiones/deletesesiones.component';
 
 
 
@@ -188,7 +193,8 @@ const routes: Route[]=[
 {path: 'asistencias', component: HomeasisComponent},
 {path: 'subareac',component: SachomeComponent},
 {path: 'clases', component: ModuloComponent},
-{path: 'herramientas', component: HerramientasComponent}
+{path: 'herramientas', component: HomeHerramientasComponent},
+{path: 'sesiones', component: HomesesionesComponent}
 
 ];
 
@@ -294,7 +300,12 @@ const routes: Route[]=[
     SacaddComponent,
     SaceditComponent,
     SacdeleteComponent,
-    HerramientasComponent
+    AddHerramientasComponent,
+    HomeHerramientasComponent,
+    HomesesionesComponent,
+    AddsesionesComponent,
+    EditsesionesComponent,
+    DeletesesionesComponent
   ],
   imports: [
     NgxUpperCaseDirectiveModule,
@@ -439,22 +450,12 @@ const routes: Route[]=[
     AddasisComponent,
     DeleteasisComponent,
     EditasisComponent,
-
-
-
-
-
-
-
-
-
-
-
     
     /* Modales de sub areas del conocimiento */
     SacaddComponent,
     SaceditComponent,
-    SacdeleteComponent
+    SacdeleteComponent,
+    AddHerramientasComponent
 
 
   ],

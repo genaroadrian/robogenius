@@ -146,6 +146,7 @@ import { HomesesionesComponent } from './sesiones/homesesiones/homesesiones.comp
 import { AddsesionesComponent } from './sesiones/addsesiones/addsesiones.component';
 import { EditsesionesComponent } from './sesiones/editsesiones/editsesiones.component';
 import { DeletesesionesComponent } from './sesiones/deletesesiones/deletesesiones.component';
+import { UpdatehComponent } from './herramientas/updateh/updateh.component';
 
 
 
@@ -305,7 +306,13 @@ const routes: Route[]=[
     HomesesionesComponent,
     AddsesionesComponent,
     EditsesionesComponent,
-    DeletesesionesComponent
+    DeletesesionesComponent,
+    UpdatehComponent
+
+
+
+
+
   ],
   imports: [
     NgxUpperCaseDirectiveModule,

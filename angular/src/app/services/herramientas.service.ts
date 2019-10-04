@@ -43,5 +43,12 @@ export class HerramientasService {
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.post(this.API_ENDPOINT + '/herramientas/',herramientas, {headers: headers});
   }
+  getDialogData() {
+    return this.dialogData;
+  }
+  put(data){
+    const headers = new HttpHeaders( {'Content-Type': 'application/json'});
+    return this.httpClient.put(this.API_ENDPOINT +'/herramientas/'+data.idherra,data,{headers: headers});
+  }
 
 }

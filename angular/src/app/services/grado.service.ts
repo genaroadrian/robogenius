@@ -23,7 +23,10 @@ export class GradoService {
     this.sucursal=localStorage.getItem('sucursal')
   }
   
-  
+  get()
+  {
+    return this.httpClient.get(this.API_ENDPOINT+'/grados')
+  }
   getgrados(): void{
     this.httpClient.get<Grados[]>(this.API_ENDPOINT + '/grados').subscribe(data => {
       this.datos=data
@@ -58,5 +61,20 @@ export class GradoService {
 
   delete(id){
     return this.httpClient.delete(this.API_ENDPOINT + '/grados/'+id);
+  }
+  addgrados (grados: Grados): void {
+    this.dialogData = grados
+  }
+  agregarg(grados: Grados){
+    console.log(grados);
+    const headers=new HttpHeaders( {'Content-Type': 'application/json'});
+    return this.httpClient.post(this.API_ENDPOINT+ '/grados/', grados, {headers:headers});
+
+  }
+  addd(grados: Grados)
+  {
+    console.log(grados);
+    const headers = new HttpHeaders( {'Content-Type': 'application/json'});
+    return this.httpClient.post(this.API_ENDPOINT + '/grados/',grados, {headers: headers});
   }
 }

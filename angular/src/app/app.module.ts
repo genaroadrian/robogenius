@@ -125,6 +125,11 @@ import { HometipomemComponent } from './tipomembresias/hometipomem/hometipomem.c
 import { AddtipomemComponent } from './tipomembresias/addtipomem/addtipomem.component';
 import { EdittipomemComponent } from './tipomembresias/edittipomem/edittipomem.component';
 import { DeletetipomemComponent } from './tipomembresias/deletetipomem/deletetipomem.component';
+
+import { ModuloComponent } from './modulo/modulo.component';
+import { AddgradosComponent } from './grados/addgrados/addgrados.component';
+import { ModuloService } from './services/modulo.service';
+
 import { PerfiladdmemComponent } from './alumnos/perfiladdmem/perfiladdmem.component';
 import { PerfiladdhoraComponent } from './alumnos/perfiladdhora/perfiladdhora.component'; 
 import { AlumnosloginComponent } from './login/alumnoslogin/alumnoslogin.component';
@@ -134,6 +139,10 @@ import { HomeasisComponent } from './asistencias/homeasis/homeasis.component';
 import { EditasisComponent } from './asistencias/editasis/editasis.component';
 import { DeleteasisComponent } from './asistencias/deleteasis/deleteasis.component';
 import { AddasisComponent } from './asistencias/addasis/addasis.component';
+import { AddHerramientasComponent } from './herramientas/add-herramientas/add-herramientas.component';
+import { HomeHerramientasComponent } from './herramientas/home-herramientas/home-herramientas.component';
+import { UpdatehComponent } from './herramientas/updateh/updateh.component';
+
 
 
 
@@ -179,7 +188,13 @@ const routes: Route[]=[
 {path: 'tipomembresia', component: HometipomemComponent},
 {path: 'loginalumnos', component: AlumnosloginComponent},
 {path: 'loginpersonal', component: PersonalloginComponent},
-{path: 'asistencias', component: HomeasisComponent}
+{path: 'asistencias', component: HomeasisComponent},
+
+{path: 'clases', component: ModuloComponent},
+
+{path: 'asistencias', component: HomeasisComponent},
+{path: 'herramientas', component: HomeHerramientasComponent}
+
 ];
 
 @NgModule({
@@ -272,6 +287,8 @@ const routes: Route[]=[
     AddtipomemComponent,
     EdittipomemComponent,
     DeletetipomemComponent,
+    ModuloComponent,
+    AddgradosComponent,
     PerfiladdmemComponent,
     PerfiladdhoraComponent,
     AlumnosloginComponent,
@@ -279,7 +296,10 @@ const routes: Route[]=[
     HomeasisComponent,
     EditasisComponent,
     DeleteasisComponent,
-    AddasisComponent
+    AddasisComponent,
+    AddHerramientasComponent,
+    HomeHerramientasComponent,
+    UpdatehComponent
 
 
 
@@ -339,6 +359,7 @@ const routes: Route[]=[
     GraficasService,
     EscuelasService,
     FileuploadService,
+    ModuloService,
 
     {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
   ],
@@ -393,10 +414,11 @@ const routes: Route[]=[
     //Modal para nivel
     AddnivelComponent,
     UpdatenivelComponent,
-    //Modal para los coódigos de descuentos
+    //Modal para los grados
     UpdategComponent,
     DeletegComponent,
     DeletenComponent,
+    AddgradosComponent,
      /* Modal para area del conocimiento */
      AreaaddComponent,
      AreaeditComponent,
@@ -417,6 +439,8 @@ const routes: Route[]=[
     AddtipomemComponent,
     EdittipomemComponent,
     DeletetipomemComponent,
+   
+    DeletetipomemComponent,
     /* Agregar membresia en el perfil de alumnos */
     PerfiladdmemComponent,
     /* Agregar un nuevo horario en el perfil de Alumnos */
@@ -424,7 +448,8 @@ const routes: Route[]=[
     /* Modales de las asistencias */
     AddasisComponent,
     DeleteasisComponent,
-    EditasisComponent
+    EditasisComponent,
+    AddHerramientasComponent
 
 
   ],

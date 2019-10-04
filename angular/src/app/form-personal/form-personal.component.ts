@@ -22,6 +22,8 @@ import { NG_VALIDATORS } from '@angular/forms';
 import { HaddComponent } from '../horarios/hadd/hadd.component';
 import { HorariosService } from '../services/horarios.service';
 import { Horario } from '../interfaces/horario';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+
 
 function emailDomainValidator(control: FormControl) {
   let email = control.value;
@@ -53,6 +55,8 @@ export class FormPersonalComponent implements OnInit {
 
   /* select de horas */
   horas:any
+  isDisable = true;
+
   dias: any
   public selectedTime: string;
   public selectedTimes: string;
@@ -116,6 +120,16 @@ export class FormPersonalComponent implements OnInit {
    }else{
      this.visibility = 'none'
    }
+  } 
+
+  tipoChange1(event) {
+    if (this.selectedtp == "2") {
+      this.isDisable = false;
+      this.visibility = "block";
+    } else {
+      this.isDisable = true;
+      this.visibility = "none";
+    }
   }
 
   // Notificación de success al eliminar

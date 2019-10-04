@@ -81,10 +81,19 @@ export class AreadelconocimientoService {
    {
      this.id = id
    }
+   getall(){
+    return this.httpClient.get(this.API_ENDPOINT + '/clases/');
+   }
  
  
    // Borrar los datos
    delete(id:number){
      return this.httpClient.delete(this.API_ENDPOINT + '/areadelconocimiento/'+id);
+   }
+   addd(area: AreadelconocimientoService)
+   {
+     console.log(area);
+     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
+     return this.httpClient.post(this.API_ENDPOINT + '/grados/',area, {headers: headers});
    }
 }

@@ -65,7 +65,8 @@ Route::resource('areadelconocimiento', 'areaDelConocimientoController');
 Route::resource('tema', 'temasController');
 Route::resource('subtema', 'subtemasController');
 Route::resource('confirmtoken', 'passwordResetController');
-
+Route::resource('clases', 'moduloController');
+Route::resource('herramientas', 'herramientasController');
 Route::post('validation','LoginAngularController@validation')->name('validation');
 
 

@@ -1,0 +1,27 @@
+<div class="form-group" style="width:500px">
+
+  <form  (ngSubmit)="submit" #formControl="ngForm">
+
+  <div class="container" >
+    <div class="row">
+      <div class="col-xl-12">
+        <h3 style="text-align: center;">Herramientas</h3>
+      </div>
+    </div>
+    <hr/>
+    <br>
+
+    <div class="form col-xl-6">
+      <mat-form-field color="accent">
+        <input matInput placeholder="Nombreeee" [(ngModel)]="data.nombre" name="nombre" required>
+      </mat-form-field>
+      </div>
+  <br>
+
+    <div mat-dialog-actions>
+      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="herramientas()" style="margin-left: 100px; margin-right: 80px;">Guardar</button>
+      <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+    </div>
+  </div>
+  </form>
+</div>

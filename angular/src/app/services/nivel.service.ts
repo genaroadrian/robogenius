@@ -28,6 +28,11 @@ export class NivelService {
     console.log (error.name + ' ' + error.message);
     });
   }
+  get()
+  {
+    return this.httpClient.get(this.API_ENDPOINT+'/nivel')
+  }
+  
   get data(): Niveles[] {
     return this.dataChange.value;
   }
@@ -54,6 +59,12 @@ export class NivelService {
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.put(this.API_ENDPOINT +'/nivel/'+data.idn,data,{headers: headers});
   }
+  add(niveles: Niveles)
+  {
+    console.log(niveles);
+    const headers = new HttpHeaders( {'Content-Type': 'application/json'});
+    return this.httpClient.post(this.API_ENDPOINT + '/nivel/',niveles, {headers: headers});
+  }
   deleten (id: number): void {
     console.log(id);
   }
@@ -61,4 +72,10 @@ export class NivelService {
   delete(id){
     return this.httpClient.delete(this.API_ENDPOINT + '/nivel/'+id);
   }
+    // Guardar datos
+    save(niveles: Niveles) {
+      const headers = new HttpHeaders({"Content-Type":"application/json"});
+      return this.httpClient.post(this.API_ENDPOINT+'/nivel', niveles, {headers: headers});
+    }
+   
 }

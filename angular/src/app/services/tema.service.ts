@@ -24,6 +24,15 @@ export class TemaService {
   constructor(private httpClient: HttpClient) {
     this.sucursal=localStorage.getItem('sucursal')
   }
+  //AGREGAR EN MODAL
+  addd(tema: tema)
+  {
+    console.log(tema);
+    const headers = new HttpHeaders( {'Content-Type': 'application/json'});
+    return this.httpClient.post(this.API_ENDPOINT + '/tema/',tema, {headers: headers});
+  }
+
+
   // Obtener datos de la base de datos
   gettema(): void{
     this.httpClient.get<tema[]>(this.API_ENDPOINT+'/tema').subscribe(data => {

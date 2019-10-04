@@ -32,6 +32,8 @@ class Personal extends Model
         'tareasasignadas',
         'fecharegistro',
         'idtper',
-        'activo'
+        'activo',
+        'idsuc'
+
     ];
 }

@@ -40,6 +40,8 @@ export class NavbarComponent  {
   }
 
   foto=localStorage.getItem("foto");
+
+  nombresucu=localStorage.getItem("sucuname");
   prueba:any;
 
   sucur:any;
@@ -48,36 +50,14 @@ export class NavbarComponent  {
  
 
   constructor(private router:Router,public httpClient: HttpClient
-  , public dialog: MatDialog,public useradminService :UserAdminService,
-  public sucursalService: SucursalService
+  , public dialog: MatDialog,public useradminService :UserAdminService
     ) {
       
-      // this.sucur=localStorage.getItem('sucursal');
-      // console.log(this.sucur);
-   
-    this.sucursalService.getfsucursal()
-  .subscribe(data=>{
-    this.ingresos=data;
-    this.sucur=localStorage.getItem('sucursal');
-
-    // this.sucur = ;
-  })
-
-
-
       // enviamos la funcion con el valor de la interfaz
       this.dias(this.dia);
       // setTimeout(this.print,9000);
       // setTimeout(this.codigo,9000);
    }
-   tipoChange(value:string) {
-    
-    // console.log(this.archivo);
-    localStorage.removeItem('sucursal');
-    localStorage.setItem('sucursal' , value);
-    console.log(value)
-
-  }
    
    dias(dia)
   {
@@ -90,13 +70,9 @@ export class NavbarComponent  {
    
     
   }
-
-  // funcion para salir
-    logout(){
+  logout(){
     localStorage.removeItem('email');
-    localStorage.removeItem('subname');
     localStorage.removeItem('foto');
-
     this.router.navigateByUrl('/login');
   }
 

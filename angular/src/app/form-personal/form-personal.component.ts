@@ -155,7 +155,7 @@ export class FormPersonalComponent implements OnInit {
     contra: null, fechanac: null, sexo: null, curp: null,
     estadocivil: null, domicilio: null, fechaingreso: null, horasalida: null,
     horaentrada: null, perfilprofesional: null, especialidad: null, salariomensual: null,
-    tareasasignadas: null, idtper: null, activo: null
+    tareasasignadas: null, idtper: null, activo: null,idsuc:null
   };
 
   // Variables de id e index para los metodos relacionados con la base de datos
@@ -214,6 +214,7 @@ export class FormPersonalComponent implements OnInit {
 
   // Guardar la informacion del personal
   savePersonal(persona) {
+    this.persona.idsuc=localStorage.getItem("sucursal")
     this.personalService.save(persona).subscribe((data) => {
       this.showSuccesSave();
       // console.log(data);

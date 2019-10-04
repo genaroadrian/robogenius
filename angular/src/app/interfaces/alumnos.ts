@@ -31,7 +31,7 @@ export interface Alumnos {
     pswpad: string,
     finscripcion: string,
     activo: number,
-    idsuc: number,
+    idsuc: string,
     idesc: number,
     nombre: string
 }

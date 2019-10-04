@@ -14,7 +14,6 @@ export class PersonalService {
     
   // URL de laravel
   API_ENDPOINT = 'http://localhost:8000/api';
-  sucursal:any;
 
   dataChange: BehaviorSubject<Personal[]> = new BehaviorSubject<Personal[]>([]);
 
@@ -24,6 +23,7 @@ export class PersonalService {
   id: number 
 
   datos :any;
+  sucursal:any;
 
   constructor(private httpClient: HttpClient) {
     this.sucursal=localStorage.getItem('sucursal')

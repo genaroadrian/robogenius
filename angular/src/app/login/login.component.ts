@@ -41,26 +41,55 @@ export class LoginComponent implements OnInit {
     // }
     this.showBarra()
     this.service.validation(form.value).subscribe((data)=>{
-      if(data[0]==1){
-        console.log(data);
-        localStorage.setItem('email' , form.value.email);
-        localStorage.setItem('foto' , data[1]);
-        // this.showSuccessEmail();
+      // console.log(data)
+    if(data[0]==1){
+            if(data[2]==2){
+              console.log("personal")
+                  //  console.log(data);
+                  localStorage.setItem('email' , form.value.email);
+                  localStorage.setItem('foto' , data[1]);
+                  // this.showSuccessEmail();
+                  this.hideBarra()
+                  this.router.navigateByUrl('/home'); 
+
+            }else
+            if(data[2]==3){
+              console.log("Alumnos")
+              localStorage.setItem('email' , form.value.email);
+                  localStorage.setItem('foto' , data[1]);
+                  // this.showSuccessEmail();
+                  this.hideBarra()
+                  this.router.navigateByUrl('/home');
+              
+            }else if(data[2]==1){
+              console.log("Administrador")
+              localStorage.setItem('email' , form.value.email);
+                  localStorage.setItem('foto' , data[1]);
+                  // this.showSuccessEmail();
+                  this.hideBarra()
+                  this.router.navigateByUrl('/home');
+              
+            }else{
+              console.log("no hay registros")
+            }
+    }else{
         this.hideBarra()
+        this.showErrorEmail1();
+        }
+      },(error)=>{
 
-        this.router.navigateByUrl('/home'); 
-      }else{
-        console.log(data);
+          this.showErrorEmail1();
+          this.hideBarra()
 
-      // console.log("la cagaste");
-      this.hideBarra()
-      this.showErrorEmail1();
-      }
+    //   if(data[0]==1){
+    //     console.log(data);
+    //     localStorage.setItem('email' , form.value.email);
+    //     localStorage.setItem('foto' , data[1]);
+    //     // this.showSuccessEmail();
+    //     this.hideBarra()
 
-    },(error)=>{
-
-      this.showErrorEmail1();
-      this.hideBarra()
+    //     this.router.navigateByUrl('/home'); 
+    //   }
     })
 
     

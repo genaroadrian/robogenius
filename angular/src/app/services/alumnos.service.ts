@@ -11,18 +11,24 @@ export class AlumnosService {
 
   // URL de laravel con xampp
   API_ENDPOINT = 'http://localhost:8000/api';
-
+  datos :any;
+  sucursal:any;
   dataChange: BehaviorSubject<Alumnos[]> = new BehaviorSubject<Alumnos[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+    this.sucursal=localStorage.getItem('sucursal')
+
+  }
 
   // Obtener datos de la base de datos
   getAlumnos(): void{
     this.httpClient.get<Alumnos[]>(this.API_ENDPOINT+'/alumnos').subscribe(data => {
-      this.dataChange.next(data);
-    },
+      this.datos=data
+      this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
+      // console.log(this.datos)
+      this.dataChange.next(this.datos);     },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);
     });

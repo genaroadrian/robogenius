@@ -8,18 +8,14 @@
 <br>
 <br>
 <br>
-<div class="select" >
-  <select  [(value)]="sucur" #myselect (change)="tipoChange(myselect.value)">
-    <option *ngFor="let f of ingresos"  [value]="f.idsuc"> {{f.nombre}}</option>  
-  </select>
-</div>
+
 
   <!-- <mat-select [(ngModel)]="persona.idtper" [(value)]="selectedtp" (selectionChange)="tipoChange($event)">
     <mat-option *ngFor="let tp of selectTPersonal" value="{{tp.idtper}}">{{tp.tipo}}</mat-option>
   </mat-select> -->
 
     <div class="dropdown">
-        <!-- <i class="mdi mdi-account correo">   {{emai}} </i> -->
+        <i class="mdi correo">Sucursal:{{nombresucu}} </i>
      
 
           

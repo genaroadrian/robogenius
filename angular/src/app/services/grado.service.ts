@@ -16,11 +16,20 @@ export class GradoService {
   // Datos termporales que se recibiran desde los modales 
   dialogData: any;
 
-  constructor(private httpClient: HttpClient) { }
+  datos :any;
+  sucursal:any;
+
+  constructor(private httpClient: HttpClient) {
+    this.sucursal=localStorage.getItem('sucursal')
+  }
+  
+  
   getgrados(): void{
     this.httpClient.get<Grados[]>(this.API_ENDPOINT + '/grados').subscribe(data => {
-      this.dataChange.next(data);
-      },
+      this.datos=data
+      this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
+      // console.log(this.datos)
+      this.dataChange.next(this.datos);      },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);
     });

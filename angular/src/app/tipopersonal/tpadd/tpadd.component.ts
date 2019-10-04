@@ -34,6 +34,7 @@ export class TpaddComponent implements OnInit {
         this.data.permisos = 1
         // console.log(this.cheked)
       }
+      this.data.idsuc=localStorage.getItem("sucursal")
       this.dataService.addIssue(this.data)
     }
 

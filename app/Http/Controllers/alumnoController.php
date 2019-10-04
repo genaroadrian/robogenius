@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use slidecom_robogenius\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use slidecom_robogenius\Alumno;
+use Illuminate\Support\Facades\Crypt;
+
 
 
 
@@ -77,7 +79,7 @@ class alumnoController extends Controller
         $alumno->otro = $request->otro;
         // $alumno->escuela = $request->escuela;
         $alumno->usuarioalu = $request->usuarioalu;
-        $alumno->pswalu = $request->pswalu;
+        $alumno->pswalu = Crypt::encrypt($request->pswalu);
         $alumno->nompad = $request->nompad;
         $alumno->apepad = $request->apepad;
         $alumno->dompad = $request->dompad;
@@ -92,6 +94,8 @@ class alumnoController extends Controller
         $alumno->ocupmad = $request->ocupmad;
         $alumno->activo = 1;
         $alumno->finscripcion = $date;
+        $alumno->idsuc = $request->idsuc;
+
         $alumno->save();
         echo json_encode($alumno);
     }
@@ -158,6 +162,7 @@ class alumnoController extends Controller
         $alumno->ocupmad = $request->ocupmad;
         $alumno->activo = 1;
         $alumno->finscripcion = $request->finscripcion;
+        $alumno->idsuc = $request->idsuc;
         $alumno->save();
         echo json_encode($alumno);
     }

@@ -131,7 +131,10 @@ import { AddgradosComponent } from './grados/addgrados/addgrados.component';
 import { ModuloService } from './services/modulo.service';
 
 import { PerfiladdmemComponent } from './alumnos/perfiladdmem/perfiladdmem.component';
-import { PerfiladdhoraComponent } from './alumnos/perfiladdhora/perfiladdhora.component';
+import { PerfiladdhoraComponent } from './alumnos/perfiladdhora/perfiladdhora.component'; 
+import { AlumnosloginComponent } from './login/alumnoslogin/alumnoslogin.component';
+import { PersonalloginComponent } from './login/personallogin/personallogin.component';
+
 import { HomeasisComponent } from './asistencias/homeasis/homeasis.component';
 import { EditasisComponent } from './asistencias/editasis/editasis.component';
 import { DeleteasisComponent } from './asistencias/deleteasis/deleteasis.component';
@@ -191,6 +194,9 @@ const routes: Route[]=[
 {path: 'subtema', component: SubtemahomeComponent},
 {path: 'tema', component: TemahomeComponent},
 {path: 'tipomembresia', component: HometipomemComponent},
+{path: 'loginalumnos', component: AlumnosloginComponent},
+{path: 'loginpersonal', component: PersonalloginComponent},
+{path: 'asistencias', component: HomeasisComponent},
 {path: 'asistencias', component: HomeasisComponent},
 {path: 'subareac',component: SachomeComponent},
 {path: 'clases', component: ModuloComponent},
@@ -293,6 +299,8 @@ const routes: Route[]=[
     AddgradosComponent,
     PerfiladdmemComponent,
     PerfiladdhoraComponent,
+    AlumnosloginComponent,
+    PersonalloginComponent,
     HomeasisComponent,
     EditasisComponent,
     DeleteasisComponent,

@@ -10,19 +10,25 @@ export class HorariosService {
 
 
 
-
+  sucursal:any;
+  datos:any;
 API_ENDPOINT = 'http://localhost:8000/api';
 
   dataChange: BehaviorSubject<Horario[]> = new BehaviorSubject<Horario[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    this.sucursal=localStorage.getItem('sucursal')
+
+   }
 
   getHorarios(): void{
     this.httpClient.get<Horario[]>(this.API_ENDPOINT + '/horarios').subscribe(data => {
-      this.dataChange.next(data);
-      },
+      this.datos=data
+      this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
+      // console.log(this.datos)
+      this.dataChange.next(this.datos);       },
     (error: HttpErrorResponse) => {
     // console.log (error.name + ' ' + error.message);
     });

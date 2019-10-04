@@ -18,13 +18,21 @@ export class EscuelasService {
   // Datos termporales que se recibiran desde los modales 
   dialogData: any;
 
+  sucursal:any;
+  datos:any;
+  constructor(private httpClient: HttpClient) {
+    this.sucursal=localStorage.getItem('sucursal')
 
-  constructor(private httpClient: HttpClient) { }
+   }
+
 
   /* Obtiene la información de la tabla  */
   getEscuelas(): void{
     this.httpClient.get<Escuelas[]>(this.API_ENDPOINT + '/escuelas').subscribe(data => {
-      this.dataChange.next(data);
+      this.datos=data
+      this.datos=this.datos.filter(data=>data.idscu==this.sucursal);
+      // console.log(this.datos)
+      this.dataChange.next(this.datos);
       },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);

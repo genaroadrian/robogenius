@@ -18,8 +18,12 @@ export class TemaService {
   id: number 
 
 
-  constructor(private httpClient: HttpClient) { }
+  datos :any;
+  sucursal:any;
 
+  constructor(private httpClient: HttpClient) {
+    this.sucursal=localStorage.getItem('sucursal')
+  }
   //AGREGAR EN MODAL
   addd(tema: tema)
   {
@@ -28,11 +32,14 @@ export class TemaService {
     return this.httpClient.post(this.API_ENDPOINT + '/tema/',tema, {headers: headers});
   }
 
+
   // Obtener datos de la base de datos
   gettema(): void{
     this.httpClient.get<tema[]>(this.API_ENDPOINT+'/tema').subscribe(data => {
-      this.dataChange.next(data);
-    },
+      this.datos=data
+      this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
+      // console.log(this.datos)
+      this.dataChange.next(this.datos);    },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);
     });

@@ -34,6 +34,7 @@ export class HaddComponent implements OnInit {
     confirmAdd(data): void 
     {
      this.data.hora=this.selected+" - "+this.selecteds;
+     this.data.idsuc=localStorage.getItem("sucursal");
 
       this.horariosService.addIssue(this.data)
     }

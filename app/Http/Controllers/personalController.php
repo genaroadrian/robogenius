@@ -5,6 +5,8 @@ namespace slidecom_robogenius\Http\Controllers;
 use Illuminate\Http\Request;
 use slidecom_robogenius\Personal;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Crypt;
+
 
 class personalController extends Controller
 {
@@ -24,7 +26,8 @@ class personalController extends Controller
         $personal->nombre = $request->nombre;
         $personal->apellidos = $request->apellidos;
         $personal->usuario = $request->usuario;
-        $personal->contra = $request->contra;
+        // $personal->contra = $request->contra;
+        $personal->contra = Crypt::encrypt($request->contra);
         $personal->fechanac = $request->fechanac;
         $personal->sexo = $request->sexo;
         $personal->curp = $request->curp;
@@ -38,8 +41,10 @@ class personalController extends Controller
         $personal->fecharegistro = new \DateTime();
         $personal->salariomensual = $request->salariomensual;
         $personal->tareasasignadas = $request->tareasasignadas;
+        $personal->idsuc = $request->idsuc;
         $personal->idtper = $request->idtper;
         $personal->activo = 1;
+
         $personal->save();
         echo json_encode($personal);
     }

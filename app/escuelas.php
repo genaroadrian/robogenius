@@ -19,5 +19,6 @@ class escuelas extends Model
     	'direccion',
     	'telefono',
     	'correouno',
+    	'idscu',
     	'activo'];
 }

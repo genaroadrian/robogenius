@@ -25,6 +25,30 @@
     </ul>
   </div>
 
+  <!-- <mat-select [(ngModel)]="persona.idtper" [(value)]="selectedtp" (selectionChange)="tipoChange($event)">
+    <mat-option *ngFor="let tp of selectTPersonal" value="{{tp.idtper}}">{{tp.tipo}}</mat-option>
+  </mat-select> -->
+
+    <div class="dropdown">
+        <i class="mdi correo">Sucursal:{{nombresucu}} </i>
+     
+
+          
+        <img src="assets/perfiles/Administradores/{{foto}}" alt="user" class="rounded-circle dropdown-toggle imgRedonda" data-toggle="dropdown" >
+
+
+        
+
+          <ul class="dropdown-menu">
+  <!-- <li><a href="#" >HTML</a></li> -->
+  <li><a  class="mdi mdi-account-circle " [routerLink]="['/perfiladmin']"> Perfil </a></li>
+  <li><a class="mdi mdi-web " [routerLink]="['/sucursales']" >  Sucursales</a></li>
+  <li><a class="mdi mdi-chart-line " [routerLink]="['/estadisticas']" >  Estadisticas</a></li>
+  <li class="danger "><a class="mdi mdi-power icono"  (click)="logout();"> Salir</a></li>
+  
+</ul>
+</div>
+
 </div>
 
 <header>

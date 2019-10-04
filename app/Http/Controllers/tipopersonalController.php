@@ -20,6 +20,7 @@ class tipopersonalController extends Controller
     $tpersonal = new Tipopersonal();
     $tpersonal->tipo = $request->tipo;
     $tpersonal->permisos = $request->permisos;
+    $tpersonal->idsuc = $request->idsuc;
     $tpersonal->activo = 1;
     $tpersonal->save();
     echo json_encode($tpersonal);

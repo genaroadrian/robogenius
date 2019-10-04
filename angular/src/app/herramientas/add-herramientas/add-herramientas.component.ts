@@ -11,7 +11,7 @@ import { HerramientasService } from 'src/app/services/herramientas.service';
 })
 export class AddHerramientasComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<AddHerramientasComponent>,@Inject(MAT_DIALOG_DATA) public interfaces: Herramientas, 
+  constructor(public dialogRef: MatDialogRef<AddHerramientasComponent>,@Inject(MAT_DIALOG_DATA) public data: Herramientas, 
   public herramientasService: HerramientasService, public toastr: ToastrManager) { }
 
   ngOnInit() {
@@ -32,10 +32,12 @@ export class AddHerramientasComponent implements OnInit {
   showErrorEdit() {
     this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
   }
-  Descuentos(interfaces): void 
+
+
+  herramientas(): void 
   {
     
-    this.herramientasService.herramientas(this.interfaces);
+    this.herramientasService.herramientas(this.data);
     
   }
 

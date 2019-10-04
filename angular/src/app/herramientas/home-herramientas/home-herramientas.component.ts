@@ -10,6 +10,8 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 import { HerramientasService } from 'src/app/services/herramientas.service';
 import { Herramientas } from 'src/app/interfaces/herramientas';
 import { AddHerramientasComponent } from '../add-herramientas/add-herramientas.component';
+import { NotificationsService } from 'src/app/services/notifications.service';
+import { UpdatehComponent } from '../updateh/updateh.component';
 
 @Component({
   selector: 'app-home-herramientas',
@@ -20,23 +22,23 @@ export class HomeHerramientasComponent implements OnInit {
 
   barra = "none"
   addherramientas: any;
+  index: number;
+  id: number;
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [
-    'idherra',
     'nombre',
     'icons'
   ];
 
   exampleDatabase: HerramientasService | null;
   dataSource: ExampleDataSource | null;
-  Dialogadd: any;
 
 
 
 
   
-  constructor(public httpClient: HttpClient, public dialog: MatDialog, public herramientasService: HerramientasService) { }
+  constructor(public httpClient: HttpClient, public dialog: MatDialog, public herramientasService: HerramientasService, public notifications: NotificationsService) { }
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
@@ -84,9 +86,58 @@ export class HomeHerramientasComponent implements OnInit {
     this.paginator._intl.lastPageLabel = 'Ultima página';
   
   }
+  addH( herramientas: Herramientas){
+    const dialogRef = this.dialog.open(AddHerramientasComponent, {
+      data: { herramientas: herramientas }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.showBarra()
+        this.herramientasService.herramienta(this.herramientasService.getDialogData()).subscribe((data) => {
+          this.addherramientas = data
+          this.exampleDatabase.dataChange.value.push(this.addherramientas);
+          this.refreshTable()
+          this.notifications.showSuccessAdd()
+          this.hideBarra()
+        }, (error) => {
+          this.notifications.showError();
+          this.hideBarra()
+        });
 
-  
+      }
+    });
+    
+  }
+   // Metodo para abrir el modal para modificar
+   onUpdate(i: number, idherra: number, nombre: string) {
+    this.id = idherra;
+    // index row is used just for debugging proposes and can be removed
+    this.index = i;
+    const dialogRef = this.dialog.open(UpdatehComponent, {
+      data: { idherra: idherra, nombre: nombre }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        this.showBarra()
+        this.herramientasService.put(this.herramientasService.getDialogData()).subscribe((data) => {
+          const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idherra === this.id);
+          // Then you update that record using data from dialogData (values you enetered)
+          this.exampleDatabase.dataChange.value[foundIndex] = this.herramientasService.getDialogData();
+          // And lastly refresh table
+          this.refreshTable()
+          this.hideBarra()
+          this.notifications.showSuccessEdit()
+        }, (error) => {
+          this.notifications.showError()
+          this.hideBarra()
+        })
+
+      }
+
+    });
+  }
 }
+
 
 // Metodo para abrir el modal para agrefar nuevo registro
 

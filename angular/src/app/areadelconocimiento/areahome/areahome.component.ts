@@ -22,7 +22,7 @@ export class AreahomeComponent implements OnInit {
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [
 
-    'idac',
+    
     'nombre',
     'icons'
   ];

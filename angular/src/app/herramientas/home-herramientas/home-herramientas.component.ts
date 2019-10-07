@@ -109,7 +109,7 @@ export class HomeHerramientasComponent implements OnInit {
     
   }
    // Metodo para abrir el modal para modificar
-   onUpdate(i: number, idherra: number, nombre: string) {
+   updateherra(i: number, idherra: number, nombre: string) {
     this.id = idherra;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
@@ -136,6 +136,30 @@ export class HomeHerramientasComponent implements OnInit {
 
     });
   }
+  
+  /*deleteh(i: number, idherra: number, nombre: string) {
+    this.index = i;
+    this.id = idherra;
+    const dialogRef = this.dialog.open(DeletehComponent, {
+      data: { id: idherra, nombre: nombre }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        this.showBarra()
+        this.herramientasService.deletee(this.id).subscribe((data) => {
+          const foundIndex = this.exampleDatabase.dataChange.value.findIndex(x => x.idherra === this.id);
+          this.exampleDatabase.dataChange.value.splice(foundIndex, 1);
+          this.refreshTable()
+          this.notifications.showSuccessDelete()
+          this.hideBarra()
+        }, (error) => {
+          this.notifications.showError()
+          this.hideBarra()
+        })
+      }
+    });
+  }*/
 }
 
 

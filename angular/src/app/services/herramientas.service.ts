@@ -50,5 +50,21 @@ export class HerramientasService {
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.put(this.API_ENDPOINT +'/herramientas/'+data.idherra,data,{headers: headers});
   }
+  putHerra(data)
+  {
+    this.dialogData = data;
+  }
+  deleten (id: number): void {
+    console.log(id);
+  }
+
+  deletee(id){
+    return this.httpClient.delete(this.API_ENDPOINT + '/herramientas/'+id);
+  }
+    // Guardar datos
+    save(herramientas: Herramientas) {
+      const headers = new HttpHeaders({"Content-Type":"application/json"});
+      return this.httpClient.post(this.API_ENDPOINT+'/herramientas', herramientas, {headers: headers});
+    }
 
 }

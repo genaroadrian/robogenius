@@ -139,6 +139,7 @@ import { AddasisComponent } from './asistencias/addasis/addasis.component';
 import { AddHerramientasComponent } from './herramientas/add-herramientas/add-herramientas.component';
 import { HomeHerramientasComponent } from './herramientas/home-herramientas/home-herramientas.component';
 import { UpdatehComponent } from './herramientas/updateh/updateh.component';
+import { DeletehComponent } from './herramientas/deleteh/deleteh.component';
 
 
 
@@ -291,7 +292,8 @@ const routes: Route[]=[
     AddasisComponent,
     AddHerramientasComponent,
     HomeHerramientasComponent,
-    UpdatehComponent
+    UpdatehComponent,
+    DeletehComponent
 
 
 
@@ -441,8 +443,8 @@ const routes: Route[]=[
     AddasisComponent,
     DeleteasisComponent,
     EditasisComponent,
-    AddHerramientasComponent
-
+    AddHerramientasComponent,
+    UpdatehComponent,
 
   ],
   exports: [

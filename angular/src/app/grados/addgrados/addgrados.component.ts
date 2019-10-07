@@ -37,6 +37,7 @@ export class AddgradosComponent implements OnInit {
     /* Confirma la alta del registro */
     addgrados(): void 
     {
+      this.data.idsuc=localStorage.getItem("sucursal")
       this.gradoService.addgrados(this.data)
     }
 

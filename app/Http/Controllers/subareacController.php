@@ -19,6 +19,7 @@ class subareacController extends Controller
     {
         $subac = new Subareac();
         $subac->nombre = $request->nombre;
+        $subac->idsuc = $request->idsuc;
         $subac->activo = 1;
         $subac->save();
         return $subac;

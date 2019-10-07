@@ -21,7 +21,8 @@ export class TemaeditComponent implements OnInit {
   teme:tema={
     nombre:null,
     idac:null,
-    activo:null
+    activo:null,
+    idsuc:null
   }
   constructor(public dialogRef: MatDialogRef<TemaeditComponent>,@Inject(MAT_DIALOG_DATA) public data: any, 
   public temaservice:TemaService,public area:AreadelconocimientoService) { }

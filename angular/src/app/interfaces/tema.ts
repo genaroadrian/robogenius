@@ -3,4 +3,5 @@ export interface tema {
     nombre: string;
     idac:  number;
     activo: number;
+    idsuc: string;
 }

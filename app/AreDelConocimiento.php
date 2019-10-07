@@ -15,6 +15,7 @@ class AreDelConocimiento extends Model
     protected $fillable = [ 
     	'idac', 
     	'nombre', 
+    	'idsuc', 
         'activo'
     ];
 }

@@ -4,6 +4,7 @@ export interface Codigos{
     porcentaje:string,
     lugar:string,
     fecha:string,
-    activo:string
+    activo:string,
+    idsuc:string
 
 }

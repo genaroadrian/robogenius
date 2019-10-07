@@ -23,6 +23,7 @@ class gradoController extends Controller
         $grados = new grado();
         $grados->idg = $request->idg;
         $grados->nombre = $request->nombre;
+        $grados->idsuc = $request->idsuc;
         $grados->activo = 1;
         $grados->save();
         echo json_encode($grados);

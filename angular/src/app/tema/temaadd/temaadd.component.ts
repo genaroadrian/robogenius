@@ -19,7 +19,8 @@ export class TemaaddComponent implements OnInit {
   teme:tema={
     nombre:null,
     idac:null,
-    activo:null
+    activo:null,
+    idsuc:null
   }
 
   constructor(public dialogRef: MatDialogRef<TemaaddComponent>, @Inject(MAT_DIALOG_DATA) public data: tema, 
@@ -56,6 +57,7 @@ export class TemaaddComponent implements OnInit {
   /* Confirma la alta del registro */
   confirmAdd(): void 
   {
+    this.teme.idsuc=localStorage.getItem("sucursal");
     this.tema.addTema(this.teme)
     console.log(this.teme)
 

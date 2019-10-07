@@ -41,6 +41,7 @@ class temasController extends Controller
         $tema = new Tema();
         $tema->nombre = $request->nombre;
         $tema->idac = $request->idac;
+        $tema->idsuc = $request->idsuc;
         $tema->activo = 1;
         $tema->save();
         echo json_encode($tema);

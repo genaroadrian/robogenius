@@ -43,14 +43,9 @@ export class AreaaddComponent implements OnInit {
         '';
   }
 
-
-
-
-
-  confirmAdd(data): void 
+  corfirmAdd(data): void 
   {    
-    
-
+    this.data.idsuc=localStorage.getItem("sucursal")
     this.dataService.addIssue(this.data);
   }
 

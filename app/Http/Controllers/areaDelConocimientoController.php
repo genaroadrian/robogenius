@@ -40,6 +40,7 @@ class areaDelConocimientoController extends Controller
     {
         $area = new AreDelConocimiento();
         $area->nombre = $request->nombre;
+        $area->idsuc = $request->idsuc;
         $area->activo = $request=1;
         $area->save();
         echo json_encode($area);

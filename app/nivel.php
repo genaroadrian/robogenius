@@ -15,6 +15,7 @@ class nivel extends Model
     protected $fillable = [ 
     	'idn',
         'nombre',
+        'idsuc',
         'activo'
         ];
 }

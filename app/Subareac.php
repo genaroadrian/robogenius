@@ -16,6 +16,7 @@ class Subareac extends Model
     protected $fillable = [ 
     	'idsac',
     	'nombre',
+    	'idsuc',
         'activo'
     ];
 }

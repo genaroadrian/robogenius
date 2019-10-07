@@ -14,5 +14,6 @@ class codigodesc extends Model
     	'porcentaje',
     	'lugar',
     	'fecha',
+    	'idsuc',
     	'activo'];
 }

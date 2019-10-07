@@ -47,6 +47,7 @@ export class AddnivelComponent implements OnInit {
     /* Confirma la alta del registro */
     addnivel(): void 
     {
+      this.data.idsuc=localStorage.getItem("sucursal");
       this.nivelService.addniveles(this.data)
     }
   

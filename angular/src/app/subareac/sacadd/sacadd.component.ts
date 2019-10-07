@@ -38,6 +38,7 @@ export class SacaddComponent implements OnInit {
   /* Confirma la alta del registro */
   confirmAdd(): void 
   {
+    this.data.idsuc=localStorage.getItem("sucursal")
     this.subareacService.addSubac(this.data)
   }
 

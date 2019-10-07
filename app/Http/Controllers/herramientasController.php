@@ -24,4 +24,20 @@ class herramientasController extends Controller
         $herramientas->save();
         echo json_encode($herramientas);
     }
+    public function update(Request $request, $id)
+    {
+        $herramientas = herramientas::find($id);
+        $herramientas->nombre = $request->nombre;
+        $herramientas->activo = $request->activo;
+
+        $herramientas->save();
+        echo json_encode($herramientas);
+    }
+    
+    public function destroy($id)
+    {
+        $herramientas = DB::SELECT("UPDATE herramientas SET activo = 0 WHERE idherra = '$id'");
+        echo json_encode($herramientas);
+    }
+
 }

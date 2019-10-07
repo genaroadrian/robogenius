@@ -47,10 +47,9 @@ export class AreaaddComponent implements OnInit {
 
 
 
-  confirmAdd(data): void 
+  corfirmAdd(data): void 
   {    
-    
-
+  
     this.dataService.addIssue(this.data);
   }
 

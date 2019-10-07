@@ -150,6 +150,7 @@ import { AddsesionesComponent } from './sesiones/addsesiones/addsesiones.compone
 import { EditsesionesComponent } from './sesiones/editsesiones/editsesiones.component';
 import { DeletesesionesComponent } from './sesiones/deletesesiones/deletesesiones.component';
 import { UpdatehComponent } from './herramientas/updateh/updateh.component';
+import { DeletehComponent } from './herramientas/deleteh/deleteh.component';
 
 
 
@@ -311,11 +312,12 @@ const routes: Route[]=[
     SacdeleteComponent,
     AddHerramientasComponent,
     HomeHerramientasComponent,
+    UpdatehComponent,
+    DeletehComponent,
     HomesesionesComponent,
     AddsesionesComponent,
     EditsesionesComponent,
     DeletesesionesComponent,
-    UpdatehComponent
 
 
 
@@ -465,12 +467,13 @@ const routes: Route[]=[
     AddasisComponent,
     DeleteasisComponent,
     EditasisComponent,
+    AddHerramientasComponent,
+    UpdatehComponent,
     
     /* Modales de sub areas del conocimiento */
     SacaddComponent,
     SaceditComponent,
     SacdeleteComponent,
-    AddHerramientasComponent
 
 
   ],

@@ -16,12 +16,20 @@ export class CodigosService {
 
   dialogData: any;
 
-  constructor(private httpClient: HttpClient) { }
+  datos :any;
+  sucursal:any;
+
+  constructor(private httpClient: HttpClient) {
+    this.sucursal=localStorage.getItem('sucursal')
+  }
+
 
   getcodigoss(): void{
     this.httpClient.get<Codigos[]>(this.API_ENDPOINT + '/codigos').subscribe(data => {
-      this.dataChange.next(data);
-      },
+ this.datos=data
+      this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
+      // console.log(this.datos)
+      this.dataChange.next(this.datos);      },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);
     });

@@ -192,7 +192,8 @@ export class AluaddComponent implements OnInit {
   hora: Horas =
     {
       idh: null,
-      hora: null
+      hora: null,
+      idsuc:null,
     }
 
   // Imterfaz de la tabla Tipo de membresia
@@ -237,7 +238,7 @@ export class AluaddComponent implements OnInit {
     contra: null, fechanac: null, sexo: null, curp: null,
     estadocivil: null, domicilio: null, fechaingreso: null, horasalida: null,
     horaentrada: null, perfilprofesional: null, especialidad: null, salariomensual: null,
-    tareasasignadas: null, idtper: null, activo: null
+    tareasasignadas: null, idtper: null, activo: null,idsuc:null
   };
   showSuccess: boolean;
 
@@ -298,6 +299,7 @@ export class AluaddComponent implements OnInit {
     },(error)=>{
     })
   }
+   sucursal=localStorage.getItem("sucursal");
 
 
   // Interfaz de la tabla alumnos
@@ -335,6 +337,7 @@ export class AluaddComponent implements OnInit {
   // Metodo para guardar alumnos
   saveAlumno(alumno) {
     console.log(alumno);
+    this.alumno.idsuc=localStorage.getItem("sucursal");
     // Se envian los datos al servicio de alumnos para guardar los datos en la BD
     this.alumnosService.save(alumno).subscribe((data) => {
       this.alumnosview = "none";

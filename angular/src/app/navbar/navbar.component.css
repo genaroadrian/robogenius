@@ -5,6 +5,62 @@
 	font-family: sans-serif;
 
 }
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	-ms-appearance: none;
+	appearance: none;
+	outline: 0;
+	box-shadow: none;
+	border: 0 !important;
+	background: #000000;
+	background-image: none;
+  }
+  /* Remove IE arrow */
+  select::-ms-expand {
+	display: none;
+  }
+  /* Custom Select */
+  .select {
+	position: relative;
+	/* top:200px; */
+	left: 84%;
+	/* right: -700px; */
+	top:-100px;
+	display: flex;
+	width: 10em;
+	height: 3em;
+	line-height: 3;
+	background: black;
+	overflow: hidden;
+	border-radius: .70em;
+	/* z-index: 1; */
+  }
+  select {
+	flex: 1;
+	padding: 0 .5em;
+	color: #fff;
+	cursor: pointer;
+  }
+  /* Arrow */
+  .select::after {
+	content: '\25BC';
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 1em;
+	background: #34495e;
+	cursor: pointer;
+	pointer-events: none;
+	-webkit-transition: .25s all ease;
+	-o-transition: .25s all ease;
+	transition: .25s all ease;
+  }
+  /* Transition */
+  .select:hover::after {
+	color: #f39c12;
+  }
+  
  .correo{
 color: black;
 }

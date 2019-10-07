@@ -89,6 +89,7 @@ export class AddComponent implements OnInit {
   /* Confirma la alta del registro */
   confirmAdd(): void 
   {
+    this.data.idsuc=localStorage.getItem("sucursal")
     this.escuelasService.addEscuela(this.data)
   }
 

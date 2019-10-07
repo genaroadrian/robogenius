@@ -28,6 +28,7 @@ class EscuelaController extends Controller
         $escuelas->correouno = $request->correouno;
         $escuelas->telefono = $request->telefono;
         $escuelas->idesc = $request->idesc;
+        $escuelas->idscu = $request->idsuc;
         $escuelas->activo = 1;
         $escuelas->save();
         echo json_encode($escuelas);

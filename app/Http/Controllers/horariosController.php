@@ -22,6 +22,7 @@ class horariosController extends Controller
     {
         $horario = new Horarios();
         $horario->hora = $request->hora;
+        $horario->idsuc = $request->idsuc;
         $horario->activo = 1;
         $horario->save();
         echo json_encode($horario);

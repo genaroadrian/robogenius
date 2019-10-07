@@ -12,7 +12,7 @@ class Asistencias extends Model
     }
 
     public $timestamps = false;
-    protected $table = "escuelas";
+    protected $table = "asistencias";
     protected $fillable = 
     [ 
     	'idasis',

@@ -3,4 +3,5 @@ export interface Tipopersonal {
     tipo: string;
     permisos: number;
     activo: number;
+    idsuc:string;
 }

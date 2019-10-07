@@ -1,37 +1,24 @@
  <app-navbar></app-navbar>   
-
 <div  class="encabezado"></div>
-
-
-
 <div class="col-xl-12 col-md-12  imagenandname" >
         <form (ngSubmit)="upload();">
-
         <div class="containerss rounded-circle " for="nuestroinput">
         <label for="nuestroinput" id="prueba"  class=" rounded-circle "> 
-
                 <img src="assets/perfiles/Personal/{{datos.fotopersonal}}"for="nuestroinput"   class="image rounded-circle" >
                 </label>
-                <div class="overlay rounded-circle ">
+                <div class="overlay rounded-circle">
                   <div class="text rounded-circle">
         <label for="nuestroinput" id="prueba"  class=" rounded-circle "> 
-
                         <img class="rounded-circle shadow pequeña jaja " for="nuestroinput"  src="https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png"
                         data-holder-rendered="true">
             </label>
         <input type="file"  id="nuestroinput" class="rounded-circle perfilimagen" accept="image/*" (change)="seleccionarArchivo($event)">
-
                   </div>
                 </div>
-                <button class="btn btn-primary btn-sm"> ACTUALIZAR FOTOOOOOOOOOOOOOOO </button>
+                <button [ngStyle]="{'display': btnChange}" class="btn btn-primary btn-sm"> ACTUALIZAR FOTO </button>
               </div>
-              <br>
-       
-        
+              <br>      
         <br>
-
-
-   
     </form>
     <label  class="labeltitulo"> {{datos.nombre}} {{datos.apellidos}} 
         <button mat-icon-button (click)="editPersonal(datos.idper, datos.nombre,datos.apellidos,
@@ -43,7 +30,6 @@
     </button></label>
       <mat-progress-bar color="warn"  mode='indeterminate' [ngStyle]="{'display':barra}"></mat-progress-bar>
 </div>
-
 <div class="row col-xl-12 fondodb" >
       <div class="col-xl-4">
             <br>
@@ -86,7 +72,6 @@
         <i class="mdi mdi-account-card-details membresia"></i>
         Grupos
       </ng-template>
-     <div class="container">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 col-md-12">
 
         <!--- Note that these columns can be defined in any order.
@@ -111,6 +96,12 @@
         </ng-container>
       
         <!-- Symbol Column -->
+
+        <ng-container matColumnDef="idesc">
+          <th mat-header-cell *matHeaderCellDef> Escuela </th>
+          <td mat-cell *matCellDef="let element"> {{element.idesc}} </td>
+        </ng-container>
+
         <ng-container matColumnDef="nombre">
           <th mat-header-cell *matHeaderCellDef> Escuela </th>
           <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
@@ -119,7 +110,7 @@
         <ng-container matColumnDef="icons">
           <th mat-header-cell *matHeaderCellDef>Acciones</th>
           <td mat-cell *matCellDef="let element">
-            <button mat-icon-button (click)="asistencia(element.iddgru)" class="text-info" matTooltip="Visualizar la lista de alumnos"><mat-icon>
+            <button mat-icon-button (click)="asistencia(element.iddgru, element.dia, element.hora, element.idesc)" class="text-info" matTooltip="Visualizar la lista de alumnos"><mat-icon>
               assignment
             </mat-icon></button>
           </td>
@@ -128,9 +119,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      </div>
     </mat-tab>
-  
     <!-- Tab de Horario -->
     <!-- <mat-tab>
       <ng-template mat-tab-label>

@@ -131,13 +131,24 @@ import { AddgradosComponent } from './grados/addgrados/addgrados.component';
 import { ModuloService } from './services/modulo.service';
 
 import { PerfiladdmemComponent } from './alumnos/perfiladdmem/perfiladdmem.component';
-import { PerfiladdhoraComponent } from './alumnos/perfiladdhora/perfiladdhora.component';
+import { PerfiladdhoraComponent } from './alumnos/perfiladdhora/perfiladdhora.component'; 
+import { AlumnosloginComponent } from './login/alumnoslogin/alumnoslogin.component';
+import { PersonalloginComponent } from './login/personallogin/personallogin.component';
+
 import { HomeasisComponent } from './asistencias/homeasis/homeasis.component';
 import { EditasisComponent } from './asistencias/editasis/editasis.component';
 import { DeleteasisComponent } from './asistencias/deleteasis/deleteasis.component';
 import { AddasisComponent } from './asistencias/addasis/addasis.component';
+import { SachomeComponent } from './subareac/sachome/sachome.component';
+import { SacaddComponent } from './subareac/sacadd/sacadd.component';
+import { SaceditComponent } from './subareac/sacedit/sacedit.component';
+import { SacdeleteComponent } from './subareac/sacdelete/sacdelete.component';
 import { AddHerramientasComponent } from './herramientas/add-herramientas/add-herramientas.component';
 import { HomeHerramientasComponent } from './herramientas/home-herramientas/home-herramientas.component';
+import { HomesesionesComponent } from './sesiones/homesesiones/homesesiones.component';
+import { AddsesionesComponent } from './sesiones/addsesiones/addsesiones.component';
+import { EditsesionesComponent } from './sesiones/editsesiones/editsesiones.component';
+import { DeletesesionesComponent } from './sesiones/deletesesiones/deletesesiones.component';
 import { UpdatehComponent } from './herramientas/updateh/updateh.component';
 import { DeletehComponent } from './herramientas/deleteh/deleteh.component';
 
@@ -184,11 +195,14 @@ const routes: Route[]=[
 {path: 'subtema', component: SubtemahomeComponent},
 {path: 'tema', component: TemahomeComponent},
 {path: 'tipomembresia', component: HometipomemComponent},
-
-{path: 'clases', component: ModuloComponent},
-
+{path: 'loginalumnos', component: AlumnosloginComponent},
+{path: 'loginpersonal', component: PersonalloginComponent},
 {path: 'asistencias', component: HomeasisComponent},
-{path: 'herramientas', component: HomeHerramientasComponent}
+{path: 'asistencias', component: HomeasisComponent},
+{path: 'subareac',component: SachomeComponent},
+{path: 'clases', component: ModuloComponent},
+{path: 'herramientas', component: HomeHerramientasComponent},
+{path: 'sesiones', component: HomesesionesComponent}
 
 ];
 
@@ -286,14 +300,24 @@ const routes: Route[]=[
     AddgradosComponent,
     PerfiladdmemComponent,
     PerfiladdhoraComponent,
+    AlumnosloginComponent,
+    PersonalloginComponent,
     HomeasisComponent,
     EditasisComponent,
     DeleteasisComponent,
     AddasisComponent,
+    SachomeComponent,
+    SacaddComponent,
+    SaceditComponent,
+    SacdeleteComponent,
     AddHerramientasComponent,
     HomeHerramientasComponent,
     UpdatehComponent,
-    DeletehComponent
+    DeletehComponent,
+    HomesesionesComponent,
+    AddsesionesComponent,
+    EditsesionesComponent,
+    DeletesesionesComponent,
 
 
 
@@ -445,6 +469,12 @@ const routes: Route[]=[
     EditasisComponent,
     AddHerramientasComponent,
     UpdatehComponent,
+    
+    /* Modales de sub areas del conocimiento */
+    SacaddComponent,
+    SaceditComponent,
+    SacdeleteComponent,
+
 
   ],
   exports: [

@@ -12,8 +12,14 @@ export class TipopersonalService {
   dataChange: BehaviorSubject<Tipopersonal[]> = new BehaviorSubject<Tipopersonal[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
+  sucursal:any;
+  datos :any;
 
-  constructor(private httpClient: HttpClient) { }
+
+  constructor(private httpClient: HttpClient) {
+    this.sucursal=localStorage.getItem('sucursal')
+
+   }
 
   /* Obtener los tipos de personal para el select de agregar y editar personal */
   get()
@@ -23,7 +29,9 @@ export class TipopersonalService {
 
   getTipopersonal(): void{
     this.httpClient.get<Tipopersonal[]>(this.API_ENDPOIINT+'/tipopersonal').subscribe(data => {
-      this.dataChange.next(data);
+      this.datos=data
+      this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
+      this.dataChange.next(this.datos);
     },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);

@@ -19,13 +19,20 @@ export class AreadelconocimientoService {
    id: number 
  
  
-   constructor(private httpClient: HttpClient) { }
+   datos :any;
+   sucursal:any;
+ 
+   constructor(private httpClient: HttpClient) {
+     this.sucursal=localStorage.getItem('sucursal')
+   }
  
    // Obtener datos de la base de datos
    getareadelconocimiento(): void{
      this.httpClient.get<areadelconocimiento[]>(this.API_ENDPOINT+'/areadelconocimiento').subscribe(data => {
-       this.dataChange.next(data);
-     },
+      this.datos=data
+      this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
+      // console.log(this.datos)
+      this.dataChange.next(this.datos);     },
      (error: HttpErrorResponse) => {
      console.log (error.name + ' ' + error.message);
      });

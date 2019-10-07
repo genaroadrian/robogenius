@@ -1,5 +1,10 @@
 <div class="container" style="height:420px;">
-    <h3 mat-dialog-title style="text-align: center;">Nuevo registro</h3>
+    <!-- <h3 mat-dialog-title style="text-align: center;">Nuevo registro</h3> -->
+    <div class="row" mat-dialog-title>
+        <button mat-icon-button align="right" ><mat-icon>cancel_presentation</mat-icon></button>
+      <h3  align="left">Nueva escuela</h3>
+      
+    </div>
   
     <form mat-dialog-content (ngSubmit)="submit" style="height:380px;" #formControl="ngForm">
   

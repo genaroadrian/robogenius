@@ -594,7 +594,7 @@
         <button style="margin:0 40px 0 44% ;" [disabled]="clasesbutton" class="btn btn-warning" (click)="saveGalu()" routerLinkActive="router-link-active" tabindex="-1">
             Guardar</button>
   
-          <button class="btn btn-success" (click)="finalizar()" > Finalizar</button>
+          <button class="btn btn-success" (click)="finalizar()" [routerLink]="['/alumnos']" routerLinkActive="router-link-active"  > Finalizar</button>
   
                               </form>
                             </div>

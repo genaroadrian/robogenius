@@ -183,7 +183,7 @@ export class PerfilComponent implements OnInit {
     }, (error) => {
       // console.log(error);
     })
-
+    this.dfoto = 'none'
   }
 
   // subirimagenes(){

@@ -20,6 +20,8 @@ import { AddasisComponent } from 'src/app/asistencias/addasis/addasis.component'
 export class PersonalperfilComponent implements OnInit {
   /* Interfaz de la tabla de grupos */
 
+  btnChange: string = "none"
+
   dataSource: any
 
   datos: any;
@@ -65,21 +67,29 @@ export class PersonalperfilComponent implements OnInit {
     this.personal.idper=this.datos.idper
     this.getGrupos()
   }
+
+
   displayedColumns: string[] = ['dia', 'hora', 'nombre', 'icons'];
   
 
   getGrupos()
   {
+    this.mostrarBarra()
     this.personalPerfilService.getGrupos(this.datos).subscribe((data)=>{
       this.dataSource =data;
+      this.ocultarBarra()
+    },(error)=>{
+      this.notificationsService.showError()
+      this.ocultarBarra()
     })
   }
 
-  asistencia(iddgru)
+  asistencia(iddgru, dia, hora, idesc)
   {
+     let idper = this.datos.idper
     const dialogRef = this.dialog.open(AddasisComponent, {
       width: '60%',
-      data: { iddgru:iddgru }
+      data: { iddgru:iddgru, dia:dia, hora:hora, idesc:idesc, idper:idper }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
@@ -89,6 +99,7 @@ export class PersonalperfilComponent implements OnInit {
   }
 
   seleccionarArchivo(event) {
+    this.btnChange = ""
     this.jstoday= new Date().getTime();
     var files = event.target.files;
     var file = files[0];
@@ -130,7 +141,7 @@ export class PersonalperfilComponent implements OnInit {
         }
       }
     );
-  
+      this.btnChange = "none"
     
   }
 

@@ -11,6 +11,7 @@ import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shome',
@@ -44,15 +45,28 @@ export class ShomeComponent implements OnInit {
 
   /* Valores de add */
   dialogAdd: any
+  ingresos:Sucursal[];
+  sucur:any;
+  nombresucur:any;
 
   constructor(public httpClient: HttpClient,
-    public dialog: MatDialog,
-    public sucursalService: SucursalService, public toastr: ToastrManager) { }
+    public dialog: MatDialog,private router: Router,
+    public sucursalService: SucursalService, public toastr: ToastrManager) { 
+      this.sucursalService.getfsucursal()
+      .subscribe(data=>{
+        this.ingresos=data;
+        this.sucur=localStorage.getItem('sucursal');
+    
+        // this.sucur = ;
+      })
+    
+    }
 
 
   ngOnInit() {
     // Llamado al metodo de getEscuelas
     this.getSucursal();
+    
 
     // Traducir los label de la tabla
     this.paginator._intl.itemsPerPageLabel = 'Registros por página';
@@ -61,6 +75,22 @@ export class ShomeComponent implements OnInit {
     this.paginator._intl.firstPageLabel = 'Primera página';
     this.paginator._intl.lastPageLabel = 'Ultima página';
   }
+
+  tipoChange(value:string) {
+    
+    // console.log(this.archivo);
+    localStorage.removeItem('sucursal');
+    localStorage.setItem('sucursal' , value);
+    this.router.navigateByUrl('/home'); 
+    
+  }
+
+  Nomvar(value:string){
+    localStorage.removeItem('sucuname');
+    localStorage.setItem('sucuname' , value);
+    console.log(value);
+  }
+
   /* Mostrar la barra de carga */
   showBarra() {
     this.barra = ""

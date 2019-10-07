@@ -7,6 +7,8 @@ import { UserAdminService } from '../services/user-admin.service';
 import { MatDialog } from '@angular/material';
 import { NgForm } from '@angular/forms';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { SucursalService } from '../services/sucursal.service';
+import { Sucursal } from '../interfaces/sucursal';
 
 
 declare var jQuery:any;
@@ -23,6 +25,9 @@ declare var $:any;
 })
 export class NavbarComponent  {
 
+  ingresos:Sucursal[];
+
+
   public  emai = localStorage.getItem("email");
   public  subname = localStorage.getItem("subname");
   
@@ -35,6 +40,11 @@ export class NavbarComponent  {
   }
 
   foto=localStorage.getItem("foto");
+
+  nombresucu=localStorage.getItem("sucuname");
+  prueba:any;
+
+  sucur:any;
  
   //  Declaracion de la interfaz de personal
  
@@ -42,8 +52,7 @@ export class NavbarComponent  {
   constructor(private router:Router,public httpClient: HttpClient
   , public dialog: MatDialog,public useradminService :UserAdminService
     ) {
-   
-
+      
       // enviamos la funcion con el valor de la interfaz
       this.dias(this.dia);
       // setTimeout(this.print,9000);
@@ -61,13 +70,9 @@ export class NavbarComponent  {
    
     
   }
-
-  // funcion para salir
-    logout(){
+  logout(){
     localStorage.removeItem('email');
-    localStorage.removeItem('subname');
     localStorage.removeItem('foto');
-
     this.router.navigateByUrl('/login');
   }
 
@@ -77,6 +82,8 @@ export class NavbarComponent  {
     $(this).children("ul").slideToggle();
 })
   }
+
+
 
 
 }

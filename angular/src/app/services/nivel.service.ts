@@ -10,12 +10,20 @@ export class NivelService {
   API_ENDPOINT = 'http://localhost:8000/api';
   dataChange: BehaviorSubject<Niveles[]> = new BehaviorSubject<Niveles[]>([]);
   dialogData: any;
-  constructor(private httpClient: HttpClient) { }
+  datos :any;
+  sucursal:any;
+
+  constructor(private httpClient: HttpClient) {
+    this.sucursal=localStorage.getItem('sucursal')
+  }
+
 
   getNivel(): void{
     this.httpClient.get<Niveles[]>(this.API_ENDPOINT + '/nivel').subscribe(data => {
-      this.dataChange.next(data);
-      },
+ this.datos=data
+      this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
+      // console.log(this.datos)
+      this.dataChange.next(this.datos);      },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);
     });

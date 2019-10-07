@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { GraficasService } from '../services/graficas.service';
 
 
 
@@ -10,12 +11,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-principal.component.css']
 })
 export class LoginPrincipalComponent implements OnInit  {
+utilidadrestan:any;
+mesingre:any;
+mesegre:any;
+utilidad:any;
 
-  constructor( ) { }
+  constructor( private _graficas:GraficasService) { }
 
 
 
-  ngOnInit() {
+  ngOnInit()
+    {
+    this._graficas.utilidadrestan()
+      .subscribe(data=>{
+        this.utilidadrestan=data;
+      })
+      this._graficas.mesingreso()
+      .subscribe(data=>{
+        this.mesingre=data;
+      })
+      this._graficas.mesegreso()
+      .subscribe(data=>{
+        this.mesegre=data;
+      })
+    this._graficas.utilidad()
+    .subscribe(data=>{
+      this.utilidad=data;
+    })
+   
   }
   
 

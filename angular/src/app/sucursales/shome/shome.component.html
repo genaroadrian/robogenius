@@ -14,7 +14,19 @@
                        </div>
                           <div class="col-xl-2 col-md-12">
                              <h1 style="font-size: 30px; text-align: center;">Sucursales</h1>
+                              
                            </div>
+                          <div class="col-xl-12 col-md-12 ">
+                            <h4 style="text-align: center;">Filtro por sucursal</h4>
+                            <mat-form-field style="width:100%; text-align: center;">
+                              <mat-label>Filtro</mat-label>
+                              <mat-select [value]="sucur" #myselect (selectionChange)="tipoChange(myselect.value)">
+                                <mat-option *ngFor="let f of ingresos" [value]="f.idsuc" (click)="Nomvar(f.nombre)">
+                                  {{f.nombre}}
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </div>
                          <div class="col-xl-5 col-md-12 ">
                          </div>
                      </div>

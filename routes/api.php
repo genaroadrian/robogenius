@@ -82,4 +82,6 @@ Route::resource('horariopersonal', 'horariosPersonalController');
 Route::resource('horarioperfilalumnos', 'horarioperfilalumnosController');
 Route::resource('perfilpersonalgrupos', 'perperfilgrupController');
 Route::resource('asistencias', 'asistenciasController');
-
+Route::resource('historyasis', 'historyasistenciasController');
+Route::resource('subareac', 'subareacController');
+Route::resource('sesiones', 'sesionesController');

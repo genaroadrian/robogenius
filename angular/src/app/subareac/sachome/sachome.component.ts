@@ -91,19 +91,19 @@ export class SachomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result == 1)
       {
-        // console.log(this.subareaService.getDialogData())
-        this.showBarra()
-        this.subareaService.add(this.subareaService.getDialogData()).subscribe((data)=>{
-          let subareaAdd: any = data
-          this.exampleDatabase.dataChange.value.push(subareaAdd)
-          this.refreshTable()
-          this.notificationsService.showSuccessAdd()
-          this.hideBarra()
-        },(error)=>{
-          this.notificationsService.showError()
-          this.hideBarra()
+        console.log(this.subareaService.getDialogData())
+        // this.showBarra()
+        // this.subareaService.add(this.subareaService.getDialogData()).subscribe((data)=>{
+        //   let subareaAdd: any = data
+        //   this.exampleDatabase.dataChange.value.push(subareaAdd)
+        //   this.refreshTable()
+        //   this.notificationsService.showSuccessAdd()
+        //   this.hideBarra()
+        // },(error)=>{
+        //   this.notificationsService.showError()
+        //   this.hideBarra()
 
-        })
+        // })
       }
     })
   }

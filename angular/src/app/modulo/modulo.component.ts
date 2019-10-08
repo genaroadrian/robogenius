@@ -21,6 +21,12 @@ import { tema } from '../interfaces/tema';
 import { TemaaddComponent } from '../tema/temaadd/temaadd.component';
 import { TemaService } from '../services/tema.service';
 import { DatePipe } from '@angular/common';
+import { Herramientas } from '../interfaces/herramientas';
+import { AddHerramientasComponent } from '../herramientas/add-herramientas/add-herramientas.component';
+import { HerramientasService } from '../services/herramientas.service';
+import { Subareac } from '../interfaces/subareac';
+import { SubareacService } from '../services/subareac.service';
+import { SacaddComponent } from '../subareac/sacadd/sacadd.component';
 
 
 @Component({
@@ -34,6 +40,8 @@ import { DatePipe } from '@angular/common';
 })
 export class ModuloComponent implements OnInit {
 
+
+  areaC = new FormControl();
 
 
 
@@ -72,7 +80,8 @@ export class ModuloComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private nivelService: NivelService, public toastr: ToastrManager, public notifications: NotificationsService,
     private _formBuilder: FormBuilder, private httpClient: HttpClient, private router: Router, private gradoService: GradoService, private areaService: AreadelconocimientoService,
-    private moduloService: ModuloService, private temaService: TemaService,private datePipe: DatePipe) { }
+    private moduloService: ModuloService, private temaService: TemaService,private datePipe: DatePipe,
+  public herramientasService: HerramientasService, public subareacService: SubareacService) { }
 
   ngOnInit() {
     this.fechaHoy()
@@ -212,6 +221,52 @@ export class ModuloComponent implements OnInit {
     });
   }
 
+  addHerra(herramientas: Herramientas)
+  {
+    const dialogRef = this.dialog.open(AddHerramientasComponent, {
+      data: { herramientas: herramientas }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.showBarra()
+        this.herramientasService.herramienta(this.herramientasService.getDialogData()).subscribe((data) => {
+          this.herramientas.push(data)
+          this.notifications.showSuccessAdd();
+          this.hideBarra();
+        }, (error) => {
+          this.notifications.showError();
+          // // this.notifications.hideBarra();
+          this.hideBarra();
+
+        });
+
+      }
+    });
+  }
+
+  addSAC(subareaC: Subareac)
+  {
+    const dialogRef = this.dialog.open(SacaddComponent, {
+      data: { subareaC: subareaC }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.showBarra()
+        this.subareacService.add(this.subareacService.getDialogData()).subscribe((data) => {
+          this.subareas.push(data)
+          this.notifications.showSuccessAdd();
+          this.hideBarra();
+        }, (error) => {
+          this.notifications.showError();
+          // // this.notifications.hideBarra();
+          this.hideBarra();
+
+        });
+        // console.log(this.subareacService.getDialogData())
+      }
+    });
+  }
+
 
   temamodal(tema: tema) {
     /* abrir un pequeño modal para agregar otro tipo de personal */
@@ -254,6 +309,7 @@ export class ModuloComponent implements OnInit {
    
     this.areacs=this.tema[0].nomarea.slice(0,3)
     this.folio=this.nivels+this.grads+this.areacs;
+
 
     var hash = {};
     this.tema = this.tema.filter(function (tem) {
@@ -311,6 +367,7 @@ export class ModuloComponent implements OnInit {
   getarc(data){
     this.subareacs=data.slice(0,3)
     this.folio=this.nivels+this.grads+this.areacs+this.subareacs;
+
 
 
   }

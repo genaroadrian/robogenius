@@ -7,6 +7,8 @@
   <div class="container">
     <br>
     <br>
+    <h1>Asignaci�n de Sesiones</h1>
+    <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
     <br>
     <div class="row">
       <div class="col-md-4">
@@ -41,7 +43,7 @@
 
         <mat-form-field class="col-xl-10">
           <mat-label>Áreas de conocimiento: </mat-label>
-          <mat-select [(value)]="AREA" (selectionChange)="gettema(AREA)">
+          <mat-select [(value)]="AREA" (selectionChange)="gettema(AREA)" multiple>
             <mat-option *ngFor="let area of areadelconocimiento" value="{{area.idac}}">{{area.nomarea}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -58,15 +60,18 @@
       <div class="col-md-4">
         <mat-form-field class="col-xl-10">
           <mat-label>Sub Areas de conocimiento: </mat-label>
-          <mat-select [(value)]="subarea" (selectionChange)="getarc(subarea)">
+          <mat-select [(value)]="subarea" (selectionChange)="getarc(subarea)" multiple>
             <mat-option *ngFor="let sarea of subareas" value="{{sarea.nombre}}">{{sarea.nombre}}</mat-option>
+
+          <!-- <mat-select [(value)]="subarea" multiple>
+            <mat-option *ngFor="let sarea of subareas" value="{{sarea.idsac}}">{{sarea.nombre}}</mat-option> -->
           </mat-select>
         </mat-form-field>
-        <!-- <button matTooltip="Agregar un nueva sub-area"
+        <button matTooltip="Agregar un nueva sub-area"
               aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button
-              (click)="areamodal()">
+              (click)="addSAC()">
               <mat-icon>add</mat-icon>
-            </button> -->
+            </button>
       </div>
 
       <div class="col-md-4">
@@ -109,7 +114,7 @@
         </mat-form-field>
         <button matTooltip="Agregar un nueva herramienta"
           aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button
-          (click)="substemamodal()">
+          (click)="addHerra()">
           <mat-icon>add</mat-icon>
         </button>
       </div>

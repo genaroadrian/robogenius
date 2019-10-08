@@ -57,6 +57,15 @@ export class ModuloComponent implements OnInit {
   subtema: any;
   today:any
 
+  nivels:any;
+  grads:any;
+  areacs:any;
+  subareacs:any;
+  tems:any;
+  subtems:any;
+
+  folio:any;
+
 
 
 
@@ -240,9 +249,12 @@ export class ModuloComponent implements OnInit {
 
   }
   gettema(AREA) {
+  
     this.tema = this.areadelconocimiento.filter(tem => tem.idac == AREA)
-    // console.log(AREA);
-    // console.log(this.tema);
+   
+    this.areacs=this.tema[0].nomarea.slice(0,3)
+    this.folio=this.nivels+this.grads+this.areacs;
+
     var hash = {};
     this.tema = this.tema.filter(function (tem) {
       var exists = !hash[tem.nomtema] || false;
@@ -265,6 +277,9 @@ export class ModuloComponent implements OnInit {
   getsubtema(TEMA) {
     // console.log(this.tema)
     this.subtema = this.datos.filter(sub => sub.idt == TEMA)
+    this.tems=this.subtema[0].nomtema.slice(0,3)
+    this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems;
+
     // console.log(TEMA);
     // console.log(this.subtema);
   }
@@ -284,6 +299,25 @@ export class ModuloComponent implements OnInit {
     this.today = this.datePipe.transform(this.today, 'yyyy-MM-dd')
   }
 
+  SelectNivel(data){
+    this.nivels=data.value.slice(0,3);
+    this.folio=this.nivels;
+  }
+  SelectGrado(data){
 
+    this.grads=data.value.slice(0,3)
+    this.folio=this.nivels+this.grads;
+  }
+  getarc(data){
+    this.subareacs=data.slice(0,3)
+    this.folio=this.nivels+this.grads+this.areacs+this.subareacs;
+
+
+  }
+  final(data){
+    this.subtems=data.slice(0,3)
+    // console.log(this.nivels+this.grads+this.areacs+this.subareacs+this.tems+this.subtems)
+    this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems+this.subtems;
+  }
 
 }

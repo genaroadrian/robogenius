@@ -15,7 +15,7 @@
         <mat-form-field class="col-xl-10">
           <mat-label>Nivel: </mat-label>
           <mat-select [(value)]="NIVEL" (selectionChange)="SelectNivel($event)">
-            <mat-option *ngFor="let clases of persona" value="{{clases.nombre}}">{{clases.nombre}}</mat-option>
+            <mat-option *ngFor="let clases of persona" value="{{clases.idn}}">{{clases.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
         <button matTooltip="Agregar un nuevo nivel"
@@ -29,7 +29,7 @@
         <mat-form-field class="col-xl-10">
           <mat-label>Grado: </mat-label>
           <mat-select [(value)]="GRADO" (selectionChange)="SelectGrado($event)">
-            <mat-option *ngFor="let clases of grado" value="{{clases.nombre}}">{{clases.nombre}}</mat-option>
+            <mat-option *ngFor="let clases of grado" value="{{clases.idg}}">{{clases.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
         <button matTooltip="Agregar un nuevo grado"
@@ -61,7 +61,7 @@
         <mat-form-field class="col-xl-10">
           <mat-label>Sub Areas de conocimiento: </mat-label>
           <mat-select [(value)]="subarea" (selectionChange)="getarc(subarea)" multiple>
-            <mat-option *ngFor="let sarea of subareas" value="{{sarea.nombre}}">{{sarea.nombre}}</mat-option>
+            <mat-option *ngFor="let sarea of subareas" value="{{sarea.idsac}}">{{sarea.nombre}}</mat-option>
 
           <!-- <mat-select [(value)]="subarea" multiple>
             <mat-option *ngFor="let sarea of subareas" value="{{sarea.idsac}}">{{sarea.nombre}}</mat-option> -->

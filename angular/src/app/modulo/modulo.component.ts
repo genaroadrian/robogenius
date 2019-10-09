@@ -304,11 +304,21 @@ export class ModuloComponent implements OnInit {
 
   }
   gettema(AREA) {
+    
   
+    let datos = ""
+    AREA.forEach(function(element,index) {
+        datos=datos+element.slice(0,2)
+    });
+
+    this.areacs=datos
+    this.folio=this.nivels+this.grads+this.areacs;
+
+
+
     this.tema = this.areadelconocimiento.filter(tem => tem.idac == AREA)
    
-    this.areacs=this.tema[0].nomarea.slice(0,3)
-    this.folio=this.nivels+this.grads+this.areacs;
+
 
 
     var hash = {};
@@ -332,9 +342,13 @@ export class ModuloComponent implements OnInit {
 
   getsubtema(TEMA) {
     // console.log(this.tema)
-    this.subtema = this.datos.filter(sub => sub.idt == TEMA)
-    this.tems=this.subtema[0].nomtema.slice(0,3)
+
+   this.tems=TEMA
     this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems;
+
+    this.subtema = this.datos.filter(sub => sub.idt == TEMA)
+    // this.tems=this.subtema[0].nomtema.slice(0,3)
+    // this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems;
 
     // console.log(TEMA);
     // console.log(this.subtema);
@@ -356,25 +370,33 @@ export class ModuloComponent implements OnInit {
   }
 
   SelectNivel(data){
-    this.nivels=data.value.slice(0,3);
+    this.nivels=data.value.slice(0,2);
     this.folio=this.nivels;
   }
   SelectGrado(data){
 
-    this.grads=data.value.slice(0,3)
+    this.grads=data.value.slice(0,2)
     this.folio=this.nivels+this.grads;
   }
   getarc(data){
-    this.subareacs=data.slice(0,3)
+
+    let datos = ""
+    data.forEach(function(element,index) {
+        datos=datos+element.slice(0,3)
+       
+    });
+
+    this.subareacs=datos
     this.folio=this.nivels+this.grads+this.areacs+this.subareacs;
 
-
-
   }
+
   final(data){
-    this.subtems=data.slice(0,3)
+    // this.subtems=data.slice(0,3)
     // console.log(this.nivels+this.grads+this.areacs+this.subareacs+this.tems+this.subtems)
-    this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems+this.subtems;
+    // this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems+this.subtems;
+    var aleatorio = Math.round(Math.random()*100000);
+    this.folio=this.folio+aleatorio
   }
 
 }

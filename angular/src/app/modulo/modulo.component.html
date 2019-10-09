@@ -7,7 +7,7 @@
   <div class="container">
     <br>
     <br>
-    <h1>Asignaci�n de Sesiones</h1>
+    <h1 style="text-align: center">Asignación de Sesiones</h1>
     <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
     <br>
     <div class="row">
@@ -18,7 +18,7 @@
             <mat-option *ngFor="let clases of persona" value="{{clases.idn}}">{{clases.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <button matTooltip="Agregar un nuevo nivel"
+        <button matTooltip="agregrar un nuevo nivel" class="agregrar"
           aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button
           (click)="nuev()">
           <mat-icon>add</mat-icon>
@@ -32,7 +32,7 @@
             <mat-option *ngFor="let clases of grado" value="{{clases.idg}}">{{clases.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <button matTooltip="Agregar un nuevo grado"
+        <button matTooltip="agregrar un nuevo grado" class="agregrar"
           aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button
           (click)="gradomodal()">
           <mat-icon>add</mat-icon>
@@ -47,7 +47,7 @@
             <mat-option *ngFor="let area of areadelconocimiento" value="{{area.idac}}">{{area.nomarea}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <button matTooltip="Agregar un nueva area"
+        <button matTooltip="agregrar un nueva area" class="agregrar"
           aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button
           (click)="areamodal()">
           <mat-icon>add</mat-icon>
@@ -67,7 +67,7 @@
             <mat-option *ngFor="let sarea of subareas" value="{{sarea.idsac}}">{{sarea.nombre}}</mat-option> -->
           </mat-select>
         </mat-form-field>
-        <button matTooltip="Agregar un nueva sub-area"
+        <button matTooltip="agregrar un nueva sub-area" class="agregrar"
               aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button
               (click)="addSAC()">
               <mat-icon>add</mat-icon>
@@ -81,7 +81,7 @@
             <mat-option *ngFor="let tem of tema" value="{{tem.idt}}">{{tem.nomtema}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <button matTooltip="Agregar un nuevo tema"
+        <button matTooltip="agregrar un nuevo tema"
           aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button
           (click)="temamodal()">
           <mat-icon>add</mat-icon>
@@ -95,7 +95,7 @@
             <mat-option *ngFor="let sub of subtema" value="{{sub.nomsubt}}">{{sub.nomsubt}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <button matTooltip="Agregar un nuevo subtema"
+        <button matTooltip="agregrar un nuevo subtema" class="agregrar"
           aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button
           (click)="substemamodal()">
           <mat-icon>add</mat-icon>
@@ -112,7 +112,7 @@
             <mat-option *ngFor="let herra of herramientas" value="{{herra.idherra}}">{{herra.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
-        <button matTooltip="Agregar un nueva herramienta"
+        <button matTooltip="agregrar un nueva herramienta" class="agregrar"
           aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button
           (click)="addHerra()">
           <mat-icon>add</mat-icon>
@@ -120,14 +120,14 @@
       </div>
 
       <div class="col-md-4">
-        <mat-form-field class="col-md-8">
+        <mat-form-field class="col-md-10">
           <mat-label>Fecha:</mat-label>
           <input matInput type="text" [value]="today" disabled>
         </mat-form-field>
       </div>
 
       <div class="col-md-4">
-        <mat-form-field class="col-md-8">
+        <mat-form-field class="col-md-10">
           <mat-label>Folio:</mat-label>
           <input matInput [(ngModel)]="folio"  type="text" disabled>
         </mat-form-field>
@@ -136,7 +136,7 @@
 
     <div class="row">
         <div class="col-md-4">
-            <mat-form-field class="col-xl-8">
+            <mat-form-field class="col-xl-10">
                 <mat-label>Numero de alumnos: </mat-label>
                 <mat-select [(value)]="noalu">
                   <mat-option value="1">1</mat-option>
@@ -152,18 +152,18 @@
                 </mat-select>
               </mat-form-field>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             
         </div>
-        <div class="col md-4">
-            <span class="col-md-2" style="border-top: 14px; margin-top: 14px; padding-top: 14px;">Sesion</span>
+        <div class="col-md-4" style="text-align: right;">
+            <span class="col-md-3" style="border-top: 14px; margin-top: 14px; padding-top: 14px;">Sesion</span>
           <mat-form-field class="col-md-2">
             
-            <input matInput type="text" class="text-center">
+            <input matInput type="text"  class="text-center">
           </mat-form-field>
           <span class="col-md-2" style="border-top: 14px; margin-top: 14px; padding-top: 14px;">De: </span>
           <mat-form-field class="col-md-2">
-            <mat-select class="text-center">
+            <mat-select class="text-center"   [(value)]="x" (selectionChange)="addLink(x)" >
               <mat-option value="1">1</mat-option>
               <mat-option value="2">2</mat-option>
               <mat-option value="3">3</mat-option>
@@ -171,9 +171,15 @@
           </mat-form-field>
         </div>
     </div>
-
+    <br>
+    <button  class="btn btn-warning" (click)="addTab(selectAfterAdding)">
+      Agregar sesion
+    </button>
     <mat-divider></mat-divider>
 
+    <mat-tab-group >
+    <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+     
     <div class="row">
       <div class="col-md-4">
         <mat-form-field>
@@ -248,6 +254,29 @@
         </div>
       </div>
 
+
+      <div style="text-align: center;">
+      <button class="btn btn-primary" [disabled]="tabs.length === 0"
+        (click)="saveDetallegrupos(index)">
+        Guardar
+      </button>
+
+      <button  class="btn btn-danger" [disabled]="tabs.length === 1"
+        (click)="removeTab(index)">
+        Cancelar
+      </button>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+    <br>
+    
+
+
   </div>
 </div>
 <app-fotter></app-fotter>
+
+
+
+

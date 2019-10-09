@@ -39,6 +39,35 @@ import { SacaddComponent } from '../subareac/sacadd/sacadd.component';
 
 })
 export class ModuloComponent implements OnInit {
+  tabs = ['Sesion'];
+  selected = new FormControl(0);
+
+  addTab(selectAfterAdding: boolean) {
+    
+    this.tabs.push('Horario');
+    if (selectAfterAdding) {
+      this.selected.setValue(this.tabs.length - 1);
+    }
+  }
+  removeTab(index: number) {
+    this.tabs.splice(index, 1);
+  }
+  agregarTab(index: number) {
+
+    this.tabs.splice(index, 1);
+  }
+
+
+  tipoChange1(event) {
+    if (this.selectedtp == "2") {
+      this.isDisable = false;
+      this.visibility = "block";
+    } else {
+      this.isDisable = true;
+      this.visibility = "none";
+    }
+  }
+
 
 
   areaC = new FormControl();
@@ -63,7 +92,7 @@ export class ModuloComponent implements OnInit {
   subarea: any //Valor del select de subarea del conocimiento
   tema: any;
   subtema: any;
-  today:any
+  today: any
 
   nivels:any;
   grads:any;
@@ -80,8 +109,8 @@ export class ModuloComponent implements OnInit {
 
   constructor(public dialog: MatDialog, private nivelService: NivelService, public toastr: ToastrManager, public notifications: NotificationsService,
     private _formBuilder: FormBuilder, private httpClient: HttpClient, private router: Router, private gradoService: GradoService, private areaService: AreadelconocimientoService,
-    private moduloService: ModuloService, private temaService: TemaService,private datePipe: DatePipe,
-  public herramientasService: HerramientasService, public subareacService: SubareacService) { }
+    private moduloService: ModuloService, private temaService: TemaService, private datePipe: DatePipe,
+    public herramientasService: HerramientasService, public subareacService: SubareacService) { }
 
   ngOnInit() {
     this.fechaHoy()
@@ -221,8 +250,7 @@ export class ModuloComponent implements OnInit {
     });
   }
 
-  addHerra(herramientas: Herramientas)
-  {
+  addHerra(herramientas: Herramientas) {
     const dialogRef = this.dialog.open(AddHerramientasComponent, {
       data: { herramientas: herramientas }
     });
@@ -244,8 +272,7 @@ export class ModuloComponent implements OnInit {
     });
   }
 
-  addSAC(subareaC: Subareac)
-  {
+  addSAC(subareaC: Subareac) {
     const dialogRef = this.dialog.open(SacaddComponent, {
       data: { subareaC: subareaC }
     });
@@ -293,6 +320,7 @@ export class ModuloComponent implements OnInit {
   get() {
     this.areaService.getall().subscribe((data) => {
       this.datos = data;
+      // console.log(datos)
       var hash = {};
       this.areadelconocimiento = this.datos.filter(function (area) {
         var exists = !hash[area.nomarea] || false;
@@ -312,21 +340,31 @@ export class ModuloComponent implements OnInit {
     });
 
     this.areacs=datos
-    this.folio=this.nivels+this.grads+this.areacs;
+    this.folio=this.nivels+this.grads+this.areacs;   
 
-
-
-    this.tema = this.areadelconocimiento.filter(tem => tem.idac == AREA)
-   
-
-
-
+    // this.tema = this.datos.filter(tem => tem.idac == AREA)
+    // console.log(this.tema)
+    /*  */
+    console.log(AREA)
+    let newarray = this.datos // Asignar el array de todos los datos a una variable temporal
+    let tema: any // Obtiene un array de todos los temas 
+    let filtered = [] // Nuevo Array con los temas ya filtrados
+    AREA.forEach(function (value, index, array) {
+      console.log(value)
+      tema = newarray.filter(tem => tem.idac == value)
+      console.log(tema)
+      tema.forEach(function(value,index,array){
+        filtered.push(value)
+      })
+    });
+    this.tema = filtered
+    /*  */
+    console.log(this.tema)
     var hash = {};
     this.tema = this.tema.filter(function (tem) {
       var exists = !hash[tem.nomtema] || false;
       hash[tem.nomtema] = true;
       return exists;
-
     })
 
   }
@@ -363,8 +401,7 @@ export class ModuloComponent implements OnInit {
     })
   }
 
-  fechaHoy()
-  {
+  fechaHoy() {
     this.today = new Date()
     this.today = this.datePipe.transform(this.today, 'yyyy-MM-dd')
   }
@@ -379,7 +416,6 @@ export class ModuloComponent implements OnInit {
     this.folio=this.nivels+this.grads;
   }
   getarc(data){
-
     let datos = ""
     data.forEach(function(element,index) {
         datos=datos+element.slice(0,3)

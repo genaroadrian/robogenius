@@ -40,11 +40,7 @@ import { SacaddComponent } from '../subareac/sacadd/sacadd.component';
 })
 export class ModuloComponent implements OnInit {
 
-
   areaC = new FormControl();
-
-
-
 
   selectedtp = '1';
   persona: any
@@ -65,9 +61,17 @@ export class ModuloComponent implements OnInit {
   subtema: any;
   today: any
 
+  /* Variables que tienen el valor de los select */
+  vNivel: any
+  vGrado: any
+  vArea: any
+  vSubarea: any
+  vTema: any
+  vSubtema: any
+  vHerramienta: any
 
-
-
+  /* Interfaz de la nueva planeacion */
+  planeacion = []
 
   constructor(public dialog: MatDialog, private nivelService: NivelService, public toastr: ToastrManager, public notifications: NotificationsService,
     private _formBuilder: FormBuilder, private httpClient: HttpClient, private router: Router, private gradoService: GradoService, private areaService: AreadelconocimientoService,
@@ -107,29 +111,7 @@ export class ModuloComponent implements OnInit {
     })
 
     this.getSubAC()
-
-
-
-    //
-
-
   }
-
-  /* onChangeArea(idac: number) {
-     if (idac) {
-       this.moduloService.gett().subscribe(
-         data => {
-           this.temass = data;
-           this.subtemass = null;
-         }
-       );
-     } else {
-       this.temass = null;
-       this.subtemass = null;
-     }
-   }*/
-
-
 
   // Notificación de success al eliminar
   showSuccesSave() {
@@ -142,7 +124,6 @@ export class ModuloComponent implements OnInit {
   hideBarra() {
     this.barra = "none"
   }
-
 
   nuev(nivelest: Niveles) {
     /* abrir un pequeño modal para agregar otro tipo de personal */
@@ -160,12 +141,11 @@ export class ModuloComponent implements OnInit {
           this.notifications.showError();
           // // this.notifications.hideBarra();
           this.hideBarra();
-
         });
-
       }
     });
   }
+
   gradomodal(grado: Grados) {
     /* abrir un pequeño modal para agregar otro tipo de personal */
     const dialogRef = this.dialog.open(AddgradosComponent, {
@@ -182,9 +162,7 @@ export class ModuloComponent implements OnInit {
           this.notifications.showError();
           // // this.notifications.hideBarra();
           this.hideBarra();
-
         });
-
       }
     });
   }
@@ -203,11 +181,8 @@ export class ModuloComponent implements OnInit {
           this.hideBarra();
         }, (error) => {
           this.notifications.showError();
-          // // this.notifications.hideBarra();
           this.hideBarra();
-
         });
-
       }
     });
   }
@@ -225,11 +200,8 @@ export class ModuloComponent implements OnInit {
           this.hideBarra();
         }, (error) => {
           this.notifications.showError();
-          // // this.notifications.hideBarra();
           this.hideBarra();
-
         });
-
       }
     });
   }
@@ -249,9 +221,7 @@ export class ModuloComponent implements OnInit {
           this.notifications.showError();
           // // this.notifications.hideBarra();
           this.hideBarra();
-
         });
-        // console.log(this.subareacService.getDialogData())
       }
     });
   }
@@ -273,12 +243,15 @@ export class ModuloComponent implements OnInit {
           this.notifications.showError();
           // // this.notifications.hideBarra();
           this.hideBarra();
-
         });
-
       }
     });
   }
+
+  subareaChange(subarea) {
+    this.vSubarea = subarea
+  }
+
   get() {
     this.areaService.getall().subscribe((data) => {
       this.datos = data;
@@ -293,26 +266,34 @@ export class ModuloComponent implements OnInit {
 
 
   }
-  gettema(AREA) {
 
-    // this.tema = this.datos.filter(tem => tem.idac == AREA)
-    // console.log(this.tema)
-    /*  */
-    console.log(AREA)
+  nivelChange(NIVEL) {
+    this.vNivel = NIVEL
+  }
+
+  gradoChange(GRADO) {
+    this.vGrado = GRADO
+  }
+
+  gettema(AREA) {
+    this.vArea = AREA
+
+    // console.log(AREA)
     let newarray = this.datos // Asignar el array de todos los datos a una variable temporal
     let tema: any // Obtiene un array de todos los temas 
     let filtered = [] // Nuevo Array con los temas ya filtrados
     AREA.forEach(function (value, index, array) {
-      console.log(value)
+      // console.log(value)
       tema = newarray.filter(tem => tem.idac == value)
-      console.log(tema)
-      tema.forEach(function(value,index,array){
+      // console.log(tema)
+      tema.forEach(function (value, index, array) {
         filtered.push(value)
       })
     });
-    this.tema = filtered
-    /*  */
-    console.log(this.tema)
+
+    this.tema = filtered // Asigna la variable tema (select de temas) a los datos de los temas ya filtrados
+
+    /* Quita los nombres repetidos del Array de los temas */
     var hash = {};
     this.tema = this.tema.filter(function (tem) {
       var exists = !hash[tem.nomtema] || false;
@@ -324,7 +305,7 @@ export class ModuloComponent implements OnInit {
 
   getSubAC() {
     this.moduloService.getSAC().subscribe((data) => {
-      console.log(data)
+      // console.log(data)
       this.subareas = data
     }, (error) => {
 
@@ -332,6 +313,7 @@ export class ModuloComponent implements OnInit {
   }
 
   getsubtema(TEMA) {
+    this.vTema = TEMA
     // console.log(this.tema)
     this.subtema = this.datos.filter(sub => sub.idt == TEMA)
     // console.log(TEMA);
@@ -340,7 +322,7 @@ export class ModuloComponent implements OnInit {
 
   getHerramientas() {
     this.moduloService.getHerra().subscribe((data) => {
-      console.log(data)
+      // console.log(data)
       this.herramientas = data
     }, (error) => {
 
@@ -352,10 +334,78 @@ export class ModuloComponent implements OnInit {
     this.today = this.datePipe.transform(this.today, 'yyyy-MM-dd')
   }
 
+  herramChange(herramienta) {
+    this.vHerramienta = herramienta
+  }
+
+  subtemasChange(SUBTEMAS) {
+    this.vSubtema = SUBTEMAS
+  }
+
+  guardar()
+  {
+    // console.log(this.vNivel)
+    // console.log(this.vGrado)
+    console.log(this.vArea)
+    // console.log(this.vSubarea)
+    // console.log(this.vTema)
+    // console.log(this.vSubtema)
+    // console.log(this.vHerramienta)
+
+    let plan = []
+    let subarea = this.vSubarea
+    this.vArea.forEach(function(value,index, array){
+      plan.push
+      ({idarchivo:  null,
+        idac: value,
+        idsac:  null,
+        idherra: null 
+      })
+    });
+    // console.log(plan)
+    
+    let limite = plan.length
+    // console.log(limite)
+    subarea.forEach(function(value, index, array){
+      
+      if(index < limite)
+      {
+        plan[index].idsac = value
+        // alert()
+      }else{
+        plan.push
+      ({idarchivo:  null,
+        idac: null,
+        idsac:  value,
+        idherra: null 
+      })
+      }
+    });
+
+    limite = plan.length
+    this.vHerramienta.forEach(function(value,index,array){
+      if(index < limite)
+      {
+        plan[index].idherra = value
+      }else{
+        plan.push
+        ({idarchivo:  null,
+          idac: null,
+          idsac:  null,
+          idherra: value 
+        })
+      }
+
+      console.log(plan)
+
+    });
 
 
 
 
 
-
+    this.planeacion = plan
+    console.log(this.planeacion)
+    
+  }
 }

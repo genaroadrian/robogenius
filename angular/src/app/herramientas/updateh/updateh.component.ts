@@ -21,7 +21,7 @@ export class UpdatehComponent implements OnInit {
     Validators.required
     // Validators.email,
   ]);
-  getErrorMessage() {
+  getErrorMessage() {   
     return this.formControl.hasError('required') ? 'El campo es obligatorio' :
       this.formControl.hasError('email') ? 'Ingrese un corre valido' :
         '';

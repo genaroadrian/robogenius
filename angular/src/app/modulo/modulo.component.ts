@@ -41,23 +41,35 @@ import { SacaddComponent } from '../subareac/sacadd/sacadd.component';
 export class ModuloComponent implements OnInit {
   tabs = ['Sesion'];
   selected = new FormControl(0);
+  
   numero:any;
-
+  ns:any;
+  x:any;
+  session(index){
+    this.ns=index;
+    console.log(index)
+  }
+  manda(e){
+    this.ns=e
+    
+  }
   addTab(selectAfterAdding: boolean) {
     
     this.tabs.push('Sesion');
     if (selectAfterAdding) {
-      this.selected.setValue(this.tabs.length - 1);
+    this.selected.setValue(this.tabs.length - 1);
+    
     }
     this.numero=this.tabs.length
+
   }
   removeTab(index: number) {
     this.tabs.splice(index, 1);
-  this.numero=this.tabs.length-1;
+  this.numero=this.numero-1;
   }
   agregarTab(index: number) {
     this.tabs.splice(index, 1);
-    
+
   }
 
 
@@ -121,6 +133,8 @@ export class ModuloComponent implements OnInit {
     public herramientasService: HerramientasService, public subareacService: SubareacService) { }
 
   ngOnInit() {
+    this.numero=1
+    this.ns=1
     this.fechaHoy()
     this.getHerramientas()
     this.get()

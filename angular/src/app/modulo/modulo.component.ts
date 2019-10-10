@@ -346,7 +346,7 @@ export class ModuloComponent implements OnInit {
   {
     // console.log(this.vNivel)
     // console.log(this.vGrado)
-    console.log(this.vArea)
+    // console.log(this.vArea)
     // console.log(this.vSubarea)
     // console.log(this.vTema)
     // console.log(this.vSubtema)
@@ -395,15 +395,8 @@ export class ModuloComponent implements OnInit {
           idherra: value 
         })
       }
-
-      console.log(plan)
-
     });
-
-
-
-
-
+    
     this.planeacion = plan
     console.log(this.planeacion)
     

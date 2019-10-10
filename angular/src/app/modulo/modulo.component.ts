@@ -41,20 +41,23 @@ import { SacaddComponent } from '../subareac/sacadd/sacadd.component';
 export class ModuloComponent implements OnInit {
   tabs = ['Sesion'];
   selected = new FormControl(0);
+  numero:any;
 
   addTab(selectAfterAdding: boolean) {
     
-    this.tabs.push('Horario');
+    this.tabs.push('Sesion');
     if (selectAfterAdding) {
       this.selected.setValue(this.tabs.length - 1);
     }
+    this.numero=this.tabs.length
   }
   removeTab(index: number) {
     this.tabs.splice(index, 1);
+  this.numero=this.tabs.length-1;
   }
   agregarTab(index: number) {
     this.tabs.splice(index, 1);
-    console.log(index)
+    
   }
 
 

@@ -53,8 +53,8 @@ export class ModuloComponent implements OnInit {
     this.tabs.splice(index, 1);
   }
   agregarTab(index: number) {
-
     this.tabs.splice(index, 1);
+    console.log(index)
   }
 
 

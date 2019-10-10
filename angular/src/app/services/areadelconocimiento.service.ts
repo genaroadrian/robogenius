@@ -27,7 +27,7 @@ export class AreadelconocimientoService {
    }
  
    // Obtener datos de la base de datos
-   getareadelconocimiento(): void{
+   getareadelconocimiento(): void{ 
      this.httpClient.get<areadelconocimiento[]>(this.API_ENDPOINT+'/areadelconocimiento').subscribe(data => {
       this.datos=data
       this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
@@ -96,4 +96,5 @@ export class AreadelconocimientoService {
      const headers = new HttpHeaders( {'Content-Type': 'application/json'});
      return this.httpClient.post(this.API_ENDPOINT + '/areadelconocimiento/',area, {headers: headers});
    }
+    
 }

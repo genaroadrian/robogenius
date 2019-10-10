@@ -20,7 +20,8 @@ export class SubtemaeditComponent implements OnInit {
   subtema:subtema={
     nombre:null,
     idt:null,
-    activo:null
+    activo:null,
+    idsuc:null
   }
   constructor(public dialogRef: MatDialogRef<SubtemaeditComponent>,@Inject(MAT_DIALOG_DATA) public data: any, 
   public subtemaservice:SubtemaService,public tema:TemaService) { }

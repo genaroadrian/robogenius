@@ -1,4 +1,7 @@
-
+button{
+  background-color: cornflowerblue;
+   color:white;
+}
 /* Structure */
 .container {
     display: flex;

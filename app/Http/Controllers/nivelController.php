@@ -24,6 +24,7 @@ class nivelController extends Controller
         $nivel = new nivel();
         $nivel->idn = $request->idn;
         $nivel->nombre = $request->nombre;
+        $nivel->idsuc = $request->idsuc;
         $nivel->activo = 1;
         $nivel->save();
         echo json_encode($nivel);

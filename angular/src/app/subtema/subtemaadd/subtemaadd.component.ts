@@ -20,7 +20,8 @@ export class SubtemaaddComponent implements OnInit {
   teme:subtema={
     nombre:null,
     idt:null,
-    activo:null
+    activo:null,
+    idsuc:null
   }
 
   constructor(public dialogRef: MatDialogRef<SubtemaaddComponent>, @Inject(MAT_DIALOG_DATA) public data: subtema, 
@@ -56,6 +57,7 @@ export class SubtemaaddComponent implements OnInit {
   /* Confirma la alta del registro */
   confirmAdd(): void 
   {
+    this.teme.idsuc=localStorage.getItem("sucursal")
     this.data.nombre=this.teme.nombre;
     this.data=this.teme
     console.log(this.data)

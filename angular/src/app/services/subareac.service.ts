@@ -14,12 +14,19 @@ export class SubareacService {
 
   dialogData: any
 
-  constructor(private httpClient: HttpClient) { }
+  datos :any;
+  sucursal:any;
+
+  constructor(private httpClient: HttpClient) {
+    this.sucursal=localStorage.getItem('sucursal')
+  }
 
   getSubareas(): void{
     this.httpClient.get<Subareac[]>(this.API_ENDPOINT+'/subareac').subscribe(data=>{
-     this.dataChange.next(data)
-    },(error: HttpErrorResponse)=>{
+      this.datos=data
+      this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
+      // console.log(this.datos)
+      this.dataChange.next(this.datos);    },(error: HttpErrorResponse)=>{
       console.log(error.name + '' + error.message)
     })
   }

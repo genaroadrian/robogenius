@@ -16,6 +16,7 @@ class Subtema extends Model
     	'ids', 
     	'nombre', 
     	'idt', 
+        'idsuc',
         'activo'
     ];
 }

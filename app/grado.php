@@ -15,6 +15,7 @@ class grado extends Model
     protected $fillable = [ 
     	'idg',
         'nombre',
+        'idsuc',
         'activo'
     	];
 }

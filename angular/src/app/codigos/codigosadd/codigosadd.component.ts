@@ -39,7 +39,7 @@ export class CodigosaddComponent implements OnInit {
 
   Descuentos(data): void 
   {
-    
+    this.data.idsuc=localStorage.getItem("sucursal");
     this.codigosService.ado(this.data);
     
   }

@@ -39,6 +39,35 @@ import { SacaddComponent } from '../subareac/sacadd/sacadd.component';
 
 })
 export class ModuloComponent implements OnInit {
+  tabs = ['Sesion'];
+  selected = new FormControl(0);
+
+  addTab(selectAfterAdding: boolean) {
+    
+    this.tabs.push('Horario');
+    if (selectAfterAdding) {
+      this.selected.setValue(this.tabs.length - 1);
+    }
+  }
+  removeTab(index: number) {
+    this.tabs.splice(index, 1);
+  }
+  agregarTab(index: number) {
+    this.tabs.splice(index, 1);
+    console.log(index)
+  }
+
+
+  tipoChange1(event) {
+    if (this.selectedtp == "2") {
+      this.isDisable = false;
+      this.visibility = "block";
+    } else {
+      this.isDisable = true;
+      this.visibility = "none";
+    }
+  }
+
 
   areaC = new FormControl();
 
@@ -61,6 +90,15 @@ export class ModuloComponent implements OnInit {
   subtema: any;
   today: any
 
+  nivels:any;
+  grads:any;
+  areacs:any;
+  subareacs:any;
+  tems:any;
+  subtems:any;
+
+  folio:any;
+
   /* Variables que tienen el valor de los select */
   vNivel: any
   vGrado: any
@@ -69,6 +107,7 @@ export class ModuloComponent implements OnInit {
   vTema: any
   vSubtema: any
   vHerramienta: any
+
 
   /* Interfaz de la nueva planeacion */
   planeacion = []
@@ -250,6 +289,14 @@ export class ModuloComponent implements OnInit {
 
   subareaChange(subarea) {
     this.vSubarea = subarea
+    let datos = ""
+    subarea.forEach(function(element,index) {
+        datos=datos+element.slice(0,3)
+       
+    });
+
+    this.subareacs=datos
+    this.folio=this.nivels+this.grads+this.areacs+this.subareacs;
   }
 
   get() {
@@ -269,13 +316,27 @@ export class ModuloComponent implements OnInit {
 
   nivelChange(NIVEL) {
     this.vNivel = NIVEL
+    this.nivels=NIVEL.slice(0,2);
+    this.folio=this.nivels;
   }
 
   gradoChange(GRADO) {
     this.vGrado = GRADO
+    this.grads=GRADO.slice(0,2)
+    this.folio=this.nivels+this.grads;
   }
 
   gettema(AREA) {
+    
+  
+    let datos = ""
+    AREA.forEach(function(element,index) {
+        datos=datos+element.slice(0,2)
+    });
+
+    this.areacs=datos
+    this.folio=this.nivels+this.grads+this.areacs;   
+
     this.vArea = AREA
 
     // console.log(AREA)
@@ -315,7 +376,14 @@ export class ModuloComponent implements OnInit {
   getsubtema(TEMA) {
     this.vTema = TEMA
     // console.log(this.tema)
+
+   this.tems=TEMA
+    this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems;
+
     this.subtema = this.datos.filter(sub => sub.idt == TEMA)
+    // this.tems=this.subtema[0].nomtema.slice(0,3)
+    // this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems;
+
     // console.log(TEMA);
     // console.log(this.subtema);
   }
@@ -334,12 +402,35 @@ export class ModuloComponent implements OnInit {
     this.today = this.datePipe.transform(this.today, 'yyyy-MM-dd')
   }
 
+  // SelectNivel(data){
+  //   this.nivels=data.value.slice(0,2);
+  //   this.folio=this.nivels;
+  // }
+  // SelectGrado(data){
+
+  //   this.grads=data.value.slice(0,2)
+  //   this.folio=this.nivels+this.grads;
+  // }
+  // getarc(data){
+  //   let datos = ""
+  //   data.forEach(function(element,index) {
+  //       datos=datos+element.slice(0,3)
+       
+  //   });
+
+  //   this.subareacs=datos
+  //   this.folio=this.nivels+this.grads+this.areacs+this.subareacs;
+
+  // }
+
   herramChange(herramienta) {
     this.vHerramienta = herramienta
   }
 
   subtemasChange(SUBTEMAS) {
     this.vSubtema = SUBTEMAS
+    var aleatorio = Math.round(Math.random()*100000);
+    this.folio=this.folio+aleatorio
   }
 
   guardar()
@@ -400,5 +491,12 @@ export class ModuloComponent implements OnInit {
     this.planeacion = plan
     console.log(this.planeacion)
     
+  }
+  final(data){
+    // this.subtems=data.slice(0,3)
+    // console.log(this.nivels+this.grads+this.areacs+this.subareacs+this.tems+this.subtems)
+    // this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems+this.subtems;
+    var aleatorio = Math.round(Math.random()*100000);
+    this.folio=this.folio+aleatorio
   }
 }

@@ -26,6 +26,7 @@ class codigodescController extends Controller
         $codigos->porcentaje = $request->porcentaje;
         $codigos->lugar  = $request->lugar ;
         $codigos->fecha = $request->fecha;
+        $codigos->idsuc = $request->idsuc;
         $codigos->activo = 1;
         $codigos->save();
         echo json_encode($codigos);

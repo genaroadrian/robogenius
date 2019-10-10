@@ -41,6 +41,7 @@ class subtemasController extends Controller
         $subtema = new Subtema();
         $subtema->nombre = $request->nombre;
         $subtema->idt = $request->idt;
+        $subtema->idsuc = $request->idsuc;
         $subtema->activo = 1;
         $subtema->save();
         echo json_encode($subtema);

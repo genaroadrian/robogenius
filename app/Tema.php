@@ -15,7 +15,8 @@ class Tema extends Model
     protected $fillable = [ 
     	'idt', 
     	'nombre', 
-    	'idac', 
+        'idac', 
+        'idsuc',
         'activo'
     ];
 }

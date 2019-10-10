@@ -3,4 +3,5 @@ export interface subtema {
     nombre: string;
     idt : number;
     activo: number;
+    idsuc:string;
 }

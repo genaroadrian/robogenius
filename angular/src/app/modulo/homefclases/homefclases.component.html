@@ -1,0 +1,86 @@
+<app-navbar></app-navbar>
+<br>
+<br>
+<br>
+<br>
+<div class="col-xl-12 col-md-12 body">
+  <div class="col-xl-12 col-md-12 ">
+      <div class="card bg-light mini-stat position-relative">
+            <div class="card-body">
+            <div class="col-xl-12 col-md-12 ">
+              <h1 class="centro">Busqueda de clases</h1>
+            </div>                
+                <div class="row">
+                    <div class="col-md-4">
+                      <mat-form-field class="col-xl-10">
+                        <mat-label>Nivel: </mat-label>
+              
+                        <mat-select [(value)]="NIVEL" (selectionChange)="nivelChange(NIVEL)">
+                          <mat-option *ngFor="let clases of persona" value="{{clases.idn}}">{{clases.nombre}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      
+                    </div>
+              
+                    <div class="col-md-4">
+                      <mat-form-field class="col-xl-10">
+                        <mat-label>Grado: </mat-label>
+              
+                        <!-- <mat-select [(value)]="GRADO" (selectionChange)="SelectGrado($event)"> -->
+                        <mat-select [(value)]="GRADO" (selectionChange)="gradoChange(GRADO)">
+                          <mat-option *ngFor="let clases of grado" value="{{clases.idg}}">{{clases.nombre}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    
+                    </div>
+              
+                    <div class="col-md-4">
+              
+                      <mat-form-field class="col-xl-10">
+                        <mat-label>Áreas de conocimiento: </mat-label>
+                        <mat-select [(value)]="AREA" (selectionChange)="gettema(AREA)" multiple>
+                          <mat-option *ngFor="let area of areadelconocimiento" value="{{area.idac}}">{{area.nomarea}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      
+                    </div>
+              
+                  </div>
+                  <div class="row">
+                      <div class="col-md-4">
+                        <mat-form-field class="col-xl-10">
+                          <mat-label>Sub Areas de conocimiento: </mat-label>
+                
+                          <!-- <mat-select [(value)]="subarea" (selectionChange)="getarc(subarea)" multiple> -->
+                          <mat-select [(value)]="subarea" multiple (selectionChange)="subareaChange(subarea)" >
+                            <mat-option *ngFor="let sarea of subareas" value="{{sarea.idsac}}">{{sarea.nombre}}</mat-option>
+                
+                          <!-- <mat-select [(value)]="subarea" multiple>
+                            <mat-option *ngFor="let sarea of subareas" value="{{sarea.idsac}}">{{sarea.nombre}}</mat-option> -->
+                          </mat-select>
+                        </mat-form-field>
+                        
+                      </div>
+                
+                      <div class="col-md-4">
+                          <mat-form-field class="col-xl-10">
+                            <mat-label>Herramientas </mat-label>
+                            <mat-select [(value)]="herramienta" multiple (selectionChange)="herramChange(herramienta)">
+                              <mat-option *ngFor="let herra of herramientas" value="{{herra.idherra}}">{{herra.nombre}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                
+                    </div>
+                       
+                 
+            </div>  
+            <div class="col-xl-12 col-md-12 ">
+                <h1 class="centro">Resultados</h1>
+              </div> 
+            <hr class="titulo"/>
+
+      </div>  
+  </div>  
+</div>  
+<app-fotter></app-fotter>

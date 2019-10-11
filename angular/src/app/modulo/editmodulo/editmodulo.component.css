@@ -1,0 +1,36 @@
+h1,h2{
+    text-align: center;
+  }
+
+  a{
+      font-size: 20px;
+  }
+  .centro{
+        text-align: center;
+  }
+  hr{
+    background-color: #db36a4; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 120px;
+    height: 1px;
+    }
+
+.lineas{
+    background-color: #db36a4; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 40%;
+    height: 1px;
+    text-align: left;
+
+}
+
+.materiales{
+    text-align: right;
+}
+.folio{
+    text-align: right;
+}
+.fecha{
+    text-align: left;
+}
+.rec{
+    color: goldenrod;
+}

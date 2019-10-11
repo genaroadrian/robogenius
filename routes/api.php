@@ -85,3 +85,5 @@ Route::resource('asistencias', 'asistenciasController');
 Route::resource('historyasis', 'historyasistenciasController');
 Route::resource('subareac', 'subareacController');
 Route::resource('sesiones', 'sesionesController');
+Route::resource('detalleclases', 'detalleclasesController');
+Route::resource('planeaciones', 'planeacionesController');

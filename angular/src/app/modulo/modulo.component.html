@@ -16,8 +16,8 @@
           <mat-label>Nivel: </mat-label>
           <!-- <mat-select [(value)]="NIVEL" (selectionChange)="SelectNivel($event)"> -->
 
-          <mat-select [(value)]="NIVEL" (selectionChange)="nivelChange(NIVEL)">
-            <mat-option *ngFor="let clases of persona" value="{{clases.idn}}">{{clases.nombre}}</mat-option>
+          <mat-select [(value)]="NIVEL" (selectionChange)="nivelChange(NIVEL)" [disabled]="dis">
+            <mat-option *ngFor="let clases of persona" value="{{clases.idn}}"  >{{clases.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
         <button matTooltip="agregrar un nuevo nivel" class="agregrar"
@@ -32,7 +32,7 @@
           <mat-label>Grado: </mat-label>
 
           <!-- <mat-select [(value)]="GRADO" (selectionChange)="SelectGrado($event)"> -->
-          <mat-select [(value)]="GRADO" (selectionChange)="gradoChange(GRADO)">
+          <mat-select [(value)]="GRADO" (selectionChange)="gradoChange(GRADO)" [disabled]="dis">
             <mat-option *ngFor="let clases of grado" value="{{clases.idg}}">{{clases.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -47,7 +47,7 @@
 
         <mat-form-field class="col-xl-10">
           <mat-label>Áreas de conocimiento: </mat-label>
-          <mat-select [(value)]="AREA" (selectionChange)="gettema(AREA)" multiple>
+          <mat-select [(value)]="AREA" (selectionChange)="gettema(AREA)" multiple [disabled]="dis">
             <mat-option *ngFor="let area of areadelconocimiento" value="{{area.idac}}">{{area.nomarea}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -66,7 +66,7 @@
           <mat-label>Sub Areas de conocimiento: </mat-label>
 
           <!-- <mat-select [(value)]="subarea" (selectionChange)="getarc(subarea)" multiple> -->
-          <mat-select [(value)]="subarea" multiple (selectionChange)="subareaChange(subarea)" >
+          <mat-select [(value)]="subarea" multiple (selectionChange)="subareaChange(subarea)" [disabled]="dis">
             <mat-option *ngFor="let sarea of subareas" value="{{sarea.idsac}}">{{sarea.nombre}}</mat-option>
 
           <!-- <mat-select [(value)]="subarea" multiple>
@@ -83,7 +83,7 @@
       <div class="col-md-4">
         <mat-form-field class="col-xl-10">
           <mat-label>Temas: </mat-label>
-          <mat-select [(value)]="TEMA" (selectionChange)="getsubtema(TEMA)">
+          <mat-select [(value)]="TEMA" (selectionChange)="getsubtema(TEMA)" [disabled]="dis">
             <mat-option *ngFor="let tem of tema" value="{{tem.idt}}">{{tem.nomtema}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -101,7 +101,7 @@
           <!-- <mat-select [(value)]="SUBTEMAS" (selectionChange)="final(SUBTEMAS)">
             <mat-option *ngFor="let sub of subtema" value="{{sub.nomsubt}}">{{sub.nomsubt}}</mat-option> -->
 
-          <mat-select [(value)]="SUBTEMAS" (selectionChange)="subtemasChange(SUBTEMAS)" >
+          <mat-select [(value)]="SUBTEMAS" (selectionChange)="subtemasChange(SUBTEMAS)" [disabled]="dis">
             <mat-option *ngFor="let sub of subtema" value="{{sub.ids}}">{{sub.nomsubt}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -118,7 +118,7 @@
       <div class="col-md-4">
         <mat-form-field class="col-xl-10">
           <mat-label>Herramientas </mat-label>
-          <mat-select [(value)]="herramienta" multiple (selectionChange)="herramChange(herramienta)">
+          <mat-select [(value)]="herramienta" multiple (selectionChange)="herramChange(herramienta)" [disabled]="dis">
             <mat-option *ngFor="let herra of herramientas" value="{{herra.idherra}}">{{herra.nombre}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -132,7 +132,7 @@
       <div class="col-md-4">
         <mat-form-field class="col-md-10">
           <mat-label>Fecha:</mat-label>
-          <input matInput type="text" [value]="today" disabled>
+          <input matInput type="text" [value]="today">
         </mat-form-field>
       </div>
 
@@ -148,7 +148,7 @@
         <div class="col-md-4">
             <mat-form-field class="col-xl-10">
                 <mat-label>Numero de alumnos: </mat-label>
-                <mat-select [(value)]="noalu">
+                <mat-select [(value)]="noalu" [disabled]="dis">
                   <mat-option value="1">1</mat-option>
                   <mat-option value="2">2</mat-option>
                   <mat-option value="3">3</mat-option>
@@ -184,101 +184,106 @@
         </div>
     </div>
     <br>
-    <button  class="btn btn-warning" (click)="addTab(selectAfterAdding)">
-      Agregar sesion
-    </button>
-    <mat-divider></mat-divider>
-
-    <mat-tab-group >
-    <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
-     
-    <div class="row">
-      <div class="col-md-4">
-        <mat-form-field>
-          <mat-label>Nombre de la sesion:</mat-label>
-          <input matInput type="text">
-        </mat-form-field>
-      </div>
-
-      <div class="col-md-4">
-        <mat-form-field>
-          <mat-label>Aprendizajes clave</mat-label>
-          <input type="text" matInput>
-        </mat-form-field>
-      </div>
-
-      <div class="col-md-4">
-        <mat-form-field>
-          <mat-label>Material necesario</mat-label>
-          <input type="text" matInput>
-        </mat-form-field>
-      </div>
+    <div class="row" >
+      <button class="btn btn-info" (click)="guardar()" [ngStyle]="{'display': buttonView}">Siguiente</button>
     </div>
-
-    <div class="row">
-      <div class="col-md-2"></div>
-      <div class="col-md-8">
-        <mat-form-field class="text-center">
-          <mat-label class="text-center">Objetivo</mat-label>
-          <input type="text" matInput class="text-center">
-        </mat-form-field>
+    <br>
+    <div class="sesiones" [ngStyle]="{'display': sesionesView}">
+      <button  class="btn btn-warning" (click)="addTab(selectAfterAdding)">
+        Agregar sesion
+      </button>
+      <mat-divider></mat-divider>
+  
+      <mat-tab-group >
+      <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+       
+      <div class="row">
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-label>Nombre de la sesion:</mat-label>
+            <input matInput type="text" [(ngModel)]="allSesiones[index].nombre">
+          </mat-form-field>
+        </div>
+  
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-label>Aprendizajes clave</mat-label>
+            <input type="text" matInput [(ngModel)]="allSesiones[index].apren_clave">
+          </mat-form-field>
+        </div>
+  
+        <div class="col-md-4">
+          <mat-form-field>
+            <mat-label>Material necesario</mat-label>
+            <input type="text" matInput [(ngModel)]="allSesiones[index].objetivo">
+          </mat-form-field>
+        </div>
       </div>
-      <div class="col-md-2"></div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
-        <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Introcuccion"></textarea>
-        </mat-form-field>
+  
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <mat-form-field class="text-center">
+            <mat-label class="text-center">Objetivo</mat-label>
+            <input type="text" matInput class="text-center" [(ngModel)]="allSesiones[index].mat_necesario">
+          </mat-form-field>
+        </div>
+        <div class="col-md-2"></div>
       </div>
-
-      <div class="col-md-6">
-        <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Ice Break"></textarea>
-        </mat-form-field>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-md-6">
+  
+      <div class="row">
+        <div class="col-md-6">
           <mat-form-field class="example-full-width">
-              <textarea matInput placeholder="Contenido"></textarea>
-            </mat-form-field>
-      </div>
-      <div class="col-md-6">
+            <textarea matInput placeholder="Introcuccion" [(ngModel)]="allSesiones[index].introduccion"></textarea>
+          </mat-form-field>
+        </div>
+  
+        <div class="col-md-6">
           <mat-form-field class="example-full-width">
-              <textarea matInput placeholder="Descanso"></textarea>
-            </mat-form-field>
+            <textarea matInput placeholder="Ice Break" [(ngModel)]="allSesiones[index].ice_break"></textarea>
+          </mat-form-field>
+        </div>
       </div>
-    </div>
-
-    <div class="row">
+  
+      <div class="row">
         <div class="col-md-6">
             <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="Desarrollo "></textarea>
+                <textarea matInput placeholder="Contenido" [(ngModel)]="allSesiones[index].contenido"></textarea>
               </mat-form-field>
         </div>
         <div class="col-md-6">
             <mat-form-field class="example-full-width">
-                <textarea matInput placeholder="Cierre"></textarea>
+                <textarea matInput placeholder="Descanso" [(ngModel)]="allSesiones[index].descanso"></textarea>
               </mat-form-field>
         </div>
       </div>
-      <div style="text-align: center;">
-      <button class="btn btn-primary" [disabled]="tabs.length === 0"
-        (click)="guardar()">
-        <!-- (click)="guardar(index)"> -->
-        Guardar
-      </button>
-
-      <button  class="btn btn-danger" [disabled]="tabs.length === 1"
-        (click)="removeTab(index)">
-        Cancelar
-      </button>
-      </div>
-    </mat-tab>
-  </mat-tab-group>
+  
+      <div class="row">
+          <div class="col-md-6">
+              <mat-form-field class="example-full-width">
+                  <textarea matInput placeholder="Desarrollo " [(ngModel)]="allSesiones[index].desarrollo"></textarea>
+                </mat-form-field>
+          </div>
+          <div class="col-md-6">
+              <mat-form-field class="example-full-width">
+                  <textarea matInput placeholder="Cierre" [(ngModel)]="allSesiones[index].cierre"></textarea>
+                </mat-form-field>
+          </div>
+        </div>
+        <div style="text-align: center;">
+        <button class="btn btn-primary" [disabled]="tabs.length === 0" (click)="saveSesion(allSesiones[index], index)" >
+          <!-- (click)="guardar(index)"> -->
+          Guardar
+        </button>
+  
+        <button  class="btn btn-danger" [disabled]="tabs.length === 1"
+          (click)="removeTab(index)">
+          Cancelar
+        </button>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    </div>
 
     <br>
     

@@ -46,7 +46,7 @@ export class SesionesService {
   add(data)
   {
     const headers = new HttpHeaders({'Content-Type':'application/json'})
-    return this.httpClient.post(this.API_ENDPOINT+'/seesiones',data, {headers: headers})
+    return this.httpClient.post(this.API_ENDPOINT+'/sesiones',data, {headers: headers})
   }
 
   put(data)

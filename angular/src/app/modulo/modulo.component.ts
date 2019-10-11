@@ -27,6 +27,7 @@ import { HerramientasService } from '../services/herramientas.service';
 import { Subareac } from '../interfaces/subareac';
 import { SubareacService } from '../services/subareac.service';
 import { SacaddComponent } from '../subareac/sacadd/sacadd.component';
+import { SesionesService } from '../services/sesiones.service';
 
 
 @Component({
@@ -39,12 +40,61 @@ import { SacaddComponent } from '../subareac/sacadd/sacadd.component';
 
 })
 export class ModuloComponent implements OnInit {
+
+  no_s: number
+
+  /* Almacena todas las sesiones que se van a insertar en la base de datos 
+  en forma de arreglo */
+  allSesiones = [{
+    nombre: null,
+    apren_clave: null,
+    objetivo: null,
+    mat_necesario: null,
+    introduccion: null,
+    ice_break: null,
+    contenido: null,
+    descanso: null,
+    desarrollo: null,
+    cierre: null,
+  }]
+
+  /* Almancena una sesion por separado en forma de diccionario de datos */
+  singleSesion = {
+    nombre: null,
+    apren_clave: null,
+    objetivo: null,
+    mat_necesario: null,
+    introduccion: null,
+    ice_break: null,
+    contenido: null,
+    descanso: null,
+    desarrollo: null,
+    cierre: null,
+  }
+
+  
+
+  sesionesView = "none"
+  dis = false
+  buttonView = ''
+
   tabs = ['Sesion'];
   selected = new FormControl(0);
   numero:any;
 
   addTab(selectAfterAdding: boolean) {
-    
+    this.allSesiones.push({
+      nombre: null,
+    apren_clave: null,
+    objetivo: null,
+    mat_necesario: null,
+    introduccion: null,
+    ice_break: null,
+    contenido: null,
+    descanso: null,
+    desarrollo: null,
+    cierre: null
+    })
     this.tabs.push('Sesion');
     if (selectAfterAdding) {
       this.selected.setValue(this.tabs.length - 1);
@@ -101,6 +151,7 @@ export class ModuloComponent implements OnInit {
   subtems:any;
 
   folio:any;
+  noalu: number
 
   /* Variables que tienen el valor de los select */
   vNivel: any
@@ -112,13 +163,16 @@ export class ModuloComponent implements OnInit {
   vHerramienta: any
 
 
-  /* Interfaz de la nueva planeacion */
+  /* Interfaz del detalle de clases */
+  dClases = []
   planeacion = []
+
 
   constructor(public dialog: MatDialog, private nivelService: NivelService, public toastr: ToastrManager, public notifications: NotificationsService,
     private _formBuilder: FormBuilder, private httpClient: HttpClient, private router: Router, private gradoService: GradoService, private areaService: AreadelconocimientoService,
     private moduloService: ModuloService, private temaService: TemaService, private datePipe: DatePipe,
-    public herramientasService: HerramientasService, public subareacService: SubareacService) { }
+    public herramientasService: HerramientasService, public subareacService: SubareacService,
+    public sesionesService: SesionesService) { }
 
   ngOnInit() {
     this.fechaHoy()
@@ -193,6 +247,7 @@ export class ModuloComponent implements OnInit {
     const dialogRef = this.dialog.open(AddgradosComponent, {
       data: { grado: grado }
     });
+
     dialogRef.afterClosed().subscribe(result => {
       if (result == 1) {
         this.showBarra()
@@ -405,26 +460,6 @@ export class ModuloComponent implements OnInit {
     this.today = this.datePipe.transform(this.today, 'yyyy-MM-dd')
   }
 
-  // SelectNivel(data){
-  //   this.nivels=data.value.slice(0,2);
-  //   this.folio=this.nivels;
-  // }
-  // SelectGrado(data){
-
-  //   this.grads=data.value.slice(0,2)
-  //   this.folio=this.nivels+this.grads;
-  // }
-  // getarc(data){
-  //   let datos = ""
-  //   data.forEach(function(element,index) {
-  //       datos=datos+element.slice(0,3)
-       
-  //   });
-
-  //   this.subareacs=datos
-  //   this.folio=this.nivels+this.grads+this.areacs+this.subareacs;
-
-  // }
 
   herramChange(herramienta) {
     this.vHerramienta = herramienta
@@ -438,63 +473,73 @@ export class ModuloComponent implements OnInit {
 
   guardar()
   {
-    // console.log(this.vNivel)
-    // console.log(this.vGrado)
-    // console.log(this.vArea)
-    // console.log(this.vSubarea)
-    // console.log(this.vTema)
-    // console.log(this.vSubtema)
-    // console.log(this.vHerramienta)
-
-    let plan = []
+    /* Asignacion de la tabla de detalle clases */
+    let dClase = []
     let subarea = this.vSubarea
     this.vArea.forEach(function(value,index, array){
-      plan.push
+      dClase.push
       ({idarchivo:  null,
         idac: value,
         idsac:  null,
-        idherra: null 
+        idherra: null, 
+        folio: null 
       })
     });
-    // console.log(plan)
     
-    let limite = plan.length
-    // console.log(limite)
+    let limite = dClase.length
     subarea.forEach(function(value, index, array){
       
       if(index < limite)
       {
-        plan[index].idsac = value
-        // alert()
+        dClase[index].idsac = value
       }else{
-        plan.push
+        dClase.push
       ({idarchivo:  null,
         idac: null,
         idsac:  value,
-        idherra: null 
+        idherra: null, 
+        folio: null 
       })
       }
     });
 
-    limite = plan.length
+    limite = dClase.length
     this.vHerramienta.forEach(function(value,index,array){
       if(index < limite)
       {
-        plan[index].idherra = value
+        dClase[index].idherra = value
       }else{
-        plan.push
+        dClase.push
         ({idarchivo:  null,
           idac: null,
           idsac:  null,
-          idherra: value 
+          idherra: value ,
+          folio: null
         })
       }
     });
-    
-    this.planeacion = plan
-    console.log(this.planeacion)
-    
+
+    let folio = this.folio
+    dClase.forEach(function(value, index, array){
+      array[index].folio = folio
+    });
+
+    this.dClases = dClase
+    this.barra = ''
+    this.moduloService.saveDClases(this.dClases).subscribe((data)=>{
+        console.log(data)
+      this.notifications.showSuccessAdd()
+      this.barra = 'none'
+      this.sesionesView = ''
+      this.dis = true
+      this.buttonView = 'none'
+    },(error)=>{
+      console.log(error)
+      this.barra = 'none'
+    })
   }
+
+
   final(data){
     // this.subtems=data.slice(0,3)
     // console.log(this.nivels+this.grads+this.areacs+this.subareacs+this.tems+this.subtems)
@@ -502,4 +547,47 @@ export class ModuloComponent implements OnInit {
     var aleatorio = Math.round(Math.random()*100000);
     this.folio=this.folio+aleatorio
   }
-}
+
+
+  saveSesion(singleSesion, index)
+  {
+    let id: number
+    let ndata: any
+    console.log(singleSesion)
+    // this.removeTab(index)
+    this.barra = ''
+    this.sesionesService.add(singleSesion).subscribe((data)=>{
+      ndata = data
+      id = ndata.idsesion
+
+    let planeaciones = {
+      idt: this.vTema,
+      ids: this.vSubtema,
+      idsesion: id,
+      idg: this.vGrado,
+      idn: this.vNivel,
+      fecha: this.today,
+      no_alum: this.noalu,
+      no_sesiones: this.numero,
+      folio: this.folio
+    }
+
+    this.moduloService.savePlan(planeaciones).subscribe((data)=>{
+      console.log(data)
+      this.barra = "none"
+      this.notifications.showSuccessAdd()
+    },(error)=>{
+      console.log(error)
+      this.barra = 'none' 
+      this.notifications.showError()
+    })
+
+    console.log(planeaciones)
+    },(error)=>{
+      console.log(error)
+      this.barra = 'none' 
+      this.notifications.showError()
+    })
+    
+  }
+} 

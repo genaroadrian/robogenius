@@ -151,6 +151,8 @@ import { EditsesionesComponent } from './sesiones/editsesiones/editsesiones.comp
 import { DeletesesionesComponent } from './sesiones/deletesesiones/deletesesiones.component';
 import { UpdatehComponent } from './herramientas/updateh/updateh.component';
 import { DeletehComponent } from './herramientas/deleteh/deleteh.component';
+import { EditmoduloComponent } from './modulo/editmodulo/editmodulo.component';
+import { HomefclasesComponent } from './modulo/homefclases/homefclases.component';
 
 
 
@@ -202,7 +204,9 @@ const routes: Route[]=[
 {path: 'subareac',component: SachomeComponent},
 {path: 'clases', component: ModuloComponent},
 {path: 'herramientas', component: HomeHerramientasComponent},
-{path: 'sesiones', component: HomesesionesComponent}
+{path: 'sesiones', component: HomesesionesComponent},
+{path: 'editmodulo', component: EditmoduloComponent},
+{path: 'homefclases', component: HomefclasesComponent}
 
 ];
 
@@ -318,6 +322,8 @@ const routes: Route[]=[
     AddsesionesComponent,
     EditsesionesComponent,
     DeletesesionesComponent,
+    EditmoduloComponent,
+    HomefclasesComponent
 
 
 

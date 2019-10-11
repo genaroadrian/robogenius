@@ -18,7 +18,6 @@ class sesionesController extends Controller
     public function store(Request $request)
     {
         $sesion = new Sesiones();
-        $sesion->idsesion = $request->idsesion;
         $sesion->nombre = $request->nombre;
         $sesion->apren_clave = $request->apren_clave;
         $sesion->objetivo = $request->objetivo;

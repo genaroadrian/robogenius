@@ -27,7 +27,7 @@ export class AreadelconocimientoService {
    }
  
    // Obtener datos de la base de datos
-   getareadelconocimiento(): void{
+   getareadelconocimiento(): void{ 
      this.httpClient.get<areadelconocimiento[]>(this.API_ENDPOINT+'/areadelconocimiento').subscribe(data => {
       this.datos=data
       this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 
 
@@ -32,6 +32,19 @@ export class ModuloService {
   {
     return this.httpClient.get(this.API_ENDPOINT+'/herramientas')
     return this.httpClient.get(this.API_ENDPOINT+'/herramientas')
+  }
+
+  saveDClases(data)
+  {
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
+    return this.httpClient.post(this.API_ENDPOINT+'/detalleclases',data,{headers: headers})
+  }
+
+  savePlan(data)
+  {
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
+    return this.httpClient.post(this.API_ENDPOINT+'/planeaciones',data,{headers: headers})
+
   }
 
 }

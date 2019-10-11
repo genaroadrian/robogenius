@@ -474,7 +474,7 @@ const routes: Route[]=[
     DeleteasisComponent,
     EditasisComponent,
     AddHerramientasComponent,
-    UpdatehComponent,
+    UpdatehComponent, 
     
     /* Modales de sub areas del conocimiento */
     SacaddComponent,

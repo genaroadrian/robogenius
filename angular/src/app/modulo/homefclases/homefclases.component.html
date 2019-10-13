@@ -8,7 +8,13 @@
       <div class="card bg-light mini-stat position-relative">
             <div class="card-body">
             <div class="col-xl-12 col-md-12 ">
-              <h1 class="centro">Busqueda de clases</h1>
+              <h1 class="centro">Busqueda de clases 
+                  <button matTooltip="agregrar un nueva sesion" class="agregrar" [routerLink]="['/clases']"
+                  aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2" mat-icon-button>
+                  
+                  <mat-icon>add</mat-icon>
+                </button>
+              </h1>
             </div>                
                 <div class="row">
                     <div class="col-md-4">

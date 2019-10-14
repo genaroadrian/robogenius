@@ -80,9 +80,13 @@
                     </div>
                        
                  
-            </div>  
+            </div> 
+            <button (click)="applyFilter()" >Filtrar</button>
             <div class="col-xl-12 col-md-12 ">
                 <h1 class="centro">Resultados</h1>
+                <ul *ngFor="let res of result">
+                  <li>{{res.nombre}}</li>
+                </ul>
               </div> 
             <hr class="titulo"/>
 

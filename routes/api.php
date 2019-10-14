@@ -87,3 +87,4 @@ Route::resource('subareac', 'subareacController');
 Route::resource('sesiones', 'sesionesController');
 Route::resource('detalleclases', 'detalleclasesController');
 Route::resource('planeaciones', 'planeacionesController');
+Route::resource('vistamodulo', 'moduloClasesController');

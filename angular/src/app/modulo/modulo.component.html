@@ -33,7 +33,6 @@
       <div class="col-md-4">
         <mat-form-field class="col-xl-10">
           <mat-label>Grado: </mat-label>
-
           <!-- <mat-select [(value)]="GRADO" (selectionChange)="SelectGrado($event)"> -->
           <mat-select [(value)]="GRADO" (selectionChange)="gradoChange(GRADO)" [disabled]="dis">
             <mat-option *ngFor="let clases of grado" value="{{clases.idg}}">{{clases.nombre}}</mat-option>

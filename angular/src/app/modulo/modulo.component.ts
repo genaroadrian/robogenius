@@ -155,12 +155,12 @@ export class ModuloComponent implements OnInit {
   subtema: any;
   today: any
 
-  nivels:any;
-  grads:any;
-  areacs:any;
-  subareacs:any;
-  tems:any;
-  subtems:any;
+  nivels:string = '';
+  grads:string = '';
+  areacs:string = '';
+  subareacs:string = '';
+  tems:string = '';
+  subtems:string = '';
 
   folio:any;
   noalu: number
@@ -359,7 +359,15 @@ export class ModuloComponent implements OnInit {
     });
   }
 
-  subareaChange(subarea) {
+  subareaChange(subarea, event) {
+    let text = event.source.selected
+    let value:string=''
+    text.forEach(element => {
+      
+      let val = element.viewValue
+      val = val.slice(0,3)
+      value = value+val
+    });
     this.vSubarea = subarea
     let datos = ""
     subarea.forEach(function(element,index) {
@@ -367,7 +375,7 @@ export class ModuloComponent implements OnInit {
        
     });
 
-    this.subareacs=datos
+    this.subareacs=value
     this.folio=this.nivels+this.grads+this.areacs+this.subareacs;
   }
 
@@ -386,28 +394,44 @@ export class ModuloComponent implements OnInit {
 
   }
 
-  nivelChange(NIVEL) {
-    this.vNivel = NIVEL
-    this.nivels=NIVEL.slice(0,2);
-    this.folio=this.nivels;
+  nivelChange(NIVEL, event) {
+    let text = event.source.selected._element.nativeElement
+    let value: string
+    value = text.innerText.trim()
+    value = value.slice(0,3)
+    this.nivels = value
+    this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems;
   }
 
-  gradoChange(GRADO) {
-    this.vGrado = GRADO
-    this.grads=GRADO.slice(0,2)
-    this.folio=this.nivels+this.grads;
-  }
-
-  gettema(AREA) {
+  gradoChange(GRADO, event) {
+    let text = event.source.selected._element.nativeElement
+    let value: string
+    value = text.innerText.trim()
+    value = value.slice(0,3)
+    this.grads = value
     
+    this.vGrado = GRADO
+    this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems;
+  }
+
+  gettema(AREA, event) {
+    let text = event.source.selected
+    let value:string=''
+    text.forEach(element => {
+      
+      let val = element.viewValue
+      val = val.slice(0,3)
+      value = value+val
+    });
   
     let datos = ""
     AREA.forEach(function(element,index) {
         datos=datos+element.slice(0,2)
+        
     });
 
-    this.areacs=datos
-    this.folio=this.nivels+this.grads+this.areacs;   
+    this.areacs=value
+    this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems;  
 
     this.vArea = AREA
 
@@ -445,11 +469,15 @@ export class ModuloComponent implements OnInit {
     })
   }
 
-  getsubtema(TEMA) {
+  getsubtema(TEMA, event) {
+    let text = event.source.selected._element.nativeElement
+    let value: string
+    value = text.innerText.trim()
+    value = value.slice(0,3)
     this.vTema = TEMA
     // console.log(this.tema)
 
-   this.tems=TEMA
+   this.tems=value
     this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems;
 
     this.subtema = this.datos.filter(sub => sub.idt == TEMA)
@@ -479,10 +507,15 @@ export class ModuloComponent implements OnInit {
     this.vHerramienta = herramienta
   }
 
-  subtemasChange(SUBTEMAS) {
+  subtemasChange(SUBTEMAS, event) {
+    let text = event.source.selected._element.nativeElement
+    let value: string
+    value = text.innerText.trim()
+    value = value.slice(0,3)
     this.vSubtema = SUBTEMAS
+    this.subtems = value
     var aleatorio = Math.round(Math.random()*100000);
-    this.folio=this.folio+aleatorio
+    this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems+this.subtems+aleatorio
   }
 
   guardar()

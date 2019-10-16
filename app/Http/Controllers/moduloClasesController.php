@@ -19,4 +19,22 @@ class moduloClasesController extends Controller
         $vista = DB::select($sql);
         return $vista;
     }
+
+    public function store(Request $request)
+    {
+        $folio = $request->folio;
+        $dc = DB::select("SELECT * FROM detalleclases WHERE folio = '$folio'");
+        $plan = DB::select("SELECT * FROM planeaciones WHERE folio = '$folio'");
+        $ret = [];
+        $sesiones = [];
+        array_push($ret, $dc, $plan);
+        foreach ($plan as $p)
+        {
+           $sesion =  DB::select("SELECT * FROM sesiones where idsesion = $p->idsesion");
+            array_push($sesiones, $sesion);
+        }
+        // $ret = [$dc,$plan];
+        array_push($ret, $sesiones);
+        return $ret;
+    }
 }

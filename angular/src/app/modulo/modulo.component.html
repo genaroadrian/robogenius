@@ -131,14 +131,14 @@
         </button>
       </div>
 
-      <div class="col-md-4">
-        <mat-form-field class="col-md-10">
+      <div class="col-md-3">
+        <mat-form-field class="col-md-12">
           <mat-label>Fecha:</mat-label>
-          <input matInput type="text" [value]="today">
+          <input matInput type="text" [value]="today" [disabled]="disFecha">
         </mat-form-field>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-5">
         <mat-form-field class="col-md-10">
           <mat-label>Folio:</mat-label>
           <input matInput [(ngModel)]="folio"  type="text" disabled>

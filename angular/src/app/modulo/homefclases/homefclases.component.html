@@ -22,7 +22,7 @@
                         <mat-label>Nivel: </mat-label>
               
                         <mat-select [(value)]="NIVEL" (selectionChange)="nivelChange(NIVEL)">
-                          <mat-option *ngFor="let clases of persona" value="{{clases.idn}}">{{clases.nombre}}</mat-option>
+                          <mat-option *ngFor="let clases of persona" value="{{clases.nombre}}">{{clases.nombre}}</mat-option>
                         </mat-select>
                       </mat-form-field>
                       
@@ -34,7 +34,7 @@
               
                         <!-- <mat-select [(value)]="GRADO" (selectionChange)="SelectGrado($event)"> -->
                         <mat-select [(value)]="GRADO" (selectionChange)="gradoChange(GRADO)">
-                          <mat-option *ngFor="let clases of grado" value="{{clases.idg}}">{{clases.nombre}}</mat-option>
+                          <mat-option *ngFor="let clases of grado" value="{{clases.nombre}}">{{clases.nombre}}</mat-option>
                         </mat-select>
                       </mat-form-field>
                     
@@ -45,7 +45,7 @@
                       <mat-form-field class="col-xl-10">
                         <mat-label>Áreas de conocimiento: </mat-label>
                         <mat-select [(value)]="AREA" (selectionChange)="gettema(AREA)" multiple>
-                          <mat-option *ngFor="let area of areadelconocimiento" value="{{area.idac}}">{{area.nomarea}}</mat-option>
+                          <mat-option *ngFor="let area of areadelconocimiento" value="{{area.nomarea}}">{{area.nomarea}}</mat-option>
                         </mat-select>
                       </mat-form-field>
                       
@@ -59,7 +59,7 @@
                 
                           <!-- <mat-select [(value)]="subarea" (selectionChange)="getarc(subarea)" multiple> -->
                           <mat-select [(value)]="subarea" multiple (selectionChange)="subareaChange(subarea)" >
-                            <mat-option *ngFor="let sarea of subareas" value="{{sarea.idsac}}">{{sarea.nombre}}</mat-option>
+                            <mat-option *ngFor="let sarea of subareas" value="{{sarea.nombre}}">{{sarea.nombre}}</mat-option>
                 
                           <!-- <mat-select [(value)]="subarea" multiple>
                             <mat-option *ngFor="let sarea of subareas" value="{{sarea.idsac}}">{{sarea.nombre}}</mat-option> -->
@@ -72,13 +72,14 @@
                           <mat-form-field class="col-xl-10">
                             <mat-label>Herramientas </mat-label>
                             <mat-select [(value)]="herramienta" multiple (selectionChange)="herramChange(herramienta)">
-                              <mat-option *ngFor="let herra of herramientas" value="{{herra.idherra}}">{{herra.nombre}}</mat-option>
+                              <mat-option *ngFor="let herra of herramientas" value="{{herra.nombre}}">{{herra.nombre}}</mat-option>
                             </mat-select>
                           </mat-form-field>
                         </div>
                         <div class="col-md-4">
                           <mat-form-field class="col-md-10">
                             <mat-label>Folio:</mat-label>
+                            <input matInput   type="text" >
                             <input matInput [(ngModel)]="folio"  type="text" disabled>
                           </mat-form-field>
                         </div>
@@ -90,7 +91,7 @@
             <button (click)="applyFilter()" >Filtrar</button>
             <div class="col-xl-12 col-md-12 ">
                 <h1 class="centro">Resultados</h1>
-                <ul *ngFor="let res of result">
+                <ul *ngFor="let res of letras">
                   <li>{{res.nombre}}</li>
                 </ul>
               </div> 

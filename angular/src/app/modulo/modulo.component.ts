@@ -72,66 +72,20 @@ export class ModuloComponent implements OnInit {
     cierre: null,
   }
 
-  
+
 
   sesionesView = "none"
   dis = false
+  disFecha = true
   buttonView = ''
 
+/* Variables de las tabs */
   tabs = ['Sesion'];
   selected = new FormControl(0);
-  
-  numero:any;
-  ns:any;
-  x:any;
-  session(index){
-    this.ns=index;
-    console.log(index)
-  }
-  manda(e){
-    this.ns=e
-    
-  }
-  addTab(selectAfterAdding: boolean) {
-    this.allSesiones.push({
-      nombre: null,
-    apren_clave: null,
-    objetivo: null,
-    mat_necesario: null,
-    introduccion: null,
-    ice_break: null,
-    contenido: null,
-    descanso: null,
-    desarrollo: null,
-    cierre: null
-    })
-    this.tabs.push('Sesion');
-    if (selectAfterAdding) {
-    this.selected.setValue(this.tabs.length - 1);
-    
-    }
-    this.numero=this.tabs.length
 
-  }
-  removeTab(index: number) {
-    this.tabs.splice(index, 1);
-  this.numero=this.numero-1;
-  }
-  agregarTab(index: number) {
-    this.tabs.splice(index, 1);
-
-  }
-
-
-  tipoChange1(event) {
-    if (this.selectedtp == "2") {
-      this.isDisable = false;
-      this.visibility = "block";
-    } else {
-      this.isDisable = true;
-      this.visibility = "none";
-    }
-  }
+  numero: any;
+  ns: any;
+  x: any;
 
 
   areaC = new FormControl();
@@ -155,14 +109,21 @@ export class ModuloComponent implements OnInit {
   subtema: any;
   today: any
 
-  nivels:string = '';
-  grads:string = '';
-  areacs:string = '';
-  subareacs:string = '';
-  tems:string = '';
-  subtems:string = '';
+  /* valores para la busqueda en los select */
+  herramientasSearch: any
+  temasSearch: any
+  subtemasSearch: any
 
-  folio:any;
+  /* Variables para el folio */
+  nivels: string = ''
+  grads: string = ''
+  areacs: string = ''
+  subareacs: string = ''
+  tems: string = ''
+  subtems: string = ''
+  herrams: string = ''
+
+  folio: any;
   noalu: number
 
   /* Variables que tienen el valor de los select */
@@ -173,6 +134,7 @@ export class ModuloComponent implements OnInit {
   vTema: any
   vSubtema: any
   vHerramienta: any
+  idfolio: string
 
 
   /* Interfaz del detalle de clases */
@@ -186,36 +148,46 @@ export class ModuloComponent implements OnInit {
     public herramientasService: HerramientasService, public subareacService: SubareacService,
     public sesionesService: SesionesService) { }
 
+    /* Obtiene la fecha actual para el formulario */
+  fechaHoy() {
+    this.today = new Date()
+    this.today = this.datePipe.transform(this.today, 'yyyy-MM-dd')
+  }
+
+
   ngOnInit() {
-    this.numero=1
-    this.ns=1
+    let n = Math.round(Math.random() * 100000);
+    this.idfolio = n.toString()
+    console.log(this.idfolio + this.nivels + this.grads + this.areacs)
+    this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.idfolio
+    this.numero = 1
+    this.ns = 1
     this.fechaHoy()
     this.getHerramientas()
     this.get()
     //Obtener datos de modal nivel
     this.nivelService.get().subscribe((data) => {
-      // console.log(data)
       this.persona = data
     }, (error) => {
     })
+
     //Obtener datos de modal grados
     this.gradoService.get().subscribe((data) => {
-      // console.log(data)
       this.grado = data
     }, (error) => {
     })
+
     this.moduloService.geta().subscribe((data) => {
-      // console.log(data)
       this.areas = data
     }, (error) => {
     })
+
     this.moduloService.gett().subscribe((data) => {
-      // console.log(data)
       this.temas = data
+      
     }, (error) => {
     })
     this.moduloService.gets().subscribe((data) => {
-      // console.log(data)
       this.subtemas = data
     }, (error) => {
     })
@@ -223,10 +195,59 @@ export class ModuloComponent implements OnInit {
     this.getSubAC()
   }
 
-  // Notificación de success al eliminar
-  showSuccesSave() {
-    this.toastr.successToastr('Registro guardado', 'Exito!');
+  /* Index de la sesion */
+  session(index) {
+    this.ns = index;
+    console.log(index)
   }
+
+  manda(e) {
+    this.ns = e
+
+  }
+
+  /* Funciones de las tabs */
+  addTab(selectAfterAdding: boolean) {
+    this.allSesiones.push({
+      nombre: null,
+      apren_clave: null,
+      objetivo: null,
+      mat_necesario: null,
+      introduccion: null,
+      ice_break: null,
+      contenido: null,
+      descanso: null,
+      desarrollo: null,
+      cierre: null
+    })
+    this.tabs.push('Sesion');
+    if (selectAfterAdding) {
+      this.selected.setValue(this.tabs.length - 1);
+
+    }
+    this.numero = this.tabs.length
+
+  }
+  removeTab(index: number) {
+    this.tabs.splice(index, 1);
+    this.numero = this.numero - 1;
+  }
+  agregarTab(index: number) {
+    this.tabs.splice(index, 1);
+
+  }
+
+
+  tipoChange1(event) {
+    if (this.selectedtp == "2") {
+      this.isDisable = false;
+      this.visibility = "block";
+    } else {
+      this.isDisable = true;
+      this.visibility = "none";
+    }
+  }
+
   /* Mostrar la barra de carga */
   showBarra() {
     this.barra = ""
@@ -235,8 +256,8 @@ export class ModuloComponent implements OnInit {
     this.barra = "none"
   }
 
+  /* Modales para agregar nuevos registros en cada select */
   nuev(nivelest: Niveles) {
-    /* abrir un pequeño modal para agregar otro tipo de personal */
     const dialogRef = this.dialog.open(AddnivelComponent, {
       data: { nivelest: nivelest }
     });
@@ -249,7 +270,6 @@ export class ModuloComponent implements OnInit {
           this.hideBarra();
         }, (error) => {
           this.notifications.showError();
-          // // this.notifications.hideBarra();
           this.hideBarra();
         });
       }
@@ -257,7 +277,6 @@ export class ModuloComponent implements OnInit {
   }
 
   gradomodal(grado: Grados) {
-    /* abrir un pequeño modal para agregar otro tipo de personal */
     const dialogRef = this.dialog.open(AddgradosComponent, {
       data: { grado: grado }
     });
@@ -271,7 +290,6 @@ export class ModuloComponent implements OnInit {
           this.hideBarra();
         }, (error) => {
           this.notifications.showError();
-          // // this.notifications.hideBarra();
           this.hideBarra();
         });
       }
@@ -279,7 +297,6 @@ export class ModuloComponent implements OnInit {
   }
 
   areamodal(area: areadelconocimiento) {
-    /* abrir un pequeño modal para agregar otro tipo de personal */
     const dialogRef = this.dialog.open(AreaaddComponent, {
       data: { area: area }
     });
@@ -330,16 +347,13 @@ export class ModuloComponent implements OnInit {
           this.hideBarra();
         }, (error) => {
           this.notifications.showError();
-          // // this.notifications.hideBarra();
           this.hideBarra();
         });
       }
     });
   }
 
-
   temamodal(tema: tema) {
-    /* abrir un pequeño modal para agregar otro tipo de personal */
     const dialogRef = this.dialog.open(TemaaddComponent, {
       data: { tema: tema }
     });
@@ -352,37 +366,17 @@ export class ModuloComponent implements OnInit {
           this.hideBarra();
         }, (error) => {
           this.notifications.showError();
-          // // this.notifications.hideBarra();
           this.hideBarra();
         });
       }
     });
   }
 
-  subareaChange(subarea, event) {
-    let text = event.source.selected
-    let value:string=''
-    text.forEach(element => {
-      
-      let val = element.viewValue
-      val = val.slice(0,3)
-      value = value+val
-    });
-    this.vSubarea = subarea
-    let datos = ""
-    subarea.forEach(function(element,index) {
-        datos=datos+element.slice(0,3)
-       
-    });
 
-    this.subareacs=value
-    this.folio=this.nivels+this.grads+this.areacs+this.subareacs;
-  }
-
+  /* funciones que obtienen todos los datos que se van a filtrar */
   get() {
     this.areaService.getall().subscribe((data) => {
       this.datos = data;
-      // console.log(datos)
       var hash = {};
       this.areadelconocimiento = this.datos.filter(function (area) {
         var exists = !hash[area.nomarea] || false;
@@ -390,52 +384,93 @@ export class ModuloComponent implements OnInit {
         return exists;
       });
     })
-
-
   }
 
+  getSubAC() {
+    this.barra = ''
+    this.moduloService.getSAC().subscribe((data) => {
+        this.barra = 'none'
+      this.subareas = data
+    }, (error) => {
+      this.barra = 'none'
+      this.notifications.showError()
+    })
+  }
+
+  getHerramientas() {
+    this.moduloService.getHerra().subscribe((data) => {
+      this.herramientas = data
+      this.herramientasSearch = data
+    }, (error) => {
+
+    })
+  }
+
+
+  /* Evento Change de todos los select */
   nivelChange(NIVEL, event) {
     let text = event.source.selected._element.nativeElement
     let value: string
     value = text.innerText.trim()
-    value = value.slice(0,3)
+    value = value.slice(0, 3)
     this.nivels = value
-    this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems;
+    this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.herrams + this.idfolio;
+
+    this.vNivel = NIVEL
   }
 
   gradoChange(GRADO, event) {
     let text = event.source.selected._element.nativeElement
     let value: string
     value = text.innerText.trim()
-    value = value.slice(0,3)
+    value = value.slice(0, 3)
     this.grads = value
-    
+
     this.vGrado = GRADO
-    this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems;
+    this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.herrams + this.idfolio;
+  }
+
+  subareaChange(subarea, event) {
+    let text = event.source.selected
+    let value: string = ''
+    text.forEach(element => {
+
+      let val = element.viewValue
+      val = val.slice(0, 3)
+      value = value + val
+    });
+    this.vSubarea = subarea
+    let datos = ""
+    subarea.forEach(function (element, index) {
+      datos = datos + element.slice(0, 3)
+
+    });
+
+    this.subareacs = value
+    this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.herrams + this.idfolio;
   }
 
   gettema(AREA, event) {
     let text = event.source.selected
-    let value:string=''
+    let value: string = ''
     text.forEach(element => {
-      
+
       let val = element.viewValue
-      val = val.slice(0,3)
-      value = value+val
-    });
-  
-    let datos = ""
-    AREA.forEach(function(element,index) {
-        datos=datos+element.slice(0,2)
-        
+      val = val.slice(0, 3)
+      value = value + val
     });
 
-    this.areacs=value
-    this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems;  
+    let datos = ""
+    AREA.forEach(function (element, index) {
+      datos = datos + element.slice(0, 2)
+
+    });
+
+    this.areacs = value
+    this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.herrams + this.idfolio;
 
     this.vArea = AREA
 
-    // console.log(AREA)
     let newarray = this.datos // Asignar el array de todos los datos a una variable temporal
     let tema: any // Obtiene un array de todos los temas 
     let filtered = [] // Nuevo Array con los temas ya filtrados
@@ -458,183 +493,194 @@ export class ModuloComponent implements OnInit {
       return exists;
     })
 
+    this.temasSearch = this.tema
+
   }
-
-  getSubAC() {
-    this.moduloService.getSAC().subscribe((data) => {
-      // console.log(data)
-      this.subareas = data
-    }, (error) => {
-
-    })
-  }
-
   getsubtema(TEMA, event) {
     let text = event.source.selected._element.nativeElement
     let value: string
     value = text.innerText.trim()
-    value = value.slice(0,3)
+    value = value.slice(0, 3)
     this.vTema = TEMA
-    // console.log(this.tema)
 
-   this.tems=value
-    this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems;
+    this.tems = value
+    this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.herrams + this.idfolio;
 
     this.subtema = this.datos.filter(sub => sub.idt == TEMA)
-    // this.tems=this.subtema[0].nomtema.slice(0,3)
-    // this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems;
-
-    // console.log(TEMA);
-    // console.log(this.subtema);
-  }
-
-  getHerramientas() {
-    this.moduloService.getHerra().subscribe((data) => {
-      // console.log(data)
-      this.herramientas = data
-    }, (error) => {
-
-    })
-  }
-
-  fechaHoy() {
-    this.today = new Date()
-    this.today = this.datePipe.transform(this.today, 'yyyy-MM-dd')
-  }
-
-
-  herramChange(herramienta) {
-    this.vHerramienta = herramienta
+    this.subtemasSearch = this.subtema
   }
 
   subtemasChange(SUBTEMAS, event) {
     let text = event.source.selected._element.nativeElement
     let value: string
     value = text.innerText.trim()
-    value = value.slice(0,3)
+    value = value.slice(0, 3)
     this.vSubtema = SUBTEMAS
     this.subtems = value
-    var aleatorio = Math.round(Math.random()*100000);
-    this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems+this.subtems+aleatorio
+    this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.herrams + this.idfolio
   }
 
-  guardar()
-  {
+  herramChange(herramienta, event) {
+    let text = event.source.selected
+    let value: string = ''
+    text.forEach(element => {
+
+      let val = element.viewValue
+      val = val.slice(0, 3)
+      value = value + val
+    });
+    this.herrams = value
+    this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.herrams + this.idfolio
+
+    this.vHerramienta = herramienta
+  }
+
+  /* Funciones que guardan los registros */
+  guardar() {
     /* Asignacion de la tabla de detalle clases */
     let dClase = []
     let subarea = this.vSubarea
-    this.vArea.forEach(function(value,index, array){
+    this.vArea.forEach(function (value, index, array) {
       dClase.push
-      ({idarchivo:  null,
-        idac: value,
-        idsac:  null,
-        idherra: null, 
-        folio: null 
-      })
+        ({
+          idarchivo: null,
+          idac: value,
+          idsac: null,
+          idherra: null,
+          folio: null
+        })
     });
-    
+
     let limite = dClase.length
-    subarea.forEach(function(value, index, array){
-      
-      if(index < limite)
-      {
+    subarea.forEach(function (value, index, array) {
+
+      if (index < limite) {
         dClase[index].idsac = value
-      }else{
+      } else {
         dClase.push
-      ({idarchivo:  null,
-        idac: null,
-        idsac:  value,
-        idherra: null, 
-        folio: null 
-      })
+          ({
+            idarchivo: null,
+            idac: null,
+            idsac: value,
+            idherra: null,
+            folio: null
+          })
       }
     });
 
     limite = dClase.length
-    this.vHerramienta.forEach(function(value,index,array){
-      if(index < limite)
-      {
+    this.vHerramienta.forEach(function (value, index, array) {
+      if (index < limite) {
         dClase[index].idherra = value
-      }else{
+      } else {
         dClase.push
-        ({idarchivo:  null,
-          idac: null,
-          idsac:  null,
-          idherra: value ,
-          folio: null
-        })
+          ({
+            idarchivo: null,
+            idac: null,
+            idsac: null,
+            idherra: value,
+            folio: null
+          })
       }
     });
 
     let folio = this.folio
-    dClase.forEach(function(value, index, array){
+    dClase.forEach(function (value, index, array) {
       array[index].folio = folio
     });
 
     this.dClases = dClase
     this.barra = ''
-    this.moduloService.saveDClases(this.dClases).subscribe((data)=>{
-        console.log(data)
+    this.moduloService.saveDClases(this.dClases).subscribe((data) => {
+      console.log(data)
       this.notifications.showSuccessAdd()
       this.barra = 'none'
       this.sesionesView = ''
       this.dis = true
       this.buttonView = 'none'
-    },(error)=>{
+    }, (error) => {
       console.log(error)
       this.barra = 'none'
     })
   }
 
 
-  final(data){
-    // this.subtems=data.slice(0,3)
-    // console.log(this.nivels+this.grads+this.areacs+this.subareacs+this.tems+this.subtems)
-    // this.folio=this.nivels+this.grads+this.areacs+this.subareacs+this.tems+this.subtems;
-    var aleatorio = Math.round(Math.random()*100000);
-    this.folio=this.folio+aleatorio
-  }
-
-
-  saveSesion(singleSesion, index)
-  {
+  saveSesion(singleSesion, index) {
+    
     let id: number
     let ndata: any
     console.log(singleSesion)
-    // this.removeTab(index)
     this.barra = ''
-    this.sesionesService.add(singleSesion).subscribe((data)=>{
+    this.sesionesService.add(singleSesion).subscribe((data) => {
       ndata = data
       id = ndata.idsesion
 
-    let planeaciones = {
-      idt: this.vTema,
-      ids: this.vSubtema,
-      idsesion: id,
-      idg: this.vGrado,
-      idn: this.vNivel,
-      fecha: this.today,
-      no_alum: this.noalu,
-      no_sesiones: this.numero,
-      folio: this.folio
-    }
+      let planeaciones = {
+        idt: this.vTema,
+        ids: this.vSubtema,
+        idsesion: id,
+        idg: this.vGrado,
+        idn: this.vNivel,
+        fecha: this.today,
+        no_alum: this.noalu,
+        no_sesiones: this.numero,
+        folio: this.folio
+      }
 
-    this.moduloService.savePlan(planeaciones).subscribe((data)=>{
-      console.log(data)
-      this.barra = "none"
-      this.notifications.showSuccessAdd()
-    },(error)=>{
+      this.moduloService.savePlan(planeaciones).subscribe((data) => {
+        console.log(data)
+        this.barra = "none"
+        this.notifications.showSuccessAdd()
+      }, (error) => {
+        console.log(error)
+        this.barra = 'none'
+        this.notifications.showError()
+      })
+
+      console.log(planeaciones)
+    }, (error) => {
       console.log(error)
-      this.barra = 'none' 
+      this.barra = 'none'
       this.notifications.showError()
     })
 
-    console.log(planeaciones)
-    },(error)=>{
-      console.log(error)
-      this.barra = 'none' 
-      this.notifications.showError()
-    })
+  }
+
+  herraSearch(value)
+  {
+    console.log(this.herramientas)
+    this.herramientas = this.herramientasSearch
+    let crit = value.trim().toLowerCase()
+    let herramientas = this.herramientas
+    herramientas = this.herramientas.filter(function(el) {
+      return el.nombre.toLowerCase().indexOf(crit.toLowerCase()) > -1;
+  })
+  this.herramientas = herramientas
     
   }
+
+  temaSearch(value)
+  {
+    this.tema = this.temasSearch
+    let crit = value.trim().toLowerCase()
+    let temas = this.tema
+    temas = this.tema.filter(function(tem){
+      return tem.nomtema.toLowerCase().indexOf(crit.toLowerCase()) > -1
+    })
+
+    this.tema = temas
+  }
+
+  subtemaSearch(value)
+  {
+    this.subtema = this.subtemasSearch
+    let crit = value.trim().toLowerCase()
+    let subtemas = this.subtema
+    subtemas = this.subtema.filter(function(sub){
+      return sub.nomsubt.toLowerCase().indexOf(crit.toLowerCase()) > -1
+    })
+
+    this.subtema = subtemas
+  }
+
 } 

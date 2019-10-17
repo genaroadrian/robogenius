@@ -109,6 +109,11 @@ export class ModuloComponent implements OnInit {
   subtema: any;
   today: any
 
+  /* valores para la busqueda en los select */
+  herramientasSearch: any
+  temasSearch: any
+  subtemasSearch: any
+
   /* Variables para el folio */
   nivels: string = ''
   grads: string = ''
@@ -179,6 +184,7 @@ export class ModuloComponent implements OnInit {
 
     this.moduloService.gett().subscribe((data) => {
       this.temas = data
+      
     }, (error) => {
     })
     this.moduloService.gets().subscribe((data) => {
@@ -394,6 +400,7 @@ export class ModuloComponent implements OnInit {
   getHerramientas() {
     this.moduloService.getHerra().subscribe((data) => {
       this.herramientas = data
+      this.herramientasSearch = data
     }, (error) => {
 
     })
@@ -486,6 +493,8 @@ export class ModuloComponent implements OnInit {
       return exists;
     })
 
+    this.temasSearch = this.tema
+
   }
   getsubtema(TEMA, event) {
     let text = event.source.selected._element.nativeElement
@@ -498,6 +507,7 @@ export class ModuloComponent implements OnInit {
     this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.herrams + this.idfolio;
 
     this.subtema = this.datos.filter(sub => sub.idt == TEMA)
+    this.subtemasSearch = this.subtema
   }
 
   subtemasChange(SUBTEMAS, event) {
@@ -635,4 +645,42 @@ export class ModuloComponent implements OnInit {
     })
 
   }
+
+  herraSearch(value)
+  {
+    console.log(this.herramientas)
+    this.herramientas = this.herramientasSearch
+    let crit = value.trim().toLowerCase()
+    let herramientas = this.herramientas
+    herramientas = this.herramientas.filter(function(el) {
+      return el.nombre.toLowerCase().indexOf(crit.toLowerCase()) > -1;
+  })
+  this.herramientas = herramientas
+    
+  }
+
+  temaSearch(value)
+  {
+    this.tema = this.temasSearch
+    let crit = value.trim().toLowerCase()
+    let temas = this.tema
+    temas = this.tema.filter(function(tem){
+      return tem.nomtema.toLowerCase().indexOf(crit.toLowerCase()) > -1
+    })
+
+    this.tema = temas
+  }
+
+  subtemaSearch(value)
+  {
+    this.subtema = this.subtemasSearch
+    let crit = value.trim().toLowerCase()
+    let subtemas = this.subtema
+    subtemas = this.subtema.filter(function(sub){
+      return sub.nomsubt.toLowerCase().indexOf(crit.toLowerCase()) > -1
+    })
+
+    this.subtema = subtemas
+  }
+
 } 

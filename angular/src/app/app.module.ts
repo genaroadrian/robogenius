@@ -153,12 +153,9 @@ import { UpdatehComponent } from './herramientas/updateh/updateh.component';
 import { DeletehComponent } from './herramientas/deleteh/deleteh.component';
 import { EditmoduloComponent } from './modulo/editmodulo/editmodulo.component';
 import { HomefclasesComponent } from './modulo/homefclases/homefclases.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
-
-
-
- 
 
 const routes: Route[]=[
 {path:'personal',component:PerhomeComponent, canActivate: [LoginGuard]},
@@ -331,6 +328,7 @@ const routes: Route[]=[
 
   ],
   imports: [
+    MatAutocompleteModule,
     NgxUpperCaseDirectiveModule,
     ReactiveFormsModule,
     NgxMaterialTimepickerModule,

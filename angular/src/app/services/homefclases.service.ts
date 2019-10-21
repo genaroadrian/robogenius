@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HomefclasesService {
+  data: any
   
   API_ENDPOINT = 'http://localhost:8000/api'
 
@@ -13,6 +14,21 @@ export class HomefclasesService {
   getFilt()
   {
     return this.httpClient.get(this.API_ENDPOINT+'/vistamodulo')
+  }
+
+  getData(res)
+  {
+    this.data = res
+  }
+
+  returnData()
+  {
+    return this.data
+  }
+
+  getDataSesion(data)
+  {
+    return this.httpClient.post(this.API_ENDPOINT+'/vistamodulo',data)
   }
   
 }

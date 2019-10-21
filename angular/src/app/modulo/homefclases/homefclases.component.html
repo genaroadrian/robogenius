@@ -100,9 +100,32 @@
             
             <div class="col-xl-12 col-md-12 ">
                 <h1 class="centro">Resultados</h1>
-                <ul *ngFor="let res of letras">
+                <!-- <ul *ngFor="let res of letras">
                   <li>{{res.nombre}}</li>
-                </ul>
+                </ul> -->
+                <table class="table">
+
+                  <thead>
+                    <th scope="col">Sesion</th>
+                    <th scope="col">Tema</th>
+                    <th scope="col">Subtema</th>
+                    <th scope="col">Acciones</th>
+                  </thead>
+
+                  <tbody>
+                    <tr *ngFor="let res of letras">
+                      <td>{{res.nombre}}</td>
+                      <td>{{res.ntema}}</td>
+                      <td>{{res.nt}}</td>
+                      <td>
+                          <a  (click)="edit(res)" [routerLink]="['/editmodulo']" routerLinkActive="router-link-active"  mat-icon-button class="text-success" ><mat-icon aria-label="Edit">edit</mat-icon></a>
+
+                          <button mat-icon-button class="text-danger" ><mat-icon aria-label="Delete">delete</mat-icon></button>
+                      </td>
+                    </tr>
+                  </tbody>
+
+                </table>
               </div> 
             <hr class="titulo"/>
 

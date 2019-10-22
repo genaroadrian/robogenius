@@ -46,7 +46,7 @@ class sesionesController extends Controller
         $sesion->descanso = $request->descanso;
         $sesion->cierre = $request->cierre;
         $sesion->save();
-        return $sesion();
+        return $sesion;
     }
 
     public function destroy($id)

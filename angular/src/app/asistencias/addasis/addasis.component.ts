@@ -21,13 +21,13 @@ export class AddasisComponent implements OnInit {
   history: any
   historyF: any
 
-  constructor(public dialogRef: MatDialogRef<AddasisComponent>, 
+  constructor(public dialogRef: MatDialogRef<AddasisComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
     public personalPerfilService: PersonalperfilService,
-    public asistenciaService : AsistenciasService,
+    public asistenciaService: AsistenciasService,
     public notificacionService: NotificationsService) { }
 
-    displayedColumns: string[] = ['no', 'nombre', 'asis'];
+  displayedColumns: string[] = ['no', 'nombre', 'asis'];
 
   ngOnInit() {
     // this.personalPerfilService.getListaalumnos(this.data)
@@ -40,9 +40,8 @@ export class AddasisComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  getAlumnos()
-  {
-    this.personalPerfilService.getListaalumnos(this.data).subscribe((data)=>{
+  getAlumnos() {
+    this.personalPerfilService.getListaalumnos(this.data).subscribe((data) => {
       this.dataSource = data
       this.dataSource.forEach(element => {
         element.iddgru = this.data.iddgru
@@ -52,27 +51,25 @@ export class AddasisComponent implements OnInit {
         element.idper = this.data.idper
         element.asis = 1;
       });
-    }, (error)=>{
+    }, (error) => {
       this.notificacionService.showError()
     })
   }
 
-  prueba(element,n,i)
-  {
+  prueba(element, n, i) {
     // this.dataSource[i].push({asis:n})
     this.dataSource[i].asis = n
 
   }
 
-  pasAsis()
-  {
+  pasAsis() {
     // console.log(this.dataSource)
     this.showBarra()
-    this.asistenciaService.asistencia(this.dataSource).subscribe((data)=>{
+    this.asistenciaService.asistencia(this.dataSource).subscribe((data) => {
       this.notificacionService.showSuccessAdd()
       // console.log(data)
       this.hideBarra()
-    },(error)=>{
+    }, (error) => {
       this.notificacionService.showError()
       this.hideBarra()
       // console.log(error)
@@ -84,45 +81,42 @@ export class AddasisComponent implements OnInit {
     this.historyF.filter(element => element.fechac == filtro)
   }
 
-  showBarra()
-  {
+  showBarra() {
     this.barra = ""
   }
 
-  hideBarra()
-  {
+  hideBarra() {
     this.barra = "none"
   }
 
-  getHistory()
-  {
+  getHistory() {
     this.showBarra()
-    this.asistenciaService.historial(this.data).subscribe((data)=>{
+    this.asistenciaService.historial(this.data).subscribe((data) => {
       this.hideBarra()
       // console.log(data)
       this.history = data
       // history = history.filter()
       var hash = {};
-      this.historyF = this.history.filter(function(h) {
+      this.historyF = this.history.filter(function (h) {
         var exists = !hash[h.fecha] || false;
         hash[h.fecha] = true;
         return exists
       });
       /* Transforma la fecha en formato YYYY-mm-dd a texto en español */
       this.historyF.forEach(element => {
-        element.fechac = new Date(element.fecha+'T00:00:00')
-        let options = {weekday: 'long', year: 'numeric', month: 'long', day:'numeric'}
+        element.fechac = new Date(element.fecha + 'T00:00:00')
+        let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
         element.fechac = element.fechac.toLocaleDateString("es-ES", options)
-        
+
       });
       // console.log(this.historyF)
 
-      
-    },(error)=>{
+
+    }, (error) => {
       this.notificacionService.showError()
       this.hideBarra()
       // console.log(error)
     })
   }
-    
-  }
+
+}

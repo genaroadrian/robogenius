@@ -10,11 +10,11 @@ class moduloClasesController extends Controller
 {
     public function index()
     {
-        $sql = "SELECT sesiones.idsesion, tema.idt, tema.nombre as ntema ,subtema.ids, subtema.nombre AS nt , sesiones.nombre, detalleclases.folio
-        FROM tema, subtema, sesiones, detalleclases, planeaciones  
-	WHERE detalleclases.folio = planeaciones.folio AND planeaciones.idsesion = sesiones.idsesion AND planeaciones.idt = tema.idt
-    AND planeaciones.ids = subtema.ids
-    GROUP BY idsesion";
+        $sql = "SELECT tema.idt, tema.nombre AS ntema ,subtema.ids, subtema.nombre AS nt , detalleclases.folio, niveles.nombre AS n, grados.nombre AS g,
+        planeaciones.no_alu
+        FROM tema, subtema, detalleclases, planeaciones, niveles, grados
+        WHERE detalleclases.folio = planeaciones.folio  AND planeaciones.idt = tema.idt
+        AND planeaciones.ids = subtema.ids AND planeaciones.idg = grados.idg AND planeaciones.idn = niveles.idn GROUP BY idt";
 
         $vista = DB::select($sql);
         return $vista;

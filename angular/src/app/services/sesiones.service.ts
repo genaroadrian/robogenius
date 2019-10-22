@@ -51,8 +51,9 @@ export class SesionesService {
 
   put(data)
   {
-    const headers = new HttpHeaders({'Content-Type':'application/json'})
-    return this.httpClient.put(this.API_ENDPOINT+'/sesiones/'+data.idsesion, data,{headers:headers})
+    
+  const headers = new HttpHeaders({'Content-Type':'application/json'})
+  return this.httpClient.put(this.API_ENDPOINT+'/sesiones/'+data.idsesion, data,{headers:headers})
   }
   
   delete(id:number)

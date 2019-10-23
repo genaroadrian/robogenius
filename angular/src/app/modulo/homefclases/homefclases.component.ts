@@ -98,6 +98,7 @@ export class HomefclasesComponent implements OnInit {
   {
     this.homefclasesService.getFilt().subscribe((data)=>{
       this.result = data
+      console.log(this.result)
       this.nuevofiltro=data
       let valor=[]
 
@@ -239,6 +240,11 @@ export class HomefclasesComponent implements OnInit {
     const filterValue = value.toLowerCase();
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  edit(res)
+  {
+    this.homefclasesService.getData(res)
   }
   
   herramChange(event){

@@ -1,3 +1,80 @@
-<p>
-  editsesiones works!
-</p>
+<div class="form-group">
+  <h3 mat-dialog-tittle>Modificar sesion</h3>
+
+  <form (ngSubmit)="submit">
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput #input name="nombre" [(ngModel)]="data.nombre" placeholder="Nombre de la sesion">
+      </mat-form-field>
+    </div>
+
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput #input name="objetivo" [(ngModel)]="data.objetivo" placeholder="Objetivo">
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="col-md-6">
+
+
+            <div class="form-group">
+                <mat-form-field>
+                  <input matInput #input name="apren_clave" [(ngModel)]="data.apren_clave" placeholder="Aprendizajes clave">
+                </mat-form-field>
+              </div>
+
+            <div class="form-group">
+                <mat-form-field>
+                  <input matInput #input name="introduccion" [(ngModel)]="data.introduccion" placeholder="Introduccion">
+                </mat-form-field>
+              </div>
+
+              <div class="form-group">
+                  <mat-form-field>
+                    <input matInput #input name="contenido" [(ngModel)]="data.contenido" placeholder="Contenido">
+                  </mat-form-field>
+                </div>
+
+                <div class="form-group">
+                    <mat-form-field>
+                      <input matInput #input name="desarrollo" [(ngModel)]="data.desarrollo" placeholder="Desarrollo">
+                    </mat-form-field>
+                  </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <mat-form-field>
+                  <input matInput #input name="mat_necesario" [(ngModel)]="data.mat_necesario" placeholder="Material necesario">
+                </mat-form-field>
+              </div>
+
+              <div class="form-group">
+                  <mat-form-field>
+                    <input matInput #input name="ice_break" [(ngModel)]="data.ice_break" placeholder="Ice Break">
+                  </mat-form-field>
+                </div>
+
+                <div class="form-group">
+                    <mat-form-field>
+                      <input matInput #input name="descanso" [(ngModel)]="data.descanso" placeholder="Descanso">
+                    </mat-form-field>
+                  </div>
+
+                  <div class="form-group">
+                      <mat-form-field>
+                        <input matInput #input name="cierre" [(ngModel)]="data.cierre" placeholder="Cierre">
+                      </mat-form-field>
+                    </div>
+        </div>
+      </div>
+    </div>
+    <div mat-dialog-actions >
+        <button class="btn btn-success" [type]="submit"  [mat-dialog-close]="1"
+          (click)="stopEdit(datos)" style="margin-left: 140px; margin-right: 40px;">Guardar</button>
+        <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+      </div>
+  </form>
+</div>

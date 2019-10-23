@@ -1,115 +1,112 @@
 <app-navbar></app-navbar>
-<br>
-<br>
-<br>
-<br>
-<div class="col-xl-12 col-md-12 body">
-  <div class="col-xl-12 col-md-12 ">
-      <div class="card bg-light mini-stat position-relative">
-            <div class="card-body">
+<div class="container card bg-light">
 
-               
+  <div class="col-md-12 card-body">
+      <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
 
-                  
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <h1 class="text-center">Tema: <strong>{{plan.ntema}}</strong></h1>
+        <hr class="titulo">
+      </div>
+      <div class="col-md-4"></div>
+    </div>
 
-                <div class="col-xl-12">
-                    <div class="row">
-                      <div class="col-xl-4">
-                        <h3 class="fecha">Fecha:12/09/19</h3>
-                      </div>
-                      <div class="col-xl-4">
-                        <br>
-                        <p class="centro rec">Recomendacion:10 alumnos
-                            <button mat-icon-button>
-                                    <mat-icon aria-label="Edit">edit</mat-icon>
-                                </button>
-                        </p>
-                        
-                          <h1>Nombre de la sesion:Maker</h1>
-                          <hr class="titulo"/>
-                          
-                      </div>
-                      <div class="col-xl-4">
-                        <h3 class="folio">Folio: 321879128312</h3>
-                      </div>
-                
-                
-                    </div>
-                
-                
-                  </div>
-                  <div class="row">
-                      <div class="col-xl-4">
-                        <h3>Nivel:dsasddsa</h3>
-                        <br>
-                        <h3>SEP(subarea):sdasdsda</h3>
-                      </div>
-                      <div class="col-xl-4">
-                        <h3 class="centro">Grado:1ero</h3>
-                        <br>
-                        <h3 class="centro">Tema:nose</h3>
-                        <br/>
-                        <h2>Objetivo:asdssd</h2>
-                        <hr class="titulo"/>
-                      </div>
-                      <div class="col-xl-4">
-                        <h3 class="centro">Area del conocimiento: dfdfs</h3>
-                        <br>
-                        <h3 class="centro">Subtema:sdasd</h3>
-                      </div>
-                    </div>
-                 
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+        <h2 class="text-center">Subtema: <strong>{{plan.nt}}</strong> </h2>
+        <hr class="titulo">
+      </div>
+      <div class="col-md-4"></div>
+    </div>
 
+    <div class="row">
+      <div class="col-md-6">
+        <h3>Nivel: <strong> {{plan.n}} </strong> </h3>
+      </div>
+      <div class="col-md-6">
+        <h3 class="text-right">Grado: <strong> {{plan.g}} </strong></h3>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Fecha: <strong>{{fecha}}</strong></h4>
+      </div>
+      <div class="col-md-6">
+        <h4 class="text-right">Folio: <strong>{{folio}}</strong> </h4>
+      </div>
+    </div>
 
-<div >
+    <div class="row">
+      <div class="col-md-4">
+        <h4 class="text-center">Area(s) del conocimiento</h4>
+        <ul *ngFor="let dc of detalleClases">
+          <li [style.display]="dc.ac == null ? 'none' : ''">{{dc.ac}}</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h4 class="text-center">Sub Area(s) del conocimiento</h4>
+        <ul *ngFor="let dc of detalleClases">
+          <li [style.display]="dc.sac == null ? 'none' : ''">{{dc.sac}}</li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h4 class="text-center">Herramientas:</h4>
+        <ul *ngFor="let dc of detalleClases">
+          <li [style.display]="dc.h == null ? 'none' : ''">{{dc.h}}</li>
+        </ul>
+      </div>
+    </div>
 
-<br/>
-<mat-tab-group [selectedIndex]="selected.value">
-<mat-tab *ngFor="let tab of tabs; let index = index;" [label]="tab">
-<div class="row">
-  <div class="col-xl-4">
-  <h3 >Aprendizajes Clave</h3>
-  <br>
-  <p>sdsdsasadsdsda</p>
+    <div class="row">
+      <span class="text-muted">*Clase recomendada para <strong> {{plan.no_alu}} </strong> alumnos.</span>
+    </div>
+
+    <div class="row">
+      <span class="text-muted">*Este Subtema cuenta con <strong> {{sesiones.length}} </strong> sesiones.</span>
+    </div>
+
   </div>
-  <div class="col-xl-4">
+
+  <div class="row">
+    <mat-tab-group [selectedIndex]="selected.value" class="col-md-12">
+      <mat-tab *ngFor="let ses of sesiones; let i = index;" [label]="ses.nombre" class="col-md-12">
+
+        <h2>Nombre de la sesión: <strong>{{ses.nombre}}</strong>
+          <span>
+            <button mat-icon-button class="text-success" (click)="editSes(ses.idsesion, ses.nombre, ses.objetivo, ses.apren_clave,
+            ses.introduccion, ses.contenido, ses.desarrollo, ses.mat_necesario, ses.ice_break,
+            ses.descanso, ses.cierre, i)" ><mat-icon aria-label="Edit">edit</mat-icon></button>
+          </span>
+        </h2>
+        <h3>Objetivo: <strong>{{ses.objetivo}}</strong> </h3>
+        <div class="col-md-12">
+          <div class="col-md-6">
+            <p><strong>Aprendisajes clave:</strong> {{ses.apren_clave}} </p>
+
+            <p> <strong>Introducción:</strong> {{ses.introduccion}} </p>
+
+            <p> <strong>Contenido:</strong> {{ses.contenido}} </p>
+
+            <p> <strong>Desarrollo:</strong> {{ses.desarrollo}} </p>
+
+          </div>
+          <div class="col-md-6">
+            <p><strong>Material necesario:</strong> {{ses.mat_necesario}} </p>
+            <p> <strong>Ice Break:</strong> {{ses.ice_break}} </p>
+            <p> <strong>Descanso:</strong> {{ses.descanso}} </p>
+            <p> <strong>Cierre:</strong> {{ses.cierre}} </p>
+          </div>
+        </div>
+        <div class="text-right">
+            <button mat-icon-button class="text-danger"><mat-icon aria-label="Delete">delete</mat-icon></button>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
-  <div class="col-xl-4">
-  <h3 class="materiales">Material Necesarios</h3>
-  <br>
-  <p class="materiales">sdsdsasadsdsda</p>
-</div>
-</div>
-<br>
-<h3>Introduccción:</h3>
-<p>sokdsñaskdñlasdñlkas</p>
-<br>
-<h3>Contenido:</h3>
-<p>sokdsñaskdñlasdñlkas</p>
-<br>
-<h3>Desarrollo:</h3>
-<p>sokdsñaskdñlasdñlkas</p>
-<br>
-<a>Ice break:</a>
-<p>sokdsñaskdñlasdñlkas</p>
-<br>
-<a>Descanso:</a>
-<p>sokdsñaskdñlasdñlkas</p>
-<br>
-<a>Cierre:</a>
-<p>sokdsñaskdñlasdñlkas</p>
-<br>
-
-</mat-tab>
-</mat-tab-group>
-
 
 </div>
-</div>
-</div>
-</div>
-</div>
-
-
 <app-fotter></app-fotter>

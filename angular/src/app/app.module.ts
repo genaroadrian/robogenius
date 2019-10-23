@@ -478,7 +478,9 @@ const routes: Route[]=[
     SacaddComponent,
     SaceditComponent,
     SacdeleteComponent,
-    EditsesionesComponent
+    /* Modales para las sesiones */
+    EditsesionesComponent,
+    DeletesesionesComponent
 
 
   ],

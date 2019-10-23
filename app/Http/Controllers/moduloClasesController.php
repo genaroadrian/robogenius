@@ -32,13 +32,13 @@ class moduloClasesController extends Controller
         herramientas ON
         herramientas.idherra = detalleclases.idherra 
         WHERE detalleclases.folio = '$folio'");
-        $plan = DB::select("SELECT * FROM planeaciones WHERE folio = '$folio'");
+        $plan = DB::select("SELECT * FROM planeaciones WHERE folio = '$folio' and activo = 1");
         $ret = [];
         $sesiones = [];
         array_push($ret, $dc, $plan);
         foreach ($plan as $p)
         {
-           $sesion =  DB::select("SELECT * FROM sesiones where idsesion = $p->idsesion");
+           $sesion =  DB::select("SELECT * FROM sesiones where idsesion = $p->idsesion and activo = 1");
             array_push($sesiones, $sesion[0]);
         }
         // $ret = [$dc,$plan];

@@ -78,8 +78,7 @@
         <h2>Nombre de la sesión: <strong>{{ses.nombre}}</strong>
           <span>
             <button mat-icon-button class="text-success" (click)="editSes(ses.idsesion, ses.nombre, ses.objetivo, ses.apren_clave,
-            ses.introduccion, ses.contenido, ses.desarrollo, ses.mat_necesario, ses.ice_break,
-            ses.descanso, ses.cierre, i)" ><mat-icon aria-label="Edit">edit</mat-icon></button>
+            ses.introduccion, ses.contenido, ses.desarrollo, ses.mat_necesario, ses.ice_break, ses.descanso, ses.cierre, i)" ><mat-icon aria-label="Edit">edit</mat-icon></button>
           </span>
         </h2>
         <h3>Objetivo: <strong>{{ses.objetivo}}</strong> </h3>
@@ -102,7 +101,7 @@
           </div>
         </div>
         <div class="text-right">
-            <button mat-icon-button class="text-danger"><mat-icon aria-label="Delete">delete</mat-icon></button>
+            <button mat-icon-button class="text-danger" (click)="deleteSesion(ses.idsesion, ses.nombre, i)" ><mat-icon aria-label="Delete">delete</mat-icon></button>
         </div>
       </mat-tab>
     </mat-tab-group>

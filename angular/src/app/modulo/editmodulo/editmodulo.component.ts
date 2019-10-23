@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { EditsesionesComponent } from 'src/app/sesiones/editsesiones/editsesiones.component';
 import { SesionesService } from 'src/app/services/sesiones.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
+import { DeletesesionesComponent } from 'src/app/sesiones/deletesesiones/deletesesiones.component';
 
 @Component({
   selector: 'app-editmodulo',
@@ -46,7 +47,7 @@ export class EditmoduloComponent implements OnInit {
   getData() {
     this.plan = this.homefclasesService.returnData()
     this.homefclasesService.getDataSesion(this.homefclasesService.returnData()).subscribe((data) => {
-      // console.log(data)
+      console.log(data)
 
       let datos: any
       datos = data
@@ -67,10 +68,6 @@ export class EditmoduloComponent implements OnInit {
     introduccion, contenido, desarrollo, mat_necesario, ice_break,
     descanso, cierre, i)
   {
-    console.log(i)
-    console.log(ice_break)
-    console.log(descanso)
-    console.log(cierre)
     const dialogRef = this.dialog.open(EditsesionesComponent, {
       data: {idsesion: idsesion, nombre: nombre, objetivo: objetivo, apren_clave: apren_clave, introduccion: introduccion, ice_break: ice_break ,contenido: contenido, desarrollo: desarrollo, mat_necesario: mat_necesario, descanso: descanso,
     cierre: cierre}
@@ -85,6 +82,28 @@ export class EditmoduloComponent implements OnInit {
           this.sesiones[i] = this.sesionesService.getDialogData()
           this.notificationsService.showSuccessEdit()
           console.log(this.sesiones[i])
+          this.hideBarra()
+        }, (error)=>{
+          this.notificationsService.showError()
+          this.hideBarra()
+          console.log(error)
+        })
+      }
+    })
+  }
+
+  deleteSesion(id, nombre ,i)
+  {
+    const dialogRef = this.dialog.open(DeletesesionesComponent, {
+      data: {nombre: nombre}
+    })
+    dialogRef.afterClosed().subscribe(result=>{
+      if(result == 1)
+      {
+        this.showBarra()
+        this.sesionesService.delete(id).subscribe((data)=>{
+          this.sesiones.splice(i,1)
+          this.notificationsService.showSuccessEdit()
           this.hideBarra()
         }, (error)=>{
           this.notificationsService.showError()

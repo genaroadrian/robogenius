@@ -27,6 +27,7 @@ class sesionesController extends Controller
         $sesion->contenido = $request->contenido;
         $sesion->descanso = $request->descanso;
         $sesion->cierre = $request->cierre;
+        $sesion->desarrollo = $request->desarrollo;
         $sesion->activo = 1;
         $sesion->save();
         return $sesion;   
@@ -45,6 +46,7 @@ class sesionesController extends Controller
         $sesion->contenido = $request->contenido;
         $sesion->descanso = $request->descanso;
         $sesion->cierre = $request->cierre;
+        $sesion->desarrollo = $request->desarrollo;
         $sesion->save();
         return $sesion;
     }
@@ -52,6 +54,7 @@ class sesionesController extends Controller
     public function destroy($id)
     {
         $sesion  = DB::select("UPDATE sesiones set activo = 0 where idsesion = $id");
+        DB::select("UPDATE planeaciones set activo = 0 where idsesion = $id");
         return $sesion;
     }
 }

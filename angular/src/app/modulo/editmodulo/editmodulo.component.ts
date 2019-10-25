@@ -6,6 +6,8 @@ import { EditsesionesComponent } from 'src/app/sesiones/editsesiones/editsesione
 import { SesionesService } from 'src/app/services/sesiones.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { DeletesesionesComponent } from 'src/app/sesiones/deletesesiones/deletesesiones.component';
+import { DceditComponent } from 'src/app/detalleclases/dcedit/dcedit.component';
+import { ModuloService } from 'src/app/services/modulo.service';
 
 @Component({
   selector: 'app-editmodulo',
@@ -13,6 +15,10 @@ import { DeletesesionesComponent } from 'src/app/sesiones/deletesesiones/deletes
   styleUrls: ['./editmodulo.component.css']
 })
 export class EditmoduloComponent implements OnInit {
+
+  aC = []
+  sAC = []
+  herra = []
 
   detalleClases: any
   folio: string
@@ -28,7 +34,8 @@ export class EditmoduloComponent implements OnInit {
 
 
   constructor(public homefclasesService: HomefclasesService, public dialog: MatDialog, 
-    public sesionesService: SesionesService, public notificationsService: NotificationsService) { }
+    public sesionesService: SesionesService, public notificationsService: NotificationsService,
+    public moduloService: ModuloService) { }
 
   ngOnInit() {
     this.getData()
@@ -103,6 +110,54 @@ export class EditmoduloComponent implements OnInit {
         this.showBarra()
         this.sesionesService.delete(id).subscribe((data)=>{
           this.sesiones.splice(i,1)
+          this.notificationsService.showSuccessEdit()
+          this.hideBarra()
+        }, (error)=>{
+          this.notificationsService.showError()
+          this.hideBarra()
+          console.log(error)
+        })
+      }
+    })
+  }
+
+  editDetalle()
+  {
+    console.log(this.planeaciones)
+    let areac = []
+    let subac = []
+    let herramientas = []
+    let n: string = ''
+    this.detalleClases.forEach(function(element, index, array){
+      if (element.idac != null)
+      {
+        n = ''+element.idac+''
+        areac.push(n)
+      }
+
+      if(element.idsac != null)
+      {
+        n = ''+element.idsac+''
+        subac.push(n)
+      }
+
+      if(element.idherra != null)
+      {
+        n = ''+element.idherra+''
+        herramientas.push(n)
+      }
+    });
+
+    const dialogRef = this.dialog.open(DceditComponent, {
+      data: {ac: areac, subac: subac, herra: herramientas, idn: this.planeaciones.idn, idg: this.planeaciones.idg, 
+      idt: this.planeaciones.idt, ids: this.planeaciones.ids}
+    })
+    dialogRef.afterClosed().subscribe(result=>{
+      if(result == 1)
+      {
+        this.showBarra()
+        this.moduloService.editDC(this.moduloService.getDialogData()).subscribe((data)=>{
+          console.log(data)
           this.notificationsService.showSuccessEdit()
           this.hideBarra()
         }, (error)=>{

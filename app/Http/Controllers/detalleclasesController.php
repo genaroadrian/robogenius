@@ -36,4 +36,9 @@ class detalleclasesController extends Controller
         }
         return $request;
     }
+
+    public function update(Request $request, $id)
+    {
+        return $request;
+    }
 }

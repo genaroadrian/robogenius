@@ -33,7 +33,7 @@ export class EditmoduloComponent implements OnInit {
   selected = new FormControl(0);
 
 
-  constructor(public homefclasesService: HomefclasesService, public dialog: MatDialog, 
+  constructor(public homefclasesService: HomefclasesService, public dialog: MatDialog,
     public sesionesService: SesionesService, public notificationsService: NotificationsService,
     public moduloService: ModuloService) { }
 
@@ -41,20 +41,17 @@ export class EditmoduloComponent implements OnInit {
     this.getData()
   }
 
-  showBarra()
-  {
+  showBarra() {
     this.barra = ''
   }
 
-  hideBarra()
-  {
+  hideBarra() {
     this.barra = 'none'
   }
 
   getData() {
     this.plan = this.homefclasesService.returnData()
     this.homefclasesService.getDataSesion(this.homefclasesService.returnData()).subscribe((data) => {
-      console.log(data)
 
       let datos: any
       datos = data
@@ -73,97 +70,94 @@ export class EditmoduloComponent implements OnInit {
 
   editSes(idsesion, nombre, objetivo, apren_clave,
     introduccion, contenido, desarrollo, mat_necesario, ice_break,
-    descanso, cierre, i)
-  {
+    descanso, cierre, i) {
     const dialogRef = this.dialog.open(EditsesionesComponent, {
-      data: {idsesion: idsesion, nombre: nombre, objetivo: objetivo, apren_clave: apren_clave, introduccion: introduccion, ice_break: ice_break ,contenido: contenido, desarrollo: desarrollo, mat_necesario: mat_necesario, descanso: descanso,
-    cierre: cierre}
+      data: {
+        idsesion: idsesion, nombre: nombre, objetivo: objetivo, apren_clave: apren_clave, introduccion: introduccion, ice_break: ice_break, contenido: contenido, desarrollo: desarrollo, mat_necesario: mat_necesario, descanso: descanso,
+        cierre: cierre
+      }
     })
-    dialogRef.afterClosed().subscribe(result=>{
-      if(result == 1)
-      {
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
         this.showBarra()
-        this.sesionesService.put(this.sesionesService.getDialogData()).subscribe((data)=>{
-          console.log(i)
-          console.log(this.sesiones[0])
+        this.sesionesService.put(this.sesionesService.getDialogData()).subscribe((data) => {
           this.sesiones[i] = this.sesionesService.getDialogData()
           this.notificationsService.showSuccessEdit()
-          console.log(this.sesiones[i])
           this.hideBarra()
-        }, (error)=>{
+        }, (error) => {
           this.notificationsService.showError()
           this.hideBarra()
-          console.log(error)
         })
       }
     })
   }
 
-  deleteSesion(id, nombre ,i)
-  {
+  deleteSesion(id, nombre, i) {
     const dialogRef = this.dialog.open(DeletesesionesComponent, {
-      data: {nombre: nombre}
+      data: { nombre: nombre }
     })
-    dialogRef.afterClosed().subscribe(result=>{
-      if(result == 1)
-      {
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
         this.showBarra()
-        this.sesionesService.delete(id).subscribe((data)=>{
-          this.sesiones.splice(i,1)
+        this.sesionesService.delete(id).subscribe((data) => {
+          this.sesiones.splice(i, 1)
           this.notificationsService.showSuccessEdit()
           this.hideBarra()
-        }, (error)=>{
+        }, (error) => {
           this.notificationsService.showError()
           this.hideBarra()
-          console.log(error)
         })
       }
     })
   }
 
-  editDetalle()
-  {
-    console.log(this.planeaciones)
+  editDetalle() {
     let areac = []
     let subac = []
     let herramientas = []
     let n: string = ''
-    this.detalleClases.forEach(function(element, index, array){
-      if (element.idac != null)
-      {
-        n = ''+element.idac+''
+    this.detalleClases.forEach(function (element, index, array) {
+      if (element.idac != null) {
+        n = '' + element.idac + ''
         areac.push(n)
       }
 
-      if(element.idsac != null)
-      {
-        n = ''+element.idsac+''
+      if (element.idsac != null) {
+        n = '' + element.idsac + ''
         subac.push(n)
       }
 
-      if(element.idherra != null)
-      {
-        n = ''+element.idherra+''
+      if (element.idherra != null) {
+        n = '' + element.idherra + ''
         herramientas.push(n)
       }
     });
 
     const dialogRef = this.dialog.open(DceditComponent, {
-      data: {ac: areac, subac: subac, herra: herramientas, idn: this.planeaciones.idn, idg: this.planeaciones.idg, 
-      idt: this.planeaciones.idt, ids: this.planeaciones.ids}
+      data: {
+        ac: areac, subac: subac, herra: herramientas, idn: this.planeaciones.idn, idg: this.planeaciones.idg,
+        idt: this.planeaciones.idt, ids: this.planeaciones.ids
+      }
     })
-    dialogRef.afterClosed().subscribe(result=>{
-      if(result == 1)
-      {
-        this.showBarra()
-        this.moduloService.editDC(this.moduloService.getDialogData()).subscribe((data)=>{
-          console.log(data)
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        let extras = this.moduloService.retExt()
+        let folio = this.folio
+
+        let data = []
+        data.push(this.moduloService.getDialogData())
+        data.push(this.moduloService.getPlan())
+        this.moduloService.editDC(data, folio).subscribe((data) => {
+          this.detalleClases = data
+          this.plan.g = extras.grado
+          this.plan.n = extras.nivel
+          this.plan.ntema = extras.tema
+          this.plan.nt = extras.subtema
           this.notificationsService.showSuccessEdit()
           this.hideBarra()
-        }, (error)=>{
+        }, (error) => {
           this.notificationsService.showError()
           this.hideBarra()
-          console.log(error)
         })
       }
     })

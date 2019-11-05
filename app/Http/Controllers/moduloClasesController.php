@@ -14,7 +14,7 @@ class moduloClasesController extends Controller
         planeaciones.no_alu
         FROM tema, subtema, detalleclases, planeaciones, niveles, grados
         WHERE detalleclases.folio = planeaciones.folio  AND planeaciones.idt = tema.idt
-        AND planeaciones.ids = subtema.ids AND planeaciones.idg = grados.idg AND planeaciones.idn = niveles.idn GROUP BY idt";
+        AND planeaciones.ids = subtema.ids AND planeaciones.idg = grados.idg AND planeaciones.idn = niveles.idn and detalleclases.activo = 1 GROUP BY idt";
 
         $vista = DB::select($sql);
         return $vista;

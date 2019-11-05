@@ -43,7 +43,9 @@ export class PerhomeComponent  {
   barra = "none";
 
   /* Datos de la funcion DialogRef edit */
-  dialogEdit; any
+  dialogEdit: any
+
+  results: string
 
   
   tableview = "none";
@@ -164,14 +166,21 @@ export class PerhomeComponent  {
   public getPersonal() {
     this.exampleDatabase = new PersonalService(this.httpClient);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
+    if(this.dataSource.renderedData.length > 0)
+      { 
+        console.log(":v")
+      }
     fromEvent(this.filter.nativeElement, 'keyup')
       // .debounceTime(150)
       // .distinctUntilChanged()
       .subscribe(() => {
         if (!this.dataSource) {
+          console.log(this.dataSource)
           return;
+          
         }
         this.dataSource.filter = this.filter.nativeElement.value;
+        console.log(this.dataSource)
       });
   }
 

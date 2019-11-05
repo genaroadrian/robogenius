@@ -28,6 +28,9 @@ import { Subareac } from '../interfaces/subareac';
 import { SubareacService } from '../services/subareac.service';
 import { SacaddComponent } from '../subareac/sacadd/sacadd.component';
 import { SesionesService } from '../services/sesiones.service';
+import { subtema } from '../interfaces/subtema';
+import { SubtemaaddComponent } from '../subtema/subtemaadd/subtemaadd.component';
+import { SubtemaService } from '../services/subtema.service';
 
 
 @Component({
@@ -146,7 +149,7 @@ export class ModuloComponent implements OnInit {
     private _formBuilder: FormBuilder, private httpClient: HttpClient, private router: Router, private gradoService: GradoService, private areaService: AreadelconocimientoService,
     private moduloService: ModuloService, private temaService: TemaService, private datePipe: DatePipe,
     public herramientasService: HerramientasService, public subareacService: SubareacService,
-    public sesionesService: SesionesService) { }
+    public sesionesService: SesionesService, public subtemaService: SubtemaService) { }
 
     /* Obtiene la fecha actual para el formulario */
   fechaHoy() {
@@ -179,6 +182,7 @@ export class ModuloComponent implements OnInit {
 
     this.moduloService.geta().subscribe((data) => {
       this.areas = data
+      console.log(this.areas)
     }, (error) => {
     })
 
@@ -302,9 +306,11 @@ export class ModuloComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result == 1) {
+        console.log(this.areas)
         this.showBarra()
         this.areaService.addd(this.areaService.getDialogData()).subscribe((data) => {
           this.areas.push(data)
+          console.log(this.areas)
           this.notifications.showSuccessAdd();
           this.hideBarra();
         }, (error) => {
@@ -360,8 +366,29 @@ export class ModuloComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result == 1) {
         this.showBarra()
-        this.temaService.addd(this.areaService.getDialogData()).subscribe((data) => {
+        this.temaService.addd(this.temaService.getDialogData()).subscribe((data) => {
           this.temas.push(data)
+          this.get()
+          this.notifications.showSuccessAdd();
+          this.hideBarra();
+        }, (error) => {
+          this.notifications.showError();
+          this.hideBarra();
+        });
+      }
+    });
+  }
+
+  subtemaModal(subtema: subtema)
+  {
+    const dialogRef = this.dialog.open(SubtemaaddComponent, {
+      data: { tema: subtema }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.showBarra()
+        this.subtemaService.save(this.subtemaService.getDialogData()).subscribe((data) => {
+          this.get()
           this.notifications.showSuccessAdd();
           this.hideBarra();
         }, (error) => {
@@ -494,7 +521,7 @@ export class ModuloComponent implements OnInit {
     })
 
     this.temasSearch = this.tema
-
+    console.log(this.tema)
   }
   getsubtema(TEMA, event) {
     let text = event.source.selected._element.nativeElement

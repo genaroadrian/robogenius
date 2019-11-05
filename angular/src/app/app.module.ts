@@ -155,6 +155,7 @@ import { EditmoduloComponent } from './modulo/editmodulo/editmodulo.component';
 import { HomefclasesComponent } from './modulo/homefclases/homefclases.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { DceditComponent } from './detalleclases/dcedit/dcedit.component';
+import { DcdeleteComponent } from './detalleclases/dcdelete/dcdelete.component';
 
 
 
@@ -322,7 +323,8 @@ const routes: Route[]=[
     DeletesesionesComponent,
     EditmoduloComponent,
     HomefclasesComponent,
-    DceditComponent
+    DceditComponent,
+    DcdeleteComponent
 
 
 
@@ -483,7 +485,9 @@ const routes: Route[]=[
     /* Modales para las sesiones */
     EditsesionesComponent,
     DeletesesionesComponent,
-    DceditComponent
+    /* Modales del detalle de clases */
+    DceditComponent,
+    DcdeleteComponent
 
 
   ],

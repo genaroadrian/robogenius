@@ -11,22 +11,26 @@ import { UserAdminService } from 'src/app/services/user-admin.service';
   templateUrl: './modificarad.component.html',
   styleUrls: ['./modificarad.component.css']
 })
+
 export class ModificaradComponent implements OnInit {
+  hide = true;
 
   constructor(public dialogRef: MatDialogRef<UserAdminService>,@Inject(MAT_DIALOG_DATA) public data: any, 
   public perfilService: UserAdminService) { }
 
   ngOnInit() {
   }
-  formControl = new FormControl('', [
-    Validators.required
-    // Validators.email,
-  ]);
+  fControl = new FormControl('', [Validators.required ]);
+  emailControl = new FormControl('',[Validators.required, Validators.email])
 
   /* Lanza los errores de las validaciones del formulario */
   getErrorMessage() {
-    return this.formControl.hasError('required') ? 'El campo es obligatorio' :
-      this.formControl.hasError('email') ? 'Ingrese un corre valido' :
+    return this.fControl.hasError('required') ? 'El campo es obligatorio' :
+        '';
+  }
+
+  getEmailErrorMessage() {
+      this.fControl.hasError('email') ? 'Ingrese un correo valido' :
         '';
   }
 

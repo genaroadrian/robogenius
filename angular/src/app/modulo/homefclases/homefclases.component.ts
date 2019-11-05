@@ -7,6 +7,8 @@ import { ModuloService } from 'src/app/services/modulo.service';
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { MatDialog } from '@angular/material';
+import { DcdeleteComponent } from 'src/app/detalleclases/dcdelete/dcdelete.component';
 
 
 @Component({
@@ -48,7 +50,7 @@ export class HomefclasesComponent implements OnInit {
 
   constructor(public homefclasesService: HomefclasesService,
     private nivelService: NivelService, private gradoService: GradoService,
-     private areaService: AreadelconocimientoService,private moduloService: ModuloService) { }
+     private areaService: AreadelconocimientoService, public dialog: MatDialog ,private moduloService: ModuloService) { }
 
   ngOnInit() {
     // this.options=this.result;
@@ -59,12 +61,10 @@ export class HomefclasesComponent implements OnInit {
     );
     this.getFilter()
     this.nivelService.get().subscribe((data) => {
-      // console.log(data)
       this.persona = data
     }, (error) => {
     })
     this.gradoService.get().subscribe((data) => {
-      // console.log(data)
       this.grado = data
     }, (error) => {
     })
@@ -77,7 +77,6 @@ export class HomefclasesComponent implements OnInit {
   get() {
     this.areaService.getall().subscribe((data) => {
       this.datos = data;
-      // console.log(datos)
       var hash = {};
       this.areadelconocimiento = this.datos.filter(function (area) {
         var exists = !hash[area.nomarea] || false;
@@ -93,7 +92,6 @@ export class HomefclasesComponent implements OnInit {
   {
     this.homefclasesService.getFilt().subscribe((data)=>{
       this.result = data
-      console.log(this.result)
       this.nuevofiltro=data
       let valor=[]
 
@@ -103,15 +101,12 @@ export class HomefclasesComponent implements OnInit {
       this.options=valor
 
     },(error)=>{
-      console.log(error)
     })
   }
 
   // applyFilter()
   // {
-  //   console.log(this.result)
   //   this.result  = this.result.filter(element => element.folio == this.filtro)
-  //   console.log(this.filtro)
   // }
   nivelChange(NIVEL) {
     this.nivels=NIVEL.slice(0,3);
@@ -136,7 +131,6 @@ export class HomefclasesComponent implements OnInit {
     });
 
     this.areacs=datos
-    console.log(this.areacs.length)
     this.res=this.result
     if(this.areacs.length==3){
       this.res=this.res.filter(element=>element.folio.slice(6,9)==this.areacs)
@@ -145,8 +139,6 @@ export class HomefclasesComponent implements OnInit {
     }else{
     this.res=this.res.filter(element=>element.folio.slice(6,15)==this.areacs)
     }
-    console.log(this.areacs.slice(0,10))
-    console.log(this.res)
 
     this.letras=this.res;
     // this.nivels+this.grads+this.areacs+this.subareacs;
@@ -168,7 +160,6 @@ export class HomefclasesComponent implements OnInit {
     }else{
       this.resa=this.resa.filter(element=>element.folio.slice(15,24)==this.subareacs)
     }
-    console.log(this.resa)
     this.letras=this.resa;
 
     // this.folio=this.nivels+this.grads+this.areacs+this.subareacs;
@@ -176,7 +167,6 @@ export class HomefclasesComponent implements OnInit {
   }
   getSubAC() {
     this.moduloService.getSAC().subscribe((data) => {
-      // console.log(data)
       this.subareas = data
     }, (error) => {
 
@@ -184,7 +174,6 @@ export class HomefclasesComponent implements OnInit {
   }
   getHerramientas() {
     this.moduloService.getHerra().subscribe((data) => {
-      // console.log(data)
       this.herramientas = data
     }, (error) => {
 
@@ -217,6 +206,26 @@ export class HomefclasesComponent implements OnInit {
   edit(res)
   {
     this.homefclasesService.getData(res)
+  }
+
+  delete(folio, i)
+  {
+    console.log(i)
+    let index = i
+    const dialogRef = this.dialog.open(DcdeleteComponent, {
+      data: {}
+    })
+
+    dialogRef.afterClosed().subscribe(result=> {
+      if(result == 1)
+      {
+        this.moduloService.deleteDC(folio).subscribe((data)=>{
+              this.letras.splice(index, 1)
+        },(error)=>{
+
+        })
+      }
+    })
   }
   
 }

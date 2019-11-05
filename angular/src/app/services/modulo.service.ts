@@ -12,6 +12,8 @@ export class ModuloService {
   API_ENDPOINT = 'http://localhost:8000/api';
 
   dialogData: any
+  extraData: any
+  plan: any
 
   constructor(private httpClient: HttpClient) { }
 
@@ -49,10 +51,11 @@ export class ModuloService {
 
   }
 
-  editDC(data)
+  editDC(data, folio)
   {
+    console.log(data)
     const headers = new HttpHeaders({"Content-Type":"application/json"});
-    return this.httpClient.put(this.API_ENDPOINT+'/detalleclases/'+1,data)
+    return this.httpClient.put(this.API_ENDPOINT+'/detalleclases/'+folio,data)
   }
 
   edit(data)
@@ -63,6 +66,36 @@ export class ModuloService {
   getDialogData()
   {
     return this.dialogData
+  }
+
+  saveExt(data)
+  {
+    this.extraData = data
+  }
+
+  retExt()
+  {
+    return this.extraData
+  }
+
+  savePlantemp(data)
+  {
+    this.plan = data
+  }
+
+  getPlan()
+  {
+    return this.plan
+  }
+
+  editPlan(data)
+  {
+
+  }
+
+  deleteDC(id)
+  {
+    return this.httpClient.delete(this.API_ENDPOINT+'/detalleclases/'+id)
   }
 
 }

@@ -10,7 +10,22 @@ import { SubareacService } from 'src/app/services/subareac.service';
 import { SesionesService } from 'src/app/services/sesiones.service';
 import { AreadelconocimientoService } from 'src/app/services/areadelconocimiento.service';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
+import { SubtemaaddComponent } from 'src/app/subtema/subtemaadd/subtemaadd.component';
+import { subtema } from 'src/app/interfaces/subtema';
+import { TemaaddComponent } from 'src/app/tema/temaadd/temaadd.component';
+import { tema } from 'src/app/interfaces/tema';
+import { SacaddComponent } from 'src/app/subareac/sacadd/sacadd.component';
+import { Subareac } from 'src/app/interfaces/subareac';
+import { AddHerramientasComponent } from 'src/app/herramientas/add-herramientas/add-herramientas.component';
+import { Herramientas } from 'src/app/interfaces/herramientas';
+import { AddgradosComponent } from 'src/app/grados/addgrados/addgrados.component';
+import { AreaaddComponent } from 'src/app/areadelconocimiento/areaadd/areaadd.component';
+import { areadelconocimiento } from 'src/app/interfaces/areadelconocimiento';
+import { Grados } from 'src/app/interfaces/grados';
+import { Niveles } from 'src/app/interfaces/niveles';
+import { AddnivelComponent } from 'src/app/niveles/addnivel/addnivel.component';
+import { SubtemaService } from 'src/app/services/subtema.service';
 
 @Component({
   selector: 'app-dcedit',
@@ -21,6 +36,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   }, DatePipe]
 })
 export class DceditComponent implements OnInit {
+
+  niv: string
+  grad: string
+  tem: string
+  subt: string
+
+
 
   AREA = this.data.ac
   subarea = this.data.subac
@@ -117,7 +139,15 @@ selectedtp = '1';
     private moduloService: ModuloService, private temaService: TemaService, private datePipe: DatePipe,
     public herramientasService: HerramientasService, public subareacService: SubareacService,
     public sesionesService: SesionesService, public dialogRef: MatDialogRef<DceditComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any, public dialog: MatDialog, public subtemaService: SubtemaService) { }
+
+    /* Mostrar la barra de carga */
+  showBarra() {
+    this.barra = ""
+  }
+  hideBarra() {
+    this.barra = "none"
+  }
 
      /* Obtiene la fecha actual para el formulario */
   fechaHoy() {
@@ -170,6 +200,7 @@ selectedtp = '1';
     });
 
     this.tema = filtered
+    this.temasSearch = this.tema
 
 
     }, (error) => {
@@ -177,6 +208,7 @@ selectedtp = '1';
     this.moduloService.gets().subscribe((data) => {
       this.subtemas = data
       this.subtema = this.datos.filter(sub => sub.idt == this.TEMA)
+      this.subtemasSearch = this.subtema
     }, (error) => {
     })
 
@@ -210,7 +242,7 @@ selectedtp = '1';
   getHerramientas() {
     this.moduloService.getHerra().subscribe((data) => {
       this.herramientas = data
-      this.herramientasSearch = data
+      this.herramientasSearch = this.herramientas
     }, (error) => {
 
     })
@@ -222,6 +254,7 @@ selectedtp = '1';
     let text = event.source.selected._element.nativeElement
     let value: string
     value = text.innerText.trim()
+    this.niv = value
     value = value.slice(0, 3)
     this.nivels = value
     this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.herrams + this.idfolio;
@@ -232,7 +265,9 @@ selectedtp = '1';
   gradoChange(GRADO, event) {
     let text = event.source.selected._element.nativeElement
     let value: string
+
     value = text.innerText.trim()
+    this.grad = value
     value = value.slice(0, 3)
     this.grads = value
 
@@ -304,12 +339,14 @@ selectedtp = '1';
     })
 
     this.temasSearch = this.tema
+    console.log(this.temaSearch)
 
   }
   getsubtema(TEMA, event) {
     let text = event.source.selected._element.nativeElement
     let value: string
     value = text.innerText.trim()
+    this.tem = value
     value = value.slice(0, 3)
     this.vTema = TEMA
 
@@ -324,6 +361,7 @@ selectedtp = '1';
     let text = event.source.selected._element.nativeElement
     let value: string
     value = text.innerText.trim()
+    this.subt = value
     value = value.slice(0, 3)
     this.vSubtema = SUBTEMAS
     this.subtems = value
@@ -402,8 +440,26 @@ selectedtp = '1';
 
     this.dClases = dClase
     console.log(this.dClases)
+
+    let plan = {
+      nivel: this.NIVEL,
+      grado: this.GRADO,
+      tema: this.TEMA,
+      subtema: this.SUBTEMAS
+    }
+
+    this.moduloService.savePlantemp(plan)
     
     this.moduloService.edit(this.dClases)
+    let extras = {
+      nivel: this.niv,
+      grado: this.grad,
+      tema: this.tem,
+      subtema: this.subt
+    }
+    this.moduloService.saveExt(extras)
+
+
   }
 
 herraSearch(value)
@@ -421,6 +477,7 @@ herraSearch(value)
 temaSearch(value)
   {
     this.tema = this.temasSearch
+    console.log(this.temasSearch)
     let crit = value.trim().toLowerCase()
     let temas = this.tema
     temas = this.tema.filter(function(tem){
@@ -440,6 +497,148 @@ temaSearch(value)
     })
 
     this.subtema = subtemas
+  }
+
+
+
+
+  /* Modales para agregar nuevos registros en cada select */
+  nuev(nivelest: Niveles) {
+    const dialogRef = this.dialog.open(AddnivelComponent, {
+      data: { nivelest: nivelest }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.showBarra()
+        this.nivelService.add(this.nivelService.getDialogData()).subscribe((data) => {
+          this.persona.push(data)
+          this.notifications.showSuccessAdd();
+          this.hideBarra();
+        }, (error) => {
+          this.notifications.showError();
+          this.hideBarra();
+        });
+      }
+    });
+  }
+
+  gradomodal(grado: Grados) {
+    const dialogRef = this.dialog.open(AddgradosComponent, {
+      data: { grado: grado }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.showBarra()
+        this.gradoService.addd(this.gradoService.getDialogData()).subscribe((data) => {
+          this.grado.push(data)
+          this.notifications.showSuccessAdd();
+          this.hideBarra();
+        }, (error) => {
+          this.notifications.showError();
+          this.hideBarra();
+        });
+      }
+    });
+  }
+
+  areamodal(area: areadelconocimiento) {
+    const dialogRef = this.dialog.open(AreaaddComponent, {
+      data: { area: area }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        console.log(this.areas)
+        this.showBarra()
+        this.areaService.addd(this.areaService.getDialogData()).subscribe((data) => {
+          this.areas.push(data)
+          console.log(this.areas)
+          this.notifications.showSuccessAdd();
+          this.hideBarra();
+        }, (error) => {
+          this.notifications.showError();
+          this.hideBarra();
+        });
+      }
+    });
+  }
+
+  addHerra(herramientas: Herramientas) {
+    const dialogRef = this.dialog.open(AddHerramientasComponent, {
+      data: { herramientas: herramientas }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.showBarra()
+        this.herramientasService.herramienta(this.herramientasService.getDialogData()).subscribe((data) => {
+          this.herramientas.push(data)
+          this.notifications.showSuccessAdd();
+          this.hideBarra();
+        }, (error) => {
+          this.notifications.showError();
+          this.hideBarra();
+        });
+      }
+    });
+  }
+
+  addSAC(subareaC: Subareac) {
+    const dialogRef = this.dialog.open(SacaddComponent, {
+      data: { subareaC: subareaC }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.showBarra()
+        this.subareacService.add(this.subareacService.getDialogData()).subscribe((data) => {
+          this.subareas.push(data)
+          this.notifications.showSuccessAdd();
+          this.hideBarra();
+        }, (error) => {
+          this.notifications.showError();
+          this.hideBarra();
+        });
+      }
+    });
+  }
+
+  temamodal(tema: tema) {
+    const dialogRef = this.dialog.open(TemaaddComponent, {
+      data: { tema: tema }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.showBarra()
+        this.temaService.addd(this.temaService.getDialogData()).subscribe((data) => {
+          this.temas.push(data)
+          this.get()
+          this.notifications.showSuccessAdd();
+          this.hideBarra();
+        }, (error) => {
+          this.notifications.showError();
+          this.hideBarra();
+        });
+      }
+    });
+  }
+
+  subtemaModal(subtema: subtema)
+  {
+    const dialogRef = this.dialog.open(SubtemaaddComponent, {
+      data: { tema: subtema }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.showBarra()
+        this.subtemaService.save(this.subtemaService.getDialogData()).subscribe((data) => {
+          this.get()
+          this.notifications.showSuccessAdd();
+          this.hideBarra();
+        }, (error) => {
+          this.notifications.showError();
+          this.hideBarra();
+        });
+      }
+    });
   }
 
   

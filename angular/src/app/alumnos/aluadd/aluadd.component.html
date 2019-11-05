@@ -82,7 +82,7 @@
 
                   <div class="form col-xl-4">
                     <mat-form-field class="example-full-width">
-                      <input matInput [(ngModel)]="alumno.correoalu" #input name="correoalu" placeholder="Correo"
+                      <input matInput  [(ngModel)]="alumno.correoalu" #input name="correoalu" placeholder="Correo"
                         pattern="[^ @]*@[^ @]*" required>
                       <mat-error *ngIf="formControl.invalid"> Correo Incorrecto
                       </mat-error>

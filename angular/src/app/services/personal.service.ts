@@ -24,6 +24,7 @@ export class PersonalService {
 
   datos :any;
   sucursal:any;
+  noResult: string
 
   constructor(private httpClient: HttpClient) {
     this.sucursal=localStorage.getItem('sucursal')
@@ -34,6 +35,11 @@ export class PersonalService {
   getPersonal(): void{
     this.httpClient.get<Personal[]>(this.API_ENDPOINT+'/personal').subscribe(data => {
       this.datos=data
+      if(this.datos.length > 0)
+      {
+        let value = 'none'
+        this.noResult = value
+      }
       this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
       // console.log(this.datos)
       this.dataChange.next(this.datos); 
@@ -43,12 +49,10 @@ export class PersonalService {
     });
   }
 
-
-
-
-
-
-
+  noR()
+  {
+    return this.noResult
+  }
   
   // Obtener datos cuando cambien
   get data(): Personal[] {

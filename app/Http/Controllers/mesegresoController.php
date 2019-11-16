@@ -17,10 +17,10 @@ class mesegresoController extends Controller
     public function index()
     {
         $mesegreso = DB::SELECT("
-        SELECT SUM(monto) AS egreso
-         FROM contabilidad
-            WHERE DATE_FORMAT(fecha, '%m') = (SELECT MONTH(CURDATE()))
-            and tipo=2
+        SELECT monto,idscu
+        FROM contabilidad
+           WHERE DATE_FORMAT(fecha, '%m') = (SELECT MONTH(CURDATE()))
+           AND tipo=2
         ");
         return $mesegreso;
     }

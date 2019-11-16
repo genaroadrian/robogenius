@@ -148,11 +148,11 @@ export class HomefclasesComponent implements OnInit {
       this.res=this.res.filter(element=>element.folio.slice(6,9)==this.areacs)
     }else if(this.areacs.length==6){
       this.res=this.res.filter(element=>element.folio.slice(6,12)==this.areacs)
-    }else{
+    }else if(this.areacs.length==9){
     this.res=this.res.filter(element=>element.folio.slice(6,15)==this.areacs)
+    }else{
+    this.res=this.letras
     }
-    console.log(this.areacs.slice(0,10))
-    console.log(this.res)
 
     this.letras=this.res;
     // this.nivels+this.grads+this.areacs+this.subareacs;

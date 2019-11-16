@@ -17,7 +17,7 @@ class mesController extends Controller
     public function index()
     {
         $mes = DB::SELECT("
-        SELECT SUM(suma) AS suma
+        SELECT suma,idscu
          FROM contabilidad
             WHERE DATE_FORMAT(fecha, '%m') = (SELECT MONTH(CURDATE()))
         ");

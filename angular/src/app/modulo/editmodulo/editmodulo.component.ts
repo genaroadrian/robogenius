@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material';
 import { EditsesionesComponent } from 'src/app/sesiones/editsesiones/editsesiones.component';
 import { SesionesService } from 'src/app/services/sesiones.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
+import * as jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-editmodulo',
@@ -94,5 +95,137 @@ export class EditmoduloComponent implements OnInit {
       }
     })
   }
+
+  pdf(info){
+    
+    let docs = new jsPDF();
+
+
+
+    var img = new Image()
+    var rows1 = [];
+    var rows2 = [];
+    var rows3 = [];
+    img.src = 'assets/images/logola.png'
+    docs.addImage(img, 'png', 159,4, 40,10)
+    docs.setFontSize(14);
+    docs.addFont("Arimo-Regular.ttf", "Arimo", "normal");
+    docs.setFontType("normal");
+    docs.text(10,30, 'Tema: ' + this.plan.ntema );
+    docs.text(10,40, 'Subtema: ' + this.plan.nt);
+    docs.setFontSize(12);
+    docs.text(10,60, 'Nivel: ' + this.plan.n );
+    docs.text(170,60, 'Grado: ' + this.plan.g );
+    docs.setFontSize(10);
+    docs.text(10,10, 'Folio: ' + this.folio);
+    docs.text(74,20,'*Clase recomendada para '+this.plan.no_alu+ ' alumnos')
+    docs.setFontSize(12);
+    docs.text(10,80, 'Area del Conocimiento: ');
+    docs.setDrawColor(255, 0, 0);
+    docs.line(10,82, 60, 82);
+    docs.setFontSize(10);
+
+    let l = 87;
+    this.detalleClases.forEach(function(element,index){
+      
+      if(element.ac!=null){
+        var temp = [element.ac];
+        rows1.push(temp);
+      docs.text(14,l,"*" + rows1[index])
+      l=l+4;
+
+      }
+
+      
+    }); 
+    docs.setFontSize(12);
+
+    docs.text(90,80, 'Sub-area del Conocimiento: ');
+    docs.setDrawColor(255, 0, 0);
+    docs.line(90,82,145, 82);
+    docs.setFontSize(10);
+
+    let sac = 87;
+    this.detalleClases.forEach(function(element,index){
+      if(element.sac!=null){
+        var s = [element.sac];
+        rows2.push(s);
+      docs.text(94,sac,"*" + rows2[index])
+      sac=sac+4;
+
+      }
+
+      
+    }); 
+
+    docs.setFontSize(12);
+
+    docs.text(174,80, 'Herramientas: ');
+    docs.setFontSize(10);
+    docs.setDrawColor(255, 0, 0);
+
+    docs.line(172,82,204,82);
+
+    let x = 87;
+    this.detalleClases.forEach(function(element,index){
+      if(element.h!=null){
+        var s = [element.h];
+        rows3.push(s);
+      docs.text(181,x,"*" + rows3[index])
+      x=x+4;
+
+      }
+
+      
+    }); 
+    docs.setFontSize(13);
+    docs.text(64,100, 'Nombre de la session: ' + info.nombre);
+    docs.text(74,110, 'Objetivo: ' + info.objetivo);
+    docs.setFontSize(12);
+ 
+    var lMargin=15; //left margin in mm
+    var rMargin=15; //right margin in mm
+    var pdfInMM=210;  // width of A4 in mm
+	var paragraph="Introduccion: "+info.introduccion;
+	var paragraph1="Desarrollo: "+info.desarrollo;
+	var paragraph2="Contenido: "+info.contenido;
+  var paragraph3="Material: "+info.mat_necesario;
+	var paragraph4="Ice Break: "+info.ice_break;
+	var paragraph7="Descanso: "+info.descanso;
+	var paragraph8="Cierre: "+info.cierre;
+		
+   var lines =docs.splitTextToSize(paragraph, (pdfInMM-lMargin-rMargin));
+   var lines1 =docs.splitTextToSize(paragraph1, (pdfInMM-lMargin-rMargin));
+   var lines2 =docs.splitTextToSize(paragraph2, (pdfInMM-lMargin-rMargin));
+   var lines3 =docs.splitTextToSize(paragraph3, (pdfInMM-lMargin-rMargin));
+   var lines4 =docs.splitTextToSize(paragraph4, (pdfInMM-lMargin-rMargin));
+   var lines7 =docs.splitTextToSize(paragraph7, (pdfInMM-lMargin-rMargin));
+   var lines8 =docs.splitTextToSize(paragraph8, (pdfInMM-lMargin-rMargin));
+
+   docs.text(17,120, 'Aprendizaje clave: ' + info.apren_clave);
+
+	docs.text(lMargin,140,lines);
+	docs.text(lMargin,180,lines1);
+	docs.text(lMargin,220,lines2);
+  docs.text(lMargin,260,lines3);  
+  docs.addPage();         
+  docs.text(lMargin,20,lines4); 
+	docs.text(lMargin,60,lines7);    
+	docs.text(lMargin,90,lines8);    
+   
+
+    // docs.text(17,170, 'Ice break: ' + info.ice_break);
+    // docs.text(17,180, 'Descanso: ' + info.descanso);
+    // docs.text(17,190, 'CIerre: ' + info.cierre);
+
+
+  
+
+    docs.save(info.nombre +'.pdf');
+
+   }
+
+
+  
 
 }

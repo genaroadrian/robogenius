@@ -1,3 +1,6 @@
-<p>
-  deletesesiones works!
-</p>
+<h3 mat-dialog-tittle >Decea eliminar la sesion: <strong>{{data.nombre}}</strong></h3>
+
+<div mat-dialog-actions>
+  <button class="btn btn-success"   [mat-dialog-close]="1" style="margin-left: 140px; margin-right: 40px;">Guardar</button>
+        <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+</div>

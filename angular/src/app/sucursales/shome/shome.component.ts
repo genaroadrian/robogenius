@@ -144,6 +144,7 @@ export class ShomeComponent implements OnInit {
         this.sucursalService.add(this.sucursalService.getDialogData()).subscribe((data) => {
           this.dialogAdd = data
           this.exampleDatabase.dataChange.value.push(this.dialogAdd);
+          this.ingresos.push(this.dialogAdd)
           this.refreshTable();
           this.showSuccessAdd()
           this.hideBarra()

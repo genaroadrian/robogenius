@@ -50,7 +50,7 @@
               <mat-form-field class="col-xl-10">
                 <mat-label>Áreas de conocimiento: </mat-label>
                 <mat-select [(value)]="AREA" (selectionChange)="gettema(AREA, $event)" multiple [disabled]="dis">
-                  <mat-option *ngFor="let area of areadelconocimiento" value="{{area.idac}}">{{area.nomarea}}
+                  <mat-option *ngFor="let area of areas" value="{{area.idac}}">{{area.nombre}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
@@ -117,7 +117,7 @@
               </mat-form-field>
               <button matTooltip="agregrar un nuevo subtema" class="agregrar"
                 aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2"
-                mat-icon-button (click)="substemamodal()">
+                mat-icon-button (click)="subtemaModal()">
                 <mat-icon>add</mat-icon>
               </button>
             </div>

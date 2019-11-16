@@ -25,7 +25,7 @@ export class TemaService {
     this.sucursal=localStorage.getItem('sucursal')
   }
   //AGREGAR EN MODAL
-  addd(tema: tema)
+  addd(tema)
   {
     console.log(tema);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
@@ -67,7 +67,8 @@ export class TemaService {
   }
 
   /* Metodo que recibe los datos del formulario y los guarda en la variable dialogData */
-  addTema (tema: tema): void {
+  addTema (tema) {
+    console.log(tema)
     this.dialogData = tema
   }
 

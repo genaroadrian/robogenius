@@ -58,7 +58,7 @@ export class SesionesService {
   
   delete(id:number)
   {
-    return this.httpClient.delete(this.API_ENDPOINT+'/sesoines/'+id)
+    return this.httpClient.delete(this.API_ENDPOINT+'/sesiones/'+id)
   }
 
 }

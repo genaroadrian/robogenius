@@ -11,6 +11,10 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 export class ModuloService {
   API_ENDPOINT = 'http://localhost:8000/api';
 
+  dialogData: any
+  extraData: any
+  plan: any
+
   constructor(private httpClient: HttpClient) { }
 
   geta() {
@@ -45,6 +49,53 @@ export class ModuloService {
     const headers = new HttpHeaders({"Content-Type":"application/json"});
     return this.httpClient.post(this.API_ENDPOINT+'/planeaciones',data,{headers: headers})
 
+  }
+
+  editDC(data, folio)
+  {
+    console.log(data)
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
+    return this.httpClient.put(this.API_ENDPOINT+'/detalleclases/'+folio,data)
+  }
+
+  edit(data)
+  {
+    this.dialogData = data
+  }
+
+  getDialogData()
+  {
+    return this.dialogData
+  }
+
+  saveExt(data)
+  {
+    this.extraData = data
+  }
+
+  retExt()
+  {
+    return this.extraData
+  }
+
+  savePlantemp(data)
+  {
+    this.plan = data
+  }
+
+  getPlan()
+  {
+    return this.plan
+  }
+
+  editPlan(data)
+  {
+
+  }
+
+  deleteDC(id)
+  {
+    return this.httpClient.delete(this.API_ENDPOINT+'/detalleclases/'+id)
   }
 
 }

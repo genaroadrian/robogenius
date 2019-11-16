@@ -1,0 +1,12 @@
+<div class="container">
+
+  <h3 mat-dialog-tittle >¿Estas seguro de que deceas eliminar esta planeación?</h3>
+  
+  <div mat-dialog-content></div>
+
+  <div nat-dialog-actions>
+    <button class="btn btn-success"  [mat-dialog-close]="1" (click)="confirmnivel()" style="margin-left: 90px;margin-right:40px;">Eliminar</button>
+    <button class="btn btn-danger"  (click)="onNoClick()" tabindex="-1">Cancelar</button>
+  </div>
+
+</div>

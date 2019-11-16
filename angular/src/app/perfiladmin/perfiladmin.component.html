@@ -34,7 +34,7 @@
 
 
 <div class="row col-xl-12 fondodb" *ngFor="let c of logs">
-  <div class="col-xl-4">
+  <div class="col-xl-3">
     <br>
     <i class="mdi mdi-key-variant"> </i> <label> ID: </label>
     <span> {{c.id}} </span>
@@ -59,7 +59,7 @@
     <br>
 
   </div>
-  <div class="col-xl-8" style="max-width: none;">
+  <div class="col-xl-9" style="max-width: none;">
     <!-- ----------------------- Tabs ----------------------- -->
     <mat-tab-group>
       <!-- Tab de membresia -->
@@ -71,8 +71,11 @@
         <div class="container">
           <mat-accordion>
             <h4 style="text-align: center;">Sucursales</h4>
-
+            
           </mat-accordion>
+
+
+          <app-shome></app-shome>
         </div>
       </mat-tab>
       <!-- Tab de Horario -->

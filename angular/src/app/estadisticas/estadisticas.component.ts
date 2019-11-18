@@ -154,13 +154,24 @@ ingresodelmes:any;
     this.categoriaservice.sumaegreso()
     .subscribe(data=>{
       this.sumaegre=data;
+
     })
 
     var a = this._graficas.egresos()
     .subscribe(a=>{
       this.logss= a;
-
-      this.selecionado = this.logss.map(a => a.total);
+      this.logss=this.logss.filter(d => d.idscu==this.sucursal)
+      var diae = 0;
+      
+      this.logss = this.logss.map(a=>{
+        if(a.monto == null){
+          a.monto=0
+         }
+         diae+=a.monto;
+      })
+      var dians = diae.toString();
+      var diacss = [dians, "0", "0"];
+      this.selecionado = diacss
       this.totaless = this.selecionado;
 
 
@@ -168,9 +179,22 @@ ingresodelmes:any;
     
     var x = this._graficas.ingresos()
     .subscribe(x=>{
+      
       this.logs=x;
-     
-      this.selecteds = this.logs.map(y => y.total);
+
+      this.logs=this.logs.filter(d => d.idscu==this.sucursal);
+
+      var dia = 0;
+
+      this.logs = this.logs.map(a=>{
+        if(a.suma == null){
+          a.suma=0
+         }
+         dia+=a.suma;
+      })
+      var dian = dia.toString();
+      var diacs = [dian, "0", "0"];
+      this.selecteds=diacs
       this.totales = this.selecteds;
 
 

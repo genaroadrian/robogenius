@@ -16,7 +16,7 @@ class sumaegresosController extends Controller
      */
     public function index()
     {
-        $egresos = DB::SELECT("SELECT SUM(monto) as total FROM contabilidad WHERE activo = 1 AND tipo = 2 AND fecha = (SELECT CURDATE()); ");
+        $egresos = DB::SELECT("SELECT monto,idscu FROM contabilidad WHERE activo = 1 AND tipo = 2 AND fecha = (SELECT CURDATE()); ");
         return $egresos; 
     }
 

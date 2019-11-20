@@ -78,7 +78,7 @@ export class ShomeComponent implements OnInit {
 
   tipoChange(value:string) {
     
-    // console.log(this.archivo);
+    console.log(value);
     localStorage.removeItem('sucursal');
     localStorage.setItem('sucursal' , value);
     this.router.navigateByUrl('/home'); 

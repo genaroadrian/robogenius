@@ -44,11 +44,18 @@ import { SubtemaService } from '../services/subtema.service';
 })
 export class ModuloComponent implements OnInit {
 
+  checked = true
+
   no_s: number
+  
+  barraS: string = 'none'
+
+  colorTab: string = 'accent'
 
   /* Almacena todas las sesiones que se van a insertar en la base de datos 
   en forma de arreglo */
   allSesiones = [{
+    idsesion: null,
     nombre: null,
     apren_clave: null,
     objetivo: null,
@@ -61,8 +68,15 @@ export class ModuloComponent implements OnInit {
     cierre: null,
   }]
 
+  bcT: string = '#28B463'
+  colorT: string = '#FDFEFE'
+
+  filesView = []
+  btnView = []
+
   /* Almancena una sesion por separado en forma de diccionario de datos */
   singleSesion = {
+    idsesion: null,
     nombre: null,
     apren_clave: null,
     objetivo: null,
@@ -81,6 +95,7 @@ export class ModuloComponent implements OnInit {
   dis = false
   disFecha = true
   buttonView = ''
+  disSesion = []
 
 /* Variables de las tabs */
   tabs = ['Sesion'];
@@ -159,9 +174,14 @@ export class ModuloComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.filesView[0] = 'none'
+    this.btnView[0] = ''
+    this.disSesion[0] = false
+
     let n = Math.round(Math.random() * 100000);
     this.idfolio = n.toString()
-    console.log(this.idfolio + this.nivels + this.grads + this.areacs)
+    // console.log(this.idfolio + this.nivels + this.grads + this.areacs)
     this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.idfolio
     this.numero = 1
     this.ns = 1
@@ -182,7 +202,7 @@ export class ModuloComponent implements OnInit {
 
     this.moduloService.geta().subscribe((data) => {
       this.areas = data
-      console.log(this.areas)
+      // console.log(this.areas)
     }, (error) => {
     })
 
@@ -202,7 +222,7 @@ export class ModuloComponent implements OnInit {
   /* Index de la sesion */
   session(index) {
     this.ns = index;
-    console.log(index)
+    // console.log(index)
   }
 
   manda(e) {
@@ -213,6 +233,7 @@ export class ModuloComponent implements OnInit {
   /* Funciones de las tabs */
   addTab(selectAfterAdding: boolean) {
     this.allSesiones.push({
+      idsesion: null,
       nombre: null,
       apren_clave: null,
       objetivo: null,
@@ -224,6 +245,9 @@ export class ModuloComponent implements OnInit {
       desarrollo: null,
       cierre: null
     })
+    this.filesView.push('none')
+    this.btnView.push('')
+    this.disSesion.push(false)
     this.tabs.push('Sesion');
     if (selectAfterAdding) {
       this.selected.setValue(this.tabs.length - 1);
@@ -233,7 +257,10 @@ export class ModuloComponent implements OnInit {
 
   }
   removeTab(index: number) {
+    this.filesView.splice(index,1)
+    this.btnView.slice(index,1)
     this.tabs.splice(index, 1);
+    this.disSesion.splice(index,1)
     this.numero = this.numero - 1;
   }
   agregarTab(index: number) {
@@ -306,11 +333,11 @@ export class ModuloComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result == 1) {
-        console.log(this.areas)
+        // console.log(this.areas)
         this.showBarra()
         this.areaService.addd(this.areaService.getDialogData()).subscribe((data) => {
           this.areas.push(data)
-          console.log(this.areas)
+          // console.log(this.areas)
           this.notifications.showSuccessAdd();
           this.hideBarra();
         }, (error) => {
@@ -502,9 +529,9 @@ export class ModuloComponent implements OnInit {
     let tema: any // Obtiene un array de todos los temas 
     let filtered = [] // Nuevo Array con los temas ya filtrados
     AREA.forEach(function (value, index, array) {
-      // console.log(value)
+      // // console.log(value)
       tema = newarray.filter(tem => tem.idac == value)
-      // console.log(tema)
+      // // console.log(tema)
       tema.forEach(function (value, index, array) {
         filtered.push(value)
       })
@@ -521,7 +548,7 @@ export class ModuloComponent implements OnInit {
     })
 
     this.temasSearch = this.tema
-    console.log(this.tema)
+    // console.log(this.tema)
   }
   getsubtema(TEMA, event) {
     let text = event.source.selected._element.nativeElement
@@ -619,14 +646,14 @@ export class ModuloComponent implements OnInit {
     this.dClases = dClase
     this.barra = ''
     this.moduloService.saveDClases(this.dClases).subscribe((data) => {
-      console.log(data)
+      // console.log(data)
       this.notifications.showSuccessAdd()
       this.barra = 'none'
       this.sesionesView = ''
       this.dis = true
       this.buttonView = 'none'
     }, (error) => {
-      console.log(error)
+      // console.log(error)
       this.barra = 'none'
     })
   }
@@ -634,14 +661,20 @@ export class ModuloComponent implements OnInit {
 
   saveSesion(singleSesion, index) {
     
+
     let id: number
     let ndata: any
-    console.log(singleSesion)
-    this.barra = ''
+    this.barraS = ''
     this.sesionesService.add(singleSesion).subscribe((data) => {
+      let s: any = data
+      this.allSesiones[index].idsesion = s.idsesion
+      // console.log(this.allSesiones[index].idsesion)
+      this.filesView[index] = ''
+      this.btnView[index] = 'none'
+      this.disSesion[index] = true
       ndata = data
       id = ndata.idsesion
-
+      this.moduloService.getIdSesion(id)
       let planeaciones = {
         idt: this.vTema,
         ids: this.vSubtema,
@@ -655,19 +688,19 @@ export class ModuloComponent implements OnInit {
       }
 
       this.moduloService.savePlan(planeaciones).subscribe((data) => {
-        console.log(data)
-        this.barra = "none"
+        // console.log(data)
+        this.barraS = "none"
         this.notifications.showSuccessAdd()
       }, (error) => {
-        console.log(error)
-        this.barra = 'none'
+        // console.log(error)
+        this.barraS = 'none'
         this.notifications.showError()
       })
 
-      console.log(planeaciones)
+      // console.log(planeaciones)
     }, (error) => {
-      console.log(error)
-      this.barra = 'none'
+      // console.log(error)
+      this.barraS = 'none'
       this.notifications.showError()
     })
 
@@ -675,7 +708,7 @@ export class ModuloComponent implements OnInit {
 
   herraSearch(value)
   {
-    console.log(this.herramientas)
+    // console.log(this.herramientas)
     this.herramientas = this.herramientasSearch
     let crit = value.trim().toLowerCase()
     let herramientas = this.herramientas

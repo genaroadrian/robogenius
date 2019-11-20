@@ -3,4 +3,5 @@ export interface Tipomembresia {
     nombre: string,
     costo: number,
     clases: string,
+    idesc: number
 }

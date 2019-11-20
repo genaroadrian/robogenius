@@ -25,6 +25,9 @@
             <div class="col-xl-4 col-md-12 ">
             </div>
           </div>
+          <div class="container" [ngStyle]="{display:viewesc}">
+            <h2>El alumno quedo inscrito en: </h2>
+          </div>
           <div class="col-xl-12 col-md-12" [ngStyle]="{display:alumnosview}">
 
             <!-- ---------------------------- Iniio del formulario ---------------------------- -->
@@ -45,7 +48,6 @@
                     <mat-form-field>
                       <input matInput [(ngModel)]="alumno.nomalu" upperCase name="nomalu" placeholder="Nombre"
                         type="text">
-
                     </mat-form-field>
                   </div>
 
@@ -67,6 +69,7 @@
                     <mat-form-field>
                       <input matInput [(ngModel)]="alumno.telalu" #uno maxlength="10" name="alumno.telalu"
                         placeholder="Telefono" type="text" pattern="[0-9]{10}">
+                        <mat-icon matSuffix class="text-info">phone_android</mat-icon>
                       <mat-hint align="end">{{uno.value.length}} / 10</mat-hint>
                       <mat-error *ngIf="formControl.invalid"> Teléfono inccorrecto
                       </mat-error>
@@ -82,8 +85,9 @@
 
                   <div class="form col-xl-4">
                     <mat-form-field class="example-full-width">
-                      <input matInput  [(ngModel)]="alumno.correoalu" #input name="correoalu" placeholder="Correo"
+                      <input matInput [(ngModel)]="alumno.correoalu" #input name="correoalu" placeholder="Correo"
                         pattern="[^ @]*@[^ @]*" required>
+                        <mat-icon matSuffix class="text-warning">email</mat-icon>
                       <mat-error *ngIf="formControl.invalid"> Correo Incorrecto
                       </mat-error>
                     </mat-form-field>
@@ -108,6 +112,7 @@
                     <mat-form-field>
                       <input [(ngModel)]="alumno.fnacalu" matInput placeholder="Fecha de nacimiento" type="date"
                         name="fnacalu" required>
+                        <mat-icon matSuffix class="text-danger">today</mat-icon>
                     </mat-form-field>
                   </div>
                 </div>
@@ -119,6 +124,7 @@
                     <mat-form-field color="primary">
                       <textarea [(ngModel)]="alumno.domalu" matInput placeholder="Domicilio" name="domalu"
                         required></textarea>
+                        <mat-icon matSuffix class="text-danger">room</mat-icon>
                       <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
                   </div>
@@ -181,16 +187,16 @@
                     </mat-form-field>
                   </div>
 
-
                   <!-- -------------------------------------- Evaluacion -------------------------------------- -->
-
 
                 </div>
 
                 <h3>Escuela en la que estará inscrito</h3>
                 <mat-form-field>
                   <mat-label>Escuela</mat-label>
-                  <mat-select [(ngModel)]="alumno.idesc" name="idesc" required>
+                  <mat-select [(ngModel)]="alumno.idesc" name="idesc" required
+                    (selectionChange)="escuelasChange(alumno.idesc)">
+                    <mat-option value="{{ids}}">Sucursal {{noms}} </mat-option>
                     <mat-option *ngFor="let esc of escuelas" value="{{esc.idesc}}">{{esc.nombre}}</mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -208,6 +214,7 @@
                     <mat-form-field color="primary">
                       <input matInput #input placeholder="Usuario" [(ngModel)]="alumno.usuarioalu" name="usuarioalu"
                         required>
+                        <mat-icon matPrefix class="text-info">person_pin</mat-icon>
                       <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
                   </div>
@@ -218,6 +225,7 @@
                     <mat-form-field [ngStyle]="{display:visibility}">
                       <input [(ngModel)]="alumno.pswalu" matInput placeholder="Contraseña" name="pswalu"
                         [type]="hide ? 'password' : 'text'" [disabled]="isDisable" required>
+                        <mat-icon matPrefix class="text-warning">lock</mat-icon>
                       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                       <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
@@ -260,6 +268,7 @@
                     <mat-form-field class="example-full-width">
                       <input matInput [(ngModel)]="alumno.telpad" #hola maxlength="10" name="alumno.telpad"
                         placeholder="Telefono" type="text" pattern="[0-9]{10}">
+                        <mat-icon matSuffix class="text-info">phone_android</mat-icon>
                       <mat-hint align="end">{{hola.value.length}} / 10</mat-hint>
                       <mat-error *ngIf="formControl.invalid"> Teléfono inccorrecto
                       </mat-error>
@@ -278,6 +287,7 @@
                     <mat-form-field class="example-full-width">
                       <input matInput [(ngModel)]="alumno.correopad" #input name="correopad" placeholder="Correo"
                         pattern="[^ @]*@[^ @]*" required>
+                        <mat-icon matSuffix class="text-warning">email</mat-icon>
                       <mat-error *ngIf="formControl.invalid"> Correo Incorrecto
                       </mat-error>
                     </mat-form-field>
@@ -296,6 +306,7 @@
                     <mat-form-field color="primary">
                       <textarea [(ngModel)]="alumno.dompad" matInput placeholder="Domicilio" name="dompad"
                         required></textarea>
+                        <mat-icon matSuffix class="text-danger">room</mat-icon>
                       <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
                   </div>
@@ -337,6 +348,7 @@
                     <mat-form-field class="example-full-width">
                       <input matInput [(ngModel)]="alumno.telmad" #message maxlength="10" name="alumno.telmad"
                         placeholder="Telefono" type="text" pattern="[0-9]{10}">
+                        <mat-icon matSuffix class="text-info">phone_android</mat-icon>
                       <mat-hint align="end">{{message.value.length}} / 10</mat-hint>
                       <mat-error *ngIf="formControl.invalid"> Teléfono inccorrecto
                       </mat-error>
@@ -356,6 +368,7 @@
                     <mat-form-field class="example-full-width">
                       <input matInput [(ngModel)]="alumno.correomad" #input name="correomad" placeholder="Correo"
                         pattern="[^ @]*@[^ @]*" required>
+                        <mat-icon matSuffix class="text-warning">email</mat-icon>
                       <mat-error *ngIf="formControl.invalid"> Correo Incorrecto
                       </mat-error>
                     </mat-form-field>
@@ -376,6 +389,7 @@
                     <mat-form-field color="primary">
                       <textarea [(ngModel)]="alumno.dommad" matInput placeholder="Domicilio" name="dommad"
                         required></textarea>
+                        <mat-icon matSuffix class="text-danger">room</mat-icon>
                       <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
                   </div>
@@ -538,14 +552,13 @@
           <div class="grupoalu col-xl-12" [ngStyle]="{display:gruposview}">
             <h3 style="text-align: center;">Asignación de grupos</h3>
             <h4 style="text-align: center;">Clase {{clasenow}} de {{tclases}} </h4>
-            <form>
+            <form #fControl="ngForm">
               <div class="row col-xl-12">
 
                 <div class="col-xl-4">
                   <mat-form-field>
                     <mat-label>Seleccione un dia</mat-label>
-                    <mat-select [(value)]="diavalue" [(ngModel)]="dia.iddia" name="iddia" required
-                      (selectionChange)="diasChange(dia)">
+                    <mat-select [(value)]="diavalue" [(ngModel)]="dia.iddia" name="iddia" required (selectionChange)="diasChange(dia)">
                       <mat-option value="1">Lunes</mat-option>
                       <mat-option value="2">Martes</mat-option>
                       <mat-option value="3">Miércoles</mat-option>
@@ -553,6 +566,7 @@
                       <mat-option value="5">Viernes</mat-option>
                       <mat-option value="6">Sábado</mat-option>
                     </mat-select>
+                    <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
                   </mat-form-field>
                 </div>
 
@@ -570,6 +584,7 @@
                         {{ho.hora}}
                       </mat-option>
                     </mat-select>
+                    <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
                   </mat-form-field>
                 </div>
 
@@ -585,13 +600,14 @@
                         [ngStyle]="{'display':labelp}">
                         {{per.nombre}} {{per.apellidos}}</mat-option>
                     </mat-select>
+                    <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
                   </mat-form-field>
                 </div>
               </div>
               <!-- <button  class="btn btn-success" (click)="" > Guardar</button> -->
 
 
-              <button style="margin:0 40px 0 44% ;" [disabled]="clasesbutton" class="btn btn-warning"
+              <button style="margin:0 40px 0 44% ;" [disabled]="clasesbutton || !fControl.valid" class="btn btn-warning"
                 (click)="saveGalu()" routerLinkActive="router-link-active" tabindex="-1">
                 Guardar</button>
 
@@ -604,9 +620,6 @@
       </div>
     </div>
   </div>
-  <div class="container">
-
-
-
-  </div>
+  
 </div>
+

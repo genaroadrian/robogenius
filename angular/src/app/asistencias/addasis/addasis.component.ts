@@ -72,7 +72,7 @@ export class AddasisComponent implements OnInit {
     }, (error) => {
       this.notificacionService.showError()
       this.hideBarra()
-      // console.log(error)
+      console.log(error)
     })
   }
 
@@ -93,7 +93,7 @@ export class AddasisComponent implements OnInit {
     this.showBarra()
     this.asistenciaService.historial(this.data).subscribe((data) => {
       this.hideBarra()
-      // console.log(data)
+      console.log(data)
       this.history = data
       // history = history.filter()
       var hash = {};

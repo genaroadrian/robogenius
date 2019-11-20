@@ -88,3 +88,5 @@ Route::resource('sesiones', 'sesionesController');
 Route::resource('detalleclases', 'detalleclasesController');
 Route::resource('planeaciones', 'planeacionesController');
 Route::resource('vistamodulo', 'moduloClasesController');
+Route::resource('files', 'FilesController');
+Route::get('filesdownload', 'FilesController@download');

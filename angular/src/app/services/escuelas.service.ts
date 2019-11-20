@@ -17,6 +17,7 @@ export class EscuelasService {
 
   // Datos termporales que se recibiran desde los modales 
   dialogData: any;
+  dialogMembresia: any
 
   sucursal:any;
   datos:any;
@@ -39,6 +40,11 @@ export class EscuelasService {
     });
   }
 
+  addMem(data)
+  {
+    this.dialogMembresia = data
+  }
+
   get()
   {
     return this.httpClient.get(this.API_ENDPOINT+'/escuelas')
@@ -58,6 +64,11 @@ export class EscuelasService {
   /* Retorna la variable con los datos ya obtenidos de los modales */
   getDialogData() {
     return this.dialogData;
+  }
+
+  getMembresiaData()
+  {
+    return this.dialogMembresia
   }
 
 

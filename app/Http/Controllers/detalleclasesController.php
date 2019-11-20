@@ -28,7 +28,7 @@ class detalleclasesController extends Controller
         {
             $dc = new Detalleclases();
             // $dc->idarchivo = $all['idarchivo'];
-            $dc->idarchivo = 1;
+            // $dc->idarchivo = 1;
             $dc->idac = $all['idac'];
             $dc->idsac = $all['idsac'];
             $dc->idherra = $all['idherra'];

@@ -34,3 +34,17 @@ h1,h2{
 .rec{
     color: goldenrod;
 }
+
+
+.icono-file {
+    width: 80px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    
+}
+
+.container-file 
+{
+    text-align: center;
+}

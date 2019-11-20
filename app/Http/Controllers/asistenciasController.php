@@ -27,7 +27,7 @@ class asistenciasController extends Controller
         $asis->hora = $all['hora'];
         $asis->idper = $all['idper'];
         $asis->idalu = $all['idalu'];
-        $asis->idesc = $all['idesc'];
+        // $asis->idesc = $all['idesc'];
         $asis->asis = $all['asis'];
         $asis->save();
         }

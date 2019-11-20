@@ -29,11 +29,21 @@ class perperfilgrupController extends Controller
     {
         
         $id = $request->idper;
-        $sql = \DB::select("SELECT detallegrupos.iddgru, dias.dia, horario.hora, escuelas.idesc,escuelas.nombre
-        FROM detallegrupos, dias, horario, escuelas
-        WHERE dias.iddia = detallegrupos.idd 
-        AND horario.idh = detallegrupos.idh AND detallegrupos.idesc = escuelas.idesc AND detallegrupos.idp = '$id'");
+        // $sql = \DB::select("SELECT detallegrupos.iddgru, dias.dia, horario.hora, escuelas.idesc,escuelas.nombre
+        // FROM detallegrupos, dias, horario, escuelas
+        // WHERE dias.iddia = detallegrupos.idd 
+        // AND horario.idh = detallegrupos.idh AND detallegrupos.idesc = escuelas.idesc AND detallegrupos.idp = '$id'");
         
+        $sql = \DB::select("SELECT detallegrupos.iddgru, dias.dia, horario.hora, escuelas.nombre, sucursal.nombre AS nomsuc
+        FROM  dias, horario, 
+        detallegrupos LEFT JOIN escuelas ON
+        detallegrupos.idesc = escuelas.idesc
+        LEFT JOIN sucursal ON
+        detallegrupos.idsuc = sucursal.idsuc
+        WHERE dias.iddia = detallegrupos.idd 
+        AND horario.idh = detallegrupos.idh AND detallegrupos.idp = '$id'");
+
+
         return $sql;
     }
 

@@ -22,7 +22,7 @@ class horarioperfilalumnosController extends Controller
     {
         $sql = new Grupos_alumnos();
         $sql->idalu = $request->idalu;
-        $sql->idg = $request->iddgru;
+        $sql->idg = $request->idg;
         $sql->activo = 1;
         $sql->save();
         // return $request;

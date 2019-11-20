@@ -14,7 +14,7 @@ class moduloClasesController extends Controller
         planeaciones.no_alu
         FROM tema, subtema, detalleclases, planeaciones, niveles, grados
         WHERE detalleclases.folio = planeaciones.folio  AND planeaciones.idt = tema.idt
-        AND planeaciones.ids = subtema.ids AND planeaciones.idg = grados.idg AND planeaciones.idn = niveles.idn and detalleclases.activo = 1 GROUP BY idt";
+        AND planeaciones.ids = subtema.ids AND planeaciones.idg = grados.idg AND planeaciones.idn = niveles.idn AND detalleclases.activo = 1 GROUP BY folio";
 
         $vista = DB::select($sql);
         return $vista;
@@ -35,6 +35,7 @@ class moduloClasesController extends Controller
         $plan = DB::select("SELECT * FROM planeaciones WHERE folio = '$folio' and activo = 1");
         $ret = [];
         $sesiones = [];
+        $archivos = [];
         array_push($ret, $dc, $plan);
         foreach ($plan as $p)
         {
@@ -43,6 +44,14 @@ class moduloClasesController extends Controller
         }
         // $ret = [$dc,$plan];
         array_push($ret, $sesiones);
+
+        foreach ($sesiones as $s)
+        {
+            // $archivo = ;
+            array_push($archivos, DB::select("SELECT * FROM archivos WHERE ids = ?",[$s->idsesion]));
+        }
+        array_push($ret,$archivos);
+
         return $ret;
     }
 }

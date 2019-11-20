@@ -13,6 +13,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { NotificationsService } from 'src/app/services/notifications.service';
+import { TipomembresiaService } from 'src/app/services/tipomembresia.service';
 
 
 
@@ -52,7 +53,8 @@ export class HomeComponent implements OnInit {
 
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public escuelasService: EscuelasService, private router: Router, public toastr: ToastrManager,public notifications:NotificationsService) { }
+    public escuelasService: EscuelasService, private router: Router, public toastr: ToastrManager,
+    public notifications:NotificationsService, public tipomembresiaService: TipomembresiaService) { }
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;
@@ -118,6 +120,13 @@ export class HomeComponent implements OnInit {
         this.escuelasService.add(this.escuelasService.getDialogData()).subscribe((data) => {
           this.escuelasAdd = data
           this.exampleDatabase.dataChange.value.push(this.escuelasAdd);
+          let membresia = this.escuelasService.getMembresiaData()
+          membresia.idesc = this.escuelasAdd.idesc
+          this.tipomembresiaService.add(membresia).subscribe((data)=>{
+            console.log(data)
+          },(error)=>{
+            console.log(error)
+          })
           this.refreshTable()
           this.notifications.showSuccessAdd()
           this.hideBarra()

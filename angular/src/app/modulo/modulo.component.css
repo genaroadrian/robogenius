@@ -1,6 +1,7 @@
-button{
+.agregar{
   background-color: cornflowerblue;
    color:white;
+   width: 150%;
 }
 /* Structure */
 .container {

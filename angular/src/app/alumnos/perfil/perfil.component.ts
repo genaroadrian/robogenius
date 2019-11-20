@@ -217,6 +217,7 @@ export class PerfilComponent implements OnInit {
 
     /* Obtiene los datos del alumno (se obtienen de perfilService en el metodo "ret"), su historial de membresias y su horario */
     this.datos = this.perfilService.ret()
+    console.log(this.datos)
     this.membresias();
     this.horarios();
 

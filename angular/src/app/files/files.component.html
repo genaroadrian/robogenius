@@ -1,0 +1,98 @@
+<div class="col-xl-12 col-md-12 ">
+
+
+    <div class="col-xl-8" style="max-width: none;">
+        <!-- ----------------------- Tabs ----------------------- -->
+        <mat-tab-group>
+            <!-- Tab archivos -->
+            <mat-tab style="width: 90%">
+                <ng-template mat-tab-label>
+                    <i class="mdi mdi-file-document-box manuales"></i> Manuales
+                </ng-template>
+                <div class="container">
+                        <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barraC}"></mat-progress-bar>
+                    <mat-accordion>
+                        
+                        <div class="custom-dropzone" ngx-dropzone [accept]="'image/*,.pdf,.docx'" (change)="onSelectMa($event)">
+                            <ngx-dropzone-label>
+                                <div>
+                                    <h2>Selecciona tus archivos o arrastralos aqui</h2>
+                                </div>
+                            </ngx-dropzone-label>
+                            <ngx-dropzone-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f" [removable]="true" (removed)="onRemoveMa(f)">
+                                <ngx-dropzone-label>
+                                    <p class="file-name">{{ f.name }}</p> 
+                                    <p class="file-name">({{ f.type }})</p>
+                                </ngx-dropzone-label>
+                            </ngx-dropzone-preview>
+                        </div>
+                    </mat-accordion>
+                </div>
+            </mat-tab>
+            <!-- Tab archivos-->
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <i class="mdi mdi-laptop-windows programacion"></i> Programación
+                </ng-template>
+                <div class="container">
+                    
+                    <div class="custom-dropzone" ngx-dropzone [accept]="'.html,.php,.py'" (change)="onSelectPro($event)">
+                        <ngx-dropzone-label>
+                            <div>
+                                <h2>Selecciona tus archivos o arrastralos aqui</h2>
+                            </div>
+                        </ngx-dropzone-label>
+                        <ngx-dropzone-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let pro of progra" [file]="pro" [removable]="true" (removed)="onRemovePro(pro)">
+                            <ngx-dropzone-label><span class="container">{{ pro.name }} ({{ pro.type }})</span></ngx-dropzone-label>
+                        </ngx-dropzone-preview>
+                    </div>
+                </div>
+            </mat-tab>
+            <!-- Tab archivos-->
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <i class="mdi mdi-presentation-play presentacion"></i> Presentación
+                </ng-template>
+                <div class="container">
+                    
+                    <div class="custom-dropzone" ngx-dropzone [accept]="'image/*,.pdf,.docx,.pptx,.mp3,.mp4'" (change)="onSelectPre($event)">
+                        <ngx-dropzone-label>
+                            <div>
+                                <h2>Selecciona tus archivos o arrastralos aqui</h2>
+                            </div>
+                        </ngx-dropzone-label>
+                        <ngx-dropzone-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let pre of presen" [file]="pre" [removable]="true" (removed)="onRemovePre(pre)">
+                            <ngx-dropzone-label>{{ pre.name }} ({{ pre.type }})</ngx-dropzone-label>
+                        </ngx-dropzone-preview>
+                    </div>
+                </div>
+            </mat-tab>
+            <!-- Tab archivos-->
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    <i class="mdi mdi-content-paste planeacion"></i> Simulaciones
+                </ng-template>
+                <div class="container">
+                    
+                    <div class="custom-dropzone" ngx-dropzone [accept]="'image/*,.pdf,.docx,.pptx'" (change)="onSelectPla($event)">
+                        <ngx-dropzone-label>
+                            <div>
+                                <h2>Selecciona tus archivos o arrastralos aqui</h2>
+                            </div>
+                        </ngx-dropzone-label>
+                        <ngx-dropzone-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let pla of plane" [file]="pla" [removable]="true" (removed)="onRemovePla(pla)">
+                            <ngx-dropzone-label>{{ pla.name }} ({{ pla.type }})</ngx-dropzone-label>
+                        </ngx-dropzone-preview>
+                    </div>
+                </div>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>
+<div class="col-xl-12 col-md-12 ">
+    <mat-toolbar style="background: none; color: black;">
+        <button (click)="saveFile()" type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="idSesion == null">
+        Subir archivos
+      </button>
+    </mat-toolbar>
+</div>

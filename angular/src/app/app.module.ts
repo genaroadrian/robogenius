@@ -11,7 +11,7 @@ import {MatButtonModule, MatCheckboxModule, MatTableModule, MatFormFieldModule,
   MatPaginatorModule, MatInputModule, MatIconModule, MatOptionModule, MatSelectModule,
   ErrorStateMatcher, ShowOnDirtyErrorStateMatcher, MatDialogModule, MatTabsModule, MatSortModule,
   MatToolbarModule, MatPaginatorIntl, MatSpinner, MatProgressSpinnerModule, MatSnackBarModule,
-  MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatSlideToggleModule, MatExpansionModule, MatTooltipModule, MatRadioModule} from '@angular/material';
+  MatStepperModule, MatDatepickerModule, MatNativeDateModule, MatDividerModule, MatSlideToggleModule, MatExpansionModule, MatTooltipModule, MatRadioModule, MatCardModule} from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AmazingTimePickerService, AmazingTimePickerModule } from 'amazing-time-picker';
 import { LoginComponent } from './login/login.component';
@@ -156,7 +156,9 @@ import { HomefclasesComponent } from './modulo/homefclases/homefclases.component
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { DceditComponent } from './detalleclases/dcedit/dcedit.component';
 import { DcdeleteComponent } from './detalleclases/dcdelete/dcdelete.component';
-
+import { FilesComponent } from "./files/files.component";
+import { NgxDropzoneModule } from "ngx-dropzone";
+import { Http, HttpModule } from '@angular/http';
 
 
 const routes: Route[]=[
@@ -167,6 +169,7 @@ const routes: Route[]=[
 {path: 'home', component:LoginPrincipalComponent, canActivate: [LoginGuard]},
 {path: 'login', component:LoginComponent, canActivate: [NoLoginGuard]},
 {path: 'escuelas', component:HomeComponent, canActivate: [LoginGuard]},
+{path: 'escuelasadd', component: AddComponent, canActivate: [LoginGuard]},
 {path: 'horarios', component:HhomeComponent, canActivate: [LoginGuard]},
 {path: 'sucursales', component:ShomeComponent, canActivate: [LoginGuard]},
 {path: 'tipopago', component:TpahomeComponent, canActivate: [LoginGuard]},
@@ -186,11 +189,9 @@ const routes: Route[]=[
 {path: 'estadisticas', component: CategoriasComponent},
 {path: 'graficas', component: EstadisticasComponent},
 {path: 'personalperfil', component: PersonalperfilComponent},
-
 {path: 'codigos', component: CodigohomeComponent},
 {path: 'nivel', component: NivelhomeComponent},
 {path: 'grados', component: HomegComponent},
-
 {path: 'reset-password/:id', component: NewPasswordComponent},
 {path: 'areadelconocimiento', component: AreahomeComponent},
 {path: 'subtema', component: SubtemahomeComponent},
@@ -205,7 +206,8 @@ const routes: Route[]=[
 {path: 'herramientas', component: HomeHerramientasComponent},
 {path: 'sesiones', component: HomesesionesComponent},
 {path: 'editmodulo', component: EditmoduloComponent},
-{path: 'homefclases', component: HomefclasesComponent}
+{path: 'homefclases', component: HomefclasesComponent},
+{path: 'files', component: FilesComponent}
 
 ];
 
@@ -324,11 +326,8 @@ const routes: Route[]=[
     EditmoduloComponent,
     HomefclasesComponent,
     DceditComponent,
-    DcdeleteComponent
-
-
-
-
+    DcdeleteComponent,
+    FilesComponent
 
   ],
   imports: [
@@ -340,6 +339,7 @@ const routes: Route[]=[
     AppRoutingModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
+    HttpModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCheckboxModule,
@@ -352,6 +352,7 @@ const routes: Route[]=[
     MatSelectModule,
     FormsModule,
     MatDialogModule,
+    MatCardModule,
     MatTabsModule,
     MatButtonModule,
     MatSortModule,
@@ -371,7 +372,8 @@ const routes: Route[]=[
     MatProgressBarModule,
     MatListModule,
     MatTooltipModule,
-    MatRadioModule
+    MatRadioModule,
+    NgxDropzoneModule
     ],
   providers: [
     TipopersonalService,

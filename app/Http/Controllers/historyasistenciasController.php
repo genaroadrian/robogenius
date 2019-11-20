@@ -13,8 +13,8 @@ class historyasistenciasController extends Controller
 
         $history =  \DB::SELECT("SELECT asistencias.idgru, asistencias.fecha, asistencias.dia, asistencias.hora, 
         asistencias.idper, alumnos.nomalu, alumnos.apealu, asistencias.asis, personal.nombre, personal.apellidos
-        FROM asistencias, alumnos, personal, escuelas
-        WHERE asistencias.idalu = alumnos.idalu AND asistencias.idesc = escuelas.idesc AND asistencias.idper = personal.idper 
+        FROM asistencias, alumnos, personal
+        WHERE asistencias.idalu = alumnos.idalu AND asistencias.idper = personal.idper 
         AND asistencias.idgru = $id");
 
         return $history;

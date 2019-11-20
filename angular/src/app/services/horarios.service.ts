@@ -23,6 +23,11 @@ API_ENDPOINT = 'http://localhost:8000/api';
 
    }
 
+   getHora()
+   {
+     return this.httpClient.get(this.API_ENDPOINT+'/horarios')
+   }
+
   getHorarios(): void{
     this.httpClient.get<Horario[]>(this.API_ENDPOINT + '/horarios').subscribe(data => {
       this.datos=data

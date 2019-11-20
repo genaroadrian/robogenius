@@ -15,7 +15,7 @@ export class GruposAlumnosService {
   save(gruposAlumnos)
   {
     const headers = new HttpHeaders({"Content-Type": "application/json"});
-    return this.httpClient.post(this.API_ENDPOINT + '/horariopersonal', gruposAlumnos, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT + '/horarioperfilalumnos', gruposAlumnos, {headers: headers});
   }
 
 }

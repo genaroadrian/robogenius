@@ -1,17 +1,23 @@
 import { Component, OnInit, Inject, Directive } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialogClose } from '@angular/material';
 import { EscuelasService } from 'src/app/services/escuelas.service';
 import { Escuelas } from 'src/app/interfaces/escuelas';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { NG_VALIDATORS } from '@angular/forms';
+import { Tipomembresia } from 'src/app/interfaces/Tipomembresia';
+import { HorariosService } from 'src/app/services/horarios.service';
+import { Detallegrupos } from 'src/app/interfaces/detallegrupos';
+import { TipomembresiaService } from 'src/app/services/tipomembresia.service';
+import { DetallegruposService } from 'src/app/services/detallegrupos.service';
+import { PersonalService } from 'src/app/services/personal.service';
 
 
 
-function emailDomainValidator(control: FormControl) { 
-  let email = control.value; 
-  if (email && email.indexOf("@") != -1) { 
-    let [_, domain] = email.split("@"); 
-    if (domain !== "codecraft.tv") { 
+function emailDomainValidator(control: FormControl) {
+  let email = control.value;
+  if (email && email.indexOf("@") != -1) {
+    let [_, domain] = email.split("@");
+    if (domain !== "codecraft.tv") {
       return {
         emailDomain: {
           parsedDomain: domain
@@ -19,16 +25,16 @@ function emailDomainValidator(control: FormControl) {
       }
     }
   }
-  return null; 
+  return null;
 }
 
 @Directive({
-  selector: '[emailDomain][ngModel]', 
+  selector: '[emailDomain][ngModel]',
   providers: [
     {
       provide: NG_VALIDATORS,
       useValue: emailDomainValidator,
-      multi: true 
+      multi: true
     }
   ]
 })
@@ -49,18 +55,83 @@ export class AddComponent implements OnInit {
   myForm: FormGroup;
   email: any;
 
+  n: number = 1
 
+  /* Visualizacion de los horarios */
+  horario = 'none'
+  form = ''
 
-  constructor(public dialogRef: MatDialogRef<AddComponent>, @Inject(MAT_DIALOG_DATA) public data: Escuelas, 
-    public escuelasService: EscuelasService,fb: FormBuilder) {
-      this.options = fb.group({
-        hideRequired: false
-      });
-     }
+  barra = 'none'
+
+  /* Horarios */
+  _allHoras: any
+
+  /* Visiblidad de los botones */
+  btn = ''
+  fn = 'none'
+
+  idesc: number
+
+  tipoMembresia: Tipomembresia = 
+  {
+    nombre: null,
+    costo: null,
+    clases: null,
+    idesc: null
+  }
+
+  detalleGrupo: Detallegrupos =
+  {
+    idd: null,
+    idh: null,
+    idp: null,
+    idesc: null
+  }
+  
+  data: Escuelas = 
+  {
+    nombre: null,
+    representante: null,
+    direccion: null,
+    telefono: null,
+    correouno: null,
+    idsuc: null,
+    activo: null
+  }
+
+  idescuela: number
+
+  sucursal: number
+
+  personal: any
+
+  constructor(
+    public escuelasService: EscuelasService, fb: FormBuilder, public horarioService: HorariosService,
+    public tipomembresiaService: TipomembresiaService, public detallegruposService: DetallegruposService, public personalService: PersonalService) {
+    this.options = fb.group({
+      hideRequired: false
+    });
+
+    this.sucursal= Number(localStorage.getItem('sucursal'))
+  }
 
   ngOnInit() {
+    this.getHorarios()
+    this.getPersonal()
   }
-  createFormControls(){
+
+  getPersonal()
+  {
+    this.personalService.get().subscribe((data)=>{
+      this.personal = data
+      this.personal=this.personal.filter(data=>data.idsuc==this.sucursal);
+    },(error)=>{
+
+    })
+  }
+
+
+  createFormControls() {
     this.email = new FormControl('', [
       Validators.required,
       Validators.pattern("[^ @]*@[^ @]*"),
@@ -77,20 +148,78 @@ export class AddComponent implements OnInit {
   /* Mensajes de error de las validaciones */
   getErrorMessage() {
     return this.fControl.hasError('required') ? 'El campo es obligatorio' :
-   
-        '';
+      '';
   }
 
-  /* Cuando se da clic afuera del modal, lo cierra */
-  onNoClick(): void {
-    this.dialogRef.close();
+
+  getHorarios()
+  {
+    this.horarioService.getHora().subscribe((data)=>{
+      this._allHoras = data
+    },(error)=>{
+
+    })
+  }
+
+  next()
+  { 
+    this.showBarra()
+    this.data.idsuc = localStorage.getItem("sucursal")
+
+    this.escuelasService.add(this.data).subscribe((data)=>{
+
+      let escuelasAdd: any = data
+      this.idescuela = escuelasAdd.idesc
+      this.tipoMembresia.idesc = escuelasAdd.idesc
+      this.detalleGrupo.idesc = escuelasAdd.idesc
+
+      this.tipomembresiaService.add(this.tipoMembresia).subscribe((data)=>{
+        this.hideBarra()
+        this.form = 'none'
+        this.horario = ''
+      },(error)=>{
+        this.hideBarra()
+      })
+
+    },(error)=>{
+      this.hideBarra()
+
+    })
+    
+    
   }
 
   /* Confirma la alta del registro */
-  confirmAdd(): void 
+  confirmAdd(): void {
+    console.log(this.detalleGrupo)
+    this.showBarra()
+    this.detallegruposService.save(this.detalleGrupo).subscribe((data)=>{
+      this.n ++
+      if(this.n > Number(this.tipoMembresia.clases))
+      {
+        this.btn = 'none'
+        this.fn = ''
+
+      }
+      this.detalleGrupo.idd = null
+      this.detalleGrupo.idh = null
+      this.detalleGrupo.idp = null
+      this.hideBarra()
+    },(error)=>{
+      this.hideBarra()
+      console.log(error)
+    })
+
+  }
+
+  showBarra()
   {
-    this.data.idsuc=localStorage.getItem("sucursal")
-    this.escuelasService.addEscuela(this.data)
+    this.barra = ''
+  }
+
+  hideBarra()
+  {
+    this.barra = 'none'
   }
 
 }

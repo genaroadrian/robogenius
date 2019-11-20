@@ -9,7 +9,6 @@ import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Detallegrupos } from '../interfaces/detallegrupos';
 import { DetallegruposService } from '../services/detallegrupos.service';
-import { formatDate } from '@angular/common';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { AmazingTimePickerService } from 'amazing-time-picker';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -18,11 +17,9 @@ import { TpaddComponent } from '../tipopersonal/tpadd/tpadd.component';
 import { MatDialog } from '@angular/material';
 import { NotificationsService } from '../services/notifications.service';
 import { GruposAlumnosService } from '../services/grupos-alumnos.service';
-import { NG_VALIDATORS } from '@angular/forms';
 import { HaddComponent } from '../horarios/hadd/hadd.component';
 import { HorariosService } from '../services/horarios.service';
 import { Horario } from '../interfaces/horario';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 
 
 function emailDomainValidator(control: FormControl) {
@@ -184,13 +181,14 @@ export class FormPersonalComponent implements OnInit {
   // Campos a guardar detalle grupos
   detallegrupo: Detallegrupos = {
     iddgru: null,
-    idalu: null,
     idd: null,
     idh: null,
     idp: this.idper,
+    idsuc: null
 
   };
 
+  sucursal: number
   constructor(private personalService: PersonalService, private detallegruposService: DetallegruposService,
     private _formBuilder: FormBuilder, private httpClient: HttpClient, private router: Router, public toastr: ToastrManager,
     private atp: AmazingTimePickerService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, public tPersonal: TipopersonalService,
@@ -198,6 +196,7 @@ export class FormPersonalComponent implements OnInit {
     iconRegistry.addSvgIcon(
       'thumbs-up',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/material-design/hora.svg'));
+      this.sucursal= Number(localStorage.getItem('sucursal'))
 
   }
 
@@ -259,8 +258,8 @@ export class FormPersonalComponent implements OnInit {
     this.detallegrupo.idd = horariopersonal.idd
     this.detallegrupo.idh = horariopersonal.idh
     this.detallegrupo.idp = this.idper;
-    console.log(this.detallegrupo);
-    this.horarioPersona.save(this.detallegrupo).subscribe((data) => {
+    
+    this.detallegruposService.save(this.detallegrupo).subscribe((data) => {
       console.log(data);
       this.showSuccesSave();
     }, (error) => {

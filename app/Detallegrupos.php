@@ -17,8 +17,8 @@ class Detallegrupos extends Model
         'idh',
         'idd',
         'idp',
-        'idalu',
         'activo',
-        'idsuc'
+        'idsuc',
+        'idesc'
     ];
 }

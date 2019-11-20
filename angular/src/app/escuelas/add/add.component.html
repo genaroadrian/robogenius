@@ -1,60 +1,172 @@
-<div class="container" style="height:420px;">
+<app-navbar></app-navbar>
+<br>
+<br>
+<br>
+<div class="container">
+  <div class="conatiner">
     <!-- <h3 mat-dialog-title style="text-align: center;">Nuevo registro</h3> -->
-    <div class="row" mat-dialog-title>
-        <button mat-icon-button align="right" ><mat-icon>cancel_presentation</mat-icon></button>
-      <h3  align="left">Nueva escuela</h3>
-      
+    <div class="row">
+      <h3 class="text-center">Nueva escuela</h3>
+
     </div>
-  
-    <form mat-dialog-content (ngSubmit)="submit" style="height:380px;" #formControl="ngForm">
-  
-      <div class="form">
-        <mat-form-field color="accent"  style="width: 340px;">
-          <input matInput placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre" required >
-          <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent" style="width: 340px;">
-          <input matInput placeholder="Representante" [(ngModel)]="data.representante" name="representante" required>
-          <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-  
-      <div class="form">
-        <mat-form-field color="accent" style="width: 340px;">
-          <textarea matInput placeholder="Dirección" [(ngModel)]="data.direccion" name="direccion" required></textarea>
-          <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form">
-          <mat-form-field color="accent" style="width: 340px;">
-            <input matInput [(ngModel)]="data.telefono"  #message  maxlength="10" name="data.telefono" placeholder="Telefono"
-              type="text" pattern="[0-9]{10}">
-            <mat-hint align="end">{{message.value.length}} / 10</mat-hint>
-            <mat-error    
-            *ngIf="formControl.invalid" 
-             > Teléfono inccorrecto
-            </mat-error>
-          </mat-form-field>
-        </div>
-  
-        <div class="form ">
-            <mat-form-field color="accent" style="width: 340px;">
-              <input matInput [(ngModel)]="data.correouno" #input  name="correo" placeholder="Correo"
-                pattern="[^ @]*@[^ @]*" required>
-              <mat-error    
-              *ngIf="formControl.invalid" 
-               > Correo Incorrecto
+
+    <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
+
+    <form action="" (ngSubmit)="submit" #formControl="ngForm" class="col-md-12" [ngStyle]="{'display': form}">
+
+      <div class="row">
+
+        <div class="col-md-6">
+          <h4>Informacion de la escuela</h4>
+          <div class="form">
+            <mat-form-field color="">
+              <input matInput placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre" required>
+              <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form">
+            <mat-form-field color="">
+              <input matInput placeholder="Representante" [(ngModel)]="data.representante" name="representante"
+                required>
+              <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form">
+            <mat-form-field color="">
+              <textarea matInput placeholder="Direccion" [(ngModel)]="data.direccion" name="direccion"
+                required></textarea>
+              <mat-icon class="text-danger" matSuffix>room</mat-icon>
+              <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="form">
+            <mat-form-field color="">
+              <input matInput [(ngModel)]="data.telefono" #message maxlength="10" name="data.telefono"
+                placeholder="Telefono" type="text" pattern="[0-9]{10}">
+              <mat-icon class="text-info" matSuffix>phone_android</mat-icon>
+              <mat-hint align="end">{{message.value.length}} / 10</mat-hint>
+              <mat-error *ngIf="formControl.invalid"> Telefono inccorrecto
               </mat-error>
             </mat-form-field>
           </div>
-      
-  
-      <div mat-dialog-actions>
-        <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()" style="margin-top:40px;margin-left: 80px; margin-right: 40px;">Guardar</button>
-        <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1" style="margin-top: 40px;">Cancelar</button>
+
+          <div class="form ">
+            <mat-form-field color="">
+              <input matInput [(ngModel)]="data.correouno" type="email" #input name="correo" placeholder="Correo"
+                pattern="[^ @]*@[^ @]*" required>
+              <mat-icon class="text-warning" matSuffix>mail</mat-icon>
+              <mat-error *ngIf="formControl.invalid"> Correo Incorrecto
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div class="col-md-6">
+          <h4>Agregar membresia a {{data.nombre}} </h4>
+          <div class="form">
+
+            <mat-form-field>
+              <input matInput placeholder="Nombre" [(ngModel)]="tipoMembresia.nombre" name="nombrem" required>
+              <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form">
+            <mat-form-field>
+              <input matInput placeholder="Costo" type="number" [(ngModel)]="tipoMembresia.costo" name="costo" required>
+              <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
+              <span matPrefix>$&nbsp;</span>
+              <span matSuffix>.00</span>
+            </mat-form-field>
+          </div>
+
+          <div class="form">
+            <mat-form-field>
+              <input matInput placeholder="Clases a la semana" type="number" [(ngModel)]="tipoMembresia.clases"
+                name="clases" required>
+              <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
       </div>
+      <div class="row">
+        <button class="btn btn-success" [disabled]="!formControl.valid" (click)="next()">Siguiente</button>
+        <button [routerLink]="['/escuelas']" routerLinkActive="router-link-active"
+          class="btn btn-danger">Cancelar</button>
+      </div>
+
+    </form>
+
+    <form class="horario" [ngStyle]="{'display': horario}">
+      Horario de {{data.nombre}}
+
+      Clase {{n}} de {{tipoMembresia.clases}}
+      <div class="row">
+
+        <div class="form">
+          <div class="col-xl-4">
+            <mat-form-field>
+              <mat-label>Seleccione un dia</mat-label>
+              <mat-select [(ngModel)]="detalleGrupo.idd" name="iddia" required>
+                <mat-option value="1">Lunes</mat-option>
+                <mat-option value="2">Martes</mat-option>
+                <mat-option value="3">Miércoles</mat-option>
+                <mat-option value="4">Jueves</mat-option>
+                <mat-option value="5">Viernes</mat-option>
+                <mat-option value="6">Sábado</mat-option>
+              </mat-select>
+              <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form col-xl-4">
+
+            <mat-form-field>
+              <mat-label>
+                <span>Seleccione un horario</span>
+              </mat-label>
+              <mat-select required [(ngModel)]="detalleGrupo.idh" name="idh">
+                <mat-option *ngFor="let ho of _allHoras" value="{{ho.idh}}">
+                  {{ho.hora}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form">
+            <mat-form-field>
+              <mat-label>
+                <span>Seleccione un personal</span>
+              </mat-label>
+              <mat-select required [(ngModel)]="detalleGrupo.idp" name="idp">
+                <mat-option *ngFor="let p of personal" value="{{p.idper}}" >
+                  {{p.nombre}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row" [ngStyle]="{'dislplay': btn}">
+        <button class="btn btn-success" [type]="submit" (click)="confirmAdd()"
+          style="margin-top:40px;margin-left: 80px; margin-right: 40px;">Guardar</button>
+        <button class="btn btn-danger" style="margin-top: 40px;">Cancelar</button>
+      </div>
+
+      <div class="row" [ngStyle]="{'display': fn}">
+        <button class="btn btn-success" [routerLink]="['/escuelas']"
+          routerLinkActive="router-link-active">Finalizar</button>
+      </div>
+
     </form>
   </div>
+</div>
+<app-fotter></app-fotter>

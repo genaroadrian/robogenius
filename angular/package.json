@@ -33,6 +33,7 @@
     "ng2-completer": "^2.0.8",
     "ng2-smart-table": "^1.4.0",
     "ng6-toastr-notifications": "^1.0.4",
+    "ngx-dropzone": "^2.1.2",
     "ngx-material-timepicker": "^3.1.0",
     "ngx-paypal": "^5.0.0",
     "ngx-upper-case-directive": "^1.0.3",

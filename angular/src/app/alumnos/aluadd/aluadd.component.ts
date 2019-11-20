@@ -38,11 +38,6 @@ function emailDomainValidator(control: FormControl) {
   return null; 
 }
 
-
-
-
-
-
 @Directive({
   selector: '[emailDomain][ngModel]', 
   providers: [
@@ -55,9 +50,6 @@ function emailDomainValidator(control: FormControl) {
 })
 class EmailDomainValidator {
 }
-
-
-
 // declare let paypal: any;
 
 @Component({
@@ -73,6 +65,9 @@ export class AluaddComponent implements OnInit {
   email: any;
 
   /* ---------------------- Declaraión de variables ---------------------- */
+
+  ids: number = Number(localStorage.getItem('sucursal'))
+  noms: string = localStorage.getItem('sucuname')
 
 // Payppal
   public payPalConfig?: IPayPalConfig;
@@ -140,6 +135,9 @@ export class AluaddComponent implements OnInit {
   restante;
 
 
+  idsuc: any
+
+
   //  Display y label hora y personal
   spinerh = "none";
   labelh = "";
@@ -155,6 +153,8 @@ export class AluaddComponent implements OnInit {
 
   // Toggle button que agrega el precio de la inscripción en el total <desabolitado>
   cheked = false;
+
+  viewesc = 'none'
 
 
   /* --------------------------- Declaración de interfaces --------------------------- */
@@ -202,7 +202,8 @@ export class AluaddComponent implements OnInit {
       idtmem: null,
       nombre: null,
       costo: null,
-      clases: null
+      clases: null,
+      idesc: null
     }
 
   // Interfaz de la membresia por alumno
@@ -228,8 +229,7 @@ export class AluaddComponent implements OnInit {
       iddgru: null,
       idd: null,
       idh: null,
-      idp: null,
-      idalu: null
+      idp: null
     }
 
   // Interfaz de personal
@@ -269,7 +269,9 @@ export class AluaddComponent implements OnInit {
     public toastr: ToastrManager, private gethorarios: GethorariosService,
     private tmembresia: TipomembresiaService, private memaluService: MemalumnoService,
     private galuService: GruposAlumnosService, private router :Router,
-    private escuelasService: EscuelasService  ) { }
+    private escuelasService: EscuelasService  ) {
+      this.idsuc=localStorage.getItem('sucursal')
+     }
 
 
     logout(){
@@ -296,6 +298,8 @@ export class AluaddComponent implements OnInit {
   {
     this.escuelasService.get().subscribe((data)=>{
       this.escuelas = data
+
+      this.escuelas=this.escuelas.filter(data=>data.idscu==this.idsuc);
     },(error)=>{
     })
   }
@@ -340,13 +344,23 @@ export class AluaddComponent implements OnInit {
     this.alumno.idsuc=localStorage.getItem("sucursal");
     // Se envian los datos al servicio de alumnos para guardar los datos en la BD
     this.alumnosService.save(alumno).subscribe((data) => {
+      if(alumno.idesc ==  null)
+    {
       this.alumnosview = "none";
       this.membresiaview = "";
       // Recupera todo el array del alumno guardado que regresa la base de datos
       this.alu = data;
       this.malu.idalu = this.alu.idalu;
       this.gruposAlumnos.idalu = this.alu.idalu;
+      
+      
+      
+    }else{
+      this.alumnosview = 'none'
+      this.viewesc = ''
       this.showSuccesSave();
+    }
+      
     }, (error) => {
       this.showErrorSave();
       console.log(error);
@@ -367,6 +381,19 @@ export class AluaddComponent implements OnInit {
   returntmem() {
     this.membresiaview = "";
     this.tipopagoview = "none";
+  }
+
+  escuelasChange(id: number)
+  {
+    if(id ==  Number(localStorage.getItem('sucursal')))
+    {
+      this.alumno.idesc = null
+      this._allMembresias =  this._allMembresias.filter(mem=> mem.idesc == null)
+    }else
+    {
+      this._allMembresias =  this._allMembresias.filter(mem=> mem.idesc == id)
+    }
+    
   }
 
   // Guarda el tipo de pago escogido
@@ -464,6 +491,7 @@ export class AluaddComponent implements OnInit {
     }
     console.log(this.gruposAlumnos)
     this.galuService.save(this.gruposAlumnos).subscribe((data) => {
+      console.log(data)
       this.showSuccesSave();
       this.diavalue = "";
       this.horavalue = "";
@@ -499,60 +527,6 @@ export class AluaddComponent implements OnInit {
   finalizar() {
     console.log("Finalizacion")
   }
-
-
-
-
-
-  // addScript: boolean = false;
-  // paypalLoad: boolean = true;
-  
-
-
-  // paypalConfig = {
-  //   env: 'sandbox',
-  //   client: {
-  //     // sandbox: 'ARjodSEBZ_5YeXgiEVkH1-I7VrU0b6YLoFtYN9zqSuYn_d_K4dM4sLlZHKs_hyF3JZPQAU6Dm6SqxyT_',
-  //     sandbox: '<your-sandbox-key-here>',
-  //     production: 'Afpk-YhqAeYTIeL008oY11RHq3dyBTt4NRSwut0iPf2CIRbLtX3T7VmhcAurkpiFjvyoG8HMweEN99fw'
-  //   },
-  //   commit: true,
-  //   payment: (data, actions) => {
-  //     return actions.payment.create({
-  //       payment: {
-  //         transactions: [
-  //           { amount: { total: this.adelanto, currency: 'MXN' } }
-  //         ]
-  //       }
-  //     });
-  //   },
-  //   onAuthorize: (data, actions) => {
-  //     return actions.payment.execute().then((payment) => {
-  //       //Do something when payment is successful.
-  //     })
-  //   }
-  // };
-
-  // ngAfterViewChecked(): void {
-  //   if (!this.addScript) {
-  //     this.addPaypalScript().then(() => {
-  //       paypal.Button.render(this.paypalConfig, '#paypal-checkout-btn');
-  //       this.paypalLoad = false;
-  //     })
-  //   }
-  // }
-  
-  // addPaypalScript() {
-  //   this.addScript = true;
-  //   return new Promise((resolve, reject) => {
-  //     let scripttagElement = document.createElement('script');    
-  //     scripttagElement.src = 'https://www.paypalobjects.com/api/checkout.js';
-  //     scripttagElement.onload = resolve;
-  //     document.body.appendChild(scripttagElement);
-  //   })
-  // }
-
-
 
  
   private initConfig(): void {

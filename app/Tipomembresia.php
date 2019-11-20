@@ -18,6 +18,7 @@ class Tipomembresia extends Model
     	'nombre',
     	'costo',
     	'clases',
-        'activo'
+        'activo',
+        'idesc'
     ];
 }

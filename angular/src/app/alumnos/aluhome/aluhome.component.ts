@@ -28,6 +28,8 @@ export class AluhomeComponent implements OnInit {
     'apealu','domalu',
     'telalu','nombre', 'icons'
    ];
+
+   sucursal: string = localStorage.getItem('sucuname')
    //  Declaracion de la interfaz de alumnos
   alumnos: Alumnos[];
 

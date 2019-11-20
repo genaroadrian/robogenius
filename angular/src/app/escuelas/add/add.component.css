@@ -2,4 +2,7 @@
 .example-full-width {
     width: 95%;
   }
-  
+
+.container  {
+  background-color: #FFF;
+}

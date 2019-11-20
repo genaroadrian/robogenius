@@ -19,7 +19,8 @@ export class EditmoduloComponent implements OnInit {
   aC = []
   sAC = []
   herra = []
-
+  filesProgra
+  files: any
   detalleClases: any
   folio: string
   planeaciones: any
@@ -49,10 +50,18 @@ export class EditmoduloComponent implements OnInit {
     this.barra = 'none'
   }
 
+  getArchivos() {
+
+  }
+
+  getFileName() {
+
+  }
+
   getData() {
     this.plan = this.homefclasesService.returnData()
     this.homefclasesService.getDataSesion(this.homefclasesService.returnData()).subscribe((data) => {
-
+      console.log(data)
       let datos: any
       datos = data
       this.detalleClases = datos[0]
@@ -60,6 +69,114 @@ export class EditmoduloComponent implements OnInit {
       this.planeaciones = datos[1]
       this.planeaciones = this.planeaciones[0]
       this.sesiones = datos[2]
+      this.files = datos[3]
+      this.files.forEach(element => {
+        element.forEach(archivo => {
+
+          let ruta = archivo.ruta
+          let resto = ruta.split('_', 1)
+          resto = resto + '_'
+          let filename = ruta.split(resto)
+          filename = filename[1]
+          archivo.filename = filename
+          let extension = filename.split('.').reverse()
+          extension = extension[0]
+          archivo.ext = extension
+          let vPrev
+          switch (extension) {
+            case 'png':
+              vPrev = 'png.png'
+              break
+
+            case 'pdf':
+              vPrev = 'pdf.png'
+              break
+
+            case 'css':
+              vPrev = 'css.png'
+              break
+
+            case 'csv':
+              vPrev = 'csv.png'
+              break
+
+            case 'doc':
+              vPrev = 'doc.png'
+              break
+
+            case 'docx':
+              vPrev = 'doc.png'
+              break
+
+            case 'xls':
+              vPrev = 'xls.png'
+              break
+
+            case 'xlsx':
+              vPrev = 'xls.png'
+              break
+
+            case 'mp3':
+              vPrev = 'mp3.png'
+              break
+
+            case 'html':
+              vPrev = 'html.png'
+              break
+
+            case 'mp4':
+              vPrev = 'mp4.png'
+              break
+
+            case 'avi':
+              vPrev = 'avi.png'
+              break
+
+            case 'ppt':
+              vPrev = 'ppt.png'
+              break
+
+            case 'pptx':
+              vPrev = 'ppt.png'
+              break
+
+            case 'php':
+              vPrev = 'php.png'
+              break
+
+            case 'jpg':
+              vPrev = 'jpg.png'
+              break
+
+            case 'pgn':
+              vPrev = 'png.png'
+              break
+
+            case 'py':
+              vPrev = 'piton.png'
+              break
+
+            case 'txt':
+              vPrev = 'txt.png'
+              break
+
+            case 'zip':
+              vPrev = 'zip.png'
+              break
+
+            case 'rar':
+              vPrev = 'zip.png'
+              break
+
+            default:
+              vPrev = 'file.png'
+              break
+          }
+
+          archivo.vprev = vPrev
+          console.log(archivo)
+        });
+      });
       this.fecha = this.planeaciones.fecha
       this.fecha = new Date(this.fecha + 'T00:00:00')
       let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
@@ -161,6 +278,24 @@ export class EditmoduloComponent implements OnInit {
         })
       }
     })
+  }
+
+  // downloadFile(file)
+  // {
+  //   this.moduloService.download(file).subscribe(response=>{
+  //     window.location.href = response.url;
+  //   }),error => console.log('Error downloading the file'),
+  //   () => console.info('File downloaded successfully');
+  // }
+  downloadFile(file) {
+    this.moduloService.downloadFile(file).subscribe(response => {
+			//let blob:any = new Blob([response.blob()], { type: 'text/json; charset=utf-8' });
+			//const url= window.URL.createObjectURL(blob);
+			//window.open(url);
+			window.location.href = response.url;
+			//fileSaver.saveAs(blob, 'employees.json');
+		}), error => console.log('Error downloading the file'),
+                 () => console.info('File downloaded successfully');
   }
 
 }

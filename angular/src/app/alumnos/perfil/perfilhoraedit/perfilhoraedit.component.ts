@@ -90,8 +90,7 @@ export class PerfilhoraeditComponent implements OnInit {
       iddgru: null,
       idd: null,
       idh: null,
-      idp: null,
-      idalu: null
+      idp: null
     }
 
     gruposAlumnos: GruposAlumnos =

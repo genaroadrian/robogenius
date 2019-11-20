@@ -70,103 +70,195 @@
     <mat-tab style="width: 90%">
       <ng-template mat-tab-label>
         <i class="mdi mdi-account-card-details membresia"></i>
-        Grupos
+        Horario Laboral
       </ng-template>
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 col-md-12">
+      <div class="container" [ngStyle]="{'display': viewL}">
+        <div class="laboral">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 col-md-12">
 
-        <!--- Note that these columns can be defined in any order.
-              The actual rendered columns are set as a property on the row definition" -->
-      
-        <!-- Position Column -->
-        <ng-container matColumnDef="iddgru">
-          <th mat-header-cell *matHeaderCellDef> ID </th>
-          <td mat-cell *matCellDef="let element"> {{element.iddgru}} </td>
-        </ng-container>
-      
-        <!-- Name Column -->
-        <ng-container matColumnDef="dia">
-          <th mat-header-cell *matHeaderCellDef> Dia </th>
-          <td mat-cell *matCellDef="let element"> {{element.dia}} </td>
-        </ng-container>
-      
-        <!-- Weight Column -->
-        <ng-container matColumnDef="hora">
-          <th mat-header-cell *matHeaderCellDef> Hora </th>
-          <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
-        </ng-container>
-      
-        <!-- Symbol Column -->
+                <!--- Note that these columns can be defined in any order.
+                      The actual rendered columns are set as a property on the row definition" -->
+              
+                <!-- Position Column -->
+                <ng-container matColumnDef="iddgru">
+                  <th mat-header-cell *matHeaderCellDef> ID </th>
+                  <td mat-cell *matCellDef="let element"> {{element.iddgru}} </td>
+                </ng-container>
+              
+                <!-- Name Column -->
+                <ng-container matColumnDef="dia">
+                  <th mat-header-cell *matHeaderCellDef> Dia </th>
+                  <td mat-cell *matCellDef="let element"> {{element.dia}} </td>
+                </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="hora">
+                  <th mat-header-cell *matHeaderCellDef> Hora </th>
+                  <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
+                </ng-container>
+              
+                <!-- Symbol Column -->
+        
+                <ng-container matColumnDef="idesc">
+                  <th mat-header-cell *matHeaderCellDef> Escuela </th>
+                  <td mat-cell *matCellDef="let element"> {{element.idesc}} </td>
+                </ng-container>
+        
+                <ng-container matColumnDef="icons">
+                  <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                  <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button (click)="asistencia(element.iddgru, element.dia, element.hora, element.idesc)" class="text-info" matTooltip="Visualizar la lista de alumnos"><mat-icon>
+                      assignment
+                    </mat-icon></button>
+                  </td>
+                </ng-container>
+              
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+        </div>
+      </div>
 
-        <ng-container matColumnDef="idesc">
-          <th mat-header-cell *matHeaderCellDef> Escuela </th>
-          <td mat-cell *matCellDef="let element"> {{element.idesc}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="nombre">
-          <th mat-header-cell *matHeaderCellDef> Escuela </th>
-          <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="icons">
-          <th mat-header-cell *matHeaderCellDef>Acciones</th>
-          <td mat-cell *matCellDef="let element">
-            <button mat-icon-button (click)="asistencia(element.iddgru, element.dia, element.hora, element.idesc)" class="text-info" matTooltip="Visualizar la lista de alumnos"><mat-icon>
-              assignment
-            </mat-icon></button>
-          </td>
-        </ng-container>
       
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+
+  
     </mat-tab>
     <!-- Tab de Horario -->
-    <!-- <mat-tab>
-      <ng-template mat-tab-label>
-        <i class="mdi mdi-calendar-text horario"></i>
-        Horario
-      </ng-template>
-      
-    </mat-tab> -->
-  
-    <!-- Tab de Cursos -->
+    
     <mat-tab>
       <ng-template mat-tab-label>
         <i class="mdi mdi-finance cursos"></i>
-        Planeacion de actividades
+        Grupos
       </ng-template>
       <div class="container">
-        Solo visible si el personal es un instructor
+        <!-- Empty tab content -->
       </div>
     </mat-tab>
-  
-    <!-- Tab de Padres -->
-    <!-- <mat-tab>
-      <ng-template mat-tab-label>
-        <i class="mdi mdi-account-multiple padres"></i>
-        Padres
-      </ng-template>
-      <div class="container">
-          <div style="float:left; width: 50%;">
-              <h2>Datos del padre</h2>
-              <p>Nombre: <b>{{datos.nompad}} {{datos.apepad}}</b> </p>
-              <p>Domicilio: <b>{{datos.dompad}}</b> </p>
-              <p>Telefono: <b>{{datos.telpad}}</b> </p>
-              <p>Correo: <b>{{datos.correopad}}</b> </p>
-              <p>Ocupación: <b>{{datos.ocupad}}</b> </p>
-          </div>
-          <div style="float:left; width: 50%;">
-              <h2>Datos de la madre</h2>
-              <p>Nombre: <b>{{datos.nommad}} {{datos.apemad}}</b> </p>
-              <p>Domicilio: <b>{{datos.dommad}}</b></p>
-              <p>Telefono: <b>{{datos.telmad}}</b></p>
-              <p>Correo: <b>{{datos.correomad}}</b></p>
-              <p>Ocupación: <b>{{datos.ocupmad}}</b></p>
-          </div>
-      </div>
-    </mat-tab> -->
+    
+    
+    <mat-tab>
+        <ng-template mat-tab-label>
+          <i class="mdi mdi-finance cursos"></i>
+          Horario laboral
+        </ng-template>
+        <div class="container">
+            <div class="container" [ngStyle]="{'display': viewE}">
+                <h1>Horario de clases en escuelas</h1>
+               <div class="escuelas">
+                   <table mat-table [dataSource]="dataSourceEscuelas" class="mat-elevation-z8 col-md-12">
+       
+                       <!--- Note that these columns can be defined in any order.
+                             The actual rendered columns are set as a property on the row definition" -->
+                     
+                       <!-- Position Column -->
+                       <ng-container matColumnDef="iddgru">
+                         <th mat-header-cell *matHeaderCellDef> ID </th>
+                         <td mat-cell *matCellDef="let element"> {{element.iddgru}} </td>
+                       </ng-container>
+                     
+                       <!-- Name Column -->
+                       <ng-container matColumnDef="dia">
+                         <th mat-header-cell *matHeaderCellDef> Dia </th>
+                         <td mat-cell *matCellDef="let element"> {{element.dia}} </td>
+                       </ng-container>
+                     
+                       <!-- Weight Column -->
+                       <ng-container matColumnDef="hora">
+                         <th mat-header-cell *matHeaderCellDef> Hora </th>
+                         <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
+                       </ng-container>
+                     
+                       <!-- Symbol Column -->
+               
+                       <ng-container matColumnDef="idesc">
+                         <th mat-header-cell *matHeaderCellDef> Escuela </th>
+                         <td mat-cell *matCellDef="let element"> {{element.idesc}} </td>
+                       </ng-container>
+               
+                       <ng-container matColumnDef="nombre">
+                         <th mat-header-cell *matHeaderCellDef> Escuela </th>
+                         <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                       </ng-container>
+               
+                       <ng-container matColumnDef="icons">
+                         <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                         <td mat-cell *matCellDef="let element">
+                           <button mat-icon-button (click)="asistencia(element.iddgru, element.dia, element.hora, element.idesc)" class="text-info" matTooltip="Visualizar la lista de alumnos"><mat-icon>
+                             assignment
+                           </mat-icon></button>
+                         </td>
+                       </ng-container>
+                     
+                       <tr mat-header-row *matHeaderRowDef="displayedColumnsEscuelas"></tr>
+                       <tr mat-row *matRowDef="let row; columns: displayedColumnsEscuelas;"></tr>
+                     </table>
+               </div>
+             </div>
+       
+             
+       
+             <div class="container" [ngStyle]="{'display': viewS}">
+                 <h1>Horario de clases en la sucursal</h1>
+               <div class="sucursal">
+                   <table mat-table [dataSource]="dataSourceSucursal" class="mat-elevation-z8 col-md-12">
+       
+                       <!--- Note that these columns can be defined in any order.
+                             The actual rendered columns are set as a property on the row definition" -->
+                     
+                       <!-- Position Column -->
+                       <ng-container matColumnDef="iddgru">
+                         <th mat-header-cell *matHeaderCellDef> ID </th>
+                         <td mat-cell *matCellDef="let element"> {{element.iddgru}} </td>
+                       </ng-container>
+                     
+                       <!-- Name Column -->
+                       <ng-container matColumnDef="dia">
+                         <th mat-header-cell *matHeaderCellDef> Dia </th>
+                         <td mat-cell *matCellDef="let element"> {{element.dia}} </td>
+                       </ng-container>
+                     
+                       <!-- Weight Column -->
+                       <ng-container matColumnDef="hora">
+                         <th mat-header-cell *matHeaderCellDef> Hora </th>
+                         <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
+                       </ng-container>
+                     
+                       <!-- Symbol Column -->
+               
+                       <ng-container matColumnDef="idesc">
+                         <th mat-header-cell *matHeaderCellDef> Escuela </th>
+                         <td mat-cell *matCellDef="let element"> {{element.idesc}} </td>
+                       </ng-container>
+               
+                       <ng-container matColumnDef="nomsuc">
+                         <th mat-header-cell *matHeaderCellDef> Sucursal </th>
+                         <td mat-cell *matCellDef="let element"> {{element.nomsuc}} </td>
+                       </ng-container>
+               
+                       <ng-container matColumnDef="icons">
+                         <th mat-header-cell *matHeaderCellDef>Acciones</th>
+                         <td mat-cell *matCellDef="let element">
+                           <button mat-icon-button (click)="asistencia(element.iddgru, element.dia, element.hora, element.idesc)" class="text-info" matTooltip="Visualizar la lista de alumnos"><mat-icon>
+                             assignment
+                           </mat-icon></button>
+                         </td>
+                       </ng-container>
+                     
+                       <tr mat-header-row *matHeaderRowDef="displayedColumnsSucursal"></tr>
+                       <tr mat-row *matRowDef="let row; columns: displayedColumnsSucursal;"></tr>
+                     </table>
+               </div>
+             </div>
+        </div>
+      </mat-tab>
+
   </mat-tab-group>
             </div>
 </div>
-<br>
+<div class="row">
+
+</div>
+<div class="row">
+
+</div>
 <app-fotter></app-fotter>

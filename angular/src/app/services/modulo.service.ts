@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-
-
-
-
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
+import {Http, ResponseContentType} from '@angular/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +12,9 @@ export class ModuloService {
   dialogData: any
   extraData: any
   plan: any
+  idSesion
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, private http: Http) { }
 
   geta() {
     return this.httpClient.get(this.API_ENDPOINT + '/areadelconocimiento');
@@ -97,5 +96,29 @@ export class ModuloService {
   {
     return this.httpClient.delete(this.API_ENDPOINT+'/detalleclases/'+id)
   }
+
+  getIdSesion(id)
+  {
+    this.idSesion = id
+  }
+
+  retIdSesion()
+  {
+    return this.idSesion
+  }
+
+  // download(data): Observable<HttpResponse<Blob>>
+  // {
+  //   const headers = new HttpHeaders({"responseType": "ResponseContentType.Blob"});
+  //   return this.httpClient.get(this.API_ENDPOINT+'/files',data)
+  // }
+
+  // downloadFile(data): Observable<HttpResponse<Blob>>{		
+	// 	return this.http.get('http://localhost:8000/api/files?filename="'+data.filename+'"' , { responseType: ResponseContentType.Blob });
+  //  }
+
+  downloadFile(data): Observable<any>{		
+    	return this.http.get('http://localhost:8000/api/files?filename="'+data.filename+'"'+'&ruta="'+data.ruta+'"' , { responseType: ResponseContentType.Blob });
+     }
 
 }

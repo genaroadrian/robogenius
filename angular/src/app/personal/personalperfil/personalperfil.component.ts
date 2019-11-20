@@ -23,6 +23,8 @@ export class PersonalperfilComponent implements OnInit {
   btnChange: string = "none"
 
   dataSource: any
+  dataSourceEscuelas: any
+  dataSourceSucursal: any
 
   datos: any;
   jstoday:any;
@@ -59,6 +61,10 @@ export class PersonalperfilComponent implements OnInit {
     fotopersonal:null
   }
 
+  viewL: string = 'none'
+  viewE: string = 'none'
+  viewS: string = 'none'
+
   constructor(public personalPerfilService: PersonalperfilService,private uploadService: FileuploadService,private router:Router,
     public dialog: MatDialog,public personalService: PersonalService, public notificationsService: NotificationsService) { }
 
@@ -69,18 +75,47 @@ export class PersonalperfilComponent implements OnInit {
   }
 
 
-  displayedColumns: string[] = ['dia', 'hora', 'nombre', 'icons'];
+  displayedColumns: string[] = ['dia', 'hora', 'icons'];
+  displayedColumnsEscuelas: string[] = ['dia', 'hora', 'nombre', 'icons'];
+  displayedColumnsSucursal: string[] = ['dia', 'hora', 'nomsuc', 'icons'];
   
 
   getGrupos()
   {
     this.mostrarBarra()
     this.personalPerfilService.getGrupos(this.datos).subscribe((data)=>{
-      this.dataSource =data;
+      let datos: any = data
+      let trabajo: any =  datos.filter(data=> data.nombre == null && data.nomsuc == null)
+      console.log(trabajo)
+      this.dataSource = trabajo
+      if(this.dataSource.length > 0)
+      {
+        this.viewL = ''
+      }
+
+
+      let escuelas: any = datos.filter(data=> data.nombre != null)
+      console.log(escuelas)
+      this.dataSourceEscuelas = escuelas
+      if(this.dataSourceEscuelas.length > 0)
+      {
+        this.viewE = ''
+      }
+
+
+      let sede: any = datos.filter(data=> data.nomsuc != null)
+      console.log(sede)
+      this.dataSourceSucursal = sede
+      if(this.dataSourceSucursal.length > 0)
+      {
+        this.viewS = ''
+      }
+
       this.ocultarBarra()
     },(error)=>{
       this.notificationsService.showError()
       this.ocultarBarra()
+      // console.log(error)
     })
   }
 
@@ -125,12 +160,12 @@ export class PersonalperfilComponent implements OnInit {
 
       // this.datos.perfilalu=this.archivo.nombreArchivo;
       this.uploadService.subirimagenPersonal(this.personal).subscribe(data=>{
-        console.log(this.personal)
+        // console.log(this.personal)
        }, (error) => {
          
-       console.log(error)
+       // console.log(error)
        })
-    // console.log(this.archivo);
+    // // console.log(this.archivo);
     this.uploadService.uploadFilePersonal(this.archivo)
     .subscribe(
       datos => {

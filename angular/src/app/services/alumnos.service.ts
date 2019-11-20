@@ -27,7 +27,7 @@ export class AlumnosService {
     this.httpClient.get<Alumnos[]>(this.API_ENDPOINT+'/alumnos').subscribe(data => {
       this.datos=data
       this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
-      // console.log(this.datos)
+      console.log(this.datos)
       this.dataChange.next(this.datos);     },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);

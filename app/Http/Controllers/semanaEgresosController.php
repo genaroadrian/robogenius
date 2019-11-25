@@ -17,7 +17,7 @@ class semanaEgresosController extends Controller
     public function index()
     {
         $semanaegreso = DB::SELECT("
-        SELECT SUM(monto) AS sumaegreso
+        SELECT monto,idscu
          FROM contabilidad
             WHERE DATE_FORMAT(fecha, '%U') = (SELECT WEEK(CURDATE()))
             AND  tipo=2

@@ -45,6 +45,10 @@ export class HomefclasesComponent implements OnInit {
   resa:any;
   fil:any;
   nuevofiltro:any;
+  numero:any;
+  x:any;
+  herr:any;
+  finish:any;
 
 
 
@@ -53,6 +57,7 @@ export class HomefclasesComponent implements OnInit {
      private areaService: AreadelconocimientoService, public dialog: MatDialog ,private moduloService: ModuloService) { }
 
   ngOnInit() {
+
     // this.options=this.result;
     this.filteredOptions = this.myControl.valueChanges
     .pipe(
@@ -98,6 +103,7 @@ export class HomefclasesComponent implements OnInit {
       this.nuevofiltro.forEach(function(value,index,array){
         valor.push(value.folio)
       })
+
       this.options=valor
 
     },(error)=>{
@@ -136,8 +142,10 @@ export class HomefclasesComponent implements OnInit {
       this.res=this.res.filter(element=>element.folio.slice(6,9)==this.areacs)
     }else if(this.areacs.length==6){
       this.res=this.res.filter(element=>element.folio.slice(6,12)==this.areacs)
-    }else{
+    }else if(this.areacs.length==9){
     this.res=this.res.filter(element=>element.folio.slice(6,15)==this.areacs)
+    }else{
+    this.res=this.letras
     }
 
     this.letras=this.res;
@@ -146,6 +154,7 @@ export class HomefclasesComponent implements OnInit {
 
   subareaChange(subarea) {
     let datos = ""
+    let nuevo;
     subarea.forEach(function(element,index) {
         datos=datos+element.slice(0,3)
        
@@ -153,13 +162,34 @@ export class HomefclasesComponent implements OnInit {
 
     this.subareacs=datos
     this.resa=this.result
-    if(this.subareacs==3 && this.areacs.length==3){
-       this.resa=this.resa.filter(element=>element.folio.slice(9,12)==this.subareacs)
-    }else if(this.subareacs==6 && this.areacs.length==6){
-      this.resa=this.resa.filter(element=>element.folio.slice(12,18)==this.subareacs)
-    }else{
-      this.resa=this.resa.filter(element=>element.folio.slice(15,24)==this.subareacs)
-    }
+    this.numero=this.subareacs.length;
+    nuevo=this.areacs.length;
+
+
+
+    if(this.numero==3 && nuevo==3){
+      this.resa=this.resa.filter(element=>element.folio.slice(9,12)==this.subareacs)
+      
+    }else if(this.numero==3 && nuevo==6){
+     this.resa=this.resa.filter(element=>element.folio.slice(12,15)==this.subareacs)
+   }else if(this.numero==3 && nuevo==9){
+     this.resa=this.resa.filter(element=>element.folio.slice(15,18)==this.subareacs)
+   }else if(this.numero==6 && nuevo==3){
+    this.resa=this.resa.filter(element=>element.folio.slice(9,15)==this.subareacs)
+   }else if(this.numero==6 && nuevo==6 ){
+    this.resa=this.resa.filter(element=>element.folio.slice(12,18)==this.subareacs)
+   }else{
+     this.resa=0
+   }
+
+
+    // if(this.subareacs==3 && this.areacs.length==3){
+    //    this.resa=this.resa.filter(element=>element.folio.slice(9,12)==this.subareacs)
+    // }else if(this.subareacs==6 && this.areacs.length==6){
+    //   this.resa=this.resa.filter(element=>element.folio.slice(12,18)==this.subareacs)
+    // }else{
+    //   this.resa=this.resa.filter(element=>element.folio.slice(15,24)==this.subareacs)
+    // }
     this.letras=this.resa;
 
     // this.folio=this.nivels+this.grads+this.areacs+this.subareacs;
@@ -179,20 +209,29 @@ export class HomefclasesComponent implements OnInit {
 
     })
   }
-  onKey(event) { 
+  onKey(event:string) { 
+
+    console.log(event)
+    this.x=event;
+    console.log(this.x.length)
+
+
     this.fil=this.result
-    if(event.length==3){
+    this.x=this.x.length;
+    if(this.x==3){
       this.fil=this.fil.filter(element=>element.folio.slice(1,3)==event.slice(1,3))
-   }else if(event.length==6){
+   }else if(this.x==6){
     this.fil=this.fil.filter(element=>element.folio.slice(3,6)==event.slice(3,6))
-  }else if(event.length==9){
+  }else if(this.x==9){
     this.fil=this.fil.filter(element=>element.folio.slice(6,9)==event.slice(6,9))
-  } else if(event.length==12){
+  } else if(this.x==12){
     this.fil=this.fil.filter(element=>element.folio.slice(9,12)==event.slice(9,12))
-  }else if(event.length==15){
+  }else if(this.x==15){
     this.fil=this.fil.filter(element=>element.folio.slice(12,15)==event.slice(12,15))
-  }else if(event.length==18){
+  }else if(this.x==18){
     this.fil=this.fil.filter(element=>element.folio.slice(15,18)==event.slice(15,18))
+  }else{
+    this.fil="";
   }
     this.letras=this.fil;
   }
@@ -228,4 +267,30 @@ export class HomefclasesComponent implements OnInit {
     })
   }
   
+  herramChange(event){
+    let datos = ""
+    let nuevo;
+    event.forEach(function(element,index) {
+        datos=datos+element.slice(0,3)
+    });
+
+    this.herr=datos;
+    this.herr=this.herr.length;
+    this.finish=this.result;
+    let x
+    x=this.subareacs.length
+
+  console.log(x)
+  console.log(this.herr)
+
+    if(x==3 && this.herr==3 ){
+    this.finish=this.finish.filter(element=>element.folio.slice(12,15)==event.slice(15,18))      
+    }else if (x==6 && this.herr==3){
+    this.finish=this.finish.filter(element=>element.folio.slice(15,18)==event.slice(15,18))      
+    }else if(x==9&& this.herr==3){
+      this.finish=this.finish.filter(element=>element.folio.slice(18,21)==event.slice(15,18))
+    }
+    this.letras=this.finish
+
+  }
 }

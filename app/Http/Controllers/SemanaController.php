@@ -16,9 +16,11 @@ class SemanaController extends Controller
     public function index()
     {
         $semana = DB::SELECT("
-        SELECT SUM(suma) AS suma
+        SELECT idscu,suma
          FROM contabilidad
             WHERE DATE_FORMAT(fecha, '%U') = (SELECT WEEK(CURDATE()))
+            AND tipo=1
+
         ");
         return $semana;
     }

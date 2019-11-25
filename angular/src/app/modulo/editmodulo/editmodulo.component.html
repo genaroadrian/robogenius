@@ -4,6 +4,17 @@
   <div class="col-md-12 card-body">
     <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
 
+     
+      <div class="row">
+          <div class="col-md-5">
+            <h4>Fecha: <strong>{{fecha}}</strong></h4>
+          </div>
+          <div class="col-md-5 ml-auto">
+            <h4 class=" ">Folio: <strong>{{folio}}</strong> </h4>
+          </div>
+          
+        </div>
+
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4">
@@ -23,56 +34,50 @@
       <div class="col-md-4"></div>
       <div class="col-md-4">
         <h2 class="text-center">Subtema: <strong>{{plan.nt}}</strong> </h2>
-        <hr class="titulo">
+        <hr class="titulos">
       </div>
       <div class="col-md-4"></div>
     </div>
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-10">
         <h3>Nivel: <strong> {{plan.n}} </strong> </h3>
       </div>
-      <div class="col-md-6">
-        <h3 class="text-right">Grado: <strong> {{plan.g}} </strong></h3>
+      <div class="col-md-2 ml-auto">
+        <h3 class="">Grado: <strong> {{plan.g}} </strong></h3>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-6">
-        <h4>Fecha: <strong>{{fecha}}</strong></h4>
-      </div>
-      <div class="col-md-6">
-        <h4 class="text-right">Folio: <strong>{{folio}}</strong> </h4>
-      </div>
-    </div>
+  
 
     <div class="row">
       <div class="col-md-4">
         <h4 class="text-center">Area(s) del conocimiento</h4>
+      <hr class="subtitulo">
         <ul *ngFor="let dc of detalleClases">
           <li [style.display]="dc.ac == null ? 'none' : ''">{{dc.ac}}</li>
         </ul>
       </div>
       <div class="col-md-4">
         <h4 class="text-center">Sub Area(s) del conocimiento</h4>
+        <hr class="subtitulo">
         <ul *ngFor="let dc of detalleClases">
           <li [style.display]="dc.sac == null ? 'none' : ''">{{dc.sac}}</li>
         </ul>
       </div>
       <div class="col-md-4">
         <h4 class="text-center">Herramientas:</h4>
+        <hr class="subtitulo">
         <ul *ngFor="let dc of detalleClases">
           <li [style.display]="dc.h == null ? 'none' : ''">{{dc.h}}</li>
         </ul>
       </div>
     </div>
-    
-    <div class="row">
-      <span class="text-muted">*Clase recomendada para <strong> {{plan.no_alu}} </strong> alumnos.</span>
-    </div>
 
-    <div class="row">
-      <span class="text-muted">*Este Subtema cuenta con <strong> {{sesiones.length}} </strong> sesiones.</span>
+    <div class="text-center">
+      <br>
+      <span class="text-muted"><strong class="ast">*</strong>Clase recomendada para <strong> {{plan.no_alu}} </strong> alumnos.</span>
+      <span class="text-muted">Este Subtema cuenta con <strong> {{sesiones.length}} </strong> sesiones.</span>
     </div>
 
   </div>
@@ -80,7 +85,13 @@
   <div class="row">
     <mat-tab-group color="warn" [selectedIndex]="selected.value" class="col-md-12">
       <mat-tab *ngFor="let ses of sesiones; let i = index;" [label]="ses.nombre" class="col-md-12">
-
+          <div class="row">
+              <div class="col-md-12 text-right ">
+                  <img src="https://cdn.pixabay.com/photo/2017/03/08/21/20/pdf-2127829_960_720.png" (click)="pdf(ses)">
+                  
+                </div>
+    
+          </div>
         <h2>Nombre de la sesión: <strong>{{ses.nombre}}</strong>
           <span>
             <button mat-icon-button class="text-success"
@@ -90,7 +101,9 @@
             </button>
           </span>
         </h2>
-        <h3>Objetivo: <strong>{{ses.objetivo}}</strong> </h3>
+        <h3 class="text-center">Objetivo: <strong>{{ses.objetivo}}</strong> </h3>
+        <hr class="titulo">
+
         <div class="col-md-12">
           <div class="col-md-6">
             <p><strong>Aprendisajes clave:</strong> {{ses.apren_clave}} </p>

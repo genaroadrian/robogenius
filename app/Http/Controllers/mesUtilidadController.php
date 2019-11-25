@@ -16,17 +16,28 @@ class mesUtilidadController extends Controller
      */
     public function index()
     {
-        $utilidad = DB::SELECT("
-        SELECT (( SELECT SUM(suma) AS suma 
-        FROM contabilidad
-           WHERE DATE_FORMAT(fecha, '%m') = (SELECT MONTH(CURDATE())) 
-           )-( SELECT SUM(monto) AS egreso
-        FROM contabilidad
-           WHERE DATE_FORMAT(fecha, '%m') = (SELECT MONTH(CURDATE()))
-           AND tipo=2)) AS utilidad FROM contabilidad
- WHERE DATE_FORMAT(fecha, '%m') = (SELECT MONTH(CURDATE()))LIMIT 0,1
-        ");
-        return $utilidad;
+//         $utilidad = DB::SELECT("
+//         SELECT (( SELECT SUM(suma) AS suma 
+//         FROM contabilidad
+//            WHERE DATE_FORMAT(fecha, '%m') = (SELECT MONTH(CURDATE())) 
+//            )-( SELECT SUM(monto) AS egreso
+//         FROM contabilidad
+//            WHERE DATE_FORMAT(fecha, '%m') = (SELECT MONTH(CURDATE()))
+//            AND tipo=2)) AS utilidad FROM contabilidad
+//  WHERE DATE_FORMAT(fecha, '%m') = (SELECT MONTH(CURDATE()))LIMIT 0,1
+//         ");
+            $utilidad=DB::SELECT(" SELECT monto,idscu
+            FROM contabilidad
+            WHERE DATE_FORMAT(fecha, '%m') = (SELECT MONTH(CURDATE()))
+            AND tipo=2");
+            
+             $utilidads=DB::SELECT(" SELECT suma,idscu
+             FROM contabilidad
+             WHERE DATE_FORMAT(fecha, '%m') = (SELECT MONTH(CURDATE()))");
+       
+            
+            return array($utilidads, $utilidad);
+            
     }
 
     /**

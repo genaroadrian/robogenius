@@ -5,6 +5,7 @@ import { NgStyle } from '@angular/common';
 import { CategoriaService } from 'src/app/services/categoria.service';
 import { total } from 'src/app/interfaces/total';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
+import { isNullOrUndefined } from 'util';
 
 
  @Component({
@@ -49,6 +50,7 @@ export class EstadisticasComponent implements OnInit {
   charts:any= [];
   sumaingre:total[];
   utilidad:any;
+  utilidad2:any;
   mesingre:any;
   mesegre:any;
   utilidadres:any;
@@ -57,28 +59,94 @@ export class EstadisticasComponent implements OnInit {
   logutil:any;
   selectutil:any;
 totalutil:any;
+sucursal:any;
+pendientesss:any;
+pendientessss:any;
+util:any;
+ingresodelmes:any;
 
 
   constructor(private _graficas:GraficasService,
     public categoriaservice: CategoriaService) { }
 
   ngOnInit() {
+    this.sucursal=localStorage.getItem('sucursal')
+
       this._graficas.utilidadrestan()
+      
       .subscribe(data=>{
         this.utilidadrestan=data;
+        this.utilidadrestan=this.utilidadrestan.filter(d => d.idscu==this.sucursal);
+        var total = 0;
+
+        this.utilidadrestan.forEach(function(obj){
+          if(obj.restante== null){
+            obj.restante=0
+          }
+          total+=parseInt(obj.restante);
+        })
+        this.pendientesss=total;
       })
+      // sssssssssssssssssssssssssssss      
       this._graficas.mesingreso()
       .subscribe(data=>{
         this.mesingre=data;
+        this.mesingre=this.mesingre.filter(d => d.idscu==this.sucursal);
+        var total13 = 0;
+        this.mesingre.forEach(function(obj){
+          if(obj.suma== null){
+           obj.suma=0
+          }
+          total13+=parseInt(obj.suma);
+        })
+        this.ingresodelmes=total13
+        this.util=this.ingresodelmes-this.pendientessss;
+
       })
+      // sssssssssssssssssssssssssssss
       this._graficas.mesegreso()
       .subscribe(data=>{
         this.mesegre=data;
+        this.mesegre=this.mesegre.filter(d => d.idscu==this.sucursal);
+        var totals = 0;
+
+        this.mesegre.forEach(function(obj){
+          if(obj.monto== null){
+           obj.monto=0
+          }
+          totals+=parseInt(obj.monto);
+        })
+        this.pendientessss=totals;
+      this.util=this.ingresodelmes-this.pendientessss;
+
       })
+      // ssssssssssssssssssssssssssss
     this._graficas.utilidad()
-    .subscribe(data=>{
-      this.utilidad=data;
-    })
+    // .subscribe(data=>{
+    //   this.utilidad=data;
+    //   this.utilidad2=data;
+    //   this.utilidad=this.utilidad[0].filter(d => d.idscu==this.sucursal);
+    //   this.utilidad2=this.utilidad2[1].filter(d => d.idscu==this.sucursal);
+    //   var totals = 0;
+    //   var totalss = 0;
+    //   var result = 0;
+
+    //   this.utilidad.forEach(function(obj){
+    //     if(obj.monto== null){
+    //      obj.monto=0
+    //     }
+    //     if(obj.suma== null){
+    //       obj.suma=0
+    //      }
+    //     totals+=parseInt(obj.monto);
+    //     totalss+=parseInt(obj.suma);
+    //     result=totalss-totals
+
+    //   })
+      
+
+    // })
+      // sssssssssssssssssssssssssssss
     this.categoriaservice.sumaingreeso()
     .subscribe(data=>{
       this.sumaingre=data;
@@ -86,13 +154,24 @@ totalutil:any;
     this.categoriaservice.sumaegreso()
     .subscribe(data=>{
       this.sumaegre=data;
+
     })
 
     var a = this._graficas.egresos()
     .subscribe(a=>{
       this.logss= a;
-
-      this.selecionado = this.logss.map(a => a.total);
+      this.logss=this.logss.filter(d => d.idscu==this.sucursal)
+      var diae = 0;
+      
+      this.logss = this.logss.map(a=>{
+        if(a.monto == null){
+          a.monto=0
+         }
+         diae+=a.monto;
+      })
+      var dians = diae.toString();
+      var diacss = [dians, "0", "0"];
+      this.selecionado = diacss
       this.totaless = this.selecionado;
 
 
@@ -100,9 +179,22 @@ totalutil:any;
     
     var x = this._graficas.ingresos()
     .subscribe(x=>{
+      
       this.logs=x;
-     
-      this.selecteds = this.logs.map(y => y.total);
+
+      this.logs=this.logs.filter(d => d.idscu==this.sucursal);
+
+      var dia = 0;
+
+      this.logs = this.logs.map(a=>{
+        if(a.suma == null){
+          a.suma=0
+         }
+         dia+=a.suma;
+      })
+      var dian = dia.toString();
+      var diacs = [dian, "0", "0"];
+      this.selecteds=diacs
       this.totales = this.selecteds;
 
 
@@ -164,8 +256,22 @@ var semanegresos = this._graficas.SemanaEgresos()
 .subscribe(semanegresos=>{
   this.logsssemanaegresos= semanegresos;
 
-  this.selecsemanaegresos = this.logsssemanaegresos.map(a => a.sumaegreso);
+  // console.log(this.logsssemanaegresos)
+
+  this.selecsemanaegresos=this.logsssemanaegresos.filter(d => d.idscu==this.sucursal);
+  var semanae = 0;
+
+  this.selecsemanaegresos = this.selecsemanaegresos.map(a=>{
+    if(a.monto == null){
+      a.monto=0
+     }
+     semanae+=a.monto;
+  })
+  var n = semanae.toString();
+  var cars = [n, "0", "0"];
+  this.selecsemanaegresos=cars
   this.totalessemanaegresos = this.selecsemanaegresos;
+  // console.log(this.totalessemanaegresos)
 
 
   var temp_min=this.totalessemanaegresos;
@@ -176,7 +282,19 @@ var semanegresos = this._graficas.SemanaEgresos()
   .subscribe(semana=>{
     this.logsssemana= semana;
 
-    this.selecsemana = this.logsssemana.map(semana => semana.suma);
+    this.logsssemana=this.logsssemana.filter(d => d.idscu==this.sucursal);
+    var nega = 0;
+
+    this.selecsemana = this.logsssemana.map(a => {
+      if(a.suma == null){
+        a.suma=0
+       }
+       nega+=a.suma;
+
+    });
+    var aye = nega.toString();
+    var mot = [aye, "0", "0"];
+    this.selecsemana=mot
     this.totalessemana = this.selecsemana;
 
     var temp_max=this.totalessemana;
@@ -233,8 +351,10 @@ var semanegresos = this._graficas.SemanaEgresos()
 var mesingreso = this._graficas.mesingreso()
 .subscribe(mesingreso=>{
   this.logmes= mesingreso;
+  this.logmes.filter(d => d.idscu==this.sucursal);
 
   this.selectmes = this.logmes.map(a => a.suma);
+  // console.log(this.selectmes)
   this.totalmes = this.selectmes;
 
 
@@ -299,13 +419,6 @@ var temp_min=this.totalmesegreso;
 
 // ----------------------------------grafica de pastel-------------------------------------------
 
-
-// var graficautilidad = this._graficas.utilidad()
-// .subscribe(mesingreso=>{
-//   this.utilidad= mesingreso;
-
-//   this.selectmes = this.logmes.map(a => a.suma);
-//   this.totalmes = this.selectmes;
 var graficautilidad = this._graficas.utilidad()
 .subscribe(graficautilidad=>{
 
@@ -329,7 +442,7 @@ var mesegreso  = this._graficas.mesegreso()
   this.selectmesegreso = this.logmesegreso.map(y => y.egreso);
   this.totalmesegreso = this.selectmesegreso;
 
-var temp_min=[this.totalmesegreso,this.totalmes,this.totalutil];
+var temp_min=[this.pendientessss,this.ingresodelmes,this.util];
 
     this.pasteles = (<HTMLCanvasElement>this.pastel.nativeElement).getContext('2d');
     this.chartpastel = new Chart(this.pasteles, {

@@ -15,7 +15,8 @@ class restantePendienteCOntroller extends Controller
      */
     public function index()
     {
-    $pendienterestante = DB::SELECT("SELECT SUM(restante) AS Restante FROM contabilidad ");
+    $pendienterestante = DB::SELECT("SELECT idscu,restante FROM contabilidad ");
+    // $pendienterestante = DB::SELECT("SELECT SUM(restante) AS Restante FROM contabilidad where idscu=$x ");
         return $pendienterestante;
     }
 

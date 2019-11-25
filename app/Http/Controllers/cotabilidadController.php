@@ -50,7 +50,8 @@ class cotabilidadController extends Controller
         $contabilidad->adelanto = $request->adelanto;
         $contabilidad->restante = $request->restante;
         $contabilidad->suma = $request->suma;
-
+        // id sucursal
+        $contabilidad->idscu = $request->idscu;
         $contabilidad->activo = 1;
         $contabilidad->save();
         echo json_encode($contabilidad);

@@ -6,3 +6,18 @@
 .container  {
   background-color: #FFF;
 }
+
+.title{
+  text-align: center;
+}
+mat-form-field {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+.next{
+  /* margin-left: 10%; */
+  margin-left:3%; 
+  margin-right:4%;
+}

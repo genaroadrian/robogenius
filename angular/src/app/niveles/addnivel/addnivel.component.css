@@ -4,3 +4,11 @@ hr{
     width: 70%;
     height: 1px;
     }
+.title{
+    text-align: center;
+}
+mat-form-field {
+    width: 90%;
+    margin: 0px;
+    padding: 0px;
+  }

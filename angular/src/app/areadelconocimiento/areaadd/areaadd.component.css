@@ -1,7 +1,20 @@
 hr{
     background-color: #db36a4; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     text-align: center;
-    width: 70%;
+    width: 66%;
     height: 1px;
     }
-    
+
+.title{
+    text-align: center;
+}    
+.next{
+    margin-left: 34%;
+    margin-right: 4%;
+}
+
+mat-form-field {
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+  }

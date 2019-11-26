@@ -16,7 +16,8 @@ class Tipopersonal extends Model
     	'idtper', 
         'tipo',
         'permisos',
-        'activo',
-        'idsuc'
+        'idsuc',
+        'maestro',
+        'activo'
     ];
 }

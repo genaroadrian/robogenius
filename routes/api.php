@@ -90,3 +90,4 @@ Route::resource('planeaciones', 'planeacionesController');
 Route::resource('vistamodulo', 'moduloClasesController');
 Route::resource('files', 'FilesController');
 Route::get('filesdownload', 'FilesController@download');
+Route::resource('moduloescuelas', 'moduloEscuelasController');

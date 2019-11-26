@@ -22,6 +22,7 @@ class tipopersonalController extends Controller
     $tpersonal->permisos = $request->permisos;
     $tpersonal->idsuc = $request->idsuc;
     $tpersonal->activo = 1;
+    $tpersonal->maestro = $request->maestro;
     $tpersonal->save();
     echo json_encode($tpersonal);
     }
@@ -31,6 +32,7 @@ class tipopersonalController extends Controller
         $personal = Tipopersonal::find($id);
         $personal->tipo = $request->tipo;
         $personal->permisos = $request->permisos;
+        $personal->maestro = $request->maestro;
         $personal->activo = 1;
         $personal->save();
         echo json_encode($personal);

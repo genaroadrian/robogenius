@@ -11,6 +11,7 @@ import {MAT_DIALOG_DATA, MatDialogRef, MatSlideToggleChange} from '@angular/mate
 export class TpaddComponent implements OnInit {
 
   cheked: boolean = false
+  chekedM: boolean = false
 
  
   constructor(public dialogRef: MatDialogRef<TpaddComponent>,
@@ -27,25 +28,24 @@ export class TpaddComponent implements OnInit {
     /* Confirma la alta del registro */
     confirmAdd(): void 
     {
-      if (this.cheked == false) {
-        this.data.permisos = 0
-        // console.log(this.cheked)
-      } else {
-        this.data.permisos = 1
-        // console.log(this.cheked)
-      }
+      this.data.permisos = this.cheked
+      this.data.maestro = this.chekedM
       this.data.idsuc=localStorage.getItem("sucursal")
       this.dataService.addIssue(this.data)
     }
 
     permisos(event: MatSlideToggleChange)
     {
-      if (this.cheked == false) {
-        this.cheked = true
-        // console.log(this.cheked)
-      } else {
-        this.cheked = false
-        // console.log(this.cheked)
+      this.cheked = event.checked
+      
+      if(this.cheked === false)
+      {
+        this.chekedM = false
       }
+    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+
+    clases(event: MatSlideToggleChange)
+    {
+      this.chekedM = event.checked
     }
 }

@@ -11,9 +11,14 @@
 
     <div>
       <span>Ingreso al sistema: </span>
-      <mat-slide-toggle (change)="permisos($event)" [checked]="cheked">
-      </mat-slide-toggle>
+      <mat-slide-toggle color="warn" (change)="permisos($event)" [checked]="cheked"></mat-slide-toggle>
     </div>
+
+    <div [style.display]="cheked == true ? '' : 'none'">
+        <!-- <div > -->
+        <span>Maestro: </span>
+        <mat-slide-toggle color="warn" (change)="clases($event)" [checked]="chekedM"></mat-slide-toggle>
+      </div>
 
     <div mat-dialog-actions>
       <button class="btn btn-success"[type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd(data)" style="margin-right: 40px; margin-top:70px;">Guardar</button>

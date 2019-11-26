@@ -21,7 +21,6 @@ import { HaddComponent } from '../horarios/hadd/hadd.component';
 import { HorariosService } from '../services/horarios.service';
 import { Horario } from '../interfaces/horario';
 
-
 function emailDomainValidator(control: FormControl) {
   let email = control.value;
   if (email && email.indexOf("@") != -1) {
@@ -37,7 +36,6 @@ function emailDomainValidator(control: FormControl) {
   return null;
 }
 
-
 @Component({
   selector: 'app-form-personal',
   templateUrl: './form-personal.component.html',
@@ -47,17 +45,15 @@ function emailDomainValidator(control: FormControl) {
   }]
 })
 
-
 export class FormPersonalComponent implements OnInit {
 
   /* select de horas */
-  horas:any
+  horas: any
   isDisable = true;
 
   dias: any
   public selectedTime: string;
   public selectedTimes: string;
-
 
   date = new FormControl(new Date());
   serializedDate = new FormControl((new Date()).toISOString());
@@ -70,6 +66,12 @@ export class FormPersonalComponent implements OnInit {
     idd: null,
     idh: null
   }]
+
+  cond: any
+
+  /* Tipo de personal  */
+  tipoPersonal: boolean
+
   /* ---------------------------- CONFIGURACIÓN DE LA PAGINA ---------------------------- */
 
   // Progrmacación de las tabs en el modulo de detalle de grupos
@@ -95,7 +97,7 @@ export class FormPersonalComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.tPersonal.get().subscribe((data) => {
       this.selectTPersonal = data
     }, (error) => {
@@ -109,15 +111,14 @@ export class FormPersonalComponent implements OnInit {
     console.log(idt)
     idt = Number(idt)
     console.log(this.selectTPersonal)
-   let cond = this.selectTPersonal.filter(per => per.idtper == idt)
-   console.log(cond[0])
-   if(cond[0].permisos == 1)
-   {
-     this.visibility = ''
-   }else{
-     this.visibility = 'none'
-   }
-  } 
+    this.cond = this.selectTPersonal.filter(per => per.idtper == idt)
+    console.log(this.cond[0])
+    if (this.cond[0].permisos == 1) {
+      this.visibility = ''
+    } else {
+      this.visibility = 'none'
+    }
+  }
 
   tipoChange1(event) {
     if (this.selectedtp == "2") {
@@ -138,7 +139,6 @@ export class FormPersonalComponent implements OnInit {
   showErrorSave() {
     this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
   }
-
 
   // Resetear usuario y contraseña
   cleanCamps = "";
@@ -166,7 +166,7 @@ export class FormPersonalComponent implements OnInit {
     contra: null, fechanac: null, sexo: null, curp: null,
     estadocivil: null, domicilio: null, fechaingreso: null, horasalida: null,
     horaentrada: null, perfilprofesional: null, especialidad: null, salariomensual: null,
-    tareasasignadas: null, idtper: null, activo: null,idsuc:null
+    tareasasignadas: null, idtper: null, activo: null, idsuc: null
   };
 
   // Variables de id e index para los metodos relacionados con la base de datos
@@ -176,7 +176,6 @@ export class FormPersonalComponent implements OnInit {
   // Interfaz de detalle de grupos
   detallegrupos: Detallegrupos[];
   email: any;
-
 
   // Campos a guardar detalle grupos
   detallegrupo: Detallegrupos = {
@@ -192,11 +191,11 @@ export class FormPersonalComponent implements OnInit {
   constructor(private personalService: PersonalService, private detallegruposService: DetallegruposService,
     private _formBuilder: FormBuilder, private httpClient: HttpClient, private router: Router, public toastr: ToastrManager,
     private atp: AmazingTimePickerService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, public tPersonal: TipopersonalService,
-    public dialog: MatDialog,public horarioService: HorariosService, public tipopersonalService: TipopersonalService, public notifications: NotificationsService, public horarioPersona: GruposAlumnosService) {
+    public dialog: MatDialog, public horarioService: HorariosService, public tipopersonalService: TipopersonalService, public notifications: NotificationsService, public horarioPersona: GruposAlumnosService) {
     iconRegistry.addSvgIcon(
       'thumbs-up',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/material-design/hora.svg'));
-      this.sucursal= Number(localStorage.getItem('sucursal'))
+    this.sucursal = Number(localStorage.getItem('sucursal'))
 
   }
 
@@ -207,7 +206,6 @@ export class FormPersonalComponent implements OnInit {
       emailDomainValidator
     ]);
   }
-
 
   fControl = new FormControl('', [
     Validators.required,
@@ -220,22 +218,27 @@ export class FormPersonalComponent implements OnInit {
         '';
   }
 
-
-
-
   /* -------------------------------- METODOS DEL CRUD EN LA BASE DE DATOS -------------------------------- */
 
   // Guardar la informacion del personal
   savePersonal(persona) {
-    this.persona.idsuc=localStorage.getItem("sucursal")
+    this.showBarra()
+    this.persona.idsuc = localStorage.getItem("sucursal")
     this.personalService.save(persona).subscribe((data) => {
+      this.hideBarra()
       this.showSuccesSave();
-      // console.log(data);
-      this.idp = data;
-      this.idper = this.idp.idper;
-      this.horarios = "";
-      this.perso = "none";
+      console.log(this.cond)
+      if (this.cond[0].permisos == 1 && this.cond[0].maestro == 1) {
+        this.idp = data;
+        this.idper = this.idp.idper;
+        this.horarios = "";
+        this.perso = "none";
+
+      } else {
+        this.router.navigateByUrl('/personal'); 
+      }
     }, (error) => {
+      this.hideBarra()
       alert('Ocurrio un error');
       console.log(error);
       this.showErrorSave();
@@ -258,7 +261,7 @@ export class FormPersonalComponent implements OnInit {
     this.detallegrupo.idd = horariopersonal.idd
     this.detallegrupo.idh = horariopersonal.idh
     this.detallegrupo.idp = this.idper;
-    
+
     this.detallegruposService.save(this.detallegrupo).subscribe((data) => {
       console.log(data);
       this.showSuccesSave();
@@ -295,10 +298,8 @@ export class FormPersonalComponent implements OnInit {
         this.showBarra()
         this.tipopersonalService.add(this.tipopersonalService.getDialogData()).subscribe((data) => {
           this.selectTPersonal.push(data)
-          // this.tipopadd = data
-          // this.exampleDatabase.dataChange.value.push(this.tipopadd);
-          // this.refreshTable()
-        
+
+
           this.notifications.showSuccessAdd();
           this.hideBarra();
         }, (error) => {
@@ -312,38 +313,33 @@ export class FormPersonalComponent implements OnInit {
     });
   }
 
-  getDias()
-  {
-    this.personalService.getDias().subscribe((data)=>{
+  getDias() {
+    this.personalService.getDias().subscribe((data) => {
       this.dias = data
     })
   }
 
-  getHorarios()
-  {
-    this.personalService.getHorarios().subscribe((data)=>{
+  getHorarios() {
+    this.personalService.getHorarios().subscribe((data) => {
       this.horas = data
       console.log(this.horas)
     })
   }
 
-  nuevoDia()
-  {
-    
+  nuevoDia() {
+
   }
 
-  nuevoHorario(horario: Horario)
-  {
-    const dialogRef = this.dialog.open(HaddComponent,{
+  nuevoHorario(horario: Horario) {
+    const dialogRef = this.dialog.open(HaddComponent, {
       data:
       {
         horario: horario
       }
     })
-    dialogRef.afterClosed().subscribe(result=>{
-      if(result == 1)
-      {
-        this.horarioService.add(this.horarioService.getDialogData()).subscribe((data)=>{
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.horarioService.add(this.horarioService.getDialogData()).subscribe((data) => {
           let addH = data
           console.log(addH)
           this.horas.push(addH)

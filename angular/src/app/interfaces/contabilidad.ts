@@ -11,5 +11,6 @@ export interface contabilidad {
     status: number,
     adelanto: number,
     restante: number,
-    suma:number
+    suma:number,
+    idscu:number   
 }

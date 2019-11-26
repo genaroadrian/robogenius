@@ -1,8 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild, ɵConsole  } from '@angular/core';
 import * as jsPDF from 'jspdf';
 
-
-
 import { CategoriaService } from 'src/app/services/categoria.service';
 import {HttpClient} from '@angular/common/http';
 import { categorias } from 'src/app/interfaces/categorias';
@@ -30,6 +28,9 @@ export class CategoriasComponent implements OnInit {
 
 
   Categorias  ='';
+  sucursal:any;
+
+
 
 
 selected: any;
@@ -60,7 +61,8 @@ restantess:any;
     status:null,
     adelanto:null,
     restante:null,
-    suma:null
+    suma:null,
+    idscu:null
   };
 
   egres:contabilidad = {
@@ -76,7 +78,10 @@ restantess:any;
     status:null,
     adelanto:null,
     restante:null,
-    suma:null
+    suma:null,
+    idscu:null
+
+    
   };
 
   editar:contabilidad = {
@@ -92,7 +97,9 @@ restantess:any;
     status:null,
     adelanto:null,
     restante:null,
-    suma:null
+    suma:null,
+    idscu:null
+
   };
   
   log:categorias[];
@@ -114,6 +121,12 @@ restantess:any;
   
 
   ngOnInit() {
+    this.sucursal=localStorage.getItem('sucursal')
+    this.editar.idscu=this.sucursal;
+    this.egres.idscu=this.sucursal;
+    this.cont.idscu=this.sucursal;
+
+
     this.restantess=this.cont.monto-this.adelanto;  
     this.cont.adelanto=this.adelanto;
     this.cont.restante=this.restantess;

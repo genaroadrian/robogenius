@@ -108,6 +108,13 @@ export class PersonalService {
   {
     return this.httpClient.get(this.API_ENDPOINT+'/dias')
   }
+
+  getHorario()
+  {
+    return this.httpClient.get(this.API_ENDPOINT+'/getdias_horas')
+  }
+
+
   
 }
 

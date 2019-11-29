@@ -51,6 +51,8 @@ export class FormPersonalComponent implements OnInit {
   horas: any
   isDisable = true;
 
+  horario: any
+
   dias: any
   public selectedTime: string;
   public selectedTimes: string;
@@ -102,8 +104,9 @@ export class FormPersonalComponent implements OnInit {
       this.selectTPersonal = data
     }, (error) => {
     })
-    this.getDias()
-    this.getHorarios()
+    // this.getDias()
+    // this.getHorarios()
+    this.getHorario()
   }
 
   // Change the user and password input and groups module visibility 
@@ -258,18 +261,23 @@ export class FormPersonalComponent implements OnInit {
   }
 
   saveDetallegrupos(horariopersonal, index) {
+    
+    this.detallegruposService.save(this.detallegrupo).subscribe((data) => {
+      
     this.detallegrupo.idd = horariopersonal.idd
     this.detallegrupo.idh = horariopersonal.idh
     this.detallegrupo.idp = this.idper;
-
-    this.detallegruposService.save(this.detallegrupo).subscribe((data) => {
-      console.log(data);
       this.showSuccesSave();
+      let dia = horariopersonal.idd
+    let hora = horariopersonal.idh
+    this.horario.splice(horas => horas.iddia == dia && horas.idh == hora,1)
+    this.horas = this.horario
+    console.log(this.horas)
+    
     }, (error) => {
-      console.log(error);
       this.showErrorSave();
     });
-    this.removeTab(index);
+      this.removeTab(index);
   }
 
   open() {
@@ -313,7 +321,7 @@ export class FormPersonalComponent implements OnInit {
     });
   }
 
-  getDias() {
+  /* getDias() {
     this.personalService.getDias().subscribe((data) => {
       this.dias = data
     })
@@ -324,7 +332,30 @@ export class FormPersonalComponent implements OnInit {
       this.horas = data
       console.log(this.horas)
     })
+  } */
+
+  getHorario()
+  {
+    this.personalService.getHorario().subscribe((data)=>{
+      console.log(data)
+      this.horario = data 
+      var hash = {};
+    this.dias = this.horario.filter(function (dias) {
+      var exists = !hash[dias.iddia] || false;
+      hash[dias.iddia] = true;
+      return exists;
+    }) 
+    },(error)=>{
+      console.log(error)
+    })
   }
+
+  diasChange(id)
+  {
+    this.horas = null
+    this.horas = this.horario.filter(horas => horas.iddia == id)
+  }
+
 
   nuevoDia() {
 

@@ -212,7 +212,7 @@
                   <mat-form-field [ngStyle]="{display:visibility}">
                     <!-- <mat-form-field> -->
                     <input name="contra" class="example-right-align" [(ngModel)]="persona.contra" [(value)]="cleanCamps"
-                      matInput placeholder="Contraseña" [type]="hide ? 'password' : 'text'">
+                      matInput placeholder="ContraseÃ±a" [type]="hide ? 'password' : 'text'">
                     <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </mat-form-field>
                 </div>
@@ -244,9 +244,9 @@
               <div class="col-xl-1">
               </div>
               <div class="col-xl-12 col-md-12">
-                <div [ngStyle]="{display:horarios}">
-                  <!-- <div> -->
-                  <h1 style="text-align: center;">Asignación de grupos</h1>
+                <!-- <div [ngStyle]="{display:horarios}"> -->
+                  <div>
+                  <h1 style="text-align: center;">AsignaciÃ³n de grupos</h1>
 
                   <br>
                   <div style="text-align: center;">
@@ -257,9 +257,10 @@
                     <mat-checkbox #selectAfterAdding> Seleccionar horario despues de agregar </mat-checkbox>
                   </div>
                 </div>
-
                 <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)"
-                  [ngStyle]="{display:horarios}">
+                >
+                <!-- <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)"
+                  [ngStyle]="{display:horarios}"> -->
                   <!-- <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)"> -->
                   <!-- <mat-tab-group [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)"> -->
                   <mat-tab *ngFor="let tab of tabs; let index = index;" [label]="tab">
@@ -269,7 +270,7 @@
 
                         <mat-label>Dias: </mat-label>
 
-                        <mat-select [(ngModel)]="horarioPersonal[index].idd">
+                        <mat-select [(ngModel)]="horarioPersonal[index].idd" (selectionChange)="diasChange(horarioPersonal[index].idd)">
                           <mat-option *ngFor="let d of dias" value="{{d.iddia}}">{{d.dia}}</mat-option>
 
                         </mat-select>
@@ -282,7 +283,7 @@
 
                       <mat-form-field class="col-md-5" align="left">
                         <mat-label>Horario: </mat-label>
-                        <mat-select [(ngModel)]="horarioPersonal[index].idh">
+                        <mat-select [(ngModel)]="horarioPersonal[index].idh" >
                           <mat-option *ngFor="let h of horas" value="{{h.idh}}">{{h.hora}}</mat-option>
                         </mat-select>
 
@@ -321,9 +322,6 @@
 
 
           </div>
-
-
-
         </div>
       </div>
     </div>

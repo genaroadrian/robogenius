@@ -1,10 +1,10 @@
-<div class="container" style="height:420px;">
-    <h3 mat-dialog-title style="text-align: center;">Nuevo registro</h3>
+<div class="container" style="height:200px;">
+    <h3 mat-dialog-title style="text-align: center;">Nuevo Subtema</h3>
   
-    <form mat-dialog-content (ngSubmit)="submit" style="height:380px;" #formControl="ngForm">
+    <form mat-dialog-content (ngSubmit)="submit" #formControl="ngForm">
   
       <div class="form">
-        <mat-form-field color="accent"  style="width: 340px;">
+        <mat-form-field color="accent"  >
           <input matInput placeholder="Tema" [(ngModel)]="teme.nombre" name="nombre" required >
           <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
@@ -18,10 +18,9 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
-  
-      <div mat-dialog-actions>
-        <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd(data)" style="margin-top:40px;margin-left: 80px; margin-right: 40px;">Guardar</button>
-        <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1" style="margin-top: 40px;">Cancelar</button>
-      </div>
+        <br>
+        <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd(data)" style="margin-top:20px;margin-left:34%; margin-right: 40px;">Guardar</button>
+        <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1" style="margin-top: 20px;">Cancelar</button>
+
     </form>
   </div>

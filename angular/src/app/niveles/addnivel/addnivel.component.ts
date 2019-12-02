@@ -48,6 +48,7 @@ export class AddnivelComponent implements OnInit {
     addnivel(): void 
     {
       this.data.idsuc=localStorage.getItem("sucursal");
+      this.data.activo="1";
       this.nivelService.addniveles(this.data)
     }
   

@@ -11,7 +11,7 @@ import { Personal } from 'src/app/interfaces/personal';
 import { GruposAlumnos } from 'src/app/interfaces/gruposalumnos';
 import { PerfilService } from 'src/app/services/perfil.service';
 import { GEdit } from 'src/app/interfaces/gedit';
-
+  
 @Component({
   selector: 'app-perfilhoraedit',
   templateUrl: './perfilhoraedit.component.html',
@@ -103,11 +103,16 @@ export class PerfilhoraeditComponent implements OnInit {
     // Personal obtenido de larabel
   _allPersonal: Personal[];
 
+  idsuc:any;
+
   constructor(public dialogRef: MatDialogRef<PerfilhoraeditComponent>,
     @Inject(MAT_DIALOG_DATA) private data: any,
     public alumnosService: AlumnosService, 
     public toastr: ToastrManager, fb: FormBuilder, private getHorarios: GethorariosService,
-    public perfilService: PerfilService) { }
+    public perfilService: PerfilService) {
+      this.idsuc=localStorage.getItem('sucursal')
+
+     }
 
   ngOnInit() {
     // console.log(this.data);
@@ -149,7 +154,9 @@ export class PerfilhoraeditComponent implements OnInit {
     this.detallegrupos.idh = hora.idh;
     // // // console.log(this.detallegrupos);
     this.getHorarios.getPersonal(this.detallegrupos).subscribe((data: Personal[]) => {
-      this._allPersonal = data;
+      this._allPersonal = data; 
+      this._allPersonal=this._allPersonal.filter(datas=>datas.idsuc=this.idsuc)
+      console.log(this._allPersonal)
       this.labelp = "";
       this.spinnerp = "none";
       // // // console.log(this._allPersonal);

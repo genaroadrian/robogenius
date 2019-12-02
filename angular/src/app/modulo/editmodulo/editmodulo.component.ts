@@ -42,7 +42,9 @@ export class EditmoduloComponent implements OnInit {
   ngOnInit() {
     this.getData()
   }
-
+  Eliminar(){
+    console.log("asjdas")
+  }
   showBarra() {
     this.barra = ''
   }

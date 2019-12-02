@@ -5,6 +5,15 @@
 
 
 <div class="col-xl-12 col-md-12  imagenandname">
+        <div class="col-xl-4 col-md-12 ">
+                <br>
+                <br>
+                <a [routerLink]="['/alumnos']" class="arrow-container">
+                  <div class="arrow"></div>
+                  <div class="arrow"></div>
+                  <div class="arrow"></div>
+                </a>
+      </div> 
     <form (ngSubmit)="upload();">
 
         <div class="containerss rounded-circle " for="nuestroinput">
@@ -28,11 +37,6 @@
             <button class="btn btn-primary btn-sm" [ngStyle]="{'display': dfoto}"> ACTUALIZAR FOTO </button>
         </div>
         <br>
-
-        
-        <br>
-
-
 
     </form>
     <label class="labeltitulo"> {{datos.nomalu}} {{datos.apealu}}

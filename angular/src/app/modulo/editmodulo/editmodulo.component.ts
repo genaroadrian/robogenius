@@ -9,6 +9,7 @@ import * as jsPDF from 'jspdf';
 import { DeletesesionesComponent } from 'src/app/sesiones/deletesesiones/deletesesiones.component';
 import { DceditComponent } from 'src/app/detalleclases/dcedit/dcedit.component';
 import { ModuloService } from 'src/app/services/modulo.service';
+import { FilesdeleteComponent } from 'src/app/files/filesdelete/filesdelete.component';
 
 @Component({
   selector: 'app-editmodulo',
@@ -41,6 +42,21 @@ export class EditmoduloComponent implements OnInit {
 
   ngOnInit() {
     this.getData()
+  }
+
+  deleteFile(id, ruta){
+    console.log(id)
+    console.log(ruta)
+    const dialogRef = this.dialog.open(FilesdeleteComponent, {
+      data: { id: id, ruta: ruta}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        let d = this.moduloService.getDialogData()
+        console.log(d)
+      }
+    });
   }
 
   showBarra() {

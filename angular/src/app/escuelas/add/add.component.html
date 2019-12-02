@@ -8,13 +8,27 @@
     <div class="card bg-light mini-stat position-relative">
       <div class="card-body">
         <div class="mini-stat-desc">
-          <div class="col-xl-12 col-md-12">
             <div class="col-xl-12 col-md-12 ">
                 <!-- <h3 mat-dialog-title style="text-align: center;">Nuevo registro</h3> -->
-      <h1 class="title">Nueva escuela</h1>
+                <div class="col-xl-4 col-md-12 ">
+                  <br>
+                  <br>
+                  <a [routerLink]="['/escuelas']" class="arrow-container">
+                    <div class="arrow"></div>
+                    <div class="arrow"></div>
+                    <div class="arrow"></div>
+                  </a>
+              </div>
+              <div class="col-xl-4 col-md-12 ">
+                  <h1 class="title">Nueva escuela</h1>
+                  
+              </div>
+              <div class="col-xl-4 col-md-12 ">
+              </div>
+              <br>
+              <div class="div col-xl-12 col-md-12">
 
-
-      <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
+                  <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
   
       <form action="" (ngSubmit)="submit" #formControl="ngForm"  [ngStyle]="{'display': form}">
   
@@ -191,8 +205,10 @@
   
       </form>
 
+
               </div>
-            </div>
+    
+              </div>
           </div>
         </div>        
       </div>

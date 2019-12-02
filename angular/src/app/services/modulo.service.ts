@@ -107,18 +107,15 @@ export class ModuloService {
     return this.idSesion
   }
 
-  // download(data): Observable<HttpResponse<Blob>>
-  // {
-  //   const headers = new HttpHeaders({"responseType": "ResponseContentType.Blob"});
-  //   return this.httpClient.get(this.API_ENDPOINT+'/files',data)
-  // }
-
-  // downloadFile(data): Observable<HttpResponse<Blob>>{		
-	// 	return this.http.get('http://localhost:8000/api/files?filename="'+data.filename+'"' , { responseType: ResponseContentType.Blob });
-  //  }
-
-  downloadFile(data): Observable<any>{		
+  downloadFile(data): Observable<any>
+  {		
     	return this.http.get('http://localhost:8000/api/files?filename="'+data.filename+'"'+'&ruta="'+data.ruta+'"' , { responseType: ResponseContentType.Blob });
-     }
+  }
+
+  deleteFile(data)
+  {
+    this.dialogData = data
+    console.log(this.dialogData)
+  }
 
 }

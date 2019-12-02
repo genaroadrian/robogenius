@@ -31,7 +31,7 @@ export class EditmoduloComponent implements OnInit {
   barra: string = 'none'
 
   // tabs es la variable para pintar las tabs
-  tabs = ['Clase 1', 'Clase 2', 'Clase 3'];
+  tabs : any
   selected = new FormControl(0);
 
 
@@ -59,9 +59,21 @@ export class EditmoduloComponent implements OnInit {
 
   }
 
+  numerate(s)
+  {
+    let nTab = []
+    let i = 1
+    s.forEach(element => {
+      nTab.push("Clase "+i)
+      i++
+    });
+    return nTab
+  }
+
   getData() {
     this.plan = this.homefclasesService.returnData()
     this.homefclasesService.getDataSesion(this.homefclasesService.returnData()).subscribe((data) => {
+      
       console.log(data)
       let datos: any
       datos = data
@@ -70,6 +82,7 @@ export class EditmoduloComponent implements OnInit {
       this.planeaciones = datos[1]
       this.planeaciones = this.planeaciones[0]
       this.sesiones = datos[2]
+      this.tabs = this.numerate(this.sesiones)
       this.files = datos[3]
       this.files.forEach(element => {
         element.forEach(archivo => {
@@ -219,6 +232,7 @@ export class EditmoduloComponent implements OnInit {
         this.showBarra()
         this.sesionesService.delete(id).subscribe((data) => {
           this.sesiones.splice(i, 1)
+          this. tabs = this.numerate(this.sesiones)
           this.notificationsService.showSuccessEdit()
           this.hideBarra()
         }, (error) => {

@@ -92,3 +92,4 @@ Route::resource('files', 'FilesController');
 Route::get('filesdownload', 'FilesController@download');
 Route::resource('moduloescuelas', 'moduloEscuelasController');
 Route::get('getdias_horas','horariosSAController@gethorarios');
+Route::get('getMaestros','horariosSAController@getMaestros');

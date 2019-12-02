@@ -71,6 +71,17 @@
                 </mat-error>
               </mat-form-field>
             </div>
+
+            <div class="form col-xl-10 tittle">
+              <mat-form-field [ngStyle]="{display:visibility}">
+                <input [(ngModel)]="data.psw" matInput placeholder="Contraseña" name="psw"
+                  [type]="hide ? 'password' : 'text'" [disabled]="isDisable" required>
+                  <mat-icon matPrefix class="text-warning">lock</mat-icon>
+                <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+              </mat-form-field>
+            </div>
+            
   
           </div>
   

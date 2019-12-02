@@ -81,8 +81,8 @@ export class NivelhomeComponent implements OnInit {
   }
 
   /* Mensaje de ERROR */
-  showError() {
-    this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
+  showError(error) {
+    this.toastr.errorToastr(error, 'Oops!');
   }
 
  
@@ -99,12 +99,14 @@ export class NivelhomeComponent implements OnInit {
     if (result == 1) {
       this.nivelService.agregar(this.nivelService.getDialogData()).subscribe((data) => {
         this.niveladd = data
+        // console.log(data)
         this.exampleDatabase.dataChange.value.push(this.niveladd);
         this.refreshTable()
         this.showSuccessAdd();
        
       }, (error) => {
-        this.showError();
+        // console.log(error.error.nombre[0])
+        this.showError(error.error.nombre[0]);
        
       });
 
@@ -133,7 +135,7 @@ export class NivelhomeComponent implements OnInit {
         this.hideBarra()
         this.showSuccessEdit()
       }, (error) => {
-        this.showError()
+        this.showError(error.error.nombre[0])
         this.hideBarra()
       })
 

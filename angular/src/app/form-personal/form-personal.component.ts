@@ -130,7 +130,7 @@ export class FormPersonalComponent implements OnInit {
   }
 
   // Notificación de success al eliminar
-  showSuccesSave() {
+  showSuccesSave() { 
     this.toastr.successToastr('Registro guardado', 'Exito!');
   }
 
@@ -138,6 +138,10 @@ export class FormPersonalComponent implements OnInit {
   showErrorSave() {
     this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
   }
+    /* Mensaje de ERROR */
+    showError(error) {
+      this.toastr.errorToastr(error, 'Oops!');
+    }
 
 
   // Resetear usuario y contraseña
@@ -237,8 +241,10 @@ export class FormPersonalComponent implements OnInit {
       this.perso = "none";
     }, (error) => {
       alert('Ocurrio un error');
-      console.log(error);
-      this.showErrorSave();
+      // console.log(error);
+      // this.showErrorSave();
+      this.showError(error.error.nombre[0]);
+
     });
 
 
@@ -302,7 +308,9 @@ export class FormPersonalComponent implements OnInit {
           this.notifications.showSuccessAdd();
           this.hideBarra();
         }, (error) => {
-          this.notifications.showError();
+          // this.notifications.showError();
+          this.showError(error.error.nombre[0]);
+
           // // this.notifications.hideBarra();
           this.hideBarra();
 

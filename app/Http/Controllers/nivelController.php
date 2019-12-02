@@ -54,10 +54,21 @@ class nivelController extends Controller
     // Actualiza registros
     public function update(Request $request, $id)
     {
-        $nivel = nivel::find($id);
-        $nivel->nombre = $request->nombre;
-        $nivel->activo = $request->activo;
+        $data=$request->all();
 
+        $reglas = array('nombre' => 'unique:niveles',
+        	            );
+        $mensajes= array('nombre.unique' =>  'El nivel debe ser unico',);
+        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        $validacion = Validator::make($data, $reglas, $mensajes);
+        if ($validacion->fails())
+        {
+			 $errores = $validacion->errors(); 
+			 return new JsonResponse($errores, 422); 
+        }
+
+        $nivel = nivel::find($id);
+		$nivel->nombre  =  $data["nombre"];
         $nivel->save();
         echo json_encode($nivel);
     }

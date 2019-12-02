@@ -49,6 +49,7 @@ class EmailDomainValidator {
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
+  hide = true;
 
   /* Opciones del formulario */
   options: FormGroup;
@@ -122,11 +123,11 @@ export class AddComponent implements OnInit {
 
   getPersonal()
   {
-    this.personalService.get().subscribe((data)=>{
+    this.personalService.getMaestros().subscribe((data)=>{
       this.personal = data
       this.personal=this.personal.filter(data=>data.idsuc==this.sucursal);
     },(error)=>{
-
+      console.log(error)
     })
   }
 
@@ -183,7 +184,7 @@ export class AddComponent implements OnInit {
 
     },(error)=>{
       this.hideBarra()
-
+      console.log(error)
     })
     
     

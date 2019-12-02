@@ -10,10 +10,11 @@ class horarioperfilalumnosController extends Controller
 {
     public function index()
     {
-        $sql = \DB::select('SELECT detallegrupos.iddgru, dias.dia, horario.hora, personal.nombre, personal.apellidos
-        FROM detallegrupos, horario, dias, personal 
-        WHERE detallegrupos.`idd` = dias.`iddia` AND horario.`idh` = detallegrupos.`idh` 
-        AND detallegrupos.idp = personal.idper AND detallegrupos.activo = 1');
+        $sql = \DB::select('SELECT detallegrupos.iddgru, dias.dia, horario.hora, personal.nombre, personal.apellidos, personal.idsuc
+        FROM detallegrupos, horario, dias, personal , tipopersonal
+        WHERE detallegrupos.`idd` = dias.`iddia` AND horario.`idh` = detallegrupos.`idh`
+         AND detallegrupos.idp = personal.idper AND personal.idtper = tipopersonal.idtper AND personal.activo =1
+        AND detallegrupos.activo = 1 AND tipopersonal.maestro =1');
         return $sql;
     }
 
@@ -22,7 +23,7 @@ class horarioperfilalumnosController extends Controller
     {
         $sql = new Grupos_alumnos();
         $sql->idalu = $request->idalu;
-        $sql->idg = $request->idg;
+        $sql->idg = $request->iddgru;
         $sql->activo = 1;
         $sql->save();
         // return $request;

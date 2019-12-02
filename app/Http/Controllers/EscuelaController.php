@@ -4,9 +4,11 @@ namespace slidecom_robogenius\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Illuminate\Support\Facades\Crypt;
 use slidecom_robogenius\escuelas;
 use Illuminate\Support\Facades\DB;
 use Session;
+use slidecom_robogenius\userAdmin;
 
 class EscuelaController extends Controller
 {
@@ -31,7 +33,17 @@ class EscuelaController extends Controller
         $escuelas->idscu = $request->idsuc;
         $escuelas->activo = 1;
         $escuelas->save();
-        echo json_encode($escuelas);
+
+        $user = new userAdmin();
+        $user->subname = $request->nombre;
+        $user->nombre = $request->representante;
+        $user->telefono = $request->telefono;
+        $user->email = $request->correouno;
+        $user->password = Crypt::encrypt($request->pws);
+        $user->activo = 1;
+        $user->save();
+
+        return $escuelas;
     }
 
     // Actualiza registros

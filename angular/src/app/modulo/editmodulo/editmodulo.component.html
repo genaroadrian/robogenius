@@ -4,25 +4,25 @@
   <div class="col-md-12 card-body">
     <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
 
-     
-      <div class="row">
-          <div class="col-md-5">
-              <div class="col-xl-4 col-md-12 ">
-                  <br>
-                  <br>
-                  <a [routerLink]="['/homefclases']" class="arrow-container">
-                    <div class="arrow"></div>
-                    <div class="arrow"></div>
-                    <div class="arrow"></div>
-                  </a>
-        </div>    
-            <h4>Fecha: <strong>{{fecha}}</strong></h4>
-          </div>
-          <div class="col-md-5 ml-auto">
-            <h4 class=" ">Folio: <strong>{{folio}}</strong> </h4>
-          </div>
-          
+
+    <div class="row">
+      <div class="col-md-5">
+        <div class="col-xl-4 col-md-12 ">
+          <br>
+          <br>
+          <a [routerLink]="['/homefclases']" class="arrow-container">
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+            <div class="arrow"></div>
+          </a>
         </div>
+        <h4>Fecha: <strong>{{fecha}}</strong></h4>
+      </div>
+      <div class="col-md-5 ml-auto">
+        <h4 class=" ">Folio: <strong>{{folio}}</strong> </h4>
+      </div>
+
+    </div>
 
     <div class="row">
       <div class="col-md-4"></div>
@@ -57,12 +57,12 @@
       </div>
     </div>
 
-  
+
 
     <div class="row">
       <div class="col-md-4">
         <h4 class="text-center">Area(s) del conocimiento</h4>
-      <hr class="subtitulo">
+        <hr class="subtitulo">
         <ul *ngFor="let dc of detalleClases">
           <li [style.display]="dc.ac == null ? 'none' : ''">{{dc.ac}}</li>
         </ul>
@@ -85,7 +85,8 @@
 
     <div class="text-center">
       <br>
-      <span class="text-muted"><strong class="ast">*</strong>Clase recomendada para <strong> {{plan.no_alu}} </strong> alumnos.</span>
+      <span class="text-muted"><strong class="ast">*</strong>Clase recomendada para <strong> {{plan.no_alu}} </strong>
+        alumnos.</span>
       <span class="text-muted">Este Subtema cuenta con <strong> {{sesiones.length}} </strong> sesiones.</span>
     </div>
 
@@ -93,14 +94,14 @@
 
   <div class="row">
     <mat-tab-group color="warn" [selectedIndex]="selected.value" class="col-md-12">
-      <mat-tab *ngFor="let ses of sesiones; let i = index;" [label]="ses.nombre" class="col-md-12">
-          <div class="row">
-              <div class="col-md-12 text-right ">
-                  <img src="https://cdn.pixabay.com/photo/2017/03/08/21/20/pdf-2127829_960_720.png" (click)="pdf(ses)">
-                  
-                </div>
-    
+      <mat-tab *ngFor="let ses of sesiones; let i = index;" [label]="tabs[i]" class="col-md-12">
+        <div class="row">
+          <div class="col-md-12 text-right ">
+            <img src="https://cdn.pixabay.com/photo/2017/03/08/21/20/pdf-2127829_960_720.png" (click)="pdf(ses)">
+
           </div>
+
+        </div>
         <h2>Nombre de la sesión: <strong>{{ses.nombre}}</strong>
           <span>
             <button mat-icon-button class="text-success"
@@ -137,35 +138,121 @@
           </button>
         </div>
         <h3>Archivos</h3>
-        <div class="row" >
-          <div class="col-md-2 container-file" *ngFor="let file of files[i]">
-              <mat-card class="example-card">
+        <div class="row">
+          <mat-tab-group class="col-md-12">
+            <mat-tab label="Manuales">
+              <!-- Tab content -->
+              <div class="col-md-2 container-file" *ngFor="let file of files[i]" [style.display]="file.tipo == 1 ? '' : 'none'">
+                <mat-card class="example-card" *ngIf="file.tipo == 1">
+                    <div class="containers">
+                        <img class="text-center image" alt="Eliminar" (click)="downloadFile(file)"
+                          matTooltip="{{file.filename}}" width="100" src="assets/icons/file type/{{file.vprev}}"
+                          alt="Photo of a Shiba Inu">
+                        <mat-card-content class="icono-file" matTooltip="{{file.filename}}">
+                          
+                        </mat-card-content>
+                        <div class="middle">
+                          <div class="text">
+                            <img src="assets/images/tacherojo.png" style="width:100%" (click)="deleteFile(file.idarchivo, file.ruta)">
+                          </div>
+                        </div>
+                      </div>
+  
+                      <mat-card-actions>
+                        <button class="btn btn-success text-center" (click)="downloadFile(file)">Descargar</button>
+                      </mat-card-actions>
+                </mat-card>
+              </div>
+
+              <!--  End Tab Content -->
+            </mat-tab>
+
+            <mat-tab label="Programacion">
+              <!-- tab content -->
+              <div class="col-md-2 container-file" *ngFor="let file of files[i]" [style.display]="file.tipo == 2 ? '' : 'none'">
+                <mat-card class="example-card" *ngIf="file.tipo == 2">
                   <mat-card-header>
                   </mat-card-header>
                   <div class="containers">
-                    <img class="text-center image"  alt="Eliminar" (click)="downloadFile(file)" matTooltip="{{file.filename}}"  width="50" src="assets/icons/file type/{{file.vprev}}" alt="Photo of a Shiba Inu">
-                  <mat-card-content class="icono-file" matTooltip="{{file.filename}}">
-                      <!-- <span (click)="downloadFile(file)">{{file.filename}}</span> -->
-                    </mat-card-content>
-                    <div class="middle">
-                      <div class="text"> 
-                          <img src="assets/images/tacherojo.png" style="width:100%" (click)=Eliminar();>
+                      <img class="text-center image" alt="Eliminar" (click)="downloadFile(file)"
+                        matTooltip="{{file.filename}}" width="100" src="assets/icons/file type/{{file.vprev}}"
+                        alt="Photo of a Shiba Inu">
+                      <mat-card-content class="icono-file" matTooltip="{{file.filename}}">
+                        
+                      </mat-card-content>
+                      <div class="middle">
+                        <div class="text">
+                          <img src="assets/images/tacherojo.png" style="width:100%" (click)="deleteFile(file.idarchivo, file.ruta)">
+                        </div>
                       </div>
                     </div>
-                    <button class="btn btn-success text-center"  (click)="downloadFile(file)" >Descargar</button>
-                  </div>
-                  
-                  
-                  <!-- <mat-card-actions>
-                    <button mat-button>Descargar</button>
-                    <button mat-button>Eliminar</button> -->
-                  <!-- </mat-card-actions> -->
-                </mat-card>
-          </div>
-        </div>
-      </mat-tab>
-    </mat-tab-group>
-  </div>
 
-</div>
-<app-fotter></app-fotter>
+                    <mat-card-actions>
+                      <button class="btn btn-success text-center" (click)="downloadFile(file)">Descargar</button>
+                    </mat-card-actions>
+                </mat-card>
+              </div>
+              <!-- end tab content -->
+            </mat-tab>
+
+            <mat-tab label="Presentaciones">
+              <!-- tab content -->
+              <div class="row">
+                  <div class="col-md-2 container-file" *ngFor="let file of files[i]" [style.display]="file.tipo == 4 ? '' : 'none'">
+                      <mat-card class="example-card" *ngIf="file.tipo == 3">
+                        <mat-card-header>
+                        </mat-card-header>
+                        <div class="containers">
+                            <img class="text-center image" alt="Eliminar" (click)="downloadFile(file)"
+                              matTooltip="{{file.filename}}" width="100" src="assets/icons/file type/{{file.vprev}}"
+                              alt="Photo of a Shiba Inu">
+                            <mat-card-content class="icono-file" matTooltip="{{file.filename}}">
+                              
+                            </mat-card-content>
+                            <div class="middle">
+                              <div class="text">
+                                <img src="assets/images/tacherojo.png" style="width:100%" (click)="deleteFile(file.idarchivo, file.ruta)">
+                              </div>
+                            </div>
+                          </div>
+      
+                          <mat-card-actions>
+                            <button class="btn btn-success text-center" (click)="downloadFile(file)">Descargar</button>
+                          </mat-card-actions>
+                      </mat-card>
+                    </div>
+              </div>
+              <!-- end tab content -->
+            </mat-tab>
+
+            <mat-tab label="Planeaciones">
+              <div class="row">
+                <div class="col-md-2 container-file" *ngFor="let file of files[i]" [style.display]="file.tipo == 4 ? '' : 'none'">
+                  <mat-card class="example-card" *ngIf="file.tipo == 4">
+                    <mat-card-header>
+                    </mat-card-header>
+                    <div class="containers">
+                      <img class="text-center image" alt="Eliminar" (click)="downloadFile(file)"
+                        matTooltip="{{file.filename}}" width="100" src="assets/icons/file type/{{file.vprev}}"
+                        alt="Photo of a Shiba Inu">
+                      <mat-card-content class="icono-file" matTooltip="{{file.filename}}">
+                        
+                      </mat-card-content>
+                      <div class="middle">
+                        <div class="text">
+                          <img src="assets/images/tacherojo.png" style="width:100%" (click)="deleteFile(file.idarchivo, file.ruta)">
+                        </div>
+                      </div>
+                    </div>
+
+                    <mat-card-actions>
+                      <button class="btn btn-success text-center" (click)="downloadFile(file)">Descargar</button>
+                    </mat-card-actions>
+                  </mat-card>
+                </div>
+              </div>
+            </mat-tab>
+          </mat-tab-group>
+        </div>
+
+        <app-fotter></app-fotter>

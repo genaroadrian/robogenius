@@ -1,0 +1,29 @@
+<div class="row">
+
+</div>
+
+<div class="content-page">
+  <div class="content">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-4">
+                  <div class="">
+                      <h4 class="mt-0 header-title mb-3">Alumnos inscritos</h4>
+                      <div class="inbox-wid" >
+                          <a href="#" class="text-dark" *ngFor="let alu of alumnos">
+                              <div class="inbox-item">
+                                  <div class="inbox-item-img float-left mr-3"><img src="assets/perfiles/Alumnos/{{alu.perfilalu}}" class="thumb-md rounded-circle" alt=""></div>
+                                  <h5 class="inbox-item-text  mb-0">{{alu.nomalu}} {{alu.apealu}} </h5>
+                                  <p class="inbox-item-text text-muted mb-0">{{alu.fnacalu}}</p>
+                                  <!-- <p class="inbox-item-date text-muted">13:40 PM</p> -->
+
+                              </div>
+                          </a>
+                      </div>  
+                  </div>
+              </div>
+            </div>
+      </div>
+  </div>
+  
+</div>

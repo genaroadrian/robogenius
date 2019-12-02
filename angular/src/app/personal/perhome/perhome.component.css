@@ -1,4 +1,10 @@
-
+mat-cell
+{
+  width: 135px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
 /* Structure */
 .container {
     display: flex;

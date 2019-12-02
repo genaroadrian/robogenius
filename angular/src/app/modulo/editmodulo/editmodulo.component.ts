@@ -9,6 +9,7 @@ import * as jsPDF from 'jspdf';
 import { DeletesesionesComponent } from 'src/app/sesiones/deletesesiones/deletesesiones.component';
 import { DceditComponent } from 'src/app/detalleclases/dcedit/dcedit.component';
 import { ModuloService } from 'src/app/services/modulo.service';
+import { FilesdeleteComponent } from 'src/app/files/filesdelete/filesdelete.component';
 
 @Component({
   selector: 'app-editmodulo',
@@ -31,7 +32,7 @@ export class EditmoduloComponent implements OnInit {
   barra: string = 'none'
 
   // tabs es la variable para pintar las tabs
-  tabs = ['Clase 1', 'Clase 2', 'Clase 3'];
+  tabs : any
   selected = new FormControl(0);
 
 
@@ -42,9 +43,22 @@ export class EditmoduloComponent implements OnInit {
   ngOnInit() {
     this.getData()
   }
-  Eliminar(){
-    console.log("asjdas")
+
+  deleteFile(id, ruta){
+    console.log(id)
+    console.log(ruta)
+    const dialogRef = this.dialog.open(FilesdeleteComponent, {
+      data: { id: id, ruta: ruta}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 1) {
+        let d = this.moduloService.getDialogData()
+        console.log(d)
+      }
+    });
   }
+
   showBarra() {
     this.barra = ''
   }
@@ -61,9 +75,21 @@ export class EditmoduloComponent implements OnInit {
 
   }
 
+  numerate(s)
+  {
+    let nTab = []
+    let i = 1
+    s.forEach(element => {
+      nTab.push("Clase "+i)
+      i++
+    });
+    return nTab
+  }
+
   getData() {
     this.plan = this.homefclasesService.returnData()
     this.homefclasesService.getDataSesion(this.homefclasesService.returnData()).subscribe((data) => {
+      
       console.log(data)
       let datos: any
       datos = data
@@ -72,6 +98,7 @@ export class EditmoduloComponent implements OnInit {
       this.planeaciones = datos[1]
       this.planeaciones = this.planeaciones[0]
       this.sesiones = datos[2]
+      this.tabs = this.numerate(this.sesiones)
       this.files = datos[3]
       this.files.forEach(element => {
         element.forEach(archivo => {
@@ -221,6 +248,7 @@ export class EditmoduloComponent implements OnInit {
         this.showBarra()
         this.sesionesService.delete(id).subscribe((data) => {
           this.sesiones.splice(i, 1)
+          this. tabs = this.numerate(this.sesiones)
           this.notificationsService.showSuccessEdit()
           this.hideBarra()
         }, (error) => {

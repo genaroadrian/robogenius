@@ -1,7 +1,8 @@
 export interface Tipopersonal {
     idtper?: number;
     tipo: string;
-    permisos: number;
+    permisos: boolean;
+    maestro?: boolean;
     activo: number;
     idsuc:string;
 }

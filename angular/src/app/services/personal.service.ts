@@ -53,6 +53,11 @@ export class PersonalService {
   {
     return this.noResult
   }
+
+  getMaestros()
+  {
+    return this.httpClient.get(this.API_ENDPOINT+'/getMaestros')
+  }
   
   // Obtener datos cuando cambien
   get data(): Personal[] {
@@ -108,6 +113,13 @@ export class PersonalService {
   {
     return this.httpClient.get(this.API_ENDPOINT+'/dias')
   }
+
+  getHorario()
+  {
+    return this.httpClient.get(this.API_ENDPOINT+'/getdias_horas')
+  }
+
+
   
 }
 

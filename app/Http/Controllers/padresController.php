@@ -32,10 +32,12 @@ class padresController extends Controller
     {
         $idh = $request->idh;
         $idd = $request->idd;
-         $sql = "SELECT DISTINCT detallegrupos.idp ,personal.nombre, personal.apellidos, detallegrupos.iddgru 
-        FROM detallegrupos INNER JOIN personal 
-        ON detallegrupos.idp = personal.idper
-        WHERE detallegrupos.idd = $idd AND detallegrupos.idh = $idh";
+         $sql = "SELECT DISTINCT detallegrupos.idp ,personal.nombre, personal.apellidos, detallegrupos.iddgru
+         FROM detallegrupos INNER JOIN personal 
+         ON detallegrupos.idp = personal.idper
+         INNER JOIN tipopersonal
+         ON tipopersonal.idtper = personal.idtper
+         WHERE detallegrupos.idd = $idd AND detallegrupos.idh = $idh AND tipopersonal.maestro =1";
         $personal = DB::SELECT("$sql");
         return $personal;
     }

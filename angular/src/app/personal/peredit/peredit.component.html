@@ -33,7 +33,7 @@
 
     <div class="form">
       <mat-form-field appearance="legacy">
-        <input matInput placeholder="Contraseña" [(ngModel)]="data.contra" name="contra" required [type]="hide ? 'password' : 'text'">
+        <input matInput placeholder="Contraseï¿½a" [(ngModel)]="data.contra" name="contra" required [type]="hide ? 'password' : 'text'">
         <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
@@ -131,6 +131,8 @@
 
     <div class="form">
       <mat-form-field appearance="legacy">
+          <input matInput #input placeholder="Tipo de personal"  name="tipopersonal"
+          required>
         <mat-select [(value)]="selected">
           <mat-option *ngFor="let tp of selectTPersonal" value="{{tp.idtper}}">{{tp.tipo}}</mat-option>
         </mat-select>

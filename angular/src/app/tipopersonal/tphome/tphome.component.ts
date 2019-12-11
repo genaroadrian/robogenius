@@ -12,6 +12,7 @@ import { map } from 'rxjs/operators';
 import { TpaddComponent } from '../tpadd/tpadd.component';
 import { TpdeleteComponent } from '../tpdelete/tpdelete.component';
 import { TpeditComponent } from '../tpedit/tpedit.component';
+import { ToastrManager } from 'ng6-toastr-notifications';
 
 
 
@@ -53,10 +54,14 @@ export class TphomeComponent implements OnInit {
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
     public tipopersonalService: TipopersonalService,
-    public notifications: NotificationsService) {
+    public notifications: NotificationsService, public toastr: ToastrManager) {
 
   }
 
+   /* Mensaje de ERROR */
+   showErrors(error) {
+    this.toastr.errorToastr(error, 'Oops!');
+  }
 
   ngOnInit() {
     // Llamado al metodo de getTipopersonal
@@ -109,7 +114,10 @@ export class TphomeComponent implements OnInit {
           // this.notifications.hideBarra();
           this.hideBarra();
         }, (error) => {
-          this.notifications.showError();
+          // this.notifications.showError();
+
+          this.showErrors(error.error.tipo[0]);
+
           // this.notifications.hideBarra();
           this.hideBarra();
 

@@ -19,6 +19,7 @@ export class PereditComponent implements OnInit {
 
 
   selected: string
+  sucursal:any;
 
   constructor(public dialogRef: MatDialogRef<PereditComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, public personalService: PersonalService,
@@ -27,9 +28,13 @@ export class PereditComponent implements OnInit {
      }
 
   ngOnInit() {
+    this.sucursal = localStorage.getItem('sucursal')
+
     this.selected = ''+this.data.idtper+''
     this.tPersonal.get().subscribe((data)=>{
       this.selectTPersonal = data
+      this.selectTPersonal=this.selectTPersonal.filter(x=>(x.idsuc==this.sucursal))
+      console.log(this.selectTPersonal)
     },(error)=>{
     })
     console.log(this.selected)

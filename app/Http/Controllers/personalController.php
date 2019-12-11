@@ -25,28 +25,25 @@ class personalController extends Controller
     public function store(Request $request)
     {
         $data=$request->all();
+        //   if para validar en tipo de usuario
+            $reglas = array('nombre' => 'required',
+            'apellidos' => 'required',
+            'fechanac' => 'required',
+            'sexo' => 'required',
+            'curp' => 'required|unique:personal',
+            'estadocivil' => 'required',
+            'domicilio' => 'required',
+            'horasalida' => 'required',
+            'horaentrada' => 'required',
+            'perfilprofesional' => 'required',
+            'especialidad' => 'required',
+            'salariomensual' => 'required',
+            'tareasasignadas' => 'required',
 
-        $reglas = array('nombre' => 'required',
-        	            'apellidos' => 'required|unique:personal',
-        	            'usuario' => 'required|unique:personal',
-        	            'contra' => 'required',
-        	            'fechanac' => 'required',
-        	            'sexo' => 'required',
-        	            'curp' => 'required|unique:personal',
-        	            'estadocivil' => 'required',
-        	            'domicilio' => 'required',
-        	            // 'fechaingreso' => 'required',
-        	            'horasalida' => 'required',
-        	            'horaentrada' => 'required',
-        	            'perfilprofesional' => 'required',
-        	            'especialidad' => 'required',
-        	            'fecharegistro' => 'required',
-        	            'salariomensual' => 'required',
-        	            'tareasasignadas' => 'required',
-        	            'idsuc' => 'required',
-        	            'idtper' => 'required',
-        	            // 'activo' => 'required',
-        	            );
+            );
+        
+
+      
         $mensajes= array('nombre.required' =>  'Ingresar nombre es obligatorio',
                         'apellidos.required' =>  'Ingresar apellidos es obligatorio',
                         'usuario.required' =>  'Ingresar usuario es obligatorio',
@@ -59,10 +56,8 @@ class personalController extends Controller
                          'horaentrada.required' =>  'La hora de entrada es obligatorio',
                          'perfilprofesional.required' =>  'El perfil profesional es obligatorio',
                          'especialidad.required' =>  'La especialidad es obligatorio',
-                        //  'fecharegistro.required' =>  'La fecha de registro es obligatorio',
                          'salariomensual.required' =>  'El salrio es obligatorio',
                          'tareasasignadas.required' =>  'Las tareas asignadas es obligatorio',
-                         'apellidos.unique' =>  'El apellido debe ser unico',
                          'usuario.unique' =>  'El usuario debe ser unico',
                          'curp.unique' =>  'El curp debe ser unico',
 

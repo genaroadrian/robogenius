@@ -9,6 +9,8 @@ use slidecom_robogenius\escuelas;
 use Illuminate\Support\Facades\DB;
 use Session;
 use slidecom_robogenius\userAdmin;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\JsonResponse;
 
 class EscuelaController extends Controller
 {
@@ -23,14 +25,36 @@ class EscuelaController extends Controller
      // Guarda nuevos registros
     public function store(Request $request)
     {
+        $data=$request->all();
+
+        $reglas = array('nombre' => 'required|unique:escuelas',
+                        'representante' => 'required',
+                        'direccion' => 'required',
+                        'correouno' => 'required',
+                        'telefono' => 'required',
+        	            );
+        $mensajes= array('nombre.required' =>  'Ingresar nombre es obligatorio',
+                         'nombre.unique' =>  'El nombre debe ser unico',
+                         'representante.required' =>  'El representante debe ser obligatorio',
+                         'direccion.required' =>  'Ingresar direccion es obligatorio',
+                         'correouno.required' =>  'Ingresar correo es obligatorio',
+                         'telefono.required' =>  'Ingresar telefono es obligatorio',
+        	             );
+        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        $validacion = Validator::make($data, $reglas, $mensajes);
+        if ($validacion->fails())
+        {
+			 $errores = $validacion->errors(); 
+			 return new JsonResponse($errores, 422); 
+        }
+
         $escuelas = new escuelas();
-        $escuelas->nombre = $request->nombre;
-        $escuelas->representante = $request->representante;
-        $escuelas->direccion = $request->direccion;
-        $escuelas->correouno = $request->correouno;
-        $escuelas->telefono = $request->telefono;
-        $escuelas->idesc = $request->idesc;
-        $escuelas->idscu = $request->idsuc;
+        $escuelas->nombre = $data["nombre"];
+        $escuelas->representante = $data["representante"];
+        $escuelas->direccion = $data["direccion"];
+        $escuelas->correouno = $data["correouno"];
+        $escuelas->telefono = $data["telefono"];
+        $escuelas->idscu = $data["idsuc"];
         $escuelas->activo = 1;
         $escuelas->save();
 
@@ -49,15 +73,37 @@ class EscuelaController extends Controller
     // Actualiza registros
     public function update(Request $request, $id)
     {
+        $data=$request->all();
+
+        $reglas = array('nombre' => 'unique:escuelas',
+                        'representante' => 'required',
+                        'direccion' => 'required',
+                        'correouno' => 'required',
+                        'telefono' => 'required',
+        	            );
+        $mensajes= array(
+                         'nombre.unique' =>  'El nombre debe ser unico',
+                         'representante.required' =>  'El representante debe ser obligatorio',
+                         'direccion.required' =>  'Ingresar direccion es obligatorio',
+                         'correouno.required' =>  'Ingresar correo es obligatorio',
+                         'telefono.required' =>  'Ingresar telefono es obligatorio',
+        	             );
+        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        $validacion = Validator::make($data, $reglas, $mensajes);
+        if ($validacion->fails())
+        {
+			 $errores = $validacion->errors(); 
+			 return new JsonResponse($errores, 422); 
+        }
+
         $escuelas = escuelas::find($id);
-        $escuelas->nombre = $request->nombre;
-        $escuelas->representante = $request->representante;
-        $escuelas->direccion = $request->direccion;
-        $escuelas->correouno = $request->correouno;
-        $escuelas->telefono = $request->telefono;
-        $escuelas->idesc = $request->idesc;
-        $escuelas->activo = 1;
+        $escuelas->nombre = $data["nombre"];
+        $escuelas->representante = $data["representante"];
+        $escuelas->direccion = $data["direccion"];
+        $escuelas->correouno = $data["correouno"];
+        $escuelas->telefono = $data["telefono"];
         $escuelas->save();
+
         echo json_encode($escuelas);
     }
 

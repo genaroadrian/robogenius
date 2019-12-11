@@ -102,6 +102,8 @@ export class FormPersonalComponent implements OnInit {
 
     this.tPersonal.get().subscribe((data) => {
       this.selectTPersonal = data
+      console.log(data)
+      this.selectTPersonal=this.selectTPersonal.filter(x=>x.idsuc==this.sucursal)
     }, (error) => {
     })
     // this.getDias()
@@ -246,10 +248,8 @@ export class FormPersonalComponent implements OnInit {
       }
     }, (error) => {
       this.hideBarra()
-      alert('Ocurrio un error');
-      // console.log(error);
-      // this.showErrorSave();
-      this.showError(error.error.nombre[0]);
+
+      this.showError(error.error[0]);
 
     });
 

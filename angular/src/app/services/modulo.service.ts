@@ -114,8 +114,7 @@ export class ModuloService {
 
   deleteFile(data)
   {
-    this.dialogData = data
-    console.log(this.dialogData)
+    return this.http.put(this.API_ENDPOINT+'/files/'+data.id, data)
   }
 
 }

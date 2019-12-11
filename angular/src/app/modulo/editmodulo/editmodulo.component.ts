@@ -10,6 +10,8 @@ import { DeletesesionesComponent } from 'src/app/sesiones/deletesesiones/deletes
 import { DceditComponent } from 'src/app/detalleclases/dcedit/dcedit.component';
 import { ModuloService } from 'src/app/services/modulo.service';
 import { FilesdeleteComponent } from 'src/app/files/filesdelete/filesdelete.component';
+import { FilesComponent } from 'src/app/files/files.component';
+import { FilesmodalComponent } from 'src/app/files/filesmodal/filesmodal.component';
 
 @Component({
   selector: 'app-editmodulo',
@@ -28,7 +30,7 @@ export class EditmoduloComponent implements OnInit {
   planeaciones: any
   sesiones: any
   fecha: any
-  plan: any
+  plan: any = this.homefclasesService.returnData()
   barra: string = 'none'
 
   // tabs es la variable para pintar las tabs
@@ -44,17 +46,24 @@ export class EditmoduloComponent implements OnInit {
     this.getData()
   }
 
-  deleteFile(id, ruta){
+  deleteFile(id, ruta, tipo){
     console.log(id)
     console.log(ruta)
     const dialogRef = this.dialog.open(FilesdeleteComponent, {
-      data: { id: id, ruta: ruta}
+      data: { id: id, ruta: ruta, tipo: tipo}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {
-        let d = this.moduloService.getDialogData()
-        console.log(d)
+        
+        this.moduloService.deleteFile(this.moduloService.getDialogData()).subscribe((data)=>{
+         console.log(data)
+         this.notificationsService.showSuccessDelete()
+         this.getData()
+        },(error)=>{
+          console.log(error)
+          this.notificationsService.showError()
+        })
       }
     });
   }
@@ -87,8 +96,7 @@ export class EditmoduloComponent implements OnInit {
   }
 
   getData() {
-    this.plan = this.homefclasesService.returnData()
-    this.homefclasesService.getDataSesion(this.homefclasesService.returnData()).subscribe((data) => {
+    this.homefclasesService.getDataSesion(this.plan).subscribe((data) => {
       
       console.log(data)
       let datos: any
@@ -455,6 +463,23 @@ export class EditmoduloComponent implements OnInit {
 
     docs.save(info.nombre +'.pdf');
 
+   }
+
+   newFiles(id)
+   {
+     console.log(id)
+     this.moduloService.getIdSesion(id)
+     const dialogRef = this.dialog.open(FilesmodalComponent,{
+       data: {}
+     })
+     dialogRef.afterClosed().subscribe(result=>{
+       console.log(result)
+       if(result === 1)
+       {
+        this.getData()
+        // this.notificationsService.showSuccessAdd()
+       }
+     })
    }
 
 

@@ -161,6 +161,7 @@ import { NgxDropzoneModule } from "ngx-dropzone";
 import { Http, HttpModule } from '@angular/http';
 import { ModuloescuelasComponent } from './moduloEscuelas/moduloescuelas/moduloescuelas.component';
 import { FilesdeleteComponent } from './files/filesdelete/filesdelete.component';
+import { FilesmodalComponent } from './files/filesmodal/filesmodal.component';
 
 
 const routes: Route[]=[
@@ -332,7 +333,8 @@ const routes: Route[]=[
     DcdeleteComponent,
     FilesComponent,
     ModuloescuelasComponent,
-    FilesdeleteComponent
+    FilesdeleteComponent,
+    FilesmodalComponent
 
   ],
   imports: [
@@ -495,8 +497,9 @@ const routes: Route[]=[
     /* Modales del detalle de clases */
     DceditComponent,
     DcdeleteComponent,
-    FilesdeleteComponent
-
+    FilesdeleteComponent,
+    /* Modal de los archivos */
+    FilesmodalComponent
 
   ],
   exports: [

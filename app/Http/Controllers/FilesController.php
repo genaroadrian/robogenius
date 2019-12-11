@@ -5,7 +5,7 @@ namespace slidecom_robogenius\Http\Controllers;
 use Illuminate\Http\Request;
 use slidecom_robogenius\Http\Controllers\Controller;
 use slidecom_robogenius\Files;
-
+use File;
 class FilesController extends Controller
 {
     public function index(Request $request)
@@ -78,15 +78,17 @@ class FilesController extends Controller
     
     public function update(Request $request, $id)
     {
-        $name = $request->filename;
-        $ruta = 'archivos'.$request->ruta;
-        $headers = [
-            'Content-Type' => 'application/pdf',
-         ];
-        /* Sintaxis del return
-            return response()->download(public_path($ruta, $nombre)
-        */
-        return response()->download(public_path('archivos/manuales/Alta.pdf_1573754852.pdf'), "prueba.blade.pdf");
+       
+       $path = public_path().'/';
+        $dir_files = 'archivos';
+        $destination = $path.$dir_files.'/';
+        if (File::exists($destination.'/'.$request->ruta)) {
+            File::delete($destination.'/'.$request->ruta);
+            $file = Files::findOrFail($id);
+            $file->delete();
+            return 200;
+        }
+       
     }
 
     /**

@@ -137,7 +137,10 @@
             <mat-icon aria-label="Delete">delete</mat-icon>
           </button>
         </div>
-        <h3>Archivos</h3>
+        <h3>Archivos<button width="110%" mat-icon-button matTooltip="Agregar nuevos archivos" (click)="newFiles(ses.idsesion)" >
+          <mat-icon aria-label="Nuevo Registro">add_circle_outline</mat-icon>
+        </button></h3>
+
         <div class="row">
           <mat-tab-group class="col-md-12">
             <mat-tab label="Manuales">
@@ -240,7 +243,7 @@
                       </mat-card-content>
                       <div class="middle">
                         <div class="text">
-                          <img src="assets/images/tacherojo.png" style="width:100%" (click)="deleteFile(file.idarchivo, file.ruta)">
+                          <img src="assets/images/tacherojo.png" style="width:100%" (click)="deleteFile(file.idarchivo, file.ruta, file.tipo)">
                         </div>
                       </div>
                     </div>

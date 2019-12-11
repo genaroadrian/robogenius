@@ -13,6 +13,7 @@ export class FilesdeleteComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any, public filesService: ModuloService) { }
 
   ngOnInit() {
+    console.log(this.data)
   }
 
   /* Cuando se da clic afuera del modal, se cierra */
@@ -22,7 +23,7 @@ export class FilesdeleteComponent implements OnInit {
 
   confirmDelete()
   {
-    this.filesService.deleteFile(this.data)
+    this.filesService.edit(this.data)
   }
 
 }

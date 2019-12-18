@@ -195,26 +195,6 @@
         <div class="container">
           <!-- <div class="sesiones"> -->
               <div class="sesiones" [ngStyle]="{'display': sesionesView}">
-            <!-- <div class="row">
-              <div class="col-md-4" style="text-align: right;">
-                <span class="col-md-3" style="border-top: 14px; margin-top: 14px; padding-top: 14px;">Sesion</span>
-                <mat-form-field class="col-md-2">
-
-                  <input matInput type="text" class="text-center" [(ngModel)]="ns">
-                </mat-form-field>
-                <span class="col-md-2" style="border-top: 14px; margin-top: 14px; padding-top: 14px;">De:
-                </span>
-                <mat-form-field class="col-md-2">
-                  <input matInput type="text" class="text-center" [(ngModel)]="numero"> -->
-                  <!--  <mat-select class="text-center"   [(value)]="x" (selectionChange)="addLink(x)" >
-                       <mat-select class="text-center">
-                      <mat-option value="1">1</mat-option>
-                      <mat-option value="2">2</mat-option>
-                      <mat-option value="3">3</mat-option>
-                    </mat-select> -->
-                <!-- </mat-form-field>
-              </div>
-            </div> -->
             <div class="row">
               <div class="col-md-5"></div>
               <div class="col-md-2">
@@ -223,11 +203,11 @@
               <mat-checkbox style="display: none;" #selectAfterAdding [(ngModel)]="checked"> Seleccionar horario despues de agregar </mat-checkbox>
               <div class="col-md-5"></div>
             </div>
-
+            
             <div class="row">
               <div class="col-md-12">
                 <mat-tab-group [color]="colorTab" [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
-                  <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab" [ngStyle]="{'color': bcT}">
+                  <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab" [aria-label]="colorChange[index]">
                       <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barraS}"></mat-progress-bar>
 
                     <form #formControl="ngForm">
@@ -328,7 +308,7 @@
 
                         <app-files [ngStyle]="{'display': filesView[index]}"></app-files>
 
-                    
+                    <button class="btn btn-success" (click)="statusTab(index)" [ngStyle]="{'display': filesView[index]}">Finalizar</button>
                     
                   </mat-tab>
                 </mat-tab-group>

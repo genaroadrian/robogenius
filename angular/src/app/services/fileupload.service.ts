@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+import {globalVar} from './global.service'
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileuploadService {
+  API_ENDPOINT = globalVar.url
 
-  API_ENDPOINT = 'http://localhost:8000/';
   // API_ENDPOINT = 'http://localhost/PruebasAngular/';
-  API_ENDPOINTS = 'http://localhost:8000/api/fotosalumnos/';
+  API_ENDPOINTS = globalVar.url+'/fotosalumnos/';
 
-  API_ENDPOINTSADMIN = 'http://localhost:8000/api/fotosadmin/';
+  API_ENDPOINTSADMIN = globalVar.url+'/fotosadmin/';
 
-  API_ENDPOINTSPERSONAL = 'http://localhost:8000/api/fotospersonal/';
+  API_ENDPOINTSPERSONAL = globalVar.url+'/fotospersonal/';
 
 
   constructor(private http:HttpClient) { }

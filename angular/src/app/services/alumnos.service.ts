@@ -3,6 +3,7 @@ import { Alumnos } from '../interfaces/alumnos';
 import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
 import { Alumnosview } from '../interfaces/alumnosview';
+import {globalVar} from './global.service'
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { Alumnosview } from '../interfaces/alumnosview';
 export class AlumnosService {
 
   // URL de laravel con xampp
-  API_ENDPOINT = 'http://localhost:8000/api';
+  API_ENDPOINT = globalVar.url
   datos :any;
   sucursal:any;
   dataChange: BehaviorSubject<Alumnos[]> = new BehaviorSubject<Alumnos[]>([]);

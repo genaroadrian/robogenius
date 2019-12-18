@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Memalumno } from '../interfaces/memalumno';
 import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
+import {globalVar} from './global.service'
 
 
 @Injectable({
@@ -10,7 +11,7 @@ import {BehaviorSubject} from 'rxjs';
 export class MemalumnovistaService {
 
   // URL de laravel
-  API_ENDPOINT = 'http://localhost:8000/api';
+  API_ENDPOINT = globalVar.url
 
   dataChange: BehaviorSubject<Memalumno[]> = new BehaviorSubject<Memalumno[]>([]);
   // Temporarily stores data from dialogs

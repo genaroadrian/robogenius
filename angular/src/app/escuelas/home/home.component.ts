@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { TipomembresiaService } from 'src/app/services/tipomembresia.service';
+import { GlobalService } from 'src/app/services/global.service';
 
 
 
@@ -54,7 +55,7 @@ export class HomeComponent implements OnInit {
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
     public escuelasService: EscuelasService, private router: Router, public toastr: ToastrManager,
-    public notifications:NotificationsService, public tipomembresiaService: TipomembresiaService) { }
+    public notifications:NotificationsService, public tipomembresiaService: TipomembresiaService, public globalSerivce: GlobalService) { }
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;

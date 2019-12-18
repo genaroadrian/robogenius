@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {globalVar} from './global.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonalperfilService {
 
-  API_ENDPOINT = 'http://localhost:8000/api'
+  API_ENDPOINT = globalVar.url
 
 
   /* Datos recibidos por el personal home */

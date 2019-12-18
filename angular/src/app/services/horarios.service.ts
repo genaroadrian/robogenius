@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Horario } from '../interfaces/horario';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
+import {globalVar} from './global.service'
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class HorariosService {
 
   sucursal:any;
   datos:any;
-API_ENDPOINT = 'http://localhost:8000/api';
+API_ENDPOINT = globalVar.url
 
   dataChange: BehaviorSubject<Horario[]> = new BehaviorSubject<Horario[]>([]);
   // Temporarily stores data from dialogs

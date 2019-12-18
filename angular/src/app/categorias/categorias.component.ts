@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild, ɵConsole  } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import * as jsPDF from 'jspdf';
 
 import { CategoriaService } from 'src/app/services/categoria.service';

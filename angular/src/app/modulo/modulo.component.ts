@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from "@angular/router";
 import { HttpClient } from '@angular/common/http';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -39,7 +39,8 @@ import { SubtemaService } from '../services/subtema.service';
   styleUrls: ['./modulo.component.css'],
   providers: [{
     provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true }
-  }, DatePipe]
+  }, DatePipe],
+  encapsulation: ViewEncapsulation.None
 
 })
 export class ModuloComponent implements OnInit {
@@ -73,6 +74,7 @@ export class ModuloComponent implements OnInit {
 
   filesView = []
   btnView = []
+  colorChange = []
 
   /* Almancena una sesion por separado en forma de diccionario de datos */
   singleSesion = {
@@ -174,7 +176,7 @@ export class ModuloComponent implements OnInit {
 
 
   ngOnInit() {
-
+    this.colorChange[0] = ''
     this.filesView[0] = 'none'
     this.btnView[0] = ''
     this.disSesion[0] = false
@@ -246,6 +248,7 @@ export class ModuloComponent implements OnInit {
       cierre: null
     })
     this.filesView.push('none')
+    this.colorChange.push('')
     this.btnView.push('')
     this.disSesion.push(false)
     this.tabs.push('Sesion');
@@ -257,6 +260,7 @@ export class ModuloComponent implements OnInit {
 
   }
   removeTab(index: number) {
+    this.colorChange.splice(index,1)
     this.filesView.splice(index,1)
     this.btnView.slice(index,1)
     this.tabs.splice(index, 1);
@@ -691,6 +695,7 @@ export class ModuloComponent implements OnInit {
         // console.log(data)
         this.barraS = "none"
         this.notifications.showSuccessAdd()
+        
       }, (error) => {
         // console.log(error)
         this.barraS = 'none'
@@ -741,6 +746,11 @@ export class ModuloComponent implements OnInit {
     })
 
     this.subtema = subtemas
+  }
+
+  statusTab(index)
+  {
+    this.colorChange[index] = 'on'
   }
 
 } 

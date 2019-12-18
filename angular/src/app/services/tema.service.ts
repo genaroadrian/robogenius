@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { tema } from '../interfaces/tema';
 import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
+import {globalVar} from './global.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class TemaService {
   // URL de laravel
-  API_ENDPOINT = 'http://localhost:8000/api';
+  API_ENDPOINT = globalVar.url
 
   dataChange: BehaviorSubject<tema[]> = new BehaviorSubject<tema[]>([]);
 

@@ -1,24 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
+import {globalVar} from './global.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class GraficasService {
 
+  API_ENDPOINT = globalVar.url
+
   constructor(private _http:HttpClient) { 
 
   }
 
   egresos(){
-    const Url = 'http://localhost:8000/api/sumaegresos';
+    const Url = this.API_ENDPOINT +'/api/sumaegresos';
     var y =  this._http.get(Url)
     return y ;
   }
 
   ingresos(){
-    const Url = 'http://localhost:8000/api/sumaingresos';
+    const Url = this.API_ENDPOINT +'/api/sumaingresos';
     // return this._http.get(Url)
     var x = this._http.get(Url)
     return x;
@@ -27,7 +30,7 @@ export class GraficasService {
     
   }
   Semana(){
-    const Url = 'http://localhost:8000/api/semana';
+    const Url = this.API_ENDPOINT +'/api/semana';
     // return this._http.get(Url)
     var semana = this._http.get(Url)
     return semana;
@@ -36,7 +39,7 @@ export class GraficasService {
     
   }
   SemanaEgresos(){
-    const Url = 'http://localhost:8000/api/semanaegresos';
+    const Url = this.API_ENDPOINT +'/api/semanaegresos';
     // return this._http.get(Url)
     var semanaegresos = this._http.get(Url)
     return semanaegresos;
@@ -45,7 +48,7 @@ export class GraficasService {
     
   }
   mesingreso(){
-    const Url = 'http://localhost:8000/api/mesingreso';
+    const Url = this.API_ENDPOINT +'/api/mesingreso';
     // return this._http.get(Url)
     var mesingreso = this._http.get(Url)
     return mesingreso;
@@ -54,7 +57,7 @@ export class GraficasService {
     
   }
   mesegreso(){
-    const Url = 'http://localhost:8000/api/mesegreso';
+    const Url = this.API_ENDPOINT +'/api/mesegreso';
     // return this._http.get(Url)
     var mesegresos = this._http.get(Url)
     return mesegresos;
@@ -63,7 +66,7 @@ export class GraficasService {
     
   }
   utilidad(){
-    const Url = 'http://localhost:8000/api/utilidad';
+    const Url = this.API_ENDPOINT +'/api/utilidad';
     // return this._http.get(Url)
     var utilidad = this._http.get(Url)
     return utilidad;
@@ -72,7 +75,7 @@ export class GraficasService {
     
   }
   utilidadrestan(){
-    const Url = 'http://localhost:8000/api/restapendiente';
+    const Url = this.API_ENDPOINT +'/api/restapendiente';
     // return this._http.get(Url)
     var restapendiente = this._http.get(Url)
     return restapendiente;

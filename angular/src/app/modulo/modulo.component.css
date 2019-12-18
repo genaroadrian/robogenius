@@ -74,6 +74,8 @@
     height: 1px;
     }
       
-  
-  
-  
+[aria-label='on']
+{
+  background-color: #229954;
+  color: #FDFEFE;
+}

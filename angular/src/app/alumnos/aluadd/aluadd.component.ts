@@ -461,7 +461,7 @@ export class AluaddComponent implements OnInit {
     // console.log(this.detallegrupos);
     this.gethorarios.getPersonal(this.detallegrupos).subscribe((data: Personal[]) => {
       this._allPersonal = data;
-      this._allPersonal=this._allPersonal.filter(datas=>datas.idsuc=this.idsuc)
+      this._allPersonal=this._allPersonal.filter(datas=>datas.idsuc==this.idsuc)
        console.log(this._allPersonal)
       this.labelp = "";
       this.spinnerp = "none";

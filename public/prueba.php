@@ -15,7 +15,7 @@
     $archivo = $params->base64textString;
     $archivo = base64_decode($archivo);
     
-    $filePath = $_SERVER['DOCUMENT_ROOT']."../../angular/src/assets/perfiles/Alumnos/".$nombreArchivo;
+    $filePath = $_SERVER['DOCUMENT_ROOT']."./perfiles/Alumnos/".$nombreArchivo;
     file_put_contents($filePath, $archivo);
     
     

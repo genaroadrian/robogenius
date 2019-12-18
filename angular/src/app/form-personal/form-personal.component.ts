@@ -102,6 +102,8 @@ export class FormPersonalComponent implements OnInit {
 
     this.tPersonal.get().subscribe((data) => {
       this.selectTPersonal = data
+      console.log(data)
+      this.selectTPersonal=this.selectTPersonal.filter(x=>x.idsuc==this.sucursal)
     }, (error) => {
     })
     // this.getDias()
@@ -134,7 +136,7 @@ export class FormPersonalComponent implements OnInit {
   }
 
   // Notificación de success al eliminar
-  showSuccesSave() {
+  showSuccesSave() { 
     this.toastr.successToastr('Registro guardado', 'Exito!');
   }
 
@@ -142,6 +144,10 @@ export class FormPersonalComponent implements OnInit {
   showErrorSave() {
     this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
   }
+    /* Mensaje de ERROR */
+    showError(error) {
+      this.toastr.errorToastr(error, 'Oops!');
+    }
 
   // Resetear usuario y contraseña
   cleanCamps = "";
@@ -242,9 +248,9 @@ export class FormPersonalComponent implements OnInit {
       }
     }, (error) => {
       this.hideBarra()
-      alert('Ocurrio un error');
-      console.log(error);
-      this.showErrorSave();
+
+      this.showError(error.error[0]);
+
     });
 
 
@@ -311,7 +317,9 @@ export class FormPersonalComponent implements OnInit {
           this.notifications.showSuccessAdd();
           this.hideBarra();
         }, (error) => {
-          this.notifications.showError();
+          // this.notifications.showError();
+          this.showError(error.error.nombre[0]);
+
           // // this.notifications.hideBarra();
           this.hideBarra();
 

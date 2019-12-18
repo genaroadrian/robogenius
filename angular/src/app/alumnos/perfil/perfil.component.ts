@@ -276,7 +276,7 @@ export class PerfilComponent implements OnInit {
   horarios() {
     this.barra = ""
     this.perfilService.gethorario(this.datos).subscribe((data) => {
-      // console.log(data)
+      console.log(data)
       this.dataSource = data;
       // console.log('numero de horarios en la base de datos' +this.dataSource.length)
       this.clasesDB = Number(this.dataSource.length)

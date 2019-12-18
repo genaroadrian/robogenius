@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use slidecom_robogenius\Http\Controllers\Controller;
 use slidecom_robogenius\Tipopersonal;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\JsonResponse;
 
 class tipopersonalController extends Controller
 {
@@ -17,25 +19,55 @@ class tipopersonalController extends Controller
 
    public function store(Request $request)
    {
-    $tpersonal = new Tipopersonal();
-    $tpersonal->tipo = $request->tipo;
-    $tpersonal->permisos = $request->permisos;
-    $tpersonal->idsuc = $request->idsuc;
+    $data=$request->all();
+
+    $reglas = array('tipo' => 'required|unique:tipopersonal',
+                    'idsuc' => 'required',
+                  );
+    $mensajes= array('tipo.required' =>  'Ingresar tipo es obligatorio',
+                     'tipo.unique' =>  'El tipo debe ser unico',
+
+                   );
+    // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+    $validacion = Validator::make($data, $reglas, $mensajes);
+    if ($validacion->fails())
+    {
+   $errores = $validacion->errors(); 
+   return new JsonResponse($errores, 422); 
+    }
+
+    $tpersonal= new Tipopersonal;
+    $tpersonal->tipo  =  $data["tipo"];
+    $tpersonal->permisos  =  $data["permisos"];
+    $tpersonal->maestro  =  $data["maestro"];
     $tpersonal->activo = 1;
-    $tpersonal->maestro = $request->maestro;
+    $tpersonal->idsuc  =  $data["idsuc"];
     $tpersonal->save();
     echo json_encode($tpersonal);
     }
 
     public function update(Request $request, $id)
     {
-        $personal = Tipopersonal::find($id);
-        $personal->tipo = $request->tipo;
-        $personal->permisos = $request->permisos;
-        $personal->maestro = $request->maestro;
-        $personal->activo = 1;
-        $personal->save();
-        echo json_encode($personal);
+      $data=$request->all();
+
+    $reglas = array('tipo' => 'unique:tipopersonal',
+                  );
+    $mensajes= array('tipo.unique' =>  'El tipo debe ser unico',
+                   );
+    // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+    $validacion = Validator::make($data, $reglas, $mensajes);
+    if ($validacion->fails())
+    {
+   $errores = $validacion->errors(); 
+   return new JsonResponse($errores, 422); 
+    }
+
+    $tpersonal= Tipopersonal::find($id);
+    $tpersonal->tipo  =  $data["tipo"];
+    $tpersonal->permisos  =  $data["permisos"];
+    $tpersonal->maestro  =  $data["maestro"];
+    $tpersonal->save();
+    echo json_encode($tpersonal);
     }
 
 

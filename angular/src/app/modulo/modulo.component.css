@@ -73,6 +73,11 @@
     width: 70%;
     height: 1px;
     }
+
+    [aria-label='on'] {
+      background-color: blue;
+    }
+    
       
   
   

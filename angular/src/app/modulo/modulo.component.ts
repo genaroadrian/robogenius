@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from "@angular/router";
 import { HttpClient } from '@angular/common/http';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
@@ -39,7 +39,8 @@ import { SubtemaService } from '../services/subtema.service';
   styleUrls: ['./modulo.component.css'],
   providers: [{
     provide: STEPPER_GLOBAL_OPTIONS, useValue: { showError: true }
-  }, DatePipe]
+  }, DatePipe],
+  encapsulation: ViewEncapsulation.None
 
 })
 export class ModuloComponent implements OnInit {
@@ -51,6 +52,7 @@ export class ModuloComponent implements OnInit {
   barraS: string = 'none'
 
   colorTab: string = 'accent'
+  colorChange = []
 
   /* Almacena todas las sesiones que se van a insertar en la base de datos 
   en forma de arreglo */
@@ -178,6 +180,7 @@ export class ModuloComponent implements OnInit {
     this.filesView[0] = 'none'
     this.btnView[0] = ''
     this.disSesion[0] = false
+    this.colorChange[0] = ''
 
     let n = Math.round(Math.random() * 100000);
     this.idfolio = n.toString()
@@ -247,6 +250,7 @@ export class ModuloComponent implements OnInit {
     })
     this.filesView.push('none')
     this.btnView.push('')
+    this.colorChange.push('')
     this.disSesion.push(false)
     this.tabs.push('Sesion');
     if (selectAfterAdding) {
@@ -259,6 +263,7 @@ export class ModuloComponent implements OnInit {
   removeTab(index: number) {
     this.filesView.splice(index,1)
     this.btnView.slice(index,1)
+    this.colorChange.splice(index,1)
     this.tabs.splice(index, 1);
     this.disSesion.splice(index,1)
     this.numero = this.numero - 1;
@@ -691,6 +696,7 @@ export class ModuloComponent implements OnInit {
         // console.log(data)
         this.barraS = "none"
         this.notifications.showSuccessAdd()
+        this.colorChange[index] = 'on'
       }, (error) => {
         // console.log(error)
         this.barraS = 'none'

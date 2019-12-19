@@ -194,122 +194,130 @@
         <br>
         <div class="container">
           <!-- <div class="sesiones"> -->
-              <div class="sesiones" [ngStyle]="{'display': sesionesView}">
+          <div class="sesiones" [ngStyle]="{'display': sesionesView}">
             <div class="row">
               <div class="col-md-5"></div>
               <div class="col-md-2">
                 <button class="btn btn-warning" (click)="addTab(selectAfterAdding.checked)">Agregar sesion</button>
               </div>
-              <mat-checkbox style="display: none;" #selectAfterAdding [(ngModel)]="checked"> Seleccionar horario despues de agregar </mat-checkbox>
+              <mat-checkbox style="display: none;" #selectAfterAdding [(ngModel)]="checked"> Seleccionar horario despues
+                de agregar </mat-checkbox>
               <div class="col-md-5"></div>
             </div>
-            
+
             <div class="row">
               <div class="col-md-12">
-                <mat-tab-group [color]="colorTab" [selectedIndex]="selected.value" (selectedIndexChange)="selected.setValue($event)">
+                <mat-tab-group [color]="colorTab" [selectedIndex]="selected.value"
+                  (selectedIndexChange)="selected.setValue($event)">
                   <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab" [aria-label]="colorChange[index]">
-                      <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barraS}"></mat-progress-bar>
+                    <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barraS}"></mat-progress-bar>
 
                     <form #formControl="ngForm">
                       <div class="row">
-                        <mat-form-field >
-                          <input matInput type="text" name="id" [(ngModel)]="allSesiones[index].idsesion" >
+                        <mat-form-field>
+                          <input matInput type="text" name="id" [(ngModel)]="allSesiones[index].idsesion">
                         </mat-form-field>
 
                         <div class="col-md-4">
                           <mat-form-field>
                             <mat-label>Nombre de la sesion:</mat-label>
-                            <input matInput type="text" name="nombre"  [(ngModel)]="allSesiones[index].nombre" [disabled]="disSesion[index]"  required >
+                            <input matInput type="text" name="nombre" [(ngModel)]="allSesiones[index].nombre"
+                              [disabled]="disSesion[index]" required>
                           </mat-form-field>
                         </div>
-  
+
                         <div class="col-md-4">
                           <mat-form-field>
                             <mat-label>Aprendizajes clave</mat-label>
-                            <input type="text" matInput name="apren"  [(ngModel)]="allSesiones[index].apren_clave" required  [disabled]="disSesion[index]" >
+                            <input type="text" matInput name="apren" [(ngModel)]="allSesiones[index].apren_clave"
+                              required [disabled]="disSesion[index]">
                           </mat-form-field>
                         </div>
-  
+
                         <div class="col-md-4">
                           <mat-form-field>
                             <mat-label>Material necesario</mat-label>
-                            <input type="text" matInput name="mat" [(ngModel)]="allSesiones[index].mat_necesario"  required  [disabled]="disSesion[index]" >
+                            <input type="text" matInput name="mat" [(ngModel)]="allSesiones[index].mat_necesario"
+                              required [disabled]="disSesion[index]">
                           </mat-form-field>
                         </div>
                       </div>
-  
+
                       <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
                           <mat-form-field class="text-center">
                             <mat-label class="text-center">Objetivo</mat-label>
-                            <input type="text" matInput class="text-center" name="objetivo" 
-                            [(ngModel)]="allSesiones[index].objetivo" [disabled]="disSesion[index]"  required >
+                            <input type="text" matInput class="text-center" name="objetivo"
+                              [(ngModel)]="allSesiones[index].objetivo" [disabled]="disSesion[index]" required>
                           </mat-form-field>
                         </div>
                         <div class="col-md-2"></div>
                       </div>
-  
+
                       <div class="row">
                         <div class="col-md-6">
                           <mat-form-field class="example-full-width">
-                            <textarea matInput placeholder="Introcuccion"
-                              [(ngModel)]="allSesiones[index].introduccion" name="introduccion"  [disabled]="disSesion[index]" required></textarea>
+                            <textarea matInput placeholder="Introcuccion" [(ngModel)]="allSesiones[index].introduccion"
+                              name="introduccion" [disabled]="disSesion[index]" required></textarea>
                           </mat-form-field>
                         </div>
-  
+
                         <div class="col-md-6">
                           <mat-form-field class="example-full-width">
-                            <textarea matInput placeholder="Ice Break"
-                              [(ngModel)]="allSesiones[index].ice_break" name="icebreak"  [disabled]="disSesion[index]" required></textarea>
+                            <textarea matInput placeholder="Ice Break" [(ngModel)]="allSesiones[index].ice_break"
+                              name="icebreak" [disabled]="disSesion[index]" required></textarea>
                           </mat-form-field>
                         </div>
                       </div>
-  
+
                       <div class="row">
                         <div class="col-md-6">
                           <mat-form-field class="example-full-width">
-                            <textarea matInput placeholder="Contenido"
-                              [(ngModel)]="allSesiones[index].contenido" name="contenido"  [disabled]="disSesion[index]" required></textarea>
+                            <textarea matInput placeholder="Contenido" [(ngModel)]="allSesiones[index].contenido"
+                              name="contenido" [disabled]="disSesion[index]" required></textarea>
                           </mat-form-field>
                         </div>
                         <div class="col-md-6">
                           <mat-form-field class="example-full-width">
-                            <textarea matInput placeholder="Descanso"
-                              [(ngModel)]="allSesiones[index].descanso" name="descanso"  [disabled]="disSesion[index]" required></textarea>
+                            <textarea matInput placeholder="Descanso" [(ngModel)]="allSesiones[index].descanso"
+                              name="descanso" [disabled]="disSesion[index]" required></textarea>
                           </mat-form-field>
                         </div>
                       </div>
-  
+
                       <div class="row">
                         <div class="col-md-6">
                           <mat-form-field class="example-full-width">
-                            <textarea matInput placeholder="Desarrollo "
-                              [(ngModel)]="allSesiones[index].desarrollo" name="desarrollo"  [disabled]="disSesion[index]" required></textarea>
+                            <textarea matInput placeholder="Desarrollo " [(ngModel)]="allSesiones[index].desarrollo"
+                              name="desarrollo" [disabled]="disSesion[index]" required></textarea>
                           </mat-form-field>
                         </div>
                         <div class="col-md-6">
                           <mat-form-field class="example-full-width">
-                            <textarea matInput placeholder="Cierre" name="cierre"  [(ngModel)]="allSesiones[index].cierre" [disabled]="disSesion[index]" required></textarea>
+                            <textarea matInput placeholder="Cierre" name="cierre"
+                              [(ngModel)]="allSesiones[index].cierre" [disabled]="disSesion[index]" required></textarea>
                           </mat-form-field>
                         </div>
                       </div>
-  
+
                       <div style="text-align: center;" [ngStyle]="{'display': btnView[index]}">
-                        <button class="btn btn-success" (click)="saveSesion(allSesiones[index], index)" [disabled]="!formControl.valid">
+                        <button class="btn btn-success" (click)="saveSesion(allSesiones[index], index)"
+                          [disabled]="!formControl.valid">
                           Guardar sesion
                         </button>
-  
+
                         <button class="btn btn-danger" [disabled]="tabs.length === 1" (click)="removeTab(index)">
                           Cancelar
                         </button>
                       </div>
                     </form>
 
-                        <app-files [ngStyle]="{'display': filesView[index]}"></app-files>
+                    <app-files [ngStyle]="{'display': filesView[index]}"></app-files>
 
-                    <button class="btn btn-success" (click)="statusTab(index)" [ngStyle]="{'display': filesView[index]}">Finalizar</button>
-                    
+                    <button class="btn btn-success" (click)="statusTab(index)"
+                      [ngStyle]="{'display': filesView[index]}">Finalizar</button>
+
                   </mat-tab>
                 </mat-tab-group>
               </div>

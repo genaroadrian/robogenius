@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@angular/core';
 import { PerfilService } from 'src/app/services/perfil.service';
 import { MatDialog } from '@angular/material';
 import { AlueditComponent } from '../aluedit/aluedit.component';
@@ -16,6 +16,7 @@ import { PerfiladdhoraComponent } from '../perfiladdhora/perfiladdhora.component
 // import {formatDate } from '@angular/common';
 
 
+
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -23,7 +24,11 @@ import { PerfiladdhoraComponent } from '../perfiladdhora/perfiladdhora.component
 })
 
 
+
+
 export class PerfilComponent implements OnInit {
+
+  @ViewChild('Profile') img;
 
   dfoto: string = 'none'
 
@@ -147,6 +152,26 @@ export class PerfilComponent implements OnInit {
     this.archivo.nombreArchivo = this.jstoday + this.archivo.nombreArchivo
 
 
+    /* -------------------- */
+    var archivos = event.target.files
+    var archivo = archivos[0]
+    var lector = new FileReader()
+    var vista_previa
+
+    lector.onloadend = () =>{
+      this.img.nativeElement.src = lector.result
+    }
+
+
+    if(archivo)
+    {
+      lector.readAsDataURL(archivo)
+    }else{
+      vista_previa = ''
+    }
+    
+    /* -------------------- */
+
     if (files && file) {
       var reader = new FileReader();
       reader.onload = this._handleReaderLoaded.bind(this);
@@ -186,35 +211,9 @@ export class PerfilComponent implements OnInit {
     this.dfoto = 'none'
   }
 
-  // subirimagenes(){
-  //   this.uploadService.subirimagen(this.archivo,this.datos)
-  // }
-
-
-  // // Interfaz de la tabla alumnos
-  // alumno: Alumnos = {
-  //   idalu: this.datos.idalu, nomalu: null,
-  //   apealu: null, fnacalu: null,
-  //   sexoalu: null, domalu: null,
-  //   telalu: null, correoalu: null,
-  //   medicacion: null, alergias: null,
-  //   perfilalu: this.archivo.nombreArchivo, cronica: null,
-  //   otro: null, evaluacion: null,
-  //   usuarioalu: null, pswalu: null,
-  //   nompad: null, apepad: null,
-  //   dompad: null, telpad: null,
-  //   correopad: null, ocupad: null,
-  //   nommad: null, apemad: null,
-  //   dommad: null, telmad: null,
-  //   correomad: null, ocupmad: null,
-  //   finscripcion: null, usuariopad: null,
-  //   pswpad: null, activo: null,
-  //   idsuc: null
-  // };
 
   ngOnInit() {
-
-
+    
     /* Obtiene los datos del alumno (se obtienen de perfilService en el metodo "ret"), su historial de membresias y su horario */
     this.datos = this.perfilService.ret()
     console.log(this.datos)

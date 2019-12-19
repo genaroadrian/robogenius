@@ -20,12 +20,31 @@ class LoginAngularController extends Controller
     }
     public function store(Request $request)
     {
+        $data=$request->all();
+
+        $reglas = array(
+        'email' => 'required|unique:users',
+        'nombre' => 'required',
+        'apellidos' => 'required',
+        	            );
+        $mensajes= array('email.required' =>  'Ingresar nombre es obligatorio',
+                         'email.unique' =>  'Todos los campos son requeridos',
+                         'nombre.required' =>  'Todos los campos son requeridos',
+                         'apellidos.required' =>  'Todos los campos son requeridos',
+        	             );
+        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        $validacion = Validator::make($data, $reglas, $mensajes);
+        if ($validacion->fails())
+        {
+			 $errores = $validacion->errors(); 
+			 return new JsonResponse($errores, 422); 
+        }
+
         $login = new LoginAngular();
-        $login->email = $request->email;
-        // $login->password = $request->password;
-        $login->nombre = $request->nombre;
-        $login->password = Crypt::encrypt($request->password);
-        $login->apellidos = $request->apellidos;
+        $login->email = $data["email"];
+        $login->nombre = $data["nombre"];
+        $login->password = Crypt::encrypt($data["password"]);
+        $login->apellidos = $data["apellidos"];
         $login->activo = 1;
         $login->save();
         echo json_encode($login);

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {HomePersonalComponent} from './home-personal/home-personal.component';
 import { Router } from '@angular/router';
-import { GlobalService } from './services/global.service';
 
 declare var jQuery:any;
 declare var $:any;
@@ -14,9 +13,8 @@ declare var $:any;
 })
 export class AppComponent {
   title = 'angular';
-
   
-  constructor(private router :Router, public globalService: GlobalService){
+  constructor(private router :Router){
   }
 
   // barra de movimiento superrior

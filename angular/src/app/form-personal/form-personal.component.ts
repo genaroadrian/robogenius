@@ -20,6 +20,7 @@ import { GruposAlumnosService } from '../services/grupos-alumnos.service';
 import { HaddComponent } from '../horarios/hadd/hadd.component';
 import { HorariosService } from '../services/horarios.service';
 import { Horario } from '../interfaces/horario';
+import { FileuploadService } from '../services/fileupload.service';
 
 function emailDomainValidator(control: FormControl) {
   let email = control.value;
@@ -175,7 +176,7 @@ export class FormPersonalComponent implements OnInit {
     contra: null, fechanac: null, sexo: null, curp: null,
     estadocivil: null, domicilio: null, fechaingreso: null, horasalida: null,
     horaentrada: null, perfilprofesional: null, especialidad: null, salariomensual: null,
-    tareasasignadas: null, idtper: null, activo: null, idsuc: null
+    tareasasignadas: null, idtper: null, activo: null, idsuc: null,fotopersonal:null
   };
 
   // Variables de id e index para los metodos relacionados con la base de datos
@@ -196,11 +197,19 @@ export class FormPersonalComponent implements OnInit {
 
   };
 
+  jstoday:any;
+  archivo = {
+    nombre: null,
+    nombreArchivo: null,
+    base64textString: null
+  }
+
   sucursal: number
   constructor(private personalService: PersonalService, private detallegruposService: DetallegruposService,
     private _formBuilder: FormBuilder, private httpClient: HttpClient, private router: Router, public toastr: ToastrManager,
     private atp: AmazingTimePickerService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, public tPersonal: TipopersonalService,
-    public dialog: MatDialog, public horarioService: HorariosService, public tipopersonalService: TipopersonalService, public notifications: NotificationsService, public horarioPersona: GruposAlumnosService) {
+    public dialog: MatDialog, public horarioService: HorariosService, public tipopersonalService: TipopersonalService, public notifications: NotificationsService, public horarioPersona: GruposAlumnosService
+    ,  private uploadService: FileuploadService) {
     iconRegistry.addSvgIcon(
       'thumbs-up',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/material-design/hora.svg'));
@@ -231,7 +240,18 @@ export class FormPersonalComponent implements OnInit {
 
   // Guardar la informacion del personal
   savePersonal(persona) {
+    console.log(persona)
     this.showBarra()
+    this.uploadService.uploadFilePersonal(this.archivo)
+    .subscribe(
+      datos => {
+        if(datos['resultado'] == 'OK') {
+          // alert(datos['mensaje']);
+          // this.router.navigate(['home']);
+
+        }
+      }
+    );
     this.persona.idsuc = localStorage.getItem("sucursal")
     this.personalService.save(persona).subscribe((data) => {
       this.hideBarra()
@@ -261,6 +281,28 @@ export class FormPersonalComponent implements OnInit {
     this.barra = ""
   }
 
+  seleccionarArchivo(event) {
+    // this.btnChange = ""
+    this.jstoday= new Date().getTime();
+    var files = event.target.files;
+    var file = files[0];
+    this.archivo.nombreArchivo = file.name;
+    this.archivo.nombreArchivo=this.jstoday+this.archivo.nombreArchivo
+    this.persona.fotopersonal=this.archivo.nombreArchivo;
+
+ 
+
+    if(files && file) {
+      var reader = new FileReader();
+      reader.onload = this._handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
+    }
+  }
+
+  _handleReaderLoaded(readerEvent) {
+    var binaryString = readerEvent.target.result;
+    this.archivo.base64textString = btoa(binaryString);
+  }
   /* Ocultar la barra de carga */
   hideBarra() {
     this.barra = "none"

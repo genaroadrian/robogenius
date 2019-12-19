@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import {Http, ResponseContentType} from '@angular/http';
 import { Observable } from 'rxjs';
-import {globalVar} from './global.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModuloService {
-  API_ENDPOINT = globalVar.url
+  API_ENDPOINT = 'http://localhost:8000/api';
 
   dialogData: any
   extraData: any

@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Personal } from '../interfaces/personal';
 import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {BehaviorSubject, Subscriber} from 'rxjs';
-import {globalVar} from './global.service'
+import { map } from 'rxjs/operators';
+import { element } from '@angular/core/src/render3';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class PersonalService {
 
     
   // URL de laravel
-  API_ENDPOINT = globalVar.url
+  API_ENDPOINT = 'http://localhost:8000/api';
 
   dataChange: BehaviorSubject<Personal[]> = new BehaviorSubject<Personal[]>([]);
 

@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Detallegrupos } from '../interfaces/detallegrupos';
-import {globalVar} from './global.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class DetallegruposService {
   // Ruta de laravel
-  API_ENDPOINT = globalVar.url
+  API_ENDPOINT = 'http://localhost:8000/api';
 
   constructor(private httpClient: HttpClient) { }
 

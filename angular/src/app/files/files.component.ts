@@ -5,7 +5,6 @@ import { forkJoin } from 'rxjs/observable/forkJoin';
 import { forEach } from '@angular/router/src/utils/collection';
 import { ModuloService } from '../services/modulo.service';
 import { NotificationsService } from '../services/notifications.service';
-import {globalVar} from '../services/global.service'
 
 @Component({
   selector: 'app-files',
@@ -14,10 +13,7 @@ import {globalVar} from '../services/global.service'
 })
 export class FilesComponent implements OnInit {
 
-  API_ENDPOINT = globalVar.url
-
-  constructor(private http: HttpClient, public moduloService: ModuloService
-    , public notifications: NotificationsService) { }
+  constructor(private http: HttpClient, public moduloService: ModuloService, public notifications: NotificationsService) { }
 
   ngOnInit() {
   }
@@ -107,21 +103,21 @@ export class FilesComponent implements OnInit {
     const requestArray = []; 
     if(f != ''){
 
-      const request1 = this.http.post(this.API_ENDPOINT+'/files', f);
+      const request1 = this.http.post('http://localhost:8000/api/files', f);
       requestArray.push(request1);
     }
 
     if(p != ''){
       console.log(p)
-      const request2 = this.http.post(this.API_ENDPOINT+'/files', p);
+      const request2 = this.http.post('http://localhost:8000/api/files', p);
       requestArray.push(request2);
     }
     if(pr != ''){
-      const request3 = this.http.post(this.API_ENDPOINT+'/files', pr);
+      const request3 = this.http.post('http://localhost:8000/api/files', pr);
       requestArray.push(request3);
     }
     if(pl != ''){
-      const request4 = this.http.post(this.API_ENDPOINT+'/files', pl);
+      const request4 = this.http.post('http://localhost:8000/api/files', pl);
       requestArray.push(request4);
     }
     
@@ -149,7 +145,7 @@ export class FilesComponent implements OnInit {
   uploadFile(data: FormData): Observable<any> {
     console.log(data);
     const headers = new HttpHeaders({"Content-Type":"application/json;multipart/form-data"});
-    return this.http.post<any>(this.API_ENDPOINT+'/files', data,{headers: headers});
+    return this.http.post<any>('http://localhost:8000/api/files', data,{headers: headers});
   }
 
   _handleReaderLoaded(readerEvt) {
@@ -175,7 +171,7 @@ export class FilesComponent implements OnInit {
    fileService(files): Observable<any> {
     console.log(files);
     const headers = new HttpHeaders({"Content-Type":"application/json;multipart/form-data"});
-    return this.http.post<any>(this.API_ENDPOINT+'/files', files);
+    return this.http.post<any>('http://localhost:8000/api/files', files);
 
     
   }

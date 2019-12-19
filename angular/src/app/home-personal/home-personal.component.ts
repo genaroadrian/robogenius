@@ -102,7 +102,7 @@ export class HomePersonalComponent implements OnInit {
     salariomensual: null,
     tareasasignadas: null,
     idtper: null,
-    activo: null,idsuc:null
+    activo: null,idsuc:null,fotopersonal:null
   };
   personas : Personal[];
   editing: boolean = false;

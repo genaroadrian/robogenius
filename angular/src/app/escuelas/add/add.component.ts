@@ -199,6 +199,7 @@ export class AddComponent implements OnInit {
       if(this.n > Number(this.tipoMembresia.clases))
       {
         this.btn = 'none'
+        this.horario = 'none'
         this.fn = ''
 
       }

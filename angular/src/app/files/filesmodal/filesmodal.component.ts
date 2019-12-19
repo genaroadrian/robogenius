@@ -4,7 +4,6 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { ModuloService } from 'src/app/services/modulo.service';
 import { MatDialogRef } from '@angular/material';
 import { NotificationsService } from 'src/app/services/notifications.service';
-import {globalVar} from '../../services/global.service'
 
 @Component({
   selector: 'app-filesmodal',
@@ -12,8 +11,6 @@ import {globalVar} from '../../services/global.service'
   styleUrls: ['./filesmodal.component.css']
 })
 export class FilesmodalComponent implements OnInit {
-
-  API_ENDPOINT = globalVar.url
 
   constructor(private http: HttpClient, public moduloService: ModuloService
     , public notifications: NotificationsService, public dialogRef: MatDialogRef<FilesmodalComponent>) { }
@@ -106,21 +103,21 @@ export class FilesmodalComponent implements OnInit {
     const requestArray = []; 
     if(f != ''){
 
-      const request1 = this.http.post(this.API_ENDPOINT+'/files', f);
+      const request1 = this.http.post('http://localhost:8000/api/files', f);
       requestArray.push(request1);
     }
 
     if(p != ''){
       console.log(p)
-      const request2 = this.http.post(this.API_ENDPOINT+'/files', p);
+      const request2 = this.http.post('http://localhost:8000/api/files', p);
       requestArray.push(request2);
     }
     if(pr != ''){
-      const request3 = this.http.post(this.API_ENDPOINT+'/files', pr);
+      const request3 = this.http.post('http://localhost:8000/api/files', pr);
       requestArray.push(request3);
     }
     if(pl != ''){
-      const request4 = this.http.post(this.API_ENDPOINT+'/files', pl);
+      const request4 = this.http.post('http://localhost:8000/api/files', pl);
       requestArray.push(request4);
     }
     
@@ -149,7 +146,7 @@ export class FilesmodalComponent implements OnInit {
   uploadFile(data: FormData): Observable<any> {
     console.log(data);
     const headers = new HttpHeaders({"Content-Type":"application/json;multipart/form-data"});
-    return this.http.post<any>(this.API_ENDPOINT+'/files', data,{headers: headers});
+    return this.http.post<any>('http://localhost:8000/api/files', data,{headers: headers});
   }
 
   _handleReaderLoaded(readerEvt) {
@@ -175,7 +172,7 @@ export class FilesmodalComponent implements OnInit {
    fileService(files): Observable<any> {
     console.log(files);
     const headers = new HttpHeaders({"Content-Type":"application/json;multipart/form-data"});
-    return this.http.post<any>(this.API_ENDPOINT+'/files', files);
+    return this.http.post<any>('http://localhost:8000/api/files', files);
 
     
   }

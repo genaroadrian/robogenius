@@ -27,13 +27,9 @@ class nivelController extends Controller
         $data=$request->all();
 
         $reglas = array('nombre' => 'required|unique:niveles',
-        	            'idsuc' => 'required',
-        	            'activo' => 'required',
         	            );
         $mensajes= array('nombre.required' =>  'Ingresar nivel es obligatorio',
                          'nombre.unique' =>  'El nivel debe ser unico',
-                         'idsuc.required' =>  'Ingresar Sucursal es obligatorio',
-                         'activo.required' =>  'Ingresar Sucursal es obligatorio',
         	             );
         // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
         $validacion = Validator::make($data, $reglas, $mensajes);
@@ -45,7 +41,7 @@ class nivelController extends Controller
 
         $nivel= new nivel;
 		$nivel->nombre  =  $data["nombre"];
-		$nivel->activo  =  $data["activo"];
+		$nivel->activo  =  1;
         $nivel->idsuc  =  $data["idsuc"];
         $nivel->save();
         echo json_encode($nivel);

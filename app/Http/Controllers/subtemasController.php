@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use slidecom_robogenius\Http\Controllers\Controller;
 use slidecom_robogenius\Subtema;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\JsonResponse;
 
 class subtemasController extends Controller
 {
@@ -38,10 +40,28 @@ class subtemasController extends Controller
      */
     public function store(Request $request)
     {
+        $data=$request->all();
+
+        $reglas = array('nombre' => 'required|unique:subtema',
+                        'idt' => 'required',
+        	            );
+        $mensajes= array('nombre.required' =>  'Ingresar nombre es obligatorio',
+                         'nombre.unique' =>  'El nombre debe ser unico',
+                         'idt.required' =>  'Todos los campos son obligatorios',
+        	             );
+        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        $validacion = Validator::make($data, $reglas, $mensajes);
+        if ($validacion->fails())
+        {
+			 $errores = $validacion->errors(); 
+			 return new JsonResponse($errores, 422); 
+        }
+
+
         $subtema = new Subtema();
-        $subtema->nombre = $request->nombre;
-        $subtema->idt = $request->idt;
-        $subtema->idsuc = $request->idsuc;
+        $subtema->nombre = $data["nombre"];
+        $subtema->idt = $data["idt"];
+        $subtema->idsuc = $data["idsuc"];
         $subtema->activo = 1;
         $subtema->save();
         echo json_encode($subtema);
@@ -78,9 +98,26 @@ class subtemasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $data=$request->all();
+
+        $reglas = array('nombre' => 'required|unique:tema',
+                        'idt' => 'required',
+        	            );
+        $mensajes= array('nombre.required' =>  'Ingresar nombre es obligatorio',
+                         'nombre.unique' =>  'El nombre debe ser unico',
+                         'idt.required' =>  'Todos los campos son obligatorios',
+        	             );
+        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        $validacion = Validator::make($data, $reglas, $mensajes);
+        if ($validacion->fails())
+        {
+			 $errores = $validacion->errors(); 
+			 return new JsonResponse($errores, 422); 
+        }
+        
         $area = Subtema::find($id);
-        $area->nombre = $request->nombre;
-        $area->idt = $request->idt;
+        $subtema->nombre = $data["nombre"];
+        $subtema->idt = $data["idt"];
         $area->activo = 1;
         $area->save();
         echo json_encode($area);

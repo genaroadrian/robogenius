@@ -27,6 +27,9 @@ import { load } from '@angular/core/src/render3';
 })
 export class PerfiladminComponent implements OnInit {
 
+  @ViewChild('Profile') img;
+
+
   btnChange = "none"
   log:Login[];
   logs:any;
@@ -93,6 +96,25 @@ export class PerfiladminComponent implements OnInit {
     this.archivo.nombreArchivo = file.name;
     this.archivo.nombreArchivo=this.jstoday+this.archivo.nombreArchivo
  
+        /* -------------------- */
+        var archivos = event.target.files
+        var archivo = archivos[0]
+        var lector = new FileReader()
+        var vista_previa
+    
+        lector.onloadend = () =>{
+          this.img.nativeElement.src = lector.result
+        }
+    
+    
+        if(archivo)
+        {
+          lector.readAsDataURL(archivo)
+        }else{
+          vista_previa = ''
+        }
+        
+        /* -------------------- */
 
     if(files && file) {
       var reader = new FileReader();

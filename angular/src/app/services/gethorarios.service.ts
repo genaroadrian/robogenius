@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Horas } from '../interfaces/horas';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {globalVar} from './global.service'
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +9,7 @@ import {globalVar} from './global.service'
 export class GethorariosService {
 
   // URL de laravel
-  
-  API_ENDPOINT = globalVar.url
+  API_ENDPOINT = 'http://localhost:8000/api';
 
   constructor(private httpClient: HttpClient) { }
 

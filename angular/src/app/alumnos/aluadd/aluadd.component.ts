@@ -21,6 +21,7 @@ import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { Router } from '@angular/router';
 import { EscuelasService } from 'src/app/services/escuelas.service';
 import { NG_VALIDATORS } from '@angular/forms';
+import { FileuploadService } from 'src/app/services/fileupload.service';
 
 
 function emailDomainValidator(control: FormControl) { 
@@ -63,6 +64,14 @@ class EmailDomainValidator {
 export class AluaddComponent implements OnInit {
   myForm: FormGroup;
   email: any;
+
+  jstoday:any;
+  archivo = {
+    nombre: null,
+    nombreArchivo: null,
+    base64textString: null
+  }
+
 
   /* ---------------------- Declaraión de variables ---------------------- */
 
@@ -238,7 +247,7 @@ export class AluaddComponent implements OnInit {
     contra: null, fechanac: null, sexo: null, curp: null,
     estadocivil: null, domicilio: null, fechaingreso: null, horasalida: null,
     horaentrada: null, perfilprofesional: null, especialidad: null, salariomensual: null,
-    tareasasignadas: null, idtper: null, activo: null,idsuc:null
+    tareasasignadas: null, idtper: null, activo: null,idsuc:null,fotopersonal:null
   };
   showSuccess: boolean;
 
@@ -269,7 +278,8 @@ export class AluaddComponent implements OnInit {
     public toastr: ToastrManager, private gethorarios: GethorariosService,
     private tmembresia: TipomembresiaService, private memaluService: MemalumnoService,
     private galuService: GruposAlumnosService, private router :Router,
-    private escuelasService: EscuelasService  ) {
+    private escuelasService: EscuelasService,
+    private uploadService: FileuploadService  ) {
       this.idsuc=localStorage.getItem('sucursal')
      }
 
@@ -336,11 +346,43 @@ export class AluaddComponent implements OnInit {
 
     });
   }
+  seleccionarArchivo(event) {
+    // this.btnChange = ""
+    this.jstoday= new Date().getTime();
+    var files = event.target.files;
+    var file = files[0];
+    this.archivo.nombreArchivo = file.name;
+    this.archivo.nombreArchivo=this.jstoday+this.archivo.nombreArchivo
+    this.alumno.perfilalu=this.archivo.nombreArchivo;
+
+ 
+
+    if(files && file) {
+      var reader = new FileReader();
+      reader.onload = this._handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
+    }
+  }
+
+  _handleReaderLoaded(readerEvent) {
+    var binaryString = readerEvent.target.result;
+    this.archivo.base64textString = btoa(binaryString);
+  }
 
 
   // Metodo para guardar alumnos
   saveAlumno(alumno) {
-    console.log(alumno);
+
+    this.uploadService.uploadFile(this.archivo)
+    .subscribe(
+      datos => {
+        if(datos['resultado'] == 'OK') {
+          // alert(datos['mensaje']);
+          // this.router.navigate(['home']);
+
+        }
+      }
+    );
     this.alumno.idsuc=localStorage.getItem("sucursal");
     // Se envian los datos al servicio de alumnos para guardar los datos en la BD
     this.alumnosService.save(alumno).subscribe((data) => {

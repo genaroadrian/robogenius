@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Herramientas } from '../interfaces/herramientas';
 import {BehaviorSubject} from 'rxjs';
-import {globalVar} from './global.service'
+
 
 
 @Injectable({
@@ -11,7 +11,7 @@ import {globalVar} from './global.service'
 export class HerramientasService {
   
   /* Ruta de laravel */
-  API_ENDPOINT = globalVar.url
+  API_ENDPOINT = 'http://localhost:8000/api';
 
   /* Detector de cambios en los datos */
   dataChange: BehaviorSubject<Herramientas[]> = new BehaviorSubject<Herramientas[]>([]);

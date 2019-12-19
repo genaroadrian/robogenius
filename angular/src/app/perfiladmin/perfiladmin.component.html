@@ -10,7 +10,8 @@
           <div class="arrow"></div>
         </a>
 </div>
-  <form (ngSubmit)="upload();">
+  <form (ngSubmit)="upload(); refresh();" >
+    
     <div class="containerss rounded-circle " for="nuestroinput">
       <label for="nuestroinput" id="prueba" class=" rounded-circle ">
         <img src="http://localhost:8000/perfiles/Administradores/{{c.fotoadmin}}" for="nuestroinput" class="image rounded-circle">
@@ -57,7 +58,7 @@
     <i class="mdi mdi-email correo"> </i> <label> Email: </label>
     <span> {{c.email}} </span>
     <br>
-    <i class="mdi mdi-account-multiple sexo"> </i> <label> Subname: </label>
+    <i class="mdi mdi-account-multiple sexo"> </i> <label> Nombre usuario: </label>
     <span> {{c.subname}} </span>
     <br>
     <!-- <i class="mdi mdi-account-multiple sexo"> </i> <label> Password: </label>

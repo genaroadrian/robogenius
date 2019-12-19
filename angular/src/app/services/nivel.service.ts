@@ -2,13 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
 import { Niveles } from '../interfaces/niveles';
-import {globalVar} from './global.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class NivelService {
-  API_ENDPOINT = globalVar.url
+  API_ENDPOINT = 'http://localhost:8000/api';
   dataChange: BehaviorSubject<Niveles[]> = new BehaviorSubject<Niveles[]>([]);
   dialogData: any;
   datos :any;

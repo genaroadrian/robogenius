@@ -2,14 +2,13 @@ import { Injectable } from '@angular/core';
 import { Tipopago } from '../interfaces/tipopago';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
-import {globalVar} from './global.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class TipopagoService {
   /* Ruta de laravel */
-  API_ENDPOINT = globalVar.url
+  API_ENDPOINT = 'http://localhost:8000/api';
 
   /* Detector de cambios */
   dataChange: BehaviorSubject<Tipopago[]> = new BehaviorSubject<Tipopago[]>([]);

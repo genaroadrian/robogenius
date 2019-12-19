@@ -13,6 +13,7 @@ import { UserAdminService } from '../services/user-admin.service';
 import { FileuploadService } from 'src/app/services/fileupload.service';
 import {Router} from '@angular/router';
 import { userAdmin } from 'src/app/interfaces/userAdmin';
+import { load } from '@angular/core/src/render3';
 
 
 
@@ -67,6 +68,7 @@ export class PerfiladminComponent implements OnInit {
  
 
   ngOnInit() {
+    this.btnChange = ""
 
     this.service.getPersonas()
     .subscribe(data=>{
@@ -84,7 +86,7 @@ export class PerfiladminComponent implements OnInit {
   }
 
   seleccionarArchivo(event) {
-    this.barra = ""
+    // this.barra = ""
     this.jstoday= new Date().getTime();
     var files = event.target.files;
     var file = files[0];
@@ -109,6 +111,7 @@ export class PerfiladminComponent implements OnInit {
     localStorage.removeItem('foto');
     localStorage.setItem('foto' , this.archivo.nombreArchivo);
     this.uploadService.uploadFileAdmin(this.archivo)
+    
 
     .subscribe(
       datos => {
@@ -123,19 +126,20 @@ export class PerfiladminComponent implements OnInit {
     // this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss', 'en-US');
     
     this.Login.fotoadmin=this.archivo.nombreArchivo;
-        this.showBarra()
+        // this.showBarra()
 
     // this.datos.perfilalu=this.archivo.nombreArchivo;
     this.uploadService.subirimagenAdmin(this.Login).subscribe(data=>{
-      this.hideBarra()
+      // this.hideBarra()
       this.showSuccessFoto()
       
     }, (error) => {
       this.showError()
-      this.hideBarra()
+      // this.hideBarra()
       
     })
     this.btnChange = "none"
+  
   }
 
 

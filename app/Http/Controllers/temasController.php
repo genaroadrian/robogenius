@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use slidecom_robogenius\Http\Controllers\Controller;
 use slidecom_robogenius\Tema;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\JsonResponse;
 
 class temasController extends Controller
 {
@@ -38,10 +40,28 @@ class temasController extends Controller
      */
     public function store(Request $request)
     {
+        $data=$request->all();
+
+        $reglas = array('nombre' => 'required|unique:tema',
+                        'idac' => 'required',
+        	            );
+        $mensajes= array('nombre.required' =>  'Ingresar nombre es obligatorio',
+                         'nombre.unique' =>  'El nombre debe ser unico',
+                         'idac.required' =>  'Todos los campos son obligatorios',
+        	             );
+        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        $validacion = Validator::make($data, $reglas, $mensajes);
+        if ($validacion->fails())
+        {
+			 $errores = $validacion->errors(); 
+			 return new JsonResponse($errores, 422); 
+        }
+
+
         $tema = new Tema();
-        $tema->nombre = $request->nombre;
-        $tema->idac = $request->idac;
-        $tema->idsuc = $request->idsuc;
+		$tema->nombre  =  $data["nombre"];
+        $tema->idac = $data["idac"];
+        $tema->idsuc = $data["idsuc"];
         $tema->activo = 1;
         $tema->save();
         echo json_encode($tema);
@@ -78,9 +98,25 @@ class temasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $data=$request->all();
+
+        $reglas = array('nombre' => 'unique:tema',
+                        
+        	            );
+        $mensajes= array(
+                         'nombre.unique' =>  'El nivel debe ser unico',
+        	             );
+        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        $validacion = Validator::make($data, $reglas, $mensajes);
+        if ($validacion->fails())
+        {
+			 $errores = $validacion->errors(); 
+			 return new JsonResponse($errores, 422); 
+        }
+        
         $tema = Tema::find($id);
-        $tema->nombre = $request->nombre;
-        $tema->idac = $request->idac;
+        $tema->nombre = $data["nombre"];
+        $tema->idac = $data["idac"];
         $tema->activo = 1;
         $tema->save();
         echo json_encode($tema);

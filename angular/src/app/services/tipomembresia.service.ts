@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Tipomembresia } from '../interfaces/Tipomembresia';
 import { BehaviorSubject } from 'rxjs';
-import {globalVar} from './global.service'
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,7 @@ import {globalVar} from './global.service'
 export class TipomembresiaService {
 
   // URL de laravel
-  API_ENDPOINT = globalVar.url
+  API_ENDPOINT = 'http://localhost:8000/api';
 
   dataChange: BehaviorSubject<Tipomembresia[]> = new BehaviorSubject<Tipomembresia[]>([]);
 

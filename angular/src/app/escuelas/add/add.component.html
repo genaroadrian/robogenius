@@ -193,16 +193,18 @@
   
         <div class="row" [ngStyle]="{'dislplay': btn}">
           <button class="btn btn-success" [type]="submit" (click)="confirmAdd()"
-            style="margin-top:40px;margin-left: 80px; margin-right: 40px;">Guardar</button>
+            style="margin-top:40px;margin-left:40%; margin-right: 40px;">Guardar</button>
           <button class="btn btn-danger" style="margin-top: 40px;">Cancelar</button>
         </div>
   
-        <div class="row" [ngStyle]="{'display': fn}">
-          <button class="btn btn-success" [routerLink]="['/escuelas']"
-            routerLinkActive="router-link-active">Finalizar</button>
-        </div>
+
       </div>
       </form>
+      <br>
+      <div class="row" [ngStyle]="{'display': fn}">
+        <button class="btn btn-success" [routerLink]="['/escuelas']"
+          routerLinkActive="router-link-active" style="margin-left:48%;">Finalizar</button>
+      </div>
       
 
 

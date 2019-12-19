@@ -7,6 +7,8 @@ use Auth;
 use slidecom_robogenius\Horarios;
 use Illuminate\Support\Facades\DB;
 use Session;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\JsonResponse;
 
 class horariosController extends Controller
 {
@@ -20,9 +22,24 @@ class horariosController extends Controller
      // Guarda nuevos registros
     public function store(Request $request)
     {
+        $data=$request->all();
+
+        $reglas = array('hora' => 'required|unique:horario',
+        	            );
+        $mensajes= array('hora.required' =>  'Ingresar hora es obligatorio',
+                         'hora.unique' =>  'La hora debe ser unico',
+        	             );
+        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        $validacion = Validator::make($data, $reglas, $mensajes);
+        if ($validacion->fails())
+        {
+			 $errores = $validacion->errors(); 
+			 return new JsonResponse($errores, 422); 
+        }
+
         $horario = new Horarios();
-        $horario->hora = $request->hora;
-        $horario->idsuc = $request->idsuc;
+        $horario->hora = $data["hora"];
+        $horario->idsuc = $data["idsuc"];
         $horario->activo = 1;
         $horario->save();
         echo json_encode($horario);
@@ -31,8 +48,22 @@ class horariosController extends Controller
     // Actualiza registros
     public function update(Request $request, $id)
     {
+        $data=$request->all();
+
+        $reglas = array('hora' => 'unique:horario',
+        	            );
+        $mensajes= array('hora.unique' =>  'La hora debe ser unico',
+        	             );
+        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        $validacion = Validator::make($data, $reglas, $mensajes);
+        if ($validacion->fails())
+        {
+			 $errores = $validacion->errors(); 
+			 return new JsonResponse($errores, 422); 
+        }
+
         $horario = Horarios::find($id);
-        $horario->hora = $request->hora;
+        $horario->hora = $data["hora"];
         $horario->activo = 1;
         $horario->save();
         echo json_encode($horario);

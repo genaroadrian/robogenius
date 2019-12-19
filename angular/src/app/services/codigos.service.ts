@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
 import { Codigos } from '../interfaces/codigos';
-import {globalVar} from './global.service'
 
 
 @Injectable({
@@ -12,7 +11,7 @@ export class CodigosService {
 
   
 
-  API_ENDPOINT = globalVar.url
+  API_ENDPOINT = 'http://localhost:8000/api';
   dataChange: BehaviorSubject<Codigos[]> = new BehaviorSubject<Codigos[]>([]);
 
   dialogData: any;

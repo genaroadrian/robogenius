@@ -87,6 +87,11 @@ class personalController extends Controller
         $personal->perfilprofesional = $data["perfilprofesional"];
         $personal->especialidad = $data["especialidad"];
         $personal->fecharegistro = new \DateTime();
+        if($data["fotopersonal"]==null){
+            $personal->fotopersonal="default.jpg";
+        }else{
+            $personal->fotopersonal = $data["fotopersonal"];
+        }
         $personal->salariomensual = $data["salariomensual"];
         $personal->tareasasignadas = $data["tareasasignadas"];
         $personal->idsuc = $data["idsuc"];

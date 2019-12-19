@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {globalVar} from './global.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class PerfilService {
   // URL de laravel con xampp
-  API_ENDPOINT = globalVar.url
+  API_ENDPOINT = 'http://localhost:8000/api';
   dialogData: any;
   
   ngrupo: any;

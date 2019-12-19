@@ -27,14 +27,13 @@ class EscuelaController extends Controller
     {
         $data=$request->all();
 
-        $reglas = array('nombre' => 'required|unique:escuelas',
+        $reglas = array('nombre' => 'required',
                         'representante' => 'required',
                         'direccion' => 'required',
                         'correouno' => 'required',
                         'telefono' => 'required',
         	            );
         $mensajes= array('nombre.required' =>  'Ingresar nombre es obligatorio',
-                         'nombre.unique' =>  'El nombre debe ser unico',
                          'representante.required' =>  'El representante debe ser obligatorio',
                          'direccion.required' =>  'Ingresar direccion es obligatorio',
                          'correouno.required' =>  'Ingresar correo es obligatorio',

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use slidecom_robogenius\Http\Controllers\Controller;
 use slidecom_robogenius\AreDelConocimiento;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\JsonResponse;
 
 class areaDelConocimientoController extends Controller
 {
@@ -38,9 +40,24 @@ class areaDelConocimientoController extends Controller
      */
     public function store(Request $request)
     {
+        $data=$request->all();
+
+        $reglas = array('nombre' => 'required|unique:area_del_conocimiento',
+        	            );
+        $mensajes= array('nombre.required' =>  'Ingresar nombre es obligatorio',
+                         'nombre.unique' =>  'El nombre debe ser unico',
+        	             );
+        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        $validacion = Validator::make($data, $reglas, $mensajes);
+        if ($validacion->fails())
+        {
+			 $errores = $validacion->errors(); 
+			 return new JsonResponse($errores, 422); 
+        }
+
         $area = new AreDelConocimiento();
-        $area->nombre = $request->nombre;
-        $area->idsuc = $request->idsuc;
+		$area->nombre  =  $data["nombre"];
+        $area->idsuc  =  $data["idsuc"];
         $area->activo = $request=1;
         $area->save();
         echo json_encode($area);
@@ -77,8 +94,24 @@ class areaDelConocimientoController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $data=$request->all();
+
+        $reglas = array('nombre' => 'unique:area_del_conocimiento',
+        	            );
+        $mensajes= array(
+                         'nombre.unique' =>  'El nombre debe ser unico',
+        	             );
+        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        $validacion = Validator::make($data, $reglas, $mensajes);
+        if ($validacion->fails())
+        {
+			 $errores = $validacion->errors(); 
+			 return new JsonResponse($errores, 422); 
+        }
+
+
         $area = AreDelConocimiento::find($id);
-        $area->nombre = $request->nombre;
+		$area->nombre  =  $data["nombre"];
         $area->activo = 1;
         $area->save();
         echo json_encode($area);

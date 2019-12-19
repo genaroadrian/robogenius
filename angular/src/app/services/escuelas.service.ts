@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Escuelas } from '../interfaces/escuelas';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
-import {globalVar} from './global.service'
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +9,7 @@ import {globalVar} from './global.service'
 export class EscuelasService {
 
   /* Ruta de laravel */
-  // API_ENDPOINT = this.globalService.varGlobal.
-    API_ENDPOINT = globalVar.url
-
+  API_ENDPOINT = 'http://localhost:8000/api';
 
   /* Detector de cambios en los datos */
   dataChange: BehaviorSubject<Escuelas[]> = new BehaviorSubject<Escuelas[]>([]);
@@ -26,9 +23,10 @@ export class EscuelasService {
   datos:any;
   constructor(private httpClient: HttpClient) {
     this.sucursal=localStorage.getItem('sucursal')
+
    }
 
- 
+
   /* Obtiene la información de la tabla  */
   getEscuelas(): void{
     this.httpClient.get<Escuelas[]>(this.API_ENDPOINT + '/escuelas').subscribe(data => {
@@ -37,8 +35,8 @@ export class EscuelasService {
       // console.log(this.datos)
       this.dataChange.next(this.datos);
       },
-    (error) => {
-    console.log (error.name );
+    (error: HttpErrorResponse) => {
+    console.log (error.name + ' ' + error.message);
     });
   }
 

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { subtema } from '../interfaces/subtema';
 import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
-import {globalVar} from './global.service'
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +9,7 @@ import {globalVar} from './global.service'
 export class SubtemaService {
 
   // URL de laravel
-  API_ENDPOINT = globalVar.url
+  API_ENDPOINT = 'http://localhost:8000/api';
 
   dataChange: BehaviorSubject<subtema[]> = new BehaviorSubject<subtema[]>([]);
 

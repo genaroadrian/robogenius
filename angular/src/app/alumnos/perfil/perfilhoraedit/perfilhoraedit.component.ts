@@ -50,7 +50,7 @@ export class PerfilhoraeditComponent implements OnInit {
     contra: null, fechanac: null, sexo: null, curp: null,
     estadocivil: null, domicilio: null, fechaingreso: null, horasalida: null,
     horaentrada: null, perfilprofesional: null, especialidad: null, salariomensual: null,
-    tareasasignadas: null, idtper: null, activo: null,idsuc:null
+    tareasasignadas: null, idtper: null, activo: null,idsuc:null,fotopersonal:null
   };
 
   // Interfaz de la tabla horas

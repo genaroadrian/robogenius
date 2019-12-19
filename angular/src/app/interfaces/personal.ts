@@ -19,5 +19,5 @@ export interface Personal {
     idtper: number;
     activo: number;
     idsuc :string;
-    // fotopersonal:number;
+    fotopersonal:string;
 }

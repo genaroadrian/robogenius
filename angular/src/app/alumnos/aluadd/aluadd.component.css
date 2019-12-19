@@ -289,3 +289,91 @@ body {
   opacity: 0.9;
   top: 75%;
 }
+
+.containerss {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  margin-left: 40%;
+
+}
+
+.image {
+  /* display: block; */
+  width: 200px;
+  height: 200px;
+  text-align: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #008CBA;
+}
+
+.containerss:hover .overlay {
+  opacity: 1;
+}
+
+.text {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+.container 
+ {
+   background-color: white;
+ }
+ .labeltitulo{
+   color: white;
+ }
+.fondodb{
+  background-color:whitesmoke;
+  width: 100%;
+  margin: 0%;
+  height: 300px;
+}
+ .pequeña{
+   width: 200px;
+   height: 200px;
+ }
+ .perfilimagen{
+   margin-bottom: 0px;
+   padding: 0px;
+   font-size: 0px;
+   text-align: center;
+   width: 0%;
+   height: 0px;
+   
+ }
+ .jaja{
+   width: 200px;
+   height: 200px;
+   opacity: 1;
+   transition: opacity 0.8s ease-in-out;
+   
+ }
+ 
+ .jaja:hover {
+
+  opacity: 0.7;
+
+  
+  content: url(https://cdn.pixabay.com/photo/2017/02/07/02/16/cloud-2044823_960_720.png);
+
+
+ }

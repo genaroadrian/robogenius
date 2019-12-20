@@ -331,10 +331,11 @@ export class FormPersonalComponent implements OnInit {
   saveDetallegrupos(horariopersonal, index) {
     
     this.detallegruposService.save(this.detallegrupo).subscribe((data) => {
-      
+      this.detallegrupo.idsuc=this.sucursal
     this.detallegrupo.idd = horariopersonal.idd
     this.detallegrupo.idh = horariopersonal.idh
     this.detallegrupo.idp = this.idper;
+    console.log(this.detallegrupo)
       this.showSuccesSave();
       let dia = horariopersonal.idd
     let hora = horariopersonal.idh

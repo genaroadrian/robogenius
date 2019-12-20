@@ -44,8 +44,8 @@
                 <br>
                   <div class="containerss rounded-circle " for="nuestroinput" style="text-align: center;">
                   <label for="nuestroinput" id="prueba"  class=" rounded-circle "> 
-                          <img src="http://localhost:8000/perfiles/Alumnos/default.jpg"for="nuestroinput"   class="image rounded-circle" >
-                          <h4>{{archivo.nombreArchivo}}</h4>
+                          <img  #Profile src="http://localhost:8000/perfiles/Alumnos/default.jpg"for="nuestroinput"   class="image rounded-circle" >
+                          <!-- <h4>{{archivo.nombreArchivo}}</h4> -->
 
                           </label>
                           <div class="overlay rounded-circle">
@@ -461,14 +461,19 @@
                                            -->
           <!-- ------------------------------------- Formulario de tipo de pago ------------------------------------- -->
           <div class="tipopago col-xl-12 " [ngStyle]="{display:tipopagoview}">
+            <!-- <div class="tipopago col-xl-12 "> -->
             <br>
             <div class="row col-xl-12">
               <div class="col-xl-12 " [ngStyle]="{display:tipoimg}">
                 <h1 style="text-align: center;">Elige tu tipo de pago</h1>
-                <img src="assets/img/efectivo.png" alt="" class="efec" (click)="efectivo(id=1)">
-                <img src="assets/img/paypal.png" alt="" class="payp" (click)="paypal(id=2)">
-                <img src="assets/img/tarjeta.png" alt="" class="tarj" (click)="tarjeta(id=3)">
-                <img src="assets/img/transferencia.png" alt="" class="tran" (click)="transferencia(id=4)">
+                <img src="assets/img/efectivo.png" alt="" title="Efectivo" class="efec" (click)="efectivo(id=1)">
+                Efectivo
+                <img src="assets/img/paypal.png" alt=""title="Paypal" class="payp" (click)="paypal(id=2)">
+                Paypal
+                <img src="assets/img/tarjeta.png" alt="" title="Tarjeta" class="tarj" (click)="tarjeta(id=3)" disable>
+                Tarjeta
+                <img src="assets/img/transferencia.png" alt="" title="transferencia" class="tran" (click)="transferencia(id=4)"disabled>
+                Transferencia
 
                 <div class="row col-xl-12">
                   <button class="btn btn-danger" style="margin-left: 49%;" (click)="returntmem()"

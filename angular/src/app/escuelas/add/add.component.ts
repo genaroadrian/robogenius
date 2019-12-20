@@ -78,7 +78,8 @@ export class AddComponent implements OnInit {
     nombre: null,
     costo: null,
     clases: null,
-    idesc: null
+    idesc: null,
+    idsuc:null
   }
 
   detalleGrupo: Detallegrupos =

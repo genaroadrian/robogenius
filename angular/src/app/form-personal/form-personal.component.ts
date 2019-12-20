@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Directive } from '@angular/core';
+import { Component, OnInit, Inject, Directive, ViewChild } from '@angular/core';
 import { Router } from "@angular/router";
 import { TipopersonalService } from '../services/tipopersonal.service';
 import { HttpClient } from '@angular/common/http';
@@ -47,6 +47,8 @@ function emailDomainValidator(control: FormControl) {
 })
 
 export class FormPersonalComponent implements OnInit {
+
+  @ViewChild('Profile') img;
 
   /* select de horas */
   horas: any
@@ -290,7 +292,25 @@ export class FormPersonalComponent implements OnInit {
     this.archivo.nombreArchivo=this.jstoday+this.archivo.nombreArchivo
     this.persona.fotopersonal=this.archivo.nombreArchivo;
 
- 
+        /* -------------------- */
+        var archivos = event.target.files
+        var archivo = archivos[0]
+        var lector = new FileReader()
+        var vista_previa
+    
+        lector.onloadend = () =>{
+          this.img.nativeElement.src = lector.result
+        }
+    
+    
+        if(archivo)
+        {
+          lector.readAsDataURL(archivo)
+        }else{
+          vista_previa = ''
+        }
+        
+        /* -------------------- */
 
     if(files && file) {
       var reader = new FileReader();

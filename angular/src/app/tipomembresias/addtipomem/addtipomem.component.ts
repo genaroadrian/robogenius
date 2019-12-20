@@ -12,6 +12,8 @@ import { Tipomembresia } from 'src/app/interfaces/Tipomembresia';
 export class AddtipomemComponent implements OnInit {
   /* Opciones del formulario */
   options: FormGroup;
+  sucursal=localStorage.getItem("sucursal");
+
 
   constructor(public dialogRef: MatDialogRef<AddtipomemComponent>, @Inject(MAT_DIALOG_DATA) public data: Tipomembresia, 
   public tmembresiaService: TipomembresiaService) { }
@@ -40,6 +42,7 @@ export class AddtipomemComponent implements OnInit {
   /* Confirma la alta del registro */
   confirmAdd(data): void 
   {
+    data.idsuc=this.sucursal;
     this.tmembresiaService.addTmem(data)
   }
 

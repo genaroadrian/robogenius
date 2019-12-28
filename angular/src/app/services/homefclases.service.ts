@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {globalVar} from '../services/global.service'
+
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +9,7 @@ import { HttpClient } from '@angular/common/http';
 export class HomefclasesService {
   data: any
   
-  API_ENDPOINT = 'http://localhost:8000/api'
+  API_ENDPOINT = globalVar.url
 
   constructor(public httpClient: HttpClient) { }
 

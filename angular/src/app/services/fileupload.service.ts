@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {globalVar} from '../services/global.service'
+import {globalVarimg} from '../services/global.service'
 
 
 @Injectable({
@@ -7,20 +9,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class FileuploadService {
 
-  API_ENDPOINT = 'http://localhost:8000/';
-  // API_ENDPOINT = 'http://localhost/PruebasAngular/';
-  API_ENDPOINTS = 'http://localhost:8000/api/fotosalumnos/';
+  API_ENDPOINT = globalVarimg.url
 
-  API_ENDPOINTSADMIN = 'http://localhost:8000/api/fotosadmin/';
+  API_ENDPOINTS = globalVar.url+'/fotosalumnos/';
 
-  API_ENDPOINTSPERSONAL = 'http://localhost:8000/api/fotospersonal/';
+  API_ENDPOINTSADMIN = globalVar.url+'/fotosadmin/';
+
+  API_ENDPOINTSPERSONAL = globalVar.url+'/fotospersonal/';
 
 
   constructor(private http:HttpClient) { }
 
 
   uploadFile(archivo) {
-    return this.http.post(`${this.API_ENDPOINT}prueba.php`, JSON.stringify(archivo));
+    
+    return this.http.post(`${this.API_ENDPOINT}/prueba.php`, JSON.stringify(archivo));
   }
 
 
@@ -31,7 +34,7 @@ export class FileuploadService {
   }
 
   uploadFileAdmin(archivo) {
-    return this.http.post(`${this.API_ENDPOINT}usuario.php`, JSON.stringify(archivo));
+    return this.http.post(`${this.API_ENDPOINT}/usuario.php`, JSON.stringify(archivo));
   }
 
 
@@ -42,7 +45,7 @@ export class FileuploadService {
   }
 
   uploadFilePersonal(archivo) {
-    return this.http.post(`${this.API_ENDPOINT}personal.php`, JSON.stringify(archivo));
+    return this.http.post(`${this.API_ENDPOINT}/personal.php`, JSON.stringify(archivo));
   }
 
 

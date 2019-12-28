@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Memalumnos } from '../interfaces/memalumno';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import {globalVar} from '../services/global.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class MemalumnoService {
   // URL de laravel con xampp
-  API_ENDPOINT = 'http://localhost:8000/api';
+  API_ENDPOINT = globalVar.url
   constructor(private httpClient: HttpClient) {
 
   }

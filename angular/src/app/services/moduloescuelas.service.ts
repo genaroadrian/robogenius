@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {globalVar} from '../services/global.service'
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModuloescuelasService {
 
-  API_ENDPOINT = 'http://localhost:8000/api';
+  API_ENDPOINT = globalVar.url
 
   constructor( private httpClient: HttpClient) { }
 

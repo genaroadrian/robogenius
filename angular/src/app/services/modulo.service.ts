@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import {Http, ResponseContentType} from '@angular/http';
 import { Observable } from 'rxjs';
+import {globalVar} from '../services/global.service'
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ModuloService {
-  API_ENDPOINT = 'http://localhost:8000/api';
+  API_ENDPOINT = globalVar.url
 
   dialogData: any
   extraData: any
@@ -109,7 +111,7 @@ export class ModuloService {
 
   downloadFile(data): Observable<any>
   {		
-    	return this.http.get('http://localhost:8000/api/files?filename="'+data.filename+'"'+'&ruta="'+data.ruta+'"' , { responseType: ResponseContentType.Blob });
+    	return this.http.get(this.API_ENDPOINT+'/files?filename="'+data.filename+'"'+'&ruta="'+data.ruta+'"' , { responseType: ResponseContentType.Blob });
   }
 
   deleteFile(data)

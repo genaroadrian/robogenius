@@ -12,3 +12,8 @@ export class GlobalService {
 export const globalVar = {
   url:'http://localhost:8000/api'
 }
+
+// ruta sin api para imagenes de perfil
+export const globalVarimg = {
+  url:'http://localhost:8000'
+}

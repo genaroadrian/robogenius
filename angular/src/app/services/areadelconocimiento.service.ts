@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { areadelconocimiento } from '../interfaces/areadelconocimiento';
 import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
+import {globalVar} from '../services/global.service'
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,8 @@ import {BehaviorSubject} from 'rxjs';
 export class AreadelconocimientoService {
 
    // URL de laravel
-   API_ENDPOINT = 'http://localhost:8000/api';
+   API_ENDPOINT = globalVar.url
+
 
    dataChange: BehaviorSubject<areadelconocimiento[]> = new BehaviorSubject<areadelconocimiento[]>([]);
  

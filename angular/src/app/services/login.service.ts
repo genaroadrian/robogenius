@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Login } from '../interfaces/login';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {globalVar} from '../services/global.service'
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+  API_ENDPOINT = globalVar.url
 
   dialogData: any;
 
   constructor(private http:HttpClient){}
 
-  Url =  'http://127.0.0.1:8000/api/login';
-  API_ENDPOINT = "http://localhost:8000/api/"
+  Url =  globalVar.url+'/login';
 
   // Funcion para recuperar el json de la base de datos
   getPersonas(){

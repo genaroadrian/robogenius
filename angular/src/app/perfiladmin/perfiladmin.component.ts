@@ -8,8 +8,7 @@ import { MatPaginator, MatSort} from '@angular/material';
 import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
 import { ModificaradComponent } from './modificarad/modificarad.component';
 import { UserAdminService } from '../services/user-admin.service';
-
-
+import {globalVarimg} from '../services/global.service';
 import { FileuploadService } from 'src/app/services/fileupload.service';
 import {Router} from '@angular/router';
 import { userAdmin } from 'src/app/interfaces/userAdmin';
@@ -29,6 +28,7 @@ export class PerfiladminComponent implements OnInit {
 
   @ViewChild('Profile') img;
 
+  API_ENDPOINT = globalVarimg.url
 
   btnChange = "none"
   log:Login[];

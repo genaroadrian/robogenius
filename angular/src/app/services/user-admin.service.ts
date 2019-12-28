@@ -4,12 +4,13 @@ import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import  { userAdmin } from '../interfaces/userAdmin';
 import { Horas } from '../interfaces/horas';
+import {globalVar} from '../services/global.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAdminService {
-  API_ENDPOINT = 'http://localhost:8000/api';
+  API_ENDPOINT = globalVar.url
   dialogData: any;
   constructor(private httpClient: HttpClient) { 
   }

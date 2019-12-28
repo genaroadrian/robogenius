@@ -112,7 +112,7 @@ restantess:any;
   sumaegre:total[];
   // logs:Login[];
   logs: any;
-
+total:any
 
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
@@ -178,7 +178,15 @@ restantess:any;
 
   this.categoriaservice.sumaegreso()
   .subscribe(data=>{
+    
     this.sumaegre=data;
+    this.sumaegre=this.sumaegre.filter(x=>x.idscu=this.sucursal)
+    // foreach de suma
+    var total = 0;
+    this.sumaegre.forEach(function(obj){
+      // total+=obj.monto;
+    })
+    this.total=total;
 
   })
 

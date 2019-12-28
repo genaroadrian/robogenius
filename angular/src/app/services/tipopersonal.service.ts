@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {Tipopersonal} from '../interfaces/tipopersonal';
 import {BehaviorSubject} from 'rxjs';
+import {globalVar} from '../services/global.service'
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class TipopersonalService {
-  API_ENDPOIINT = 'http://localhost:8000/api';
+  API_ENDPOIINT = globalVar.url
 
   dataChange: BehaviorSubject<Tipopersonal[]> = new BehaviorSubject<Tipopersonal[]>([]);
   // Temporarily stores data from dialogs

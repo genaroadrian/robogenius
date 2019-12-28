@@ -14,6 +14,8 @@ import { NotificationsService } from 'src/app/services/notifications.service';
 import { PerfiladdmemComponent } from '../perfiladdmem/perfiladdmem.component';
 import { PerfiladdhoraComponent } from '../perfiladdhora/perfiladdhora.component';
 // import {formatDate } from '@angular/common';
+import {globalVarimg} from '../../services/global.service';
+
 
 
 
@@ -42,6 +44,7 @@ export class PerfilComponent implements OnInit {
 
   jstoday: any;
   // today= new Date();
+  API_ENDPOINT = globalVarimg.url
 
   datosEditMem: any
 

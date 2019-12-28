@@ -21,6 +21,8 @@ import { HaddComponent } from '../horarios/hadd/hadd.component';
 import { HorariosService } from '../services/horarios.service';
 import { Horario } from '../interfaces/horario';
 import { FileuploadService } from '../services/fileupload.service';
+import {globalVarimg} from '../services/global.service';
+
 
 function emailDomainValidator(control: FormControl) {
   let email = control.value;
@@ -47,6 +49,7 @@ function emailDomainValidator(control: FormControl) {
 })
 
 export class FormPersonalComponent implements OnInit {
+  API_ENDPOINT = globalVarimg.url
 
   @ViewChild('Profile') img;
 

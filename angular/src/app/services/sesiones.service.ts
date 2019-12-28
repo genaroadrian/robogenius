@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { Sesiones } from '../interfaces/sesiones';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import {globalVar} from '../services/global.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class SesionesService {
 
-  API_ENDPOINT = 'http://localhost:8000/api'
+  API_ENDPOINT = globalVar.url
 
   dataChange: BehaviorSubject<Sesiones[]> = new BehaviorSubject<Sesiones[]>([])
   dialogData: any

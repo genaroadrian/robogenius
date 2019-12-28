@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { Sucursal } from '../interfaces/sucursal';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
+import {globalVar} from '../services/global.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class SucursalService {
-  API_ENDPOINT = 'http://localhost:8000/api';
+  API_ENDPOINT = globalVar.url
 
   dataChange: BehaviorSubject<Sucursal[]> = new BehaviorSubject<Sucursal[]>([]);
   // Temporarily stores data from dialogs

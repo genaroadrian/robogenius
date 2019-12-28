@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Subareac } from '../interfaces/subareac';
+import {globalVar} from '../services/global.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class SubareacService {
 
-  API_ENDPOINT = 'http://localhost:8000/api';
+  API_ENDPOINT = globalVar.url
 
   dataChange: BehaviorSubject<Subareac[]> = new BehaviorSubject<Subareac[]>([])
 

@@ -9,6 +9,7 @@ import { NgForm } from '@angular/forms';
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { SucursalService } from '../services/sucursal.service';
 import { Sucursal } from '../interfaces/sucursal';
+import {globalVarimg} from '../services/global.service';
 
 
 declare var jQuery:any;
@@ -26,6 +27,7 @@ declare var $:any;
 export class NavbarComponent  {
 
   ingresos:Sucursal[];
+  API_ENDPOINT = globalVarimg.url
 
 
   public  emai = localStorage.getItem("email");

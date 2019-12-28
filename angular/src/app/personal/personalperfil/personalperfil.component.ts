@@ -9,6 +9,8 @@ import { PereditComponent } from '../peredit/peredit.component';
 import { PersonalService } from 'src/app/services/personal.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { AddasisComponent } from 'src/app/asistencias/addasis/addasis.component';
+import {globalVarimg} from '../../services/global.service';
+
 
 
 @Component({
@@ -20,6 +22,7 @@ import { AddasisComponent } from 'src/app/asistencias/addasis/addasis.component'
 export class PersonalperfilComponent implements OnInit {
   /* Interfaz de la tabla de grupos */
   @ViewChild('Profile') img;
+  API_ENDPOINT = globalVarimg.url
 
   btnChange: string = "none"
 

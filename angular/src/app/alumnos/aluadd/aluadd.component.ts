@@ -24,6 +24,8 @@ import { NG_VALIDATORS } from '@angular/forms';
 import { FileuploadService } from 'src/app/services/fileupload.service';
 import { AddtipomemComponent } from 'src/app/tipomembresias/addtipomem/addtipomem.component';
 import { NotificationsService } from 'src/app/services/notifications.service';
+import {globalVarimg} from '../../services/global.service';
+
 
 
 function emailDomainValidator(control: FormControl) { 
@@ -64,6 +66,7 @@ class EmailDomainValidator {
   }]
 })
 export class AluaddComponent implements OnInit {
+  API_ENDPOINT = globalVarimg.url
 
 
   @ViewChild('Profile') img;

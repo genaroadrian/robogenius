@@ -4,6 +4,8 @@ import { contabilidad } from '../interfaces/contabilidad';
 import { total } from '../interfaces/total';
 import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
+import {globalVar} from '../services/global.service'
+
 
 
 @Injectable({
@@ -15,17 +17,24 @@ export class CategoriaService {
 
   constructor(private http:HttpClient){}
 
-  Url =  'http://localhost:8000/api/categorias';
+  API_ENDPOINT = globalVar.url
 
-  Urls =  'http://localhost:8000/api/ingresos';
+  Url = this.API_ENDPOINT + '/categorias';
+  Urls = this.API_ENDPOINT + '/ingresos';
+  Urle = this.API_ENDPOINT + '/egresos';
+  Urlaa = this.API_ENDPOINT + '/sumaingresos';
+  Urlbb = this.API_ENDPOINT + '/sumaegresos';
+  Urlpendiente = this.API_ENDPOINT + '/pendiente';
 
-  Urle =  'http://localhost:8000/api/egresos';
+  // Urls =  'http://localhost:8000/api/ingresos';
 
-  Urlaa =  'http://localhost:8000/api/sumaingresos';
+  // Urle =  'http://localhost:8000/api/egresos';
 
-  Urlbb =  'http://localhost:8000/api/sumaegresos';
+  // Urlaa =  'http://localhost:8000/api/sumaingresos';
 
-  Urlpendiente =  'http://localhost:8000/api/pendiente';
+  // Urlbb =  'http://localhost:8000/api/sumaegresos';
+
+  // Urlpendiente =  'http://localhost:8000/api/pendiente';
 
   // Funcion para recuperar el json de la base de datos
   pendiente(){
@@ -66,7 +75,6 @@ export class CategoriaService {
   
   }
 
-  API_ENDPOINT = 'http://localhost:8000/api';
 
   save(total: categorias) {
     const headers = new HttpHeaders({"Content-Type":"application/json"});
@@ -78,49 +86,7 @@ export class CategoriaService {
     const headers = new HttpHeaders({"Content-Type":"application/json"});
     return this.http.post(this.API_ENDPOINT+'/contabilidad', contabilidad, {headers: headers});
   }
-//   API_ENDPOINT = 'http://localhost:8000/api';
 
-//   dataChange: BehaviorSubject<categorias[]> = new BehaviorSubject<categorias[]>([]);
-
-//   dialogData: any;
-//   constructor(private httpClient: HttpClient) { }
-
-//  // Obtener datos de la base de datos
-//  getAlumnos(): void{
-//   this.httpClient.get<categorias[]>(this.API_ENDPOINT+'/alumnos').subscribe(data => {
-//     this.dataChange.next(data);
-//   },
-//   (error: HttpErrorResponse) => {
-//   console.log (error.name + ' ' + error.message);
-//   });
-// }
-
-//   // Obtener datos cuando cambien
-//   get data(): categorias[] {
-//     return this.dataChange.value;
-//   }
-
-//   get() {
-//     return this.httpClient.get(this.API_ENDPOINT + '/categorias');
-//  }
-//   // Guardar datos
-//   save(categoria: categorias) {
-//     const headers = new HttpHeaders({"Content-Type":"application/json"});
-//     return this.httpClient.post(this.API_ENDPOINT+'/categorias', categoria, {headers: headers});
-//   }
-
-//    // Actualizar los datos
-//    put(categoria: categorias){
-//     const headers = new HttpHeaders({"Content-Type":"application/json"});
-//     this.dialogData = categoria;
-//     return this.httpClient.put(this.API_ENDPOINT+'/categorias/'+categoria.idCategoria,categoria, {headers: headers});
-    
-//   }
-
-//   // Borrar los datos
-//   delete(id:number){
-//     return this.httpClient.delete(this.API_ENDPOINT + '/categorias/'+id);
-//   }
 
 
 put(cont: contabilidad){

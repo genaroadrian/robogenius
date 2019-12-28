@@ -4,6 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Dias } from '../interfaces/dias';
 import { Horas } from '../interfaces/horas';
+import {globalVar} from '../services/global.service'
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ import { Horas } from '../interfaces/horas';
 export class PadresService {
 
   // URL de laravel
-  API_ENDPOINT = 'http://localhost:8000/api';
+  API_ENDPOINT = globalVar.url
 
   constructor(private httpClient: HttpClient) { }
 

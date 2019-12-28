@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Escuelas } from '../interfaces/escuelas';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import {BehaviorSubject} from 'rxjs';
+import {globalVar} from '../services/global.service'
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ import {BehaviorSubject} from 'rxjs';
 export class EscuelasService {
 
   /* Ruta de laravel */
-  API_ENDPOINT = 'http://localhost:8000/api';
+  API_ENDPOINT = globalVar.url
 
   /* Detector de cambios en los datos */
   dataChange: BehaviorSubject<Escuelas[]> = new BehaviorSubject<Escuelas[]>([]);

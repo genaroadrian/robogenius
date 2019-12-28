@@ -12,11 +12,15 @@ export class TipomembresiaService {
   API_ENDPOINT = 'http://localhost:8000/api';
 
   dataChange: BehaviorSubject<Tipomembresia[]> = new BehaviorSubject<Tipomembresia[]>([]);
-
+ 
   // Temporarily stores data from dialogs
   dialogData: any;
+  sucursal:any;
+  datos:any;
+  constructor(private httpClient: HttpClient) {
+    this.sucursal=localStorage.getItem('sucursal')
 
-  constructor(private httpClient: HttpClient) { }
+   }
 
   getMemalu()
   {
@@ -26,7 +30,10 @@ export class TipomembresiaService {
   getMembresias(): void
   {
     this.httpClient.get<Tipomembresia[]>(this.API_ENDPOINT+'/tmembresia').subscribe((data)=>{
-      this.dataChange.next(data)
+      // this.dataChange.next(data)
+      this.datos=data
+      this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
+      this.dataChange.next(this.datos);
     }, (error: HttpErrorResponse)=>{
       console.log(error.name + ' '+ error.message)
     })

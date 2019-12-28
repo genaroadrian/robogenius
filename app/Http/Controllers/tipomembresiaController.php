@@ -22,6 +22,7 @@ class tipomembresiaController extends Controller
         $tmem->costo = $request->costo;
         $tmem->clases = $request->clases;
         $tmem->idesc = $request->idesc;
+        $tmem->idsuc = $request->idsuc;
         $tmem->activo = 1;
         $tmem->save();
         return $tmem;

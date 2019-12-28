@@ -19,7 +19,7 @@ class padresController extends Controller
     public function store(Request $request)
     {
         $id = $request->iddia;
-        $sql = "SELECT DISTINCT horario.idh, horario.hora 
+        $sql = "SELECT DISTINCT horario.idh, horario.hora , detallegrupos.idsuc
         FROM detallegrupos INNER JOIN horario 
         ON detallegrupos.idh = horario.idh 
         WHERE detallegrupos.idd = $id";
@@ -32,7 +32,7 @@ class padresController extends Controller
     {
         $idh = $request->idh;
         $idd = $request->idd;
-         $sql = "SELECT DISTINCT detallegrupos.idp ,personal.nombre, personal.apellidos, detallegrupos.iddgru
+         $sql = "SELECT DISTINCT detallegrupos.idp ,personal.nombre, personal.idsuc,personal.apellidos, detallegrupos.iddgru
          FROM detallegrupos INNER JOIN personal 
          ON detallegrupos.idp = personal.idper
          INNER JOIN tipopersonal

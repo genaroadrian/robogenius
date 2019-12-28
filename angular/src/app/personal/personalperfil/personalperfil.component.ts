@@ -19,6 +19,7 @@ import { AddasisComponent } from 'src/app/asistencias/addasis/addasis.component'
 
 export class PersonalperfilComponent implements OnInit {
   /* Interfaz de la tabla de grupos */
+  @ViewChild('Profile') img;
 
   btnChange: string = "none"
 
@@ -66,7 +67,7 @@ export class PersonalperfilComponent implements OnInit {
   viewS: string = 'none'
 
   constructor(public personalPerfilService: PersonalperfilService,private uploadService: FileuploadService,private router:Router,
-    public dialog: MatDialog,public personalService: PersonalService, public notificationsService: NotificationsService) { }
+    public dialog: MatDialog,public personalService: PersonalService, public notificationsService: NotificationsService,public toastr: ToastrManager) { }
 
   ngOnInit() {
     this.datos = this.personalPerfilService.returnPerfil()
@@ -143,6 +144,25 @@ export class PersonalperfilComponent implements OnInit {
     this.personal.fotopersonal=this.archivo.nombreArchivo;
 
  
+    /* -------------------- */
+    var archivos = event.target.files
+    var archivo = archivos[0]
+    var lector = new FileReader()
+    var vista_previa
+
+    lector.onloadend = () =>{
+      this.img.nativeElement.src = lector.result
+    }
+
+
+    if(archivo)
+    {
+      lector.readAsDataURL(archivo)
+    }else{
+      vista_previa = ''
+    }
+    
+    /* -------------------- */
 
     if(files && file) {
       var reader = new FileReader();
@@ -161,7 +181,9 @@ export class PersonalperfilComponent implements OnInit {
       // this.datos.perfilalu=this.archivo.nombreArchivo;
       this.uploadService.subirimagenPersonal(this.personal).subscribe(data=>{
         // console.log(this.personal)
+        this.showSuccessFoto()
        }, (error) => {
+        this.showError()
          
        // console.log(error)
        })
@@ -185,6 +207,14 @@ export class PersonalperfilComponent implements OnInit {
     this.barra = ""
   }
 
+  showSuccessFoto() {
+    this.toastr.successToastr('Foto actualizada', 'Exito!');
+  }
+
+    /* Mensaje de ERROR */
+    showError() {
+      this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
+    }
   ocultarBarra()
   {
     this.barra = "none"

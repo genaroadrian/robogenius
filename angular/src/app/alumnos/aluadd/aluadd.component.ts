@@ -1,4 +1,4 @@
-import { Component, OnInit, Directive } from '@angular/core';
+import { Component, OnInit, Directive, ViewChild } from '@angular/core';
 import { AlumnosService } from 'src/app/services/alumnos.service';
 import { HttpClient } from '@angular/common/http';
 import { Alumnos } from 'src/app/interfaces/alumnos';
@@ -64,6 +64,10 @@ class EmailDomainValidator {
   }]
 })
 export class AluaddComponent implements OnInit {
+
+
+  @ViewChild('Profile') img;
+
   myForm: FormGroup;
   email: any;
 
@@ -214,7 +218,8 @@ export class AluaddComponent implements OnInit {
       nombre: null,
       costo: null,
       clases: null,
-      idesc: null
+      idesc: null,
+      idsuc:null
     }
 
   // Interfaz de la membresia por alumno
@@ -344,7 +349,7 @@ export class AluaddComponent implements OnInit {
   getTipomem() {
     this.tmembresia.getMemalu().subscribe((data: Tipomembresia[]) => {
       this._allMembresias = data;
-      // console.log(this._allMembresias);
+      this._allMembresias=this._allMembresias.filter(x=>(x.idsuc==this.sucursal))
     }, (error) => {
 
     });
@@ -358,6 +363,25 @@ export class AluaddComponent implements OnInit {
     this.archivo.nombreArchivo=this.jstoday+this.archivo.nombreArchivo
     this.alumno.perfilalu=this.archivo.nombreArchivo;
 
+        /* -------------------- */
+        var archivos = event.target.files
+        var archivo = archivos[0]
+        var lector = new FileReader()
+        var vista_previa
+    
+        lector.onloadend = () =>{
+          this.img.nativeElement.src = lector.result
+        }
+    
+    
+        if(archivo)
+        {
+          lector.readAsDataURL(archivo)
+        }else{
+          vista_previa = ''
+        }
+        
+        /* -------------------- */
  
 
     if(files && file) {
@@ -480,7 +504,9 @@ export class AluaddComponent implements OnInit {
     this.labelh = "none"
     this.spinerh = "";
     this.gethorarios.getHora(dia).subscribe((data: Horas[]) => {
+      console.log(data)
       this._allHoras = data;
+      this._allHoras=this._allHoras.filter(x=>x.idsuc==this.idsuc)
       this.labelh = ""
       this.spinerh = "none";
       this.horavalue = "";
@@ -505,9 +531,9 @@ export class AluaddComponent implements OnInit {
     this.detallegrupos.idh = hora.idh;
     // console.log(this.detallegrupos);
     this.gethorarios.getPersonal(this.detallegrupos).subscribe((data: Personal[]) => {
+      console.log(data)
       this._allPersonal = data;
       this._allPersonal=this._allPersonal.filter(datas=>datas.idsuc==this.idsuc)
-       console.log(this._allPersonal)
       this.labelp = "";
       this.spinnerp = "none";
       // console.log(this._allPersonal);

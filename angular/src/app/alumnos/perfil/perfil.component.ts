@@ -191,8 +191,8 @@ export class PerfilComponent implements OnInit {
     this.uploadService.uploadFile(this.archivo).subscribe(
       datos => {
         if (datos['resultado'] == 'OK') {
-          alert(datos['mensaje']);
-          this.router.navigate(['alumnos']);
+          // alert(datos['mensaje']);
+          // this.router.navigate(['alumnos']);
 
         }
       }
@@ -205,8 +205,11 @@ export class PerfilComponent implements OnInit {
     // this.datos.perfilalu=this.archivo.nombreArchivo;
     this.uploadService.subirimagen(this.alumnofoto).subscribe(data => {
       // console.log(data);
+      this.showSuccessFoto()
     }, (error) => {
       // console.log(error);
+      this.showError()
+
     })
     this.dfoto = 'none'
   }
@@ -221,7 +224,14 @@ export class PerfilComponent implements OnInit {
     this.horarios();
 
   }
+  showSuccessFoto() {
+    this.toastr.successToastr('Foto actualizada', 'Exito!');
+  }
 
+    /* Mensaje de ERROR */
+    showError() {
+      this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
+    }
 
   /* Obtiene todas las membresias del alumno seleccionado */
   membresias() {

@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+
+<div class="col-xl-12 col-md-12 body">
+  <div class="col-xl-12 col-md-12">
+    <div class="card bg-light mini-stat position-relative">
+      <div class="card-body">
+        <div class="container">
+          <div class="col-md-8">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>ID alumno</th>
+                  <th *ngFor="let fecha of fechas">{{fecha.fecha}}</th>
+                </tr>
+              </thead>
+            
+              <tbody>
+                <tr *ngFor="let alumno of alumnos; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{alumno.alum_nom}} {{alumno.alumno_apell}} </td>
+                  <td *ngFor="let row of allRows" [style.display]="alumno.idalu == row.idalu ? '' : 'none'">
+                    {{row.asis}}
+                  </td>
+                </tr>
+              </tbody>
+            
+            </table>
+          </div>
+          
+          <br>
+          <br>
+          <button (click)="refresh()" >Recargar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-fotter></app-fotter>

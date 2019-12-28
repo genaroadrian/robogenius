@@ -344,7 +344,8 @@ export class FormPersonalComponent implements OnInit {
   }
 
 
-  nuevoTPersonal(tpersonal: Tipopersonal) {
+  nuevoTPersonal() {
+    let tpersonal: Tipopersonal
     /* abrir un pequeño modal para agregar otro tipo de personal */
     const dialogRef = this.dialog.open(TpaddComponent, {
       data: { tpersonal: tpersonal }

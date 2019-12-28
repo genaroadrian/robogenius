@@ -121,7 +121,8 @@ export class SubtemahomeComponent implements OnInit {
   }
 
   // Metodo para abrir el modal para agrefar nuevo registro
-  addNew(tema: subtema) {
+  addNew() {
+    let tema: subtema
     // Abre la ventana modal
     const dialogRef = this.dialog.open(SubtemaaddComponent, {
       width: '600px',

@@ -19,8 +19,13 @@
 
     <div>
         <span>Ingreso al sistema: </span>
-        <mat-slide-toggle (change)="permisos($event)" [checked]="cheked">
+        <mat-slide-toggle color="warn" (change)="permisos($event)" [checked]="cheked">
         </mat-slide-toggle>
+      </div>
+
+      <div [style.display]="cheked == true ? '' : 'none'">
+        <span>Maestro: </span>
+        <mat-slide-toggle color="warn" (change)="clases($event)" [checked]="chekedM"></mat-slide-toggle>
       </div>
 
     <div mat-dialog-actions>

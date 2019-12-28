@@ -37,7 +37,7 @@ export class CodigosaddComponent implements OnInit {
     this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
   }
 
-  Descuentos(data): void 
+  Descuentos(): void 
   {
     this.data.idsuc=localStorage.getItem("sucursal");
     this.codigosService.ado(this.data);

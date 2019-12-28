@@ -503,7 +503,8 @@ temaSearch(value)
 
 
   /* Modales para agregar nuevos registros en cada select */
-  nuev(nivelest: Niveles) {
+  nuev() {
+    let nivelest: Niveles
     const dialogRef = this.dialog.open(AddnivelComponent, {
       data: { nivelest: nivelest }
     });
@@ -522,7 +523,8 @@ temaSearch(value)
     });
   }
 
-  gradomodal(grado: Grados) {
+  gradomodal() {
+    let grado: Grados
     const dialogRef = this.dialog.open(AddgradosComponent, {
       data: { grado: grado }
     });
@@ -542,7 +544,8 @@ temaSearch(value)
     });
   }
 
-  areamodal(area: areadelconocimiento) {
+  areamodal() {
+    let area: areadelconocimiento
     const dialogRef = this.dialog.open(AreaaddComponent, {
       data: { area: area }
     });
@@ -563,7 +566,8 @@ temaSearch(value)
     });
   }
 
-  addHerra(herramientas: Herramientas) {
+  addHerra() {
+    let herramientas: Herramientas
     const dialogRef = this.dialog.open(AddHerramientasComponent, {
       data: { herramientas: herramientas }
     });
@@ -582,7 +586,8 @@ temaSearch(value)
     });
   }
 
-  addSAC(subareaC: Subareac) {
+  addSAC() {
+    let subareaC: Subareac
     const dialogRef = this.dialog.open(SacaddComponent, {
       data: { subareaC: subareaC }
     });
@@ -601,7 +606,8 @@ temaSearch(value)
     });
   }
 
-  temamodal(tema: tema) {
+  temamodal() {
+    let tema: tema
     const dialogRef = this.dialog.open(TemaaddComponent, {
       data: { tema: tema }
     });
@@ -621,8 +627,9 @@ temaSearch(value)
     });
   }
 
-  subtemaModal(subtema: subtema)
+  subtemaModal()
   {
+    let subtema: subtema
     const dialogRef = this.dialog.open(SubtemaaddComponent, {
       data: { tema: subtema }
     });
@@ -639,6 +646,10 @@ temaSearch(value)
         });
       }
     });
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
   

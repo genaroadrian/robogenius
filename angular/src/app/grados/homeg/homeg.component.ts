@@ -123,7 +123,8 @@ export class HomegComponent implements OnInit {
     }
         /*---------------------------------------------------------------------*/
 
-    addgrados(grados: Grados) {
+    addgrados() {
+      let grados: Grados
       // Abre la ventana modal
       const dialogRef = this.dialog.open(AddgradosComponent, {
         data: { grados: grados }

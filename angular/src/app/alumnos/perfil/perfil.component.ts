@@ -285,14 +285,21 @@ export class PerfilComponent implements OnInit {
     })
   }
 
-  editAlu(idalu: number, nomalu: string, apealu: string, fnacalu: string, sexoalu: string,
-    domalu: string, telalu: number, correoalu: string, medicacion: string,
-    alergias: string, perfilalu: string, cronica: string, otro: string,
-    escuela: string, usuarioalu: string, pswalu: string, nompad: string,
-    apepad: string, dompad: string, telpad: number, correopad: string,
-    ocupad: string, nommad: string, apemad: string, dommad: string,
-    telmad: number, correomad: string, ocupmad: string, finscripcion: string, usuariopad: string,
-    pswpad: string) {
+  editAlu(idalu: number, nomalu: string, 
+    apealu: string, fnacalu: string, 
+    sexoalu: string,
+    domalu: string, telalu: number, correoalu: string, 
+    medicacion: string,
+    alergias: string, perfilalu: string, 
+    cronica: string, otro: string,
+    escuela: string, usuarioalu: string, 
+    pswalu: string, nompad: string,
+    apepad: string, dompad: string, telpad: number, 
+    correopad: string,
+    ocupad: string, nommad: string, apemad: string, 
+    dommad: string,
+    telmad: number, correomad: string, ocupmad: string, 
+    finscripcion: string) {
 
     const dialogRef = this.dialog.open(AlueditComponent, {
       // Anchura de el modal
@@ -307,8 +314,7 @@ export class PerfilComponent implements OnInit {
         escuela: escuela, usuarioalu: usuarioalu, pswalu: pswalu, nompad: nompad,
         apepad: apepad, dompad: dompad, telpad: telpad, correopad: correopad,
         ocupad: ocupad, nommad: nommad, apemad: apemad, dommad: dommad,
-        telmad: telmad, correomad: correomad, ocupmad: ocupmad, usuariopad: usuariopad,
-        pswpad: pswpad, finscripcion: finscripcion
+        telmad: telmad, correomad: correomad, ocupmad: ocupmad, finscripcion: finscripcion
       }
     });
     dialogRef.afterClosed().subscribe(result => {

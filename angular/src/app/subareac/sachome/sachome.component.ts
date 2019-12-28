@@ -83,8 +83,10 @@ export class SachomeComponent implements OnInit {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
-  addNew(subarea: Subareac)
+  addNew()
   {
+    let subarea: Subareac
+  
     const dialogRef = this.dialog.open(SacaddComponent,{
       data: {dubarea: subarea}
     })

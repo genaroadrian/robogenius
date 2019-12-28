@@ -19,4 +19,9 @@ export class AsistenciasService {
   {
     return this.httpClient.post(this.API_ENDPOINT+'/historyasis',data)
   }
+
+  prueba()
+  {
+    return this.httpClient.get(this.API_ENDPOINT+'/pruebaAsistencias')
+  }
 }

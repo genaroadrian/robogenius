@@ -166,7 +166,7 @@ export class PerfilhoraeditComponent implements OnInit {
   }
 
   // Obteine el id del grupo al cambiar el personal
-  personalChange(id, nombre, apellidos) {
+  personalChange(id) {
     // // console.log(nombre)
     this.gruposAlumnos.idg = id;
     // // console.log(this.hora.idh+this.idgrupo)

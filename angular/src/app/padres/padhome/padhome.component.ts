@@ -18,7 +18,7 @@ import { Horas } from 'src/app/interfaces/horas';
 })
 export class PadhomeComponent implements OnInit {
 
-  private _allHoras: Observable<Horas[]>;
+  _allHoras: Observable<Horas[]>;
   SelCountryId:string="0"; 
 
   dia: Dias = {

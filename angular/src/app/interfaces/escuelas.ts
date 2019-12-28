@@ -6,5 +6,6 @@ export interface Escuelas {
 	telefono: number;
 	correouno: string;
 	activo: number;
+	psw: string;
 	idsuc:string;
 }

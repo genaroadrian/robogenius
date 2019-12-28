@@ -86,7 +86,8 @@ export class HomeHerramientasComponent implements OnInit {
     this.paginator._intl.lastPageLabel = 'Ultima página';
   
   }
-  addH( herramientas: Herramientas){
+  addH( ){
+    let herramientas: Herramientas
     const dialogRef = this.dialog.open(AddHerramientasComponent, {
       data: { herramientas: herramientas }
     });

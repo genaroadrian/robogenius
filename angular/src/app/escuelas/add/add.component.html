@@ -30,7 +30,7 @@
 
                   <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
   
-      <form action="" (ngSubmit)="submit" #formControl="ngForm"  [ngStyle]="{'display': form}">
+      <form action="" #formControl="ngForm"  [ngStyle]="{'display': form}">
   
         <div class="row">
             <!-- <div class="form col-xl-4">
@@ -87,9 +87,9 @@
             </div>
 
             <div class="form col-xl-10 tittle">
-              <mat-form-field [ngStyle]="{display:visibility}">
+              <mat-form-field>
                 <input [(ngModel)]="data.psw" matInput placeholder="Contrase�a" name="psw"
-                  [type]="hide ? 'password' : 'text'" [disabled]="isDisable" required>
+                  [type]="hide ? 'password' : 'text'"  required>
                   <mat-icon matPrefix class="text-warning">lock</mat-icon>
                 <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                 <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
@@ -192,7 +192,7 @@
       
   
         <div class="row" [ngStyle]="{'dislplay': btn}">
-          <button class="btn btn-success" [type]="submit" (click)="confirmAdd()"
+          <button class="btn btn-success" (click)="confirmAdd()"
             style="margin-top:40px;margin-left:40%; margin-right: 40px;">Guardar</button>
           <button class="btn btn-danger" style="margin-top: 40px;">Cancelar</button>
         </div>

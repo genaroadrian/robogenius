@@ -97,6 +97,7 @@ export class AddComponent implements OnInit {
     telefono: null,
     correouno: null,
     idsuc: null,
+    psw: null,
     activo: null
   }
 

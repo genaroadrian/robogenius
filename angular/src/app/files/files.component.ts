@@ -91,7 +91,7 @@ export class FilesComponent implements OnInit {
     console.log(this.plane);
   }
 
-  saveFile(fi,pro,pre,pla){
+  saveFile(){
     
     console.log(this.idSesion)
     this.barraC = ''

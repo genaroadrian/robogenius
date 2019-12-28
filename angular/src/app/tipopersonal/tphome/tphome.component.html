@@ -68,11 +68,20 @@
                               </mat-cell>
                             </ng-container>
 
+                            <ng-container matColumnDef="maestro">
+                              <mat-header-cell *matHeaderCellDef mat-sort-header>Ingreso al sistema</mat-header-cell>
+                              <mat-cell *matCellDef="let row" data-label="Maestro" >
+                                <p [ngStyle]="{'display': disp}">{{row.maestro}</p>
+                                <p [style.display.none]="row.permisos == 0 ? '' : 'none'">Si</p>
+                                <p [style.display.none]="row.permisos == 1 ? '' : 'none'">No</p>
+                              </mat-cell>
+                            </ng-container>
+
                             
                             <ng-container matColumnDef="icons" >
                                 <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
                               <mat-cell *matCellDef="let row; let i=index;" data-label="Acciones">
-                                <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idtper, row.tipo, row.permisos)">
+                                <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idtper, row.tipo, row.permisos, row.maestro)">
                                   <mat-icon aria-label="Edit">edit</mat-icon>
                                 </button>
                         

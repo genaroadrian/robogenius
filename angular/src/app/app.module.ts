@@ -162,6 +162,7 @@ import { Http, HttpModule } from '@angular/http';
 import { ModuloescuelasComponent } from './moduloEscuelas/moduloescuelas/moduloescuelas.component';
 import { FilesdeleteComponent } from './files/filesdelete/filesdelete.component';
 import { FilesmodalComponent } from './files/filesmodal/filesmodal.component';
+import { PruebaComponent } from './asistencias/prueba/prueba.component';
 
 
 const routes: Route[]=[
@@ -211,7 +212,8 @@ const routes: Route[]=[
 {path: 'editmodulo', component: EditmoduloComponent},
 {path: 'homefclases', component: HomefclasesComponent},
 {path: 'files', component: FilesComponent},
-{path: 'escuelas/home', component: ModuloescuelasComponent}
+{path: 'escuelas/home', component: ModuloescuelasComponent},
+{path: 'pruebaasis', component: PruebaComponent}
 
 ];
 
@@ -334,7 +336,8 @@ const routes: Route[]=[
     FilesComponent,
     ModuloescuelasComponent,
     FilesdeleteComponent,
-    FilesmodalComponent
+    FilesmodalComponent,
+    PruebaComponent
 
   ],
   imports: [

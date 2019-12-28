@@ -1,7 +1,7 @@
 <div class="container" style="height: 210px;">
   <h3 mat-dialog-title style="text-align: center;">Nuevo registro</h3>
 
-  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm" style="height: 170px;" >
+  <form class="mat-dialog-content"  #formControl="ngForm" style="height: 170px;" >
       <div class="form">
           <mat-form-field style="width: 220px;">
               <mat-label>Hora de inicio</mat-label>
@@ -46,7 +46,7 @@
               </mat-form-field>
       </div>
     <div mat-dialog-actions>
-      <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()" style="margin-left: 20px; margin-right: 40px;">Guardar</button>
+      <button class="btn btn-success"  [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()" style="margin-left: 20px; margin-right: 40px;">Guardar</button>
       <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
     </div>
   </form>

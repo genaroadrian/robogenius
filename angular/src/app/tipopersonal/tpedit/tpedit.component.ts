@@ -14,17 +14,25 @@ import { ToastrManager } from 'ng6-toastr-notifications';
 export class TpeditComponent implements OnInit {
 
   cheked: boolean
+  chekedM: boolean
 
   constructor(public dialogRef: MatDialogRef<TpeditComponent>,private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: any, public tipopersonalService: TipopersonalService,
     public toastr: ToastrManager) { }
 
   ngOnInit() {
+    console.log(this.data)
     if(this.data.permisos == 1)
     {
       this.cheked = true
     }else{
       this.cheked = false
+    }
+    if(this.data.maestro == 1)
+    {
+      this.chekedM = true
+    }else{
+      this.chekedM = false
     }
   }
 
@@ -45,13 +53,16 @@ export class TpeditComponent implements OnInit {
 
   permisos(event: MatSlideToggleChange)
     {
-      if (this.cheked == false) {
-        this.cheked = true
-        // console.log(this.cheked)
-      } else {
-        this.cheked = false
-        // console.log(this.cheked)
+      this.cheked = event.checked
+      if(this.cheked == false)
+      {
+        this.chekedM == false
       }
+    }
+
+    clases(event: MatSlideToggleChange)
+    {
+      this.chekedM = event.checked
     }
 
 
@@ -61,13 +72,8 @@ export class TpeditComponent implements OnInit {
 
     /* Confirma la actualizacion del registro */
     stopEdit(data): void {
-      if (this.cheked == false) {
-        this.data.permisos = 0
-        // console.log(this.cheked)
-      } else {
-        this.data.permisos = 1
-        // console.log(this.cheked)
-      }
+      this.data.permisos = this.cheked
+      this.data.maestro = this.chekedM
       this.tipopersonalService.updateTipopersonal(this.data);
     }
 

@@ -293,7 +293,8 @@ export class ModuloComponent implements OnInit {
   }
 
   /* Modales para agregar nuevos registros en cada select */
-  nuev(nivelest: Niveles) {
+  nuev() {
+    let nivelest: Niveles
     const dialogRef = this.dialog.open(AddnivelComponent, {
       data: { nivelest: nivelest }
     });
@@ -312,7 +313,8 @@ export class ModuloComponent implements OnInit {
     });
   }
 
-  gradomodal(grado: Grados) {
+  gradomodal() {
+    let grado: Grados
     const dialogRef = this.dialog.open(AddgradosComponent, {
       data: { grado: grado }
     });
@@ -332,7 +334,8 @@ export class ModuloComponent implements OnInit {
     });
   }
 
-  areamodal(area: areadelconocimiento) {
+  areamodal() {
+    let area: areadelconocimiento
     const dialogRef = this.dialog.open(AreaaddComponent, {
       data: { area: area }
     });
@@ -353,7 +356,8 @@ export class ModuloComponent implements OnInit {
     });
   }
 
-  addHerra(herramientas: Herramientas) {
+  addHerra() {
+    let herramientas: Herramientas
     const dialogRef = this.dialog.open(AddHerramientasComponent, {
       data: { herramientas: herramientas }
     });
@@ -372,7 +376,8 @@ export class ModuloComponent implements OnInit {
     });
   }
 
-  addSAC(subareaC: Subareac) {
+  addSAC() {
+    let subareaC: Subareac
     const dialogRef = this.dialog.open(SacaddComponent, {
       data: { subareaC: subareaC }
     });
@@ -391,7 +396,8 @@ export class ModuloComponent implements OnInit {
     });
   }
 
-  temamodal(tema: tema) {
+  temamodal() {
+    let tema: tema
     const dialogRef = this.dialog.open(TemaaddComponent, {
       data: { tema: tema }
     });
@@ -411,8 +417,9 @@ export class ModuloComponent implements OnInit {
     });
   }
 
-  subtemaModal(subtema: subtema)
+  subtemaModal()
   {
+    let subtema: subtema
     const dialogRef = this.dialog.open(SubtemaaddComponent, {
       data: { tema: subtema }
     });

@@ -133,7 +133,8 @@ export class ShomeComponent implements OnInit {
   }
 
   // Metodo para abrir el modal para agrefar nuevo registro
-  addNew(sucursal: Sucursal) {
+  addNew() {
+    let sucursal: Sucursal
     // Abre la ventana modal
     const dialogRef = this.dialog.open(SaddComponent, {
       data: { sucursal: sucursal }

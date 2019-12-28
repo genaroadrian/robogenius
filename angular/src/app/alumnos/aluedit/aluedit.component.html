@@ -1,7 +1,7 @@
 <div class="container">
   <h3 mat-dialog-title style="text-align: center;">Modificando alumno</h3>
 
-  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm">
+  <form class="mat-dialog-content"  #formControl="ngForm">
 
     <div class="container">
       <div class="row">
@@ -165,9 +165,9 @@
 
       <!-- -------------------------------------------Contraseña------------------------------------------- -->
       <div class="form col-xl-6">
-        <mat-form-field [ngStyle]="{display:visibility}">
+        <mat-form-field >
           <input  [(ngModel)]="data.pswalu" matInput placeholder="Contraseña" name="pswalu"
-            [type]="hide ? 'password' : 'text'" [disabled]="isDisable" required>
+            [type]="hide ? 'password' : 'text'"  required>
           <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
         </mat-form-field>
@@ -286,7 +286,7 @@
         </div>
       </div>
       <div mat-dialog-actions>
-          <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+          <button class="btn btn-success" [disabled]="!formControl.valid" [mat-dialog-close]="1"
             (click)="stopEdit(data)" style="margin-left:40%; margin-right:40px">Guardar</button>
           <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
         </div>

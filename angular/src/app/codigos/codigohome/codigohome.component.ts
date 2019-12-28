@@ -82,7 +82,8 @@ refresh() {
   this.getcodigos();
 }
 
-  agregar(cod: Codigos) {
+  agregar() {
+    let cod: Codigos
     // Abre la ventana modal
     const dialogRef = this.dialog.open(CodigosaddComponent, {
       data: {cod: cod }

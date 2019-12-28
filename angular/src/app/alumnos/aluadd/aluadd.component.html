@@ -18,6 +18,7 @@
                 <div class="arrow"></div>
               </a>
             </div>
+
             <div class="col-xl-4 col-md-12">
               <h1 style="font-size: 30px; text-align: center;">Agregar un nuevo alumno</h1>
               <h4 style="text-align: center; color: brown;">Los campos marcados con <b>*</b> son obligatorios</h4>
@@ -35,7 +36,7 @@
             <!-- ---------------------------- Iniio del formulario ---------------------------- -->
 
             <!-- Validaciones en el formulario #formControl="ngForm" -->
-            <form (ngSubmit)="submit" #formControl="ngForm">
+            <form  #formControl="ngForm">
 
               <!-- -------------------------- Formulario de alumnos -------------------------- -->
               <div class="alumno col-xl-12">
@@ -120,7 +121,7 @@
                   <div class="form col-xl-4">
                     <mat-form-field>
                       <mat-label>Sexo: </mat-label>
-                      <mat-select [(ngModel)]="alumno.sexoalu" [(value)]="selectedsex" name="sexoalu" required>
+                      <mat-select [(ngModel)]="alumno.sexoalu"  name="sexoalu" required>
                         <mat-option value="Hombre">Hombre</mat-option>
                         <mat-option value="Mujer">Mujer</mat-option>
                       </mat-select>
@@ -242,9 +243,9 @@
                   <!-- --------------------------------------- Contraseña --------------------------------------- -->
 
                   <div class="form-group col-xl-6">
-                    <mat-form-field [ngStyle]="{display:visibility}">
+                    <mat-form-field >
                       <input [(ngModel)]="alumno.pswalu" matInput placeholder="Contraseña" name="pswalu"
-                        [type]="hide ? 'password' : 'text'" [disabled]="isDisable" required>
+                        [type]="hide ? 'password' : 'text'"  required>
                         <mat-icon matPrefix class="text-warning">lock</mat-icon>
                       <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                       <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
@@ -417,7 +418,7 @@
               </div>
               <div>
                 <!-- Desabilitar el boton / validacion         [disabled]="!formControl.valid"  -->
-                <button class="btn btn-success" [disabled]="!formControl.valid" [type]="submit"
+                <button class="btn btn-success" [disabled]="!formControl.valid"
                   (click)="saveAlumno(alumno)" style="margin-left:40%; margin-right:4%; ">Siguiente</button>
                 <button class="btn btn-danger" [routerLink]="['/alumnos']" routerLinkActive="router-link-active"
                   tabindex="-1">Cancelar</button>
@@ -428,6 +429,10 @@
           <div class="membresia col-xl-12" [ngStyle]="{display:membresiaview}">
             <!-- <div class="membresia"> -->
             <h2 style="text-align: center;">Elige tu tipo de membresia</h2>
+            <span><button mat-icon-button (click)="newMem()">
+              <mat-icon aria-label="Nuevo Registro" class="add">add_circle_outline</mat-icon><span class="add">
+                Nuevo</span>
+            </button></span>
             <form class="">
               <div class="center-block scrollmenu">
                 <section class="row plan " *ngFor="let mem of _allMembresias">
@@ -465,10 +470,10 @@
             <div class="row col-xl-12">
               <div class="col-xl-12 " [ngStyle]="{display:tipoimg}">
                 <h1 style="text-align: center;">Elige tu tipo de pago</h1>
-                <img src="assets/img/efectivo.png" alt="" class="efec" (click)="efectivo(id=1)">
-                <img src="assets/img/paypal.png" alt="" class="payp" (click)="paypal(id=2)">
-                <img src="assets/img/tarjeta.png" alt="" class="tarj" (click)="tarjeta(id=3)">
-                <img src="assets/img/transferencia.png" alt="" class="tran" (click)="transferencia(id=4)">
+                <img src="assets/img/efectivo.png" alt="" class="efec" (click)="efectivo(1)">
+                <img src="assets/img/paypal.png" alt="" class="payp" (click)="paypal(2)">
+                <img src="assets/img/tarjeta.png" alt="" class="tarj">
+                <img src="assets/img/transferencia.png" alt="" class="tran">
 
                 <div class="row col-xl-12">
                   <button class="btn btn-danger" style="margin-left: 49%;" (click)="returntmem()"
@@ -501,7 +506,7 @@
                   <span matSuffix>.00</span>
                 </mat-form-field>
 
-                <mat-slide-toggle color="warn" (change)="inscripcion($event)" [checked]="checked">Agregar inscripción
+                <mat-slide-toggle color="warn" (change)="inscripcion($event)">Agregar inscripción
                   (${{anualidad}}.00)
                 </mat-slide-toggle>
 
@@ -536,7 +541,7 @@
                 <span matSuffix>.00</span>
               </mat-form-field>
 
-              <mat-slide-toggle color="warn" (change)="inscripcion($event)" [checked]="checked">Agregar inscripción
+              <mat-slide-toggle color="warn" (change)="inscripcion($event)">Agregar inscripción
                 (${{anualidad}}.00)
               </mat-slide-toggle>
 

@@ -13,7 +13,7 @@ import { GethorariosService } from 'src/app/services/gethorarios.service';
 import { Personal } from 'src/app/interfaces/personal';
 import { TipomembresiaService } from 'src/app/services/tipomembresia.service';
 import { Tipomembresia } from 'src/app/interfaces/Tipomembresia';
-import { MatSlideToggleChange } from '@angular/material';
+import { MatSlideToggleChange, MatDialog } from '@angular/material';
 import { Memalumnos } from 'src/app/interfaces/memalumno';
 import { MemalumnoService } from 'src/app/services/memalumno.service';
 import { GruposAlumnosService } from 'src/app/services/grupos-alumnos.service';
@@ -22,6 +22,8 @@ import { Router } from '@angular/router';
 import { EscuelasService } from 'src/app/services/escuelas.service';
 import { NG_VALIDATORS } from '@angular/forms';
 import { FileuploadService } from 'src/app/services/fileupload.service';
+import { AddtipomemComponent } from 'src/app/tipomembresias/addtipomem/addtipomem.component';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 
 function emailDomainValidator(control: FormControl) { 
@@ -279,7 +281,8 @@ export class AluaddComponent implements OnInit {
     private tmembresia: TipomembresiaService, private memaluService: MemalumnoService,
     private galuService: GruposAlumnosService, private router :Router,
     private escuelasService: EscuelasService,
-    private uploadService: FileuploadService  ) {
+    private uploadService: FileuploadService, public tmemService: TipomembresiaService,
+    public dialog: MatDialog, public notifications: NotificationsService  ) {
       this.idsuc=localStorage.getItem('sucursal')
      }
 
@@ -549,7 +552,7 @@ export class AluaddComponent implements OnInit {
     });
     
   }
-  paypal() {
+  paypal(id) {
     this.tipoimg = "none";
     this.payp = "";
   }
@@ -572,6 +575,25 @@ export class AluaddComponent implements OnInit {
     console.log("Finalizacion")
   }
 
+  newMem()
+  {
+    let tmembresia: Tipomembresia
+    // Abre la ventana modal
+    const dialogRef = this.dialog.open(AddtipomemComponent, {
+      data: { tmembresia: tmembresia }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result == 1) {
+        this.tmemService.add(this.tmemService.getDialogData()).subscribe((data) => {
+          this.getTipomem()
+          this.notifications.showSuccessAdd()
+        }, (error) => {
+          this.notifications.showError();
+        });
+
+      }
+    });
+  }
  
   private initConfig(): void {
     this.payPalConfig = {
@@ -636,6 +658,8 @@ export class AluaddComponent implements OnInit {
     },
   };
   }
+
+
 
 }
 

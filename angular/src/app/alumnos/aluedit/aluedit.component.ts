@@ -12,6 +12,7 @@ import { EscuelasService } from 'src/app/services/escuelas.service';
 })
 export class AlueditComponent implements OnInit {
 
+  hide: boolean = false
 
   options: FormGroup;
 
@@ -20,7 +21,7 @@ export class AlueditComponent implements OnInit {
   escuelaSelected: string
 
   constructor(public dialogRef: MatDialogRef<AlueditComponent>,
-    @Inject(MAT_DIALOG_DATA) private data: any,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public alumnosService: AlumnosService, 
     fb: FormBuilder, public perfilService: PerfilService,
     private escuelasService: EscuelasService) {

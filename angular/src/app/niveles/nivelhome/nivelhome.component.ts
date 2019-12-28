@@ -89,7 +89,8 @@ export class NivelhomeComponent implements OnInit {
   /*-------------------------------------------------------------------*/
 
    // Metodo para abrir el modal para agregar nuevo registro
- addnivel(niveles: Niveles) {
+ addnivel() {
+   let niveles: Niveles
   // Abre la ventana modal
   const dialogRef = this.dialog.open(AddnivelComponent, {
     width: '600px',

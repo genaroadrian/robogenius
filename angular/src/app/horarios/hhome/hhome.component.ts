@@ -83,7 +83,8 @@ export class HhomeComponent implements OnInit {
   }
 
     // Metodo para abrir el modal para agrefar nuevo registro
-    addNew(horario: Horario) {
+    addNew() {
+      let horario: Horario
       // Abre la ventana modal
       const dialogRef = this.dialog.open(HaddComponent, {
         data: { horario: horario }

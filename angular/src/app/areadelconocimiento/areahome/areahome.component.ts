@@ -119,7 +119,8 @@ export class AreahomeComponent implements OnInit {
   }
 
   // Metodo para abrir el modal para agrefar nuevo registro
-  addNew(escuelas: areadelconocimiento) {
+  addNew() {
+    let escuelas: areadelconocimiento
     // Abre la ventana modal
     const dialogRef = this.dialog.open(AreaaddComponent, {
       width: '600px',

@@ -30,7 +30,7 @@
           <div class="col-xl-12 col-md-12">
             <h3 class="text-light">Agregar nuevo personal</h3>
             <div [ngStyle]="{'display':perso}">
-              <form action="" #fControl="ngForm" (ngSubmit)="submit">
+              <form action="" #fControl="ngForm">
                 <!-- <mat-form-field appearance="outline">
             <mat-label>Nombre(s)</mat-label>
             <input [(ngModel)]="persona.nombre" matInput placeholder="Nombre(s)">
@@ -207,7 +207,7 @@
 
                   <button matTooltip="Agregar un nuevo tipo de personal"
                     aria-label="Button that displays a tooltip when focused or hovered over" class="col-xl-2"
-                    mat-icon-button (click)="nuevoTPersonal()">
+                    mat-icon-button (click)="nuevoTPersonal()"> 
                     <mat-icon>add</mat-icon>
                   </button>
                 </div>
@@ -247,7 +247,7 @@
                     <br>
 
                     <button [disabled]="!fControl.valid" (click)="savePersonal(persona)"
-                      class="btn btn-large btn-block btn-primary" [type]="submit">
+                      class="btn btn-large btn-block btn-primary" type="submit">
                       Guardar
                     </button>
                   </div>

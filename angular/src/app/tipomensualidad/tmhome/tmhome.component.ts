@@ -71,7 +71,8 @@ export class TmhomeComponent implements OnInit {
   }
 
   // Metodo para abrir el modal para agrefar nuevo registro
-  addNew(tipomensualidad: Tipomensualidad) {
+  addNew() {
+    let tipomensualidad: Tipomensualidad
     // Abre la ventana modal
     const dialogRef = this.dialog.open(TmaddComponent, {
       data: {tipomensualidad: tipomensualidad }

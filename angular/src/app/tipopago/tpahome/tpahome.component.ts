@@ -98,7 +98,8 @@ export class TpahomeComponent implements OnInit {
   }
 
   // Metodo para abrir el modal para agrefar nuevo registro
-  addNew(tipopago: Tipopago) {
+  addNew() {
+    let tipopago: Tipopago
     // Abre la ventana modal
     const dialogRef = this.dialog.open(TpaaddComponent, {
       data: { tipopago: tipopago }

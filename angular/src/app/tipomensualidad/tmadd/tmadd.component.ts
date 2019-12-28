@@ -30,7 +30,7 @@ export class TmaddComponent implements OnInit {
     this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
   }
 
-  confirmAdd(data): void 
+  confirmAdd(): void 
   {
     
     this.tipomensualidadService.add(this.data).subscribe((data) =>{

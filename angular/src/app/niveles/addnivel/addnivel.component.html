@@ -1,7 +1,7 @@
 <div class="form-group" style="height:140px;" >
   
 
-  <form  (ngSubmit)="submit" #formControl="ngForm">
+  <form #formControl="ngForm">
 
       <div class="container" style="height:140px;">
           <div class="row">
@@ -18,7 +18,7 @@
       </mat-form-field>
     </div>
   <br>
-  <button class="btn btn-success" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"(click)="addnivel()" style="margin-left:38%; margin-right: 50px;">Guardar</button>
+  <button class="btn btn-success" [disabled]="!formControl.valid" [mat-dialog-close]="1"(click)="addnivel()" style="margin-left:38%; margin-right: 50px;">Guardar</button>
   <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
 
 </div>

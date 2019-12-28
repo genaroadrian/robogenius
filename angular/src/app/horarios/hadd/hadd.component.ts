@@ -31,7 +31,7 @@ export class HaddComponent implements OnInit {
 
 
     /* Confirma la alta del registro */
-    confirmAdd(data): void 
+    confirmAdd(): void 
     {
      this.data.hora=this.selected+" - "+this.selecteds;
      this.data.idsuc=localStorage.getItem("sucursal");

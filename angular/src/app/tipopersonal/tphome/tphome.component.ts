@@ -30,6 +30,7 @@ export class TphomeComponent implements OnInit {
     // 'idtper',
     'tipo',
     'permisos',
+    'maestro',
     'icons'
   ];
 
@@ -96,7 +97,8 @@ export class TphomeComponent implements OnInit {
   }
 
   // Metodo para abrir el modal para agrefar nuevo registro
-  addNew(tpersonal: Tipopersonal) {
+  addNew() {
+    let tpersonal: Tipopersonal
     // Abre la ventana modal
     const dialogRef = this.dialog.open(TpaddComponent, {
 
@@ -147,12 +149,12 @@ export class TphomeComponent implements OnInit {
 
 
   // Metodo para abrir el modal para modificar
-  onUpdate(i: number, idtper: number, tipo: string, permisos: number) {
+  onUpdate(i: number, idtper: number, tipo: string, permisos: number, maestro: number) {
     this.id = idtper;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
     const dialogRef = this.dialog.open(TpeditComponent, {
-      data: { idtper: idtper, tipo: tipo, permisos:permisos }
+      data: { idtper: idtper, tipo: tipo, permisos:permisos, maestro:maestro }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {

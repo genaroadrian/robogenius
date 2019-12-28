@@ -1,6 +1,6 @@
 <div class="form-group" style="height: 170px;">
 
-  <form  (ngSubmit)="submit" #formControl="ngForm">
+  <form #formControl="ngForm">
 
       <div class="container">
           <div class="row">
@@ -25,7 +25,7 @@
    </div>
   <br>
     <div mat-dialog-actions >
-      <button class="btn btn-success next" [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+      <button class="btn btn-success next" [disabled]="!formControl.valid" [mat-dialog-close]="1"
 (click)="corfirmAdd(data)">Guardar</button>
       <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
   </div>

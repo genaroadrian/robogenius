@@ -1,7 +1,7 @@
 <div class="container" style="height:300px;">
   <h3 mat-dialog-title style="text-align: center;">Nuevo registro</h3>
 
-  <form class="mat-dialog-content" (ngSubmit)="submit" #formControl="ngForm" style="height:270px;">
+  <form class="mat-dialog-content" #formControl="ngForm" style="height:270px;">
 
     <div class="form">
       <mat-form-field color="accent">
@@ -22,7 +22,7 @@
     </div>
 
     <div mat-dialog-actions>
-      <button [type]="submit" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()"  class="btn btn-success" style="margin-left:10px; margin-right: 40px;">Guardar</button>
+      <button [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()"  class="btn btn-success" style="margin-left:10px; margin-right: 40px;">Guardar</button>
       <button (click)="onNoClick()" tabindex="-1" class="btn btn-danger">Cancel</button>
     </div>
   </form>

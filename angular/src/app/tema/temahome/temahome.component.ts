@@ -123,7 +123,8 @@ export class TemahomeComponent implements OnInit {
   }
 
   // Metodo para abrir el modal para agrefar nuevo registro
-  addNew(tema: tema) {
+  addNew() {
+    let tema: tema
     // Abre la ventana modal
     const dialogRef = this.dialog.open(TemaaddComponent, {
       

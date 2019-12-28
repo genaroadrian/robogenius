@@ -93,7 +93,8 @@ export class HometipomemComponent implements OnInit {
     this.paginator._changePageSize(this.paginator.pageSize);
   }
 
-  addNew(tmembresia: Tipomembresia) {
+  addNew() {
+    let tmembresia: Tipomembresia
     // Abre la ventana modal
     const dialogRef = this.dialog.open(AddtipomemComponent, {
       data: { tmembresia: tmembresia }

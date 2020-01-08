@@ -24,15 +24,15 @@ import { NG_VALIDATORS } from '@angular/forms';
 import { FileuploadService } from 'src/app/services/fileupload.service';
 import { AddtipomemComponent } from 'src/app/tipomembresias/addtipomem/addtipomem.component';
 import { NotificationsService } from 'src/app/services/notifications.service';
-import {globalVarimg} from '../../services/global.service';
+import { globalVarimg } from '../../services/global.service';
 
 
 
-function emailDomainValidator(control: FormControl) { 
-  let email = control.value; 
-  if (email && email.indexOf("@") != -1) { 
-    let [_, domain] = email.split("@"); 
-    if (domain !== "codecraft.tv") { 
+function emailDomainValidator(control: FormControl) {
+  let email = control.value;
+  if (email && email.indexOf("@") != -1) {
+    let [_, domain] = email.split("@");
+    if (domain !== "codecraft.tv") {
       return {
         emailDomain: {
           parsedDomain: domain
@@ -40,16 +40,16 @@ function emailDomainValidator(control: FormControl) {
       }
     }
   }
-  return null; 
+  return null;
 }
 
 @Directive({
-  selector: '[emailDomain][ngModel]', 
+  selector: '[emailDomain][ngModel]',
   providers: [
     {
       provide: NG_VALIDATORS,
       useValue: emailDomainValidator,
-      multi: true 
+      multi: true
     }
   ]
 })
@@ -73,8 +73,9 @@ export class AluaddComponent implements OnInit {
 
   myForm: FormGroup;
   email: any;
+  infoEscuela: any
 
-  jstoday:any;
+  jstoday: any;
   archivo = {
     nombre: null,
     nombreArchivo: null,
@@ -87,7 +88,7 @@ export class AluaddComponent implements OnInit {
   ids: number = Number(localStorage.getItem('sucursal'))
   noms: string = localStorage.getItem('sucuname')
 
-// Payppal
+  // Payppal
   public payPalConfig?: IPayPalConfig;
 
   /* Todas las escuelas */
@@ -211,7 +212,7 @@ export class AluaddComponent implements OnInit {
     {
       idh: null,
       hora: null,
-      idsuc:null,
+      idsuc: null,
     }
 
   // Imterfaz de la tabla Tipo de membresia
@@ -222,7 +223,7 @@ export class AluaddComponent implements OnInit {
       costo: null,
       clases: null,
       idesc: null,
-      idsuc:null
+      idsuc: null
     }
 
   // Interfaz de la membresia por alumno
@@ -257,16 +258,16 @@ export class AluaddComponent implements OnInit {
     contra: null, fechanac: null, sexo: null, curp: null,
     estadocivil: null, domicilio: null, fechaingreso: null, horasalida: null,
     horaentrada: null, perfilprofesional: null, especialidad: null, salariomensual: null,
-    tareasasignadas: null, idtper: null, activo: null,idsuc:null,fotopersonal:null
+    tareasasignadas: null, idtper: null, activo: null, idsuc: null, fotopersonal: null
   };
   showSuccess: boolean;
 
-  /* Mensjaes de error */ 
+  /* Mensjaes de error */
 
   getErrorMessage() {
     return this.fControl.hasError('required') ? 'Campo obligatorio' :
-     // this.fControl.hasError('email') ? 'Ingrese un correo valido' :
-        '';
+      // this.fControl.hasError('email') ? 'Ingrese un correo valido' :
+      '';
   }
 
   // Notificación de success al eliminar
@@ -287,18 +288,18 @@ export class AluaddComponent implements OnInit {
   constructor(private alumnosService: AlumnosService, private httpClient: HttpClient,
     public toastr: ToastrManager, private gethorarios: GethorariosService,
     private tmembresia: TipomembresiaService, private memaluService: MemalumnoService,
-    private galuService: GruposAlumnosService, private router :Router,
+    private galuService: GruposAlumnosService, private router: Router,
     private escuelasService: EscuelasService,
     private uploadService: FileuploadService, public tmemService: TipomembresiaService,
-    public dialog: MatDialog, public notifications: NotificationsService  ) {
-      this.idsuc=localStorage.getItem('sucursal')
-     }
+    public dialog: MatDialog, public notifications: NotificationsService) {
+    this.idsuc = localStorage.getItem('sucursal')
+  }
 
 
-    logout(){
-      localStorage.removeItem('email');
-      this.router.navigateByUrl('/login');
-    }
+  logout() {
+    localStorage.removeItem('email');
+    this.router.navigateByUrl('/login');
+  }
 
 
 
@@ -307,7 +308,7 @@ export class AluaddComponent implements OnInit {
     this.initConfig();
     this.getTipomem();
   }
-  createFormControls(){
+  createFormControls() {
     this.email = new FormControl('', [
       Validators.required,
       Validators.pattern("[^ @]*@[^ @]*"),
@@ -315,16 +316,15 @@ export class AluaddComponent implements OnInit {
     ]);
   }
 
-  getEscuelas()
-  {
-    this.escuelasService.get().subscribe((data)=>{
+  getEscuelas() {
+    this.escuelasService.get().subscribe((data) => {
       this.escuelas = data
 
-      this.escuelas=this.escuelas.filter(data=>data.idscu==this.idsuc);
-    },(error)=>{
+      this.escuelas = this.escuelas.filter(data => data.idscu == this.idsuc);
+    }, (error) => {
     })
   }
-   sucursal=localStorage.getItem("sucursal");
+  sucursal = localStorage.getItem("sucursal");
 
 
   // Interfaz de la tabla alumnos
@@ -352,42 +352,41 @@ export class AluaddComponent implements OnInit {
   getTipomem() {
     this.tmembresia.getMemalu().subscribe((data: Tipomembresia[]) => {
       this._allMembresias = data;
-      this._allMembresias=this._allMembresias.filter(x=>(x.idsuc==this.sucursal))
+      this._allMembresias = this._allMembresias.filter(x => (x.idsuc == this.sucursal))
     }, (error) => {
 
     });
   }
   seleccionarArchivo(event) {
     // this.btnChange = ""
-    this.jstoday= new Date().getTime();
+    this.jstoday = new Date().getTime();
     var files = event.target.files;
     var file = files[0];
     this.archivo.nombreArchivo = file.name;
-    this.archivo.nombreArchivo=this.jstoday+this.archivo.nombreArchivo
-    this.alumno.perfilalu=this.archivo.nombreArchivo;
+    this.archivo.nombreArchivo = this.jstoday + this.archivo.nombreArchivo
+    this.alumno.perfilalu = this.archivo.nombreArchivo;
 
-        /* -------------------- */
-        var archivos = event.target.files
-        var archivo = archivos[0]
-        var lector = new FileReader()
-        var vista_previa
-    
-        lector.onloadend = () =>{
-          this.img.nativeElement.src = lector.result
-        }
-    
-    
-        if(archivo)
-        {
-          lector.readAsDataURL(archivo)
-        }else{
-          vista_previa = ''
-        }
-        
-        /* -------------------- */
- 
+    /* -------------------- */
+    var archivos = event.target.files
+    var archivo = archivos[0]
+    var lector = new FileReader()
+    var vista_previa
 
-    if(files && file) {
+    lector.onloadend = () => {
+      this.img.nativeElement.src = lector.result
+    }
+
+
+    if (archivo) {
+      lector.readAsDataURL(archivo)
+    } else {
+      vista_previa = ''
+    }
+
+    /* -------------------- */
+
+
+    if (files && file) {
       var reader = new FileReader();
       reader.onload = this._handleReaderLoaded.bind(this);
       reader.readAsBinaryString(file);
@@ -404,35 +403,37 @@ export class AluaddComponent implements OnInit {
   saveAlumno(alumno) {
 
     this.uploadService.uploadFile(this.archivo)
-    .subscribe(
-      datos => {
-        if(datos['resultado'] == 'OK') {
-          // alert(datos['mensaje']);
-          // this.router.navigate(['home']);
+      .subscribe(
+        datos => {
+          if (datos['resultado'] == 'OK') {
+            // alert(datos['mensaje']);
+            // this.router.navigate(['home']);
 
+          }
         }
-      }
-    );
-    this.alumno.idsuc=localStorage.getItem("sucursal");
+      );
+    this.alumno.idsuc = localStorage.getItem("sucursal");
     // Se envian los datos al servicio de alumnos para guardar los datos en la BD
     this.alumnosService.save(alumno).subscribe((data) => {
-      if(alumno.idesc ==  null)
-    {
-      this.alumnosview = "none";
-      this.membresiaview = "";
-      // Recupera todo el array del alumno guardado que regresa la base de datos
-      this.alu = data;
-      this.malu.idalu = this.alu.idalu;
-      this.gruposAlumnos.idalu = this.alu.idalu;
-      
-      
-      
-    }else{
-      this.alumnosview = 'none'
-      this.viewesc = ''
-      this.showSuccesSave();
-    }
-      
+      // console.log(data)
+      if (alumno.idesc == null) {
+        this.alumnosview = "none";
+        this.membresiaview = "";
+        // Recupera todo el array del alumno guardado que regresa la base de datos
+        this.alu = data;
+        this.malu.idalu = this.alu.idalu;
+        this.gruposAlumnos.idalu = this.alu.idalu;
+
+
+
+      } else {
+        this.alumnosview = 'none'
+        this.viewesc = ''
+        this.infoEscuela = data
+        console.log(this.infoEscuela)
+        this.showSuccesSave();
+      }
+
     }, (error) => {
       this.showErrorSave();
       console.log(error);
@@ -455,17 +456,14 @@ export class AluaddComponent implements OnInit {
     this.tipopagoview = "none";
   }
 
-  escuelasChange(id: number)
-  {
-    if(id ==  Number(localStorage.getItem('sucursal')))
-    {
+  escuelasChange(id: number) {
+    if (id == Number(localStorage.getItem('sucursal'))) {
       this.alumno.idesc = null
-      this._allMembresias =  this._allMembresias.filter(mem=> mem.idesc == null)
-    }else
-    {
-      this._allMembresias =  this._allMembresias.filter(mem=> mem.idesc == id)
+      this._allMembresias = this._allMembresias.filter(mem => mem.idesc == null)
+    } else {
+      this._allMembresias = this._allMembresias.filter(mem => mem.idesc == id)
     }
-    
+
   }
 
   // Guarda el tipo de pago escogido
@@ -509,7 +507,7 @@ export class AluaddComponent implements OnInit {
     this.gethorarios.getHora(dia).subscribe((data: Horas[]) => {
       console.log(data)
       this._allHoras = data;
-      this._allHoras=this._allHoras.filter(x=>x.idsuc==this.idsuc)
+      this._allHoras = this._allHoras.filter(x => x.idsuc == this.idsuc)
       this.labelh = ""
       this.spinerh = "none";
       this.horavalue = "";
@@ -536,7 +534,7 @@ export class AluaddComponent implements OnInit {
     this.gethorarios.getPersonal(this.detallegrupos).subscribe((data: Personal[]) => {
       console.log(data)
       this._allPersonal = data;
-      this._allPersonal=this._allPersonal.filter(datas=>datas.idsuc==this.idsuc)
+      this._allPersonal = this._allPersonal.filter(datas => datas.idsuc == this.idsuc)
       this.labelp = "";
       this.spinnerp = "none";
       // console.log(this._allPersonal);
@@ -579,7 +577,7 @@ export class AluaddComponent implements OnInit {
       this.showErrorSave();
       console.log(error);
     });
-    
+
   }
   paypal(id) {
     this.tipoimg = "none";
@@ -604,8 +602,7 @@ export class AluaddComponent implements OnInit {
     console.log("Finalizacion")
   }
 
-  newMem()
-  {
+  newMem() {
     let tmembresia: Tipomembresia
     // Abre la ventana modal
     const dialogRef = this.dialog.open(AddtipomemComponent, {
@@ -623,69 +620,69 @@ export class AluaddComponent implements OnInit {
       }
     });
   }
- 
+
   private initConfig(): void {
     this.payPalConfig = {
-    currency: 'MXN',
-    // clientId: 'Afpk-YhqAeYTIeL008oY11RHq3dyBTt4NRSwut0iPf2CIRbLtX3T7VmhcAurkpiFjvyoG8HMweEN99fw',
-    clientId: 'Afpk-YhqAeYTIeL008oY11RHq3dyBTt4NRSwut0iPf2CIRbLtX3T7VmhcAurkpiFjvyoG8HMweEN99fw',
-    
+      currency: 'MXN',
+      // clientId: 'Afpk-YhqAeYTIeL008oY11RHq3dyBTt4NRSwut0iPf2CIRbLtX3T7VmhcAurkpiFjvyoG8HMweEN99fw',
+      clientId: 'Afpk-YhqAeYTIeL008oY11RHq3dyBTt4NRSwut0iPf2CIRbLtX3T7VmhcAurkpiFjvyoG8HMweEN99fw',
 
-    createOrderOnClient: (data) => <ICreateOrderRequest>{
-      intent: 'CAPTURE',
-      purchase_units: [
-        {
-          amount: {
-            currency_code: 'MXN',
-            value: this.adelanto,
-            breakdown: {
-              item_total: {
-                currency_code: 'MXN',
-                value: this.adelanto
+
+      createOrderOnClient: (data) => <ICreateOrderRequest>{
+        intent: 'CAPTURE',
+        purchase_units: [
+          {
+            amount: {
+              currency_code: 'MXN',
+              value: this.adelanto,
+              breakdown: {
+                item_total: {
+                  currency_code: 'MXN',
+                  value: this.adelanto
+                }
               }
-            }
-          },
-          items: [
-            {
-              name: 'Robogenius Membrecia ',
-              quantity: '1',
-              category: 'DIGITAL_GOODS',
-              unit_amount: {
-                currency_code: 'MXN',
-                value: this.adelanto,
-              },
-            }
-          ]
-        }
-      ]
-    },
-    advanced: {
-      commit: 'true'
-    },
-    style: {
-      label: 'paypal',
-      layout: 'vertical'
-    },
-    onApprove: (data, actions) => {
-      console.log('onApprove - transaction was approved, but not authorized', data, actions);
-      actions.order.get().then(details => {
-        console.log('onApprove - you can get full order details inside onApprove: ', details);
-      });
-    },
-    onClientAuthorization: (data) => {
-      console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
-      this.showSuccess = true;
-    },
-    onCancel: (data, actions) => {
-      console.log('OnCancel', data, actions);
-    },
-    onError: err => {
-      console.log('OnError', err);
-    },
-    onClick: (data, actions) => {
-      console.log('onClick', data, actions);
-    },
-  };
+            },
+            items: [
+              {
+                name: 'Robogenius Membrecia ',
+                quantity: '1',
+                category: 'DIGITAL_GOODS',
+                unit_amount: {
+                  currency_code: 'MXN',
+                  value: this.adelanto,
+                },
+              }
+            ]
+          }
+        ]
+      },
+      advanced: {
+        commit: 'true'
+      },
+      style: {
+        label: 'paypal',
+        layout: 'vertical'
+      },
+      onApprove: (data, actions) => {
+        console.log('onApprove - transaction was approved, but not authorized', data, actions);
+        actions.order.get().then(details => {
+          console.log('onApprove - you can get full order details inside onApprove: ', details);
+        });
+      },
+      onClientAuthorization: (data) => {
+        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+        this.showSuccess = true;
+      },
+      onCancel: (data, actions) => {
+        console.log('OnCancel', data, actions);
+      },
+      onError: err => {
+        console.log('OnError', err);
+      },
+      onClick: (data, actions) => {
+        console.log('onClick', data, actions);
+      },
+    };
   }
 
 

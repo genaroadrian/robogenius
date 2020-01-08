@@ -52,16 +52,16 @@ class nivelController extends Controller
     {
         $data=$request->all();
 
-        $reglas = array('nombre' => 'unique:niveles',
-        	            );
-        $mensajes= array('nombre.unique' =>  'El nivel debe ser unico',);
-        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
-        $validacion = Validator::make($data, $reglas, $mensajes);
-        if ($validacion->fails())
-        {
-			 $errores = $validacion->errors(); 
-			 return new JsonResponse($errores, 422); 
-        }
+        // $reglas = array('nombre' => 'unique:niveles',
+        // 	            );
+        // $mensajes= array('nombre.unique' =>  'El nivel debe ser unico',);
+        // // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        // $validacion = Validator::make($data, $reglas, $mensajes);
+        // if ($validacion->fails())
+        // {
+		// 	 $errores = $validacion->errors(); 
+		// 	 return new JsonResponse($errores, 422); 
+        // }
 
         $nivel = nivel::find($id);
 		$nivel->nombre  =  $data["nombre"];

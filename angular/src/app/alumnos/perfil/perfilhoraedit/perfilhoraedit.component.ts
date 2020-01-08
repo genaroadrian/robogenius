@@ -128,7 +128,7 @@ export class PerfilhoraeditComponent implements OnInit {
     this.labelh = "none"
     this.spinerh = "";
     this.getHorarios.getHora(dia).subscribe((data: Horas[]) => {
-      // // console.log(data);
+      data=data.filter(datas=>datas.idsuc=this.idsuc)
       this._allHoras = data;
       this.labelh = ""
       this.spinerh = "none";
@@ -155,7 +155,7 @@ export class PerfilhoraeditComponent implements OnInit {
     // // // console.log(this.detallegrupos);
     this.getHorarios.getPersonal(this.detallegrupos).subscribe((data: Personal[]) => {
       this._allPersonal = data; 
-      this._allPersonal=this._allPersonal.filter(datas=>datas.idsuc=this.idsuc)
+      this._allPersonal=this._allPersonal.filter(datas=>datas.idsuc==this.idsuc)
       console.log(this._allPersonal)
       this.labelp = "";
       this.spinnerp = "none";

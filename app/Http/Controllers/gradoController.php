@@ -51,18 +51,18 @@ class gradoController extends Controller
         
         $data=$request->all();
 
-        $reglas = array('nombre' => 'required|unique:grados',
-        	            );
-        $mensajes= array('nombre.required' =>  'Ingresar nombre es obligatorio',
-                         'nombre.unique' =>  'El nombre debe ser unico',
-        	             );
-        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
-        $validacion = Validator::make($data, $reglas, $mensajes);
-        if ($validacion->fails())
-        {
-			 $errores = $validacion->errors(); 
-			 return new JsonResponse($errores, 422); 
-        }
+        // $reglas = array('nombre' => 'required|unique:grados',
+        // 	            );
+        // $mensajes= array('nombre.required' =>  'Ingresar nombre es obligatorio',
+        //                  'nombre.unique' =>  'El nombre debe ser unico',
+        // 	             );
+        // // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        // $validacion = Validator::make($data, $reglas, $mensajes);
+        // if ($validacion->fails())
+        // {
+		// 	 $errores = $validacion->errors(); 
+		// 	 return new JsonResponse($errores, 422); 
+        // }
 
         $grados = grado::find($id);
         $grados->nombre = $request["nombre"];

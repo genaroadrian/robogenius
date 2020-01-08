@@ -34,7 +34,7 @@ class alumnoController extends Controller
         alumnos.correopad,alumnos.ocupad,alumnos.nommad,alumnos.apemad,
         alumnos.dommad,alumnos.telmad,alumnos.correomad,
         alumnos.ocupmad,alumnos.usuariopad,alumnos.pswpad,alumnos.activo,alumnos.finscripcion,
-        alumnos.idsuc,alumnos.idesc, escuelas.nombre FROM alumnos LEFT JOIN escuelas ON
+        alumnos.idsuc,alumnos.idesc, escuelas.nombre,alumnos.escuela FROM alumnos LEFT JOIN escuelas ON
         alumnos.idesc = escuelas.idesc WHERE  alumnos.activo = 1");
 
         echo json_encode($alumno);
@@ -68,7 +68,7 @@ class alumnoController extends Controller
         	            'sexoalu' => 'required',
         	            'domalu' => 'required',
         	            'telalu' => 'required',
-        	            'correoalu' => 'required|unique:alumnos',
+        	            'correoalu' => 'required',
         	            'usuarioalu' => 'required',
         	            'pswalu' => 'required',
         	            'nompad' => 'required',
@@ -93,7 +93,6 @@ class alumnoController extends Controller
         'domalu.required' => 'Todos los campos son obligatorios',
         'telalu.required' => 'Todos los campos son obligatorios',
         'correoalu.required' => 'Todos los campos son obligatorios',
-        'correoalu.unique' => 'Correo ya registrado',
         'usuarioalu.required' => 'Todos los campos son obligatorios',
         'pswalu.required' => 'Todos los campos son obligatorios',
         'nompad.required' => 'Todos los campos son obligatorios',
@@ -155,6 +154,7 @@ class alumnoController extends Controller
         $alumno->ocupmad = $data["ocupmad"];
         $alumno->activo = 1;
         $alumno->finscripcion = $date;
+        $alumno->escuela = $data["escuela"];
         $alumno->idsuc = $data["idsuc"];
         $alumno->save();
         echo json_encode($alumno);

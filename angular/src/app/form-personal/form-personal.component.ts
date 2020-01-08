@@ -274,7 +274,7 @@ export class FormPersonalComponent implements OnInit {
     }, (error) => {
       this.hideBarra()
 
-      this.showError(error.error[0]);
+      this.showError(error.error.curp[0]);
 
     });
 
@@ -429,6 +429,10 @@ export class FormPersonalComponent implements OnInit {
   {
     this.horas = null
     this.horas = this.horario.filter(horas => horas.iddia == id)
+    // console.log(this.horas)   
+    this.horas = this.horas.filter(horas => horas.idsuc == this.sucursal)
+    // console.log(this.horas)
+
   }
 
 

@@ -7,6 +7,10 @@ use slidecom_robogenius\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use slidecom_robogenius\LoginAngular;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\JsonResponse;
+
+
 
 
 class LoginAngularController extends Controller
@@ -24,13 +28,9 @@ class LoginAngularController extends Controller
 
         $reglas = array(
         'email' => 'required|unique:users',
-        'nombre' => 'required',
-        'apellidos' => 'required',
         	            );
         $mensajes= array('email.required' =>  'Ingresar nombre es obligatorio',
-                         'email.unique' =>  'Todos los campos son requeridos',
-                         'nombre.required' =>  'Todos los campos son requeridos',
-                         'apellidos.required' =>  'Todos los campos son requeridos',
+                         'email.unique' =>  'Email ya registrado',
         	             );
         // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
         $validacion = Validator::make($data, $reglas, $mensajes);

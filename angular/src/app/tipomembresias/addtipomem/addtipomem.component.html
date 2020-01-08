@@ -18,7 +18,7 @@
 
     <div class="form">
       <mat-form-field color="accent" style="width: 340px;">
-        <input matInput placeholder="Número de clases" number [(ngModel)]="data.clases" name="clases" required>
+        <input matInput placeholder="Número de clases a la semana" number [(ngModel)]="data.clases" name="clases" required>
         <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>

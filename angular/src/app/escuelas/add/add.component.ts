@@ -158,7 +158,8 @@ export class AddComponent implements OnInit {
   getHorarios()
   {
     this.horarioService.getHora().subscribe((data)=>{
-      this._allHoras = data
+    this._allHoras = data  
+    this._allHoras=this._allHoras.filter(data=>data.idsuc==this.sucursal);
     },(error)=>{
 
     })

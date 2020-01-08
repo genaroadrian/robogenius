@@ -41,6 +41,7 @@ class categoriasController extends Controller
         $categoria = new Categorias();
         $categoria->Categoria = $request->Categoria;
         $categoria->activo = 1;
+        $categoria->idsuc = $request->idsuc;
         $categoria->save();
         echo json_encode($categoria);
 

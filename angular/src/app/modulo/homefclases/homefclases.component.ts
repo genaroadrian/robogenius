@@ -124,10 +124,16 @@ export class HomefclasesComponent implements OnInit {
     this.grads=GRADO.slice(0,3)
     if(this.folio==null){
       this.nivels="000";
+      this.folio=this.nivels+this.grads;
+      this.letras=this.result
+      this.letras  = this.letras.filter(element => element.folio.slice(4,6) == this.folio.slice(4,6))
+    }else{
+      this.folio=this.nivels+this.grads;
+      this.letras=this.result
+      this.letras  = this.letras.filter(element => element.folio.slice(0,6) == this.folio.slice(0,6))
     }
-    this.folio=this.nivels+this.grads;
-    this.letras=this.result
-    this.letras  = this.letras.filter(element => element.folio.slice(3,6) == this.folio.slice(3,6))
+
+
   }
 
   gettema(AREA) {
@@ -138,18 +144,41 @@ export class HomefclasesComponent implements OnInit {
 
     this.areacs=datos
     this.res=this.result
-    if(this.areacs.length==3){
-      this.res=this.res.filter(element=>element.folio.slice(6,9)==this.areacs)
-    }else if(this.areacs.length==6){
-      this.res=this.res.filter(element=>element.folio.slice(6,12)==this.areacs)
-    }else if(this.areacs.length==9){
-    this.res=this.res.filter(element=>element.folio.slice(6,15)==this.areacs)
-    }else{
-    this.res=this.letras
-    }
 
-    this.letras=this.res;
-    // this.nivels+this.grads+this.areacs+this.subareacs;
+
+if(this.nivels==null){
+  this.nivels="000";
+  this.folio=this.nivels;
+}
+ if(this.grads==null){
+  this.grads="000";
+  this.folio=this.nivels+this.grads;
+}
+console.log(this.folio)
+if(this.folio=="000000"){
+        if(this.areacs.length==3){
+          this.res=this.res.filter(element=>element.folio.slice(6,9)==this.areacs)
+        }else if(this.areacs.length==6){
+          this.res=this.res.filter(element=>element.folio.slice(6,12)==this.areacs)
+        }else if(this.areacs.length==9){
+        this.res=this.res.filter(element=>element.folio.slice(6,15)==this.areacs)
+        }else{
+        this.res=this.letras
+        }
+        this.letras=this.res;
+}else{
+        if(this.areacs.length==3){
+          this.res=this.res.filter(element=>element.folio.slice(0,9)==this.folio+this.areacs)
+        }else if(this.areacs.length==6){
+          this.res=this.res.filter(element=>element.folio.slice(0,12)==this.folio+this.areacs)
+        }else if(this.areacs.length==9){
+        this.res=this.res.filter(element=>element.folio.slice(0,15)==this.folio+this.areacs)
+        }else{
+        this.res=this.letras
+        }
+        this.letras=this.res;
+}
+
   }
 
   subareaChange(subarea) {

@@ -55,6 +55,9 @@ export class AlueditComponent implements OnInit {
     // Validators.email,
   ]);
 
+  sucursal=localStorage.getItem('sucursal')
+
+
   getErrorMessage() {
     return this.formControl.hasError('required') ? 'El campo es obligatorio' :
       this.formControl.hasError('email') ? 'Ingrese un corre valido' :
@@ -65,7 +68,9 @@ export class AlueditComponent implements OnInit {
     this.dialogRef.close();
   }
 stopEdit(data): void {
+  data.idsuc = this.sucursal
   data.idesc = this.escuelaSelected
+  console.log(data)
     this.perfilService.putAlumno(data);
   }
 

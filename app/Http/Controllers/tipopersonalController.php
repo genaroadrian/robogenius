@@ -50,17 +50,17 @@ class tipopersonalController extends Controller
     {
       $data=$request->all();
 
-    $reglas = array('tipo' => 'required',
-                  );
-    $mensajes= array('tipo.required' =>  'El tipo debe ser obligatorio',
-                   );
-    // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
-    $validacion = Validator::make($data, $reglas, $mensajes);
-    if ($validacion->fails())
-    {
-   $errores = $validacion->errors(); 
-   return new JsonResponse($errores, 422); 
-    }
+  //   $reglas = array('tipo' => 'required',
+  //                 );
+  //   $mensajes= array('tipo.required' =>  'El tipo debe ser obligatorio',
+  //                  );
+  //   // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+  //   $validacion = Validator::make($data, $reglas, $mensajes);
+  //   if ($validacion->fails())
+  //   {
+  //  $errores = $validacion->errors(); 
+  //  return new JsonResponse($errores, 422); 
+  //   }
 
     $tpersonal= Tipopersonal::find($id);
     $tpersonal->tipo  =  $data["tipo"];

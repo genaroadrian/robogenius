@@ -10,7 +10,7 @@ class horariosSAController extends Controller
 {
     public function gethorarios()
     {
-        return DB::select("SELECT dias.iddia, dias.dia, horario.idh, horario.hora FROM horario, dias");
+        return DB::select("SELECT dias.iddia, dias.dia, horario.idh, horario.hora,horario.idsuc FROM horario, dias");
     }
 
     public function getMaestros()

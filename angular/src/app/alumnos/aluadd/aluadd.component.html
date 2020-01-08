@@ -149,6 +149,15 @@
                       <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
                   </div>
+                  
+                  <div class="form col-xl-4">
+                    <mat-form-field color="primary">
+                      <input matInput #input placeholder="Escuela de procedencia" [(ngModel)]="alumno.escuela"
+                        name="aluesc">
+                    </mat-form-field>
+                  </div>
+
+                  
 
 
 

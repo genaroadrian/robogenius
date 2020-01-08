@@ -76,6 +76,7 @@ ingresodelmes:any;
       
       .subscribe(data=>{
         this.utilidadrestan=data;
+        console.log(data)
         this.utilidadrestan=this.utilidadrestan.filter(d => d.idscu==this.sucursal);
         var total = 0;
 

@@ -100,20 +100,20 @@ class subtemasController extends Controller
     {
         $data=$request->all();
 
-        $reglas = array('nombre' => 'required|unique:tema',
-                        'idt' => 'required',
-        	            );
-        $mensajes= array('nombre.required' =>  'Ingresar nombre es obligatorio',
-                         'nombre.unique' =>  'El nombre debe ser unico',
-                         'idt.required' =>  'Todos los campos son obligatorios',
-        	             );
-        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
-        $validacion = Validator::make($data, $reglas, $mensajes);
-        if ($validacion->fails())
-        {
-			 $errores = $validacion->errors(); 
-			 return new JsonResponse($errores, 422); 
-        }
+        // $reglas = array('nombre' => 'required|unique:tema',
+        //                 'idt' => 'required',
+        // 	            );
+        // $mensajes= array('nombre.required' =>  'Ingresar nombre es obligatorio',
+        //                  'nombre.unique' =>  'El nombre debe ser unico',
+        //                  'idt.required' =>  'Todos los campos son obligatorios',
+        // 	             );
+        // // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        // $validacion = Validator::make($data, $reglas, $mensajes);
+        // if ($validacion->fails())
+        // {
+		// 	 $errores = $validacion->errors(); 
+		// 	 return new JsonResponse($errores, 422); 
+        // }
         
         $area = Subtema::find($id);
         $subtema->nombre = $data["nombre"];

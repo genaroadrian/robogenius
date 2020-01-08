@@ -16,7 +16,9 @@ class egresosController extends Controller
      */
     public function index()
     {
-        $egresos = DB::SELECT("SELECT c.concepto,c.fecha,ca.Categoria,c.monto,c.nombre FROM contabilidad AS c, categorias  AS ca WHERE c.tipo = 2 AND c.idcate=ca.idCategoria ORDER BY idCont DESC ");
+        $egresos = DB::SELECT("SELECT c.concepto,c.fecha,ca.Categoria,c.monto,c.nombre,c.idscu,ca.idsuc
+        FROM contabilidad AS c, categorias  AS ca 
+        WHERE c.tipo = 2 AND c.idcate=ca.idCategoria ORDER BY idCont DESC ");
         return $egresos; 
     }
 

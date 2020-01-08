@@ -44,7 +44,9 @@ restantess:any;
   cat:categorias = {
     Categoria :null,
     activo: 1,
-    idsuc: null
+    idsuc: null,
+    suma:null,
+    monto:null
 
   };
 
@@ -62,7 +64,8 @@ restantess:any;
     adelanto:null,
     restante:null,
     suma:null,
-    idscu:null
+    idscu:null,
+    idsuc:null
   };
 
   egres:contabilidad = {
@@ -79,8 +82,8 @@ restantess:any;
     adelanto:null,
     restante:null,
     suma:null,
-    idscu:null
-
+    idscu:null,
+    idsuc:null
     
   };
 
@@ -98,7 +101,9 @@ restantess:any;
     adelanto:null,
     restante:null,
     suma:null,
-    idscu:null
+    idscu:null,
+    idsuc:null
+
 
   };
   
@@ -110,6 +115,7 @@ restantess:any;
   egresos:contabilidad[];
   sumaingre:total[];
   sumaegre:total[];
+  resultado:any
   // logs:Login[];
   logs: any;
 total:any
@@ -155,24 +161,38 @@ total:any
 
     this.categoriaservice.getPersonas()
     .subscribe(data=>{
+      data=data.filter(x=>x.idsuc==this.sucursal)
       this.log=data;
     })
 
   this.categoriaservice.getingresos()
   .subscribe(data=>{
+    data=data.filter(x=>x.idscu==this.sucursal)
+    data=data.filter(x=>x.idsuc==this.sucursal)
+    // console.log(data)
     this.ingresos=data;
 
   })
 
   this.categoriaservice.getegresos()
   .subscribe(data=>{
+    data=data.filter(x=>x.idscu==this.sucursal)
+    data=data.filter(x=>x.idsuc==this.sucursal)
     this.egresos=data;
 
   })
 
   this.categoriaservice.sumaingreeso()
   .subscribe(data=>{
+    data=data.filter(x=>x.idscu==this.sucursal)
     this.sumaingre=data;
+    var resultado=0
+    this.sumaingre.forEach(function(obj){
+      resultado+=obj.suma
+    })
+    this.resultado=resultado;
+    // console.log(resultado)
+
 
   })
 
@@ -180,11 +200,12 @@ total:any
   .subscribe(data=>{
     
     this.sumaegre=data;
-    this.sumaegre=this.sumaegre.filter(x=>x.idscu=this.sucursal)
+    this.sumaegre=this.sumaegre.filter(x=>x.idscu==this.sucursal)
     // foreach de suma
     var total = 0;
     this.sumaegre.forEach(function(obj){
-      // total+=obj.monto;
+      console.log(obj)
+      total+=obj.monto;
     })
     this.total=total;
 
@@ -192,6 +213,7 @@ total:any
 
   this.categoriaservice.pendiente()
   .subscribe(data=>{
+    data=data.filter(x=>x.idscu==this.sucursal)
     this.pendiente=data;
   })
 
@@ -204,9 +226,15 @@ total:any
 
 categoria()
 {
+  this.cat.idsuc=this.sucursal
   this.categoriaservice.save(this.cat)
   .subscribe((data) =>{
     this.showSuccess();
+    this.categoriaservice.getPersonas()
+    .subscribe(data=>{
+      data=data.filter(x=>x.idsuc==this.sucursal)
+      this.log=data;
+    })
     // this.personalService.tput(this.data);
   },(error)=>{
     this.showErrorEdit();

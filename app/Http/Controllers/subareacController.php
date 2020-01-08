@@ -48,19 +48,19 @@ class subareacController extends Controller
     {
         $data=$request->all();
 
-        $reglas = array('nombre' => 'unique:subareac',
+        // $reglas = array('nombre' => 'unique:subareac',
 
         
-        	            );
-        $mensajes= array('nombre.unique' =>  'El nombre debe ser unico',
-        	             );
-        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
-        $validacion = Validator::make($data, $reglas, $mensajes);
-        if ($validacion->fails())
-        {
-			 $errores = $validacion->errors(); 
-			 return new JsonResponse($errores, 422); 
-        }
+        // 	            );
+        // $mensajes= array('nombre.unique' =>  'El nombre debe ser unico',
+        // 	             );
+        // // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        // $validacion = Validator::make($data, $reglas, $mensajes);
+        // if ($validacion->fails())
+        // {
+		// 	 $errores = $validacion->errors(); 
+		// 	 return new JsonResponse($errores, 422); 
+        // }
 
         $subac = Subareac::find($id);
 		$subac->nombre  =  $data["nombre"];

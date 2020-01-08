@@ -60,19 +60,19 @@ class codigodescController extends Controller
     {
         $data=$request->all();
 
-        $reglas = array(
-        'codigo' => 'unique:codigodesc',
-        	            );
-        $mensajes= array(
-                         'codigo.unique' =>  'Todos los campos son requeridos',
-        	             );
-        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
-        $validacion = Validator::make($data, $reglas, $mensajes);
-        if ($validacion->fails())
-        {
-			 $errores = $validacion->errors(); 
+        // $reglas = array(
+        // 'codigo' => 'unique:codigodesc',
+        // 	            );
+        // $mensajes= array(
+        //                  'codigo.unique' =>  'Todos los campos son requeridos',
+        // 	             );
+        // // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        // $validacion = Validator::make($data, $reglas, $mensajes);
+        // if ($validacion->fails())
+        // {
+		// 	 $errores = $validacion->errors(); 
             
-        }  
+        // }  
         $codigos = codigodesc::find($id);
         $codigos->codigo = $data["codigo"];
         $codigos->porcentaje = $data["porcentaje"];

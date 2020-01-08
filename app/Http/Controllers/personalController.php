@@ -107,22 +107,22 @@ class personalController extends Controller
     {
         $data=$request->all();
 
-        $reglas = array('apellidos' => 'required',
-        	            'usuario' => 'required|unique:personal',
-        	            'curp' => 'required|unique:personal',
-        	            );
-        $mensajes= array('apellidos.unique' =>  'El apellido debe ser unico',
-                         'usuario.unique' =>  'El usuario debe ser unico',
-                         'curp.unique' =>  'El curp debe ser unico',
-                         );
+        // $reglas = array('apellidos' => 'required',
+        // 	            'usuario' => 'required|unique:personal',
+        // 	            'curp' => 'required|unique:personal',
+        // 	            );
+        // $mensajes= array('apellidos.unique' =>  'El apellido debe ser unico',
+        //                  'usuario.unique' =>  'El usuario debe ser unico',
+        //                  'curp.unique' =>  'El curp debe ser unico',
+        //                  );
           
-        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
-        $validacion = Validator::make($data, $reglas, $mensajes);
-        if ($validacion->fails())
-        {
-			 $errores = $validacion->errors(); 
-			 return new JsonResponse($errores, 422); 
-        }
+        // // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        // $validacion = Validator::make($data, $reglas, $mensajes);
+        // if ($validacion->fails())
+        // {
+		// 	 $errores = $validacion->errors(); 
+		// 	 return new JsonResponse($errores, 422); 
+        // }
 
         $personal = Personal::find($id);
         $personal->nombre = $data["nombre"];

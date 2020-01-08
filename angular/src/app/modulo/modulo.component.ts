@@ -185,7 +185,15 @@ export class ModuloComponent implements OnInit {
     let n = Math.round(Math.random() * 100000);
     this.idfolio = n.toString()
     // console.log(this.idfolio + this.nivels + this.grads + this.areacs)
-    this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.idfolio
+    this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.idfolio  
+    console.log(this.nivels)
+    console.log(this.grads)
+    console.log(this.areacs)
+    console.log(this.subareacs)
+    console.log(this.tems)
+    console.log(this.subtems)
+    console.log(this.idfolio)
+
     this.numero = 1
     this.ns = 1
     this.fechaHoy()
@@ -526,7 +534,8 @@ export class ModuloComponent implements OnInit {
       value = value + val
     });
 
-    let datos = ""
+    let datos = "";
+  
     AREA.forEach(function (element, index) {
       datos = datos + element.slice(0, 2)
 

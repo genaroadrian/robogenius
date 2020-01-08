@@ -4,6 +4,7 @@ import { Login } from '../interfaces/login';
 import { RegisterService } from '../services/register.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { Router } from '@angular/router';
 
 
 
@@ -38,13 +39,13 @@ export class RegisterComponent implements OnInit {
       }
     
       // Notificacion de error al eliminar
-      showErrorSave() {
-        this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
+      showErrorSave(x) {
+        this.toastr.errorToastr('Ocurrio un error.',x, 'Oops!');
       }
 
         /* Barra de carga */
   barra = "none"
-  constructor(private registerService : RegisterService, private _snackBar: MatSnackBar,public toastr: ToastrManager) {
+  constructor(private registerService : RegisterService, private _snackBar: MatSnackBar,public toastr: ToastrManager,private router: Router) {
   
   }
   ngOnInit() {
@@ -75,8 +76,9 @@ export class RegisterComponent implements OnInit {
       .subscribe((data) => {
         this.showSuccesSave();
         this.hideBarra()
+        this.router.navigateByUrl('/login');
       }, (error) => {
-        this.showErrorSave();
+        this.showErrorSave(error.error.email[0]);
         this.hideBarra()
       })
     

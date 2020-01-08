@@ -50,17 +50,17 @@ class horariosController extends Controller
     {
         $data=$request->all();
 
-        $reglas = array('hora' => 'unique:horario',
-        	            );
-        $mensajes= array('hora.unique' =>  'La hora debe ser unico',
-        	             );
-        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
-        $validacion = Validator::make($data, $reglas, $mensajes);
-        if ($validacion->fails())
-        {
-			 $errores = $validacion->errors(); 
-			 return new JsonResponse($errores, 422); 
-        }
+        // $reglas = array('hora' => 'unique:horario',
+        // 	            );
+        // $mensajes= array('hora.unique' =>  'La hora debe ser unico',
+        // 	             );
+        // // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        // $validacion = Validator::make($data, $reglas, $mensajes);
+        // if ($validacion->fails())
+        // {
+		// 	 $errores = $validacion->errors(); 
+		// 	 return new JsonResponse($errores, 422); 
+        // }
 
         $horario = Horarios::find($id);
         $horario->hora = $data["hora"];

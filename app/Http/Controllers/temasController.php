@@ -100,19 +100,19 @@ class temasController extends Controller
     {
         $data=$request->all();
 
-        $reglas = array('nombre' => 'unique:tema',
+        // $reglas = array('nombre' => 'unique:tema',
                         
-        	            );
-        $mensajes= array(
-                         'nombre.unique' =>  'El nivel debe ser unico',
-        	             );
-        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
-        $validacion = Validator::make($data, $reglas, $mensajes);
-        if ($validacion->fails())
-        {
-			 $errores = $validacion->errors(); 
-			 return new JsonResponse($errores, 422); 
-        }
+        // 	            );
+        // $mensajes= array(
+        //                  'nombre.unique' =>  'El nivel debe ser unico',
+        // 	             );
+        // // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        // $validacion = Validator::make($data, $reglas, $mensajes);
+        // if ($validacion->fails())
+        // {
+		// 	 $errores = $validacion->errors(); 
+		// 	 return new JsonResponse($errores, 422); 
+        // }
         
         $tema = Tema::find($id);
         $tema->nombre = $data["nombre"];

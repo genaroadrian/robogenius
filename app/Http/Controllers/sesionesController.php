@@ -74,38 +74,38 @@ class sesionesController extends Controller
     {
         $data=$request->all();
 
-        $reglas = array(
-        'nombre' => 'required',
-        'apren_clave' => 'required',
-        'objetivo' => 'required',
-        'mat_necesario' => 'required',
-        'introduccion' => 'required',
-        'ice_break' => 'required',
-        'contenido' => 'required',
-        'descanso' => 'required',
-        'cierre' => 'required',
-        'desarrollo' => 'required',
-        'contenido' => 'required',
-        	            );
-        $mensajes= array('nombre.required' =>  'Ingresar nombre es obligatorio',
-                         'apren_clave.required' =>  'Todos los campos son requeridos',
-                         'objetivo.required' =>  'Todos los campos son requeridos',
-                         'mat_necesario.required' =>  'Todos los campos son requeridos',
-                         'introduccion.required' =>  'Todos los campos son requeridos',
-                         'ice_break.required' =>  'Todos los campos son requeridos',
-                         'contenido.required' =>  'Todos los campos son requeridos',
-                         'descanso.required' =>  'Todos los campos son requeridos',
-                         'cierre.required' =>  'Todos los campos son requeridos',
-                         'desarrollo.required' =>  'Todos los campos son requeridos',
-                         'contenido.required' =>  'Todos los campos son requeridos',
-        	             );
-        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
-        $validacion = Validator::make($data, $reglas, $mensajes);
-        if ($validacion->fails())
-        {
-			 $errores = $validacion->errors(); 
-			 return new JsonResponse($errores, 422); 
-        }
+        // $reglas = array(
+        // 'nombre' => 'required',
+        // 'apren_clave' => 'required',
+        // 'objetivo' => 'required',
+        // 'mat_necesario' => 'required',
+        // 'introduccion' => 'required',
+        // 'ice_break' => 'required',
+        // 'contenido' => 'required',
+        // 'descanso' => 'required',
+        // 'cierre' => 'required',
+        // 'desarrollo' => 'required',
+        // 'contenido' => 'required',
+        // 	            );
+        // $mensajes= array('nombre.required' =>  'Ingresar nombre es obligatorio',
+        //                  'apren_clave.required' =>  'Todos los campos son requeridos',
+        //                  'objetivo.required' =>  'Todos los campos son requeridos',
+        //                  'mat_necesario.required' =>  'Todos los campos son requeridos',
+        //                  'introduccion.required' =>  'Todos los campos son requeridos',
+        //                  'ice_break.required' =>  'Todos los campos son requeridos',
+        //                  'contenido.required' =>  'Todos los campos son requeridos',
+        //                  'descanso.required' =>  'Todos los campos son requeridos',
+        //                  'cierre.required' =>  'Todos los campos son requeridos',
+        //                  'desarrollo.required' =>  'Todos los campos son requeridos',
+        //                  'contenido.required' =>  'Todos los campos son requeridos',
+        // 	             );
+        // // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        // $validacion = Validator::make($data, $reglas, $mensajes);
+        // if ($validacion->fails())
+        // {
+		// 	 $errores = $validacion->errors(); 
+		// 	 return new JsonResponse($errores, 422); 
+        // }
         
         $sesion = Sesiones::find($id);
         $sesion->nombre = $data["nombre"];

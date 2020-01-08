@@ -74,26 +74,26 @@ class EscuelaController extends Controller
     {
         $data=$request->all();
 
-        $reglas = array('nombre' => 'unique:escuelas',
-                        'representante' => 'required',
-                        'direccion' => 'required',
-                        'correouno' => 'required',
-                        'telefono' => 'required',
-        	            );
-        $mensajes= array(
-                         'nombre.unique' =>  'El nombre debe ser unico',
-                         'representante.required' =>  'El representante debe ser obligatorio',
-                         'direccion.required' =>  'Ingresar direccion es obligatorio',
-                         'correouno.required' =>  'Ingresar correo es obligatorio',
-                         'telefono.required' =>  'Ingresar telefono es obligatorio',
-        	             );
-        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
-        $validacion = Validator::make($data, $reglas, $mensajes);
-        if ($validacion->fails())
-        {
-			 $errores = $validacion->errors(); 
-			 return new JsonResponse($errores, 422); 
-        }
+        // $reglas = array('nombre' => 'unique:escuelas',
+        //                 'representante' => 'required',
+        //                 'direccion' => 'required',
+        //                 'correouno' => 'required',
+        //                 'telefono' => 'required',
+        // 	            );
+        // $mensajes= array(
+        //                  'nombre.unique' =>  'El nombre debe ser unico',
+        //                  'representante.required' =>  'El representante debe ser obligatorio',
+        //                  'direccion.required' =>  'Ingresar direccion es obligatorio',
+        //                  'correouno.required' =>  'Ingresar correo es obligatorio',
+        //                  'telefono.required' =>  'Ingresar telefono es obligatorio',
+        // 	             );
+        // // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
+        // $validacion = Validator::make($data, $reglas, $mensajes);
+        // if ($validacion->fails())
+        // {
+		// 	 $errores = $validacion->errors(); 
+		// 	 return new JsonResponse($errores, 422); 
+        // }
 
         $escuelas = escuelas::find($id);
         $escuelas->nombre = $data["nombre"];

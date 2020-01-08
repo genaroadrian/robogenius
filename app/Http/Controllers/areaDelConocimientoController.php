@@ -42,10 +42,9 @@ class areaDelConocimientoController extends Controller
     {
         $data=$request->all();
 
-        $reglas = array('nombre' => 'required|unique:area_del_conocimiento',
+        $reglas = array('nombre' => 'required',
         	            );
         $mensajes= array('nombre.required' =>  'Ingresar nombre es obligatorio',
-                         'nombre.unique' =>  'El nombre debe ser unico',
         	             );
         // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
         $validacion = Validator::make($data, $reglas, $mensajes);
@@ -95,19 +94,6 @@ class areaDelConocimientoController extends Controller
     public function update(Request $request, $id)
     {
         $data=$request->all();
-
-        $reglas = array('nombre' => 'unique:area_del_conocimiento',
-        	            );
-        $mensajes= array(
-                         'nombre.unique' =>  'El nombre debe ser unico',
-        	             );
-        // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
-        $validacion = Validator::make($data, $reglas, $mensajes);
-        if ($validacion->fails())
-        {
-			 $errores = $validacion->errors(); 
-			 return new JsonResponse($errores, 422); 
-        }
 
 
         $area = AreDelConocimiento::find($id);

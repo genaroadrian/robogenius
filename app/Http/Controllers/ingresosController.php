@@ -16,7 +16,7 @@ class ingresosController extends Controller
      */
     public function index()
     {
-        $ingresos = DB::SELECT("SELECT c.concepto,c.fecha,ca.Categoria,c.monto,c.suma,c.nombre FROM contabilidad AS c, categorias  AS ca WHERE c.tipo = 1 AND c.idcate=ca.idCategoria ORDER BY idCont DESC ");
+        $ingresos = DB::SELECT("SELECT c.concepto,c.fecha,ca.Categoria,c.monto,c.suma,c.nombre,c.idscu,ca.idsuc FROM contabilidad AS c, categorias  AS ca WHERE c.tipo = 1 AND c.idcate=ca.idCategoria ORDER BY idCont DESC ");
         return $ingresos ;
     }
 

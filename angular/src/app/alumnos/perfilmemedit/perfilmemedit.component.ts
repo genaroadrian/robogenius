@@ -9,12 +9,26 @@ import { FormControl, Validators } from '@angular/forms';
   styleUrls: ['./perfilmemedit.component.css']
 })
 export class PerfilmemeditComponent implements OnInit {
-  nadelanto : number = 0;
+  nadelanto : any
+
+  restantes:any;
+  restantess:any;
+  adelantos:any;
+  adelantoss:any;
+  total:any;
+
+  rateControl:any
+
 
   constructor(public dialogRef: MatDialogRef<PerfilmemeditComponent>, @Inject(MAT_DIALOG_DATA) public data,
   public perfilService: PerfilService) { }
 
   ngOnInit() {
+    this.rateControl = new FormControl("", [Validators.max(100), Validators.min(0)])
+
+    this.restantes=this.data.restante
+    this.adelantos=this.data.adelanto
+    
     console.log(this.data)
   }
 
@@ -22,6 +36,21 @@ export class PerfilmemeditComponent implements OnInit {
     Validators.required
     // Validators.email,
   ]);
+
+
+  // adelanto(x){
+  //   var restante = this.data.restante
+  //   var adelanto = this.data.nadelanto
+
+  //   if(x>this.data.restante){
+  //     this.data.restante=adelanto
+  //     this.data.adelanto=0
+  //   }else{
+  //     this.data.adelanto += this.nadelanto
+  //     this.data.restante -= this.nadelanto
+  //   }
+
+  // }
 
   /* Lanza los errores de las validaciones del formulario */
   getErrorMessage() {
@@ -40,9 +69,19 @@ export class PerfilmemeditComponent implements OnInit {
 
   stopEdit(data)
   {
+    
+
     this.data.adelanto += this.nadelanto
     this.data.restante -= this.nadelanto
     this.perfilService.putMem(data)
+  }
+
+  adelanto(){
+    if(this.data.restante - this.nadelanto<0){
+      this.data.restante=this.restantes
+      this.nadelanto=""
+    }
+
   }
 
 }

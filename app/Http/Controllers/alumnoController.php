@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
 
-
-
-
 class alumnoController extends Controller
 {
     /**
@@ -157,7 +154,17 @@ class alumnoController extends Controller
         $alumno->escuela = $data["escuela"];
         $alumno->idsuc = $data["idsuc"];
         $alumno->save();
-        echo json_encode($alumno);
+        if($data['idesc'] == null)
+        {
+            echo json_encode($alumno);
+        }else{
+            $escuela = DB::select("SELECT escuelas.nombre, escuelas.direccion, tipomembresia.nombre as nm, tipomembresia.costo, tipomembresia.clases 
+            FROM escuelas INNER JOIN tipomembresia ON
+            escuelas.idesc = tipomembresia.idesc
+            WHERE escuelas.idesc = ?", [$data['idesc']]);
+
+            return json_encode($escuela[0]);
+        }
     }
 
     /**

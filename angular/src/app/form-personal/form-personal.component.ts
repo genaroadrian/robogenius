@@ -21,7 +21,7 @@ import { HaddComponent } from '../horarios/hadd/hadd.component';
 import { HorariosService } from '../services/horarios.service';
 import { Horario } from '../interfaces/horario';
 import { FileuploadService } from '../services/fileupload.service';
-import {globalVarimg} from '../services/global.service';
+import { globalVarimg } from '../services/global.service';
 
 
 function emailDomainValidator(control: FormControl) {
@@ -109,7 +109,7 @@ export class FormPersonalComponent implements OnInit {
     this.tPersonal.get().subscribe((data) => {
       this.selectTPersonal = data
       console.log(data)
-      this.selectTPersonal=this.selectTPersonal.filter(x=>x.idsuc==this.sucursal)
+      this.selectTPersonal = this.selectTPersonal.filter(x => x.idsuc == this.sucursal)
     }, (error) => {
     })
     // this.getDias()
@@ -142,7 +142,7 @@ export class FormPersonalComponent implements OnInit {
   }
 
   // Notificación de success al eliminar
-  showSuccesSave() { 
+  showSuccesSave() {
     this.toastr.successToastr('Registro guardado', 'Exito!');
   }
 
@@ -150,10 +150,10 @@ export class FormPersonalComponent implements OnInit {
   showErrorSave() {
     this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
   }
-    /* Mensaje de ERROR */
-    showError(error) {
-      this.toastr.errorToastr(error, 'Oops!');
-    }
+  /* Mensaje de ERROR */
+  showError(error) {
+    this.toastr.errorToastr(error, 'Oops!');
+  }
 
   // Resetear usuario y contraseña
   cleanCamps = "";
@@ -181,7 +181,7 @@ export class FormPersonalComponent implements OnInit {
     contra: null, fechanac: null, sexo: null, curp: null,
     estadocivil: null, domicilio: null, fechaingreso: null, horasalida: null,
     horaentrada: null, perfilprofesional: null, especialidad: null, salariomensual: null,
-    tareasasignadas: null, idtper: null, activo: null, idsuc: null,fotopersonal:null
+    tareasasignadas: null, idtper: null, activo: null, idsuc: null, fotopersonal: null
   };
 
   // Variables de id e index para los metodos relacionados con la base de datos
@@ -202,7 +202,7 @@ export class FormPersonalComponent implements OnInit {
 
   };
 
-  jstoday:any;
+  jstoday: any;
   archivo = {
     nombre: null,
     nombreArchivo: null,
@@ -214,7 +214,7 @@ export class FormPersonalComponent implements OnInit {
     private _formBuilder: FormBuilder, private httpClient: HttpClient, private router: Router, public toastr: ToastrManager,
     private atp: AmazingTimePickerService, iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, public tPersonal: TipopersonalService,
     public dialog: MatDialog, public horarioService: HorariosService, public tipopersonalService: TipopersonalService, public notifications: NotificationsService, public horarioPersona: GruposAlumnosService
-    ,  private uploadService: FileuploadService) {
+    , private uploadService: FileuploadService) {
     iconRegistry.addSvgIcon(
       'thumbs-up',
       sanitizer.bypassSecurityTrustResourceUrl('assets/icons/material-design/hora.svg'));
@@ -248,15 +248,15 @@ export class FormPersonalComponent implements OnInit {
     console.log(persona)
     this.showBarra()
     this.uploadService.uploadFilePersonal(this.archivo)
-    .subscribe(
-      datos => {
-        if(datos['resultado'] == 'OK') {
-          // alert(datos['mensaje']);
-          // this.router.navigate(['home']);
+      .subscribe(
+        datos => {
+          if (datos['resultado'] == 'OK') {
+            // alert(datos['mensaje']);
+            // this.router.navigate(['home']);
 
+          }
         }
-      }
-    );
+      );
     this.persona.idsuc = localStorage.getItem("sucursal")
     this.personalService.save(persona).subscribe((data) => {
       this.hideBarra()
@@ -269,7 +269,7 @@ export class FormPersonalComponent implements OnInit {
         this.perso = "none";
 
       } else {
-        this.router.navigateByUrl('/personal'); 
+        this.router.navigateByUrl('/personal');
       }
     }, (error) => {
       this.hideBarra()
@@ -288,34 +288,33 @@ export class FormPersonalComponent implements OnInit {
 
   seleccionarArchivo(event) {
     // this.btnChange = ""
-    this.jstoday= new Date().getTime();
+    this.jstoday = new Date().getTime();
     var files = event.target.files;
     var file = files[0];
     this.archivo.nombreArchivo = file.name;
-    this.archivo.nombreArchivo=this.jstoday+this.archivo.nombreArchivo
-    this.persona.fotopersonal=this.archivo.nombreArchivo;
+    this.archivo.nombreArchivo = this.jstoday + this.archivo.nombreArchivo
+    this.persona.fotopersonal = this.archivo.nombreArchivo;
 
-        /* -------------------- */
-        var archivos = event.target.files
-        var archivo = archivos[0]
-        var lector = new FileReader()
-        var vista_previa
-    
-        lector.onloadend = () =>{
-          this.img.nativeElement.src = lector.result
-        }
-    
-    
-        if(archivo)
-        {
-          lector.readAsDataURL(archivo)
-        }else{
-          vista_previa = ''
-        }
-        
-        /* -------------------- */
+    /* -------------------- */
+    var archivos = event.target.files
+    var archivo = archivos[0]
+    var lector = new FileReader()
+    var vista_previa
 
-    if(files && file) {
+    lector.onloadend = () => {
+      this.img.nativeElement.src = lector.result
+    }
+
+
+    if (archivo) {
+      lector.readAsDataURL(archivo)
+    } else {
+      vista_previa = ''
+    }
+
+    /* -------------------- */
+
+    if (files && file) {
       var reader = new FileReader();
       reader.onload = this._handleReaderLoaded.bind(this);
       reader.readAsBinaryString(file);
@@ -332,24 +331,25 @@ export class FormPersonalComponent implements OnInit {
   }
 
   saveDetallegrupos(horariopersonal, index) {
-    
-    this.detallegruposService.save(this.detallegrupo).subscribe((data) => {
-      this.detallegrupo.idsuc=this.sucursal
+    // console.log(horariopersonal)
+    this.detallegrupo.idsuc = this.sucursal
     this.detallegrupo.idd = horariopersonal.idd
     this.detallegrupo.idh = horariopersonal.idh
     this.detallegrupo.idp = this.idper;
-    console.log(this.detallegrupo)
+    this.detallegruposService.save(this.detallegrupo).subscribe((data) => {
+
+      console.log(this.detallegrupo)
       this.showSuccesSave();
       let dia = horariopersonal.idd
-    let hora = horariopersonal.idh
-    this.horario.splice(horas => horas.iddia == dia && horas.idh == hora,1)
-    this.horas = this.horario
-    console.log(this.horas)
-    
+      let hora = horariopersonal.idh
+      this.horario.splice(horas => horas.iddia == dia && horas.idh == hora, 1)
+      this.horas = this.horario
+      console.log(this.horas)
+
     }, (error) => {
       this.showErrorSave();
     });
-      this.removeTab(index);
+    this.removeTab(index);
   }
 
   open() {
@@ -409,24 +409,22 @@ export class FormPersonalComponent implements OnInit {
     })
   } */
 
-  getHorario()
-  {
-    this.personalService.getHorario().subscribe((data)=>{
+  getHorario() {
+    this.personalService.getHorario().subscribe((data) => {
       console.log(data)
-      this.horario = data 
+      this.horario = data
       var hash = {};
-    this.dias = this.horario.filter(function (dias) {
-      var exists = !hash[dias.iddia] || false;
-      hash[dias.iddia] = true;
-      return exists;
-    }) 
-    },(error)=>{
+      this.dias = this.horario.filter(function (dias) {
+        var exists = !hash[dias.iddia] || false;
+        hash[dias.iddia] = true;
+        return exists;
+      })
+    }, (error) => {
       console.log(error)
     })
   }
 
-  diasChange(id)
-  {
+  diasChange(id) {
     this.horas = null
     this.horas = this.horario.filter(horas => horas.iddia == id)
     // console.log(this.horas)   

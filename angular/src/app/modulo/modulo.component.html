@@ -128,10 +128,11 @@
             <div class="col-md-4">
               <mat-form-field class="col-xl-10">
                 <mat-label>Herramientas </mat-label>
-                <mat-select  [(value)]="herra" multiple (selectionChange)="herramChange(herra, $event)"
+                <mat-select  [(value)]="herramienta" multiple (selectionChange)="herramChange(herramienta, $event)"
                   [disabled]="dis">
+                  <!-- <input  type="text"  > -->
                   <mat-form-field appearance="outline">
-                    <input matInpzut placeholder="Buscar..." (keyup)="herraSearch($event.target.value)">
+                    <input matInput placeholder="Buscar..." (keyup)="herraSearch($event.target.value)">
                   </mat-form-field>
                   <mat-option *ngFor="let herra of herramientas" value="{{herra.idherra}}">{{herra.nombre}}</mat-option>
                 </mat-select>

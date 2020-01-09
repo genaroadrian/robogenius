@@ -743,7 +743,6 @@ export class ModuloComponent implements OnInit {
 
   temaSearch(value)
   {
-    console.log(value)
     this.tema = this.temasSearch
     let crit = value.trim().toLowerCase()
     let temas = this.tema

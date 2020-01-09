@@ -34,7 +34,7 @@
               <mat-form-field class="col-xl-10">
                 <mat-label>Grado: </mat-label>
                 <!-- <mat-select [(value)]="GRADO" (selectionChange)="SelectGrado($event)"> -->
-                <mat-select [(value)]="GRADO"  (selectionChange)="gradoChange(GRADO, $event)" [disabled]="dis">
+                <mat-select [(value)]="GRADO" (selectionChange)="gradoChange(GRADO, $event)" [disabled]="dis">
                   <mat-option *ngFor="let clases of grado" value="{{clases.idg}}">{{clases.nombre}}</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -69,7 +69,7 @@
                 <mat-label>Sub Areas de conocimiento: </mat-label>
 
                 <!-- <mat-select [(value)]="subarea" (selectionChange)="getarc(subarea)" multiple> -->
-                <mat-select  multiple [(value)]="subarea" (selectionChange)="subareaChange(subarea, $event)"
+                <mat-select multiple [(value)]="subarea" (selectionChange)="subareaChange(subarea, $event)"
                   [disabled]="dis">
                   <mat-option *ngFor="let sarea of subareas" value="{{sarea.idsac}}">{{sarea.nombre}}</mat-option>
 
@@ -104,11 +104,7 @@
             <div class="col-md-4">
               <mat-form-field class="col-xl-10">
                 <mat-label>Subtemas: </mat-label>
-
-                <!-- <mat-select [(value)]="SUBTEMAS" (selectionChange)="final(SUBTEMAS)">
-            <mat-option *ngFor="let sub of subtema" value="{{sub.nomsubt}}">{{sub.nomsubt}}</mat-option> -->
-
-                <mat-select  [(value)]="SUBTEMAS" (selectionChange)="subtemasChange(SUBTEMAS, $event)" [disabled]="dis">
+                <mat-select [(value)]="SUBTEMAS" (selectionChange)="subtemasChange(SUBTEMAS, $event)" [disabled]="dis">
                   <mat-form-field appearance="outline">
                     <input matInput placeholder="Buscar..." (keyup)="subtemaSearch($event.target.value)">
                   </mat-form-field>
@@ -128,10 +124,9 @@
             <div class="col-md-4">
               <mat-form-field class="col-xl-10">
                 <mat-label>Herramientas </mat-label>
-                <mat-select  [(value)]="herra" multiple (selectionChange)="herramChange(herra, $event)"
-                  [disabled]="dis">
+                <mat-select [(value)]="herra" multiple (selectionChange)="herramChange(herra, $event)" [disabled]="dis">
                   <mat-form-field appearance="outline">
-                    <input matInpzut placeholder="Buscar..." (keyup)="herraSearch($event.target.value)">
+                    <input matInput placeholder="Buscar..." (keyup)="herraSearch($event.target.value)">
                   </mat-form-field>
                   <mat-option *ngFor="let herra of herramientas" value="{{herra.idherra}}">{{herra.nombre}}</mat-option>
                 </mat-select>

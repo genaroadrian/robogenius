@@ -15,7 +15,7 @@ class horariosSAController extends Controller
 
     public function getMaestros()
     {
-        return DB::select("SELECT personal.nombre, personal.apellidos, personal.idsuc
+        return DB::select("SELECT personal.idper, personal.nombre, personal.apellidos, personal.idsuc
         FROM personal, tipopersonal
         WHERE personal.idtper = tipopersonal.idtper AND tipopersonal.maestro =1 AND personal.activo = 1");
     }

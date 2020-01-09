@@ -127,7 +127,9 @@ export class AddComponent implements OnInit {
   {
     this.personalService.getMaestros().subscribe((data)=>{
       this.personal = data
+
       this.personal=this.personal.filter(data=>data.idsuc==this.sucursal);
+      console.log(this.personal)
     },(error)=>{
       console.log(error)
     })
@@ -195,7 +197,6 @@ export class AddComponent implements OnInit {
 
   /* Confirma la alta del registro */
   confirmAdd(): void {
-    console.log(this.detalleGrupo)
     this.showBarra()
     this.detallegruposService.save(this.detalleGrupo).subscribe((data)=>{
       this.n ++

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use slidecom_robogenius\Http\Controllers\Controller;
 use DB;
 use slidecom_robogenius\userAdmin;
+use Illuminate\Support\Facades\Crypt;
+
 
 class userAdminController extends Controller
 {
@@ -79,7 +81,8 @@ class userAdminController extends Controller
         $perfil = userAdmin::find($id);
         $perfil->subname = $request->subname;
         $perfil->email = $request->email;
-        $perfil->password = $request->password;
+        $perfil->password = Crypt::encrypt($request["password"]);
+        // $perfil->password = $request->password;
         $perfil->nombre = $request->nombre;
         $perfil->apellidos = $request->apellidos;
         $perfil->telefono = $request->telefono;

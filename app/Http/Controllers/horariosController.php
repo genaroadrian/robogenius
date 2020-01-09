@@ -24,10 +24,10 @@ class horariosController extends Controller
     {
         $data=$request->all();
 
-        $reglas = array('hora' => 'required|unique:horario',
+        $reglas = array('hora' => 'required',
         	            );
         $mensajes= array('hora.required' =>  'Ingresar hora es obligatorio',
-                         'hora.unique' =>  'La hora debe ser unico',
+                         
         	             );
         // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
         $validacion = Validator::make($data, $reglas, $mensajes);

@@ -89,6 +89,7 @@ export class PersonalperfilComponent implements OnInit {
     this.mostrarBarra()
     this.personalPerfilService.getGrupos(this.datos).subscribe((data)=>{
       let datos: any = data
+      console.log(data)
       let trabajo: any =  datos.filter(data=> data.nombre == null && data.nomsuc == null)
       console.log(trabajo)
       this.dataSource = trabajo

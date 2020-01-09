@@ -331,20 +331,16 @@ export class FormPersonalComponent implements OnInit {
   }
 
   saveDetallegrupos(horariopersonal, index) {
-    // console.log(horariopersonal)
     this.detallegrupo.idsuc = this.sucursal
     this.detallegrupo.idd = horariopersonal.idd
     this.detallegrupo.idh = horariopersonal.idh
     this.detallegrupo.idp = this.idper;
     this.detallegruposService.save(this.detallegrupo).subscribe((data) => {
-
-      console.log(this.detallegrupo)
       this.showSuccesSave();
       let dia = horariopersonal.idd
       let hora = horariopersonal.idh
       this.horario.splice(horas => horas.iddia == dia && horas.idh == hora, 1)
       this.horas = this.horario
-      console.log(this.horas)
 
     }, (error) => {
       this.showErrorSave();

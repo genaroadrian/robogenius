@@ -1,0 +1,82 @@
+<app-navbar></app-navbar>   
+<br> 
+<br> 
+<br> 
+<br> 
+<div class="col-xl-12 col-md-12 body">
+    <div class="col-xl-12 col-md-12 ">
+        <div class="card bg-light mini-stat position-relative">
+              <div class="card-body">
+                  <!-- <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar> -->
+                 <div class="mini-stat-desc">
+                    <div class="col-xl-12 col-md-12">
+                       <div class="col-xl-5 col-md-12 ">
+                       </div>
+                          <div class="col-xl-2 col-md-12">
+                             <h1 style="text-align: center;">Historial de pagos</h1>
+
+                           </div>
+                         <div class="col-xl-5 col-md-12 ">
+                         </div>
+                     </div>
+                     <div class="col-xl-12 col-md-12">
+
+
+                      <mat-accordion>
+                        <div class="row">
+                           
+                        </div>
+                        <!-- <span>Renovar membresia antes del </span> -->
+                          <!-- <p>Estatus de la membresia: </p> -->
+                        <mat-expansion-panel *ngFor="let data of datos; let i = index">
+                            <mat-expansion-panel-header>
+                                <mat-panel-title class="col-md-8">
+                                    {{ data.nomalu}}{{data.apealu}}
+                                </mat-panel-title>
+                                <mat-panel-description class="col-md-4">
+                                    <span [style.display.none]="data.restante == 0 ? '' : 'none'" class="text-warning"  >
+                                        <mat-icon>warning</mat-icon> Debe {{data.restante | currency}}
+                                    </span>
+                                    <span [style.display.none]="data.restante > 0 ? '' : 'none'"  class="text-success">
+                                        <mat-icon>verified_user</mat-icon>Pagado
+                                    </span>
+                                </mat-panel-description>
+                            </mat-expansion-panel-header>
+                            <button [style.display.none]="data.restante == 0 ? '' : 'none'" (click)="editMem(i,data.idmalu,data.nombre, data.fechainicio, data.adelanto, data.restante, data.total,data.nombres
+                      )" style="padding-left:90%;" mat-icon-button class="text-success">
+                                <mat-icon aria-label="Edit">edit</mat-icon>
+                            </button>
+                            <p style="padding-left:5px;">
+                                
+                            Membrecia :<b> {{data.nombres}}</b>
+                            <br>
+                            Clases disponibles<b> {{data.clases}}</b>
+                            <br>
+                            Fecha Inicio: <b>{{data.fechainicio}}</b>
+                            <br>
+                            Adelanto: <b>${{data.adelanto}}.00</b>
+                            <br>
+                            Restante: <b>${{data.restante}}.00</b>
+                            <br>
+                            Total: <b>${{data.total}}.00</b>
+                            <br>
+                            Tipo de pago: <b>{{data.nombre}}</b>
+                          </p>
+                        
+                            <p style="text-align: right;">Datos de Contacto :
+                              <br>
+                            Correo alumno : <b>{{data.correoalu}}</b>
+                              <br>
+                            Contacto padre : <b> {{data.nompad}} {{data.apepad}} {{data.telpad}}</b>
+                            <br>
+                            Contacto madre : <b> {{data.nommad}} {{data.apemad}} {{data.telmad}}</b>
+                            <br>
+                              </p>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    </div>
+                  </div>
+                  </div>
+                  </div>
+                </div>
+              </div>

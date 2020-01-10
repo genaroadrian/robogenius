@@ -235,7 +235,8 @@ export class AluaddComponent implements OnInit {
       idtpago: null,
       adelanto: null,
       restante: null,
-      total: null
+      total: null,
+      idsuc:null
     }
 
 
@@ -468,7 +469,7 @@ export class AluaddComponent implements OnInit {
 
   // Guarda el tipo de pago escogido
   saveTpago() {
-
+    this.malu.idsuc=this.sucursal
     this.malu.adelanto = this.adelanto;
     this.malu.restante = this.totalpago - this.adelanto;
     this.malu.total = this.totalpago;

@@ -27,6 +27,7 @@ class memalumnoController extends Controller
         $malu->restante = $request->restante;
         $malu->total = $request->total;
         $malu->fechainicio = $date;
+        $malu->idsuc=$request->idsuc;
         $malu->activo = 1;
         $malu->save();
         return $malu;

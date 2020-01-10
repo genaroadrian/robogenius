@@ -90,3 +90,4 @@ Route::resource('moduloescuelas', 'moduloEscuelasController');
 Route::get('getdias_horas','horariosSAController@gethorarios');
 Route::get('getMaestros','horariosSAController@getMaestros');
 Route::get('pruebaAsistencias','pruebaController@prueba');
+Route::resource('fecthschool', 'escuelaInfoController');

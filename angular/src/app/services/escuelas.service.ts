@@ -100,4 +100,15 @@ export class EscuelasService {
   delete(id){
     return this.httpClient.delete(this.API_ENDPOINT + '/escuelas/'+id);
   }
+
+  profile(data)
+  {
+    this.dialogData = data
+  }
+
+  fetchProfileInfo(id)
+  {
+    const headers = new HttpHeaders( {'Content-Type': 'application/json'})
+    return this.httpClient.delete(this.API_ENDPOINT+'/fecthschool/'+id, {headers: headers})
+  }
 }

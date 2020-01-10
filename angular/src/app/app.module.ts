@@ -164,6 +164,7 @@ import { FilesdeleteComponent } from './files/filesdelete/filesdelete.component'
 import { FilesmodalComponent } from './files/filesmodal/filesmodal.component';
 import { PruebaComponent } from './asistencias/prueba/prueba.component';
 import { ModulomembreciasComponent } from './tipomembresias/modulomembrecias/modulomembrecias.component';
+import { PerfilEscuelasComponent } from './escuelas/perfil-escuelas/perfil-escuelas.component';
 
 
 const routes: Route[]=[
@@ -215,8 +216,8 @@ const routes: Route[]=[
 {path: 'files', component: FilesComponent},
 {path: 'escuelas/home', component: ModuloescuelasComponent},
 {path: 'pruebaasis', component: PruebaComponent},
-{path: 'pmem', component: ModulomembreciasComponent}
-
+{path: 'pmem', component: ModulomembreciasComponent},
+{path: 'modulo-escuelas', component: PerfilEscuelasComponent}
 
 ];
 
@@ -341,7 +342,8 @@ const routes: Route[]=[
     FilesdeleteComponent,
     FilesmodalComponent,
     PruebaComponent,
-    ModulomembreciasComponent
+    ModulomembreciasComponent,
+    PerfilEscuelasComponent
 
   ],
   imports: [

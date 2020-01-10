@@ -139,6 +139,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  viewProfile(i: number, idesc: number, nombre: string, representante: string, 
+    direccion: string, telefono: number, correouno: string)
+  {
+    let data: any =  { idesc: idesc, nombre: nombre, representante: representante, direccion: direccion, telefono: telefono, correouno: correouno }
+    // this.EscuelasService.profile(data)
+    this.escuelasService.profile(data)
+  }
+
   
 
   // Metodo para abrir el modal para modificar

@@ -163,6 +163,7 @@ import { ModuloescuelasComponent } from './moduloEscuelas/moduloescuelas/moduloe
 import { FilesdeleteComponent } from './files/filesdelete/filesdelete.component';
 import { FilesmodalComponent } from './files/filesmodal/filesmodal.component';
 import { PruebaComponent } from './asistencias/prueba/prueba.component';
+import { PerfilEscuelasComponent } from './escuelas/perfil-escuelas/perfil-escuelas.component';
 
 
 const routes: Route[]=[
@@ -213,7 +214,8 @@ const routes: Route[]=[
 {path: 'homefclases', component: HomefclasesComponent},
 {path: 'files', component: FilesComponent},
 {path: 'escuelas/home', component: ModuloescuelasComponent},
-{path: 'pruebaasis', component: PruebaComponent}
+{path: 'pruebaasis', component: PruebaComponent},
+{path: 'modulo-escuelas', component: PerfilEscuelasComponent}
 
 ];
 
@@ -337,7 +339,8 @@ const routes: Route[]=[
     ModuloescuelasComponent,
     FilesdeleteComponent,
     FilesmodalComponent,
-    PruebaComponent
+    PruebaComponent,
+    PerfilEscuelasComponent
 
   ],
   imports: [

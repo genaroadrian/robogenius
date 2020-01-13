@@ -9,6 +9,7 @@ import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
 import { DcdeleteComponent } from 'src/app/detalleclases/dcdelete/dcdelete.component';
+import { isArray } from 'util';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class HomefclasesComponent implements OnInit {
   myControl = new FormControl();
   options=[];
   filteredOptions: Observable<string[]>;
-
+  filtered: any
   result: any
   // vNivel:any;
   nivels:any;
@@ -50,6 +51,16 @@ export class HomefclasesComponent implements OnInit {
   herr:any;
   finish:any;
 
+  struct = 
+  {
+    nivel: '',
+    grado: '',
+    ac: [''],
+    sac: [''],
+    herra: ['']
+
+  }
+
 
 
   constructor(public homefclasesService: HomefclasesService,
@@ -57,13 +68,6 @@ export class HomefclasesComponent implements OnInit {
      private areaService: AreadelconocimientoService, public dialog: MatDialog ,private moduloService: ModuloService) { }
 
   ngOnInit() {
-
-    // this.options=this.result;
-    this.filteredOptions = this.myControl.valueChanges
-    .pipe(
-      startWith(''),
-      map(value => this._filter(value))
-    );
     this.getFilter()
     this.nivelService.get().subscribe((data) => {
       this.persona = data
@@ -76,9 +80,36 @@ export class HomefclasesComponent implements OnInit {
     this.get()
     this.getSubAC()
     this.getHerramientas()
-
-
   }
+
+  filter(crit)
+  {
+      // console.log(crit)
+      this.filtered = this.filterString(crit)
+      console.log(this.result)  
+  }
+
+  filterString(crit)
+  {
+    
+    let n = this.struct.nivel.toLowerCase().slice(0,3)
+    let g = this.struct.grado.toLowerCase().slice(0,3)
+    let arr = this.result
+    console.log(this.struct.ac)
+    console.log(this.result[0].folio.slice(6))
+    if(this.struct.ac[0] != '')
+    {
+      this.struct.ac.forEach(e => {
+        // console.log
+        arr = arr.filter(element=> element.folio.toLowerCase().slice(6).includes(e.toLowerCase().slice(0,3)))
+      });
+    }
+    return arr.filter(element => element.folio.toLowerCase().slice(0,3).includes(n)
+    && element.folio.toLowerCase().slice(2,6).includes(g) )
+  }
+
+  
+
   get() {
     this.areaService.getall().subscribe((data) => {
       this.datos = data;
@@ -89,53 +120,18 @@ export class HomefclasesComponent implements OnInit {
         return exists;
       });
     })
-
-
   }
 
   getFilter()
   {
     this.homefclasesService.getFilt().subscribe((data)=>{
       this.result = data
-      this.nuevofiltro=data
-      let valor=[]
-
-      this.nuevofiltro.forEach(function(value,index,array){
-        valor.push(value.folio)
-      })
-
-      this.options=valor
-
+      console.log(this.result)
     },(error)=>{
+      console.log(error)
     })
   }
-
-  // applyFilter()
-  // {
-  //   this.result  = this.result.filter(element => element.folio == this.filtro)
-  // }
-  nivelChange(NIVEL) {
-    this.nivels=NIVEL.slice(0,3);
-    this.folio=this.nivels;
-    this.letras=this.result
-    this.letras  = this.letras.filter(element => element.folio.slice(0,3) == this.folio)
-  }
-  gradoChange(GRADO) {
-    this.grads=GRADO.slice(0,3)
-    if(this.folio==null){
-      this.nivels="000";
-      this.folio=this.nivels+this.grads;
-      this.letras=this.result
-      this.letras  = this.letras.filter(element => element.folio.slice(4,6) == this.folio.slice(4,6))
-    }else{
-      this.folio=this.nivels+this.grads;
-      this.letras=this.result
-      this.letras  = this.letras.filter(element => element.folio.slice(0,6) == this.folio.slice(0,6))
-    }
-
-
-  }
-
+  
   gettema(AREA) {
     let datos = ""
     AREA.forEach(function(element,index) {
@@ -144,86 +140,8 @@ export class HomefclasesComponent implements OnInit {
 
     this.areacs=datos
     this.res=this.result
-
-
-if(this.nivels==null){
-  this.nivels="000";
-  this.folio=this.nivels;
-}
- if(this.grads==null){
-  this.grads="000";
-  this.folio=this.nivels+this.grads;
-}
-console.log(this.folio)
-if(this.folio=="000000"){
-        if(this.areacs.length==3){
-          this.res=this.res.filter(element=>element.folio.slice(6,9)==this.areacs)
-        }else if(this.areacs.length==6){
-          this.res=this.res.filter(element=>element.folio.slice(6,12)==this.areacs)
-        }else if(this.areacs.length==9){
-        this.res=this.res.filter(element=>element.folio.slice(6,15)==this.areacs)
-        }else{
-        this.res=this.letras
-        }
-        this.letras=this.res;
-}else{
-        if(this.areacs.length==3){
-          this.res=this.res.filter(element=>element.folio.slice(0,9)==this.folio+this.areacs)
-        }else if(this.areacs.length==6){
-          this.res=this.res.filter(element=>element.folio.slice(0,12)==this.folio+this.areacs)
-        }else if(this.areacs.length==9){
-        this.res=this.res.filter(element=>element.folio.slice(0,15)==this.folio+this.areacs)
-        }else{
-        this.res=this.letras
-        }
-        this.letras=this.res;
-}
-
   }
 
-  subareaChange(subarea) {
-    let datos = ""
-    let nuevo;
-    subarea.forEach(function(element,index) {
-        datos=datos+element.slice(0,3)
-       
-    });
-
-    this.subareacs=datos
-    this.resa=this.result
-    this.numero=this.subareacs.length;
-    nuevo=this.areacs.length;
-
-
-
-    if(this.numero==3 && nuevo==3){
-      this.resa=this.resa.filter(element=>element.folio.slice(9,12)==this.subareacs)
-      
-    }else if(this.numero==3 && nuevo==6){
-     this.resa=this.resa.filter(element=>element.folio.slice(12,15)==this.subareacs)
-   }else if(this.numero==3 && nuevo==9){
-     this.resa=this.resa.filter(element=>element.folio.slice(15,18)==this.subareacs)
-   }else if(this.numero==6 && nuevo==3){
-    this.resa=this.resa.filter(element=>element.folio.slice(9,15)==this.subareacs)
-   }else if(this.numero==6 && nuevo==6 ){
-    this.resa=this.resa.filter(element=>element.folio.slice(12,18)==this.subareacs)
-   }else{
-     this.resa=0
-   }
-
-
-    // if(this.subareacs==3 && this.areacs.length==3){
-    //    this.resa=this.resa.filter(element=>element.folio.slice(9,12)==this.subareacs)
-    // }else if(this.subareacs==6 && this.areacs.length==6){
-    //   this.resa=this.resa.filter(element=>element.folio.slice(12,18)==this.subareacs)
-    // }else{
-    //   this.resa=this.resa.filter(element=>element.folio.slice(15,24)==this.subareacs)
-    // }
-    this.letras=this.resa;
-
-    // this.folio=this.nivels+this.grads+this.areacs+this.subareacs;
-
-  }
   getSubAC() {
     this.moduloService.getSAC().subscribe((data) => {
       this.subareas = data
@@ -237,89 +155,5 @@ if(this.folio=="000000"){
     }, (error) => {
 
     })
-  }
-  onKey(event:string) { 
-
-    console.log(event)
-    this.x=event;
-    console.log(this.x.length)
-
-
-    this.fil=this.result
-    this.x=this.x.length;
-    if(this.x==3){
-      this.fil=this.fil.filter(element=>element.folio.slice(1,3)==event.slice(1,3))
-   }else if(this.x==6){
-    this.fil=this.fil.filter(element=>element.folio.slice(3,6)==event.slice(3,6))
-  }else if(this.x==9){
-    this.fil=this.fil.filter(element=>element.folio.slice(6,9)==event.slice(6,9))
-  } else if(this.x==12){
-    this.fil=this.fil.filter(element=>element.folio.slice(9,12)==event.slice(9,12))
-  }else if(this.x==15){
-    this.fil=this.fil.filter(element=>element.folio.slice(12,15)==event.slice(12,15))
-  }else if(this.x==18){
-    this.fil=this.fil.filter(element=>element.folio.slice(15,18)==event.slice(15,18))
-  }else{
-    this.fil="";
-  }
-    this.letras=this.fil;
-  }
-
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
-  }
-
-  edit(res)
-  {
-    this.homefclasesService.getData(res)
-  }
-
-  delete(folio, i)
-  {
-    console.log(i)
-    let index = i
-    const dialogRef = this.dialog.open(DcdeleteComponent, {
-      data: {}
-    })
-
-    dialogRef.afterClosed().subscribe(result=> {
-      if(result == 1)
-      {
-        this.moduloService.deleteDC(folio).subscribe((data)=>{
-              this.letras.splice(index, 1)
-        },(error)=>{
-
-        })
-      }
-    })
-  }
-  
-  herramChange(event){
-    let datos = ""
-    let nuevo;
-    event.forEach(function(element,index) {
-        datos=datos+element.slice(0,3)
-    });
-
-    this.herr=datos;
-    this.herr=this.herr.length;
-    this.finish=this.result;
-    let x
-    x=this.subareacs.length
-
-  console.log(x)
-  console.log(this.herr)
-
-    if(x==3 && this.herr==3 ){
-    this.finish=this.finish.filter(element=>element.folio.slice(12,15)==event.slice(15,18))      
-    }else if (x==6 && this.herr==3){
-    this.finish=this.finish.filter(element=>element.folio.slice(15,18)==event.slice(15,18))      
-    }else if(x==9&& this.herr==3){
-      this.finish=this.finish.filter(element=>element.folio.slice(18,21)==event.slice(15,18))
-    }
-    this.letras=this.finish
-
   }
 }

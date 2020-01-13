@@ -5,7 +5,9 @@ export interface Memalumnos {
     idtpago: number,
     adelanto: number,
     restante: number,
-    total: number
+    total: number,
+    idsuc:string;
+
 }
 export interface Memalumno {
     Id?: number;
@@ -20,4 +22,5 @@ export interface Memalumno {
     idtipopago: number;
     idtmem: number;
     activo: number;
+    idsuc:string;
 }

@@ -154,7 +154,7 @@
                 <div class="col-xl-4 col-md-12">
                   <mat-form-field>
                     <input required name="horaen" class="example-right-align" matInput placeholder="Hora de Entrada"
-                      value="{{selectedTime}}" for="he" (click)="open()">
+                      value="{{selectedTime}}" for="he" (click)="open()" readonly>
                     <!-- <mat-datepicker-toggle matSuffix (click)="open()" ></mat-datepicker-toggle> -->
                     <mat-icon class="text-success" svgIcon="thumbs-up" aria-hidden="false" name="he"
                       aria-label="Example thumbs up SVG icon" matSuffix (click)="open()"></mat-icon>
@@ -164,7 +164,7 @@
                 <div class="col-xl-4 col-md-12">
                   <mat-form-field>
                     <input required name="horasal" class="example-right-align" matInput placeholder="Hora de Salida"
-                      value="{{selectedTimes}}" (click)="opens()">
+                      value="{{selectedTimes}}" (click)="opens()" readonly>
                     <!-- <mat-datepicker-toggle matSuffix (click)="open()" ></mat-datepicker-toggle> -->
                     <mat-icon class="text-danger" svgIcon="thumbs-up" aria-hidden="false"
                       aria-label="Example thumbs up SVG icon" matSuffix (click)="opens()"></mat-icon>

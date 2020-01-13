@@ -408,7 +408,7 @@ export class PerfilComponent implements OnInit {
   editMem(i: number, idmalu, nommem, fechainicio, adelanto, restante, total, nombre) {
     // console.log(this.membresia)
     const dialogRef = this.dialog.open(PerfilmemeditComponent, {
-      width: '80%',
+      width: '37%',
       data:
       {
         i: i, idmalu: idmalu, nommem: nommem, fechainicio: fechainicio, adelanto: adelanto, restante: restante, total: total, nombre: nombre

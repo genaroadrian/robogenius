@@ -69,11 +69,7 @@ Route::resource('clases', 'moduloController');
 Route::resource('herramientas', 'herramientasController');
 Route::post('validation','LoginAngularController@validation')->name('validation');
 
-
-
-
-
-
+Route::resource('pmem', 'panelMembreciaController');
 
 Route::resource('email', 'emailController');
 Route::resource('perfilalumnoshorario', 'perfilAlumnosHorarioController');

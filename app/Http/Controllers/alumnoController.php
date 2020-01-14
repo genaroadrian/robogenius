@@ -9,6 +9,8 @@ use slidecom_robogenius\Alumno;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\JsonResponse;
+use slidecom_robogenius\Detallegrupos;
+use slidecom_robogenius\Grupos_alumnos;
 
 class alumnoController extends Controller
 {
@@ -44,7 +46,7 @@ class alumnoController extends Controller
      */
     public function create()
     {
-       //
+        //
     }
 
     /**
@@ -57,67 +59,67 @@ class alumnoController extends Controller
     public function store(Request $request)
     {
 
-        $data=$request->all();
+        $data = $request->all();
         // |unique:alumnos
-        $reglas = array('nomalu' => 'required',
-        	            'apealu' => 'required',
-        	            'fnacalu' => 'required',
-        	            'sexoalu' => 'required',
-        	            'domalu' => 'required',
-        	            'telalu' => 'required',
-        	            'correoalu' => 'required',
-        	            'usuarioalu' => 'required',
-        	            'pswalu' => 'required',
-        	            'nompad' => 'required',
-        	            'apepad' => 'required',
-        	            'dompad' => 'required',
-        	            'telpad' => 'required',
-        	            'correopad' => 'required',
-        	            'ocupad' => 'required',
-        	            'nommad' => 'required',
-        	            'apemad' => 'required',
-        	            'dommad' => 'required',
-        	            'telmad' => 'required',
-        	            'correomad' => 'required',
-        	            'ocupmad' => 'required',
+        $reglas = array(
+            'nomalu' => 'required',
+            'apealu' => 'required',
+            'fnacalu' => 'required',
+            'sexoalu' => 'required',
+            'domalu' => 'required',
+            'telalu' => 'required',
+            'correoalu' => 'required',
+            'usuarioalu' => 'required',
+            'pswalu' => 'required',
+            'nompad' => 'required',
+            'apepad' => 'required',
+            'dompad' => 'required',
+            'telpad' => 'required',
+            'correopad' => 'required',
+            'ocupad' => 'required',
+            'nommad' => 'required',
+            'apemad' => 'required',
+            'dommad' => 'required',
+            'telmad' => 'required',
+            'correomad' => 'required',
+            'ocupmad' => 'required',
 
-        	            );
-        $mensajes= array(
-        'apealu.required' => 'Todos los campos son obligatorios',
-        'nomalu.required' => 'Todos los campos son obligatorios',
-        'fnacalu.required' => 'Todos los campos son obligatorios',
-        'sexoalu.required' => 'Todos los campos son obligatorios',
-        'domalu.required' => 'Todos los campos son obligatorios',
-        'telalu.required' => 'Todos los campos son obligatorios',
-        'correoalu.required' => 'Todos los campos son obligatorios',
-        'usuarioalu.required' => 'Todos los campos son obligatorios',
-        'pswalu.required' => 'Todos los campos son obligatorios',
-        'nompad.required' => 'Todos los campos son obligatorios',
-        'apepad.required' => 'Todos los campos son obligatorios',
-        'dompad.required' => 'Todos los campos son obligatorios',
-        'telpad.required' => 'Todos los campos son obligatorios',
-        'correopad.required' => 'Todos los campos son obligatorios',
-        'ocupad.required' => 'Todos los campos son obligatorios',
-        'nommad.required' => 'Todos los campos son obligatorios',
-        'apemad.required' => 'Todos los campos son obligatorios',
-        'dommad.required' => 'Todos los campos son obligatorios',
-        'telmad.required' => 'Todos los campos son obligatorios',
-        'correomad.required' => 'Todos los campos son obligatorios',
-        'ocupmad.required' => 'Todos los campos son obligatorios',
-        
-        	             );
+        );
+        $mensajes = array(
+            'apealu.required' => 'Todos los campos son obligatorios',
+            'nomalu.required' => 'Todos los campos son obligatorios',
+            'fnacalu.required' => 'Todos los campos son obligatorios',
+            'sexoalu.required' => 'Todos los campos son obligatorios',
+            'domalu.required' => 'Todos los campos son obligatorios',
+            'telalu.required' => 'Todos los campos son obligatorios',
+            'correoalu.required' => 'Todos los campos son obligatorios',
+            'usuarioalu.required' => 'Todos los campos son obligatorios',
+            'pswalu.required' => 'Todos los campos son obligatorios',
+            'nompad.required' => 'Todos los campos son obligatorios',
+            'apepad.required' => 'Todos los campos son obligatorios',
+            'dompad.required' => 'Todos los campos son obligatorios',
+            'telpad.required' => 'Todos los campos son obligatorios',
+            'correopad.required' => 'Todos los campos son obligatorios',
+            'ocupad.required' => 'Todos los campos son obligatorios',
+            'nommad.required' => 'Todos los campos son obligatorios',
+            'apemad.required' => 'Todos los campos son obligatorios',
+            'dommad.required' => 'Todos los campos son obligatorios',
+            'telmad.required' => 'Todos los campos son obligatorios',
+            'correomad.required' => 'Todos los campos son obligatorios',
+            'ocupmad.required' => 'Todos los campos son obligatorios',
+
+        );
         // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
         $validacion = Validator::make($data, $reglas, $mensajes);
-        if ($validacion->fails())
-        {
-			 $errores = $validacion->errors(); 
-			 return new JsonResponse($errores, 422); 
+        if ($validacion->fails()) {
+            $errores = $validacion->errors();
+            return new JsonResponse($errores, 422);
         }
 
 
         $alumno = new Alumno();
         $date = now()->toDateTimeString('Y-m-d');
-		$alumno->nomalu  = $data["nomalu"];
+        $alumno->nomalu  = $data["nomalu"];
         $alumno->apealu = $data["apealu"];
         $alumno->fnacalu = $data["fnacalu"];
         $alumno->sexoalu = $data["sexoalu"];
@@ -142,10 +144,10 @@ class alumnoController extends Controller
         $alumno->apemad = $data["apemad"];
         $alumno->dommad = $data["dommad"];
         $alumno->telmad = $data["telmad"];
-        if($data["perfilalu"]==null){
-            $alumno->perfilalu="default.jpg";
-        }else{
-            $alumno->perfilalu=$data["perfilalu"];
+        if ($data["perfilalu"] == null) {
+            $alumno->perfilalu = "default.jpg";
+        } else {
+            $alumno->perfilalu = $data["perfilalu"];
         }
         $alumno->correomad = $data["correomad"];
         $alumno->ocupmad = $data["ocupmad"];
@@ -154,14 +156,23 @@ class alumnoController extends Controller
         $alumno->escuela = $data["escuela"];
         $alumno->idsuc = $data["idsuc"];
         $alumno->save();
-        if($data['idesc'] == null)
-        {
+        if ($data['idesc'] == null) {
+
+
             echo json_encode($alumno);
-        }else{
+        } else {
             $escuela = DB::select("SELECT escuelas.nombre, escuelas.direccion, tipomembresia.nombre as nm, tipomembresia.costo, tipomembresia.clases 
             FROM escuelas INNER JOIN tipomembresia ON
             escuelas.idesc = tipomembresia.idesc
             WHERE escuelas.idesc = ?", [$data['idesc']]);
+            $grupoEscuela = DB::select("SELECT * FROM detallegrupos WHERE idesc = ?", [$data['idesc']]);
+            foreach ($grupoEscuela as $grupoEscuela) {
+                $ga = new Grupos_alumnos();
+                $ga->idg = $grupoEscuela->iddgru;
+                $ga->idalu = $alumno->idalu;
+                $ga->activo = 1;
+                $ga->save();
+            }
 
             return json_encode($escuela[0]);
         }
@@ -198,7 +209,7 @@ class alumnoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $alumno = Alumno::find($id);
         $alumno->nomalu = $request->nomalu;
         $alumno->apealu = $request->apealu;

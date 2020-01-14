@@ -32,6 +32,7 @@ export class TpaddComponent implements OnInit {
       this.data.maestro = this.chekedM
       this.data.idsuc=localStorage.getItem("sucursal")
       this.dataService.addIssue(this.data)
+      console.log(this.data)
     }
 
     permisos(event: MatSlideToggleChange)

@@ -59,7 +59,7 @@
       <div class="col-sm-12">
         <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
           <mat-tab label="Alumnos inscritos">
-            <div class="container">
+            <!-- <div class="container">
               <div [style.display]="alumnos.length != 0 ? '' : 'none'">
                 <mat-list>
                   <h3 mat-subheader>Lista de alumnos</h3>
@@ -69,6 +69,24 @@
                     <h6 mat-line class="alumno">{{i + 1}}.- {{alu.nomalu}} {{alu.apealu}} </h6>
                   </mat-list-item>
                 </mat-list>
+              </div>
+            </div> -->
+            <div class="row">
+              <div class="col-md-4">
+                  <div class="">
+                      <h4 class="mt-0 header-title mb-3">Alumnos inscritos</h4>
+                      <div class="inbox-wid" >
+                          <div class="text-dark" *ngFor="let alu of alumnos">
+                              <div class="inbox-item">
+                                  <div class="inbox-item-img float-left mr-3"><img src="assets/perfiles/Alumnos/{{alu.perfilalu}}" class="thumb-md rounded-circle" alt=""></div>
+                                  <h5 class="inbox-item-text  mb-0">{{alu.nomalu}} {{alu.apealu}} </h5>
+                                  <p class="inbox-item-text text-muted mb-0">{{alu.fnacalu}} años</p>
+                                  <!-- <p class="inbox-item-date text-muted">13:40 PM</p> -->
+
+                              </div>
+                          </div>
+                      </div>  
+                  </div>
               </div>
             </div>
 

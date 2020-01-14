@@ -108,8 +108,9 @@ export class FormPersonalComponent implements OnInit {
 
     this.tPersonal.get().subscribe((data) => {
       this.selectTPersonal = data
-      console.log(data)
+      
       this.selectTPersonal = this.selectTPersonal.filter(x => x.idsuc == this.sucursal)
+      console.log(this.selectTPersonal)
     }, (error) => {
     })
     // this.getDias()
@@ -366,7 +367,6 @@ export class FormPersonalComponent implements OnInit {
 
   nuevoTPersonal() {
     let tpersonal: Tipopersonal
-    /* abrir un pequeño modal para agregar otro tipo de personal */
     const dialogRef = this.dialog.open(TpaddComponent, {
       data: { tpersonal: tpersonal }
     });
@@ -380,10 +380,7 @@ export class FormPersonalComponent implements OnInit {
           this.notifications.showSuccessAdd();
           this.hideBarra();
         }, (error) => {
-          // this.notifications.showError();
-          this.showError(error.error.nombre[0]);
-
-          // // this.notifications.hideBarra();
+          this.notifications.showError();
           this.hideBarra();
 
         });
@@ -391,19 +388,6 @@ export class FormPersonalComponent implements OnInit {
       }
     });
   }
-
-  /* getDias() {
-    this.personalService.getDias().subscribe((data) => {
-      this.dias = data
-    })
-  }
-
-  getHorarios() {
-    this.personalService.getHorarios().subscribe((data) => {
-      this.horas = data
-      console.log(this.horas)
-    })
-  } */
 
   getHorario() {
     this.personalService.getHorario().subscribe((data) => {

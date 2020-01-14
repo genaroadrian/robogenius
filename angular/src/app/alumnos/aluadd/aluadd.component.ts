@@ -25,6 +25,8 @@ import { FileuploadService } from 'src/app/services/fileupload.service';
 import { AddtipomemComponent } from 'src/app/tipomembresias/addtipomem/addtipomem.component';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { globalVarimg } from '../../services/global.service';
+import {CategoriaService} from 'src/app/services/categoria.service';
+
 
 
 
@@ -42,6 +44,9 @@ function emailDomainValidator(control: FormControl) {
   }
   return null;
 }
+import { from } from 'rxjs';
+import { contabilidad } from 'src/app/interfaces/contabilidad';
+import { LoginService } from 'src/app/services/login.service';
 
 @Directive({
   selector: '[emailDomain][ngModel]',
@@ -263,6 +268,26 @@ export class AluaddComponent implements OnInit {
   };
   showSuccess: boolean;
 
+  cont:contabilidad = {
+  
+    Concepto: null,
+    fecha: null,
+    tipo: 1,
+    monto: null,
+    idcate:null,
+    iduser:null,
+    nombre: null,
+    activo: 1,
+    status:null,
+    adelanto:null,
+    restante:null,
+    suma:null,
+    idscu:null,
+    idsuc:null
+  };
+
+  selected:any
+
   /* Mensjaes de error */
 
   getErrorMessage() {
@@ -286,13 +311,13 @@ export class AluaddComponent implements OnInit {
     this.toastr.infoToastr('No hay horarios disponibles', 'Oops!');
   }
 
-  constructor(private alumnosService: AlumnosService, private httpClient: HttpClient,
+  constructor(private cat:CategoriaService,private alumnosService: AlumnosService, private httpClient: HttpClient,
     public toastr: ToastrManager, private gethorarios: GethorariosService,
     private tmembresia: TipomembresiaService, private memaluService: MemalumnoService,
     private galuService: GruposAlumnosService, private router: Router,
     private escuelasService: EscuelasService,
     private uploadService: FileuploadService, public tmemService: TipomembresiaService,
-    public dialog: MatDialog, public notifications: NotificationsService) {
+    public dialog: MatDialog, public notifications: NotificationsService,private service:LoginService) {
     this.idsuc = localStorage.getItem('sucursal')
   }
 
@@ -303,11 +328,26 @@ export class AluaddComponent implements OnInit {
   }
 
 
+  public  emai = localStorage.getItem("email");
 
   ngOnInit(): void {
     this.getEscuelas()
     this.initConfig();
     this.getTipomem();
+
+    this.service.getPersonas()
+    .subscribe(data=>{
+      let logs=data;
+      this.selected = logs.filter(x => x.email == this.emai)
+      
+      this.cont.iduser = this.selected[0].id
+      this.cont.nombre= this.selected[0].subname
+      
+
+      // this.datos=data;
+      // this.imagen=this.datos.avatar;
+      // x:this.datos;
+    })
   }
   createFormControls() {
     this.email = new FormControl('', [
@@ -473,6 +513,27 @@ export class AluaddComponent implements OnInit {
     this.malu.adelanto = this.adelanto;
     this.malu.restante = this.totalpago - this.adelanto;
     this.malu.total = this.totalpago;
+
+   
+    
+
+    this.cont.Concepto="Membrecia del alumno: " + this.alumno.nomalu + " " + this.alumno.apealu;
+    // this.cont.fecha=now
+    this.cont.monto=this.malu.total
+    this.cont.adelanto=this.malu.adelanto
+    this.cont.restante=this.malu.restante
+    this.cont.suma=this.malu.adelanto
+    this.cont.idsuc=this.idsuc
+    this.cont.idscu=this.idsuc
+
+  console.log(this.cont)
+    this.cat.savemem(this.cont)
+    .subscribe((data) =>{
+      console.log(data)
+      // this.personalService.tput(this.data);
+    },(error)=>{
+    console.log(error)
+    });
     // console.log(this.malu);
     this.memaluService.save(this.malu).subscribe((data) => {
       this.showSuccesSave();

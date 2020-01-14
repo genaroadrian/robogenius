@@ -1,7 +1,7 @@
 export interface contabilidad {
     idCon?: number,
     Concepto: string,
-    fecha: string,
+    fecha: any,
     tipo: number,
     idcate:number,
     monto: number,

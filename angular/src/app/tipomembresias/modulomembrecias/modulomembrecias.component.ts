@@ -5,6 +5,10 @@ import { PerfilService } from 'src/app/services/perfil.service';
 import { MatDialog } from '@angular/material';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { PerfilmemeditComponent } from '../../alumnos/perfilmemedit/perfilmemedit.component';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
+
 
 
 @Component({
@@ -17,10 +21,16 @@ export class ModulomembreciasComponent implements OnInit {
   datos:any;
   datosEditMem: any
   membresia: any;
-
+  searchText;
+  filteredOptions: Observable<string[]>;
+  myControl = new FormControl();
+  options=[];
+  nuevofiltro:any
+  
 
   sucursal=localStorage.getItem('sucursal')
-
+  filtros:any
+  fil:any
 
   constructor(public pmem:PmembresiaService,
     public alumnosService: AlumnosService
@@ -28,9 +38,24 @@ export class ModulomembreciasComponent implements OnInit {
     public toastr: ToastrManager) { }
 
   ngOnInit() {
+    this.filteredOptions = this.myControl.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filter(value))
+    );
     this.pmem.getHorarios().subscribe(data => {
       this.datos=data
-      this.datos=this.datos.filter(x=>x.idsuc==this.sucursal)
+      this.filtros=this.datos.filter(x=>x.idsuc==this.sucursal)
+      this.fil=this.filtros
+      this.nuevofiltro=this.filtros
+      let valor=[]
+
+      this.nuevofiltro.forEach(function(value,index,array){
+        valor.push(value.nomalu + " " + value.apealu)
+      })
+
+      this.options=valor
+      console.log(this.options)
 
     });
   }
@@ -68,6 +93,22 @@ export class ModulomembreciasComponent implements OnInit {
     // Notificacion de error al editar
     showErrorEdit() {
       this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
+    }
+
+    filtro(y){
+
+      // this.filtros=this.datos.filter(x=>x.nomalu==y)
+      // console.log(y)
+    }
+
+    onKey(event:string) { 
+      this.fil=this.filtros.filter(element=>element.nomalu + " " + element.apealu==event)
+    }
+    private _filter(value: string): string[] {
+      const filterValue = value.toLowerCase();
+      console.log(filterValue)
+  
+      return this.options.filter(option => option.toLowerCase().includes(filterValue));
     }
 
 }

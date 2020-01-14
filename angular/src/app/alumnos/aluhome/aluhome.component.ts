@@ -12,6 +12,8 @@ import { AlueditComponent } from '../aluedit/aluedit.component';
 import { PerfilService } from 'src/app/services/perfil.service';
 import { Alumnosview } from 'src/app/interfaces/alumnosview';
 import { Router } from '@angular/router';
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-aluhome',
@@ -19,6 +21,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./aluhome.component.css']
 })
 export class AluhomeComponent implements OnInit {
+
+  spinner = spinner
+  noResults = noResults
 
   tableview = "none";
   
@@ -56,9 +61,13 @@ export class AluhomeComponent implements OnInit {
   // Declaracion del servico de personal
   PersonalService: any;
 
+  pruebas
+
   constructor(public httpClient: HttpClient,
     public dialog: MatDialog,
-    public alumnosService: AlumnosService, private perfilService: PerfilService, private router :Router  ) { }
+    public alumnosService: AlumnosService, private perfilService: PerfilService, private router :Router) {
+      
+     }
 
 
     logout(){
@@ -69,7 +78,8 @@ export class AluhomeComponent implements OnInit {
   ngOnInit() 
   {
      // Llamado al metodo de que obtiene los datos
-     this.getAlumnos();
+      this.getAlumnos()
+
 
      // Traducir los label de la tabla
      this.paginator._intl.itemsPerPageLabel = 'Registros por página';
@@ -101,18 +111,19 @@ export class AluhomeComponent implements OnInit {
 
     /*  Obtiene los datos de la base y se la asigna a el datasource y database example
   tambien se le asigna el filtro la barra de busqueda y la paginacion */
-  public getAlumnos() {
-    this.exampleDatabase = new AlumnosService(this.httpClient);
-    this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
-    fromEvent(this.filter.nativeElement, 'keyup')
-      // .debounceTime(150)
-      // .distinctUntilChanged()
-      .subscribe(() => {
-        if (!this.dataSource) {
-          return;
-        }
-        this.dataSource.filter = this.filter.nativeElement.value;
-      });
+  getAlumnos() 
+  {
+      this.exampleDatabase = new AlumnosService(this.httpClient);
+      this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
+      fromEvent(this.filter.nativeElement, 'keyup')
+        // .debounceTime(150)
+        // .distinctUntilChanged()
+        .subscribe(() => {
+          if (!this.dataSource) {
+            return;
+          }
+          this.dataSource.filter = this.filter.nativeElement.value;
+        });
   }
 
   delete(i:number, idalu:number, nomalu: string, apealu:string){

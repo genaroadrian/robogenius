@@ -4,9 +4,9 @@ import { NivelService } from 'src/app/services/nivel.service';
 import { GradoService } from 'src/app/services/grado.service';
 import { AreadelconocimientoService } from 'src/app/services/areadelconocimiento.service';
 import { ModuloService } from 'src/app/services/modulo.service';
-import {FormControl} from '@angular/forms';
-import {Observable} from 'rxjs';
-import {map, startWith} from 'rxjs/operators';
+import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
 import { DcdeleteComponent } from 'src/app/detalleclases/dcdelete/dcdelete.component';
 import { isArray } from 'util';
@@ -18,54 +18,41 @@ import { isArray } from 'util';
   styleUrls: ['./homefclases.component.css']
 })
 export class HomefclasesComponent implements OnInit {
-  myControl = new FormControl();
-  options=[];
-  filteredOptions: Observable<string[]>;
+
   filtered: any
   result: any
-  // vNivel:any;
-  nivels:any;
-  grads:any;
-  folio:any;
-  areacs:any;
-  subareacs:any;
-  persona:any;
-  grado:any;
-  areas:any
-  temas:any;
-  subtemas:any
-  datos:any; 
+  areacs: any;
+  persona: any;
+  grado: any;
+  datos: any;
   areadelconocimiento: any;
-  subareas:any;
-  herramientas:any;
-  filtro:any;
-  letras:any;
-  gradito:any;
-  letrass:any;
-  res:any;
-  resa:any;
-  fil:any;
-  nuevofiltro:any;
-  numero:any;
-  x:any;
-  herr:any;
-  finish:any;
-
-  struct = 
-  {
-    nivel: '',
-    grado: '',
-    ac: [''],
-    sac: [''],
-    herra: ['']
-
-  }
+  subareas: any;
+  herramientas: any;
+  res: any;
+  folios = []
+  folioCtrl = new FormControl()
+  filteredFolios: Observable<any>
+  value: string
 
 
+  struct =
+    {
+      nivel: '',
+      grado: '',
+      ac: [''],
+      sac: [''],
+      herra: ['']
+
+    }
 
   constructor(public homefclasesService: HomefclasesService,
     private nivelService: NivelService, private gradoService: GradoService,
-     private areaService: AreadelconocimientoService, public dialog: MatDialog ,private moduloService: ModuloService) { }
+    private areaService: AreadelconocimientoService, public dialog: MatDialog, private moduloService: ModuloService) {
+      this.filteredFolios = this.folioCtrl.valueChanges.pipe(
+        startWith(''),
+        map(folio => folio ? this._filterFolio(folio): this.folios.slice())
+      )
+  }
 
   ngOnInit() {
     this.getFilter()
@@ -82,33 +69,38 @@ export class HomefclasesComponent implements OnInit {
     this.getHerramientas()
   }
 
-  filter(crit)
-  {
-      // console.log(crit)
-      this.filtered = this.filterString(crit)
-      console.log(this.result)  
+  filter(crit) {
+    this.filtered = this.filterString(crit)
   }
 
-  filterString(crit)
-  {
-    
-    let n = this.struct.nivel.toLowerCase().slice(0,3)
-    let g = this.struct.grado.toLowerCase().slice(0,3)
+  filterString(crit) {
+
+    let n = this.struct.nivel.toLowerCase().slice(0, 3)
+    let g = this.struct.grado.toLowerCase().slice(0, 3)
     let arr = this.result
-    console.log(this.struct.ac)
-    console.log(this.result[0].folio.slice(6))
-    if(this.struct.ac[0] != '')
-    {
-      this.struct.ac.forEach(e => {
-        // console.log
-        arr = arr.filter(element=> element.folio.toLowerCase().slice(6).includes(e.toLowerCase().slice(0,3)))
-      });
-    }
-    return arr.filter(element => element.folio.toLowerCase().slice(0,3).includes(n)
-    && element.folio.toLowerCase().slice(2,6).includes(g) )
+
+    /* Filtro de area del conocimiento */
+    this.struct.ac.forEach(e => {
+      // console.log
+      arr = arr.filter(element => element.folio.toLowerCase().slice(6).includes(e.toLowerCase().slice(0, 3)))
+    });
+
+    /* Filtro del subarea del conocimiento */
+    let i = 6 + this.struct.ac.length * 3
+    this.struct.sac.forEach(e => {
+      arr = arr.filter(element => element.folio.toLowerCase().slice(i).includes(e.toLowerCase().slice(0, 3)))
+    })
+
+    /* Filtro de las herramientas */
+    let j = 9 + this.struct.sac.length * 3
+    this.struct.herra.forEach(e => {
+      arr = arr.filter(element => element.folio.toLowerCase().slice(j).includes(e.toLowerCase().slice(0, 3)))
+    })
+    return arr.filter(element => element.folio.toLowerCase().slice(0, 3).includes(n)
+      && element.folio.toLowerCase().slice(2, 6).includes(g))
   }
 
-  
+
 
   get() {
     this.areaService.getall().subscribe((data) => {
@@ -122,24 +114,24 @@ export class HomefclasesComponent implements OnInit {
     })
   }
 
-  getFilter()
-  {
-    this.homefclasesService.getFilt().subscribe((data)=>{
+  getFilter() {
+    this.homefclasesService.getFilt().subscribe((data) => {
       this.result = data
-      console.log(this.result)
-    },(error)=>{
+      this.folios = this.result
+      this.filtered = data
+    }, (error) => {
       console.log(error)
     })
   }
-  
+
   gettema(AREA) {
     let datos = ""
-    AREA.forEach(function(element,index) {
-        datos=datos+element.slice(0,3)
+    AREA.forEach(function (element, index) {
+      datos = datos + element.slice(0, 3)
     });
 
-    this.areacs=datos
-    this.res=this.result
+    this.areacs = datos
+    this.res = this.result
   }
 
   getSubAC() {
@@ -156,4 +148,31 @@ export class HomefclasesComponent implements OnInit {
 
     })
   }
+
+  folioKey(value) {
+    
+    // let arr = this.result 
+    // this.result = arr.filter(element => element.folio.toLowerCase().slice(0, value.length).includes(value.toLowerCase()))
+    this.filtered = this._filterFolio(value)
+  }
+
+  private _filterFolio(value: string){
+    const filterValue = value.toLowerCase()
+    return this.folios.filter(folio => folio.folio.toLowerCase().indexOf(filterValue) === 0)
+  }
+
+  restart()
+  {
+    this.filtered = this.result
+    this.value = ''
+    this.struct = {
+      nivel: '',
+      grado: '',
+      ac: [''],
+      sac: [''],
+      herra: ['']
+
+    }
+  }
+
 }

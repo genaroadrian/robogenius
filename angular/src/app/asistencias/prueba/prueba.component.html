@@ -11,7 +11,7 @@
                 <tr>
                   <th>No.</th>
                   <th>ID alumno</th>
-                  <th *ngFor="let fecha of fechas">{{fecha.fecha}}</th>
+                  <th *ngFor="let fecha of fechas">{{fecha.fecha | date:'fullDate'}}</th>
                 </tr>
               </thead>
             

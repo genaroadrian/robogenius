@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -165,7 +165,13 @@ import { FilesmodalComponent } from './files/filesmodal/filesmodal.component';
 import { PruebaComponent } from './asistencias/prueba/prueba.component';
 import { ModulomembreciasComponent } from './tipomembresias/modulomembrecias/modulomembrecias.component';
 import { PerfilEscuelasComponent } from './escuelas/perfil-escuelas/perfil-escuelas.component';
+import localeESMX from '@angular/common/locales/es-MX';
+import { registerLocaleData } from '@angular/common';
+import { PersonalhoraaddComponent } from './personal/personalhoraadd/personalhoraadd.component';
+import { PersonalhoraeditComponent } from './personal/personalhoraedit/personalhoraedit.component';
+import { PersonalhoradeleteComponent } from './personal/personalhoradelete/personalhoradelete.component';
 
+registerLocaleData(localeESMX);
 
 const routes: Route[]=[
 {path:'personal',component:PerhomeComponent, canActivate: [LoginGuard]},
@@ -214,8 +220,8 @@ const routes: Route[]=[
 {path: 'editmodulo', component: EditmoduloComponent},
 {path: 'homefclases', component: HomefclasesComponent},
 {path: 'files', component: FilesComponent},
-{path: 'escuelas/home', component: ModuloescuelasComponent},
-{path: 'pruebaasis', component: PruebaComponent},
+{path: 'escuelas/home', component: ModuloescuelasComponent}, //
+{path: 'pruebaasis', component: PruebaComponent}, //
 {path: 'pmem', component: ModulomembreciasComponent},
 {path: 'modulo-escuelas', component: PerfilEscuelasComponent}
 
@@ -343,7 +349,10 @@ const routes: Route[]=[
     FilesmodalComponent,
     PruebaComponent,
     ModulomembreciasComponent,
-    PerfilEscuelasComponent
+    PerfilEscuelasComponent,
+    PersonalhoraaddComponent,
+    PersonalhoraeditComponent,
+    PersonalhoradeleteComponent
 
   ],
   imports: [
@@ -392,6 +401,7 @@ const routes: Route[]=[
     NgxDropzoneModule
     ],
   providers: [
+    AppComponent,
     TipopersonalService,
     PersonalService,
     AlumnosService,
@@ -405,7 +415,8 @@ const routes: Route[]=[
     FileuploadService,
     ModuloService,
 
-    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher}
+    {provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher},
+    { provide: LOCALE_ID, useValue: 'es-MX' }
   ],
   bootstrap: [AppComponent],
   entryComponents: [

@@ -17,3 +17,7 @@ export const globalVar = {
 export const globalVarimg = {
   url:'http://localhost:8000'
 }
+
+export const spinner = 'loader.gif'
+
+export const noResults = 'no_results.png'

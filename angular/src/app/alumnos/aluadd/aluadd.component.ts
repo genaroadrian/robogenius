@@ -416,7 +416,7 @@ export class AluaddComponent implements OnInit {
     this.alumno.idsuc = localStorage.getItem("sucursal");
     // Se envian los datos al servicio de alumnos para guardar los datos en la BD
     this.alumnosService.save(alumno).subscribe((data) => {
-      // console.log(data)
+      console.log(data)
       if (alumno.idesc == null) {
         this.alumnosview = "none";
         this.membresiaview = "";

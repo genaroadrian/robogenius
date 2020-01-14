@@ -20,6 +20,7 @@ export class AlumnosService {
   dataChange: BehaviorSubject<Alumnos[]> = new BehaviorSubject<Alumnos[]>([]);
   // Temporarily stores data from dialogs
   dialogData: any;
+  length: number
 
   constructor(private httpClient: HttpClient) {
     this.sucursal=localStorage.getItem('sucursal')
@@ -31,11 +32,16 @@ export class AlumnosService {
     this.httpClient.get<Alumnos[]>(this.API_ENDPOINT+'/alumnos').subscribe(data => {
       this.datos=data
       this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
-      console.log(this.datos)
+      this.length = this.datos.length
       this.dataChange.next(this.datos);     },
     (error: HttpErrorResponse) => {
     console.log (error.name + ' ' + error.message);
     });
+  }
+
+  lengthData()
+  {
+    return this.length
   }
 
   // Obtener datos cuando cambien

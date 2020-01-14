@@ -23,7 +23,9 @@ export class PerfilEscuelasComponent implements OnInit {
     this.escuelasService.fetchProfileInfo(this.data.idesc).subscribe((data)=>{
       this.barra = 'none'
       this.info = data
-      this.alumnos = this.info[0]
+      this.alumnos = this.info[0].forEach((element, index, array)=>{
+      element.fnacalu = this.ageCalculator(element.fnacalu)
+    })
       this.membresias = this.info[1]
       console.log(this.membresias)
       this.horario = this.info[2]
@@ -33,4 +35,10 @@ export class PerfilEscuelasComponent implements OnInit {
     })
   }
 
+  ageCalculator(nac){
+      const convertAge = new Date(nac);
+      const timeDiff = Math.abs(Date.now() - convertAge.getTime());
+      let showAge = Math.floor((timeDiff / (1000 * 3600 * 24))/365);
+      return showAge
+  }
 }

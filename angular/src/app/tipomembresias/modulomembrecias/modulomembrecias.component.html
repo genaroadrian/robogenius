@@ -14,12 +14,30 @@
                        </div>
                           <div class="col-xl-2 col-md-12">
                              <h1 style="text-align: center;">Historial de pagos</h1>
+                             
 
                            </div>
                          <div class="col-xl-5 col-md-12 ">
                          </div>
                      </div>
                      <div class="col-xl-12 col-md-12">
+                     <!-- <mat-form-field floatLabel="never"  style="width:100%; text-align: center;">
+                      <input matInput #filter placeholder="Buscar..." (keyup)="filtro($event.target.value)" >
+                    </mat-form-field> -->
+                    <form>
+                      <mat-form-field floatLabel="never"  style="width:100%; text-align: center;">
+                        <input placeholder="Buscar..." type="text" placeholder="busqueda" aria-label="Number" matInput [formControl]="myControl"
+                        [matAutocomplete]="auto" [ngModel]='model' (ngModelChange)='onKey($event)'>
+                      </mat-form-field>
+
+                      <!-- <input type="text" placeholder="busqueda" aria-label="Number" matInput [formControl]="myControl"
+                        [matAutocomplete]="auto" [ngModel]='model' (ngModelChange)='onKey($event)'> -->
+                      <mat-autocomplete #auto="matAutocomplete">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                          {{option}}
+                        </mat-option>
+                      </mat-autocomplete>
+                    </form>
 
 
                       <mat-accordion>
@@ -28,10 +46,10 @@
                         </div>
                         <!-- <span>Renovar membresia antes del </span> -->
                           <!-- <p>Estatus de la membresia: </p> -->
-                        <mat-expansion-panel *ngFor="let data of datos; let i = index">
+                        <mat-expansion-panel *ngFor="let data of fil ; let i = index">
                             <mat-expansion-panel-header>
                                 <mat-panel-title class="col-md-8">
-                                    {{ data.nomalu}}{{data.apealu}}
+                                    {{ data.nomalu}} {{data.apealu}}
                                 </mat-panel-title>
                                 <mat-panel-description class="col-md-4">
                                     <span [style.display.none]="data.restante == 0 ? '' : 'none'" class="text-warning"  >

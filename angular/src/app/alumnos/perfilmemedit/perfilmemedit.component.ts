@@ -38,19 +38,6 @@ export class PerfilmemeditComponent implements OnInit {
   ]);
 
 
-  // adelanto(x){
-  //   var restante = this.data.restante
-  //   var adelanto = this.data.nadelanto
-
-  //   if(x>this.data.restante){
-  //     this.data.restante=adelanto
-  //     this.data.adelanto=0
-  //   }else{
-  //     this.data.adelanto += this.nadelanto
-  //     this.data.restante -= this.nadelanto
-  //   }
-
-  // }
 
   /* Lanza los errores de las validaciones del formulario */
   getErrorMessage() {

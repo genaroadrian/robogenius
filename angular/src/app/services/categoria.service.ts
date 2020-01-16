@@ -87,6 +87,10 @@ export class CategoriaService {
     return this.http.post(this.API_ENDPOINT+'/contabilidad', contabilidad, {headers: headers});
   }
 
+  savemem(contabilidad) {
+    const headers = new HttpHeaders({"Content-Type":"application/json"});
+    return this.http.post(this.API_ENDPOINT+'/contabilidad', contabilidad, {headers: headers});
+  }
 
 
 put(cont: contabilidad){

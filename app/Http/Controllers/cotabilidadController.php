@@ -40,7 +40,11 @@ class cotabilidadController extends Controller
     {
         $contabilidad = new Contabilidad();
         $contabilidad->Concepto = $request->Concepto;
+        if($request->fecha==null){
+            $contabilidad->fecha= new \DateTime();
+        }else{
         $contabilidad->fecha = $request->fecha;
+        }
         $contabilidad->tipo = $request->tipo;
         $contabilidad->idcate = $request->idcate;
         $contabilidad->monto = $request->monto;

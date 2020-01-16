@@ -10,6 +10,11 @@ import { PersonalService } from 'src/app/services/personal.service';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { AddasisComponent } from 'src/app/asistencias/addasis/addasis.component';
 import {globalVarimg} from '../../services/global.service';
+import { PersonalhoraaddComponent } from '../personalhoraadd/personalhoraadd.component';
+import { PersonalhoraeditComponent } from '../personalhoraedit/personalhoraedit.component';
+import { PersonalhoradeleteComponent } from '../personalhoradelete/personalhoradelete.component';
+import { DetallegruposService } from 'src/app/services/detallegrupos.service';
+import { EscuelasService } from 'src/app/services/escuelas.service';
 
 
 
@@ -70,7 +75,8 @@ export class PersonalperfilComponent implements OnInit {
   viewS: string = 'none'
 
   constructor(public personalPerfilService: PersonalperfilService,private uploadService: FileuploadService,private router:Router,
-    public dialog: MatDialog,public personalService: PersonalService, public notificationsService: NotificationsService,public toastr: ToastrManager) { }
+    public dialog: MatDialog,public personalService: PersonalService, public notificationsService: NotificationsService,public toastr: ToastrManager,
+    public detalleGruposService: DetallegruposService, public escuelasService: EscuelasService) { }
 
   ngOnInit() {
     this.datos = this.personalPerfilService.returnPerfil()
@@ -261,6 +267,85 @@ export class PersonalperfilComponent implements OnInit {
         
       }
     });
+  }
+
+  newHora()
+  {
+    const dialogRef = this.dialog.open(PersonalhoraaddComponent,{
+      data: {idp: this.datos.idper, idsuc: this.datos.idsuc, sucursal: localStorage.getItem('sucuname')}
+    })
+    dialogRef.afterClosed().subscribe(async result => {
+      if( result === 1)
+      {
+        console.log(this.detalleGruposService.getDialogData())
+        try {
+          this.barra = ''
+          await this.detalleGruposService.save(this.detalleGruposService.getDialogData()).toPromise()
+          this.notificationsService.showSuccessAdd()
+          this.getGrupos()
+        } catch (error) {
+          this.notificationsService.showError()
+          this.barra = 'none'
+        }
+      }
+    })
+
+  }
+
+  deleteH(id)
+  {
+    console.log(id)
+    const dialogRef = this.dialog.open(PersonalhoradeleteComponent,{
+      data: {id: id}
+    })
+    dialogRef.afterClosed().subscribe(async result =>{
+      if(result === 1)
+      {
+        try {
+          this.barra = ''
+          let result = await this.detalleGruposService.delete(this.detalleGruposService.getDialogData()).toPromise()
+        console.log(result)
+        this.notificationsService.showSuccessAdd()
+        this.getGrupos()
+        
+        this.barra = 'none'
+        } catch (e) {
+          this.barra = 'none'
+          console.log(e)
+          this.notificationsService.showError()
+        }
+      }
+    })
+  }
+
+  editH(idg: number, idd: number, idh: number)
+  {
+    const dialogRef = this.dialog.open(PersonalhoraeditComponent,{
+      data: {iddgru: idg, idd:idd, idh: idh, idp: this.datos.idper, idsuc: this.datos.idsuc, sucursal: localStorage.getItem('sucuname')}
+    })
+    dialogRef.afterClosed().subscribe(async result =>{
+      if(result === 1)
+      {
+        try {
+          this.barra = ''
+          await this.detalleGruposService.update(this.detalleGruposService.getDialogData()).toPromise()
+          this.notificationsService.showSuccessAdd()
+          this.getGrupos()
+          this.barra = 'none'
+        } catch (e) {
+          this.notificationsService.showError()
+          this.barra = 'n}one'
+        }
+      }
+    })
+  }
+
+  async editHE(id)
+  {
+    let esc: any = await this.escuelasService.get().toPromise()
+    esc = esc.filter(element=> element.idesc == id)
+    this.escuelasService.profile(esc[0])
+    this.router.navigateByUrl('/modulo-escuelas'); 
   }
 
 }

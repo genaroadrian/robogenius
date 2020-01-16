@@ -170,6 +170,7 @@ import { registerLocaleData } from '@angular/common';
 import { PersonalhoraaddComponent } from './personal/personalhoraadd/personalhoraadd.component';
 import { PersonalhoraeditComponent } from './personal/personalhoraedit/personalhoraedit.component';
 import { PersonalhoradeleteComponent } from './personal/personalhoradelete/personalhoradelete.component';
+import { EditMemComponent } from './escuelas/edit-mem/edit-mem.component';
 
 registerLocaleData(localeESMX);
 
@@ -352,7 +353,8 @@ const routes: Route[]=[
     PerfilEscuelasComponent,
     PersonalhoraaddComponent,
     PersonalhoraeditComponent,
-    PersonalhoradeleteComponent
+    PersonalhoradeleteComponent,
+    EditMemComponent
 
   ],
   imports: [
@@ -519,7 +521,14 @@ const routes: Route[]=[
     DcdeleteComponent,
     FilesdeleteComponent,
     /* Modal de los archivos */
-    FilesmodalComponent
+    FilesmodalComponent,
+    /* Modales de los horarios de los personales en el perfil del personal  */
+    PersonalhoraaddComponent,
+    PersonalhoraeditComponent,
+    PersonalhoradeleteComponent,
+    /* Modales del perfil de las escuelas */
+    EditMemComponent
+
 
   ],
   exports: [

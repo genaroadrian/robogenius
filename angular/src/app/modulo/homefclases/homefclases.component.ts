@@ -149,6 +149,11 @@ export class HomefclasesComponent implements OnInit {
     })
   }
 
+  edit(res)
+  {
+    this.homefclasesService.getData(res)
+  }
+
   folioKey(value) {
     
     // let arr = this.result 

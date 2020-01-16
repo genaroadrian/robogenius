@@ -1,3 +1,7 @@
-<p>
-  personalhoradelete works!
-</p>
+<div class="container">
+  <h3 mat-dialog-title style="text-align: center;"> ¿Estas seguro de que quires eliminar este horario? </h3>
+  <div mat-dialog-actions>
+    <button class="btn btn-success" [mat-dialog-close]="1" (click)="confirmDelete()" style="text-align:center;margin-right:120px;">Eliminar</button>
+    <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+  </div>
+</div>

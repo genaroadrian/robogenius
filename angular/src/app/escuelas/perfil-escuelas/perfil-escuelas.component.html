@@ -25,7 +25,9 @@
   <div class="row">
     <div class="container">
       <div class="col-sm-6">
-        <h2>Informacion de la escuela</h2>
+        <h2>Informacion de la escuela <button (click)="editInfo(data)" mat-icon-button class="text-success">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button></h2>
         <mat-divider></mat-divider>
         <h4>
           <mat-icon class="text-info">person</mat-icon> Representante: <b>{{data.representante}}</b>
@@ -42,10 +44,12 @@
       </div>
 
       <div class="col-sm-6">
-        <h2>Informacion de la membresia</h2>
+        <h2>Informacion de la membresia <button (click)="editMem(membresias)" mat-icon-button class="text-success">
+          <mat-icon aria-label="Edit">edit</mat-icon>
+        </button></h2>
         <mat-divider></mat-divider>
         <h4> <mat-icon class="text-info">card_membership</mat-icon> Nombre: <b> {{membresias.nombre}} </b></h4>
-        <h4> <mat-icon class="text-success">monetization_on</mat-icon> Costo: <b> {{membresias.costo | currency}} </b></h4>
+        <h4> <mat-icon class="text-success">monetization_on</mat-icon> Costo: <b> {{membresias.costo | currency:'MXN'}} </b></h4>
         <h4>Numero de clases a la semana: <b>{{membresias.clases}}</b></h4>
       </div>
     </div>
@@ -95,6 +99,9 @@
 
           <mat-tab label="Horario">
             <div class="container">
+              <p class="" style="text-align: left;" [style.display]="horario.length < membresias.clases  ? '' : 'none'">
+                Agregar nuevo horario <button mat-icon-button (click)="agregarHora(datos.idalu)" ><mat-icon>add</mat-icon></button>
+            </p>
               <div class="row">
                 <div class="col-sm-12">
                   <table mat-table [dataSource]="horario" class="mat-elevation-z8">

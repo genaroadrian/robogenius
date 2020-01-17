@@ -6,6 +6,8 @@ import { NotificationsService } from 'src/app/services/notifications.service';
 import { EditMemComponent } from '../edit-mem/edit-mem.component';
 import { EdittipomemComponent } from 'src/app/tipomembresias/edittipomem/edittipomem.component';
 import { TipomembresiaService } from 'src/app/services/tipomembresia.service';
+import { AddhoraescComponent } from '../addhoraesc/addhoraesc.component';
+import { DetallegruposService } from 'src/app/services/detallegrupos.service';
 
 @Component({
   selector: 'app-perfil-escuelas',
@@ -16,14 +18,19 @@ export class PerfilEscuelasComponent implements OnInit {
   data: any
   info: any
   alumnos = []
-  membresias = []
+  membresias = {
+    nombre: null,
+    costo: null,
+    clases: null
+  }
   barra: string = ''
   status: string = ''
   displayedColumns: string[] = ['dia', 'hora', 'personal']
   horario = []
 
   constructor(public escuelasService: EscuelasService, public dialog: MatDialog,
-    public notificationsService: NotificationsService, public tipomebresiaService: TipomembresiaService) { }
+    public notificationsService: NotificationsService, public tipomebresiaService: TipomembresiaService,
+    public detalleGruposService: DetallegruposService) { }
 
   ngOnInit() {
     this.data = this.escuelasService.getDialogData()
@@ -76,7 +83,6 @@ export class PerfilEscuelasComponent implements OnInit {
 
   editMem(data)
   {
-    console.log(data)
     const dialogRef = this.dialog.open(EdittipomemComponent, {
       data: {idtmem: data.idtmem,nombre: data.nombre,costo: data.costo,clases: data.clases}
     })
@@ -95,6 +101,20 @@ export class PerfilEscuelasComponent implements OnInit {
           this.notificationsService.showError()
           this.barra = 'none'
         }
+      }
+    })
+  }
+
+  addH(data)
+  {
+    console.log(data)
+    const dialogRef = this.dialog.open(AddhoraescComponent,{
+      data: {idesc: data.idesc}
+    })
+    dialogRef.afterClosed().subscribe(async result =>{
+      if(result === 1)
+      {
+          console.log(this.detalleGruposService.getDialogData())
       }
     })
   }

@@ -31,6 +31,7 @@ export class ModulomembreciasComponent implements OnInit {
   sucursal=localStorage.getItem('sucursal')
   filtros:any
   fil:any
+  model: any
 
   constructor(public pmem:PmembresiaService,
     public alumnosService: AlumnosService

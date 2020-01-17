@@ -1,7 +1,7 @@
 <div class="form-group">
   <h3 mat-dialog-tittle>Modificar sesion</h3>
 
-  <form (ngSubmit)="submit">
+  <form >
     <div class="form-group">
       <mat-form-field>
         <input matInput #input name="nombre" [(ngModel)]="data.nombre" placeholder="Nombre de la sesion">
@@ -72,7 +72,7 @@
       </div>
     </div>
     <div mat-dialog-actions >
-        <button class="btn btn-success" [type]="submit"  [mat-dialog-close]="1"
+        <button class="btn btn-success" [mat-dialog-close]="1"
           (click)="stopEdit(datos)" style="margin-left: 140px; margin-right: 40px;">Guardar</button>
         <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
       </div>

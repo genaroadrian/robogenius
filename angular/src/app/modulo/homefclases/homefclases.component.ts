@@ -69,11 +69,11 @@ export class HomefclasesComponent implements OnInit {
     this.getHerramientas()
   }
 
-  filter(crit) {
-    this.filtered = this.filterString(crit)
+  filter() {
+    this.filtered = this.filterString()
   }
 
-  filterString(crit) {
+  filterString() {
 
     let n = this.struct.nivel.toLowerCase().slice(0, 3)
     let g = this.struct.grado.toLowerCase().slice(0, 3)

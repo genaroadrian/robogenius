@@ -338,11 +338,11 @@ export class FormPersonalComponent implements OnInit {
     this.detallegrupo.idp = this.idper;
     this.detallegruposService.save(this.detallegrupo).subscribe((data) => {
       console.log(data)
-      // this.showSuccesSave();
-      // let dia = horariopersonal.idd
-      // let hora = horariopersonal.idh
-      // this.horario.splice(horas => horas.iddia == dia && horas.idh == hora, 1)
-      // this.horas = this.horario
+      this.showSuccesSave();
+      let dia = horariopersonal.idd
+      let hora = horariopersonal.idh
+      this.horario.splice(horas => horas.iddia == dia && horas.idh == hora, 1)
+      this.horas = this.horario
       this.removeTab(index);
     }, (error) => {
       console.log(error)

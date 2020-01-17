@@ -19,17 +19,17 @@ class detallegruposController extends Controller
     public function store(Request $request )
     {
         
-        // return $request;
-        return new JsonResponse("Error", 303);
-        // $dgrupos = new Detallegrupos();
-        // $dgrupos->idd = $request->idd;
-        // $dgrupos->idh = $request->idh;
-        // $dgrupos->idp = $request->idp;
-        // $dgrupos->idesc = $request->idesc;
-        // $dgrupos->idsuc = $request->idsuc;
-        // $dgrupos->activo = 1;
-        // $dgrupos->save();
-        // echo json_encode($dgrupos);
+        return $request;
+        // return new JsonResponse("Error", 303);
+        $dgrupos = new Detallegrupos();
+        $dgrupos->idd = $request->idd;
+        $dgrupos->idh = $request->idh;
+        $dgrupos->idp = $request->idp;
+        $dgrupos->idesc = $request->idesc;
+        $dgrupos->idsuc = $request->idsuc;
+        $dgrupos->activo = 1;
+        $dgrupos->save();
+        echo json_encode($dgrupos);
     }
 
     public function update(Request $request, $id)

@@ -405,13 +405,13 @@ export class PerfilComponent implements OnInit {
     });
   }
 
-  editMem(i: number, idmalu, nommem, fechainicio, adelanto, restante, total, nombre) {
-    // console.log(this.membresia)
+  editMem(i: number, idmalu, nommem, fechainicio, adelanto, restante, total, nombre,nombrealu,apealu) {
+    console.log(i, idmalu, nommem, fechainicio, adelanto, restante, total, nombre,nombrealu,apealu)
     const dialogRef = this.dialog.open(PerfilmemeditComponent, {
       width: '37%',
       data:
       {
-        i: i, idmalu: idmalu, nommem: nommem, fechainicio: fechainicio, adelanto: adelanto, restante: restante, total: total, nombre: nombre
+        i: i, idmalu: idmalu, nommem: nommem, fechainicio: fechainicio, adelanto: adelanto, restante: restante, total: total, nombre: nombre,nombrealu:nombrealu,apealu:apealu
       }
     })
     dialogRef.afterClosed().subscribe(result => {

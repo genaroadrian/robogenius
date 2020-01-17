@@ -504,7 +504,7 @@ export class AluaddComponent implements OnInit {
     } else {
       this._allMembresias = this._allMembresias.filter(mem => mem.idesc == id)
     }
-
+ 
   }
 
   // Guarda el tipo de pago escogido
@@ -513,10 +513,7 @@ export class AluaddComponent implements OnInit {
     this.malu.adelanto = this.adelanto;
     this.malu.restante = this.totalpago - this.adelanto;
     this.malu.total = this.totalpago;
-
-   
-    
-
+    this.cont.status=1
     this.cont.Concepto="Membrecia del alumno: " + this.alumno.nomalu + " " + this.alumno.apealu;
     // this.cont.fecha=now
     this.cont.monto=this.malu.total

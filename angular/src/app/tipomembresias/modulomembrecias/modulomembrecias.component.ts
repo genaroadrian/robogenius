@@ -26,9 +26,13 @@ export class ModulomembreciasComponent implements OnInit {
   myControl = new FormControl();
   options=[];
   nuevofiltro:any
+  historial:any;
+
   
 
   sucursal=localStorage.getItem('sucursal')
+  search=localStorage.getItem('busqueda')
+
   filtros:any
   fil:any
 
@@ -38,6 +42,16 @@ export class ModulomembreciasComponent implements OnInit {
     public toastr: ToastrManager) { }
 
   ngOnInit() {
+   
+    setTimeout (() => {
+      this.myControl.setValue(this.search.toLowerCase().slice(22, 28))
+   }, 4000);
+
+
+    this.pmem.getHistorial().subscribe(dat=>{
+      this.historial=dat
+      this.historial=this.historial.filter(x=>x.idscu==this.sucursal)
+    })
     this.filteredOptions = this.myControl.valueChanges
     .pipe(
       startWith(''),
@@ -55,27 +69,38 @@ export class ModulomembreciasComponent implements OnInit {
       })
 
       this.options=valor
-      console.log(this.options)
 
     });
   }
-  editMem(i: number, idmalu,mem, fechainicio, adelanto, restante, total,nommem) {
+
+  fils(search){
+    search=this.search
+    if(search.length>=0){
+      this.myControl.setValue(this.search.toLowerCase().slice(22, 30))
+    }
+
+  }
+  // arrayOne(n: number): any[] {
+  //   return Array(n);
+  // }
+  editMem(i: number, idmalu,mem, fechainicio, adelanto, restante, total,nommem,nombrealu,apealu) {
     // console.log(this.membresia)
     const dialogRef = this.dialog.open(PerfilmemeditComponent, {
       width: '37%',
       data:
       {
-        i: i, idmalu: idmalu,nombre:mem, fechainicio: fechainicio, adelanto: adelanto, restante: restante, total: total,nommem:nommem
+        i: i, idmalu: idmalu,nombre:mem, fechainicio: fechainicio, adelanto: adelanto, restante: restante, total: total,nommem:nommem,nombrealu:nombrealu,apealu:apealu
       }
     })
     dialogRef.afterClosed().subscribe(result => {
+      console.log(result)
       if (result == 1) {
 
         this.perfilService.putMembresias(this.perfilService.getDialogData()).subscribe((data) => {
           this.datosEditMem = this.perfilService.getDialogData()
-          this.membresia[i].adelanto = this.datosEditMem.adelanto
-          this.membresia[i].restante = this.datosEditMem.restante
-          this.membresia[i].total = this.datosEditMem.total
+          this.fil[i].adelanto = this.datosEditMem.adelanto
+          this.fil[i].restante = this.datosEditMem.restante
+          this.fil[i].total = this.datosEditMem.total
           this.showSuccessEdit()
 
         }, (error) => {
@@ -100,6 +125,8 @@ export class ModulomembreciasComponent implements OnInit {
       // this.filtros=this.datos.filter(x=>x.nomalu==y)
       // console.log(y)
     }
+ 
+       
 
     onKey(event:string) { 
       this.fil=this.filtros.filter(element=>element.nomalu + " " + element.apealu==event)

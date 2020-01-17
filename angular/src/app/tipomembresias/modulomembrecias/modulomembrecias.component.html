@@ -27,7 +27,7 @@
                     <form>
                       <mat-form-field floatLabel="never"  style="width:100%; text-align: center;">
                         <input placeholder="Buscar..." type="text" placeholder="busqueda" aria-label="Number" matInput [formControl]="myControl"
-                        [matAutocomplete]="auto" [ngModel]='model' (ngModelChange)='onKey($event)'>
+                        [matAutocomplete]="auto" ([ngModel])='model' (ngModelChange)='onKey($event)'>
                       </mat-form-field>
 
                       <!-- <input type="text" placeholder="busqueda" aria-label="Number" matInput [formControl]="myControl"
@@ -52,35 +52,72 @@
                                     {{ data.nomalu}} {{data.apealu}}
                                 </mat-panel-title>
                                 <mat-panel-description class="col-md-4">
+                                  <span  class="text-primary" style="margin-right: 20px;">
+                                    <mat-icon>monetization_on</mat-icon> Total {{data.total | currency :'MXN'}}
+                                </span>
                                     <span [style.display.none]="data.restante == 0 ? '' : 'none'" class="text-warning"  >
-                                        <mat-icon>warning</mat-icon> Debe {{data.restante | currency}}
+                                        <mat-icon>warning</mat-icon> Debe {{data.restante | currency :'MXN'}}
                                     </span>
                                     <span [style.display.none]="data.restante > 0 ? '' : 'none'"  class="text-success">
                                         <mat-icon>verified_user</mat-icon>Pagado
                                     </span>
                                 </mat-panel-description>
                             </mat-expansion-panel-header>
-                            <button [style.display.none]="data.restante == 0 ? '' : 'none'" (click)="editMem(i,data.idmalu,data.nombre, data.fechainicio, data.adelanto, data.restante, data.total,data.nombres
+                            <button [style.display.none]="data.restante == 0 ? '' : 'none'" (click)="editMem(i,data.idmalu,data.nombre, data.fechainicio, data.adelanto, data.restante, data.total,data.nombres,data.nomalu,data.apealu
                       )" style="padding-left:90%;" mat-icon-button class="text-success">
                                 <mat-icon aria-label="Edit">edit</mat-icon>
                             </button>
-                            <p style="padding-left:5px;">
+                            <div class="col-xl-12 row">
+                                <div class="col-xl-4">
+                                  <p style="padding-left:5px;">
                                 
-                            Membrecia :<b> {{data.nombres}}</b>
-                            <br>
-                            Clases disponibles<b> {{data.clases}}</b>
-                            <br>
-                            Fecha Inicio: <b>{{data.fechainicio}}</b>
-                            <br>
-                            Adelanto: <b>${{data.adelanto}}.00</b>
-                            <br>
-                            Restante: <b>${{data.restante}}.00</b>
-                            <br>
-                            Total: <b>${{data.total}}.00</b>
-                            <br>
-                            Tipo de pago: <b>{{data.nombre}}</b>
-                          </p>
-                        
+                                    Membrecia :<b> {{data.nombres}}</b>
+                                    <br>
+                                    Clases disponibles<b> {{data.clases}}</b>
+                                    <br>
+                                    Fecha Inicio: <b>{{data.fechainicio}}</b>
+                                    <br>
+                                    Adelanto: <b>{{data.adelanto | currency :'MXN'}}</b>
+                                    <br>
+                                    Restante: <b>{{data.restante | currency :'MXN'}}.00</b>
+                                    <br>
+                                    Total: <b>{{data.total | currency :'MXN'}}</b>
+                                    <br>
+                                    Tipo de pago: <b>{{data.nombre}}</b>
+                                  </p>
+                                </div>
+                                <div class="col-xl-8">
+                                  <mat-expansion-panel *ngFor="let h of historial ; let i = index;"  >
+                                    <mat-expansion-panel-header *ngIf="'Membrecia del alumno: '+data.nomalu +' '+data.apealu==h.concepto;else elseBlock;">
+                                    <mat-panel-title class="col-md-8" >
+                                      Historial 
+                                    </mat-panel-title>
+
+                                  <mat-panel-description class="col-md-4">
+                                    <span  class="text-primary" style="margin-right: 20px;">
+                                      <mat-icon>monetization_on</mat-icon>  Adelanto numero: {{i+1}}
+                                      </span>
+                                  </mat-panel-description>
+                                  </mat-expansion-panel-header>
+                                  <ng-template  style="display: none;" #elseBlock></ng-template>
+
+                                  <!-- <p *ngFor="let h of historial ; let i = index"> -->
+                                    <!-- <b *ngIf="'Membrecia del alumno: '+data.nomalu +' '+data.apealu==h.concepto; let i = index" > -->
+                                      <h2>Pago numero {{i+1}}</h2> 
+                                      <br>
+                                                <b>{{h.concepto}}</b>
+                                                <br>
+                                      Total:    <b>{{h.total}}</b>
+                                      <br>
+                                      Adelanto:<b>{{h.suma}}</b>
+                                      <br>
+                                      Restante:<b>{{h.total - h.suma}}</b>
+                                      
+
+                                      <br>
+                                  </mat-expansion-panel>
+                                </div>
+                            </div>
                             <p style="text-align: right;">Datos de Contacto :
                               <br>
                             Correo alumno : <b>{{data.correoalu}}</b>

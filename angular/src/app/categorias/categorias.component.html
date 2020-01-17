@@ -8,12 +8,12 @@
 <div class="row">
 
         <div class="col-xl-6 col-md-12">
-                <div class="card bg-danger mini-stat position-relative">
+                <div class="card bg-white mini-stat position-relative">
                     <div class="card-body">
                         <div class="mini-stat-desc">
-                            <h6 class="text-uppercase verti-label text-white-50"> EGRESOS</h6>
-                            <div class="text-white">
-                                <h6 class="text-uppercase mt-0 text-white-50">EGRESOS DEL DIA  </h6>
+                            <h6 class="text-uppercase verti-label text-black-50"> EGRESOS</h6>
+                            <div class="text-black">
+                                <h6 class="text-uppercase mt-0 text-black-50">EGRESOS DEL DIA  </h6>
                                 <h1 >$ {{total}} </h1>
                                 <!-- <br>
                                 <br>
@@ -53,12 +53,12 @@
                     </div>
                 </div>
             </div><div class="col-xl-6 col-md-12">
-                <div class="card bg-success mini-stat position-relative">
+                <div class="card bg-white mini-stat position-relative">
                     <div class="card-body">
                         <div class="mini-stat-desc">
-                            <h6 class="text-uppercase verti-label text-white-50"> INGRESOS</h6>
-                            <div class="text-white">
-                                <h6 class="text-uppercase mt-0 text-white-50"> INGRESOS DEL DIA </h6>
+                            <h6 class="text-uppercase verti-label text-black-50"> INGRESOS</h6>
+                            <div class="text-black">
+                                <h6 class="text-uppercase mt-0 text-black-50"> INGRESOS DEL DIA </h6>
                                 <!-- <h1  *ngFor="let c of sumaingre">$ {{c.total}} </h1> -->
                                 <h1 >$ {{resultado}} </h1>
                                 <!-- <br>
@@ -73,7 +73,7 @@
                                                 <tr>
                                                     <td>Concepto</td>
                                                     <td>Fecha</td>
-                                                    <td>Categoria</td>
+                                                    <!-- <td>Categoria</td> -->
                                                     <td>Monto</td>
                                                     <td>Adelanto</td>
                                                     <td>Nombre</td>
@@ -82,7 +82,7 @@
                                             
                                                 <td>{{c.concepto}}</td>
                                                 <td>{{c.fecha}}</td>
-                                                <td>{{c.Categoria}}</td>
+                                                <!-- <td>{{c.Categoria}}</td> -->
                                                 <td>{{c.monto}}</td>
                                                 <td>{{c.suma}}</td>
                                                 <td>{{c.nombre}}</td>
@@ -415,12 +415,12 @@
 
       
       <div class="col-xl-6 col-md-12">
-        <div class="card bg-warning mini-stat position-relative">
+        <div class="card bg-white mini-stat position-relative">
             <div class="card-body">
                 <div class="mini-stat-desc">
-                    <h4 class="text-uppercase verti-label text-white-50"> Pendientes</h4>
-                    <div class="text-white">
-                            <h6 class="text-uppercase mt-0 text-white-50"> Pendientes</h6>
+                    <h4 class="text-uppercase verti-label text-black-50"> Pendientes</h4>
+                    <div class="text-black">
+                            <h6 class="text-uppercase mt-0 text-black-50"> Pendientes</h6>
                             <h1 >Pendientes</h1>
                        
 
@@ -435,17 +435,24 @@
                                             <td>Restante</td>
                                             <td>Editar</td>
                                         </tr>
-                                    <tr *ngFor="let c of pendiente" >
+                                    <tr *ngFor="let c of pendiente"  >
                                     
                                         <td>{{c.concepto}}</td>
                                         <td>{{c.fecha}}</td>
                                         <td>{{c.monto}}</td>
                                         <td>{{c.adelanto}}</td>
                                         <td>{{c.restante}}</td>
-                                        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" (click)="update(c.idCont,c.concepto,c.fecha,c.adelanto,
+                                        <td  *ngIf="c.idcate">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" (click)="update(c.idCont,c.concepto,c.fecha,c.adelanto,
                                             c.monto,c.restante,c.idcate,c.iduser,c.nombre,c.suma)">
                                             Editar
-                                          </button></td>
+                                          </button>
+                                        </td>
+                                        <td *ngIf="c.idcate == null">
+                                            <button class="btn btn-danger"  [routerLink]="['/pmem']" (click)="redirigir(c.concepto)">
+                                                Membrecias
+                                              </button>
+                                          </td>
                                     </tr>
                                     
                                         

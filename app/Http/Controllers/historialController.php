@@ -7,7 +7,7 @@ use slidecom_robogenius\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 
 
-class ingresosController extends Controller
+class historialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,9 @@ class ingresosController extends Controller
      */
     public function index()
     {
-        $ingresos = DB::SELECT("SELECT c.concepto,c.fecha,c.monto,c.suma,c.nombre,c.idscu FROM contabilidad AS c WHERE c.tipo = 1 ORDER BY idCont DESC ");
-        return $ingresos ;
+        $historial = DB::SELECT("SELECT concepto,monto AS total, adelanto,restante,suma,idscu FROM contabilidad 
+        WHERE concepto LIKE ('Membrecia del alumno%')");
+        return $historial; 
     }
 
     /**

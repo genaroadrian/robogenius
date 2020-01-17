@@ -168,7 +168,6 @@ total:any
   this.categoriaservice.getingresos()
   .subscribe(data=>{
     data=data.filter(x=>x.idscu==this.sucursal)
-    data=data.filter(x=>x.idsuc==this.sucursal)
     console.log(data)
     this.ingresos=data;
 
@@ -215,6 +214,7 @@ total:any
   .subscribe(data=>{
     data=data.filter(x=>x.idscu==this.sucursal)
     this.pendiente=data;
+    console.log(this.pendiente)
   })
 
 
@@ -393,5 +393,9 @@ showErrorEdit() {
   this.toastr.errorToastr('Ocurrio un error.', 'Oops!');
 }
 
+redirigir(x){
+  localStorage.setItem('busqueda' , x);
+
+}
 
 }

@@ -17,4 +17,8 @@ export class PmembresiaService {
   return this.httpClient.get(this.API_ENDPOINT + '/pmem');
   }
 
+  getHistorial(){
+    return this.httpClient.get(this.API_ENDPOINT + '/historialmem');
+    }
+
 }

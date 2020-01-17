@@ -43,10 +43,13 @@ export class ModulomembreciasComponent implements OnInit {
     public toastr: ToastrManager) { }
 
   ngOnInit() {
-   
+   if(this.search.length>0){
     setTimeout (() => {
       this.myControl.setValue(this.search.toLowerCase().slice(22, 28))
    }, 4000);
+   
+   }
+   
 
  
     this.pmem.getHistorial().subscribe(dat=>{

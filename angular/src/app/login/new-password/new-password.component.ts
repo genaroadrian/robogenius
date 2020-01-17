@@ -13,7 +13,7 @@ export class NewPasswordComponent implements OnInit {
 
   /* Visibilidad del formulario hasta que se compruebe la validacion del token */
   tok = "none"
-
+  submit:any
   /* si existe el token */
   exist: any
 

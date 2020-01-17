@@ -150,14 +150,8 @@
                     </button>
 
 
-                    <button mat-icon-button class="text-success" (click)="edit(row)" [routerLink]="['/personalperfil']"
-                      routerLinkActive="router-link-active">
+                    <button mat-icon-button class="text-success" (click)="editHE(element.idesc)" >
                       <mat-icon aria-label="Edit">edit</mat-icon>
-                    </button>
-
-                    <!-- En el boton de eliminar se manda llamar a la funcion y se le envia el id -->
-                    <button mat-icon-button class="text-danger" (click)="delete(i, row)">
-                      <mat-icon aria-label="Delete">delete</mat-icon>
                     </button>
                   </td>
                 </ng-container>
@@ -225,13 +219,11 @@
                     </button>
 
 
-                    <button mat-icon-button class="text-success" (click)="edit(row)" [routerLink]="['/personalperfil']"
-                      routerLinkActive="router-link-active">
+                    <button mat-icon-button class="text-success" (click)="editH(element.iddgru, element.iddia, element.idh)">
                       <mat-icon aria-label="Edit">edit</mat-icon>
                     </button>
 
-                    <!-- En el boton de eliminar se manda llamar a la funcion y se le envia el id -->
-                    <button mat-icon-button class="text-danger" (click)="delete(i, row)">
+                    <button mat-icon-button class="text-danger" (click)="deleteH(element.iddgru)">
                       <mat-icon aria-label="Delete">delete</mat-icon>
                     </button>
                   </td>

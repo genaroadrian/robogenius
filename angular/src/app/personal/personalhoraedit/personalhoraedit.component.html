@@ -1,3 +1,44 @@
-<p>
-  personalhoraedit works!
-</p>
+<h3 mat-dialog-title>Editar horario del personal</h3>
+<mat-progress-bar color="warn" mode='indeterminate' [ngStyle]="{'display':bar}"></mat-progress-bar>
+<form class="formulario" #formControl="ngForm">
+  <div class="row">
+
+    <div class="form col-md-4">
+      <mat-form-field>
+        <mat-label>Seleccione un dia</mat-label>
+        <mat-select name="iddia" required  [(value)]="dia">
+          <mat-option *ngFor="let dia of dias" value="{{dia.iddia}}">{{dia.dia}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+
+    <div class="form col-md-4">
+
+      <mat-form-field>
+
+        <mat-label>Seleccione un horario</mat-label>
+        <mat-select required name="idh" [(value)]="hora">
+          <mat-option *ngFor="let hora of horas" value="{{hora.idh}}">{{hora.hora}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form col-md-4">
+
+      <mat-form-field>
+        <mat-label>{{data.sucursal}}</mat-label>
+        <mat-select required name="ide" disabled>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+  </div>
+
+  <div mat-dialog-actions class="buttons">
+    <button mat-raised-button [disabled]="!formControl.valid" (click)="stopEdit()" routerLinkActive="router-link-active" [mat-dialog-close]="1">
+      Guardar</button>
+
+    <button mat-raised-button (click)="finalizar()"> Finalizar</button>
+  </div>
+</form>

@@ -22,6 +22,9 @@ export class LoginComponent implements OnInit {
         /* Barra de carga */
         barra = "none"
 
+    em:any
+    ps:any
+
   constructor(private router: Router, private service:LoginService,public dialog: MatDialog,
     public toastr: ToastrManager) { }
 

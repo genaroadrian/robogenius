@@ -29,7 +29,8 @@ export class CategoriasComponent implements OnInit {
 
   Categorias  ='';
   sucursal:any;
-
+  check:any;
+  checked:any;
 
 
 

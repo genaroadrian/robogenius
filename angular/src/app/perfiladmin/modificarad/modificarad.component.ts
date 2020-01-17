@@ -14,6 +14,7 @@ import { UserAdminService } from 'src/app/services/user-admin.service';
 
 export class ModificaradComponent implements OnInit {
   hide = true;
+  submit:any;
 
   constructor(public dialogRef: MatDialogRef<UserAdminService>,@Inject(MAT_DIALOG_DATA) public data: any, 
   public perfilService: UserAdminService) { }

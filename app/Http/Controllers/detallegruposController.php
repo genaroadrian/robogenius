@@ -27,4 +27,24 @@ class detallegruposController extends Controller
         $dgrupos->save();
         echo json_encode($dgrupos);
     }
+
+    public function update(Request $request, $id)
+    {
+        $dg = Detallegrupos::find($id);
+		$dg->idd = $request->idd;
+        $dg->idh = $request->idh;
+        $dg->idp = $request->idp;
+        $dg->idesc = $request->idesc;
+        $dg->idsuc = $request->idsuc;
+        $dg->save();
+        return $dg;
+    }
+
+    public function destroy($id)
+    {
+        $dg = Detallegrupos::find($id);
+        $dg->activo = 0;
+        $dg->save();
+        return $dg;
+    }
 }

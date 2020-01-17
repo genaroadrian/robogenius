@@ -69,6 +69,8 @@ export class ModuloComponent implements OnInit {
     desarrollo: null,
     cierre: null,
   }]
+  
+
 
   bcT: string = '#28B463'
   colorT: string = '#FDFEFE'
@@ -160,6 +162,16 @@ export class ModuloComponent implements OnInit {
   /* Interfaz del detalle de clases */
   dClases = []
   planeacion = []
+
+  /* ERROES EN EL NG BUILD */
+  NIVEL
+  GRADO
+  AREA
+  TEMA
+  SUBTEMAS
+  herra 
+  
+
 
 
   constructor(public dialog: MatDialog, private nivelService: NivelService, public toastr: ToastrManager, public notifications: NotificationsService,

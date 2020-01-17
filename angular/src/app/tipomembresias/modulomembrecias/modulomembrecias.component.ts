@@ -35,6 +35,7 @@ export class ModulomembreciasComponent implements OnInit {
 
   filtros:any
   fil:any
+  model: any
 
   constructor(public pmem:PmembresiaService,
     public alumnosService: AlumnosService

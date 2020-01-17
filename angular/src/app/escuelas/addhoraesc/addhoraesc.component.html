@@ -1,0 +1,42 @@
+<h3 mat-dialog-title>Asignaciรณn de grupos</h3>
+<form  class="formulario" #formControl="ngForm">
+  <div class="row">
+
+    <div class="form col-md-4">
+      <mat-form-field>
+        <mat-label>Seleccione un dia</mat-label>
+        <mat-select [(value)]="dia" [(ngModel)]="data.idd" name="iddia" required (selectionChange)="filterHora(dia)">
+          <mat-option *ngFor="let dia of dias" value="{{dia.dia}}">{{dia.dia}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  
+
+  <div class="form col-md-4">
+
+    <mat-form-field>
+
+      <mat-label>Seleccione un horario</mat-label>
+      <mat-select [(value)]="hora" [(ngModel)]="data.idh" required name="idh" (selectionChange)="filterPersonal(hora)">
+        <mat-option *ngFor="let hora of horas" value="{{hora.hora}}">{{hora.hora}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="form col-md-4">
+    <mat-form-field>
+      <mat-label>Seleccione un personal</mat-label>
+      <mat-select [(value)]="persona" [(ngModel)]="data.idp" name="idgrupo" required>
+        <mat-option *ngFor="let per of personal" value="{{per.iddgru}}">{{per.nombre}} {{per.apellidos}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</div>
+  
+  <div mat-dialog-actions class="buttons">
+    <button mat-raised-button (click)="stopEdit()" [disabled]="!formControl.valid" routerLinkActive="router-link-active" [mat-dialog-close]="1">
+      Guardar</button>
+
+    <button mat-raised-button (click)="finalizar()"> Finalizar</button>
+  </div>
+</form>

@@ -171,6 +171,8 @@ import { PersonalhoraaddComponent } from './personal/personalhoraadd/personalhor
 import { PersonalhoraeditComponent } from './personal/personalhoraedit/personalhoraedit.component';
 import { PersonalhoradeleteComponent } from './personal/personalhoradelete/personalhoradelete.component';
 import { EditMemComponent } from './escuelas/edit-mem/edit-mem.component';
+import { AddhoraescComponent } from './escuelas/addhoraesc/addhoraesc.component';
+import { EdithoraescComponent } from './escuelas/edithoraesc/edithoraesc.component';
 
 registerLocaleData(localeESMX);
 
@@ -354,7 +356,9 @@ const routes: Route[]=[
     PersonalhoraaddComponent,
     PersonalhoraeditComponent,
     PersonalhoradeleteComponent,
-    EditMemComponent
+    EditMemComponent,
+    AddhoraescComponent,
+    EdithoraescComponent
 
   ],
   imports: [
@@ -527,7 +531,9 @@ const routes: Route[]=[
     PersonalhoraeditComponent,
     PersonalhoradeleteComponent,
     /* Modales del perfil de las escuelas */
-    EditMemComponent
+    EditMemComponent,
+    AddhoraescComponent,
+    EdithoraescComponent
 
 
   ],

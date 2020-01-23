@@ -15,7 +15,7 @@ class panelMembreciaController extends Controller
      */
     public function index()
     {
-        $pendiente = DB::SELECT("SELECT m.idmalu,m.adelanto,m.restante,m.total,m.fechainicio,m.meses,m.idsuc,m.fechainicio,
+        $pendiente = DB::SELECT("SELECT m.idmalu,m.adelanto,m.restante,m.total,m.fechainicio,m.fechatermino,m.meses,m.idsuc,m.fechainicio,
         a.nomalu,a.apealu,a.telmad,a.telpad,a.correoalu,a.nompad,a.nommad,a.apemad,a.apepad,
         tm.nombre as nombres,tm.costo,tm.clases,
         tpp.nombre

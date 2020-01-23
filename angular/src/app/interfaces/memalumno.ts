@@ -6,6 +6,8 @@ export interface Memalumnos {
     adelanto: number,
     restante: number,
     total: number,
+    fechaini: any,
+    fechater:any,
     idsuc:string;
 
 }

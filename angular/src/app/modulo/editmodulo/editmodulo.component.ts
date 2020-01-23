@@ -346,7 +346,7 @@ export class EditmoduloComponent implements OnInit {
     var rows1 = [];
     var rows2 = [];
     var rows3 = [];
-    img.src = 'assets/images/logola.png'
+    img.src = 'assets/images/rg.png'
     docs.addImage(img, 'png', 159,4, 40,10)
     docs.setFontSize(14);
     docs.addFont("Arimo-Regular.ttf", "Arimo", "normal");

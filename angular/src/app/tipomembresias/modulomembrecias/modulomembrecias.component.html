@@ -14,9 +14,14 @@
                        </div>
                           <div class="col-xl-2 col-md-12">
                              <h1 style="text-align: center;">Historial de pagos</h1>
-                             
-
-                           </div>
+                             <div class="class text-center">
+                               
+                              <mat-radio-group aria-label="Select an option" class="text-center">
+                              <mat-radio-button value="1" (click)="deben(1)"> Pagado</mat-radio-button>
+                              <mat-radio-button value="2" (click)="deben(2)"> Deben </mat-radio-button>
+                              <mat-radio-button value="3" (click)="deben(3)"> Todos </mat-radio-button>
+                            </mat-radio-group>
+                            </div>
                          <div class="col-xl-5 col-md-12 ">
                          </div>
                      </div>
@@ -26,7 +31,7 @@
                     </mat-form-field> -->
                     <form>
                       <mat-form-field floatLabel="never"  style="width:100%; text-align: center;">
-                        <input placeholder="Buscar..." type="text" placeholder="busqueda" aria-label="Number" matInput [formControl]="myControl"
+                        <input id="busq" #busq placeholder="Buscar..." type="text" placeholder="busqueda" aria-label="Number" matInput [formControl]="myControl"
                         [matAutocomplete]="auto" ([ngModel])='model' (ngModelChange)='onKey($event)'>
                       </mat-form-field>
 
@@ -37,6 +42,7 @@
                           {{option}}
                         </mat-option>
                       </mat-autocomplete>
+                     
                     </form>
 
 
@@ -79,7 +85,7 @@
                                     <br>
                                     Adelanto: <b>{{data.adelanto | currency :'MXN'}}</b>
                                     <br>
-                                    Restante: <b>{{data.restante | currency :'MXN'}}.00</b>
+                                    Restante: <b>{{data.restante | currency :'MXN'}}</b>
                                     <br>
                                     Total: <b>{{data.total | currency :'MXN'}}</b>
                                     <br>
@@ -90,12 +96,12 @@
                                   <mat-expansion-panel *ngFor="let h of historial ; let i = index;"  >
                                     <mat-expansion-panel-header *ngIf="'Membrecia del alumno: '+data.nomalu +' '+data.apealu==h.concepto;else elseBlock;">
                                     <mat-panel-title class="col-md-8" >
-                                      Historial 
+                                      Historial de pagos
                                     </mat-panel-title>
 
                                   <mat-panel-description class="col-md-4">
-                                    <span  class="text-primary" style="margin-right: 20px;">
-                                      <mat-icon>monetization_on</mat-icon>  Adelanto numero: {{i+1}}
+                                    <span  class="text-success" style="margin-right: 20px;">
+                                      <mat-icon>monetization_on</mat-icon>  Adelanto:{{h.suma}}
                                       </span>
                                   </mat-panel-description>
                                   </mat-expansion-panel-header>
@@ -103,7 +109,7 @@
 
                                   <!-- <p *ngFor="let h of historial ; let i = index"> -->
                                     <!-- <b *ngIf="'Membrecia del alumno: '+data.nomalu +' '+data.apealu==h.concepto; let i = index" > -->
-                                      <h2>Pago numero {{i+1}}</h2> 
+                                      <h2>Detalles de Pago</h2> 
                                       <br>
                                                 <b>{{h.concepto}}</b>
                                                 <br>

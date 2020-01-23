@@ -266,8 +266,12 @@ contabilidad()
     this.showErrorEdit();
   });
   let doc = new jsPDF();
-  doc.text('Robogenius',15,14);
-  doc.text(150,14, 'Fecha: ' + this.cont.fecha);
+  var img = new Image()
+
+  img.src = 'assets/images/rg.png'
+  doc.addImage(img, 'png', 159,4, 40,20)
+
+  doc.text(15,14, 'Fecha: ' + this.cont.fecha);
 
   if (this.cont.restante==0){
     doc.text(15,50, 'Responsable: ' + this.cont.nombre);
@@ -369,8 +373,11 @@ y(){
   }); 
    
   let doc = new jsPDF();
-  doc.text('Robogenius',15,14);
-  doc.text(150,14, 'Fecha: ' + this.editar.fecha);
+  var img = new Image()
+
+  img.src = 'assets/images/rg.png'
+  doc.addImage(img, 'png', 159,4, 40,20)
+  doc.text(15,14, 'Fecha: ' + this.editar.fecha);
   doc.text(15,50, 'Responsable: ' + this.editar.nombre);
   doc.text(15,30, 'Concepto : ' + this.editar.Concepto);
   doc.text(15,40, 'Total: $' + this.editar.monto);

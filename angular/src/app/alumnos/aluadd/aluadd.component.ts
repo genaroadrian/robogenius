@@ -26,6 +26,8 @@ import { AddtipomemComponent } from 'src/app/tipomembresias/addtipomem/addtipome
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { globalVarimg } from '../../services/global.service';
 import {CategoriaService} from 'src/app/services/categoria.service';
+import * as jsPDF from 'jspdf';
+
 
 
 
@@ -161,6 +163,8 @@ export class AluaddComponent implements OnInit {
 
   idsuc: any
 
+  nombredelamembresia:any
+
 
   //  Display y label hora y personal
   spinerh = "none";
@@ -180,7 +184,7 @@ export class AluaddComponent implements OnInit {
 
   viewesc = 'none'
 
-
+  tipodepago:any;
   /* --------------------------- Declaración de interfaces --------------------------- */
 
   // Horas obtenidas de laravel
@@ -241,10 +245,13 @@ export class AluaddComponent implements OnInit {
       adelanto: null,
       restante: null,
       total: null,
-      idsuc:null
+      idsuc:null,
+      fechaini:null,
+      fechater:null
     }
 
-
+    fechaini:any;
+    fechater:any;
 
   // Interfaz declarada para todas las membresias
   _allMembresias: Tipomembresia[];
@@ -482,8 +489,9 @@ export class AluaddComponent implements OnInit {
   }
 
   // Guarda el tipo de membresia escogido
-  saveMem(idtmem, costo, clases) {
+  saveMem(idtmem, costo, clases,nombre) {
     // console.log(idtmem);
+    this.nombredelamembresia=nombre
     this.membresiaview = "none";
     this.tipopagoview = "";
     this.totalpago = costo;
@@ -513,6 +521,8 @@ export class AluaddComponent implements OnInit {
     this.malu.adelanto = this.adelanto;
     this.malu.restante = this.totalpago - this.adelanto;
     this.malu.total = this.totalpago;
+    this.malu.fechaini=this.fechaini
+    this.malu.fechater=this.fechater
     this.cont.status=1
     this.cont.Concepto="Membrecia del alumno: " + this.alumno.nomalu + " " + this.alumno.apealu;
     // this.cont.fecha=now
@@ -522,8 +532,9 @@ export class AluaddComponent implements OnInit {
     this.cont.suma=this.malu.adelanto
     this.cont.idsuc=this.idsuc
     this.cont.idscu=this.idsuc
+    this.cont.fecha=this.fechaini
 
-  console.log(this.cont)
+  // console.log(this.cont)
     this.cat.savemem(this.cont)
     .subscribe((data) =>{
       console.log(data)
@@ -540,6 +551,179 @@ export class AluaddComponent implements OnInit {
       this.showErrorSave();
       console.log(error);
     });
+
+    this.pdf()
+
+  }
+  pdf(){
+
+    if(this.alumno.cronica==null){
+      this.alumno.cronica="NINGUNA"
+    }
+    if(this.alumno.medicacion==null){
+      this.alumno.medicacion="NINGUNA"
+    }
+    if(this.alumno.alergias==null){
+      this.alumno.alergias="NINGUNA"
+    }
+    if(this.alumno.otro==null){
+      this.alumno.otro="NINGUNA"
+    }
+    if(this.malu.idtpago==1){
+      this.tipodepago="Efectivo";
+    }
+    if(this.malu.idtpago==2){
+      this.tipodepago="Paypal";
+    }
+
+    let docs = new jsPDF();
+    var img = new Image()
+    var imgs = new Image()
+    img.src = 'assets/images/rg.png';
+
+    // imgs.src = this.API_ENDPOINT+'perfiles/Alumnos/default.jpg';
+
+    docs.addImage(img, 'png', 159,4, 40,20)
+    docs.setFontSize(14);
+    docs.addFont("Arimo-Regular.ttf", "Arimo", "normal");
+    docs.setFontType("normal");
+    docs.text(70,20, 'FORMATO DE INSCRIPCIÓN');
+    docs.text(10,30, 'Datos del alumno');
+    docs.setDrawColor(255, 0, 0);
+    docs.line(10,32, 200, 32);
+    docs.setFontSize(11);
+    docs.text(20,40, 'Nombre del alumno: '+ this.alumno.nomalu+" "+ this.alumno.apealu);
+    docs.text(20,50, 'Fecha de nacimiento: '+ this.alumno.fnacalu);
+    docs.text(80,60, 'Teléfono : '+ this.alumno.telalu);
+    docs.setFontSize(10);
+    docs.text(20,60, 'Correo : '+ this.alumno.correoalu);
+    docs.setFontSize(11);
+    docs.text(90,50, 'Sexo : '+ this.alumno.sexoalu);
+    docs.text(20,70, 'Domicilio : '+ this.alumno.domalu);
+  // ----------------------MEDICACION DEL ALUMNO ----------------------------
+    docs.setFontSize(14);
+    docs.text(10,80, 'Ficha medica del alumno');
+    docs.setFontSize(11);
+    docs.setDrawColor(255, 0, 0);
+    docs.line(10,82, 200, 82);
+    docs.text(20,90, 'Enfermedad cronica : '+ this.alumno.cronica);
+    docs.text(90,90, 'Medicacion : '+ this.alumno.medicacion);
+    docs.text(20,100, 'Alergias : '+ this.alumno.alergias);
+    docs.text(90,100, 'Otro : '+ this.alumno.otro);
+  // ----------------------INFO DE SISTEMA----------------------------
+    docs.setFontSize(14);
+    docs.text(10,110, 'Acceso al sistema');
+    docs.setFontSize(11);
+    docs.setDrawColor(255, 0, 0);
+    docs.line(10,112, 200, 112);
+    docs.text(20,120, 'Usuario : '+ this.alumno.usuarioalu);
+    docs.text(100,120, 'Contraseña : '+ this.alumno.pswalu);
+  // ----------------------INFO DE PADRES----------------------------
+    docs.setFontSize(14);
+    docs.text(10,130, 'Informacion de los padres');
+    docs.setFontSize(11);
+    docs.setDrawColor(255, 0, 0);
+    docs.line(10,132, 200, 132);
+    docs.setFontSize(13);
+    docs.text(20,140, 'MADRE ');
+    docs.setFontSize(11);
+    docs.text(20,150, 'Nombre : '+ this.alumno.nommad + this.alumno.apemad);
+    docs.text(20,160, 'Telefono : '+ this.alumno.telmad);
+    docs.text(20,170, 'Ocupacion : '+ this.alumno.ocupmad);
+    var lMargins=20; //left margin in mm
+    var rMargins=110; //right margin in mm
+    var pdfInMMs=210;  // width of A4 in mm
+    var paragraphs="Direccion: "+this.alumno.dommad;
+    var liness =docs.splitTextToSize(paragraphs, (pdfInMMs-lMargins-rMargins));
+    docs.text(lMargins,180,liness);
+    docs.setFontSize(13);
+    docs.text(110,140, 'PADRE ');
+    docs.setFontSize(11);
+    docs.text(110,150, 'Nombre : '+ this.alumno.nompad + this.alumno.apepad);
+    docs.text(110,160, 'Telefono : '+ this.alumno.telpad);
+    docs.text(110,170, 'Ocupacion : '+ this.alumno.ocupad);
+    var lMargin=110; //left margin in mm
+    var rMargin=20; //right margin in mm
+    var pdfInMM=210;  // width of A4 in mm
+    var paragraph="Direccion: "+this.alumno.dompad;
+    var lines =docs.splitTextToSize(paragraph, (pdfInMM-lMargin-rMargin));
+    docs.text(lMargin,180,lines);
+    // ----------------------Membresia ----------------------------
+    docs.setFontSize(14);
+    docs.text(10,200, 'Membresia');
+    docs.setFontSize(11);
+    docs.setDrawColor(255, 0, 0);
+    docs.line(10,202, 200, 202);
+    var lMargin1=20; //left margin in mm  
+    var rMargin1=20; //right margin in mm
+    var pdfInMM1=210;  // width of A4 in mm
+    var paragraph1="La membrecia seleccionada es : "+this.nombredelamembresia+" la cual tiene un costo de $."+this.totalpago+".00 y cuenta con Crendencial del alumno,Credencial de papá autorizado, Uso de todo el material didáctico, Acceso al área de manufactura con supervisor del asesor, Ademas cuenta con "+this.tclases+" clases por semana.";
+    var lines1 =docs.splitTextToSize(paragraph1, (pdfInMM1-lMargin1-rMargin1));
+    docs.text(lMargin1,210,lines1);
+    // ----------------------Membresia ----------------------------
+    docs.setFontSize(14);
+    docs.text(10,230, 'Pago');
+    docs.setFontSize(11);
+    docs.setDrawColor(255, 0, 0);
+    docs.line(10,232, 200, 232);
+    docs.text(20,240, 'Tipo de pago : '+ this.tipodepago);
+    docs.text(20,250, 'Fecha de inicio  : '+ this.malu.fechaini);
+    docs.text(110,250, 'Fecha de termino : '+ this.malu.fechater);
+    docs.text(20,260, 'Total : $.'+ this.malu.total+".00");
+    docs.text(20,270, 'Adelanto $: '+ this.malu.adelanto+".00");
+    docs.text(20,280, 'Restante $: '+ this.malu.restante+".00");
+    docs.setFontSize(13);
+    docs.text(70,290, 'GRACIAS POR SU COMPRA ');
+    // ---------------------nueva pagina-----------------------------------
+    docs.addPage();    
+    docs.addImage(img, 'png', 159,4, 40,20)
+    docs.setFontSize(14);
+    docs.addFont("Arimo-Regular.ttf", "Arimo", "normal");
+    docs.setFontType("normal");
+    docs.text(70,20, 'FORMATO DE INSCRIPCIÓN');
+    docs.text(10,30, 'Documentos solicitados');
+    docs.setDrawColor(255, 0, 0);
+    docs.line(10,32, 200, 32);
+    docs.setFontSize(12);
+    docs.text(20,40, 'Acta de nacimiento (copia). ');
+    docs.text(140,40, '_________/_______/_______');
+    docs.setFontSize(8);
+    docs.text(150,44, '   Dia   /  Mes  /  Año  ');
+    docs.setFontSize(12);
+    docs.text(20,50, 'Identificación oficial del Padre o Tutor (copia).');
+    docs.text(140,50, '_________/_______/_______');
+    docs.setFontSize(8);
+    docs.text(150,54, '   Dia   /  Mes  /  Año  ');
+    docs.setFontSize(12);
+    docs.text(20,60, 'Comprovante de domicilio (copia). ')
+    docs.text(140,60, '_________/_______/_______');
+    docs.setFontSize(8);
+    docs.text(150,64, '   Dia   /  Mes  /  Año  ');
+    docs.setFontSize(12);
+    docs.text(20,70, 'Dos fotografias tamaño infantil del niño. ');
+    docs.text(140,70, '_________/_______/_______');
+    docs.setFontSize(8);
+    docs.text(150,74, '   Dia   /  Mes  /  Año  ');
+// -------------------------aviso-----------------------------------
+    docs.setFontSize(14);
+    docs.text(10,90, 'Aviso');
+    docs.setFontSize(11);
+    docs.setDrawColor(255, 0, 0);
+    docs.line(10,92, 200, 92);
+    var lMargin1=20; //left margin in mm  
+    var rMargin1=20; //right margin in mm
+    var pdfInMM1=210;  // width of A4 in mm
+    var paragraph1="La persona solicitante acepta haber recibido el reglamento de ROBOGENIUS ademas complir y respetar los terminos y condiciones del mismo. Acepto y doy consentimiento para que ROBOGENIUS y sus alidos realicen publicacioes en medios digitales e impresos de fotografías y videos del alumno trabajando durante las clases, así como enentrevistas con medios de comunicación.";
+    var lines1 =docs.splitTextToSize(paragraph1, (pdfInMM1-lMargin1-rMargin1));
+    docs.text(lMargin1,100,lines1);
+    docs.setFontSize(12);
+    docs.text(20,123, '  Por favor indique  SI(  ) o NO(  ). ');
+    docs.text(60,270, '____________________________________');
+    docs.text(77,276, 'Nombre y firma del solicitante.');
+    docs.save(this.alumno.nomalu+this.alumno.apealu+'.pdf');
+
+
+
   }
 
   // Regresa a la vista de tipo de pagos

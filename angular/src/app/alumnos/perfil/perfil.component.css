@@ -1,5 +1,9 @@
-
-
+.payp, .tarj, .tran,.efec
+{
+  width: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
+}   
     .arrow-container {
       display: block;
       width: 100px;

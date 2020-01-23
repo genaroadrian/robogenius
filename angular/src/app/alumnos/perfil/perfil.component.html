@@ -98,13 +98,328 @@
                 </ng-template>
                 <div class="container">
                     <mat-accordion>
-                        <h1 style="text-align: center;">Historial de pagos</h1>
+                        
+
+                        <h1 style="text-align: center;" [ngStyle]="{display:nmembrecia}">Historial de pagos</h1>
+                        <h1 style="text-align: center;" [ngStyle]="{display:mostramem}">Renovar membresia</h1>
                         <div class="row">
+
                            
                         </div>
+                        <div class="col-xl-12 row" [ngStyle]="{display:mostramem}" *ngFor="let mem of membresia; let i = index"  >
+                            <div class="col-xl-4" *ngIf="i==0">
+                                <p>
+                                    El alumno <b>{{datos.nomalu}} {{datos.apealu}}</b> tiene una membrecia <b>{{mem.nommem}}</b>
+                                    la cual tiene <b>{{mem.clases}}</b> clases por semana
+                                    ¿Desea conservar esta misma membrecia ?
+                                    <br>
+                                    <span *ngFor="let xxx of preciotmembresia;">
+                                      <div *ngIf="xxx.nombre==mem.nommem" >
+                                        <h3 >${{xxx.costo}}.00</h3> 
+                                        No<mat-slide-toggle (change)="sino($event)" (click)="sii(xxx.costo,xxx)" color="warn">Si</mat-slide-toggle>
+
+                                      </div>
+                                    </span>
+                                    
+                                </p>
+                            </div>
+                            <div class="col-xl-8" [ngStyle]="{display:formulario}" *ngIf="i==0">
+                              <br>
+                              <div class="row col-xl-12">
+                                <div class="col-xl-12 " [ngStyle]="{display:tipoimg}">
+                                  <h1 style="text-align: center;">Elige tu tipo de pago</h1>
+                                  <img src="assets/img/efectivo.png" alt="" class="efec" (click)="efectivo(1)">Efectivo
+                                  <img src="assets/img/paypal.png" alt="" class="payp" (click)="paypal(2)">Paypal
+                                  <img src="assets/img/tarjeta.png" alt="" class="tarj">Tarjeta
+                                  <img src="assets/img/transferencia.png" alt="" class="tran">Transferencia
+                    
+                                  <div class="row col-xl-12">
+                                    <button class="btn btn-danger" style="margin-left: 49%;" (click)="returntmem()"
+                                      routerLinkActive="router-link-active">Regresar</button>
+                                  </div>
+                                </div>
+                    
+                              </div>
+                              <div class=" col-xl-12">
+                                <div [ngStyle]="{display:efec}" class="col-xl-12 ">
+                                  <h1 style="text-align: center;">Pago por efectivo</h1>
+                                  <mat-form-field class="form-control" style="border:none;">
+                                    <input matInput [(ngModel)]="adelanto" placeholder="Adelanto" type="number" class="example-right-align">
+                                    <span matPrefix>$&nbsp;</span>
+                                    <span matSuffix>.00</span>
+                                  </mat-form-field >
+                                  <br>
+                                  <mat-form-field class="form-control" style="border:none;" >
+                                    <input matInput [(ngModel)]="totalpago - adelanto" placeholder="Restante " disabled type="number"
+                                      class="example-right-align">
+                                    <span matPrefix>$&nbsp;</span>
+                                    <span matSuffix>.00</span>
+                                  </mat-form-field>
+                                  <br>
+                                  
+                                  <mat-form-field class="form-control" style="border:none;">
+                                    <input matInput [(ngModel)]="totalpago" placeholder="Total " disabled type="number"
+                                      class="example-right-align">
+                                    <span matPrefix>$&nbsp;</span>
+                                    <span matSuffix>.00</span>
+                                  </mat-form-field>
+                                  <br>
+
+                                  <mat-form-field class="form-control" style="border:none;">
+                                    <input [(ngModel)]="malu.fechaini" matInput placeholder="Fecha de inicio de la membresia" type="date"
+                                      name="fnacalu" required>
+                                    <mat-icon matSuffix class="text-danger">today</mat-icon>
+                                  </mat-form-field>
+                                  <br>
+                      
+                                  <mat-form-field  class="form-control" style="border:none;">
+                                    <input [(ngModel)]="malu.fechater" matInput placeholder="Fecha de termino de la membresia" type="date"
+                                      name="fnacalu" required>
+                                    <mat-icon matSuffix class="text-danger">today</mat-icon>
+                                  </mat-form-field>
+                                  <br>
+
+                                  <mat-slide-toggle color="warn" (change)="inscripcion($event)">Agregar inscripción
+                                    (${{anualidad}}.00)
+                                  </mat-slide-toggle>
+                                  <br>
+                                  
+                                  <div class="row">
+                                    <button class="btn btn-success" (click)="actmem()" routerLinkActive="router-link-active"
+                                      style="margin-left: 44%; margin-right: 40px">Siguiente</button>
+                                    <!-- <button class="btn btn-danger" (click)="returntpago()" routerLinkActive="router-link-active"
+                                      tabindex="-1">
+                                      Regresar</button> -->
+                                  </div>
+                                </div>
+                              </div>
+                              <div [ngStyle]="{display:payp}" class="col-xl-12">
+                                <h1 style="text-align: center;">Pago por paypal</h1>
+                                <mat-form-field>
+                                  <input matInput [(ngModel)]="adelanto" placeholder="Adelanto" type="number" class="example-right-align">
+                                  <span matPrefix>$&nbsp;</span>
+                                  <span matSuffix>.00</span>
+                                </mat-form-field>
+                    
+                                <mat-form-field>
+                                  <input matInput [(ngModel)]="totalpago - adelanto" placeholder="Restante " disabled type="number"
+                                    class="example-right-align">
+                                  <span matPrefix>$&nbsp;</span>
+                                  <span matSuffix>.00</span>
+                                </mat-form-field>
+                    
+                                <mat-form-field>
+                                  <input matInput [(ngModel)]="totalpago" placeholder="Total " disabled type="number"
+                                    class="example-right-align">
+                                  <span matPrefix>$&nbsp;</span>
+                                  <span matSuffix>.00</span>
+                                </mat-form-field>
+                                <mat-form-field>
+                                  <input [(ngModel)]="fechaini" matInput placeholder="Fecha de inicio de la membresia" type="date"
+                                    name="fnacalu" required>
+                                  <mat-icon matSuffix class="text-danger">today</mat-icon>
+                                </mat-form-field>
+                    
+                                <mat-form-field>
+                                  <input [(ngModel)]="fechater" matInput placeholder="Fecha de termino de la membresia" type="date"
+                                    name="fnacalu" required>
+                                  <mat-icon matSuffix class="text-danger">today</mat-icon>
+                                </mat-form-field>
+                    
+                                <mat-slide-toggle color="warn" (change)="inscripcion($event)">Agregar inscripción
+                                  (${{anualidad}}.00)
+                                </mat-slide-toggle>
+                    
+                                <ngx-paypal [config]="payPalConfig" style="text-align: center;"></ngx-paypal>
+                    
+                                <button class="btn btn-danger" (click)="returntpago()" routerLinkActive="router-link-active" tabindex="-1"
+                                  style="margin-left: 47%; ">
+                                  Regresar</button>
+                    
+                                <div [ngStyle]="{display:tarje}" class="tarje">
+                                  <h1>Pago por tarjeta</h1>
+                    
+                                  <button mat-raised-button (click)="returntpago()" routerLinkActive="router-link-active" tabindex="-1">
+                                    Regresar</button>
+                                </div>
+                                <div [ngStyle]="{display:transfe}" class="transfe">
+                                  <h1>Pago por transferencia|</h1>
+                    
+                                  <button mat-raised-button (click)="returntpago()" routerLinkActive="router-link-active" tabindex="-1">
+                                    Regresar</button>
+                                </div>
+                    
+                                <form action="">
+                    
+                                </form>
+                              </div>
+                                                       
+                                  <button (click)="segmem()" class="btn btn-success text-center">Finalizar</button>
+
+                            </div>
+                            <div class="col-xl-8"  [ngStyle]="{display:tablamembrecia}" *ngIf="i==0">
+                                <div class="center-block scrollmenu">
+                                    <section class=" plan " *ngFor="let mem of _allMembresias">
+                                      <!-- <h1 [ngStyle]="{display:alumnosview}">{{mem.idtmem}}</h1> -->
+                                      <h2 class="plan-title">{{mem.nombre}}</h2>
+                                      
+                                      <ul class="plan-features">
+                                        <li><strong>{{mem.clases}} </strong> Clases a la semana</li>
+                                        <li>Crendencial del alumno</li>
+                                        <li>Credencial de papá autorizado</li>
+                                        <li>Uso de todo el material didáctico</li>
+                                        <li>Acceso al área de manufactura con supervisor del asesor</li>
+                                      </ul>
+                                      
+                                      <h4 class="plan-price">${{mem.costo}}.00 /mes</h4>
+
+                                      <button (click)="saveMem(mem.idtmem, mem.costo, mem.clases)" class="btn btn-success text-center">Empezar
+                                        ahora</button>
+                                    </section>
+                                  </div>
+                            </div>
+                            <div class="col-xl-8 " [ngStyle]="{display:formadepago}" *ngIf="i==0">
+                                <!-- <div class="tipopago col-xl-12 "> -->
+                                <br>
+                                <div class="row col-xl-12">
+                                  <div class="col-xl-12 " [ngStyle]="{display:tipoimg}">
+                                    <h1 style="text-align: center;">Elige tu tipo de pago</h1>
+                                    <img src="assets/img/efectivo.png" alt="" class="efec" (click)="efectivo(1)">Efectivo
+                                    <img src="assets/img/paypal.png" alt="" class="payp" (click)="paypal(2)">Paypal
+                                    <img src="assets/img/tarjeta.png" alt="" class="tarj">Tarjeta
+                                    <img src="assets/img/transferencia.png" alt="" class="tran">Transferencia
+                      
+                                    <div class="row col-xl-12">
+                                      <button class="btn btn-danger" style="margin-left: 49%;" (click)="returntmem()"
+                                        routerLinkActive="router-link-active">Regresar</button>
+                                    </div>
+                                  </div>
+                      
+                                </div>
+                                <div class=" col-xl-12">
+                                  <div [ngStyle]="{display:efec}" class="col-xl-12 ">
+                                    <h1 style="text-align: center;">Pago por efectivo</h1>
+                                    <mat-form-field class="form-control" style="border:none;">
+                                      <input matInput [(ngModel)]="adelanto" placeholder="Adelanto" type="number" class="example-right-align">
+                                      <span matPrefix>$&nbsp;</span>
+                                      <span matSuffix>.00</span>
+                                    </mat-form-field >
+                                    <br>
+                                    <mat-form-field class="form-control" style="border:none;" >
+                                      <input matInput [(ngModel)]="totalpago - adelanto" placeholder="Restante " disabled type="number"
+                                        class="example-right-align">
+                                      <span matPrefix>$&nbsp;</span>
+                                      <span matSuffix>.00</span>
+                                    </mat-form-field>
+                                    <br>
+                                    
+                                    <mat-form-field class="form-control" style="border:none;">
+                                      <input matInput [(ngModel)]="totalpago" placeholder="Total " disabled type="number"
+                                        class="example-right-align">
+                                      <span matPrefix>$&nbsp;</span>
+                                      <span matSuffix>.00</span>
+                                    </mat-form-field>
+                                    <br>
+
+                                    <mat-form-field class="form-control" style="border:none;">
+                                      <input [(ngModel)]="malu.fechaini" matInput placeholder="Fecha de inicio de la membresia" type="date"
+                                        name="fnacalu" required>
+                                      <mat-icon matSuffix class="text-danger">today</mat-icon>
+                                    </mat-form-field>
+                                    <br>
+                        
+                                    <mat-form-field  class="form-control" style="border:none;">
+                                      <input [(ngModel)]="malu.fechater" matInput placeholder="Fecha de termino de la membresia" type="date"
+                                        name="fnacalu" required>
+                                      <mat-icon matSuffix class="text-danger">today</mat-icon>
+                                    </mat-form-field>
+                                    <br>
+
+                                    <mat-slide-toggle color="warn" (change)="inscripcion($event)">Agregar inscripción
+                                      (${{anualidad}}.00)
+                                    </mat-slide-toggle>
+                                    <br>
+                                    
+                                    <div class="row">
+                                      <button class="btn btn-success" (click)="actmem()" routerLinkActive="router-link-active"
+                                        style="margin-left: 44%; margin-right: 40px">Siguiente</button>
+                                      <!-- <button class="btn btn-danger" (click)="returntpago()" routerLinkActive="router-link-active"
+                                        tabindex="-1">
+                                        Regresar</button> -->
+                                    </div>
+                                  </div>
+                                </div>
+                                <div [ngStyle]="{display:payp}" class="col-xl-12">
+                                  <h1 style="text-align: center;">Pago por paypal</h1>
+                                  <mat-form-field>
+                                    <input matInput [(ngModel)]="adelanto" placeholder="Adelanto" type="number" class="example-right-align">
+                                    <span matPrefix>$&nbsp;</span>
+                                    <span matSuffix>.00</span>
+                                  </mat-form-field>
+                      
+                                  <mat-form-field>
+                                    <input matInput [(ngModel)]="totalpago - adelanto" placeholder="Restante " disabled type="number"
+                                      class="example-right-align">
+                                    <span matPrefix>$&nbsp;</span>
+                                    <span matSuffix>.00</span>
+                                  </mat-form-field>
+                      
+                                  <mat-form-field>
+                                    <input matInput [(ngModel)]="totalpago" placeholder="Total " disabled type="number"
+                                      class="example-right-align">
+                                    <span matPrefix>$&nbsp;</span>
+                                    <span matSuffix>.00</span>
+                                  </mat-form-field>
+                                  <mat-form-field>
+                                    <input [(ngModel)]="fechaini" matInput placeholder="Fecha de inicio de la membresia" type="date"
+                                      name="fnacalu" required>
+                                    <mat-icon matSuffix class="text-danger">today</mat-icon>
+                                  </mat-form-field>
+                      
+                                  <mat-form-field>
+                                    <input [(ngModel)]="fechater" matInput placeholder="Fecha de termino de la membresia" type="date"
+                                      name="fnacalu" required>
+                                    <mat-icon matSuffix class="text-danger">today</mat-icon>
+                                  </mat-form-field>
+                      
+                                  <mat-slide-toggle color="warn" (change)="inscripcion($event)">Agregar inscripción
+                                    (${{anualidad}}.00)
+                                  </mat-slide-toggle>
+                      
+                                  <ngx-paypal [config]="payPalConfig" style="text-align: center;"></ngx-paypal>
+                      
+                                  <button class="btn btn-danger" (click)="returntpago()" routerLinkActive="router-link-active" tabindex="-1"
+                                    style="margin-left: 47%; ">
+                                    Regresar</button>
+                      
+                                  <div [ngStyle]="{display:tarje}" class="tarje">
+                                    <h1>Pago por tarjeta</h1>
+                      
+                                    <button mat-raised-button (click)="returntpago()" routerLinkActive="router-link-active" tabindex="-1">
+                                      Regresar</button>
+                                  </div>
+                                  <div [ngStyle]="{display:transfe}" class="transfe">
+                                    <h1>Pago por transferencia|</h1>
+                      
+                                    <button mat-raised-button (click)="returntpago()" routerLinkActive="router-link-active" tabindex="-1">
+                                      Regresar</button>
+                                  </div>
+                      
+                                  <form action="">
+                      
+                                  </form>
+                                </div>
+                      
+                                <!-- ---------------------------------- Fin del formulario de tipo de pagos ---------------------------------- -->
+                      
+                              </div>
+
+                        </div>
+
                         <!-- <span>Renovar membresia antes del </span> -->
                           <!-- <p>Estatus de la membresia: </p> -->
-                        <mat-expansion-panel *ngFor="let mem of membresia; let i = index">
+                          
+                        <mat-expansion-panel *ngFor="let mem of membresia; let i = index" [ngStyle]="{display:nmembrecia}">
                             <mat-expansion-panel-header>
                                 <mat-panel-title class="col-md-8">
                                     Membresia {{ mem.nommem}}
@@ -123,6 +438,8 @@
                       datos.apealu)" style="padding-left:90%;" mat-icon-button class="text-success">
                                 <mat-icon aria-label="Edit">edit</mat-icon>
                             </button>
+                            <div class="col-xl-12 row">
+                                <div class="col-xl-4">
                             <p style="padding-left:5px;" [ngStyle]="{'display': idmemhide}">ID <b>{{mem.idmalu}}</b></p>
                             <p style="padding-left:5px;">Clases disponibles<b>{{mem.clases}}</b></p>
                             <p style="padding-left:5px;">Fecha Inicio: <b>{{mem.fechainicio}}</b></p>
@@ -130,6 +447,46 @@
                             <p style="padding-left:5px;">Restante: <b>${{mem.restante}}.00</b></p>
                             <p style="padding-left:5px;">Total: <b>${{mem.total}}.00</b></p>
                             <p style="padding-left:5px;">Tipo de pago: <b>{{mem.nombre}}</b></p>
+                            <button routerLinkActive="router-link-active" [ngStyle]="{display:tipopagoview}" style="background: none; border: none;" *ngIf="i==0"(click)="anm(1,mem)">
+                              <mat-icon aria-label="Nuevo Registro"  style="width:30px;">add_circle_outline</mat-icon><span class="add">
+                               Renovar nueva membresia </span>
+                            </button>
+                            </div>
+
+                            <div class="col-xl-8">
+                                <mat-expansion-panel *ngFor="let h of historial ; let i = index;"  >
+                                  <mat-expansion-panel-header *ngIf="h.fecha==mem.fechainicio && 'Membrecia del alumno: '+datos.nomalu +' '+datos.apealu==h.concepto;else elseBlock;">
+
+                            
+                                    <mat-panel-title class="col-md-8" *ngIf="h.fecha==mem.fechainicio;">
+                                    Historial de pagos
+                                  </mat-panel-title>
+
+                                <mat-panel-description class="col-md-4" *ngIf="h.fecha==mem.fechainicio;">
+                                  <span  class="text-success" style="margin-right: 20px;">
+                                    <mat-icon>monetization_on</mat-icon>  Adelanto:{{h.suma}}
+                                    </span>
+                                </mat-panel-description>
+                                </mat-expansion-panel-header>
+                                <ng-template  style="display: none;" #elseBlock></ng-template>
+                                      <div *ngIf="h.fecha==mem.fechainicio;">
+                                        <h2>Detalles de Pago</h2> 
+                                        <br>
+                                                  <b>{{h.concepto}}</b>
+                                                  <br>
+                                        Total:    <b>{{h.total}}</b>
+                                        <br>
+                                        Adelanto:<b>{{h.suma}}</b>
+                                        <br>
+                                        Restante:<b>{{h.total - h.suma}}</b>
+                                        
+
+                                        <br>
+                                      </div>
+                                   
+                                </mat-expansion-panel>
+                              </div>
+                              </div>
                         </mat-expansion-panel>
                     </mat-accordion>
                 </div>
@@ -270,4 +627,3 @@
 <br>
 
 
-<app-fotter></app-fotter>

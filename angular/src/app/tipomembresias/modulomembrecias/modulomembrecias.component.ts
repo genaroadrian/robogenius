@@ -8,6 +8,8 @@ import { PerfilmemeditComponent } from '../../alumnos/perfilmemedit/perfilmemedi
 import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import * as jsPDF from 'jspdf';
+
 
 
 
@@ -36,6 +38,7 @@ export class ModulomembreciasComponent implements OnInit {
   filtros:any
   fil:any
   model: any
+  pagado:any
 
   constructor(public pmem:PmembresiaService,
     public alumnosService: AlumnosService
@@ -43,11 +46,26 @@ export class ModulomembreciasComponent implements OnInit {
     public toastr: ToastrManager) { }
 
   ngOnInit() {
+    if(this.search==null){
+      this.search="";
+    }
    if(this.search.length>0){
     setTimeout (() => {
       this.myControl.setValue(this.search.toLowerCase().slice(22, 28))
-   }, 4000);
-   
+        this.filteredOptions = this.myControl.valueChanges
+    .pipe(
+      startWith(''),
+      map(value => this._filter(this.myControl.value))
+    );
+    this.model.trigger('click');
+   },2000);
+
+   setTimeout (() => {
+     let element :HTMLElement=document.getElementById('busq')as HTMLElement;
+     element.click();
+    // console.log("saddsa")
+ },2001);
+   localStorage.removeItem('busqueda');
    }
    
 
@@ -65,6 +83,8 @@ export class ModulomembreciasComponent implements OnInit {
       this.datos=data
       this.filtros=this.datos.filter(x=>x.idsuc==this.sucursal)
       this.fil=this.filtros
+      this.pagado=this.fil
+      console.log(this.fil)
       this.nuevofiltro=this.filtros
       let valor=[]
 
@@ -90,7 +110,7 @@ export class ModulomembreciasComponent implements OnInit {
   editMem(i: number, idmalu,mem, fechainicio, adelanto, restante, total,nommem,nombrealu,apealu) {
     // console.log(this.membresia)
     const dialogRef = this.dialog.open(PerfilmemeditComponent, {
-      width: '37%',
+      width: '500px',
       data:
       {
         i: i, idmalu: idmalu,nombre:mem, fechainicio: fechainicio, adelanto: adelanto, restante: restante, total: total,nommem:nommem,nombrealu:nombrealu,apealu:apealu
@@ -106,6 +126,7 @@ export class ModulomembreciasComponent implements OnInit {
           this.fil[i].restante = this.datosEditMem.restante
           this.fil[i].total = this.datosEditMem.total
           this.showSuccessEdit()
+          this.pdf(this.fil[i]);
 
         }, (error) => {
           this.showErrorEdit()
@@ -140,6 +161,50 @@ export class ModulomembreciasComponent implements OnInit {
       console.log(filterValue)
   
       return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    }
+
+
+    deben(x){
+      if(x==1){
+        this.fil=this.pagado.filter(x=>x.restante==0)
+      }else if(x==2){
+        this.fil=this.pagado.filter(x=>x.restante>0)
+      }else if(x==3){
+        this.fil=this.pagado
+      }
+    }
+
+
+    pdf(x){
+      console.log(x)
+      let docs = new jsPDF();
+
+      var img = new Image()
+      var rows1 = [];
+      var rows2 = [];
+      var rows3 = [];
+      img.src = 'assets/images/rg.png'
+      docs.addImage(img, 'png', 159,4, 40,20)
+      docs.setFontSize(14);
+      docs.addFont("Arimo-Regular.ttf", "Arimo", "normal");
+      docs.setFontType("normal");
+      docs.setFontSize(14);
+      docs.text(10,20, 'Alumno '+x.nomalu+" " +x.apealu  );
+      docs.text(10,30, 'Membrecia : '+ x.nombres  );
+      docs.text(10,40, 'Numero de clases a la semana: ' + x.clases );
+      docs.text(10,50, 'Fecha de inicio: '+x.fechainicio );
+      docs.text(130,50, 'Fecha de termino: '+x.fechatermino);
+      docs.setFontSize(12);
+      docs.text(10,70, 'Tipo de pago: '+x.nombre);
+      docs.text(10,80, 'Adelanto: $'+x.adelanto+".00");
+      docs.text(10,100,'Total: $'+x.total+".00")
+      docs.text(10,90,'Restante: $'+x.restante+".00")
+      docs.setFontSize(12);
+      docs.setDrawColor(0, 0, 0);
+      docs.line(10,93, 200, 93);
+      docs.setFontSize(10);
+      docs.save('.pdf');
+
     }
 
 }

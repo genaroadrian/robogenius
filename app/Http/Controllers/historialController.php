@@ -16,7 +16,7 @@ class historialController extends Controller
      */
     public function index()
     {
-        $historial = DB::SELECT("SELECT concepto,monto AS total, adelanto,restante,suma,idscu FROM contabilidad 
+        $historial = DB::SELECT("SELECT concepto,monto AS total, adelanto,restante,suma,idscu,fecha FROM contabilidad 
         WHERE concepto LIKE ('Membrecia del alumno%')");
         return $historial; 
     }

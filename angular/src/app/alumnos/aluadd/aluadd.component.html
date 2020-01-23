@@ -153,23 +153,16 @@
                   <mat-icon matSuffix class="text-danger">today</mat-icon>
                 </mat-form-field>
               </div>
+            <div class="form col-xl-4">
+              <mat-form-field color="primary">
+                <textarea [(ngModel)]="alumno.domalu" matInput placeholder="Domicilio" name="domalu re"
+                  required></textarea>
+                <mat-icon matSuffix class="text-danger">room</mat-icon>
+                <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+              </mat-form-field>
             </div>
-            <div class="row col-xl-12">
-              <!-- -------------------------------------- Domicilio -------------------------------------- -->
+          </div>
 
-
-              <div class="form col-xl-4">
-                <mat-form-field color="primary">
-                  <textarea [(ngModel)]="alumno.domalu" matInput placeholder="Domicilio" name="domalu"
-                    required></textarea>
-                  <mat-icon matSuffix class="text-danger">room</mat-icon>
-                  <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
-                </mat-form-field>
-              </div>
-
-
-
-            </div>
 
             <!-- -------------------------- Inforomacion medica del alumno -------------------------- -->
 
@@ -461,7 +454,7 @@
                   <li>Uso de todo el material didáctico</li>
                   <li>Acceso al área de manufactura con supervisor del asesor</li>
                 </ul>
-                <button (click)="saveMem(mem.idtmem, mem.costo, mem.clases)" class="btn btn-success">Empezar
+                <button (click)="saveMem(mem.idtmem, mem.costo, mem.clases,mem.nombre)" class="btn btn-success">Empezar
                   ahora</button>
               </section>
             </div>
@@ -486,10 +479,10 @@
           <div class="row col-xl-12">
             <div class="col-xl-12 " [ngStyle]="{display:tipoimg}">
               <h1 style="text-align: center;">Elige tu tipo de pago</h1>
-              <img src="assets/img/efectivo.png" alt="" class="efec" (click)="efectivo(1)">
-              <img src="assets/img/paypal.png" alt="" class="payp" (click)="paypal(2)">
-              <img src="assets/img/tarjeta.png" alt="" class="tarj">
-              <img src="assets/img/transferencia.png" alt="" class="tran">
+              <img src="assets/img/efectivo.png" alt="" class="efec" (click)="efectivo(1)">Efectivo
+              <img src="assets/img/paypal.png" alt="" class="payp" (click)="paypal(2)">Paypal
+              <img src="assets/img/tarjeta.png" alt="" class="tarj">Tarjeta
+              <img src="assets/img/transferencia.png" alt="" class="tran">Transferencia
 
               <div class="row col-xl-12">
                 <button class="btn btn-danger" style="margin-left: 49%;" (click)="returntmem()"
@@ -519,6 +512,17 @@
                   class="example-right-align">
                 <span matPrefix>$&nbsp;</span>
                 <span matSuffix>.00</span>
+              </mat-form-field>
+              <mat-form-field>
+                <input [(ngModel)]="fechaini" matInput placeholder="Fecha de inicio de la membresia" type="date"
+                  name="fnacalu" required>
+                <mat-icon matSuffix class="text-danger">today</mat-icon>
+              </mat-form-field>
+  
+              <mat-form-field>
+                <input [(ngModel)]="fechater" matInput placeholder="Fecha de termino de la membresia" type="date"
+                  name="fnacalu" required>
+                <mat-icon matSuffix class="text-danger">today</mat-icon>
               </mat-form-field>
 
               <mat-slide-toggle color="warn" (change)="inscripcion($event)">Agregar inscripción
@@ -554,6 +558,17 @@
                 class="example-right-align">
               <span matPrefix>$&nbsp;</span>
               <span matSuffix>.00</span>
+            </mat-form-field>
+            <mat-form-field>
+              <input [(ngModel)]="fechaini" matInput placeholder="Fecha de inicio de la membresia" type="date"
+                name="fnacalu" required>
+              <mat-icon matSuffix class="text-danger">today</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input [(ngModel)]="fechater" matInput placeholder="Fecha de termino de la membresia" type="date"
+                name="fnacalu" required>
+              <mat-icon matSuffix class="text-danger">today</mat-icon>
             </mat-form-field>
 
             <mat-slide-toggle color="warn" (change)="inscripcion($event)">Agregar inscripción

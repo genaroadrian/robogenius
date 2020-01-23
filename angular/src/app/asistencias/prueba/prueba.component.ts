@@ -12,13 +12,15 @@ export class PruebaComponent implements OnInit {
   alumnos: any
   fechas: any
   tabla = []
+  pagos: any
 
   constructor(public service: AsistenciasService) { }
 
   ngOnInit() {
     this.service.prueba().subscribe((data)=>{
-      this.allRows = data
-
+      let d = data
+      this.allRows = d[0]
+      this.pagos = d[1]
     var hash = {};
     this.alumnos = this.allRows.filter(function (tem) {
       var exists = !hash[tem.idalu] || false;
@@ -32,7 +34,7 @@ export class PruebaComponent implements OnInit {
       return exists;
     })
 
-    console.log(this.alumnos)
+    // console.log(this.alumnos)
 
     })
   }

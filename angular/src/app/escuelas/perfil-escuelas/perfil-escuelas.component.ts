@@ -8,6 +8,8 @@ import { EdittipomemComponent } from 'src/app/tipomembresias/edittipomem/edittip
 import { TipomembresiaService } from 'src/app/services/tipomembresia.service';
 import { AddhoraescComponent } from '../addhoraesc/addhoraesc.component';
 import { DetallegruposService } from 'src/app/services/detallegrupos.service';
+import { EdithoraescComponent } from '../edithoraesc/edithoraesc.component';
+import { globalVarimg } from "../../services/global.service";
 
 @Component({
   selector: 'app-perfil-escuelas',
@@ -15,9 +17,12 @@ import { DetallegruposService } from 'src/app/services/detallegrupos.service';
   styleUrls: ['./perfil-escuelas.component.css']
 })
 export class PerfilEscuelasComponent implements OnInit {
+  API_ENDPOINT = globalVarimg.url;
   data: any
   info: any
   alumnos = []
+  loading: string
+  alumnosFiltered: any = []
   membresias = {
     nombre: null,
     costo: null,
@@ -25,7 +30,7 @@ export class PerfilEscuelasComponent implements OnInit {
   }
   barra: string = ''
   status: string = ''
-  displayedColumns: string[] = ['dia', 'hora', 'personal']
+  displayedColumns: string[] = ['dia', 'hora', 'personal', 'acciones']
   horario = []
 
   constructor(public escuelasService: EscuelasService, public dialog: MatDialog,
@@ -34,26 +39,30 @@ export class PerfilEscuelasComponent implements OnInit {
 
   ngOnInit() {
     this.data = this.escuelasService.getDialogData()
-    this.escuelasService.fetchProfileInfo(this.data.idesc).subscribe((data)=>{
-      this.barra = 'none'
-      this.info = data
-      this.alumnos = this.info[0].forEach((element, index, array)=>{
-      element.fnacalu = this.ageCalculator(element.fnacalu)
-    })
-      this.membresias = this.info[1]
-      console.log(this.membresias)
-      this.horario = this.info[2]
-
-    },(error)=>{
-      
-    })
+    this.getAll()
   }
 
-  ageCalculator(nac){
-      const convertAge = new Date(nac);
-      const timeDiff = Math.abs(Date.now() - convertAge.getTime());
-      let showAge = Math.floor((timeDiff / (1000 * 3600 * 24))/365);
-      return showAge
+  async getAll()
+  {
+    this.barra = ''
+    this.loading = 'Cargando...'
+    try {
+      this.info = await this.escuelasService.fetchProfileInfo(this.data.idesc).toPromise()
+      console.log(this.info)
+    this.alumnos = this.info[0]
+
+    this.alumnosFiltered = this.alumnos
+    if(this.alumnosFiltered.length < 1)
+    {
+      this.loading = 'No hay resultados'
+    }
+    this.membresias = this.info[1]
+    this.horario = this.info[2]
+    this.barra = 'none'
+    } catch (e) {
+      console.log(e)
+    }
+
   }
 
   editInfo(data)
@@ -109,14 +118,52 @@ export class PerfilEscuelasComponent implements OnInit {
   {
     console.log(data)
     const dialogRef = this.dialog.open(AddhoraescComponent,{
-      data: {idesc: data.idesc}
+      data: {idesc: data.idesc, idd: '', idh: '', idp: ''}
     })
     dialogRef.afterClosed().subscribe(async result =>{
       if(result === 1)
       {
           console.log(this.detalleGruposService.getDialogData())
+          try {
+            let d = await this.detalleGruposService.save(this.detalleGruposService.getDialogData()).toPromise()
+            this.getAll()
+          } catch (e) {
+            
+          }
       }
     })
+  }
+
+  editHora(i: number, id: number, idd: number, idh: number, idp: number)
+  {
+    console.log(idd)
+    console.log(idh);
+    console.log(idp);
+    const index = i
+    const dialogRef = this.dialog.open(EdithoraescComponent, {
+      data: {iddgru: id, idd: idd, idh: idh, idp: idp, idesc: this.data.idesc}
+    })
+    dialogRef.afterClosed().subscribe(async result => {
+      if(result === 1)
+      {
+        try {
+          await this.detalleGruposService.update(this.detalleGruposService.getDialogData()).toPromise()
+          this.getAll()
+        } catch (e) {
+          console.log(e)
+        }
+      }
+    })
+  }
+
+  search(value)
+  {
+    this.alumnosFiltered = this.alumnos.filter(element => element.nombre.toLowerCase().includes(value.toLowerCase()) )
+    if(this.alumnosFiltered.length < 1)
+    {
+      this.loading = 'Sin resultados'
+    }
+
   }
 
 }

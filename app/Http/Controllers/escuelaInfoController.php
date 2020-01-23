@@ -11,7 +11,8 @@ class escuelaInfoController extends Controller
     public function destroy($id)
     {
         $response = array();
-        $alumnos = DB::select("SELECT idalu, nomalu, apealu, perfilalu, fnacalu FROM alumnos WHERE activo = 1 AND idesc = ?", [$id]);
+        $alumnos = DB::select("SELECT idalu, CONCAT(nomalu,' ', apealu) AS nombre, perfilalu,TIMESTAMPDIFF(YEAR, fnacalu, CURDATE()) AS age
+        FROM alumnos WHERE activo = 1 AND idesc = ?", [$id]);
         array_push($response, $alumnos);
         $membresia = DB::select("SELECT idtmem, nombre, costo, clases FROM tipomembresia WHERE activo = 1 AND idesc = ?", [$id]);
         if($membresia)

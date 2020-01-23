@@ -10,16 +10,17 @@ class pruebaController extends Controller
 {
     public function prueba()
     {
-        $query = DB::select("SELECT asistencias.idalu, asistencias.idasis,asistencias.fecha,asistencias.dia,asistencias.hora,
-		IF(asistencias.asis = 1, '✓', '✖') AS asis,
-		personal.nombre AS person_nom, personal.apellidos AS person_ape,
-        alumnos.nomalu AS alum_nom,alumnos.apealu AS alumno_apell,
-        escuelas.nombre AS esc_name
-FROM slidecom_robogenius.asistencias
-INNER JOIN slidecom_robogenius.personal ON personal.idper = asistencias.idper
-INNER JOIN slidecom_robogenius.alumnos ON alumnos.idalu = asistencias.idalu
-INNER JOIN slidecom_robogenius.escuelas ON escuelas.idesc = asistencias.idesc
-ORDER BY asistencias.fecha DESC;");
-        return $query;
+        $query = DB::select("SELECT alu.idalu, alu.nomalu as alum_nom, asis.fecha, asis.asis
+        FROM alumnos AS alu 
+        INNER JOIN asistencias AS asis
+        ON asis.idalu = alu.idalu
+        WHERE alu.idesc = 74
+        ORDER BY asis.fecha asc");
+
+        $q = DB::select("SELECT t1.idalu, asisPorMes(t1.idalu, 74) as pm FROM
+        (SELECT alu.idalu FROM alumnos AS alu
+        WHERE alu.idesc = 74) AS t1");
+
+        return array($query, $q);
     }
 }

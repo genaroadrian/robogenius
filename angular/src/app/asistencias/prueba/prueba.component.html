@@ -11,7 +11,8 @@
                 <tr>
                   <th>No.</th>
                   <th>ID alumno</th>
-                  <th *ngFor="let fecha of fechas">{{fecha.fecha | date:'fullDate'}}</th>
+                  <th *ngFor="let fecha of fechas">{{fecha.fecha}}</th>
+                  <th>No. asis</th>
                 </tr>
               </thead>
             
@@ -19,8 +20,18 @@
                 <tr *ngFor="let alumno of alumnos; let i = index">
                   <td>{{i+1}}</td>
                   <td>{{alumno.alum_nom}} {{alumno.alumno_apell}} </td>
-                  <td *ngFor="let row of allRows" [style.display]="alumno.idalu == row.idalu ? '' : 'none'">
-                    {{row.asis}}
+                  <td *ngFor="let row of allRows" >
+                    
+                    <ng-container *ngIf="alumno.idalu == row.idalu; else elseTemplate" [style.display]="alumno.idalu == row.idalu ? '' : 'none'">
+                      {{row.asis}}
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                      no
+                    </ng-template>
+                    
+                  </td>
+                  <td *ngFor="let p of pagos" [style.display]="alumno.idalu == p.idalu ? '' : 'none'">
+                    {{p.pm}}
                   </td>
                 </tr>
               </tbody>

@@ -2,6 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { PerfilService } from 'src/app/services/perfil.service';
 import { DetallegruposService } from 'src/app/services/detallegrupos.service';
+import { PersonalService } from 'src/app/services/personal.service';
+import { NotificationsService } from 'src/app/services/notifications.service';
 
 @Component({
   selector: 'app-addhoraesc',
@@ -25,45 +27,36 @@ export class AddhoraescComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<AddhoraescComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, public perfilService: PerfilService,
-    public detalleGruposService: DetallegruposService) { }
+    public detalleGruposService: DetallegruposService,  public personalService: PersonalService,
+    public notificacionService: NotificationsService) { }
 
   ngOnInit() {
     console.log(this.data);
-    this.getHorarios()
+    this.getAll()
   }
 
-  async getHorarios() {
+  async getAll()
+  {
     try {
-      this.allHorarios = await this.perfilService.getAllHorarios().toPromise()
-      this.allHorarios = this.allHorarios.filter(element => element.idsuc == localStorage.getItem('sucursal'))
-      var hash = {};
-      this.dias = this.allHorarios.filter(function (hora) {
-        var exists = !hash[hora.dia] || false;
-        hash[hora.dia] = true;
-        return exists;
-      });
+      const result = await Promise.all([
+        this.personalService.getDias().toPromise(), 
+        this.personalService.getHorario().toPromise(),
+        this.personalService.getMaestros().toPromise()
+      ])
+      this.dias = result[0]
+      this.horas = result[1]
+      this.personal = result[2]
+      this.personal = this.personal.filter(e => e.idsuc == localStorage.getItem('sucursal'))
     } catch (e) {
-      console.log(e)
+      this.notificacionService.showError()
     }
-  }
-
-  filterHora(dia: string) {
-    this.horas = []
-    this.personal = []
-    this.horas = this.allHorarios.filter(hora => hora.dia == dia)
-  }
-
-  filterPersonal(hora: string) {
-    this.personal = []
-    let horac = hora
-    this.personal = this.horas.filter(hora => hora.hora == horac)
   }
 
 
   // Metodo para cuando termine de guardar
   stopEdit(): void {
     console.log(this.data)
-    this.detalleGruposService.add(this.data)
+    // this.detalleGruposService.add(this.data)
   }
 
   onNoClick(): void {

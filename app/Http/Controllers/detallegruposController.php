@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use slidecom_robogenius\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
 use slidecom_robogenius\Detallegrupos;
+use slidecom_robogenius\Grupos_alumnos;
 
 class detallegruposController extends Controller
 {
@@ -19,8 +20,8 @@ class detallegruposController extends Controller
     public function store(Request $request )
     {
         
-        return $request;
-        // return new JsonResponse("Error", 303);
+        // return $request;
+        // // return new JsonResponse("Error", 303);
         $dgrupos = new Detallegrupos();
         $dgrupos->idd = $request->idd;
         $dgrupos->idh = $request->idh;
@@ -29,7 +30,21 @@ class detallegruposController extends Controller
         $dgrupos->idsuc = $request->idsuc;
         $dgrupos->activo = 1;
         $dgrupos->save();
+        
+        if($request->idesc)
+        {
+            $alumnos = DB::Select("SELECT idalu FROM alumnos WHERE idesc = ?",[$request->idesc]);
+            foreach($alumnos as $alumnos)
+            {
+                $ga = new Grupos_alumnos();
+                $ga->idg = $dgrupos->iddgru;
+                $ga->idalu = $alumnos->idalu;
+                $ga->activo = 1;
+                $ga->save();
+            }
+        }
         echo json_encode($dgrupos);
+
     }
 
     public function update(Request $request, $id)
@@ -41,7 +56,7 @@ class detallegruposController extends Controller
         $dg->idesc = $request->idesc;
         $dg->idsuc = $request->idsuc;
         $dg->save();
-        return $dg;
+        return $request;
     }
 
     public function destroy($id)

@@ -2,6 +2,12 @@ table {
   width: 100%;
 }
 
+.enumerate 
+{
+  font-size: 125%;
+  margin-right: 5px;
+}
+
 .arrow-container {
     display: block;
     width: 100px;
@@ -184,5 +190,7 @@ table {
   
   
   }
+
+  
   
   

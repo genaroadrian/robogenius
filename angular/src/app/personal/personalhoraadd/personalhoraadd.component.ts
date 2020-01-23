@@ -38,14 +38,12 @@ export class PersonalhoraaddComponent implements OnInit {
 
   stopEdit()
   {
+    console.log(this.data)
     this.detalleGruposService.add(this.data)
   }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
-finalizar(){
-  
-}
 
 }

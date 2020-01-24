@@ -15,6 +15,7 @@ export class PersonalhoraaddComponent implements OnInit {
   horas: any
   dias: any
   escuelas: any
+  sucursal :any
 
   constructor(public dialogRef: MatDialogRef<PersonalhoraaddComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, public personalPerfilService: PersonalperfilService,
@@ -23,13 +24,15 @@ export class PersonalhoraaddComponent implements OnInit {
 
   ngOnInit() {
     this.getAll()
-    console.log(this.data)
+    this.sucursal=localStorage.getItem('sucursal')
+
   }
 
   async getAll() {
     try {
       this.dias = await this.personalService.getDias().toPromise()
       this.horas = await this.personalService.getHorario().toPromise()
+      this.horas=this.horas.filter(data=>data.idsuc==this.sucursal);
     } catch (e) {
       this.notificacionService.showError()
     }

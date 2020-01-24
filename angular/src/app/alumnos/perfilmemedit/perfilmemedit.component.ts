@@ -70,7 +70,6 @@ export class PerfilmemeditComponent implements OnInit {
       this.editar.iduser=this.pendiente.iduser;
       this.editar.nombre=this.pendiente.nombre;
       this.editar.suma=this.pendiente.suma;
-      console.log(this.editar)
     })
     }
 
@@ -102,7 +101,7 @@ export class PerfilmemeditComponent implements OnInit {
 
     this.data.adelanto += this.nadelanto
     this.data.restante -= this.nadelanto
-  
+    this.data.nadelanto=this.nadelanto
 
     this.perfilService.putMem(data)
 

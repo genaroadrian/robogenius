@@ -97,25 +97,21 @@ export class PersonalperfilComponent implements OnInit {
     this.personalPerfilService.getGrupos(this.datos).subscribe(
       data => {
         let datos: any = data;
-        console.log(data);
         let trabajo: any = datos.filter(
           data => data.nombre == null && data.nomsuc == null
         );
-        console.log(trabajo);
         this.dataSource = trabajo;
         if (this.dataSource.length > 0) {
           this.viewL = "";
         }
 
         let escuelas: any = datos.filter(data => data.nombre != null);
-        console.log(escuelas);
         this.dataSourceEscuelas = escuelas;
         if (this.dataSourceEscuelas.length > 0) {
           this.viewE = "";
         }
 
         let sede: any = datos.filter(data => data.nomsuc != null);
-        console.log(sede);
         this.dataSourceSucursal = sede;
         if (this.dataSourceSucursal.length > 0) {
           this.viewS = "";
@@ -126,7 +122,7 @@ export class PersonalperfilComponent implements OnInit {
       error => {
         this.notificationsService.showError();
         this.ocultarBarra();
-        // console.log(error)
+        // (error)
       }
     );
   }
@@ -186,16 +182,16 @@ export class PersonalperfilComponent implements OnInit {
     // this.datos.perfilalu=this.archivo.nombreArchivo;
     this.uploadService.subirimagenPersonal(this.personal).subscribe(
       data => {
-        // console.log(this.personal)
+        // (this.personal)
         this.showSuccessFoto();
       },
       error => {
         this.showError();
 
-        // console.log(error)
+        // (error)
       }
     );
-    // // console.log(this.archivo);
+    // // (this.archivo);
     this.uploadService.uploadFilePersonal(this.archivo).subscribe(datos => {
       if (datos["resultado"] == "OK") {
         // alert(datos['mensaje']);
@@ -300,7 +296,6 @@ export class PersonalperfilComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(async result => {
       if (result === 1) {
-        console.log(this.detalleGruposService.getDialogData());
         try {
           this.barra = "";
           await this.detalleGruposService
@@ -317,7 +312,6 @@ export class PersonalperfilComponent implements OnInit {
   }
 
   deleteH(id) {
-    console.log(id);
     const dialogRef = this.dialog.open(PersonalhoradeleteComponent, {
       data: { id: id }
     });
@@ -328,14 +322,12 @@ export class PersonalperfilComponent implements OnInit {
           let result = await this.detalleGruposService
             .delete(this.detalleGruposService.getDialogData())
             .toPromise();
-          console.log(result);
           this.notificationsService.showSuccessAdd();
           this.getGrupos();
 
           this.barra = "none";
         } catch (e) {
           this.barra = "none";
-          console.log(e);
           this.notificationsService.showError();
         }
       }

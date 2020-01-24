@@ -25,7 +25,8 @@ class panelMembreciaController extends Controller
      tipopagos AS tpp
      WHERE m.idalu=a.idalu
      AND m.idmem=tm.idtmem
-     AND m.idtpago=tpp.idtipopago");
+     AND m.idtpago=tpp.idtipopago
+     ORDER BY m.fechatermino");
         return $pendiente;
     }
 

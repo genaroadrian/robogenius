@@ -40,6 +40,8 @@ export class ModulomembreciasComponent implements OnInit {
   model: any
   pagado:any
 
+  nadelanto:any
+
   constructor(public pmem:PmembresiaService,
     public alumnosService: AlumnosService
     , private perfilService: PerfilService, public dialog: MatDialog,
@@ -125,8 +127,10 @@ export class ModulomembreciasComponent implements OnInit {
           this.fil[i].adelanto = this.datosEditMem.adelanto
           this.fil[i].restante = this.datosEditMem.restante
           this.fil[i].total = this.datosEditMem.total
+          this.nadelanto=this.datosEditMem.nadelanto
           this.showSuccessEdit()
-          this.pdf(this.fil[i]);
+          console.log(this.nadelanto)
+          this.pdf(this.fil[i],this.nadelanto);
 
         }, (error) => {
           this.showErrorEdit()
@@ -175,7 +179,7 @@ export class ModulomembreciasComponent implements OnInit {
     }
 
 
-    pdf(x){
+    pdf(x,y){
       console.log(x)
       let docs = new jsPDF();
 
@@ -196,9 +200,10 @@ export class ModulomembreciasComponent implements OnInit {
       docs.text(130,50, 'Fecha de termino: '+x.fechatermino);
       docs.setFontSize(12);
       docs.text(10,70, 'Tipo de pago: '+x.nombre);
-      docs.text(10,80, 'Adelanto: $'+x.adelanto+".00");
+      docs.text(10,80, 'Adelanto total: $'+x.adelanto+".00");
       docs.text(10,100,'Total: $'+x.total+".00")
       docs.text(10,90,'Restante: $'+x.restante+".00")
+      docs.text(10,110,'Nuevo adelanto : $'+y+".00")
       docs.setFontSize(12);
       docs.setDrawColor(0, 0, 0);
       docs.line(10,93, 200, 93);

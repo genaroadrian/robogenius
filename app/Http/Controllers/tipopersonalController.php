@@ -21,12 +21,10 @@ class tipopersonalController extends Controller
    {
     $data=$request->all();
 
-    $reglas = array('tipo' => 'required|unique:tipopersonal',
+    $reglas = array('tipo' => 'required',
                     'idsuc' => 'required',
                   );
     $mensajes= array('tipo.required' =>  'Ingresar tipo es obligatorio',
-                     'tipo.unique' =>  'El tipo debe ser unico',
-
                    );
     // Comparamos lo que recupera con las reglas y si hay un error lo muestra en json
     $validacion = Validator::make($data, $reglas, $mensajes);

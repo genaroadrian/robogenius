@@ -14,11 +14,7 @@ use slidecom_robogenius\Grupos_alumnos;
 
 class alumnoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
         // $personal = Personal::all();
@@ -39,23 +35,6 @@ class alumnoController extends Controller
         echo json_encode($alumno);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     * Reac
-     */
     public function store(Request $request)
     {
 
@@ -177,36 +156,8 @@ class alumnoController extends Controller
             return json_encode($escuela[0]);
         }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
+    
     public function update(Request $request, $id)
     {
 
@@ -245,15 +196,28 @@ class alumnoController extends Controller
         echo json_encode($alumno);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         $alumno = DB::SELECT("UPDATE alumnos SET activo = 0 WHERE idalu = '$id'");
         echo json_encode($alumno);
+    }
+
+    public function inactive()
+    {
+        // $alumnos = Alumno::select('idalu','nomalu', 'apealu', 'TIMESTAMPDIFF(YEAR, fnacalu, CURDATE()) as fnacalu', 'sexoalu')->where('activo', 0)->get();
+        $alumnos = DB::select("SELECT idalu, nomalu, apealu, TIMESTAMPDIFF(YEAR, fnacalu, CURDATE()) as fnacalu, sexoalu, idsuc
+        from alumnos where activo = ?", [0]);
+        return $alumnos;
+    }
+
+    public function restore($id)
+    {
+        // return $id;
+        $alumno = Alumno::find($id);
+        $alumno->activo = 1;
+        $alumno->save();
+        // return "Alumno restaurado exitosamente";
+        
     }
 }

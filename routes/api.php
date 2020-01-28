@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use slidecom_robogenius\Http\Controllers\alumnoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,6 +90,10 @@ Route::get('filesdownload', 'FilesController@download');
 Route::resource('moduloescuelas', 'moduloEscuelasController');
 Route::get('getdias_horas','horariosSAController@gethorarios');
 Route::get('getMaestros','horariosSAController@getMaestros');
-Route::get('pruebaAsistencias','pruebaController@prueba');
+Route::post('pruebaAsistencias','pruebaController@prueba');
 Route::resource('fecthschool', 'escuelaInfoController');
 Route::resource('historialmem', 'historialController');
+Route::get('inactive_students', 'alumnoController@inactive');
+Route::delete('restore_student/{id}', 'alumnoController@restore');
+Route::get('inactive_employees','personalController@inactive');
+Route::delete('restore_employee/{id}','personalController@restore');

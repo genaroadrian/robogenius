@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Alumnos } from '../interfaces/alumnos';
+import { Alumnos, InactiveStudents } from '../interfaces/alumnos';
 import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { Alumnosview } from '../interfaces/alumnosview';
 import {globalVar} from '../services/global.service'
-
+import {Api} from '../alumnos/inactivealu/inactivealu.component'
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,7 @@ export class AlumnosService {
   datos :any;
   sucursal:any;
   dataChange: BehaviorSubject<Alumnos[]> = new BehaviorSubject<Alumnos[]>([]);
+  dataChangeI: BehaviorSubject<InactiveStudents[]> = new BehaviorSubject<InactiveStudents[]>([])
   // Temporarily stores data from dialogs
   dialogData: any;
   length: number
@@ -25,6 +26,11 @@ export class AlumnosService {
   constructor(private httpClient: HttpClient) {
     this.sucursal=localStorage.getItem('sucursal')
 
+  }
+
+  fetchInactive(): Observable<Api>
+  {
+      return  this.httpClient.get<Api>(this.API_ENDPOINT+'/inactive_students')
   }
 
   // Obtener datos de la base de datos
@@ -45,9 +51,14 @@ export class AlumnosService {
   }
 
   // Obtener datos cuando cambien
-  get data(): Alumnos[] {
+  get data(): any[] {
     return this.dataChange.value;
   }
+
+  // get dataI(): InactiveStudents[]
+  // {
+  //   return this.dataChangeI.value
+  // }
 
   // Obtener datos de la modal de editar
   getDialogData() {

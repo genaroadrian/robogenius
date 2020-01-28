@@ -1,6 +1,7 @@
 <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
-<mat-tab-group>
-  <mat-tab>
+<mat-tab-group [selectedIndex]="selected">
+
+  <mat-tab [disabled]="data.ds" >
     <!-- Tab de pasar lista  -->
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">list</mat-icon>
@@ -44,7 +45,7 @@
     <!-- Fin del tab de pasar lista -->
   </mat-tab>
 
-  <mat-tab>
+  <mat-tab >
     <!-- Tab de historial de asistencias -->
     <ng-template mat-tab-label>
       <mat-icon class="example-tab-icon">history</mat-icon>

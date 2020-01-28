@@ -154,4 +154,18 @@ class personalController extends Controller
         $personal = DB::SELECT("UPDATE personal SET activo = 0 WHERE idper = '$id'");
         echo json_encode($personal);
     }
+
+    public function inactive()
+    {
+        $employees = Personal::where('activo',0)->get();
+        return $employees;
+    }
+
+    public function restore($id)
+    {
+        $employe = Personal::find($id);
+        $employe->activo = 1;
+        $employe->save();
+
+    }
 }

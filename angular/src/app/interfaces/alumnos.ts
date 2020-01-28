@@ -35,3 +35,13 @@ export interface Alumnos {
     idesc: number,
     nombre: string
 }
+
+
+export interface InactiveStudents
+{
+    nomalu: string,
+    apealu: string,
+    sexoalu: string,
+    fnacalu: string,
+    idsuc?: number
+}

@@ -173,6 +173,9 @@ import { PersonalhoradeleteComponent } from './personal/personalhoradelete/perso
 import { EditMemComponent } from './escuelas/edit-mem/edit-mem.component';
 import { AddhoraescComponent } from './escuelas/addhoraesc/addhoraesc.component';
 import { EdithoraescComponent } from './escuelas/edithoraesc/edithoraesc.component';
+import { InactiveComponent } from './inactive/inactive.component';
+import { InactivealuComponent } from './alumnos/inactivealu/inactivealu.component';
+import { InactiveperComponent } from './personal/inactiveper/inactiveper.component';
 
 registerLocaleData(localeESMX);
 
@@ -226,7 +229,8 @@ const routes: Route[]=[
 {path: 'escuelas/home', component: ModuloescuelasComponent}, //
 {path: 'pruebaasis', component: PruebaComponent}, //
 {path: 'pmem', component: ModulomembreciasComponent},
-{path: 'modulo-escuelas', component: PerfilEscuelasComponent}
+{path: 'modulo-escuelas', component: PerfilEscuelasComponent},
+{path: 'inactive', component: InactiveComponent}
 
 ];
 
@@ -358,7 +362,10 @@ const routes: Route[]=[
     PersonalhoradeleteComponent,
     EditMemComponent,
     AddhoraescComponent,
-    EdithoraescComponent
+    EdithoraescComponent,
+    InactiveComponent,
+    InactivealuComponent,
+    InactiveperComponent
 
   ],
   imports: [

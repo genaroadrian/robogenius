@@ -17,9 +17,12 @@ export class AddasisComponent implements OnInit {
   dataSource: any
 
   barra = 'none'
+  selected = 0
 
   history: any
   historyF: any
+  
+
 
   constructor(public dialogRef: MatDialogRef<AddasisComponent>,
     @Inject(MAT_DIALOG_DATA) public data,
@@ -34,6 +37,11 @@ export class AddasisComponent implements OnInit {
     this.getAlumnos()
     // console.log(this.data)
     this.getHistory()
+    if(this.data.ds == true)
+    {
+      this.selected = 1
+    }
+    console.log(this.data)
   }
 
   onNoClick(): void {

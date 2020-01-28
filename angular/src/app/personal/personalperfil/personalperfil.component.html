@@ -151,7 +151,7 @@
 
 
                     <button mat-icon-button class="text-success" (click)="editHE(element.idesc)" >
-                      <mat-icon aria-label="Edit">edit</mat-icon>
+                      <mat-icon aria-label="Edit" matTooltip="Editar">edit</mat-icon>
                     </button>
                   </td>
                 </ng-container>
@@ -219,11 +219,11 @@
                     </button>
 
 
-                    <button mat-icon-button class="text-success" (click)="editH(element.iddgru, element.iddia, element.idh)">
+                    <button mat-icon-button matTooltip="Editar"  class="text-success" (click)="editH(element.iddgru, element.iddia, element.idh)">
                       <mat-icon aria-label="Edit">edit</mat-icon>
                     </button>
 
-                    <button mat-icon-button class="text-danger" (click)="deleteH(element.iddgru)">
+                    <button mat-icon-button  matTooltip="Eliminar" class="text-danger" (click)="deleteH(element.iddgru)">
                       <mat-icon aria-label="Delete">delete</mat-icon>
                     </button>
                   </td>

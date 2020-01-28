@@ -23,6 +23,7 @@ export class EscuelasService {
 
   sucursal:any;
   datos:any;
+  membresia: any
   constructor(private httpClient: HttpClient) {
     this.sucursal=localStorage.getItem('sucursal')
 
@@ -104,6 +105,16 @@ export class EscuelasService {
   profile(data)
   {
     this.dialogData = data
+  }
+
+  membresias(data)
+  {
+    this.membresia = data
+  }
+
+  getMembresia()
+  {
+    return this.membresia
   }
 
   fetchProfileInfo(id)

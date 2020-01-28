@@ -31,9 +31,11 @@ export class PersonalperfilComponent implements OnInit {
   dataSource: any;
   dataSourceEscuelas: any;
   dataSourceSucursal: any;
-
+  weekDays: string[] = ['Domingo', 'Lunes','Martes','Miercoles','Jueves','Viernes','Sabado']
   datos: any;
   jstoday: any;
+  today: string
+  ds: boolean = false
 
   barra = "none";
 
@@ -86,6 +88,12 @@ export class PersonalperfilComponent implements OnInit {
     this.datos = this.personalPerfilService.returnPerfil();
     this.personal.idper = this.datos.idper;
     this.getGrupos();
+    let d = new Date().getDay()
+    this.today = this.weekDays[d]
+    if(this.weekDays[d] == this.today)
+    {
+      this.ds = true
+    }
   }
 
   displayedColumns: string[] = ["dia", "hora", "icons"];
@@ -131,7 +139,7 @@ export class PersonalperfilComponent implements OnInit {
     let idper = this.datos.idper;
     const dialogRef = this.dialog.open(AddasisComponent, {
       width: "60%",
-      data: { iddgru: iddgru, dia: dia, hora: hora, idesc: idesc, idper: idper }
+      data: { iddgru: iddgru, dia: dia, hora: hora, idesc: idesc, idper: idper, ds:this.ds }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result === 1) {

@@ -1,18 +1,12 @@
-<app-navbar></app-navbar>
 
-<div class="col-xl-12 col-md-12 body">
-  <div class="col-xl-12 col-md-12">
-    <div class="card bg-light mini-stat position-relative">
-      <div class="card-body">
-        <div class="container">
+          <h1 class="text-center">Asistencicas del mes de {{month | date:"MMMM"}}</h1>
           <div class="col-md-8">
             <table class="table">
               <thead>
                 <tr>
                   <th>No.</th>
-                  <th>ID alumno</th>
-                  <th *ngFor="let fecha of fechas">{{fecha.fecha}}</th>
-                  <th>No. asis</th>
+                  <th>Alumno</th>
+                  <th *ngFor="let fecha of fechas; let i = index">Clase {{i+1}}</th>
                 </tr>
               </thead>
             
@@ -20,32 +14,36 @@
                 <tr *ngFor="let alumno of alumnos; let i = index">
                   <td>{{i+1}}</td>
                   <td>{{alumno.alum_nom}} {{alumno.alumno_apell}} </td>
-                  <td *ngFor="let row of allRows" >
-                    
-                    <ng-container *ngIf="alumno.idalu == row.idalu; else elseTemplate" [style.display]="alumno.idalu == row.idalu ? '' : 'none'">
-                      {{row.asis}}
+                  <td *ngFor="let row of allRows"  [style.display]="alumno.idalu == row.idalu ? '' : 'none'">
+                    <ng-container *ngIf="row.asis; else elseTemplate">
+                      <mat-icon class="text-success">done</mat-icon >
                     </ng-container>
                     <ng-template #elseTemplate>
-                      no
+                      <mat-icon class="text-danger">clear</mat-icon>
                     </ng-template>
                     
                   </td>
-                  <td *ngFor="let p of pagos" [style.display]="alumno.idalu == p.idalu ? '' : 'none'">
-                    {{p.pm}}
-                  </td>
                 </tr>
               </tbody>
-            
             </table>
           </div>
-          
-          <br>
-          <br>
-          <button (click)="refresh()" >Recargar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<app-fotter></app-fotter>
+          <div class="col-md-2">
+            <table class="table" align="center">
+              <thead>
+                <tr>
+                  <th>No.asis</th>
+                <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let alumno of alumnos">
+                  <td>{{alumno.pm}}</td>
+                  <td>{{alumno.t | currency: "MXN"}}</td>
+                </tr>
+                <tr>
+                  <td align="right">Total a pagar:</td>
+                  <td align="left"><b><h1>{{total | currency: "MXN"}}</h1></b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>

@@ -8,19 +8,22 @@ use slidecom_robogenius\Http\Controllers\Controller;
 
 class pruebaController extends Controller
 {
-    public function prueba()
+    public function prueba(Request $request)
     {
-        $query = DB::select("SELECT alu.idalu, alu.nomalu as alum_nom, asis.fecha, asis.asis
+        // return $request->idesc;
+        $query = DB::select("SELECT alu.idalu, alu.nomalu, alu.apealu as alum_nom, asis.fecha, asis.asis
         FROM alumnos AS alu 
         INNER JOIN asistencias AS asis
         ON asis.idalu = alu.idalu
-        WHERE alu.idesc = 74
+        WHERE alu.idesc = '$request->idesc'
         ORDER BY asis.fecha asc");
 
-        $q = DB::select("SELECT t1.idalu, asisPorMes(t1.idalu, 74) as pm FROM
+        $q = DB::select("SELECT t1.idalu, asisPorMes(t1.idalu, ?) as pm FROM
         (SELECT alu.idalu FROM alumnos AS alu
-        WHERE alu.idesc = 74) AS t1");
+        WHERE alu.idesc = ?) AS t1",[$request->idesc, $request->idesc] );
 
-        return array($query, $q);
+        $m = DB::select("SELECT costo from tipomembresia where idesc = ?", [$request->idesc]);
+
+        return array($query, $q, $m[0]);
     }
 }

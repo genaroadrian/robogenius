@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "26e844a7d16315155f654c6941bab07e",
+    "content-hash": "a4215737ad94b5b8cb356c95674ff1b6",
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -3677,6 +3677,56 @@
             "time": "2017-11-27T11:13:29+00:00"
         },
         {
+            "name": "twilio/sdk",
+            "version": "5.42.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twilio/twilio-php.git",
+                "reference": "aa93c45dda3ac28f0fd01aa775313017af7aa8c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twilio/twilio-php/zipball/aa93c45dda3ac28f0fd01aa775313017af7aa8c2",
+                "reference": "aa93c45dda3ac28f0fd01aa775313017af7aa8c2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "apigen/apigen": "^4.1",
+                "guzzlehttp/guzzle": "^6.3",
+                "phpunit/phpunit": ">=4.5"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "An HTTP client to execute the API requests"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Twilio\\": "src/Twilio/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Twilio API Team",
+                    "email": "api@twilio.com"
+                }
+            ],
+            "description": "A PHP wrapper for Twilio's API",
+            "homepage": "http://github.com/twilio/twilio-php",
+            "keywords": [
+                "api",
+                "sms",
+                "twilio"
+            ],
+            "time": "2020-01-22T21:27:31+00:00"
+        },
+        {
             "name": "tymon/jwt-auth",
             "version": "dev-develop",
             "source": {
@@ -3867,6 +3917,7 @@
                 "psr",
                 "psr-7"
             ],
+            "abandoned": "laminas/laminas-diactoros",
             "time": "2019-04-29T21:11:00+00:00"
         }
     ],

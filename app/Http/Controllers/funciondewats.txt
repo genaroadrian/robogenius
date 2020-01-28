@@ -1,0 +1,28 @@
+$data = $request->all();
+         
+        if(!isset($data["text"]) or !isset($data["phone"])){ die('Not enough data');}
+
+        $apiURL = 'https://eu67.chat-api.com/instance95377/';
+        $token = '759gzqf2dp70g3z0';
+        
+        $message = $data["mensaje"];
+        $phone = $data["numero"];
+        
+        $data = json_encode(
+            array(
+                'chatId'=>$phone.'@c.us',
+                'body'=>$message
+            )
+        );
+        $url = $apiURL.'message?token='.$token;
+        $options = stream_context_create(
+            array('http' =>
+                array(
+                    'method'  => 'POST',
+                    'header'  => 'Content-type: application/json',
+                    'content' => $data
+                )
+            )
+        );
+        $response = file_get_contents($url,false,$options);
+        echo $response; exit;

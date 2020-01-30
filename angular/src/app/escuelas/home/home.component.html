@@ -98,14 +98,12 @@
             </mat-table>
 
 
-            <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
-              <!-- Spinner de carga -->
-              <img src="https://loading.io/spinners/eclipse/lg.ring-loading-gif.gif"
-                style="width: 20%; margin-left: 4%;">
+            <div class="no-results col-md-12" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'" >
+              <img src="../assets/images/spinners/{{spinner}}" class="spinner">
 
             </div>
 
-            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
+            <mat-paginator class="col-md-12" #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
               [pageSizeOptions]="[5, 10, 25, 100]">
             </mat-paginator>
           </div>

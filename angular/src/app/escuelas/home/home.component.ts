@@ -14,8 +14,8 @@ import { Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { TipomembresiaService } from 'src/app/services/tipomembresia.service';
-
-
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +23,9 @@ import { TipomembresiaService } from 'src/app/services/tipomembresia.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
+    spinner = spinner
+  noResults = noResults
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [

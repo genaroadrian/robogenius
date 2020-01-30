@@ -18,9 +18,12 @@ export class AddasisComponent implements OnInit {
 
   barra = 'none'
   selected = 0
-
+  vBtn: string = ''
   history: any
   historyF: any
+  status: any[]=[]
+  viewList: string = 'none'
+  
   
 
 
@@ -50,7 +53,14 @@ export class AddasisComponent implements OnInit {
 
   getAlumnos() {
     this.personalPerfilService.getListaalumnos(this.data).subscribe((data) => {
-      this.dataSource = data
+      this.dataSource = data[0]
+      this.status = data[1]
+      console.log(data)
+      if(this.status.length > 0)
+      {
+        this.viewList = ''
+        this.vBtn = 'none'
+      }
       this.dataSource.forEach(element => {
         element.iddgru = this.data.iddgru
         element.dia = this.data.dia

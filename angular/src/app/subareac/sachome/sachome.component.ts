@@ -10,6 +10,8 @@ import { map } from 'rxjs/operators';
 import { SacaddComponent } from '../sacadd/sacadd.component';
 import { SaceditComponent } from '../sacedit/sacedit.component';
 import { SacdeleteComponent } from '../sacdelete/sacdelete.component';
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-sachome',
@@ -17,6 +19,8 @@ import { SacdeleteComponent } from '../sacdelete/sacdelete.component';
   styleUrls: ['./sachome.component.css']
 })
 export class SachomeComponent implements OnInit {
+    spinner = spinner
+  noResults = noResults
 
   id: number
   index: number

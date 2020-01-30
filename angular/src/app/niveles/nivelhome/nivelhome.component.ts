@@ -11,6 +11,8 @@ import { Niveles } from 'src/app/interfaces/niveles';
 import { AddnivelComponent } from '../addnivel/addnivel.component';
 import { UpdatenivelComponent } from '../updatenivel/updatenivel.component';
 import { DeletenComponent } from '../deleten/deleten.component';
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
 
 
 @Component({
@@ -19,6 +21,8 @@ import { DeletenComponent } from '../deleten/deleten.component';
   styleUrls: ['./nivelhome.component.css']
 })
 export class NivelhomeComponent implements OnInit {
+    spinner = spinner
+  noResults = noResults
   displayedColumns: string[] = [
     'idn',
     'nombre',

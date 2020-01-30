@@ -77,8 +77,11 @@ export class AluhomeComponent implements OnInit {
 
   ngOnInit() 
   {
+    let d:any
      // Llamado al metodo de que obtiene los datos
       this.getAlumnos()
+      // console.log(d)
+
 
 
      // Traducir los label de la tabla
@@ -111,7 +114,7 @@ export class AluhomeComponent implements OnInit {
 
     /*  Obtiene los datos de la base y se la asigna a el datasource y database example
   tambien se le asigna el filtro la barra de busqueda y la paginacion */
-  getAlumnos() 
+  async getAlumnos() 
   {
       this.exampleDatabase = new AlumnosService(this.httpClient);
       this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
@@ -231,6 +234,7 @@ export class ExampleDataSource extends DataSource<Alumnos> {
     ];
 
     this._exampleDatabase.getAlumnos();
+  
 
     return merge(...displayDataChanges).pipe(map( () => {
         // Filter data

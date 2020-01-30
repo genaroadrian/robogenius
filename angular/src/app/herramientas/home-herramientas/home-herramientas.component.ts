@@ -12,6 +12,8 @@ import { Herramientas } from 'src/app/interfaces/herramientas';
 import { AddHerramientasComponent } from '../add-herramientas/add-herramientas.component';
 import { NotificationsService } from 'src/app/services/notifications.service';
 import { UpdatehComponent } from '../updateh/updateh.component';
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-home-herramientas',
@@ -19,6 +21,8 @@ import { UpdatehComponent } from '../updateh/updateh.component';
   styleUrls: ['./home-herramientas.component.css']
 })
 export class HomeHerramientasComponent implements OnInit {
+    spinner = spinner
+  noResults = noResults
 
   barra = "none"
   addherramientas: any;

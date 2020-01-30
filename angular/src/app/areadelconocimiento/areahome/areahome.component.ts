@@ -11,6 +11,8 @@ import {  AreaaddComponent } from '../areaadd/areaadd.component';
 import { AreadeletComponent } from '../areadelet/areadelet.component';
 import { AreaeditComponent } from '../areaedit/areaedit.component';
 import { Router } from '@angular/router';
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-areahome',
@@ -18,6 +20,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./areahome.component.css']
 })
 export class AreahomeComponent implements OnInit {
+
+  spinner = spinner
+  noResults = noResults
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [

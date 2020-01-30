@@ -8,12 +8,18 @@ import { Sesiones } from 'src/app/interfaces/sesiones';
 import { BehaviorSubject, Observable, merge, fromEvent } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
+
 @Component({
   selector: 'app-homesesiones',
   templateUrl: './homesesiones.component.html',
   styleUrls: ['./homesesiones.component.css']
 })
 export class HomesesionesComponent implements OnInit {
+
+    spinner = spinner
+  noResults = noResults
 
   barra: string = 'none'
 

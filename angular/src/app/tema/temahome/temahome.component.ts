@@ -12,6 +12,8 @@ import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-temahome',
@@ -19,6 +21,8 @@ import { ToastrManager } from 'ng6-toastr-notifications';
   styleUrls: ['./temahome.component.css']
 })
 export class TemahomeComponent implements OnInit {
+    spinner = spinner
+  noResults = noResults
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [

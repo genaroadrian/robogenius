@@ -10,6 +10,8 @@ import { map } from 'rxjs/operators';
 import { AddtipomemComponent } from '../addtipomem/addtipomem.component';
 import { EdittipomemComponent } from '../edittipomem/edittipomem.component';
 import { DeletetipomemComponent } from '../deletetipomem/deletetipomem.component';
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-hometipomem',
@@ -17,6 +19,8 @@ import { DeletetipomemComponent } from '../deletetipomem/deletetipomem.component
   styleUrls: ['./hometipomem.component.css']
 })
 export class HometipomemComponent implements OnInit {
+    spinner = spinner
+  noResults = noResults
 
   memAdd: any
 

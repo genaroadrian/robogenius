@@ -133,7 +133,7 @@
               </ng-container>
 
               <ng-container matColumnDef="pswalu">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Contraseña</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Contraseï¿½a</mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.pswalu}}</mat-cell>
               </ng-container>
 
@@ -208,7 +208,7 @@
               </ng-container>
 
               <ng-container matColumnDef="pswpad">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Contraseña padres</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Contraseï¿½a padres</mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.pswpad}}</mat-cell>
               </ng-container>
 
@@ -244,16 +244,12 @@
               <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
             </mat-table>
 
-            <!-- Solo mientras no aparezcan datos -->
-            <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
-              <!-- Spinner de carga -->
-              <img src="../assets/images/spinners/{{spinner}}"
-                style="width: 20%; margin-left: 4%;" #loader>
+            <div class="no-results col-md-12" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'" >
+              <img src="../assets/images/spinners/{{spinner}}" class="spinner">
 
             </div>
 
-            <!-- Seccion de la paginacion -->
-            <mat-paginator #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
+            <mat-paginator class="col-md-12" #paginator [length]="dataSource.filteredData.length" [pageIndex]="0" [pageSize]="5"
               [pageSizeOptions]="[5, 10, 25, 100]">
             </mat-paginator>
           </div>

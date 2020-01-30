@@ -12,6 +12,8 @@ import { PerdeleteComponent } from '../perdelete/perdelete.component';
 import { Router } from '@angular/router';
 import { PersonalperfilService } from 'src/app/services/personalperfil.service';
 // For MDB Angular Free
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
 
 
 
@@ -35,6 +37,8 @@ declare var $:any;
   styleUrls: ['./perhome.component.css']
 })
 export class PerhomeComponent  {
+    spinner = spinner
+  noResults = noResults
 
   // onClick() {
   //   myTest();

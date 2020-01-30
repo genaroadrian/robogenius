@@ -88,12 +88,9 @@ export class PersonalperfilComponent implements OnInit {
     this.datos = this.personalPerfilService.returnPerfil();
     this.personal.idper = this.datos.idper;
     this.getGrupos();
-    let d = new Date().getDay()
-    this.today = this.weekDays[d]
-    if(this.weekDays[d] == this.today)
-    {
-      this.ds = true
-    }
+    
+    
+
   }
 
   displayedColumns: string[] = ["dia", "hora", "icons"];
@@ -136,6 +133,16 @@ export class PersonalperfilComponent implements OnInit {
   }
 
   asistencia(iddgru, dia, hora, idesc) {
+    let d = new Date().getDay()
+    this.today = this.weekDays[d]
+    if(dia != this.today)
+    {
+      this.ds = true
+    }
+    else
+    {
+      this.ds = false
+    }
     let idper = this.datos.idper;
     const dialogRef = this.dialog.open(AddasisComponent, {
       width: "60%",

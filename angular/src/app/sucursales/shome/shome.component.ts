@@ -12,6 +12,8 @@ import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { Router } from '@angular/router';
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-shome',
@@ -19,6 +21,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./shome.component.css']
 })
 export class ShomeComponent implements OnInit {
+    spinner = spinner
+  noResults = noResults
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [

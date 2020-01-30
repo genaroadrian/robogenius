@@ -11,11 +11,8 @@ import { Codigos } from 'src/app/interfaces/codigos';
 import { CodigosaddComponent } from '../codigosadd/codigosadd.component';
 import { CodmodificarComponent } from '../codmodificar/codmodificar.component';
 import { CoddeleteComponent } from '../coddelete/coddelete.component';
-
-
-
-
-
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
 
 
 @Component({
@@ -24,6 +21,10 @@ import { CoddeleteComponent } from '../coddelete/coddelete.component';
   styleUrls: ['./codigohome.component.css']
 })
 export class CodigohomeComponent implements OnInit {
+
+    spinner = spinner
+  noResults = noResults
+
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('filter') filter: ElementRef;

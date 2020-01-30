@@ -11,6 +11,8 @@ import { DataSource } from '@angular/cdk/table';
 import { UpdategComponent } from '../updateg/updateg.component';
 import { DeletegComponent } from '../deleteg/deleteg.component';
 import { AddgradosComponent } from '../addgrados/addgrados.component';
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
 
 
 
@@ -21,6 +23,8 @@ import { AddgradosComponent } from '../addgrados/addgrados.component';
   styleUrls: ['./homeg.component.css']
 })
 export class HomegComponent implements OnInit {
+    spinner = spinner
+  noResults = noResults
   
 
     // Columnas que se van a mostrar en la pagina

@@ -215,14 +215,20 @@ total:any
   .subscribe(data=>{
     data=data.filter(x=>x.idscu==this.sucursal)
     this.pendiente=data;
-    console.log(this.pendiente)
+    var hash={};
+
+    this.pendiente = this.pendiente.filter(function (area) {
+      var exists = !hash[area.concepto] || false;
+      hash[area.concepto] = true;
+      return exists;
+    
+
   })
+  console.log(this.pendiente)
 
 
- 
-
-
-}
+})
+  }
 
 
 categoria()

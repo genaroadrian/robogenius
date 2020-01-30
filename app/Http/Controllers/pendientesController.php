@@ -15,7 +15,8 @@ class pendientesController extends Controller
      */
     public function index()
     {
-        $pendiente = DB::SELECT("SELECT * FROM contabilidad WHERE restante > 0 ");
+        $pendiente = DB::SELECT("SELECT * FROM contabilidad WHERE restante > 0 ORDER BY fecha DESC
+        ");
         return $pendiente;
     }
 

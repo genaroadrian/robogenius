@@ -42,7 +42,8 @@
                 </tr>
                 <tr>
                   <td align="right">Total a pagar:</td>
-                  <td align="left"><b><h1>{{total | currency: "MXN"}}</h1></b></td>
+                  <td align="left"><b><h1>{{total | currency: "MXN"}}</h1></b>
+                  <button class="btn btn-info" (click)="enviarpago(total)">Actualizar pago</button></td>
                 </tr>
               </tbody>
             </table>

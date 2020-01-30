@@ -78,14 +78,14 @@
                                                     <td>Adelanto</td>
                                                     <td>Nombre</td>
                                                 </tr>
-                                            <tr *ngFor="let c of ingresos" >
+                                            <tr *ngFor="let c of ingresos"  >
                                             
-                                                <td>{{c.concepto}}</td>
-                                                <td>{{c.fecha}}</td>
+                                                <td *ngIf="c.suma>0">{{c.concepto}}</td>
+                                                <td *ngIf="c.suma>0"> {{c.fecha}}</td>
                                                 <!-- <td>{{c.Categoria}}</td> -->
-                                                <td>{{c.monto}}</td>
-                                                <td>{{c.suma}}</td>
-                                                <td>{{c.nombre}}</td>
+                                                <td *ngIf="c.suma>0">{{c.monto}}</td>
+                                                <td *ngIf="c.suma>0" >{{c.suma}}</td>
+                                                <td *ngIf="c.suma>0">{{c.nombre}}</td>
                                             </tr>
                                             
                                                 
@@ -435,7 +435,7 @@
                                             <td>Restante</td>
                                             <td>Editar</td>
                                         </tr>
-                                    <tr *ngFor="let c of pendiente"  >
+                                    <tr *ngFor="let c of pendiente;  trackBy: index"  >
                                     
                                         <td>{{c.concepto}}</td>
                                         <td>{{c.fecha}}</td>

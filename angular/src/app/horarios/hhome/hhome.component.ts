@@ -12,12 +12,18 @@ import {BehaviorSubject, fromEvent, merge, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import { NotificationsService } from 'src/app/services/notifications.service';
 
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
+
 @Component({
   selector: 'app-hhome',
   templateUrl: './hhome.component.html',
   styleUrls: ['./hhome.component.css']
 })
 export class HhomeComponent implements OnInit {
+
+    spinner = spinner
+  noResults = noResults
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [

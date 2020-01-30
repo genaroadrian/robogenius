@@ -18,6 +18,7 @@ class asistenciasController extends Controller
 
     public function store(Request $request)
     {
+        
         foreach($request->all() as $all)
         {
         $asis = new Asistencias();

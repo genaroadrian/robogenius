@@ -11,6 +11,8 @@ import { DataSource } from '@angular/cdk/collections';
 import { BehaviorSubject, fromEvent, merge, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-tpahome',
@@ -18,6 +20,8 @@ import { ToastrManager } from 'ng6-toastr-notifications';
   styleUrls: ['./tpahome.component.css']
 })
 export class TpahomeComponent implements OnInit {
+    spinner = spinner
+  noResults = noResults
 
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [

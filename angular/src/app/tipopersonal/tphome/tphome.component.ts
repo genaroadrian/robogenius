@@ -13,6 +13,8 @@ import { TpaddComponent } from '../tpadd/tpadd.component';
 import { TpdeleteComponent } from '../tpdelete/tpdelete.component';
 import { TpeditComponent } from '../tpedit/tpedit.component';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
 
 
 
@@ -22,6 +24,8 @@ import { ToastrManager } from 'ng6-toastr-notifications';
   styleUrls: ['./tphome.component.css']
 })
 export class TphomeComponent implements OnInit {
+    spinner = spinner
+  noResults = noResults
 
   disp = "none"
 

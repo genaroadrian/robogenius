@@ -7,7 +7,12 @@
       <mat-icon class="example-tab-icon">list</mat-icon>
       Pasar Lista
     </ng-template>
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" class="col-md-12">
+    <div [ngStyle]="{'display': viewList}">
+      <br>
+      <h2 class="text-center">Ya has pasado lista el dia de hoy!</h2>
+    </div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" class="col-md-12" 
+    [style.display]="status.length > 0 ? 'none': ''">
 
       <ng-container matColumnDef="no">
         <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -38,8 +43,8 @@
     <div>
 
     </div>
-    <div>
-      <button class="btn btn-success" (click)="pasAsis()" [mat-dialog-close]="1">Guardar</button>
+    <div  >
+      <button [ngStyle]="{'display': vBtn}" class="btn btn-success" (click)="pasAsis()" [mat-dialog-close]="1">Guardar</button>
       <button class="btn btn-danger" (click)="onNoClick()">Cerrar</button>
     </div>
     <!-- Fin del tab de pasar lista -->

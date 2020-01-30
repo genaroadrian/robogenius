@@ -13,12 +13,18 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
 
+import { spinner } from 'src/app/services/global.service';
+import { noResults } from 'src/app/services/global.service';
+
 @Component({
   selector: 'app-subtemahome',
   templateUrl: './subtemahome.component.html',
   styleUrls: ['./subtemahome.component.css']
 })
 export class SubtemahomeComponent implements OnInit {
+
+    spinner = spinner
+  noResults = noResults
   // Columnas que se van a mostrar en la pagina
   displayedColumns: string[] = [
     'ids',

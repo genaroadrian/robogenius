@@ -50,12 +50,17 @@ class perperfilgrupController extends Controller
 
     public function update (Request $request, $id)
     {
-        $lalumnos = \DB::select("SELECT alumnos.idalu, alumnos.nomalu, alumnos.apealu 
+        $now = now()->toDateString('YYYY-MM-DD');
+        // return $now;
+        $c = \DB::select("SELECT idasis FROM asistencias WHERE idgru = ? AND fecha = ?", [$id, $now]);
+        // return $c;
+
+        $alumnos = \DB::select("SELECT alumnos.idalu, alumnos.nomalu, alumnos.apealu 
         FROM alumnos, grupos_alumnos
         WHERE grupos_alumnos.idg = $id AND grupos_alumnos.idalu = alumnos.idalu 
         AND alumnos.activo = 1 AND grupos_alumnos.activo = 1");
 
-        return $lalumnos;
+        return array($alumnos,$c);
     }
 
     

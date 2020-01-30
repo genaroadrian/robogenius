@@ -46,7 +46,7 @@ import { SubtemaService } from '../services/subtema.service';
 export class ModuloComponent implements OnInit {
 
   checked = true
-
+  all: any
   no_s: number
   
   barraS: string = 'none'
@@ -198,48 +198,13 @@ export class ModuloComponent implements OnInit {
     this.idfolio = n.toString()
     // console.log(this.idfolio + this.nivels + this.grads + this.areacs)
     this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.idfolio  
-    console.log(this.nivels)
-    console.log(this.grads)
-    console.log(this.areacs)
-    console.log(this.subareacs)
-    console.log(this.tems)
-    console.log(this.subtems)
-    console.log(this.idfolio)
 
     this.numero = 1
     this.ns = 1
     this.fechaHoy()
-    this.getHerramientas()
-    this.get()
-    //Obtener datos de modal nivel
-    this.nivelService.get().subscribe((data) => {
-      this.persona = data
-    }, (error) => {
-    })
-
-    //Obtener datos de modal grados
-    this.gradoService.get().subscribe((data) => {
-      this.grado = data
-    }, (error) => {
-    })
-
-    this.moduloService.geta().subscribe((data) => {
-      this.areas = data
-      // console.log(this.areas)
-    }, (error) => {
-    })
-
-    this.moduloService.gett().subscribe((data) => {
-      this.temas = data
-      
-    }, (error) => {
-    })
-    this.moduloService.gets().subscribe((data) => {
-      this.subtemas = data
-    }, (error) => {
-    })
-
-    this.getSubAC()
+    // this.get()
+    this.getAll()
+  
   }
 
   /* Index de la sesion */
@@ -251,6 +216,47 @@ export class ModuloComponent implements OnInit {
   manda(e) {
     this.ns = e
 
+  }
+  
+
+  async getAll()
+  {
+    this.barra = ''
+    try {
+      this.all = await Promise.all([
+        // Niveles 0
+        this.nivelService.get().toPromise(),
+        //Grados 1
+        this.gradoService.get().toPromise(),
+        //Areas 2
+        this.moduloService.geta().toPromise(),
+        //Subareas 3
+        this.moduloService.getSAC().toPromise(),
+        //Temas 4
+        this.moduloService.gett().toPromise(),
+        //Subtemas 5
+        this.moduloService.gets().toPromise(),
+        //Herramientas 6
+        this.moduloService.getHerra().toPromise()
+      ])
+
+        this.persona = this.all[0]
+        this.grado = this.all[1]
+        this.areas = this.all[2]
+        this.subareas = this.all[3]
+        this.temas = this.all[4]
+        console.log(this.temas)
+        this.subtemas = this.all[5]
+        this.herramientas = this.all[6]
+        this.herramientasSearch = this.herramientas
+        
+      this.barra = 'none'
+    } catch (e) {
+      this.barra = 'none'
+      console.log(e)
+    }
+
+    
   }
 
   /* Funciones de las tabs */
@@ -462,6 +468,7 @@ export class ModuloComponent implements OnInit {
   /* funciones que obtienen todos los datos que se van a filtrar */
   get() {
     this.areaService.getall().subscribe((data) => {
+      console.log(data);
       this.datos = data;
       var hash = {};
       this.areadelconocimiento = this.datos.filter(function (area) {
@@ -469,26 +476,6 @@ export class ModuloComponent implements OnInit {
         hash[area.nomarea] = true;
         return exists;
       });
-    })
-  }
-
-  getSubAC() {
-    this.barra = ''
-    this.moduloService.getSAC().subscribe((data) => {
-        this.barra = 'none'
-      this.subareas = data
-    }, (error) => {
-      this.barra = 'none'
-      this.notifications.showError()
-    })
-  }
-
-  getHerramientas() {
-    this.moduloService.getHerra().subscribe((data) => {
-      this.herramientas = data
-      this.herramientasSearch = data
-    }, (error) => {
-
     })
   }
 
@@ -537,6 +524,7 @@ export class ModuloComponent implements OnInit {
   }
 
   gettema(AREA, event) {
+    console.log(AREA)
     let text = event.source.selected
     let value: string = ''
     text.forEach(element => {
@@ -557,13 +545,14 @@ export class ModuloComponent implements OnInit {
     this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.herrams + this.idfolio;
 
     this.vArea = AREA
-
-    let newarray = this.datos // Asignar el array de todos los datos a una variable temporal
+/* --------- modificacion 
+let newarray = this.datos*/
+    let newarray = this.temas // Asignar el array de todos los datos a una variable temporal
     let tema: any // Obtiene un array de todos los temas 
     let filtered = [] // Nuevo Array con los temas ya filtrados
     AREA.forEach(function (value, index, array) {
       // // console.log(value)
-      tema = newarray.filter(tem => tem.idac == value)
+      tema = newarray.filter(tem => tem.idac == AREA)
       // // console.log(tema)
       tema.forEach(function (value, index, array) {
         filtered.push(value)

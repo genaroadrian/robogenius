@@ -1,4 +1,4 @@
-<div class="form-group" style="height: 170px;">
+<!-- <div class="form-group" style="height: 170px;">
 
   <form #formControl="ngForm">
 
@@ -31,4 +31,36 @@
   </div>
 </div>
   </form>
+</div> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="text-center">Agregar nueva Area</h3>
+    </div>
+  </div>
+<br>
+  <div class="row">
+    <form #formControl="ngForm">
+      <div class="col-md-12">
+        <mat-form-field>
+          <input type="text" #input matInput placeholder="Area del conocimiento" [(ngModel)]="data.nombre" name="nombre" class="text-center" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+<br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-6">
+        <button class="btn btn-success next" [disabled]="!formControl.valid" [mat-dialog-close]="1"
+        (click)="corfirmAdd(data)">Guardar</button>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
 </div>

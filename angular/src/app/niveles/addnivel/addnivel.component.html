@@ -1,4 +1,4 @@
-<div class="form-group" style="height:140px;" >
+<!-- <div class="form-group" style="height:140px;" >
   
 
   <form #formControl="ngForm">
@@ -23,4 +23,38 @@
 
 </div>
   </form>
+</div> -->
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="title text-center">Agregar nivel</h3>
+      <hr>
+    </div>
+  </div>
+<br>
+  <div class="row">
+    <form #formControl="ngForm">
+      <div class="form">
+        <mat-form-field color="primary" >
+          <input class="text-center" type="text" #input matInput placeholder="Nombre del nivel" [(ngModel)]="data.nombre" name="nivel" required >
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </div>
+<br>
+  <div class="row">
+        <div class="col-md-12">
+<div class="col-md-6">
+  <button class="btn btn-success" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="addnivel()">Guardar</button>
+
+</div>
+        <div class="col-md-6">
+          <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+        </div>
+        </div>
+  </div>
+
 </div>

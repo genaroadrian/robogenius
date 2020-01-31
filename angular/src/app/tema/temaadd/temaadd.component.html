@@ -1,32 +1,47 @@
-<div class="container" style="height:280px;">
-  <h3 mat-dialog-title style="text-align: center;">Nuevo registro</h3>
-
-  <form mat-dialog-content #formControl="ngForm">
-
-    <div class="form">
-      <mat-form-field color="accent">
-        <input matInput placeholder="Tema" [(ngModel)]="teme.nombre" name="nombre" required >
-        <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="text-center">Nuevo registro</h3>
+      <hr>
     </div>
+  </div>
+<br>
+    <form #formControl="ngForm">
 
-    <!-- <div class="form">
-      <mat-form-field color="accent" >
-        <input matInput placeholder="Area del conocimiento" [(ngModel)]="data.idac" name="representante" required>
-        <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-    </div> -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form">
+            <mat-form-field >
+              <input matInput placeholder="Tema" [(ngModel)]="teme.nombre" name="nombre" required  class="text-center">
+              <mat-error *ngIf="fControl.invalid">{{getErrorMessage()}}</mat-error>
+            </mat-form-field>
+          </div>  
+        </div>
+      </div>
 
-      <mat-form-field  color="accent"  >
-        <mat-label>Seleccione el area del conocimiento</mat-label>
-        <mat-select (selectionChange)="select($event.value)">
-          <mat-option *ngFor="let areadelc of ac" [value]="areadelc.idac" >
-            {{areadelc.nombre}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <br>
-      <button class="btn btn-success" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()" style="margin-top:40px;margin-left: 20px; margin-right: 40px;">Guardar</button>
-      <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1" style="margin-top: 40px;">Cancelar</button>
-  </form>
+     <div class="row">
+      <div class="col-md-12 justify-content-center">
+        <mat-form-field>
+          <mat-label>Seleccione el area del conocimiento</mat-label>
+          <mat-select (selectionChange)="select($event.value)" required>
+            <mat-option *ngFor="let areadelc of ac" [value]="areadelc.idac" >
+              {{areadelc.nombre}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+     </div>
+      
+      </form>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-6">
+              <button class="btn btn-success" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="confirmAdd()" style="margin-top:40px;margin-left: 20px; margin-right: 40px;">Guardar</button>
+      </div>
+      <div class="col-md-6">
+              <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1" style="margin-top: 40px;">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
 </div>

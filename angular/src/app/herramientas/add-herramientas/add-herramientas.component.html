@@ -1,4 +1,4 @@
-<div class="form-group" style="width:500px">
+<!-- <div class="form-group" style="width:500px">
 
   <form #formControl="ngForm">
 
@@ -24,4 +24,38 @@
     </div>
   </div>
   </form>
+</div>
+ -->
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="text-center">Nueva herramienta</h3>
+      <hr>
+    </div>
+  </div>
+<br>
+  <div class="row">
+    <div class="col-md-12">
+      <form #formControl="ngForm">
+        <mat-form-field color="accent">
+          <input matInput placeholder="Nombreeee" [(ngModel)]="data.nombre" name="Nombre de la herramienta" required>
+          <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+<br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-6">
+        <button class="btn btn-success" [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="herramientas()" >Guardar</button>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
 </div>

@@ -1,4 +1,4 @@
-<div class="form-group" style="width400px">
+<!-- <div class="form-group">
   
 
   <form  #formControl="ngForm">
@@ -6,7 +6,7 @@
       <div class="container">
           <div class="row">
             <div class="col-xl-12">
-              <h3 style="text-align: center;">Agregar Grado</h3>
+              <h3>Agregar Grado</h3>
             </div>
           </div>
           <hr/>
@@ -17,7 +17,6 @@
     <div class="form col-xl-4">
         <mat-form-field color="accent" style="width: 300px;">
             <input style="text-align: center" matInput #input   placeholder="Nombre" [(ngModel)]="data.nombre" name="nombre" required>
-        <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
     </div>
   </div>
@@ -26,11 +25,45 @@
   <br>
 
     <div mat-dialog-actions >
-      <button class="btn btn-success"  [disabled]="!formControl.valid" [mat-dialog-close]="1"
-(click)="addgrados()" style="margin-left: 60px; margin-right: 50px;">Guardar</button>
-      <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+      
+      
 
   </div>
 </div>
   </form>
+</div> -->
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="text-center">Agregar nuevo grado</h3>
+      <hr>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <form #formControl="ngForm"> 
+      <div class="col-md-12">
+        <div class="form">
+          <mat-form-field>
+            <input  class="text-center" type="text" matInput #input placeholder="Nombre del grado" [(ngModel)]="data.nombre" name="grado" required>
+            <mat-error *ngIf="formControl.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </form>
+  </div>
+<br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="col-md-6">
+        <button class="btn btn-success"  [disabled]="!formControl.valid" [mat-dialog-close]="1" (click)="addgrados()">Guardar</button>
+      </div>
+      <div class="col-md-6">
+        <button class="btn btn-danger" (click)="onNoClick()" tabindex="-1">Cancelar</button>
+      </div>
+    </div>
+  </div>
+  
 </div>

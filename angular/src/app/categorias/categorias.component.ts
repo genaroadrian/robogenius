@@ -218,8 +218,8 @@ total:any
     var hash={};
 
     this.pendiente = this.pendiente.filter(function (area) {
-      var exists = !hash[area.concepto] || false;
-      hash[area.concepto] = true;
+      var exists = !hash[area.Concepto] || false;
+      hash[area.Concepto] = true;
       return exists;
     
 

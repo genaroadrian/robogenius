@@ -21,10 +21,10 @@
                          <div class="col-xl-12 col-md-12 ">
                           <mat-toolbar style="background: none; color: black;">
                             <span><button mat-icon-button (click)="addNew()" >
-                                <mat-icon aria-label="Nuevo Registro" >add_circle_outline</mat-icon><span > Nuevo</span>
+                                <mat-icon aria-label="Nuevo Registro" >add_circle_outline</mat-icon><span class="nuevo"> Nuevo</span>
                               </button></span>
                             <span class="spacer"></span>
-                            Recargar datos:
+                            <span class="nuevo">Recargar datos:</span>
                             <button mat-icon-button (click)="refresh()">
                               <mat-icon>refresh</mat-icon>
                             </button>
@@ -51,22 +51,22 @@
                             
                                 <ng-container matColumnDef="nombre" sticky>
                                   <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
-                                  <mat-cell *matCellDef="let row"> {{row.nombre}}</mat-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Nombre"> {{row.nombre}}</mat-cell>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="costo">
                                   <mat-header-cell *matHeaderCellDef mat-sort-header>Costo</mat-header-cell>
-                                  <mat-cell *matCellDef="let row"> {{row.costo}}</mat-cell>
+                                  <mat-cell *matCellDef="let row"data-label="Costo">${{row.costo}}.00</mat-cell>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="clases" >
                                   <mat-header-cell *matHeaderCellDef mat-sort-header>Clases</mat-header-cell>
-                                  <mat-cell *matCellDef="let row"> {{row.clases}}</mat-cell>
+                                  <mat-cell *matCellDef="let row" data-label="Clases"> {{row.clases}}</mat-cell>
                                 </ng-container>
                             
                                 <ng-container matColumnDef="icons" stickyEnd>
                                     <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
-                                  <mat-cell *matCellDef="let row; let i=index;">
+                                  <mat-cell *matCellDef="let row; let i=index;" data-label="Acciones">
                                     <button mat-icon-button class="text-success" (click)="onUpdate(i, row.idtmem, row.nombre, row.costo, row.clases)">
                                       <mat-icon aria-label="Edit">edit</mat-icon>
                                     </button>

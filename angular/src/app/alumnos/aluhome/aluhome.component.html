@@ -22,11 +22,11 @@
           <div class="col-xl-12 col-md-12 ">
             <mat-toolbar style="background: none; color: black;">
               <span><button mat-icon-button [routerLink]="['/nuevoalumno']" routerLinkActive="router-link-active">
-                  <mat-icon aria-label="Nuevo Registro" class="add">add_circle_outline</mat-icon><span class="add">
+                  <mat-icon aria-label="Nuevo Registro" class="add">add_circle_outline</mat-icon><span class="add nuevo">
                     Nuevo</span>
                 </button></span>
               <span class="spacer"></span>
-              Recargar datos:
+              <span class="nuevo">Recargar datos:</span>
               <button mat-icon-button (click)="refresh()">
                 <mat-icon>refresh</mat-icon>
               </button>
@@ -50,12 +50,12 @@
 
               <ng-container matColumnDef="nomalu">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre</mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.nomalu}}</mat-cell>
+                <mat-cell *matCellDef="let row" data-label="Nombre"> {{row.nomalu}}</mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="apealu">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Apellidos</mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.apealu}}</mat-cell>
+                <mat-cell *matCellDef="let row" data-label="Apellidos"> {{row.apealu}}</mat-cell>
               </ng-container>
 
 
@@ -71,12 +71,12 @@
 
               <ng-container matColumnDef="domalu">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Domicilio</mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.domalu}}</mat-cell>
+                <mat-cell *matCellDef="let row" data-label="Domicilio"> {{row.domalu}}</mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="telalu">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Telefono</mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.telalu}}</mat-cell>
+                <mat-cell *matCellDef="let row" data-label="TELEFONO"> {{row.telalu}}</mat-cell>
               </ng-container>
 
               <ng-container matColumnDef="correoalu">
@@ -121,7 +121,7 @@
 
               <ng-container matColumnDef="nombre">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Escuela</mat-header-cell>
-                <mat-cell *matCellDef="let row"> {{row.nombre}} <span
+                <mat-cell *matCellDef="let row"  data-label="INSTITUCION"> {{row.nombre}} <span
                     [style.display]="row.nombre == null ? '' : 'none'">Sucursal {{sucursal}}</span></mat-cell>
               </ng-container>
 
@@ -208,14 +208,14 @@
               </ng-container>
 
               <ng-container matColumnDef="pswpad">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>Contrase�a padres</mat-header-cell>
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Contraseña padres</mat-header-cell>
                 <mat-cell *matCellDef="let row"> {{row.pswpad}}</mat-cell>
               </ng-container>
 
 
               <ng-container matColumnDef="icons">
                 <mat-header-cell *matHeaderCellDef mat-sort-header>Acciones</mat-header-cell>
-                <mat-cell *matCellDef="let row; let i=index;">
+                <mat-cell *matCellDef="let row; let i=index;" data-label="ACCIONES">
                   <!-- En el boton de editar se manda al mentodo todos los datos de row -->
                   <!-- <button mat-icon-button class="text-success" 
                                       (click)="onUpdate(i, row.idalu, row.nomalu, row.apealu, row.sexoalu, row.domalu,

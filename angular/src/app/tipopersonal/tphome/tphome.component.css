@@ -115,9 +115,10 @@ hr{
     font-size: .85em;
   }
   
-    /* .mat-table .mat-cell:first-child {
-    margin-top: 10%;
-  } */
+  .nuevo{
+    color:black;
+    font-size:12px;
+  }
 }
 
 

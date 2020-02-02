@@ -4,7 +4,6 @@ import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import { Alumnosview } from '../interfaces/alumnosview';
 import {globalVar} from '../services/global.service'
-import {Api} from '../alumnos/inactivealu/inactivealu.component'
 
 @Injectable({
   providedIn: 'root'
@@ -28,10 +27,6 @@ export class AlumnosService {
 
   }
 
-  fetchInactive(): Observable<Api>
-  {
-      return  this.httpClient.get<Api>(this.API_ENDPOINT+'/inactive_students')
-  }
 
   // Obtener datos de la base de datos
   getAlumnos(): void{

@@ -30,7 +30,7 @@ export class TemaService {
   {
     console.log(tema);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.post(this.API_ENDPOINT + '/tema/',tema, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT + '/tema',tema, {headers: headers});
   }
 
 

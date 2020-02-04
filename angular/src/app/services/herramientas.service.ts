@@ -43,7 +43,7 @@ export class HerramientasService {
   {
     console.log(herramientas);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.post(this.API_ENDPOINT + '/herramientas/',herramientas, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT + '/herramientas',herramientas, {headers: headers});
   }
   getDialogData() {
     return this.dialogData;

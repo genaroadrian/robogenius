@@ -43,7 +43,7 @@ export class CodigosService {
   {
     console.log(cod);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.post(this.API_ENDPOINT + '/codigos/',cod, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT + '/codigos',cod, {headers: headers});
   }
   updatecodigos (codigos: Codigos): void {
     this.dialogData = codigos;

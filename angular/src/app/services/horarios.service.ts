@@ -65,7 +65,7 @@ export class HorariosService {
   {
     console.log(horario);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.post(this.API_ENDPOINT + '/horarios/',horario, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT + '/horarios',horario, {headers: headers});
   }
 
   updateHorarios (horario: Horario): void {

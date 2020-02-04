@@ -70,13 +70,13 @@ export class GradoService {
   agregarg(grados: Grados){
     console.log(grados);
     const headers=new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.post(this.API_ENDPOINT+ '/grados/', grados, {headers:headers});
+    return this.httpClient.post(this.API_ENDPOINT+ '/grados', grados, {headers:headers});
 
   }
   addd(grados: Grados)
   {
     console.log(grados);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.post(this.API_ENDPOINT + '/grados/',grados, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT + '/grados',grados, {headers: headers});
   }
 }

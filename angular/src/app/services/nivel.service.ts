@@ -49,7 +49,7 @@ export class NivelService {
    agregar(niveles: Niveles){
      console.log(niveles);
      const headers=new HttpHeaders( {'Content-Type': 'application/json'});
-     return this.httpClient.post(this.API_ENDPOINT+ '/nivel/', niveles, {headers:headers});
+     return this.httpClient.post(this.API_ENDPOINT+ '/nivel', niveles, {headers:headers});
 
    }
    putnivel(data)
@@ -65,7 +65,7 @@ export class NivelService {
   {
     console.log(niveles);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.post(this.API_ENDPOINT + '/nivel/',niveles, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT + '/nivel',niveles, {headers: headers});
   }
   deleten (id: number): void {
     console.log(id);

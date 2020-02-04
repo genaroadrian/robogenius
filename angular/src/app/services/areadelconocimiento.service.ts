@@ -97,7 +97,7 @@ export class AreadelconocimientoService {
    {
      console.log(area);
      const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-     return this.httpClient.post(this.API_ENDPOINT + '/areadelconocimiento/',area, {headers: headers});
+     return this.httpClient.post(this.API_ENDPOINT + '/areadelconocimiento',area, {headers: headers});
    }
     
 }

@@ -47,7 +47,7 @@ export class TipopagoService {
   add(tipopago: Tipopago)
   {
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.post(this.API_ENDPOINT + '/tipopago/',tipopago, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT + '/tipopago',tipopago, {headers: headers});
   }
 
   updateTpago (tipopago: Tipopago): void {

@@ -44,7 +44,7 @@ export class TipopersonalService {
     {
       console.log(tipopersonal);
       const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-      return this.httpClient.post(this.API_ENDPOIINT + '/tipopersonal/',tipopersonal, {headers: headers});
+      return this.httpClient.post(this.API_ENDPOIINT + '/tipopersonal',tipopersonal, {headers: headers});
     }
 
 

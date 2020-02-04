@@ -48,7 +48,7 @@ export class SucursalService {
   add(sucursal: Sucursal)
   {
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
-    return this.httpClient.post(this.API_ENDPOINT + '/sucursal/',sucursal, {headers: headers});
+    return this.httpClient.post(this.API_ENDPOINT + '/sucursal',sucursal, {headers: headers});
   }
 
   updateSucursal (sucursal: Sucursal): void {

@@ -78,7 +78,7 @@ export class PerfiladminComponent implements OnInit {
     
       this.log=data;
       this.logs = this.log.filter(x=>x.email == this.emai)
-      // console.log(this.logs)
+      console.log(this.logs)
       this.Login.id=this.logs[0].id
     },(error)=>{
       // console.log(error)

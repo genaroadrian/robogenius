@@ -19,7 +19,7 @@ class detallegruposController extends Controller
 
     public function store(Request $request )
     {
-        return $request;
+        // return $request;
         $dgrupos = new Detallegrupos();
         $dgrupos->idd = $request->idd;
         $dgrupos->idh = $request->idh;

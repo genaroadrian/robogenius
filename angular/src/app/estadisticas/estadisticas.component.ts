@@ -76,7 +76,7 @@ ingresodelmes:any;
       
       .subscribe(data=>{
         this.utilidadrestan=data;
-        console.log(data)
+        // console.log(data)
         this.utilidadrestan=this.utilidadrestan.filter(d => d.idscu==this.sucursal);
         var total = 0;
 
@@ -257,7 +257,7 @@ var semanegresos = this._graficas.SemanaEgresos()
 .subscribe(semanegresos=>{
   this.logsssemanaegresos= semanegresos;
 
-  // console.log(this.logsssemanaegresos)
+  // // console.log(this.logsssemanaegresos)
 
   this.selecsemanaegresos=this.logsssemanaegresos.filter(d => d.idscu==this.sucursal);
   var semanae = 0;
@@ -272,7 +272,7 @@ var semanegresos = this._graficas.SemanaEgresos()
   var cars = [n, "0", "0"];
   this.selecsemanaegresos=cars
   this.totalessemanaegresos = this.selecsemanaegresos;
-  // console.log(this.totalessemanaegresos)
+  // // console.log(this.totalessemanaegresos)
 
 
   var temp_min=this.totalessemanaegresos;
@@ -355,7 +355,7 @@ var mesingreso = this._graficas.mesingreso()
   this.logmes.filter(d => d.idscu==this.sucursal);
 
   this.selectmes = this.logmes.map(a => a.suma);
-  // console.log(this.selectmes)
+  // // console.log(this.selectmes)
   this.totalmes = this.selectmes;
 
 
@@ -364,54 +364,55 @@ var mesingreso = this._graficas.mesingreso()
 
 var mesegreso  = this._graficas.mesegreso()
 .subscribe(mesegreso=>{
-  this.logmesegreso=mesegreso;
+//   this.logmesegreso=mesegreso;
  
-  this.selectmesegreso = this.logmesegreso.map(y => y.egreso);
-  this.totalmesegreso = this.selectmesegreso;
+//   this.selectmesegreso = this.logmesegreso.map(y => y.egreso);
+//   this.totalmesegreso = this.selectmesegreso;
 
-var temp_min=this.totalmesegreso;
+// var temp_min=this.totalmesegreso;
+//     // console.log(<HTMLCanvasElement>this.myCanvasmes);
 
-    this.contextmes = (<HTMLCanvasElement>this.myCanvasmes.nativeElement).getContext('2d');
-    this.chartmes = new Chart(this.contextmes, {
-        type: 'bar',
-        data: {
-          labels: ['Finanzas del mes'],
-          datasets: [
-            { 
-              data: temp_min,
-              label:"Gastos del mes",
-              backgroundColor:"#F16C69",
-            },
-            { 
-              data: temp_max,
-              label:"Ganancias del mes",
-              backgroundColor:"#35A989"
-            },
-          ]
-        },
-        options: {
-          title: {
-            display: true,
-            text: 'FINANZAS'
-          },
-          legend: {
-            display: true
-          },
-          scales: {
-            xAxes: [{
-              display: true
-            }],
-            yAxes: [{
-              display: true,
-              ticks: {
-                min: 0,
-                max:30000,
-                stepSize: 2000
-            }
-            }],
-          }
-        }
-      });
+//     this.contextmes = (<HTMLCanvasElement>this.myCanvasmes.nativeElement).getContext('2d');
+//     this.chartmes = new Chart(this.contextmes, {
+//         type: 'bar',
+//         data: {
+//           labels: ['Finanzas del mes'],
+//           datasets: [
+//             { 
+//               data: temp_min,
+//               label:"Gastos del mes",
+//               backgroundColor:"#F16C69",
+//             },
+//             { 
+//               data: temp_max,
+//               label:"Ganancias del mes",
+//               backgroundColor:"#35A989"
+//             },
+//           ]
+//         },
+//         options: {
+//           title: {
+//             display: true,
+//             text: 'FINANZAS'
+//           },
+//           legend: {
+//             display: true
+//           },
+//           scales: {
+//             xAxes: [{
+//               display: true
+//             }],
+//             yAxes: [{
+//               display: true,
+//               ticks: {
+//                 min: 0,
+//                 max:30000,
+//                 stepSize: 2000
+//             }
+//             }],
+//           }
+//         }
+//       });
     });
 
 

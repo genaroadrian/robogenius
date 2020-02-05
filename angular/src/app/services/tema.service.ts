@@ -28,7 +28,7 @@ export class TemaService {
   //AGREGAR EN MODAL
   addd(tema)
   {
-    console.log(tema);
+    // console.log(tema);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.post(this.API_ENDPOINT + '/tema',tema, {headers: headers});
   }
@@ -39,10 +39,10 @@ export class TemaService {
     this.httpClient.get<tema[]>(this.API_ENDPOINT+'/tema').subscribe(data => {
       this.datos=data
       this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
-      // console.log(this.datos)
+      // // console.log(this.datos)
       this.dataChange.next(this.datos);    },
     (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
+    // console.log (error.name + ' ' + error.message);
     });
   }
 
@@ -64,18 +64,18 @@ export class TemaService {
   save(tema:tema) {
     const headers = new HttpHeaders({"Content-Type":"application/json"});
     return this.httpClient.post(this.API_ENDPOINT+'/tema', tema, {headers: headers});
-    // console.log(tema)
+    // // console.log(tema)
   }
 
   /* Metodo que recibe los datos del formulario y los guarda en la variable dialogData */
   addTema (tema) {
-    console.log(tema)
+    // console.log(tema)
     this.dialogData = tema
   }
 
   add(tema: tema)
   {
-    console.log(tema);
+    // console.log(tema);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.post(this.API_ENDPOINT + '/tema',tema, {headers: headers});
   }

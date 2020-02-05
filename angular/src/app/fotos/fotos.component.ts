@@ -37,7 +37,7 @@ export class FotosComponent implements OnInit {
                   }
 
                   upload() {
-                    console.log(this.archivo);
+                    // console.log(this.archivo);
                     this.uploadService.uploadFile(this.archivo).subscribe(
                       datos => {
                         if(datos['resultado'] == 'OK') {

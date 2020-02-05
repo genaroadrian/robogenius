@@ -154,11 +154,11 @@
               
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Monto</label>
-                                                    <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="$0.00" [(ngModel)]="cont.monto">
+                                                    <input type="number" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="$0.00" [(ngModel)]="cont.monto">
                                                   </div>
                                                   <div class="form-group">
                                                         <label for="exampleInputEmail1">Responsable</label>
-                                                             <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=""  disabled [value]="cont.nombre">
+                                                             <input type="text" class="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder=""  disabled [value]="cont.nombre">
                                                                 
                                                         
         
@@ -263,7 +263,7 @@
                                             <div class="bg-danger">
                                                 <div class="form-group">
                                                     <label for="exampleInputEmail1">Concepto</label>
-                                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="egres.Concepto" >
+                                                    <input type="email" class="form-control" id="exampleInputEmail4" aria-describedby="emailHelp" [(ngModel)]="egres.Concepto" >
                                                       <!-- valor de tipo ingreso -->
                                                   </div>
                                                   <div class="form-group">
@@ -286,11 +286,11 @@
                     
                                                       <div class="form-group">
                                                           <label for="exampleInputEmail1">Monto</label>
-                                                          <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="$0.00" [(ngModel)]="egres.monto">
+                                                          <input type="number" class="form-control" id="exampleInputEmail5" aria-describedby="emailHelp" placeholder="$0.00" [(ngModel)]="egres.monto">
                                                         </div>
                                                         <div class="form-group">
                                                               <label for="exampleInputEmail1">Responsable</label>
-                                                                   <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=""  disabled [value]="egres.nombre">
+                                                                   <input type="text" class="form-control" id="exampleInputEmail6" aria-describedby="emailHelp" placeholder=""  disabled [value]="egres.nombre">
                                                                       
                                                               
               
@@ -479,28 +479,28 @@
             <div class="modal-body">
                     <div class="form-group">
                             <label for="exampleInputEmail1">Concepto</label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="editar.Concepto" disabled >
+                            <input type="text" class="form-control" id="exampleInputEmail7" aria-describedby="emailHelp" [(ngModel)]="editar.Concepto" disabled >
                           </div>
                           <div class="form-group">
                                 <label for="exampleInputEmail1">Fecha</label>
-                                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="editar.fecha" disabled>
+                                <input type="text" class="form-control" id="exampleInputEmail8" aria-describedby="emailHelp" [(ngModel)]="editar.fecha" disabled>
                               </div>
                               <div class="form-group">
                                     <label for="exampleInputEmail1">Total</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="editar.monto" disabled>
+                                    <input type="text" class="form-control" id="exampleInputEmail9" aria-describedby="emailHelp" [(ngModel)]="editar.monto" disabled>
                                   </div>
                                   <div class="form-group">
                                     <label for="exampleInputEmail1">Adelanto</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="editar.adelanto" disabled>
+                                    <input type="text" class="form-control" id="exampleInputEmail10" aria-describedby="emailHelp" [(ngModel)]="editar.adelanto" disabled>
                                   </div>
                                   <div class="form-group" *ngIf="nuevoadelanto" >
                                         <label for="exampleInputEmail1">Restan</label>
-                                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="editar.restante-nuevoadelanto" disabled>
+                                        <input type="text" class="form-control" id="exampleInputEmail11" aria-describedby="emailHelp" [(ngModel)]="editar.restante-nuevoadelanto" disabled>
                                       </div>
                               
                                       <div class="form-group">
                                         <label for="exampleInputEmail1">Nuevo adelanto</label>
-                                        <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" [(ngModel)]="nuevoadelanto">
+                                        <input type="number" class="form-control" id="exampleInputEmail12" aria-describedby="emailHelp" [(ngModel)]="nuevoadelanto">
                                       </div>
 
 

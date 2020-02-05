@@ -52,7 +52,7 @@ submit() {
 }
 select(plan){
   this.data.idt=plan
-  console.log(plan)
+  // console.log(plan)
 }
 
 /* Cuando se da clic afuera del modal, se cierra */
@@ -63,8 +63,8 @@ onNoClick(): void {
 /* Confirma la actualizacion del registro */
 stopEdit(data): void {
   this.subtema.nombre=data.nombre;
-  console.log(data)
-  console.log(this.temas)
+  // console.log(data)
+  // console.log(this.temas)
 
   this.subtemaservice.put(data);
   

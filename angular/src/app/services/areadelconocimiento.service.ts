@@ -34,10 +34,10 @@ export class AreadelconocimientoService {
      this.httpClient.get<areadelconocimiento[]>(this.API_ENDPOINT+'/areadelconocimiento').subscribe(data => {
       this.datos=data
       this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
-      // console.log(this.datos)
+      // // console.log(this.datos)
       this.dataChange.next(this.datos);     },
      (error: HttpErrorResponse) => {
-     console.log (error.name + ' ' + error.message);
+     // console.log (error.name + ' ' + error.message);
      });
    }
  
@@ -95,7 +95,7 @@ export class AreadelconocimientoService {
    }
    addd(area: AreadelconocimientoService)
    {
-     console.log(area);
+     // console.log(area);
      const headers = new HttpHeaders( {'Content-Type': 'application/json'});
      return this.httpClient.post(this.API_ENDPOINT + '/areadelconocimiento',area, {headers: headers});
    }

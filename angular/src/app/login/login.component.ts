@@ -44,11 +44,11 @@ export class LoginComponent implements OnInit {
     // }
     this.showBarra()
     this.service.validation(form.value).subscribe((data)=>{
-      // console.log(data)
+      // // console.log(data)
     if(data[0]==1){
             if(data[2]==2){
-              console.log("personal")
-                  //  console.log(data);
+              // console.log("personal")
+                  //  // console.log(data);
                   localStorage.setItem('email' , form.value.email);
                   localStorage.setItem('foto' , data[1]);
                   // this.showSuccessEmail();
@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
 
             }else
             if(data[2]==3){
-              console.log("Alumnos")
+              // console.log("Alumnos")
               localStorage.setItem('email' , form.value.email);
                   localStorage.setItem('foto' , data[1]);
                   // this.showSuccessEmail();
@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
                   this.router.navigateByUrl('/home');
               
             }else if(data[2]==1){
-              console.log("Administrador")
+              // console.log("Administrador")
               localStorage.setItem('email' , form.value.email);
                   localStorage.setItem('foto' , data[1]);
                   // this.showSuccessEmail();
@@ -73,7 +73,7 @@ export class LoginComponent implements OnInit {
                   this.router.navigateByUrl('/home');
               
             }else{
-              console.log("no hay registros")
+              // console.log("no hay registros")
             }
     }else{
         this.hideBarra()
@@ -85,7 +85,7 @@ export class LoginComponent implements OnInit {
           this.hideBarra()
 
     //   if(data[0]==1){
-    //     console.log(data);
+    //     // console.log(data);
     //     localStorage.setItem('email' , form.value.email);
     //     localStorage.setItem('foto' , data[1]);
     //     // this.showSuccessEmail();
@@ -148,7 +148,7 @@ this.showErrorEmail()
       }
 
     },(error)=>{
-      console.log(error)
+      // console.log(error)
     })
       }
     })

@@ -78,10 +78,10 @@ export class PerfiladminComponent implements OnInit {
     
       this.log=data;
       this.logs = this.log.filter(x=>x.email == this.emai)
-      console.log(this.logs)
+      // console.log(this.logs)
       this.Login.id=this.logs[0].id
     },(error)=>{
-      // console.log(error)
+      // // console.log(error)
     })
 
    
@@ -129,7 +129,7 @@ export class PerfiladminComponent implements OnInit {
   }
 
   upload() {
-    // console.log(this.archivo);
+    // // console.log(this.archivo);
     localStorage.removeItem('foto');
     localStorage.setItem('foto' , this.archivo.nombreArchivo);
     this.uploadService.uploadFileAdmin(this.archivo)
@@ -203,7 +203,7 @@ export class PerfiladminComponent implements OnInit {
         this.showBarra()
         this.useradminService.put(this.useradminService.getDialogData()).subscribe((data) => {
           this.logs[0]=data;
-          //console.log(data)
+          //// console.log(data)
           this.hideBarra()
           this.showSuccessEdit()
         }, (error) => {

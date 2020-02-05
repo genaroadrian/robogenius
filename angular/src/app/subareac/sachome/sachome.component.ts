@@ -45,10 +45,10 @@ export class SachomeComponent implements OnInit {
   {
     this.exampleDatabase = new SubareacService(this.httpClient)
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
-    console.log(this.dataSource)
+    // console.log(this.dataSource)
     fromEvent(this.filter.nativeElement, 'keyup')
       .subscribe(() => {
-        console.log(this.dataSource)
+        // console.log(this.dataSource)
         if (!this.dataSource) {
           return;
         }
@@ -97,7 +97,7 @@ export class SachomeComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result == 1)
       {
-        console.log(this.subareaService.getDialogData())
+        // console.log(this.subareaService.getDialogData())
         // this.showBarra()
         // this.subareaService.add(this.subareaService.getDialogData()).subscribe((data)=>{
         //   let subareaAdd: any = data
@@ -135,7 +135,7 @@ export class SachomeComponent implements OnInit {
           this.notificationsService.showSuccessEdit()
         },(error)=>{
           this.notificationsService.showError()
-          console.log(error)
+          // console.log(error)
           this.hideBarra()
         })
       }

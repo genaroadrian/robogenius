@@ -41,7 +41,7 @@ export class PersonalhoraaddComponent implements OnInit {
 
   stopEdit()
   {
-    console.log(this.data)
+    // // console.log(this.data)
     this.detalleGruposService.add(this.data)
   }
 

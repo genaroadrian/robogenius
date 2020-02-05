@@ -53,6 +53,6 @@ export class FileuploadService {
   {
     const headers = new HttpHeaders({"Content-Type": "application/json"});
     return this.http.put(this.API_ENDPOINTSPERSONAL+ personal.idper, personal, {headers: headers})
-    // console.log(personal)
+    // // console.log(personal)
   }
 }

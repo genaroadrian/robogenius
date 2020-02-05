@@ -23,7 +23,7 @@ export class GethorariosService {
 
   getPersonal(detallegrupos)
   {
-    console.log(detallegrupos)
+    // console.log(detallegrupos)
     const headers = new HttpHeaders({"Content-Type":"application/json"});
     return this.httpClient.put(this.API_ENDPOINT + '/horas/'+detallegrupos.idh,detallegrupos, {headers: headers});
   }

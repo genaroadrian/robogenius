@@ -47,8 +47,8 @@ export class EditmoduloComponent implements OnInit {
   }
 
   deleteFile(id, ruta, tipo){
-    console.log(id)
-    console.log(ruta)
+    // console.log(id)
+    // console.log(ruta)
     const dialogRef = this.dialog.open(FilesdeleteComponent, {
       data: { id: id, ruta: ruta, tipo: tipo}
     });
@@ -57,11 +57,11 @@ export class EditmoduloComponent implements OnInit {
       if (result === 1) {
         
         this.moduloService.deleteFile(this.moduloService.getDialogData()).subscribe((data)=>{
-         console.log(data)
+         // console.log(data)
          this.notificationsService.showSuccessDelete()
          this.getData()
         },(error)=>{
-          console.log(error)
+          // console.log(error)
           this.notificationsService.showError()
         })
       }
@@ -98,7 +98,7 @@ export class EditmoduloComponent implements OnInit {
   getData() {
     this.homefclasesService.getDataSesion(this.plan).subscribe((data) => {
       
-      console.log(data)
+      // console.log(data)
       let datos: any
       datos = data
       this.detalleClases = datos[0]
@@ -212,7 +212,7 @@ export class EditmoduloComponent implements OnInit {
           }
 
           archivo.vprev = vPrev
-          console.log(archivo)
+          // console.log(archivo)
         });
       });
       this.fecha = this.planeaciones.fecha
@@ -323,7 +323,7 @@ export class EditmoduloComponent implements OnInit {
   // {
   //   this.moduloService.download(file).subscribe(response=>{
   //     window.location.href = response.url;
-  //   }),error => console.log('Error downloading the file'),
+  //   }),error => // console.log('Error downloading the file'),
   //   () => console.info('File downloaded successfully');
   // }
   downloadFile(file) {
@@ -333,7 +333,7 @@ export class EditmoduloComponent implements OnInit {
 			//window.open(url);
 			window.location.href = response.url;
 			//fileSaver.saveAs(blob, 'employees.json');
-		}), error => console.log('Error downloading the file'),
+		}), error => // console.log('Error downloading the file'),
                  () => console.info('File downloaded successfully');
   }
   pdf(info){
@@ -467,13 +467,13 @@ export class EditmoduloComponent implements OnInit {
 
    newFiles(id)
    {
-     console.log(id)
+     // console.log(id)
      this.moduloService.getIdSesion(id)
      const dialogRef = this.dialog.open(FilesmodalComponent,{
        data: {}
      })
      dialogRef.afterClosed().subscribe(result=>{
-       console.log(result)
+       // console.log(result)
        if(result === 1)
        {
         this.getData()

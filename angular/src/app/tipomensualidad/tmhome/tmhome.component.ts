@@ -105,7 +105,7 @@ export class TmhomeComponent implements OnInit {
     this.id = idtmen;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
-    console.log(this.index);
+    // console.log(this.index);
     const dialogRef = this.dialog.open(TmeditComponent, {
       data: {idtmen: idtmen, nombre: nombre, fechainicial: fechainicial, fechafinal: fechafinal}
     });
@@ -118,7 +118,7 @@ export class TmhomeComponent implements OnInit {
         // And lastly refresh table
         delay(10 * 1000, 'some value').then(v => {
             // Executed in 7 seconds
-            console.log(v);
+            // console.log(v);
         });
         this.refresh();
       }

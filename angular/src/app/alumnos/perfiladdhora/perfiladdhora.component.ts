@@ -32,7 +32,7 @@ export class PerfiladdhoraComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private data: any, public perfilService: PerfilService) { }
 
   ngOnInit() {
-    // console.log(this.data);
+    // // console.log(this.data);
     this.getHorarios()
     // this.filtHora()
   }

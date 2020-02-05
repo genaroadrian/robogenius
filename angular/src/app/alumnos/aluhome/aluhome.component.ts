@@ -80,7 +80,7 @@ export class AluhomeComponent implements OnInit {
     let d:any
      // Llamado al metodo de que obtiene los datos
       this.getAlumnos()
-      // console.log(d)
+      // // console.log(d)
 
 
 

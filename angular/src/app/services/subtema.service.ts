@@ -31,10 +31,10 @@ export class SubtemaService {
     this.httpClient.get<subtema[]>(this.API_ENDPOINT+'/subtema').subscribe(data => {
       this.datos=data
       this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
-      // console.log(this.datos)
+      // // console.log(this.datos)
       this.dataChange.next(this.datos);    },
     (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
+    // console.log (error.name + ' ' + error.message);
     });
   }
 
@@ -64,7 +64,7 @@ export class SubtemaService {
     }
   add(subtema: subtema)
   {
-    console.log(subtema);
+    // console.log(subtema);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.post(this.API_ENDPOINT + '/subtema',subtema, {headers: headers});
   }

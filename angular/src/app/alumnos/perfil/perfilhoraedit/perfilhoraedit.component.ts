@@ -115,12 +115,12 @@ export class PerfilhoraeditComponent implements OnInit {
      }
 
   ngOnInit() {
-    // console.log(this.data);
+    // // console.log(this.data);
     this.ngrupo.idgalu = this.data.idgalu
   }
 
   diasChange(dia) {
-    // // console.log(dia);
+    // // // console.log(dia);
     this.hora.idh = null;
     this.idgrupo = null;
     this.horavalue = "";
@@ -134,12 +134,12 @@ export class PerfilhoraeditComponent implements OnInit {
       this.spinerh = "none";
       this.horavalue = "";
       this.detallegrupos.idd = dia.iddia;
-      // // // console.log(this.detallegrupos);
+      // // // // console.log(this.detallegrupos);
       if (this._allHoras.length < 1) {
         // this.showDisp();
       }
     }, (error) => {
-      // // // console.log(error);
+      // // // // console.log(error);
 
     });
     // this.horavalue = "";
@@ -152,14 +152,14 @@ export class PerfilhoraeditComponent implements OnInit {
     this.labelp = "none";
     this.spinnerp = "";
     this.detallegrupos.idh = hora.idh;
-    // // // console.log(this.detallegrupos);
+    // // // // console.log(this.detallegrupos);
     this.getHorarios.getPersonal(this.detallegrupos).subscribe((data: Personal[]) => {
       this._allPersonal = data; 
       this._allPersonal=this._allPersonal.filter(datas=>datas.idsuc==this.idsuc)
-      console.log(this._allPersonal)
+      // console.log(this._allPersonal)
       this.labelp = "";
       this.spinnerp = "none";
-      // // // console.log(this._allPersonal);
+      // // // // console.log(this._allPersonal);
     }, (error) => {
 
     });
@@ -167,9 +167,9 @@ export class PerfilhoraeditComponent implements OnInit {
 
   // Obteine el id del grupo al cambiar el personal
   personalChange(id) {
-    // // console.log(nombre)
+    // // // console.log(nombre)
     this.gruposAlumnos.idg = id;
-    // // console.log(this.hora.idh+this.idgrupo)
+    // // // console.log(this.hora.idh+this.idgrupo)
   }
 
     /* Obtener el texto de los select */
@@ -183,7 +183,7 @@ export class PerfilhoraeditComponent implements OnInit {
   /* Obtener el texto de los select */
   horaName(ho)
   {
-    // console.log(ho)
+    // // console.log(ho)
     this.ngrupo.idh = ho.idh
     this.ngrupo.hora = ho.hora
   }

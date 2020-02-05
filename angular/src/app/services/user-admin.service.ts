@@ -31,7 +31,7 @@ export class UserAdminService {
   return this.dialogData;
 }
 put(data){
-  console.log(data)
+  // console.log(data)
   const headers = new HttpHeaders( {'Content-Type': 'application/json'});
   return this.httpClient.put(this.API_ENDPOINT +'/useradmin/'+data.id,data,{headers: headers});
 }
@@ -42,7 +42,7 @@ put(data){
 //   let emails = localStorage.getItem("email");
 //   const headers = new HttpHeaders({"Content-Type":"application/json"});
 //   return this.httpClient.post(this.API_ENDPOINT+'/useradmin',emails, {headers: headers});
-//   console.log(emails);
+//   // console.log(emails);
 // }
 
 

@@ -38,13 +38,13 @@ export class AddasisComponent implements OnInit {
   ngOnInit() {
     // this.personalPerfilService.getListaalumnos(this.data)
     this.getAlumnos()
-    // console.log(this.data)
+    // // console.log(this.data)
     this.getHistory()
     if(this.data.ds == true)
     {
       this.selected = 1
     }
-    console.log(this.data)
+    // console.log(this.data)
   }
 
   onNoClick(): void {
@@ -55,7 +55,7 @@ export class AddasisComponent implements OnInit {
     this.personalPerfilService.getListaalumnos(this.data).subscribe((data) => {
       this.dataSource = data[0]
       this.status = data[1]
-      console.log(data)
+      // console.log(data)
       if(this.status.length > 0)
       {
         this.viewList = ''
@@ -81,16 +81,16 @@ export class AddasisComponent implements OnInit {
   }
 
   pasAsis() {
-    // console.log(this.dataSource)
+    // // console.log(this.dataSource)
     this.showBarra()
     this.asistenciaService.asistencia(this.dataSource).subscribe((data) => {
       this.notificacionService.showSuccessAdd()
-      // console.log(data)
+      // // console.log(data)
       this.hideBarra()
     }, (error) => {
       this.notificacionService.showError()
       this.hideBarra()
-      console.log(error)
+      // console.log(error)
     })
   }
 
@@ -111,7 +111,7 @@ export class AddasisComponent implements OnInit {
     this.showBarra()
     this.asistenciaService.historial(this.data).subscribe((data) => {
       this.hideBarra()
-      console.log(data)
+      // console.log(data)
       this.history = data
       // history = history.filter()
       var hash = {};
@@ -127,13 +127,13 @@ export class AddasisComponent implements OnInit {
         element.fechac = element.fechac.toLocaleDateString("es-ES", options)
 
       });
-      // console.log(this.historyF)
+      // // console.log(this.historyF)
 
 
     }, (error) => {
       this.notificacionService.showError()
       this.hideBarra()
-      // console.log(error)
+      // // console.log(error)
     })
   }
 

@@ -36,20 +36,20 @@ export class TipopersonalService {
       this.dataChange.next(this.datos);
     },
     (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
+    // console.log (error.name + ' ' + error.message);
     });
   }
     /* Guarda los datos en la base */
     add(tipopersonal: Tipopersonal)
     {
-      console.log(tipopersonal);
+      // console.log(tipopersonal);
       const headers = new HttpHeaders( {'Content-Type': 'application/json'});
       return this.httpClient.post(this.API_ENDPOIINT + '/tipopersonal',tipopersonal, {headers: headers});
     }
 
 
   put(data){
-    console.log(data);
+    // console.log(data);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.put(this.API_ENDPOIINT+'/tipopersonal/'+data.idtper,data,{headers: headers});
   }
@@ -73,7 +73,7 @@ export class TipopersonalService {
   }
 
   deleteIssue (id: number): void {
-    console.log(id);
+    // console.log(id);
   }
 
   delete(id){

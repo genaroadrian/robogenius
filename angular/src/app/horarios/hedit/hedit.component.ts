@@ -46,11 +46,11 @@ export class HeditComponent implements OnInit {
 
   // stopEdit(data): void {
   //   this.horariosService.put(this.data).subscribe((data) =>{
-  //     // console.log(this.data);
+  //     // // console.log(this.data);
   //     // alert('Registro Actualizado');
   //     this.showSuccessEdit();
   //     this.horariosService.updateHorarios(this.data.id);
-  //     // console.log(this.data);
+  //     // // console.log(this.data);
   //   },(error)=>{
   //     this.showErrorEdit();
   //   });

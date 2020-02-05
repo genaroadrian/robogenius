@@ -36,7 +36,7 @@ export class AlumnosService {
       this.length = this.datos.length
       this.dataChange.next(this.datos);     },
     (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
+    // console.log (error.name + ' ' + error.message);
     });
   }
 

@@ -112,7 +112,7 @@ export class HomePersonalComponent implements OnInit {
     dialogConfig.width = "60%";
     dialogConfig.height= "50%";
     this.dialog.open(FormPersonalComponent, dialogConfig);
-    console.log(row);
+    // console.log(row);
   }
 
  
@@ -120,11 +120,11 @@ export class HomePersonalComponent implements OnInit {
   delete(idper){
     if(confirm('Estas seguro?')){
       this.personalService.delete(idper).subscribe((data)=>{
-        console.log(data);
+        // console.log(data);
         alert('Eliminado con exito');
         this.getPersonal();
       },(error)=>{
-        console.log(error);
+        // console.log(error);
       });
     }
   }

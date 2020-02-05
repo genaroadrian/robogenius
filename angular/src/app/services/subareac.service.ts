@@ -26,9 +26,9 @@ export class SubareacService {
     this.httpClient.get<Subareac[]>(this.API_ENDPOINT+'/subareac').subscribe(data=>{
       this.datos=data
       this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
-      // console.log(this.datos)
+      // // console.log(this.datos)
       this.dataChange.next(this.datos);    },(error: HttpErrorResponse)=>{
-      console.log(error.name + '' + error.message)
+      // console.log(error.name + '' + error.message)
     })
   }
 

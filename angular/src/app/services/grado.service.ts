@@ -33,10 +33,10 @@ export class GradoService {
     this.httpClient.get<Grados[]>(this.API_ENDPOINT + '/grados').subscribe(data => {
       this.datos=data
       this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
-      // console.log(this.datos)
+      // // console.log(this.datos)
       this.dataChange.next(this.datos);      },
     (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
+    // console.log (error.name + ' ' + error.message);
     });
   }
    /* Actualiza a la base de datos  */
@@ -58,7 +58,7 @@ export class GradoService {
     return this.dialogData;
   }
   deleteg(id: number): void {
-    console.log(id);
+    // console.log(id);
   }
 
   delete(id){
@@ -68,14 +68,14 @@ export class GradoService {
     this.dialogData = grados
   }
   agregarg(grados: Grados){
-    console.log(grados);
+    // console.log(grados);
     const headers=new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.post(this.API_ENDPOINT+ '/grados', grados, {headers:headers});
 
   }
   addd(grados: Grados)
   {
-    console.log(grados);
+    // console.log(grados);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.post(this.API_ENDPOINT + '/grados',grados, {headers: headers});
   }

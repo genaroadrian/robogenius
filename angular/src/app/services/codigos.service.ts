@@ -30,10 +30,10 @@ export class CodigosService {
     this.httpClient.get<Codigos[]>(this.API_ENDPOINT + '/codigos').subscribe(data => {
  this.datos=data
       this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
-      // console.log(this.datos)
+      // // console.log(this.datos)
       this.dataChange.next(this.datos);      },
     (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
+    // console.log (error.name + ' ' + error.message);
     });
   }
   ado (cod: Codigos): void {
@@ -41,7 +41,7 @@ export class CodigosService {
   }
   ade(cod: Codigos)
   {
-    console.log(cod);
+    // console.log(cod);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.post(this.API_ENDPOINT + '/codigos',cod, {headers: headers});
   }
@@ -49,7 +49,7 @@ export class CodigosService {
     this.dialogData = codigos;
   }
   put(data){
-    console.log(data);
+    // console.log(data);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.put(this.API_ENDPOINT +'/codigos/'+data.id,data,{headers: headers});
   }
@@ -60,7 +60,7 @@ export class CodigosService {
     return this.dialogData;
   }
   deletecod (id: number): void {
-    console.log(id);
+    // console.log(id);
   }
 
   delete(id){

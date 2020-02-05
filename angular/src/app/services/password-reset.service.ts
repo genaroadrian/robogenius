@@ -20,8 +20,8 @@ export class PasswordResetService {
 
   confirmPassword(password)
   {
-    console.log(password)
-    console.log(password.token)
+    // console.log(password)
+    // console.log(password.token)
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.put(this.API_ENDPOINT+"/confirmtoken/"+password.token,password, {headers:headers})
   }

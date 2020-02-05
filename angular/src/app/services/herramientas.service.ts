@@ -30,7 +30,7 @@ export class HerramientasService {
       this.dataChange.next(data);
       },
     (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
+    // console.log (error.name + ' ' + error.message);
     });
   }
   get data(): Herramientas[] {
@@ -41,7 +41,7 @@ export class HerramientasService {
   }
   herramienta(herramientas: Herramientas)
   {
-    console.log(herramientas);
+    // console.log(herramientas);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.post(this.API_ENDPOINT + '/herramientas',herramientas, {headers: headers});
   }
@@ -57,7 +57,7 @@ export class HerramientasService {
     this.dialogData = data;
   }
   deleten (id: number): void {
-    console.log(id);
+    // console.log(id);
   }
 
   deletee(id){

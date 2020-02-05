@@ -27,7 +27,7 @@ export class MemalumnovistaService {
       this.dataChange.next(data);
     },
     (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
+    // console.log (error.name + ' ' + error.message);
     });
   }
 

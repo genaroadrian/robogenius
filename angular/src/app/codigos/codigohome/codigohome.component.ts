@@ -109,7 +109,7 @@ refresh() {
     this.id = id;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
-    console.log(this.index);
+    // console.log(this.index);
     const dialogRef = this.dialog.open(CodmodificarComponent, {
       data: {id: id, codigo: codigo, porcentaje: porcentaje, lugar: lugar, fecha: fecha, activo: activo}
     });

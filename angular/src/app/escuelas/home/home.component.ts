@@ -66,11 +66,11 @@ export class HomeComponent implements OnInit {
   getEscuelas() {
     this.exampleDatabase = new EscuelasService(this.httpClient);
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
-    console.log(this.dataSource)
+    // console.log(this.dataSource)
     fromEvent(this.filter.nativeElement, 'keyup')
     
       .subscribe(() => {
-        console.log(this.dataSource)
+        // console.log(this.dataSource)
         if (!this.dataSource) {
           return;
         }
@@ -126,9 +126,9 @@ export class HomeComponent implements OnInit {
           let membresia = this.escuelasService.getMembresiaData()
           membresia.idesc = this.escuelasAdd.idesc
           this.tipomembresiaService.add(membresia).subscribe((data)=>{
-            console.log(data)
+            // console.log(data)
           },(error)=>{
-            console.log(error)
+            // console.log(error)
           })
           this.refreshTable()
           this.notifications.showSuccessAdd()

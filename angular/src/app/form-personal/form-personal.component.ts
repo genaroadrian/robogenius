@@ -54,7 +54,7 @@ export class FormPersonalComponent implements OnInit {
   @ViewChild('Profile') img;
 
   /* select de horas */
-  horas: any
+  horas: any[] = []
   isDisable = true;
 
   horario: any
@@ -110,7 +110,7 @@ export class FormPersonalComponent implements OnInit {
       this.selectTPersonal = data
       
       this.selectTPersonal = this.selectTPersonal.filter(x => x.idsuc == this.sucursal)
-      console.log(this.selectTPersonal)
+      // console.log(this.selectTPersonal)
     }, (error) => {
     })
     // this.getDias()
@@ -120,11 +120,11 @@ export class FormPersonalComponent implements OnInit {
 
   // Change the user and password input and groups module visibility 
   tipoChange(idt) {
-    console.log(idt)
+    // console.log(idt)
     idt = Number(idt)
-    console.log(this.selectTPersonal)
+    // console.log(this.selectTPersonal)
     this.cond = this.selectTPersonal.filter(per => per.idtper == idt)
-    console.log(this.cond[0])
+    // console.log(this.cond[0])
     if (this.cond[0].permisos == 1) {
       this.visibility = ''
     } else {
@@ -246,23 +246,24 @@ export class FormPersonalComponent implements OnInit {
 
   // Guardar la informacion del personal
   savePersonal(persona) {
-    console.log(persona)
+    // console.log(this.archivo.nombreArchivo)
     this.showBarra()
-    this.uploadService.uploadFilePersonal(this.archivo)
-      .subscribe(
-        datos => {
-          if (datos['resultado'] == 'OK') {
-            // alert(datos['mensaje']);
-            // this.router.navigate(['home']);
-
+    /* Solamente guarda la foto de perfil, si el usuario sube la foto */
+    if(this.archivo.nombreArchivo != null)
+    {
+      this.uploadService.uploadFilePersonal(this.archivo).subscribe(datos => {
+          if (datos['resultado'] == 'OK') 
+          {
+            // console.log('ok');
           }
         }
       );
+    }
     this.persona.idsuc = localStorage.getItem("sucursal")
     this.personalService.save(persona).subscribe((data) => {
       this.hideBarra()
       this.showSuccesSave();
-      console.log(this.cond)
+      // console.log(this.cond)
       if (this.cond[0].permisos == 1 && this.cond[0].maestro == 1) {
         this.idp = data;
         this.idper = this.idp.idper;
@@ -336,16 +337,15 @@ export class FormPersonalComponent implements OnInit {
     this.detallegrupo.idd = horariopersonal.idd
     this.detallegrupo.idh = horariopersonal.idh
     this.detallegrupo.idp = this.idper;
+    // console.log(this.detallegrupo);
     this.detallegruposService.save(this.detallegrupo).subscribe((data) => {
-      console.log(data)
+      // console.log(data)
       this.showSuccesSave();
       let dia = horariopersonal.idd
       let hora = horariopersonal.idh
-      this.horario.splice(horas => horas.iddia == dia && horas.idh == hora, 1)
-      this.horas = this.horario
       this.removeTab(index);
     }, (error) => {
-      console.log(error)
+      // console.log(error)
       this.showErrorSave();
     });
     
@@ -392,28 +392,27 @@ export class FormPersonalComponent implements OnInit {
   }
 
   getHorario() {
-    this.personalService.getHorario().subscribe((data) => {
-      console.log(data)
-      this.horario = data
-      var hash = {};
-      this.dias = this.horario.filter(function (dias) {
-        var exists = !hash[dias.iddia] || false;
-        hash[dias.iddia] = true;
-        return exists;
-      })
-    }, (error) => {
-      console.log(error)
+    // this.personalService.getHorario().subscribe((data) => {
+    //   // console.log(data)
+    //   this.horario = data
+    //   var hash = {};
+    //   this.dias = this.horario.filter(function (dias) {
+    //     var exists = !hash[dias.iddia] || false;
+    //     hash[dias.iddia] = true;
+    //     return exists;
+    //   })
+    // }, (error) => {
+    //   // console.log(error)
+    // })
+    this.horarioService.getHora().subscribe((data)=>{
+      let d: any = data
+      d.filter(horas => horas.idsuc == localStorage.getItem('sucursal'))
+      this.horas = d
+    },(error)=>{
+
     })
   }
 
-  diasChange(id) {
-    this.horas = null
-    this.horas = this.horario.filter(horas => horas.iddia == id)
-    // console.log(this.horas)   
-    this.horas = this.horas.filter(horas => horas.idsuc == this.sucursal)
-    // console.log(this.horas)
-
-  }
 
 
   nuevoDia() {
@@ -431,7 +430,7 @@ export class FormPersonalComponent implements OnInit {
       if (result == 1) {
         this.horarioService.add(this.horarioService.getDialogData()).subscribe((data) => {
           let addH = data
-          console.log(addH)
+          // console.log(addH)
           this.horas.push(addH)
         })
       }

@@ -71,7 +71,7 @@ export class TphomeComponent implements OnInit {
   ngOnInit() {
     // Llamado al metodo de getTipopersonal
     this.getTipopersonal();
-    console.log(this.dataSource._exampleDatabase.dataChange)
+    // console.log(this.dataSource._exampleDatabase.dataChange)
 
     this.paginator._intl.itemsPerPageLabel = 'Registros por página';
     this.paginator._intl.nextPageLabel = 'Página siguiente';
@@ -141,7 +141,7 @@ export class TphomeComponent implements OnInit {
       // .debounceTime(150)
       // .distinctUntilChanged()
       .subscribe(() => {
-        console.log(this.dataSource._exampleDatabase.dataChange)
+        // console.log(this.dataSource._exampleDatabase.dataChange)
         if (!this.dataSource) {
           return;
         }

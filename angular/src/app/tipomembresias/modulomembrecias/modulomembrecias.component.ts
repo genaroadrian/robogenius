@@ -65,7 +65,7 @@ export class ModulomembreciasComponent implements OnInit {
    setTimeout (() => {
      let element :HTMLElement=document.getElementById('busq')as HTMLElement;
      element.click();
-    // console.log("saddsa")
+    // // console.log("saddsa")
  },2001);
    localStorage.removeItem('busqueda');
    }
@@ -86,7 +86,7 @@ export class ModulomembreciasComponent implements OnInit {
       this.filtros=this.datos.filter(x=>x.idsuc==this.sucursal)
       this.fil=this.filtros
       this.pagado=this.fil
-      console.log(this.fil)
+      // console.log(this.fil)
       this.nuevofiltro=this.filtros
       let valor=[]
 
@@ -110,7 +110,7 @@ export class ModulomembreciasComponent implements OnInit {
   //   return Array(n);
   // }
   editMem(i: number, idmalu,mem, fechainicio, adelanto, restante, total,nommem,nombrealu,apealu) {
-    // console.log(this.membresia)
+    // // console.log(this.membresia)
     const dialogRef = this.dialog.open(PerfilmemeditComponent, {
       width: '500px',
       data:
@@ -119,7 +119,7 @@ export class ModulomembreciasComponent implements OnInit {
       }
     })
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result)
+      // console.log(result)
       if (result == 1) {
 
         this.perfilService.putMembresias(this.perfilService.getDialogData()).subscribe((data) => {
@@ -129,7 +129,7 @@ export class ModulomembreciasComponent implements OnInit {
           this.fil[i].total = this.datosEditMem.total
           this.nadelanto=this.datosEditMem.nadelanto
           this.showSuccessEdit()
-          console.log(this.nadelanto)
+          // console.log(this.nadelanto)
           this.pdf(this.fil[i],this.nadelanto);
 
         }, (error) => {
@@ -152,7 +152,7 @@ export class ModulomembreciasComponent implements OnInit {
     filtro(y){
 
       // this.filtros=this.datos.filter(x=>x.nomalu==y)
-      // console.log(y)
+      // // console.log(y)
     }
  
        
@@ -162,7 +162,7 @@ export class ModulomembreciasComponent implements OnInit {
     }
     private _filter(value: string): string[] {
       const filterValue = value.toLowerCase();
-      console.log(filterValue)
+      // console.log(filterValue)
   
       return this.options.filter(option => option.toLowerCase().includes(filterValue));
     }
@@ -180,7 +180,7 @@ export class ModulomembreciasComponent implements OnInit {
 
 
     pdf(x,y){
-      console.log(x)
+      // console.log(x)
       let docs = new jsPDF();
 
       var img = new Image()

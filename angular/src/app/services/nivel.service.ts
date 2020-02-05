@@ -24,10 +24,10 @@ export class NivelService {
     this.httpClient.get<Niveles[]>(this.API_ENDPOINT + '/nivel').subscribe(data => {
  this.datos=data
       this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
-      // console.log(this.datos)
+      // // console.log(this.datos)
       this.dataChange.next(this.datos);      },
     (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
+    // console.log (error.name + ' ' + error.message);
     });
   }
   get()
@@ -47,7 +47,7 @@ export class NivelService {
   }
 
    agregar(niveles: Niveles){
-     console.log(niveles);
+     // console.log(niveles);
      const headers=new HttpHeaders( {'Content-Type': 'application/json'});
      return this.httpClient.post(this.API_ENDPOINT+ '/nivel', niveles, {headers:headers});
 
@@ -57,18 +57,18 @@ export class NivelService {
      this.dialogData = data;
    }
    put(data){
-    console.log(data)
+    // console.log(data)
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.put(this.API_ENDPOINT +'/nivel/'+data.idn,data,{headers: headers});
   }
   add(niveles: Niveles)
   {
-    console.log(niveles);
+    // console.log(niveles);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.post(this.API_ENDPOINT + '/nivel',niveles, {headers: headers});
   }
   deleten (id: number): void {
-    console.log(id);
+    // console.log(id);
   }
 
   delete(id){

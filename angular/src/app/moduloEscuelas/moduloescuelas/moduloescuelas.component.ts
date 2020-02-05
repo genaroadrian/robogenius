@@ -16,9 +16,9 @@ export class ModuloescuelasComponent implements OnInit {
     this.moduloEscuelaSerive.getData(1).subscribe((data)=>{
       this.alumnos = data
       this.alumnos.fnacalu = 11
-      console.log(this.alumnos)
+      // console.log(this.alumnos)
     },(error)=>{
-      console.log(error)
+      // console.log(error)
     })
   }
 

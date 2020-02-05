@@ -156,10 +156,10 @@ selectedtp = '1';
   }
 
   ngOnInit() {
-    console.log(this.data)
+    // console.log(this.data)
     let n = Math.round(Math.random() * 100000);
     this.idfolio = n.toString()
-    console.log(this.idfolio + this.nivels + this.grads + this.areacs)
+    // console.log(this.idfolio + this.nivels + this.grads + this.areacs)
     this.folio = this.nivels + this.grads + this.areacs + this.subareacs + this.tems + this.subtems + this.idfolio
     this.numero = 1
     this.ns = 1
@@ -186,14 +186,14 @@ selectedtp = '1';
     this.moduloService.gett().subscribe((data) => {
       this.temas = data
     
-      console.log(this.datos)
+      // console.log(this.datos)
       let newarray = this.datos // Asignar el array de todos los datos a una variable temporal
     let tema: any // Obtiene un array de todos los temas 
     let filtered = [] // Nuevo Array con los temas ya filtrados
     this.AREA.forEach(function (value, index, array) {
-      // console.log(value)
+      // // console.log(value)
       tema = newarray.filter(tem => tem.idac == value)
-      // console.log(tema)
+      // // console.log(tema)
       tema.forEach(function (value, index, array) {
         filtered.push(value)
       })
@@ -320,9 +320,9 @@ selectedtp = '1';
     let tema: any // Obtiene un array de todos los temas 
     let filtered = [] // Nuevo Array con los temas ya filtrados
     AREA.forEach(function (value, index, array) {
-      // console.log(value)
+      // // console.log(value)
       tema = newarray.filter(tem => tem.idac == value)
-      // console.log(tema)
+      // // console.log(tema)
       tema.forEach(function (value, index, array) {
         filtered.push(value)
       })
@@ -339,7 +339,7 @@ selectedtp = '1';
     })
 
     this.temasSearch = this.tema
-    console.log(this.temaSearch)
+    // console.log(this.temaSearch)
 
   }
   getsubtema(TEMA, event) {
@@ -439,7 +439,7 @@ selectedtp = '1';
     });
 
     this.dClases = dClase
-    console.log(this.dClases)
+    // console.log(this.dClases)
 
     let plan = {
       nivel: this.NIVEL,
@@ -464,7 +464,7 @@ selectedtp = '1';
 
 herraSearch(value)
   {
-    console.log(this.herramientas)
+    // console.log(this.herramientas)
     this.herramientas = this.herramientasSearch
     let crit = value.trim().toLowerCase()
     let herramientas = this.herramientas
@@ -477,7 +477,7 @@ herraSearch(value)
 temaSearch(value)
   {
     this.tema = this.temasSearch
-    console.log(this.temasSearch)
+    // console.log(this.temasSearch)
     let crit = value.trim().toLowerCase()
     let temas = this.tema
     temas = this.tema.filter(function(tem){
@@ -551,11 +551,11 @@ temaSearch(value)
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result == 1) {
-        console.log(this.areas)
+        // console.log(this.areas)
         this.showBarra()
         this.areaService.addd(this.areaService.getDialogData()).subscribe((data) => {
           this.areas.push(data)
-          console.log(this.areas)
+          // console.log(this.areas)
           this.notifications.showSuccessAdd();
           this.hideBarra();
         }, (error) => {

@@ -60,7 +60,7 @@ export class SubtemaaddComponent implements OnInit {
     this.teme.idsuc=localStorage.getItem("sucursal")
     this.data.nombre=this.teme.nombre;
     this.data=this.teme
-    console.log(this.data)
+    // console.log(this.data)
     this.subtema.addTema(this.data)
 
   }

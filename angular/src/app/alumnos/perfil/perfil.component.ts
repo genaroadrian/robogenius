@@ -258,7 +258,7 @@ export class PerfilComponent implements OnInit {
   }
 
   upload() {
-    // // console.log(this.archivo);
+    // // // console.log(this.archivo);
     this.uploadService.uploadFile(this.archivo).subscribe(
       datos => {
         if (datos['resultado'] == 'OK') {
@@ -275,10 +275,10 @@ export class PerfilComponent implements OnInit {
     this.alumnofoto.idalu = this.datos.idalu;
     // this.datos.perfilalu=this.archivo.nombreArchivo;
     this.uploadService.subirimagen(this.alumnofoto).subscribe(data => {
-      // console.log(data);
+      // // console.log(data);
       this.showSuccessFoto()
     }, (error) => {
-      // console.log(error);
+      // // console.log(error);
       this.showError()
 
     })
@@ -297,7 +297,7 @@ export class PerfilComponent implements OnInit {
       this.logs=data;
       this.logs = this.logs.filter(x => x.email == this.emai)
       this.logs = this.logs.filter(x => x.email == this.emai)
-      console.log(this.logs)
+      // console.log(this.logs)
 
       this.cont.iduser= this.logs[0].id
       this.cont.nombre= this.logs[0].subname
@@ -306,14 +306,14 @@ export class PerfilComponent implements OnInit {
     
     /* Obtiene los datos del alumno (se obtienen de perfilService en el metodo "ret"), su historial de membresias y su horario */
     this.datos = this.perfilService.ret()
-    // console.log(this.datos)
-    // console.log(this.datos)
+    // // console.log(this.datos)
+    // // console.log(this.datos)
     this.membresias();
     this.horarios();
     this.pmem.getHistorial().subscribe(dat=>{
       this.historial=dat
       this.historial=this.historial.filter(x=>x.idscu==this.sucursal)
-      console.log(this.historial)
+      // console.log(this.historial)
 
 
     })
@@ -333,7 +333,7 @@ export class PerfilComponent implements OnInit {
 
     this.perfilService.getmem(this.datos).subscribe((data) => {
       this.membresia = data;
-      console.log(this.membresia)
+      // console.log(this.membresia)
       /* Asignacion del numero de clases de la membresia */
       this.clasesMem = Number(this.membresia[0].clases)
       
@@ -342,7 +342,7 @@ export class PerfilComponent implements OnInit {
       this.hoy = new Date().getTime()
       this.fecha = new Date(this.fecha).getTime()
       this.fecha = (this.hoy - this.fecha) / (1000 * 60 * 60 * 24)
-      // console.log(this.fecha)
+      // // console.log(this.fecha)
 
       /* Determinar si puede agregar un nuevo horario o no */
 
@@ -383,9 +383,9 @@ export class PerfilComponent implements OnInit {
   horarios() {
     this.barra = ""
     this.perfilService.gethorario(this.datos).subscribe((data) => {
-      // console.log(data)
+      // // console.log(data)
       this.dataSource = data;
-      // console.log('numero de horarios en la base de datos' +this.dataSource.length)
+      // // console.log('numero de horarios en la base de datos' +this.dataSource.length)
       this.clasesDB = Number(this.dataSource.length)
       this.barra = "none"
     }, (error) => {
@@ -466,9 +466,9 @@ export class PerfilComponent implements OnInit {
           this.dataSource[i].apellidos = this.ngrupo.apellidos
           this.barra = "none"
           this.notificationsService.showSuccessEdit()
-          // console.log(data)
+          // // console.log(data)
         }, (error) => {
-          // console.log(error)
+          // // console.log(error)
           this.barra = "none"
           this.notificationsService.showError()
         })
@@ -501,7 +501,7 @@ export class PerfilComponent implements OnInit {
   }
 
   editMem(i: number, idmalu, nommem, fechainicio, adelanto, restante, total, nombre,nombrealu,apealu) {
-    console.log(i, idmalu, nommem, fechainicio, adelanto, restante, total, nombre,nombrealu,apealu)
+    // console.log(i, idmalu, nommem, fechainicio, adelanto, restante, total, nombre,nombrealu,apealu)
     const dialogRef = this.dialog.open(PerfilmemeditComponent, {
       width: '500px',
       data:
@@ -556,24 +556,24 @@ export class PerfilComponent implements OnInit {
         this.perfilService.saveNHorario(this.perfilService.getDialogData()).subscribe((data)=>{
           this.horarios()
           // this.dataSource.push({nombre: ""})
-          // console.log(this.dataSource)
+          // // console.log(this.dataSource)
           // let i = Number(this.dataSource.length)
           // i -= 1
-          // // console.log(i)
+          // // // console.log(i)
           // this.dataSource[i].nombre = "Genaro"
           // // this.dataSource = dataS
-          // // console.log(this.dataSource)
+          // // // console.log(this.dataSource)
           // // this.dataSource = this.dataSource.push()
           // // this.clasesDB = Number(this.dataSource.length)
         },(error)=>{
-          console.log(error)
+          // console.log(error)
         })
       }
     })
   }
 
   pdf(x){
-    console.log(x)
+    // console.log(x)
     let docs = new jsPDF();
 
     var img = new Image()
@@ -648,7 +648,7 @@ export class PerfilComponent implements OnInit {
       this._allMembresias = this._allMembresias.filter(x => (x.idsuc == this.sucursal))
       // mostrar precio this.membresia
       this.preciotmembresia=this._allMembresias
-      console.log(this.preciotmembresia)
+      // console.log(this.preciotmembresia)
     
     }, (error) => {
 
@@ -660,7 +660,7 @@ export class PerfilComponent implements OnInit {
     this.malu.idalu=this.datos.idalu
     this.malu.idmem=idtmem
     this.malu.idsuc=this.sucursal
-    console.log(this.malu)
+    // console.log(this.malu)
     this.tablamembrecia="none"
     this.formulario="none"
     this.formadepago=""
@@ -673,13 +673,13 @@ export class PerfilComponent implements OnInit {
     this.malu.restante=this.totalpago-this.adelanto
     this.malu.adelanto=this.adelanto
     this.malu.total=this.totalpago
-    console.log(this.malu)
+    // console.log(this.malu)
     this.memaluService.save(this.malu).subscribe((data) => {
       this.showSuccesSave();
 
     }, (error) => {
       this.showErrorSave();
-      console.log(error);
+      // console.log(error);
     });
 
 
@@ -695,10 +695,10 @@ export class PerfilComponent implements OnInit {
     this.cont.fecha=this.malu.fechaini
     this.cat.savemem(this.cont)
     .subscribe((data) =>{
-      console.log(data)
+      // console.log(data)
       // this.personalService.tput(this.data);
     },(error)=>{
-    console.log(error)
+    // console.log(error)
     });
   }
 
@@ -715,11 +715,11 @@ export class PerfilComponent implements OnInit {
     if (x.checked == true) {
       this.totalpago = this.totalpago + this.anualidad;
       x.checked = true
-      // console.log(this.cheked)
+      // // console.log(this.cheked)
     } else {
       this.totalpago = this.totalpago - this.anualidad;
       x.cheked = false
-      // console.log(this.cheked)
+      // // console.log(this.cheked)
     }
   }
 
@@ -727,7 +727,7 @@ export class PerfilComponent implements OnInit {
     this.malu.idtpago=id
     this.tipoimg = "none";
     this.efec = "";
-    // console.log(id);
+    // // console.log(id);
 
   }
 

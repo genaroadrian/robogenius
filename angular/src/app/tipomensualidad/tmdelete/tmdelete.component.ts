@@ -32,12 +32,12 @@ export class TmdeleteComponent implements OnInit {
   confirmDelete(): void {
     
     this.tipomensualidadService.delete(this.data.id).subscribe((data)=>{
-      console.log(data);
+      // console.log(data);
       this.tipomensualidadService.deleteIssue(this.data.id);
       this.showSuccessEdit();
     },(error)=>{
       this.showErrorEdit();
-      console.log(error);
+      // console.log(error);
     });
   }
 

@@ -82,7 +82,7 @@ export class ShomeComponent implements OnInit {
 
   tipoChange(value:string) {
     
-    console.log(value);
+    // console.log(value);
     localStorage.removeItem('sucursal');
     localStorage.setItem('sucursal' , value);
     this.router.navigateByUrl('/home'); 
@@ -92,7 +92,7 @@ export class ShomeComponent implements OnInit {
   Nomvar(value:string){
     localStorage.removeItem('sucuname');
     localStorage.setItem('sucuname' , value);
-    console.log(value);
+    // console.log(value);
   }
 
   /* Mostrar la barra de carga */
@@ -182,7 +182,7 @@ export class ShomeComponent implements OnInit {
     this.id = idsuc;
     // index row is used just for debugging proposes and can be removed
     this.index = i;
-    console.log(this.index);
+    // console.log(this.index);
     const dialogRef = this.dialog.open(SeditComponent, {
       data: { idsuc: idsuc, nombre: nombre, direccion: direccion, encargado: encargado, usuario: usuario, psw: psw }
     });

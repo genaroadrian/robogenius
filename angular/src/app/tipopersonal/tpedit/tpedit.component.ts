@@ -21,7 +21,7 @@ export class TpeditComponent implements OnInit {
     public toastr: ToastrManager) { }
 
   ngOnInit() {
-    console.log(this.data)
+    // // console.log(this.data)
     if(this.data.permisos == 1)
     {
       this.cheked = true

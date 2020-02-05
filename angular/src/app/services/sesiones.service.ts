@@ -19,9 +19,9 @@ export class SesionesService {
   getSesiones(): void {
     this.httpClient.get<Sesiones[]>(this.API_ENDPOINT+'/sesiones').subscribe((data)=>{
       this.dataChange.next(data)
-      console.log(data)
+      // console.log(data)
     },(error: HttpErrorResponse)=>{
-      console.log(error.name + '' + error.message)
+      // console.log(error.name + '' + error.message)
     })
   }
 

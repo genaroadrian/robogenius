@@ -48,7 +48,7 @@ export class PerfilEscuelasComponent implements OnInit {
     this.loading = 'Cargando...'
     try {
       this.info = await this.escuelasService.fetchProfileInfo(this.data.idesc).toPromise()
-      console.log(this.info)
+      // console.log(this.info)
     this.alumnos = this.info[0]
 
     this.alumnosFiltered = this.alumnos
@@ -60,14 +60,14 @@ export class PerfilEscuelasComponent implements OnInit {
     this.horario = this.info[2]
     this.barra = 'none'
     } catch (e) {
-      console.log(e)
+      // console.log(e)
     }
 
   }
 
   editInfo(data)
   {
-    console.log(data)
+    // console.log(data)
     const dialogRef = this.dialog.open(EditComponent, {
       data: { idesc: data.idesc, nombre: data.nombre, representante: data.representante, direccion: data.direccion, telefono: data.telefono, correouno: data.correouno }
     });
@@ -106,7 +106,7 @@ export class PerfilEscuelasComponent implements OnInit {
           this.barra = 'none'
           this.notificationsService.showSuccessEdit()
         } catch (e) {
-          console.log(e)
+          // console.log(e)
           this.notificationsService.showError()
           this.barra = 'none'
         }
@@ -116,14 +116,14 @@ export class PerfilEscuelasComponent implements OnInit {
 
   addH(data)
   {
-    console.log(data)
+    // console.log(data)
     const dialogRef = this.dialog.open(AddhoraescComponent,{
       data: {idesc: data.idesc, idd: '', idh: '', idp: ''}
     })
     dialogRef.afterClosed().subscribe(async result =>{
       if(result === 1)
       {
-          console.log(this.detalleGruposService.getDialogData())
+          // console.log(this.detalleGruposService.getDialogData())
           try {
             let d = await this.detalleGruposService.save(this.detalleGruposService.getDialogData()).toPromise()
             this.getAll()
@@ -136,9 +136,9 @@ export class PerfilEscuelasComponent implements OnInit {
 
   editHora(i: number, id: number, idd: number, idh: number, idp: number)
   {
-    console.log(idd)
-    console.log(idh);
-    console.log(idp);
+    // console.log(idd)
+    // console.log(idh);
+    // console.log(idp);
     const index = i
     const dialogRef = this.dialog.open(EdithoraescComponent, {
       data: {iddgru: id, idd: idd, idh: idh, idp: idp, idesc: this.data.idesc}
@@ -150,7 +150,7 @@ export class PerfilEscuelasComponent implements OnInit {
           await this.detalleGruposService.update(this.detalleGruposService.getDialogData()).toPromise()
           this.getAll()
         } catch (e) {
-          console.log(e)
+          // console.log(e)
         }
       }
     })

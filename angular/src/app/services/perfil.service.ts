@@ -110,7 +110,7 @@ export class PerfilService {
 
   saveNHorario(data)
   {
-    console.log(data)
+    // console.log(data)
     const headers = new HttpHeaders({"Content-Type": "application/json"});
     return this.httpClient.post(this.API_ENDPOINT+'/horarioperfilalumnos', data, {headers: headers})
   }

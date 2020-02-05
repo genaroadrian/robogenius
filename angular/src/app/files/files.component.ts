@@ -44,59 +44,59 @@ export class FilesComponent implements OnInit {
  
   onSelectMa(event) {
     this.idSesion = this.moduloService.retIdSesion()
-    //console.log(event);
+    //// console.log(event);
     this.files.push(...event.addedFiles);
 
   }
   
   onRemoveMa(event) {
-    console.log(event);
+    // console.log(event);
     this.files.splice(this.files.indexOf(event), 1);
-    console.log(this.files);
+    // console.log(this.files);
   }
 
   onSelectPro(event) {
     this.idSesion = this.moduloService.retIdSesion()
-    //console.log(event);
+    //// console.log(event);
     this.progra.push(...event.addedFiles);
     //this.saveFile(this.progra,'','','');
   }
   
   onRemovePro(event) {
-    console.log(event);
+    // console.log(event);
     this.progra.splice(this.progra.indexOf(event), 1);
-    console.log(this.progra);
+    // console.log(this.progra);
   }
 
   onSelectPre(event) {
     this.idSesion = this.moduloService.retIdSesion()
-    //console.log(event);
+    //// console.log(event);
     this.presen.push(...event.addedFiles);
     //this.saveFile(this.presen,'','','');
   }
   
   onRemovePre(event) {
-    console.log(event);
+    // console.log(event);
     this.presen.splice(this.presen.indexOf(event), 1);
-    console.log(this.presen);
+    // console.log(this.presen);
   }
 
   onSelectPla(event) {
     this.idSesion = this.moduloService.retIdSesion()
-    //console.log(event);
+    //// console.log(event);
     this.plane.push(...event.addedFiles);
     //this.saveFile(this.plane,'','','');
   }
   
   onRemovePla(event) {
-    console.log(event);
+    // console.log(event);
     this.plane.splice(this.plane.indexOf(event), 1);
-    console.log(this.plane);
+    // console.log(this.plane);
   }
 
   saveFile(){
     
-    console.log(this.idSesion)
+    // console.log(this.idSesion)
     this.barraC = ''
     var f = this.saveFiles(this.files,1) ? this.saveFiles(this.files,1) : '';
     var p = this.saveFiles(this.progra,2) ? this.saveFiles(this.progra,2): '';
@@ -112,7 +112,7 @@ export class FilesComponent implements OnInit {
     }
 
     if(p != ''){
-      console.log(p)
+      // console.log(p)
       const request2 = this.http.post(this.API_ENDPOINT+'/files', p);
 
       requestArray.push(request2);
@@ -131,26 +131,26 @@ export class FilesComponent implements OnInit {
     forkJoin(requestArray).subscribe(results => {
       this.barraC = 'none'
       this.notifications.showSuccessAdd()
-      console.log(results);
+      // console.log(results);
       this.response = results;
       this.response.forEach(element => {
-        console.log(element.id);
+        // console.log(element.id);
         var all = element.id;
         if(all.length > 1){
           all.forEach(el => {
-            console.log(el);
+            // console.log(el);
           });
         }
       });
     },(error)=>{
       this.barraC = 'none'
-      console.log(error)
+      // console.log(error)
       this.notifications.showError()
     });
   }
 
   uploadFile(data: FormData): Observable<any> {
-    console.log(data);
+    // console.log(data);
     const headers = new HttpHeaders({"Content-Type":"application/json;multipart/form-data"});
     return this.http.post<any>(this.API_ENDPOINT+'/files', data,{headers: headers});
 
@@ -158,7 +158,7 @@ export class FilesComponent implements OnInit {
 
   _handleReaderLoaded(readerEvt) {
     var binaryString = readerEvt.target.result;
-    console.log(btoa(binaryString));
+    // console.log(btoa(binaryString));
     this.archivo.ruta = btoa(binaryString);
        
    }
@@ -177,7 +177,7 @@ export class FilesComponent implements OnInit {
   }
 
    fileService(files): Observable<any> {
-    console.log(files);
+    // console.log(files);
     const headers = new HttpHeaders({"Content-Type":"application/json;multipart/form-data"});
     return this.http.post<any>(this.API_ENDPOINT+'/files', files);
     

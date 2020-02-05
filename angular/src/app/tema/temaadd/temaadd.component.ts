@@ -59,7 +59,7 @@ export class TemaaddComponent implements OnInit {
   {
     this.teme.idsuc=localStorage.getItem("sucursal");
     this.tema.addTema(this.teme)
-    console.log(this.teme)
+    // console.log(this.teme)
 
   }
 
@@ -72,9 +72,9 @@ export class TemaaddComponent implements OnInit {
 
   }
   select(plan){
-    // console.log(plan)
+    // // console.log(plan)
     // this.plan=this.teme.idac;
-    // console.log(this.teme.idac)
+    // // console.log(this.teme.idac)
     this.teme.idac=plan
   }
 

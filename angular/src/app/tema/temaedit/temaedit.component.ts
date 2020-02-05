@@ -52,7 +52,7 @@ submit() {
 }
 select(plan){
   this.data.idac=plan
-  // console.log(plan)
+  // // console.log(plan)
 }
 
 /* Cuando se da clic afuera del modal, se cierra */
@@ -63,7 +63,7 @@ onNoClick(): void {
 /* Confirma la actualizacion del registro */
 stopEdit(data): void {
   this.teme.nombre=data.nombre;
-  // console.log(data)
+  // // console.log(data)
   this.temaservice.put(data);
   
 }

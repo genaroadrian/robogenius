@@ -30,7 +30,7 @@ export class EdithoraescComponent implements OnInit {
     this.dia = ''+this.data.idd+''
     this.hora = ''+this.data.idh +''
     this.persona = ''+this.data.idp+''
-    console.log(this.dia);
+    // console.log(this.dia);
     this.getAll()
   }
 
@@ -66,11 +66,11 @@ export class EdithoraescComponent implements OnInit {
 
   // Metodo para cuando termine de guardar
   stopEdit(): void {
-    // console.log(this.data)
+    // // console.log(this.data)
     this.data.idd = Number(this.dia)
     this.data.idh = Number(this.hora)
     this.data.idp = Number(this.persona)
-    // console.log(this.data)
+    // // console.log(this.data)
     this.detalleGruposService.add(this.data)
   }
 

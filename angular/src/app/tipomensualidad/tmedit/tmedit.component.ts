@@ -48,11 +48,11 @@ export class TmeditComponent implements OnInit {
 
   stopEdit(data): void {
     this.tipomensualidadService.put(this.data).subscribe((data) =>{
-      // console.log(this.data);
+      // // console.log(this.data);
       // alert('Registro Actualizado');
       // this.openSnackBar();
       this.showSuccessEdit();
-      // console.log(this.data);
+      // // console.log(this.data);
     },(error)=>{
       this.showErrorEdit();
     });

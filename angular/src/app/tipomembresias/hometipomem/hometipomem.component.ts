@@ -114,7 +114,7 @@ export class HometipomemComponent implements OnInit {
           this.hideBarra()
         }, (error) => {
           this.notifications.showError();
-          console.log(error)
+          // console.log(error)
           this.hideBarra()
         });
 
@@ -143,7 +143,7 @@ export class HometipomemComponent implements OnInit {
         }, (error) => {
           this.notifications.showError()
           this.hideBarra()
-          console.log(error)
+          // console.log(error)
         })
 
       }

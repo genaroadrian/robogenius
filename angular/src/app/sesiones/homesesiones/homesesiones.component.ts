@@ -52,10 +52,10 @@ export class HomesesionesComponent implements OnInit {
   {
     this.exampleDatabase = new SesionesService(this.httpClient)
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
-    console.log(this.dataSource)
+    // console.log(this.dataSource)
     fromEvent(this.filter.nativeElement, 'keyup')
       .subscribe(() => {
-        console.log(this.dataSource)
+        // console.log(this.dataSource)
         if (!this.dataSource) {
           return;
         }

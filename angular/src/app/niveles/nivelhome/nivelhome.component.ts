@@ -104,13 +104,13 @@ export class NivelhomeComponent implements OnInit {
     if (result == 1) {
       this.nivelService.agregar(this.nivelService.getDialogData()).subscribe((data) => {
         this.niveladd = data
-        // console.log(data)
+        // // console.log(data)
         this.exampleDatabase.dataChange.value.push(this.niveladd);
         this.refreshTable()
         this.showSuccessAdd();
        
       }, (error) => {
-        // console.log(error.error.nombre[0])
+        // // console.log(error.error.nombre[0])
         this.showError(error.error.nombre[0]);
        
       });

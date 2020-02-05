@@ -15,7 +15,7 @@ export class EditsesionesComponent implements OnInit {
   public sesionesService: SesionesService) { }
 
   ngOnInit() {
-    console.log(this.data)
+    // console.log(this.data)
   }
 
   onNoClick(): void 

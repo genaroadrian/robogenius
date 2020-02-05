@@ -36,7 +36,7 @@ export class AlueditComponent implements OnInit {
     this.escuelaSelected = ''+this.data.idesc+''
     this.getEscuelas()
     
-    console.log(this.escuelaSelected)
+    // console.log(this.escuelaSelected)
   }
 
   getEscuelas()
@@ -70,7 +70,7 @@ export class AlueditComponent implements OnInit {
 stopEdit(data): void {
   data.idsuc = this.sucursal
   data.idesc = this.escuelaSelected
-  console.log(data)
+  // console.log(data)
     this.perfilService.putAlumno(data);
   }
 

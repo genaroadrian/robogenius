@@ -32,12 +32,12 @@ export class DeletehComponent implements OnInit {
   
     deletep(): void {
       this.herramientasService.deletee(this.data.id).subscribe((data)=>{
-        console.log(data);
+        // console.log(data);
         this.showSuccessEdit();
         this.herramientasService.deleten(this.data.id);
       },(error)=>{
         this.showErrorEdit();
-        console.log(error);
+        // console.log(error);
       });
     }
 

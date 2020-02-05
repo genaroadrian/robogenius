@@ -34,15 +34,15 @@ export class HorariosService {
     this.httpClient.get<Horario[]>(this.API_ENDPOINT + '/horarios').subscribe(data => {
       this.datos=data
       this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
-      // console.log(this.datos)
+      // // console.log(this.datos)
       this.dataChange.next(this.datos);       },
     (error: HttpErrorResponse) => {
-    // console.log (error.name + ' ' + error.message);
+    // // console.log (error.name + ' ' + error.message);
     });
   }
 
   put(data){
-    // console.log(data);
+    // // console.log(data);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.put(this.API_ENDPOINT +'/horarios/'+data.idh,data,{headers: headers});
   }
@@ -63,7 +63,7 @@ export class HorariosService {
 
   add(horario: Horario)
   {
-    console.log(horario);
+    // console.log(horario);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.post(this.API_ENDPOINT + '/horarios',horario, {headers: headers});
   }
@@ -79,7 +79,7 @@ export class HorariosService {
   }
 
   deleteIssue (id: number): void {
-    // console.log(id);
+    // // console.log(id);
   }
 
   delete(id){

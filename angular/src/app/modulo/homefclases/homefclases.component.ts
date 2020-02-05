@@ -81,7 +81,7 @@ export class HomefclasesComponent implements OnInit {
 
     /* Filtro de area del conocimiento */
     this.struct.ac.forEach(e => {
-      // console.log
+      // // console.log
       arr = arr.filter(element => element.folio.toLowerCase().slice(6).includes(e.toLowerCase().slice(0, 3)))
     });
 
@@ -120,7 +120,7 @@ export class HomefclasesComponent implements OnInit {
       this.folios = this.result
       this.filtered = data
     }, (error) => {
-      console.log(error)
+      // console.log(error)
     })
   }
 

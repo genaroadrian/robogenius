@@ -117,7 +117,7 @@ export class PerhomeComponent  {
 
   ngOnInit() 
   {
-    // console.log(this.sucursal)
+    // // // console.log(this.sucursal)
     // Llamado al metodo de que obtiene los datos
     this.getPersonal();
 
@@ -172,19 +172,19 @@ export class PerhomeComponent  {
     this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator, this.sort);
     if(this.dataSource.renderedData.length > 0)
       { 
-        console.log(":v")
+        // // console.log(":v")
       }
     fromEvent(this.filter.nativeElement, 'keyup')
       // .debounceTime(150)
       // .distinctUntilChanged()
       .subscribe(() => {
         if (!this.dataSource) {
-          console.log(this.dataSource)
+          // // console.log(this.dataSource)
           return;
           
         }
         this.dataSource.filter = this.filter.nativeElement.value;
-        console.log(this.dataSource)
+        // // console.log(this.dataSource)
       });
   }
 

@@ -35,11 +35,11 @@ export class EscuelasService {
     this.httpClient.get<Escuelas[]>(this.API_ENDPOINT + '/escuelas').subscribe(data => {
       this.datos=data
       this.datos=this.datos.filter(data=>data.idscu==this.sucursal);
-      // console.log(this.datos)
+      // // console.log(this.datos)
       this.dataChange.next(this.datos);
       },
     (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
+    // console.log (error.name + ' ' + error.message);
     });
   }
 
@@ -83,7 +83,7 @@ export class EscuelasService {
   /* Guarda los datos en la base */
   add(escuelas: Escuelas)
   {
-    console.log(escuelas);
+    // console.log(escuelas);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.post(this.API_ENDPOINT + '/escuelas',escuelas, {headers: headers});
   }
@@ -95,7 +95,7 @@ export class EscuelasService {
   }
 
   deleteIssue (id: number): void {
-    console.log(id);
+    // console.log(id);
   }
 
   delete(id){

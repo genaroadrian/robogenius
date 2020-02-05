@@ -23,12 +23,12 @@ export class TipomensualidadService {
       this.dataChange.next(data);
       },
     (error: HttpErrorResponse) => {
-    console.log (error.name + ' ' + error.message);
+    // console.log (error.name + ' ' + error.message);
     });
   }
 
   put(data){
-    console.log(data);
+    // console.log(data);
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.httpClient.put(this.API_ENDPOINT +'/tipomensualidad/'+data.idtmen,data,{headers: headers});
   }
@@ -58,7 +58,7 @@ export class TipomensualidadService {
   }
 
   deleteIssue (id: number): void {
-    console.log(id);
+    // console.log(id);
   }
 
   delete(id){

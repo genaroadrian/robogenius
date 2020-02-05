@@ -37,7 +37,7 @@ export class TipomembresiaService {
       this.datos=this.datos.filter(data=>data.idsuc==this.sucursal);
       this.dataChange.next(this.datos);
     }, (error: HttpErrorResponse)=>{
-      console.log(error.name + ' '+ error.message)
+      // console.log(error.name + ' '+ error.message)
     })
 
     
@@ -59,7 +59,7 @@ export class TipomembresiaService {
 
   add(data)
   {
-    console.log(data)
+    // console.log(data)
     const headers = new HttpHeaders({"Content-Type":"application/json"});
     return this.httpClient.post(this.API_ENDPOINT+'/tmembresia', data, {headers:headers})
   }

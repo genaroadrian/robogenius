@@ -34,12 +34,12 @@ export class LoginService {
 
   enviarCorreo(datos)
   {
-    console.log(datos)
+    // console.log(datos)
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.http.post(this.API_ENDPOINT+"/email",datos,{headers:headers})
   }
   validation(datos){
-    console.log(datos)
+    // console.log(datos)
     const headers = new HttpHeaders( {'Content-Type': 'application/json'});
     return this.http.post(this.API_ENDPOINT+"/validation",datos,{headers:headers})
 

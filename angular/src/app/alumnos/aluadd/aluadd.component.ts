@@ -463,7 +463,7 @@ export class AluaddComponent implements OnInit {
     this.alumno.idsuc = localStorage.getItem("sucursal");
     // Se envian los datos al servicio de alumnos para guardar los datos en la BD
     this.alumnosService.save(alumno).subscribe((data) => {
-      console.log(data)
+      // console.log(data)
       if (alumno.idesc == null) {
         this.alumnosview = "none";
         this.membresiaview = "";
@@ -478,19 +478,19 @@ export class AluaddComponent implements OnInit {
         this.alumnosview = 'none'
         this.viewesc = ''
         this.infoEscuela = data
-        console.log(this.infoEscuela)
+        // console.log(this.infoEscuela)
         this.showSuccesSave();
       }
 
     }, (error) => {
       this.showErrorSave();
-      console.log(error);
+      // console.log(error);
     });
   }
 
   // Guarda el tipo de membresia escogido
   saveMem(idtmem, costo, clases,nombre) {
-    // console.log(idtmem);
+    // // console.log(idtmem);
     this.nombredelamembresia=nombre
     this.membresiaview = "none";
     this.tipopagoview = "";
@@ -534,22 +534,22 @@ export class AluaddComponent implements OnInit {
     this.cont.idscu=this.idsuc
     this.cont.fecha=this.fechaini
 
-  // console.log(this.cont)
+  // // console.log(this.cont)
     this.cat.savemem(this.cont)
     .subscribe((data) =>{
-      console.log(data)
+      // console.log(data)
       // this.personalService.tput(this.data);
     },(error)=>{
-    console.log(error)
+    // console.log(error)
     });
-    // console.log(this.malu);
+    // // console.log(this.malu);
     this.memaluService.save(this.malu).subscribe((data) => {
       this.showSuccesSave();
       this.tipopagoview = "none";
       this.gruposview = "";
     }, (error) => {
       this.showErrorSave();
-      console.log(error);
+      // console.log(error);
     });
 
     this.pdf()
@@ -748,19 +748,19 @@ export class AluaddComponent implements OnInit {
     this.labelh = "none"
     this.spinerh = "";
     this.gethorarios.getHora(dia).subscribe((data: Horas[]) => {
-      console.log(data)
+      // console.log(data)
       this._allHoras = data;
       this._allHoras = this._allHoras.filter(x => x.idsuc == this.idsuc)
       this.labelh = ""
       this.spinerh = "none";
       this.horavalue = "";
       this.detallegrupos.idd = dia.iddia;
-      // console.log(this.detallegrupos);
+      // // console.log(this.detallegrupos);
       if (this._allHoras.length < 1) {
         this.showDisp();
       }
     }, (error) => {
-      // console.log(error);
+      // // console.log(error);
 
     });
     this.horavalue = "";
@@ -773,14 +773,14 @@ export class AluaddComponent implements OnInit {
     this.labelp = "none";
     this.spinnerp = "";
     this.detallegrupos.idh = hora.idh;
-    // console.log(this.detallegrupos);
+    // // console.log(this.detallegrupos);
     this.gethorarios.getPersonal(this.detallegrupos).subscribe((data: Personal[]) => {
-      console.log(data)
+      // console.log(data)
       this._allPersonal = data;
       this._allPersonal = this._allPersonal.filter(datas => datas.idsuc == this.idsuc)
       this.labelp = "";
       this.spinnerp = "none";
-      // console.log(this._allPersonal);
+      // // console.log(this._allPersonal);
     }, (error) => {
 
     });
@@ -788,7 +788,7 @@ export class AluaddComponent implements OnInit {
 
   // Obteine el id del grupo al cambiar el personal
   personalChange(id) {
-    console.log(id)
+    // console.log(id)
     this.gruposAlumnos.idg = id;
   }
 
@@ -797,7 +797,7 @@ export class AluaddComponent implements OnInit {
     this.tipoimg = "none";
     this.efec = "";
     this.malu.idtpago = id;
-    // console.log(id);
+    // // console.log(id);
 
   }
 
@@ -806,9 +806,9 @@ export class AluaddComponent implements OnInit {
     if (this.clasenow == this.tclases) {
       this.clasesbutton = true;
     }
-    console.log(this.gruposAlumnos)
+    // console.log(this.gruposAlumnos)
     this.galuService.save(this.gruposAlumnos).subscribe((data) => {
-      console.log(data)
+      // console.log(data)
       this.showSuccesSave();
       this.diavalue = "";
       this.horavalue = "";
@@ -818,7 +818,7 @@ export class AluaddComponent implements OnInit {
       }
     }, (error) => {
       this.showErrorSave();
-      console.log(error);
+      // console.log(error);
     });
 
   }
@@ -832,17 +832,17 @@ export class AluaddComponent implements OnInit {
     if (this.cheked == false) {
       this.totalpago = this.totalpago + this.anualidad;
       this.cheked = true
-      // console.log(this.cheked)
+      // // console.log(this.cheked)
     } else {
       this.totalpago = this.totalpago - this.anualidad;
       this.cheked = false
-      // console.log(this.cheked)
+      // // console.log(this.cheked)
     }
   }
 
   // Boton de finalizar todo el proceso
   finalizar() {
-    console.log("Finalizacion")
+    // console.log("Finalizacion")
   }
 
   newMem() {
@@ -907,23 +907,23 @@ export class AluaddComponent implements OnInit {
         layout: 'vertical'
       },
       onApprove: (data, actions) => {
-        console.log('onApprove - transaction was approved, but not authorized', data, actions);
+        // console.log('onApprove - transaction was approved, but not authorized', data, actions);
         actions.order.get().then(details => {
-          console.log('onApprove - you can get full order details inside onApprove: ', details);
+          // console.log('onApprove - you can get full order details inside onApprove: ', details);
         });
       },
       onClientAuthorization: (data) => {
-        console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
+        // console.log('onClientAuthorization - you should probably inform your server about completed transaction at this point', data);
         this.showSuccess = true;
       },
       onCancel: (data, actions) => {
-        console.log('OnCancel', data, actions);
+        // console.log('OnCancel', data, actions);
       },
       onError: err => {
-        console.log('OnError', err);
+        // console.log('OnError', err);
       },
       onClick: (data, actions) => {
-        console.log('onClick', data, actions);
+        // console.log('onClick', data, actions);
       },
     };
   }

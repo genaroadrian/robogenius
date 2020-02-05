@@ -295,8 +295,13 @@
 
                         <mat-label>Dias: </mat-label>
 
-                        <mat-select [(ngModel)]="horarioPersonal[index].idd" (selectionChange)="diasChange(horarioPersonal[index].idd)">
-                          <mat-option *ngFor="let d of dias" value="{{d.iddia}}">{{d.dia}}</mat-option>
+                        <mat-select [(ngModel)]="horarioPersonal[index].idd">
+                          <mat-option value="1">Lunes</mat-option>
+                          <mat-option value="2">Martes</mat-option>
+                          <mat-option value="3">Miercoles</mat-option>
+                          <mat-option value="4">Jueves</mat-option>
+                          <mat-option value="5">Viernes</mat-option>
+                          <mat-option value="6">Sabado</mat-option>
 
                         </mat-select>
 

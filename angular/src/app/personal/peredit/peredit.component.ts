@@ -34,10 +34,10 @@ export class PereditComponent implements OnInit {
     this.tPersonal.get().subscribe((data)=>{
       this.selectTPersonal = data
       this.selectTPersonal=this.selectTPersonal.filter(x=>(x.idsuc==this.sucursal))
-      console.log(this.selectTPersonal)
+      // // console.log(this.selectTPersonal)
     },(error)=>{
     })
-    console.log(this.selected)
+    // // console.log(this.selected)
   }
 
   // Validaciones del formulario
@@ -73,7 +73,7 @@ export class PereditComponent implements OnInit {
 
   // Metodo para cuando termine de guardar
  /*  stopEdit(data): void {
-    // console.log(data);
+    // // // console.log(data);
     this.personalService.put(this.data).subscribe((data) =>{
       this.showSuccessEdit();
       // this.personalService.tput(this.data);
@@ -83,9 +83,9 @@ export class PereditComponent implements OnInit {
   } */
 
   stopEdit(data): void {
-    console.log(this.selected)
+    // // console.log(this.selected)
     data.idtper = this.selected
-  console.log(data)
+  // // console.log(data)
     this.personalService.putPersonal(data);
     }    
 

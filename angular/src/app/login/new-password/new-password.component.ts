@@ -53,10 +53,10 @@ export class NewPasswordComponent implements OnInit {
 
   ngOnInit() {
     this.token.token = this.route.snapshot.paramMap.get('id')
-    // console.log(this.token)
+    // // console.log(this.token)
     this.passwordResetService.confirmToken(this.token).subscribe((data)=>{
       this.exist = data[0].exist
-      // console.log(this.exist)
+      // // console.log(this.exist)
     if(this.exist == 1 )
     {
       this.tok = ""
@@ -86,7 +86,7 @@ export class NewPasswordComponent implements OnInit {
             this.router.navigateByUrl('/home')
           }
         },(error)=>{
-          // console.log(error)
+          // // console.log(error)
           this.notificacionService.showError()
         })
       }

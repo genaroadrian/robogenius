@@ -31,7 +31,7 @@ export class AddhoraescComponent implements OnInit {
     public notificacionService: NotificationsService) { }
 
   ngOnInit() {
-    console.log(this.data);
+    // console.log(this.data);
     this.getAll()
   }
 
@@ -55,7 +55,7 @@ export class AddhoraescComponent implements OnInit {
 
   // Metodo para cuando termine de guardar
   stopEdit(): void {
-    console.log(this.data)
+    // console.log(this.data)
     // this.detalleGruposService.add(this.data)
   }
 

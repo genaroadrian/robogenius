@@ -15,7 +15,7 @@ export class PersonalhoradeleteComponent implements OnInit {
     public detalleGruposService: DetallegruposService) { }
 
   ngOnInit() {
-    console.log(this.data.id)
+    // // console.log(this.data.id)
   }
 
   confirmDelete()

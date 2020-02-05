@@ -32,12 +32,12 @@ export class CoddeleteComponent implements OnInit {
   confirmDelete(): void {
     
     this.codigosService.delete(this.data.id).subscribe((data)=>{
-      console.log(data);
+      // console.log(data);
       this.showSuccessEdit();
       this.codigosService.deletecod(this.data.id);
     },(error)=>{
       this.showErrorEdit();
-      console.log(error);
+      // console.log(error);
     });
   }
 }

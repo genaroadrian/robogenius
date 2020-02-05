@@ -48,7 +48,7 @@ export class PruebaComponent implements OnInit {
   ngOnInit() {
     this.sucursal=localStorage.getItem('sucursal')
     this.data = this.escuelasService.getDialogData()
-    console.log(this.data)
+    // console.log(this.data)
     this.fetchAll()
 
     this.services.getPersonas()
@@ -68,7 +68,7 @@ export class PruebaComponent implements OnInit {
       this.allRows = d[0];
       this.pagos = d[1];
       let m = d[2]
-      console.log(this.pagos)
+      // console.log(this.pagos)
 
       var hash = {};
       this.alumnos = this.allRows.filter(function(tem) {
@@ -123,14 +123,14 @@ export class PruebaComponent implements OnInit {
     this.cont.idcate=28;
     this.cont.status=3;
 
-    // console.log(this.cont)
+    // // console.log(this.cont)
     this.categoriaservice.saves(this.cont)
     .subscribe((data) =>{
-      console.log(data);
+      // console.log(data);
       this.router.navigateByUrl('/estadisticas'); 
       // this.personalService.tput(this.data);
     },(error)=>{
-      console.log(error);
+      // console.log(error);
       
     });
 

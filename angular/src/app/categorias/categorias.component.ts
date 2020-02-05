@@ -169,7 +169,7 @@ total:any
   this.categoriaservice.getingresos()
   .subscribe(data=>{
     data=data.filter(x=>x.idscu==this.sucursal)
-    console.log(data)
+    // console.log(data)
     this.ingresos=data;
 
   })
@@ -191,7 +191,7 @@ total:any
       resultado+=obj.suma
     })
     this.resultado=resultado;
-    // console.log(resultado)
+    // // console.log(resultado)
 
 
   })
@@ -204,7 +204,7 @@ total:any
     // foreach de suma
     var total = 0;
     this.sumaegre.forEach(function(obj){
-      console.log(obj)
+      // console.log(obj)
       total+=obj.monto;
     })
     this.total=total;
@@ -224,7 +224,7 @@ total:any
     
 
   })
-  console.log(this.pendiente)
+  // console.log(this.pendiente)
 
 
 })

@@ -129,9 +129,9 @@ export class AddComponent implements OnInit {
       this.personal = data
 
       this.personal=this.personal.filter(data=>data.idsuc==this.sucursal);
-      console.log(this.personal)
+      // console.log(this.personal)
     },(error)=>{
-      console.log(error)
+      // console.log(error)
     })
   }
 
@@ -189,7 +189,7 @@ export class AddComponent implements OnInit {
 
     },(error)=>{
       this.hideBarra()
-      console.log(error)
+      // console.log(error)
     })
     
     
@@ -213,7 +213,7 @@ export class AddComponent implements OnInit {
       this.hideBarra()
     },(error)=>{
       this.hideBarra()
-      console.log(error)
+      // console.log(error)
     })
 
   }

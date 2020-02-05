@@ -28,13 +28,13 @@ export class PersonalperfilService {
 
   getGrupos(data)
   {
-    console.log(data)
+    // console.log(data)
     return this.httpClient.post(this.API_ENDPOINT+'/perfilpersonalgrupos',data)
   }
 
   getListaalumnos(data)
   {
-    console.log(data)
+    // console.log(data)
     return this.httpClient.put(this.API_ENDPOINT+'/perfilpersonalgrupos/'+data.iddgru,data)
   }
 }

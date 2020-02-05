@@ -54,7 +54,7 @@ export class ModuloService {
 
   editDC(data, folio)
   {
-    console.log(data)
+    // console.log(data)
     const headers = new HttpHeaders({"Content-Type":"application/json"});
     return this.httpClient.put(this.API_ENDPOINT+'/detalleclases/'+folio,data)
   }

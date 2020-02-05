@@ -31,12 +31,12 @@ export class TpdeleteComponent implements OnInit {
 
   confirmDelete(): void {
     this.tipopersonalService.delete(this.data.id).subscribe((data)=>{
-      console.log(data);
+      // console.log(data);
       this.tipopersonalService.deleteIssue(this.data.id);
       this.showSuccessEdit();
     },(error)=>{
       this.showErrorEdit();
-      console.log(error);
+      // console.log(error);
     });
   }
 }

@@ -32,12 +32,12 @@ export class DeletegComponent implements OnInit {
 
   confirmgrado(): void {
     this.gradosService.delete(this.data.id).subscribe((data)=>{
-      console.log(data);
+      // console.log(data);
       this.showSuccessEdit();
       this.gradosService.deleteg(this.data.id);
     },(error)=>{
       this.showErrorEdit();
-      console.log(error);
+      // console.log(error);
     });
   }
 

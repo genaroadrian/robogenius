@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(form: NgForm){  
-    // if (form.value.email === form.value.email && form.value.password === form.value.password){
+                   // if (form.value.email === form.value.email && form.value.password === form.value.password){
     //     localStorage.setItem('email' , form.value.email);
     //     localStorage.setItem('foto' , form.value.pa);
     //     this.router.navigateByUrl('/home'); 
@@ -95,7 +95,6 @@ export class LoginComponent implements OnInit {
     //   }
     })
 
-    
   }
     /* Mostrar la barra de carga */
     showBarra() {

@@ -29,7 +29,7 @@ class alumnoController extends Controller
         alumnos.correopad,alumnos.ocupad,alumnos.nommad,alumnos.apemad,
         alumnos.dommad,alumnos.telmad,alumnos.correomad,
         alumnos.ocupmad,alumnos.usuariopad,alumnos.pswpad,alumnos.activo,alumnos.finscripcion,
-        alumnos.idsuc,alumnos.idesc, escuelas.nombre,alumnos.escuela FROM alumnos LEFT JOIN escuelas ON
+        alumnos.idsuc,alumnos.idesc, escuelas.nombre FROM alumnos LEFT JOIN escuelas ON
         alumnos.idesc = escuelas.idesc WHERE  alumnos.activo = 1");
 
         echo json_encode($alumno);

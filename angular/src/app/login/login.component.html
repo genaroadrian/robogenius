@@ -18,10 +18,10 @@
                             <div class="mini-stat-desc">
                                  <mat-progress-bar mode="indeterminate" [ngStyle]="{'display':barra}"></mat-progress-bar>
 
-                                    <img src="../assets/images/logoch.png" alt="" class="banner">
+                                    <img src="../assets/images/logo.png" alt="" class="banner">
 
                                     <h4 class="text-muted font-18 m-b-5 text-center">Bienvenido!</h4>
-                                    <p class="text-muted text-center">Inicia Sesión para continuar a RoboGenius.</p>
+                                    <p class="text-muted text-center">Inicia Sesión para continuar</p>
                       
                                     <form  #loginForm="ngForm" (ngSubmit)="login(loginForm)"> 
                                         
@@ -48,7 +48,7 @@
 
                                         </div>
                                   <div class="m-t-40 text-center ">
-                                    <!-- <!-- <p class="text-black-50 " >¿No tienes una cuenta? <a  href="#" [routerLink]="['/registrar']" class="text-blue " style="font-size:20px"> Regístrate ahora </a> </p> --> 
+                                     <p class="text-black-50 " >¿No tienes una cuenta? <a [routerLink]="['/registrar']" class="text-blue " style="font-size:20px"> Regístrate ahora </a> </p> 
                                     <!-- <p class="text-black-50 " ><a href="#"  onclick="return false;" (click)="forgotPassword()" class="text-blue " style="font-size:20px; background: none;
                                       border: 0;">¿Olvidaste tu contraseña?</a> </p> -->
 <!-- 
